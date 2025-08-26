@@ -1,13 +1,129 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>K-Movie A Archive</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <title>K-Movie A Archive – 홈</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/style.css">
+  <!--<script src="assets/config.local.js"></script>-->
 </head>
 <body>
-  <h1>MyMovieProject</h1>
-  <p>데이터가 여기 표시될 예정입니다.</p>
-  <script src="script.js"></script>
+<div class="container">
+  <div class="header">
+    <h1>K-Movie A Archive</h1>
+    <div class="spacer"></div>
+    <a href="index.html" class="btn">홈</a>
+    <a href="search.html" class="btn">영화 검색</a>
+    <a href="people-search.html" class="btn">배우 검색</a>
+    <a href="saved.html" class="btn"> 저장 목록</a>
+  </div>
+
+  <h2>🗓️ 월간 타임라인</h2>
+  <div style="display:flex; align-items:center; gap:6px; margin:8px 0 10px;">
+    <button id="tlPrevBtn" class="btn">◀</button>
+    <strong id="tlRangeLabel" style="min-width:210px; text-align:center;"></strong>
+    <button id="tlNextBtn" class="btn">▶</button>
+  </div>
+
+  <div id="timelineBar" class="tl-bar"></div>
+  <div id="tlPanel" class="tl-panel">날짜를 클릭하면 해당일 개봉 영화가 표시됩니다.</div>
+</div>
+
+  <script>
+// ✅ API 키/직접호출 제거, 정적 JSON 캐시를 읽도록 변경
+
+const DETAIL_PAGE_URL = 'detail.html';
+const WINDOW_DAYS = 30, PAGE_LIMIT = 20;
+
+const bar   = document.getElementById('timelineBar');
+const panel = document.getElementById('tlPanel');
+const label = document.getElementById('tlRangeLabel');
+const prev  = document.getElementById('tlPrevBtn');
+const next  = document.getElementById('tlNextBtn');
+
+const pad2=v=>String(v).padStart(2,'0');
+const ymd = d => d.getFullYear()+pad2(d.getMonth()+1)+pad2(d.getDate());
+const fmtKR = d => `${d.getFullYear()}.${pad2(d.getMonth()+1)}.${pad2(d.getDate())}`;
+
+const yearCache = new Map();
+
+// ⬇️ 변경 포인트: KOFIC API 대신 정적 파일(docs/data/years/year-YYYY.json) 읽기
+async function fetchYearAll(year){
+  if (yearCache.has(year)) return yearCache.get(year);
+  const url = `./data/years/year-${year}.json?v=${Date.now()}`;
+  const res = await fetch(url);
+  if (!res.ok) {
+    console.warn('연도 캐시가 아직 없습니다:', year);
+    yearCache.set(year, []);
+    return [];
+  }
+  const js = await res.json();
+  const list = js.movieList ?? js.movieListResult?.movieList ?? [];
+  const normalized = list.map(m => ({ ...m, openDt: (m.openDt || '').replaceAll('-', '') }));
+  yearCache.set(year, normalized);
+  return normalized;
+}
+
+async function getMoviesOn(date){
+  const y=date.getFullYear();
+  const all=await fetchYearAll(y);
+  const key=ymd(date);
+  return all.filter(m=>m.openDt===key);
+}
+
+async function ensureYearsInRange(startDate, days){
+  const y1=startDate.getFullYear();
+  const y2=new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate()+days-1).getFullYear();
+  await fetchYearAll(y1);
+  if (y2!==y1) await fetchYearAll(y2);
+}
+
+let start=new Date(); start.setDate(start.getDate()-Math.floor(WINDOW_DAYS/2));
+
+async function renderTimeline(){
+  bar.textContent='불러오는 중…';
+  await ensureYearsInRange(start, WINDOW_DAYS);
+
+  const end=new Date(start); end.setDate(end.getDate()+WINDOW_DAYS-1);
+  label.textContent=`${fmtKR(start)} ~ ${fmtKR(end)}`;
+
+  bar.innerHTML='';
+  for(let i=0;i<WINDOW_DAYS;i++){
+    const d=new Date(start); d.setDate(d.getDate()+i);
+    const cell=document.createElement('div');
+    cell.className='tl-day';
+    if (ymd(d)===ymd(new Date())) cell.classList.add('today');
+    const dow='일월화수목금토'[d.getDay()];
+    cell.innerHTML=`<span class="d-label">${pad2(d.getMonth()+1)}/${pad2(d.getDate())}</span>
+                    <span style="font-size:11px; color:#777">${dow}</span>`;
+    cell.addEventListener('click', async ()=>{
+      panel.innerHTML=`🔎 <strong>${fmtKR(d)}</strong> 개봉작 불러오는 중…`;
+      try{
+        const list=await getMoviesOn(d);
+        list.sort((a,b)=>(parseInt(b.openDt||0)-parseInt(a.openDt||0)));
+        if (list.length===0) { panel.innerHTML=`📭 <strong>${fmtKR(d)}</strong> 개봉작이 없습니다.`; return; }
+        const wrap=document.createElement('div');
+        list.forEach(m=>{
+          const item=document.createElement('div');
+          item.innerHTML=`<a href="${DETAIL_PAGE_URL}?movieCd=${m.movieCd}"><strong>${m.movieNm}</strong></a>
+                          <span class="muted"> (${m.openDt})</span>`;
+          wrap.appendChild(item);
+        });
+        panel.innerHTML=''; panel.appendChild(wrap);
+      }catch(e){ panel.textContent='⚠️ 로딩 오류'; console.error(e); }
+    });
+    bar.appendChild(cell);
+
+    const cached=yearCache.get(d.getFullYear())||[];
+    if (cached.some(m=>m.openDt===ymd(d))) cell.classList.add('hasMovies');
+  }
+}
+
+prev.addEventListener('click', ()=>{ start.setDate(start.getDate()-WINDOW_DAYS); renderTimeline(); });
+next.addEventListener('click', ()=>{ start.setDate(start.getDate()+WINDOW_DAYS); renderTimeline(); });
+renderTimeline();
+</script>
+
+
 </body>
 </html>
