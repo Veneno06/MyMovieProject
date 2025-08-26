@@ -2,11 +2,18 @@ name: KOFIC Daily Fetch
 
 on:
   schedule:
-    - cron: "10 15 * * *"   # 한국시간 00:10
-  workflow_dispatch:
+    - cron: "10 15 * * *"   # 매일 KST 00:10 (UTC 15:10)
+  workflow_dispatch:        # Actions에서 수동 실행 버튼 노출
+
+permissions:
+  contents: write           # 커밋/푸시 권한
+
+concurrency:
+  group: kofic-daily
+  cancel-in-progress: false
 
 jobs:
-  build:
+  run:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -17,18 +24,20 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install dependencies
-        run: pip install requests
+      - name: Install deps
+        run: pip install -U requests
 
-      - name: Run update script
+      - name: Fetch and save KOFIC daily data
         env:
           KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
+          # 필요 시 특정 날짜 강제 수집: "20250826" 같이 세팅 가능
+          # TARGET_DT: "20250826"
         run: python scripts/update_data.py
 
       - name: Commit updated data
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add data/
+          git add docs/data/
           git commit -m "Daily KOFIC update" || echo "No changes"
           git push
