@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>영화 상세 – K-Movie A Archive</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>영화 상세 정보</h1>
+    <div class="spacer"></div>
+    <a href="index.html" class="btn">홈</a>
+    <a href="search.html" class="btn">영화 검색</a>
+    <a href="people-search.html" class="btn">배우 검색</a>
+    <a href="saved.html" class="btn"> 저장 목록</a>
+  </div>
+
+  <div id="movieDetail" class="grid"></div>
+  <div style="margin-top:12px; display:flex; gap:8px;">
+    <button class="btn" onclick="history.back()">🔙 뒤로</button>
+    <button class="btn" id="saveBtn">☆ 영화 저장</button>
+  </div>
+</div>
+
+<script>
+const params = new URLSearchParams(location.search);
+const movieCd = params.get('movieCd');
+const box     = document.getElementById('movieDetail');
+const saveBtn = document.getElementById('saveBtn');
+
+function getSaved(){ return JSON.parse(localStorage.getItem('savedMovies')||'[]'); }
+function isSaved(cd){ return getSaved().includes(cd); }
+function setSaved(arr){ localStorage.setItem('savedMovies', JSON.stringify(arr)); }
+function renderSaveBtn(){ if (!movieCd) return; saveBtn.textContent = isSaved(movieCd) ? '⭐ 저장됨(해제)' : '☆ 영화 저장'; }
+saveBtn.addEventListener('click', ()=>{
+  let s=getSaved();
+  if (isSaved(movieCd)) s=s.filter(x=>x!==movieCd);
+  else s.push(movieCd);
+  setSaved(s); renderSaveBtn();
+});
+
+// 숫자 포맷 & 날짜 유틸
+const fmtNum = n => (n==null || isNaN(n)) ? '' : n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+function parseYMD(ymd){ if(!ymd) return null; const s=String(ymd).replace(/-/g,''); if(s.length!==8) return null; return new Date(+s.slice(0,4), +s.slice(4,6)-1, +s.slice(6,8)); }
+
+// ✅ 정적 캐시에서 영화 상세 읽기
+async function fetchMovieInfoLocal(cd){
+  const res = await fetch(`./data/movies/${encodeURIComponent(cd)}.json`);
+  if (!res.ok) throw new Error('영화 상세 캐시 없음');
+  const js  = await res.json();
+  return js.movieInfoResult?.movieInfo;
+}
+
+// ✅ (가능하면) 최신 일일 박스오피스에서 누적 관객수 가져오기
+async function fetchAudienceAccFromLatest(cd){
+  try{
+    const meta = await fetch('./data/latest.json?v=' + Date.now()).then(r=>r.json());
+    const day  = await fetch(meta.url + '?v=' + Date.now()).then(r=>r.json());
+    const list = day?.boxOfficeResult?.dailyBoxOfficeList || [];
+    const f = list.find(x => x.movieCd === cd);
+    if (f?.audiAcc){
+      const acc = parseInt(String(f.audiAcc).replace(/,/g,''),10);
+      if (!isNaN(acc)) return acc;
+    }
+  }catch(e){ /* ignore */ }
+  return null; // 없으면 표기 생략
+}
+
+async function load(){
+  if (!movieCd){ box.textContent='영화 코드가 없습니다.'; return; }
+  try{
+    const info = await fetchMovieInfoLocal(movieCd);
+    if (!info){ box.textContent='영화 정보를 찾을 수 없습니다.'; return; }
+
+    const title     = info.movieNm;
+    const prdtYear  = info.prdtYear || '';
+    const openDt    = info.openDt || '정보 없음';
+    const showTm    = info.showTm ? `${info.showTm}분` : '';
+    const genres    =(info.genres||[]).map(g=>g.genreNm).join(', ')||'정보 없음';
+    const directors =(info.directors||[]).map(d=>d.peopleNm).join(', ')||'정보 없음';
+    const companies =(info.companys||[]).map(c=>c.companyNm).join(', ')||'정보 없음';
+
+    // 배우 링크(원본 로직 유지)
+    const actorLinksShort = (info.actors || []).slice(0, 5).map(a => {
+      const cd = a.peopleCd;
+      const nm = a.peopleNm || '';
+      const href = cd
+        ? `person.html?peopleCd=${encodeURIComponent(cd)}`
+        : `person.html?peopleNm=${encodeURIComponent(nm)}&movieNm=${encodeURIComponent(title)}`;
+      return `<a href="${href}" class="actor-link">${nm}</a>`;
+    }).join(', ');
+
+    const actorLinksAll = (info.actors || []).map(a => {
+      const cd = a.peopleCd;
+      const nm = a.peopleNm || '';
+      const href = cd
+        ? `person.html?peopleCd=${encodeURIComponent(cd)}`
+        : `person.html?peopleNm=${encodeURIComponent(nm)}&movieNm=${encodeURIComponent(title)}`;
+      return `<a href="${href}" class="actor-link">${nm}</a>`;
+    }).join(', ');
+
+    box.innerHTML=`
+      <div><strong>제목:</strong> ${title} ${prdtYear?`<span class="muted">(${prdtYear})</span>`:''}</div>
+      <div><strong>개봉일:</strong> ${openDt}${showTm?` · <strong>상영시간:</strong> ${showTm}`:''}</div>
+      <div><strong>장르:</strong> ${genres}</div>
+      <div><strong>감독:</strong> ${directors}</div>
+      <div><strong>제작사:</strong> ${companies}</div>
+      <div><strong>배우:</strong> 
+        <span id="actorsShort">${actorLinksShort}</span>
+        ${(info.actors||[]).length>5 ? ` <a href="#" id="actorsMore">더보기</a>
+        <span id="actorsAll" style="display:none">${actorLinksAll}</span>` : ''}
+      </div>
+
+      <!-- 관객수 라인 -->
+      <div><strong>관객수(누적):</strong> <span id="audiAccText">조회 중…</span></div>
+
+      <div class="muted">영화코드: ${movieCd}</div>
+    `;
+
+    if ((info.actors||[]).length>5){
+      document.getElementById('actorsMore').addEventListener('click', (e)=>{
+        e.preventDefault();
+        document.getElementById('actorsAll').style.display='inline';
+        document.getElementById('actorsShort').style.display='none';
+        e.target.style.display='none';
+      });
+    }
+
+    renderSaveBtn();
+
+    // 누적 관객수(있을 때만)
+    const acc = await fetchAudienceAccFromLatest(movieCd);
+    document.getElementById('audiAccText').textContent =
+      (acc!=null) ? `${fmtNum(acc)}명` : '집계 데이터 없음';
+
+  }catch(e){ console.error(e); box.textContent='오류가 발생했습니다.'; }
+}
+load();
+</script>
+</body>
+</html>
