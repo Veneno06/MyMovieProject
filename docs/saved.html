@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>저장 목록 – K-Movie A Archive</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1> 저장된 영화</h1>
+    <div class="spacer"></div>
+    <a href="index.html" class="btn">홈</a>
+    <a href="search.html" class="btn">영화 검색</a>
+    <a href="people-search.html" class="btn">배우 검색</a>
+  </div>
+
+  <div id="savedMovies" class="grid"></div>
+</div>
+
+<script>
+const LIST=document.getElementById('savedMovies');
+
+function getSaved(){ return JSON.parse(localStorage.getItem('savedMovies')||'[]'); }
+function setSaved(a){ localStorage.setItem('savedMovies', JSON.stringify(a)); }
+function removeSaved(cd){ const s=getSaved().filter(x=>x!==cd); setSaved(s); render(); }
+
+// ✅ 정적 캐시에서 상세 읽기
+async function fetchInfoLocal(cd){
+  const res = await fetch(`./data/movies/${encodeURIComponent(cd)}.json`);
+  if (!res.ok) return null;
+  const js  = await res.json();
+  return js.movieInfoResult?.movieInfo || null;
+}
+
+async function render(){
+  const saved=getSaved();
+  LIST.innerHTML='';
+  if (saved.length===0){ LIST.innerHTML='<div class="muted">저장된 영화가 없습니다.</div>'; return; }
+
+  const infos=[];
+  for (const cd of saved){
+    try{ const info = await fetchInfoLocal(cd); if (info) infos.push(info); }catch(e){ console.error(e); }
+  }
+  infos.sort((a,b)=> (+(b.openDt||0)) - (+(a.openDt||0))).reverse();
+
+  infos.forEach(info=>{
+    const div=document.createElement('div'); 
+    div.style.border='1px solid #e6e6e6'; div.style.padding='10px'; div.style.borderRadius='8px';
+    const genres = (info.genres||[]).map(g=>g.genreNm).join(', ')||'정보 없음';
+    div.innerHTML=`
+      <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+        <a href="detail.html?movieCd=${info.movieCd}"><strong>${info.movieNm}</strong></a>
+        <span class="muted">(${info.prdtYear||''})</span>
+        <div class="spacer"></div>
+        <button class="btn" onclick="removeSaved('${info.movieCd}')">삭제</button>
+      </div>
+      <div class="muted">개봉일: ${info.openDt||'정보 없음'} · 장르: ${genres}</div>
+    `;
+    LIST.appendChild(div);
+  });
+}
+render();
+</script>
+</body>
+</html>
