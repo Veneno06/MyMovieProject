@@ -37,7 +37,9 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install requests
-      
+          sudo apt-get update && sudo apt-get install -y jq
+
+      # 선택적 진단 단계: 키/쿼터/HTTP 상태 빠르게 확인
       - name: Probe KOFIC (one small request)
         env:
           KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
