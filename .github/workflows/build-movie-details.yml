@@ -1,0 +1,51 @@
+name: Build Movie Details & Indexes
+
+on:
+  workflow_dispatch:
+    inputs:
+      year_start:
+        description: "시작 연도 (YYYY)"
+        required: true
+        type: string
+      year_end:
+        description: "끝 연도 (YYYY, 포함)"
+        required: true
+        type: string
+      max_count:
+        description: "최대 수집 개수(테스트용)"
+        required: false
+        type: string
+        default: "999999"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install requests
+
+      - name: Build movie details
+        env:
+          KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
+          YEAR_START: ${{ inputs.year_start }}
+          YEAR_END:   ${{ inputs.year_end }}
+          MAX_COUNT:  ${{ inputs.max_count }}
+          ONLY_MISSING: "true"
+        run: python scripts/build_movie_details.py
+
+      - name: Build search/people indexes
+        run: python scripts/build_indices.py
+
+      - name: Commit caches
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add docs/data/movies/ docs/data/search/ docs/data/people/
+          git commit -m "Build details & indexes ${GITHUB_SHA::7}" || echo "No changes"
+          git push
