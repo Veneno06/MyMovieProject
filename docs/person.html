@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<title>배우 프로필</title>
+<link rel="stylesheet" href="assets/style.css" />
+<style>
+  body { max-width: 900px; margin: 24px auto; padding: 0 12px; }
+  .film { padding:8px 0; border-bottom:1px solid #eee; }
+  .small { color:#666; font-size:13px; }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+
+</head>
+<body>
+  <div class="header">
+    <h1>K-Movie A Archive</h1>
+    <div class="spacer"></div>
+    <a href="index.html" class="btn">홈</a>
+    <a href="search.html" class="btn">영화 검색</a>
+    <a href="people-search.html" class="btn">배우 검색</a>
+    <a href="saved.html" class="btn"> 저장 목록</a>
+  </div>
+
+  <h1 id="personName">배우 프로필</h1>
+  <p id="personMeta" class="small"></p>
+
+  <h3>출연작 (최신 개봉일 순)</h3>
+  <div id="filmList">불러오는 중…</div>
+
+  <p style="margin-top:12px;">
+    <button onclick="history.back()">← 뒤로가기</button>
+  </p>
+
+  <br><br>
+  <!--  차트 영역 -->
+  <div id="chartWrap" style="margin-top:40px;">
+    <h3>개봉 시기별 관객수 추이</h3>
+    <div style="position:relative; height:400px;">
+      <canvas id="audiChart"></canvas>
+    </div>
+    <br>
+    <p id="chartNote" class="small" style="margin-top:8px; color:#666;">
+      점(●) 위에 마우스를 가져가면 뜨는 텍스트는 영화 제목입니다. (집계가 없는 작품은 0명으로 표기)
+    </p>
+  </div>
+
+<script>
+/* ================= 유틸 ================= */
+const fmtNum = n => (n==null || isNaN(n)) ? '' : n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+const params = new URLSearchParams(location.search);
+const peopleCdParam = params.get('peopleCd');
+const peopleNmParam = params.get('peopleNm');
+const curMovieNm    = params.get('movieNm'); // disambiguation용
+
+async function fetchJSON(url){
+  const res = await fetch(url + (url.includes('?')?'&':'?') + 'v=' + Date.now());
+  if (!res.ok) throw new Error('HTTP ' + res.status + ' ' + url);
+  return res.json();
+}
+
+/* 최신 일일 박스오피스에서 누적 관객수 가져오기(없으면 null) */
+async function fetchAudienceAccFromLatest(movieCd){
+  try{
+    const meta = await fetchJSON('./data/latest.json');
+    const day  = await fetchJSON(meta.url);
+    const list = day?.boxOfficeResult?.dailyBoxOfficeList || [];
+    const f = list.find(x => x.movieCd === movieCd);
+    if (f?.audiAcc){
+      const acc = parseInt(String(f.audiAcc).replace(/,/g,''),10);
+      if (!isNaN(acc)) return acc;
+    }
+  }catch(e){}
+  return null;
+}
+
+/* 정적 인덱스에서 이름으로 peopleCd 찾기 (필요할 때만) */
+async function resolvePeopleCdLocal(name, curMovieNm){
+  if (!name) return null;
+  const pplIdx = await fetchJSON('./data/search/people.json'); // {items:[{peopleCd, peopleNm, filmoCnt}]}
+  const items = pplIdx.items || [];
+
+  // 1) 완전 일치 우선
+  let candidates = items.filter(p => (p.peopleNm||'').trim() === name.trim());
+  // 2) 없으면 부분 일치
+  if (candidates.length === 0){
+    const n = name.trim();
+    candidates = items.filter(p => (p.peopleNm||'').includes(n));
+  }
+  if (candidates.length === 0) return null;
+
+  // 영화명으로 더 좁히기 (가능하면)
+  if (curMovieNm){
+    try{
+      const movIdx = await fetchJSON('./data/search/movies.json'); // {items:[{movieCd,movieNm,...}]}
+      const targetMovieCds = new Set((movIdx.items||[])
+        .filter(m => (m.movieNm||'') === curMovieNm)
+        .map(m => m.movieCd));
+      if (targetMovieCds.size){
+        for (const c of candidates){
+          const p = await fetchJSON(`./data/people/${encodeURIComponent(c.peopleCd)}.json`);
+          const filmo = new Set(p.filmo || []);
+          for (const cd of targetMovieCds){
+            if (filmo.has(cd)) return c.peopleCd;
+          }
+        }
+      }
+    }catch(e){}
+  }
+  return candidates[0].peopleCd || null;
+}
+
+/* 개별 캐시 로더 */
+async function getPerson(cd){ return fetchJSON(`./data/people/${encodeURIComponent(cd)}.json`); }
+async function getMovieInfo(cd){
+  const j = await fetchJSON(`./data/movies/${encodeURIComponent(cd)}.json`);
+  return j.movieInfoResult?.movieInfo || null;
+}
+
+/* 동시성 제한 유틸 */
+async function mapLimit(list, limit, task){
+  const out = [];
+  let i = 0;
+  const workers = Array.from({length:limit}, async () => {
+    while(i < list.length){
+      const idx = i++, v = list[idx];
+      try{ out[idx] = await task(v, idx); } catch(e){ out[idx] = null; }
+    }
+  });
+  await Promise.all(workers);
+  return out.filter(Boolean);
+}
+
+/* ================= 메인 로직 ================= */
+async function main(){
+  // 1) 대상 peopleCd 결정
+  let peopleCd = peopleCdParam;
+  if (!peopleCd && peopleNmParam){
+    peopleCd = await resolvePeopleCdLocal(peopleNmParam, curMovieNm);
+  }
+  const listBox = document.getElementById('filmList');
+  if (!peopleCd){ listBox.textContent = '배우를 찾을 수 없어요.'; return; }
+
+  // 2) people/<cd>.json 로딩 (이름 + filmo)
+  let person;
+  try { person = await getPerson(peopleCd); } catch(e){ person = null; }
+  if (!person){ listBox.textContent = '배우 정보를 불러오지 못했어요.'; return; }
+
+  document.getElementById('personName').textContent = person.peopleNm || (peopleNmParam || '배우');
+  document.getElementById('personMeta').textContent = '분야: 배우';
+
+  const filmo = (person.filmo || []).slice(); // movieCd 배열
+
+  // 3) 각 영화 상세 읽기 + 관객수(최신 일일, 있으면) 가져오기
+  const rows = await mapLimit(filmo, 4, async (movieCd) => {
+    const info = await getMovieInfo(movieCd);
+    if (!info) return { movieCd, movieNm: '(제목 없음)', openDt:'', part:'', audiAcc:null };
+    const open = (info.openDt || ''); // YYYYMMDD
+    const acc  = await fetchAudienceAccFromLatest(movieCd); // null 가능
+    return {
+      movieCd,
+      movieNm: info.movieNm || '(제목 없음)',
+      openDt: open,
+      part:   '', // 원본 pinfo.moviePartNm은 API에서만 제공. 정적 캐시는 배우 목록 기반이라 생략.
+      audiAcc: acc
+    };
+  });
+
+  // 4) 최신 개봉일 순
+  rows.sort((a,b)=> (parseInt(b.openDt||0)-parseInt(a.openDt||0)));
+
+  // 5) 리스트 렌더
+  listBox.innerHTML = '';
+  if (rows.length===0){
+    listBox.textContent = '필모그래피가 비어 있습니다.';
+  } else {
+    rows.forEach(row => {
+      const d = row.openDt ? `${row.openDt.slice(0,4)}-${row.openDt.slice(4,6)}-${row.openDt.slice(6,8)}` : '';
+      const acc = (row.audiAcc!=null) ? `${fmtNum(row.audiAcc)}명` : '집계 없음';
+      const div = document.createElement('div');
+      div.className = 'film';
+      div.innerHTML = `
+        <div><a href="detail.html?movieCd=${encodeURIComponent(row.movieCd)}"><strong>${row.movieNm}</strong></a></div>
+        <div class="small">${d} · ${row.part ? row.part+' · ' : ''}관객수: ${acc}</div>
+      `;
+      listBox.appendChild(div);
+    });
+
+    // 6) 차트
+    const labels = rows.map(r => r.openDt ? r.openDt.slice(0,4)+'-'+r.openDt.slice(4,6) : '개봉일 없음');
+    const data   = rows.map(r => r.audiAcc ? Number(r.audiAcc) : 0);
+    const titles = rows.map(r => r.movieNm);
+
+    const ctx = document.getElementById('audiChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [{
+          label: '관객수',
+          data,
+          borderColor: 'blue',
+          fill: false,
+          tension: 0.2,
+          pointBackgroundColor: 'blue'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: (ctx) => `${titles[ctx.dataIndex]}: ${ctx.formattedValue}명`
+            }
+          }
+        },
+        scales: {
+          y: { beginAtZero: true, ticks: { callback: v => v.toLocaleString() } }
+        }
+      }
+    });
+  }
+}
+main();
+</script>
+</body>
+</html>
