@@ -4,48 +4,85 @@ on:
   workflow_dispatch:
     inputs:
       year_start:
-        description: "시작 연도 (YYYY)"
+        description: '시작 연도 (YYYY)'
         required: true
         type: string
       year_end:
-        description: "끝 연도 (YYYY, 포함)"
+        description: '끝 연도 (YYYY, 포함)'
         required: true
         type: string
       max_count:
-        description: "최대 수집 개수(테스트용)"
+        description: '최대 작업 개수 (테스트용, 비워두면 전체)'
         required: false
-        type: string
         default: "999999"
+        type: string
 
+# 푸시 권한
 permissions:
   contents: write
+
+# 같은 브랜치에서 중복 실행되면 이전 실행을 자동 취소
+concurrency:
+  group: build-caches-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 360
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Checkout (full history)
+        uses: actions/checkout@v4
         with:
-          python-version: "3.11"
-      - run: pip install requests
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
 
       - name: Build movie details
         env:
           KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
-          YEAR_START: ${{ inputs.year_start }}
-          YEAR_END:   ${{ inputs.year_end }}
-          MAX_COUNT:  ${{ inputs.max_count }}
-          ONLY_MISSING: "true"
-        run: python scripts/build_movie_details.py
+        run: |
+          python scripts/build_movie_details.py \
+            --year-start "${{ inputs.year_start }}" \
+            --year-end   "${{ inputs.year_end }}" \
+            --max        "${{ inputs.max_count }}"
 
-      - name: Build search/people indexes
-        run: python scripts/build_indices.py
+      - name: Build search & people indexes
+        run: |
+          python scripts/build_indices.py
 
       - name: Commit caches
+        env:
+          BRANCH: ${{ github.ref_name }}  # 보통 'main'
         run: |
-          git config user.name "github-actions"
+          set -eux
+
+          git config user.name  "actions-user"
           git config user.email "actions@github.com"
-          git add docs/data/movies/ docs/data/search/ docs/data/people/
-          git commit -m "Build details & indexes ${GITHUB_SHA::7}" || echo "No changes"
-          git push
+
+          # 변경사항 스테이징 (데이터 캐시만)
+          git add docs/data
+
+          # 변경이 없으면 조용히 종료
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git commit -m "Build caches: $GITHUB_RUN_ID"
+
+          # 원격 최신 이력 반영(충돌 없으면 자동 rebase)
+          git fetch origin "$BRANCH"
+          git pull --rebase origin "$BRANCH" || true
+
+          # 푸시. 경합이 있으면 안전한 강제푸시로 재시도
+          git push origin "HEAD:$BRANCH" || git push --force-with-lease origin "HEAD:$BRANCH"
