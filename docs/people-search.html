@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>배우 검색 – K-Movie A Archive</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <style>
+    .card { padding:12px; background:#f7f7f7; border-radius:10px; }
+    .row { padding:10px 0; border-bottom:1px solid #eee; }
+    .row a { font-size:17px; font-weight:600; }
+    .muted { color:#666; font-size:13px; }
+    #pager { display:flex; gap:8px; align-items:center; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>배우 검색</h1>
+    <div class="spacer"></div>
+    <a href="index.html" class="btn">홈</a>
+    <a href="search.html" class="btn">영화 검색</a>
+    <a href="people-search.html" class="btn">배우 검색</a>
+    <a href="saved.html" class="btn"> 저장 목록</a>
+  </div>
+
+  <div class="card">
+    <label>이름: <input id="q" type="text" placeholder="예: 송강호" /></label>
+    <label style="margin-left:12px;">
+      <input type="checkbox" id="actorOnly" checked /> 배우만
+    </label>
+    <button class="btn" id="go">검색</button>
+  </div>
+
+  <div id="meta" class="muted" style="margin-top:8px;"></div>
+  <div id="list" style="margin-top:12px;"></div>
+
+  <div id="pager" style="margin:16px 0;">
+    <button class="btn" id="prev">◀ 이전</button>
+    <span id="pageInfo" class="muted"></span>
+    <button class="btn" id="next">다음 ▶</button>
+  </div>
+</div>
+
+<script>
+const ITEMS = 20;
+const q = document.getElementById('q');
+const actorOnly = document.getElementById('actorOnly');
+const go = document.getElementById('go');
+const list = document.getElementById('list');
+const meta = document.getElementById('meta');
+const prev = document.getElementById('prev');
+const next = document.getElementById('next');
+const pageInfo = document.getElementById('pageInfo');
+
+let curPage = 1, lastPage = 1, currentQuery = '';
+let PEOPLE_INDEX = []; // {peopleCd, peopleNm, filmoCnt}
+
+/* 인덱스 로드 (최초 1회) */
+async function loadPeopleIndex(){
+  if (PEOPLE_INDEX.length) return PEOPLE_INDEX;
+  const res = await fetch('./data/search/people.json?v=' + Date.now());
+  if (!res.ok){ PEOPLE_INDEX = []; return PEOPLE_INDEX; }
+  const js = await res.json();
+  PEOPLE_INDEX = js.items || [];
+  return PEOPLE_INDEX;
+}
+
+function roleLooksLikeActor(){ return true; } // 인덱스는 배우(actors) 기반이므로 true
+
+function getParam(name){ const u=new URLSearchParams(location.search); return u.get(name)||''; }
+function setStateToUrl(){
+  const p=new URLSearchParams();
+  if (currentQuery) p.set('q', currentQuery);
+  if (actorOnly.checked) p.set('actorOnly','1');
+  p.set('page', curPage);
+  history.replaceState({},'',location.pathname+'?'+p.toString());
+}
+
+/* 행 렌더: 필모 프리뷰는 캐시에서 최대 4편 제목을 비동기 로딩 */
+function renderRowSkeleton(p){
+  const row = document.createElement('div');
+  row.className = 'row';
+
+  const nameA = document.createElement('a');
+  nameA.href = `person.html?peopleCd=${encodeURIComponent(p.peopleCd)}`;
+  nameA.textContent = p.peopleNm || '(이름 없음)';
+
+  const role = document.createElement('div');
+  role.className = 'muted';
+  role.textContent = '배우';
+
+  const films = document.createElement('div');
+  films.className = 'muted';
+  films.style.marginTop = '4px';
+  films.textContent = '필모 불러오는 중…';
+
+  row.appendChild(nameA);
+  row.appendChild(role);
+  row.appendChild(films);
+  list.appendChild(row);
+
+  // 영화 이름 4개까지 비동기 채우기
+  (async ()=>{
+    try{
+      const pjson = await fetch(`./data/people/${encodeURIComponent(p.peopleCd)}.json?v=${Date.now()}`).then(r=>r.json());
+      const filmos = (pjson.filmo || []).slice(0,4);
+      const names = [];
+      for (const cd of filmos){
+        try{
+          const m = await fetch(`./data/movies/${encodeURIComponent(cd)}.json?v=${Date.now()}`).then(r=>r.json());
+          const nm = m?.movieInfoResult?.movieInfo?.movieNm;
+          if (nm) names.push(nm);
+        }catch(e){}
+      }
+      films.textContent = names.length ? names.join(' | ') : '';
+    }catch(e){
+      films.textContent = '';
+    }
+  })();
+}
+
+async function search(page=1){
+  await loadPeopleIndex();
+  currentQuery = q.value.trim();
+  if (!currentQuery){ q.focus(); return; }
+  list.innerHTML = '불러오는 중...';
+  meta.textContent = '';
+  curPage = page;
+
+  // 간단한 한글 포함 검색(부분 일치)
+  const cand = PEOPLE_INDEX.filter(p => (p.peopleNm || '').includes(currentQuery));
+  // actorOnly는 인덱스가 배우만 담고 있어 그대로 통과
+  const total = cand.length;
+
+  // 페이지네이션
+  lastPage = Math.max(1, Math.ceil(total / ITEMS));
+  const start = (curPage-1) * ITEMS;
+  const pageItems = cand.slice(start, start + ITEMS);
+
+  // 렌더
+  list.innerHTML = '';
+  meta.textContent = `총 ${total.toLocaleString()}명 검색됨`;
+  if (pageItems.length === 0){ list.textContent = '결과가 없습니다.'; }
+  pageItems.forEach(renderRowSkeleton);
+
+  pageInfo.textContent = `${curPage} / ${lastPage}`;
+  prev.disabled = (curPage <= 1);
+  next.disabled = (curPage >= lastPage);
+
+  setStateToUrl();
+}
+
+go.addEventListener('click', ()=>search(1));
+q.addEventListener('keydown', (e)=>{ if (e.key==='Enter') search(1); });
+prev.addEventListener('click', ()=>{ if(curPage>1) search(curPage-1); });
+next.addEventListener('click', ()=>{ if(curPage<lastPage) search(curPage+1); });
+
+/* URL 파라미터 복원 */
+(function init(){
+  const qp = getParam('q'); const po = getParam('actorOnly'); const pg = parseInt(getParam('page')||'1',10);
+  if (qp){ q.value = qp; }
+  if (po==='1') actorOnly.checked = true;
+  if (qp){ search(isNaN(pg)?1:pg); }
+})();
+</script>
+</body>
+</html>
