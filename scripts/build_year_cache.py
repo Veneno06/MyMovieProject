@@ -1,94 +1,72 @@
 # scripts/build_year_cache.py
-import os, json, requests, pathlib, time
-from datetime import datetime
+import os, json, time, argparse, pathlib, sys
+import requests
 
-# --- 기본 설정 ----------------------------------------------------
-BASES = [
-    "https://www.kobis.or.kr",
-    "http://kobis.or.kr",
-    "http://www.kobis.or.kr",
-]
-API_PATH = "/kobisopenapi/webservice/rest/movie/searchMovieList.json"
-HEADERS = {"User-Agent": "MyMovieProject/1.0 (+github actions)"}
+BASE = "https://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json"
 
-KEY = os.getenv("KOFIC_API_KEY")
-if not KEY:
-    raise SystemExit("ERROR: KOFIC_API_KEY is missing")
-
-def parse_year(v, default):
-    s = str(v or "").strip()
-    return int(s) if len(s) == 4 and s.isdigit() else int(default)
-
-CUR = datetime.utcnow().year
-START = parse_year(os.getenv("YEAR_START"), CUR - 1)  # 입력 없으면 작년~올해
-END   = parse_year(os.getenv("YEAR_END"),   CUR)
-ITEMS = 100
-
-out_dir = pathlib.Path("docs/data/years")
-out_dir.mkdir(parents=True, exist_ok=True)
-
-# --- 재시도 + 프로토콜 폴백 ---------------------------------------
-def request_json(params, tries=6):
-    """
-    HTTPS가 타임아웃/연결 실패하면 HTTP로 자동 폴백.
-    429/5xx는 지수 백오프로 재시도.
-    """
-    last = None
-    for attempt in range(tries):
-        base = BASES[attempt % len(BASES)]
-        url = f"{base}{API_PATH}"
-        try:
-            r = requests.get(url, params=params, timeout=30, headers=HEADERS)
-            # 재시도 가치가 있는 상태코드
-            if r.status_code in (429, 500, 502, 503, 504):
-                raise requests.HTTPError(f"retryable status={r.status_code}", response=r)
-            return r.json()
-        except Exception as e:
-            last = e
-            sleep = min(2 ** attempt, 15)  # 1,2,4,8,15,15...
-            time.sleep(sleep)
-    # 마지막 예외 재발생
-    raise last
-
-def fetch_year(year: int):
-    page, acc, tot = 1, [], None
+def fetch_year(year: int, key: str, per_page: int = 100, max_pages: int = 200, delay: float = 0.15):
+    acc = []
+    page = 1
     while True:
         params = {
-            "key": KEY,
+            "key": key,
             "openStartDt": str(year),
-            "openEndDt":   str(year),
-            "itemPerPage": str(ITEMS),
-            "curPage":     str(page),
+            "openEndDt": str(year),
+            "itemPerPage": str(per_page),
+            "curPage": str(page),
         }
-        j = request_json(params)
-        res = j.get("movieListResult", {})
-        lst = res.get("movieList", []) or []
-        tot = res.get("totCnt", tot if tot is not None else 0)
+        r = requests.get(BASE, params=params, timeout=30)
+        r.raise_for_status()
+        data = r.json()
 
+        lst = (data.get("movieListResult") or {}).get("movieList") or []
+        # openDt 정규화(YYYYMMDD)
         for m in lst:
-            if m.get("openDt"):
-                m["openDt"] = m["openDt"].replace("-", "")
+            m["openDt"] = (m.get("openDt") or "").replace("-", "")
         acc.extend(lst)
 
-        if len(acc) >= int(tot or 0) or not lst:
+        tot = (data.get("movieListResult") or {}).get("totCnt")
+        if tot is None:
+            tot = len(acc)
+
+        if len(acc) >= int(tot):
             break
         page += 1
-        if page > 2000:   # 안전장치
+        if page > max_pages:
             break
-        time.sleep(0.6)   # 매너 지연(과도한 호출 방지)
-    return {"year": year, "movieList": acc, "totCnt": len(acc)}
+        time.sleep(delay)
 
-# --- 실행 ---------------------------------------------------------
-manifest = {"years": [], "generatedAt": datetime.utcnow().isoformat()}
+    # 고유 movieCd 목록
+    codes = sorted({m.get("movieCd") for m in acc if m.get("movieCd")})
+    out = {
+        "year": year,
+        "totCnt": len(codes),
+        "movieCds": codes,     # 상세 스크립트에서 쓰기 쉬움
+        "movieList": acc,      # 참고용(필요시)
+    }
+    return out
 
-for y in range(START, END + 1):
-    data = fetch_year(y)
-    (out_dir / f"year-{y}.json").write_text(
-        json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8"
-    )
-    manifest["years"].append(y)
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--year-start", required=True, type=int)
+    ap.add_argument("--year-end", required=True, type=int)
+    args = ap.parse_args()
 
-(out_dir / "_manifest.json").write_text(
-    json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8"
-)
-print("[OK] years:", manifest["years"])
+    key = os.getenv("KOFIC_API_KEY", "").strip()
+    if not key:
+        print("ERROR: KOFIC_API_KEY is missing (GitHub Actions secret)", file=sys.stderr)
+        sys.exit(1)
+
+    root = pathlib.Path("docs/data/years")
+    root.mkdir(parents=True, exist_ok=True)
+
+    for y in range(args.year_start, args.year_end + 1):
+        print(f"[year-cache] fetching {y} ...", flush=True)
+        out = fetch_year(y, key)
+        p = root / f"year-{y}.json"
+        with p.open("w", encoding="utf-8") as f:
+            json.dump(out, f, ensure_ascii=False, indent=2)
+        print(f"[year-cache] saved {p} (totCnt={out['totCnt']})")
+
+if __name__ == "__main__":
+    main()
