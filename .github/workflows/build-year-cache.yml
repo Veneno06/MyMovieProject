@@ -4,38 +4,57 @@ on:
   workflow_dispatch:
     inputs:
       year_start:
-        description: "시작 연도 (YYYY)"
+        description: '시작 연도 (YYYY)'
         required: true
         type: string
       year_end:
-        description: "끝 연도 (YYYY, 포함)"
+        description: '끝 연도 (YYYY, 포함)'
         required: true
         type: string
-  schedule:
-    - cron: "0 15 * * 0"   # 매주 일요일 KST 00:00 (UTC 15:00)
 
 permissions:
   contents: write
+
+concurrency:
+  group: build-year-cache-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Checkout (full)
+        uses: actions/checkout@v4
         with:
-          python-version: "3.11"
-      - run: pip install requests
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
       - name: Build year cache
         env:
           KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
-          YEAR_START: ${{ inputs.year_start }}
-          YEAR_END:   ${{ inputs.year_end }}
-        run: python scripts/build_year_cache.py
-      - name: Commit cache
         run: |
-          git config user.name "github-actions"
+          python scripts/build_year_cache.py \
+            --year-start "${{ inputs.year_start }}" \
+            --year-end   "${{ inputs.year_end }}"
+
+      - name: Commit year files
+        run: |
+          git config user.name  "actions-user"
           git config user.email "actions@github.com"
-          git add docs/data/years/
-          git commit -m "Build year cache ${{ inputs.year_start }}-${{ inputs.year_end }}" || echo "No changes"
-          git push
+          git add docs/data/years
+          if git diff --staged --quiet; then
+            echo "No changes."; exit 0
+          fi
+          git commit -m "Build year cache ${{ inputs.year_start }}-${{ inputs.year_end }}"
+          git fetch origin ${{ github.ref_name }}
+          git pull --rebase origin ${{ github.ref_name }} || true
+          git push || git push --force-with-lease
