@@ -50,13 +50,22 @@ jobs:
           echo "HTTP=$code"
           jq '.faultInfo // .faultResult // .movieListResult.totCnt' resp.json || true
 
-      - name: Build year cache
+
+      - name: Build year cache (with retry)
         env:
           KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
         run: |
-          python scripts/build_year_cache.py \
-            --year-start "${{ inputs.year_start }}" \
-            --year-end   "${{ inputs.year_end }}"
+          set -e
+          for i in 1 2 3; do
+            echo "Attempt $i..."
+            python scripts/build_year_cache.py \
+              --year-start "${{ inputs.year_start }}" \
+              --year-end   "${{ inputs.year_end }}" \
+            && break
+            echo "Retrying in 30s..."
+            sleep 30
+          done
+
 
       - name: Commit year files
         run: |
