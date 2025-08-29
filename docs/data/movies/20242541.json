@@ -1,0 +1,77 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20242541",
+      "movieNm": "룩백",
+      "movieNmEn": "Look Back",
+      "movieNmOg": "",
+      "showTm": "57",
+      "prdtYear": "2024",
+      "openDt": "20240905",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "일본"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "애니메이션"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "오시야마 키요타카",
+          "peopleNmEn": "Kiyotaka Oshiyama"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "카와이 유미",
+          "peopleNmEn": "Yumi Kawai",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "요시다 미즈키",
+          "peopleNmEn": "Yoshida Mizuki",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        },
+        {
+          "showTypeGroupNm": "DOLBYCINEMA",
+          "showTypeNm": "DOLBYCINEMA"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20122505",
+          "companyNm": "메가박스중앙(주)",
+          "companyNmEn": "MEGABOX",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20122505",
+          "companyNm": "메가박스중앙(주)",
+          "companyNmEn": "MEGABOX",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2024-MF01928 ",
+          "watchGradeNm": "전체관람가"
+        }
+      ],
+      "staffs": []
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20234413",
+      "movieNm": "프렌치 수프",
+      "movieNmEn": "The Taste of Things",
+      "movieNmOg": "The Pot-au-feu",
+      "showTm": "135",
+      "prdtYear": "2023",
+      "openDt": "20240619",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "프랑스"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "멜로/로맨스"
+        },
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "트란 안 홍",
+          "peopleNmEn": "Anh Hung Tran"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "줄리엣 비노쉬",
+          "peopleNmEn": "Juliette Binoche",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "브누와 마지멜",
+          "peopleNmEn": "Benoit Magimel",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20230981",
+          "companyNm": "주식회사 올랄라스토리",
+          "companyNmEn": "ohlalastory",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20228883",
+          "companyNm": "(주)플레이그램",
+          "companyNmEn": "Playgram CO., LTD.",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20123058",
+          "companyNm": "그린나래미디어(주)",
+          "companyNmEn": "GREEN NARAE MEDIA",
+          "companyPartNm": "수입사"
+        },
+        {
+          "companyCd": "20228883",
+          "companyNm": "(주)플레이그램",
+          "companyNmEn": "Playgram CO., LTD.",
+          "companyPartNm": "제공"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2024-MF01096 ",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": []
+    },
+    "source": "영화진흥위원회"
+  }
+}

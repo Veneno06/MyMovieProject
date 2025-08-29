@@ -1,0 +1,83 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20249305",
+      "movieNm": "가필드 더 무비",
+      "movieNmEn": "The Garfield Movie",
+      "movieNmOg": "",
+      "showTm": "100",
+      "prdtYear": "2023",
+      "openDt": "20240515",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "애니메이션"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "마크 딘달",
+          "peopleNmEn": "Mark Dindal"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "크리스 프랫",
+          "peopleNmEn": "Chris Pratt",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "사무엘 L. 잭슨",
+          "peopleNmEn": "Samuel L. Jackson",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "니콜라스 홀트",
+          "peopleNmEn": "Nicholas Hoult",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털 더빙"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20173221",
+          "companyNm": "소니픽쳐스엔터테인먼트코리아주식회사극장배급지점",
+          "companyNmEn": "Sony Pictures Releasing International",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20173221",
+          "companyNm": "소니픽쳐스엔터테인먼트코리아주식회사극장배급지점",
+          "companyNmEn": "Sony Pictures Releasing International",
+          "companyPartNm": "제공"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2024-MF01071 ",
+          "watchGradeNm": "전체관람가"
+        }
+      ],
+      "staffs": []
+    },
+    "source": "영화진흥위원회"
+  }
+}
