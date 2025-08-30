@@ -1,56 +1,89 @@
-# scripts/update_data.py
-import os, json, requests, datetime, sys, pathlib
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+매일 생성되는 일자 파일(docs/data/YYYYMMDD.json)을 읽어
+새로 발견된 movieCd에 대해 상세를 만들어 연도 폴더에 저장하고,
+검색 인덱스를 갱신한다.
 
-# ---- 설정 ---------------------------------------------------------
-# GitHub Secrets에 등록한 이름과 일치해야 합니다.
-API_KEY = os.getenv("KOFIC_API_KEY")
+환경:
+  KOFIC_API_KEY (GitHub Actions)
 
-# target 날짜 강제 지정이 필요하면 환경변수로 YYYYMMDD 넣을 수 있습니다.
-# 없으면 KST 기준 '어제'를 사용합니다(일일 박스오피스는 보통 어제 데이터가 안전).
-target_env = os.getenv("TARGET_DT")
-KST = datetime.timezone(datetime.timedelta(hours=9))
-now_kst = datetime.datetime.now(tz=KST)
+주의: 일자 파일 포맷은 기존 스크립트에서 만드는 구조를 따른다고 가정.
+"""
+import os, json, time
+from pathlib import Path
+import requests
+import subprocess
 
-if target_env and len(target_env) == 8 and target_env.isdigit():
-    target = target_env
-else:
-    target = (now_kst - datetime.timedelta(days=1)).strftime("%Y%m%d")
+ROOT = Path(__file__).resolve().parents[1]
+DOCS = ROOT / "docs" / "data"
+MOVIES = DOCS / "movies"
+SEARCH = DOCS / "search"
 
-# 저장 경로 (GitHub Pages가 배포하는 /docs 아래)
-OUT_DIR = pathlib.Path("docs/data")
-OUT_DIR.mkdir(parents=True, exist_ok=True)
+API_KEY = os.environ.get("KOFIC_API_KEY","").strip()
+API_BASE = "https://www.kobis.or.kr/kobisopenapi/webservice/rest"
+S = requests.Session()
 
-# ---- 수집 ---------------------------------------------------------
-if not API_KEY:
-    print("ERROR: 환경변수 KOFIC_API_KEY가 없습니다.", file=sys.stderr)
-    sys.exit(1)
+def load_json(p: Path, default=None):
+    if not p.exists():
+        return default
+    try:
+        with p.open("r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return default
 
-url = (
-    "http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/"
-    f"searchDailyBoxOfficeList.json?key={API_KEY}&targetDt={target}"
-)
+def save_json(p: Path, data):
+    p.parent.mkdir(parents=True, exist_ok=True)
+    with p.open("w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
 
-try:
-    resp = requests.get(url, timeout=30)
-    resp.raise_for_status()
-    data = resp.json()
-except Exception as e:
-    print(f"ERROR: KOFIC 요청 실패 -> {e}", file=sys.stderr)
-    sys.exit(2)
+def get_detail(cd):
+    url = f"{API_BASE}/movie/searchMovieInfo.json"
+    params = {"key": API_KEY, "movieCd": cd}
+    r = S.get(url, params=params, timeout=30)
+    r.raise_for_status()
+    return r.json()
 
-# ---- 저장 ---------------------------------------------------------
-out_file = OUT_DIR / f"{target}.json"
-with out_file.open("w", encoding="utf-8") as f:
-    json.dump(data, f, ensure_ascii=False, indent=2)
+def get_year(open_dt, fallback):
+    s = (open_dt or "").replace("-","")
+    if len(s)>=4 and s[:4].isdigit():
+        return s[:4]
+    return fallback
 
-# latest.json 메타 파일도 갱신 (프런트가 '가장 최신'을 쉽게 불러오도록)
-latest = {
-    "date": target,
-    "file": f"{target}.json",
-    "url": f"./data/{target}.json"
-}
-with (OUT_DIR / "latest.json").open("w", encoding="utf-8") as f:
-    json.dump(latest, f, ensure_ascii=False, indent=2)
+def newest_day_file():
+    # docs/data/2025xxxx.json 중 최신 파일
+    cands = sorted(DOCS.glob("20*.json"))
+    return cands[-1] if cands else None
 
-print(f"[OK] Saved: {out_file}")
-print(f"[OK] Updated: {OUT_DIR / 'latest.json'}")
+def main():
+    day = newest_day_file()
+    if not day:
+        print("No daily file.")
+        return
+    js = load_json(day, {})
+    items = js.get("list") or js.get("boxOfficeResult",{}).get("dailyBoxOfficeList") or []
+    movie_cds = []
+    for it in items:
+        cd = str(it.get("movieCd") or it.get("movieCd2") or "").strip()
+        if cd:
+            movie_cds.append(cd)
+    movie_cds = list(dict.fromkeys(movie_cds))  # uniq
+    print("new codes:", movie_cds)
+
+    for cd in movie_cds:
+        # 이미 있으면 skip(연도 하위 폴더 포함)
+        exists = any((p / f"{cd}.json").exists() for p in MOVIES.glob("*"))
+        if exists:
+            continue
+        detail = get_detail(cd)
+        info = (detail.get("movieInfoResult") or {}).get("movieInfo") or {}
+        y = get_year(info.get("openDt",""), "unknown")
+        save_json(MOVIES / y / f"{cd}.json", detail)
+        time.sleep(0.2)
+
+    # 인덱스 갱신
+    subprocess.check_call([ "python", str(ROOT / "scripts" / "build_indices.py") ])
+
+if __name__ == "__main__":
+    main()
