@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
-  <title>배우 검색 – K-Movie A Archive</title>
+  <title>배우 검색 – K-Movie A Archive (캐시)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="assets/style.css" />
   <style>
@@ -43,7 +43,11 @@
 </div>
 
 <script>
+/* ===== 설정 ===== */
+const INDEX_URL = './data/search/people.json'; // 캐시 인덱스
 const ITEMS = 20;
+
+/* ===== 엘리먼트 ===== */
 const q = document.getElementById('q');
 const actorOnly = document.getElementById('actorOnly');
 const go = document.getElementById('go');
@@ -53,21 +57,13 @@ const prev = document.getElementById('prev');
 const next = document.getElementById('next');
 const pageInfo = document.getElementById('pageInfo');
 
+/* ===== 상태 ===== */
 let curPage = 1, lastPage = 1, currentQuery = '';
-let PEOPLE_INDEX = []; // {peopleCd, peopleNm, filmoCnt}
+let PEOPLE = [];   // 전체 인덱스 (캐시에서 로드)
 
-/* 인덱스 로드 (최초 1회) */
-async function loadPeopleIndex(){
-  if (PEOPLE_INDEX.length) return PEOPLE_INDEX;
-  const res = await fetch('./data/search/people.json?v=' + Date.now());
-  if (!res.ok){ PEOPLE_INDEX = []; return PEOPLE_INDEX; }
-  const js = await res.json();
-  PEOPLE_INDEX = js.items || [];
-  return PEOPLE_INDEX;
-}
-
-function roleLooksLikeActor(){ return true; } // 인덱스는 배우(actors) 기반이므로 true
-
+/* ===== 유틸 ===== */
+function roleLooksLikeActor(str){ return /(배우|출연|연기|Act)/i.test(str || ''); }
+function norm(s){ return (s||'').toLowerCase().replace(/\s+/g,'').trim(); }
 function getParam(name){ const u=new URLSearchParams(location.search); return u.get(name)||''; }
 function setStateToUrl(){
   const p=new URLSearchParams();
@@ -77,8 +73,8 @@ function setStateToUrl(){
   history.replaceState({},'',location.pathname+'?'+p.toString());
 }
 
-/* 행 렌더: 필모 프리뷰는 캐시에서 최대 4편 제목을 비동기 로딩 */
-function renderRowSkeleton(p){
+/* ===== 렌더 ===== */
+function renderRow(p){
   const row = document.createElement('div');
   row.className = 'row';
 
@@ -88,76 +84,85 @@ function renderRowSkeleton(p){
 
   const role = document.createElement('div');
   role.className = 'muted';
-  role.textContent = '배우';
+  role.textContent = p.repRoleNm || '';
 
   const films = document.createElement('div');
   films.className = 'muted';
   films.style.marginTop = '4px';
-  films.textContent = '필모 불러오는 중…';
+  const s = (p.filmoNames || '').split('|').slice(0,4).join(' | ');
+  films.textContent = s;
 
   row.appendChild(nameA);
   row.appendChild(role);
   row.appendChild(films);
   list.appendChild(row);
-
-  // 영화 이름 4개까지 비동기 채우기
-  (async ()=>{
-    try{
-      const pjson = await fetch(`./data/people/${encodeURIComponent(p.peopleCd)}.json?v=${Date.now()}`).then(r=>r.json());
-      const filmos = (pjson.filmo || []).slice(0,4);
-      const names = [];
-      for (const cd of filmos){
-        try{
-          const m = await fetch(`./data/movies/${encodeURIComponent(cd)}.json?v=${Date.now()}`).then(r=>r.json());
-          const nm = m?.movieInfoResult?.movieInfo?.movieNm;
-          if (nm) names.push(nm);
-        }catch(e){}
-      }
-      films.textContent = names.length ? names.join(' | ') : '';
-    }catch(e){
-      films.textContent = '';
-    }
-  })();
 }
 
+/* ===== 데이터 로드 ===== */
+async function loadIndex(){
+  if (PEOPLE.length) return PEOPLE;
+  const res = await fetch(INDEX_URL, { cache: 'no-store' });
+  if (!res.ok) throw new Error('인덱스 로드 실패');
+  const js = await res.json();
+  // 기대 스키마: [{peopleCd, peopleNm, repRoleNm, filmoNames}, ...]
+  PEOPLE = Array.isArray(js) ? js : (js.people || []);
+  return PEOPLE;
+}
+
+/* ===== 검색 ===== */
 async function search(page=1){
-  await loadPeopleIndex();
   currentQuery = q.value.trim();
-  if (!currentQuery){ q.focus(); return; }
   list.innerHTML = '불러오는 중...';
   meta.textContent = '';
   curPage = page;
 
-  // 간단한 한글 포함 검색(부분 일치)
-  const cand = PEOPLE_INDEX.filter(p => (p.peopleNm || '').includes(currentQuery));
-  // actorOnly는 인덱스가 배우만 담고 있어 그대로 통과
-  const total = cand.length;
+  try{
+    const all = await loadIndex();
 
-  // 페이지네이션
-  lastPage = Math.max(1, Math.ceil(total / ITEMS));
-  const start = (curPage-1) * ITEMS;
-  const pageItems = cand.slice(start, start + ITEMS);
+    // 1) 이름 매칭 (공백/대소문자 무시)
+    const nq = norm(currentQuery);
+    let items = nq ? all.filter(p => norm(p.peopleNm).includes(nq)) : [];
 
-  // 렌더
-  list.innerHTML = '';
-  meta.textContent = `총 ${total.toLocaleString()}명 검색됨`;
-  if (pageItems.length === 0){ list.textContent = '결과가 없습니다.'; }
-  pageItems.forEach(renderRowSkeleton);
+    // 2) 배우만
+    if (actorOnly.checked) items = items.filter(p => roleLooksLikeActor(p.repRoleNm));
 
-  pageInfo.textContent = `${curPage} / ${lastPage}`;
-  prev.disabled = (curPage <= 1);
-  next.disabled = (curPage >= lastPage);
+    // 3) 정렬: 이름(가나다/알파벳) 기준
+    items.sort((a,b) => (a.peopleNm||'').localeCompare(b.peopleNm||'', 'ko'));
 
-  setStateToUrl();
+    // 4) 페이지네이션
+    lastPage = Math.max(1, Math.ceil(items.length / ITEMS));
+    const start = (curPage-1)*ITEMS;
+    const pageItems = items.slice(start, start+ITEMS);
+
+    // 5) 렌더
+    list.innerHTML = '';
+    meta.textContent = `총 ${items.length.toLocaleString()}명 검색됨 (캐시)`;
+    if (pageItems.length === 0){
+      list.textContent = currentQuery ? '결과가 없습니다.' : '검색어를 입력해 주세요.';
+    } else {
+      pageItems.forEach(renderRow);
+    }
+
+    pageInfo.textContent = `${curPage} / ${lastPage}`;
+    prev.disabled = (curPage <= 1);
+    next.disabled = (curPage >= lastPage);
+
+    setStateToUrl();
+  }catch(e){
+    console.error(e);
+    list.innerHTML = '<div style="color:#b00020;">인덱스를 불러오지 못했습니다. (Actions에서 Build Movie Details & Indexes 완료 여부 확인)</div>';
+  }
 }
 
+/* ===== 이벤트 바인딩 ===== */
 go.addEventListener('click', ()=>search(1));
 q.addEventListener('keydown', (e)=>{ if (e.key==='Enter') search(1); });
 prev.addEventListener('click', ()=>{ if(curPage>1) search(curPage-1); });
 next.addEventListener('click', ()=>{ if(curPage<lastPage) search(curPage+1); });
 
-/* URL 파라미터 복원 */
-(function init(){
+/* ===== URL 파라미터 복원 + 자동 검색 ===== */
+(async function init(){
+  try{ await loadIndex(); }catch{}
   const qp = getParam('q'); const po = getParam('actorOnly'); const pg = parseInt(getParam('page')||'1',10);
   if (qp){ q.value = qp; }
   if (po==='1') actorOnly.checked = true;
