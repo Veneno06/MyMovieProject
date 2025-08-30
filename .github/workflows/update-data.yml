@@ -3,10 +3,10 @@ name: KOFIC Daily Fetch
 on:
   schedule:
     - cron: "10 15 * * *"   # 매일 KST 00:10 (UTC 15:10)
-  workflow_dispatch:        # Actions에서 수동 실행 버튼 노출
+  workflow_dispatch:
 
 permissions:
-  contents: write           # 커밋/푸시 권한
+  contents: write
 
 concurrency:
   group: kofic-daily
@@ -15,6 +15,8 @@ concurrency:
 jobs:
   run:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -25,19 +27,47 @@ jobs:
           python-version: "3.11"
 
       - name: Install deps
-        run: pip install -U requests
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
 
       - name: Fetch and save KOFIC daily data
         env:
           KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
-          # 필요 시 특정 날짜 강제 수집: "20250826" 같이 세팅 가능
-          # TARGET_DT: "20250826"
-        run: python scripts/update_data.py
+          # TARGET_DT: "20250826"  # 필요시 강제 날짜
+        run: |
+          python scripts/update_data.py
+
+      # 가볍게: 현재 연도만 일부 보강 (신규 영화 상세 캐시 확보)
+      - name: Light refresh current-year details
+        env:
+          KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
+        run: |
+          # KST 기준 연도
+          YEAR=$(TZ=Asia/Seoul date +%Y)
+          python scripts/build_movie_details.py \
+            --year-start "$YEAR" \
+            --year-end   "$YEAR" \
+            --max        "300"
+
+      # 검색 인덱스 재생성 (movies.json / people.json)
+      - name: Rebuild search indexes
+        run: |
+          python scripts/build_indices.py
 
       - name: Commit updated data
+        env:
+          BRANCH: ${{ github.ref_name }}
         run: |
-          git config user.name "github-actions"
+          set -eux
+          git config user.name  "github-actions"
           git config user.email "actions@github.com"
           git add docs/data/
-          git commit -m "Daily KOFIC update" || echo "No changes"
-          git push
+          if git diff --staged --quiet; then
+            echo "No changes"
+            exit 0
+          fi
+          git commit -m "Daily KOFIC update (and reindex)"
+          git fetch origin "$BRANCH"
+          git pull --rebase origin "$BRANCH" || true
+          git push origin "HEAD:$BRANCH" || git push --force-with-lease origin "HEAD:$BRANCH"
