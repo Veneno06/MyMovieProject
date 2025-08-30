@@ -139,4 +139,99 @@ function matchMoviesByTitleCandidates(titles){
 /* ================= 렌더 ================= */
 function renderPersonHeader(person){
   $('#personName').textContent = person.peopleNm || '배우';
-  $('#personMeta').textContent = (person.repRoleNm ? `분야: ${p
+  $('#personMeta').textContent = (person.repRoleNm ? `분야: ${person.repRoleNm}` : '');
+}
+
+function renderFilmList(rows){
+  const box = $('#filmList');
+  box.innerHTML = '';
+  if (!rows.length){
+    box.textContent = '필모그래피가 비어 있습니다. (캐시 기준)';
+    return;
+  }
+  rows.forEach(row => {
+    const d = fmtDateYMD(row.openDt);
+    const div = document.createElement('div');
+    div.className = 'film';
+    div.innerHTML = `
+      <div><a href="detail.html?movieCd=${encodeURIComponent(row.movieCd)}"><strong>${row.movieNm}</strong></a></div>
+      <div class="small">${d || ''}</div>
+    `;
+    box.appendChild(div);
+  });
+}
+
+function maybeRenderChart(rows){
+  // 캐시에 누적관객수(audiAcc) 정보가 없으므로, 데이터가 있으면 그려주고
+  // 없으면 차트 영역을 숨긴다.
+  const dataWithAcc = rows.filter(r => typeof r.audiAcc === 'number' && !isNaN(r.audiAcc));
+  if (dataWithAcc.length === 0){
+    // hide
+    document.getElementById('chartWrap').style.display = 'none';
+    return;
+  }
+  document.getElementById('chartWrap').style.display = 'block';
+
+  const labels = dataWithAcc.map(r => r.openDt ? `${String(r.openDt).slice(0,4)}-${String(r.openDt).slice(4,6)}` : '개봉일 없음');
+  const data = dataWithAcc.map(r => r.audiAcc || 0);
+  const titles = dataWithAcc.map(r => r.movieNm);
+
+  const ctx = document.getElementById('audiChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [{ label: '관객수', data, borderColor: 'blue', fill: false, tension: 0.2, pointBackgroundColor: 'blue' }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        tooltip: {
+          callbacks: { label: (c)=> `${titles[c.dataIndex]}: ${c.formattedValue}명` }
+        }
+      },
+      scales: { y: { beginAtZero: true, ticks: { callback: (v)=>v.toLocaleString() } } }
+    }
+  });
+}
+
+/* ================= 메인 ================= */
+async function main(){
+  try{
+    // 1) 인덱스 로드
+    [PEOPLE, MOVIES] = await Promise.all([
+      loadIndex(PEOPLE_INDEX_URL),
+      loadIndex(MOVIES_INDEX_URL)
+    ]);
+
+    // 2) 인물 찾기
+    let person = null;
+    if (paramPeopleCd) person = findPersonByCd(paramPeopleCd);
+    if (!person && paramPeopleNm) person = findPersonByName(paramPeopleNm);
+
+    if (!person){
+      $('#filmList').textContent = '배우를 찾을 수 없어요. (캐시 인덱스 확인)';
+      return;
+    }
+    renderPersonHeader(person);
+
+    // 3) 필모 → 영화 매칭
+    const titles = parseFilmoNames(person.filmoNames || '');
+    let films = matchMoviesByTitleCandidates(titles);
+
+    // 4) 정렬(openDt desc) + 렌더
+    films.sort((a,b)=> (+(b.openDt||0) - +(a.openDt||0)));
+    renderFilmList(films);
+
+    // 5) 차트 (캐시에 audiAcc가 있을 때만)
+    maybeRenderChart(films);
+
+  }catch(e){
+    console.error(e);
+    $('#filmList').innerHTML = '<div style="color:#b00020;">로컬 캐시를 불러오지 못했습니다. Actions에서 인덱스 생성 상태를 확인하세요.</div>';
+  }
+}
+main();
+</script>
+</body>
+</html>
