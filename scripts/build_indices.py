@@ -1,68 +1,85 @@
-import os, json, pathlib
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+movies/ (연도별 하위 폴더 포함)를 재귀로 스캔해서
+- search/movies.json  : 간단한 영화 인덱스
+- search/people.json  : 간단한 사람 인덱스
+를 생성합니다.
+"""
 
-MOVIES_DIR = pathlib.Path("docs/data/movies")
-SEARCH_DIR = pathlib.Path("docs/data/search")
-PEOPLE_DIR = pathlib.Path("docs/data/people")
-SEARCH_DIR.mkdir(parents=True, exist_ok=True)
-PEOPLE_DIR.mkdir(parents=True, exist_ok=True)
+import json, os
+from pathlib import Path
 
-def norm(s): 
-    return (s or "").strip()
+ROOT = Path(__file__).resolve().parents[1]
+DOCS = ROOT / "docs" / "data"
+MOVIES = DOCS / "movies"
+SEARCH = DOCS / "search"
+PEOPLE_DIR = DOCS / "people"
 
-movies_idx = []
-people_map = {}  # peopleCd -> {peopleCd, peopleNm, filmo: set([...movieCd])}
+def ensure_dir(p: Path):
+    p.mkdir(parents=True, exist_ok=True)
 
-for p in MOVIES_DIR.glob("*.json"):
-    j = json.loads(p.read_text(encoding="utf-8"))
-    info = j.get("movieInfoResult", {}).get("movieInfo", {})
-    movie_cd = info.get("movieCd")
-    movie_nm = norm(info.get("movieNm"))
-    open_dt  = norm(info.get("openDt"))  # yyyyMMdd
-    show_tm  = norm(info.get("showTm"))
-    prdt_yr  = norm(info.get("prdtYear"))
-    nations  = [n.get("nationNm") for n in info.get("nations", [])]
-    genres   = [g.get("genreNm")  for g in info.get("genres", [])]
-    directors= [d.get("peopleNm") for d in info.get("directors", [])]
-    actors   = [a.get("peopleNm") for a in info.get("actors", [])]
+def load_json(p: Path):
+    with p.open("r", encoding="utf-8") as f:
+        return json.load(f)
 
-    movies_idx.append({
-        "movieCd": movie_cd,
-        "movieNm": movie_nm,
-        "openDt": open_dt,
-        "showTm": show_tm,
-        "prdtYear": prdt_yr,
-        "nations": nations,
-        "genres": genres,
-        "directors": directors,
-        "actors": actors,
-    })
+def save_json(p: Path, data):
+    ensure_dir(p.parent)
+    with p.open("w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
 
-    for a in info.get("actors", []):
-        pid = norm(a.get("peopleCd") or "")
-        pname = norm(a.get("peopleNm"))
-        if not pname:
+def scan_movies():
+    out_movies = []
+    people_map = {}  # peopleCd -> {"peopleNm": str, "filmo": set()}
+    # movies/<year>/*.json 재귀 스캔
+    for p in MOVIES.rglob("*.json"):
+        if p.name == ".gitkeep":
             continue
-        if pid not in people_map:
-            people_map[pid] = {"peopleCd": pid, "peopleNm": pname, "filmo": set()}
-        people_map[pid]["filmo"].add(movie_cd)
+        rel = p.relative_to(DOCS)  # data/부터의 상대경로
+        try:
+            js = load_json(p)
+        except Exception:
+            continue
+        info = (js.get("movieInfoResult") or {}).get("movieInfo") or {}
+        cd   = str(info.get("movieCd","")).strip()
+        nm   = str(info.get("movieNm","")).strip()
+        open_dt = str(info.get("openDt","")).replace("-","")
+        # movies.json 항목
+        out_movies.append({
+            "movieCd": cd,
+            "movieNm": nm,
+            "openDt": open_dt,
+            "url": f"/{rel.as_posix()}"  # /data/movies/2024/123.json
+        })
+        # people.json(간단)
+        for a in info.get("actors", []) or []:
+            pc = str(a.get("peopleCd","")).strip()
+            pn = str(a.get("peopleNm","")).strip()
+            if not pc:
+                continue
+            if pc not in people_map:
+                people_map[pc] = {"peopleNm": pn, "filmo": set()}
+            if nm:
+                people_map[pc]["filmo"].add(nm)
 
-# save movies index
-(SEARCH_DIR / "movies.json").write_text(
-    json.dumps({"items": movies_idx}, ensure_ascii=False, indent=2), encoding="utf-8"
-)
+    # 정렬/정리
+    out_movies.sort(key=lambda x: (x["openDt"] or "00000000", x["movieCd"]), reverse=True)
+    out_people = []
+    for pc, v in people_map.items():
+        out_people.append({
+            "peopleCd": pc,
+            "peopleNm": v["peopleNm"],
+            "filmo": sorted(list(v["filmo"]))[:12]
+        })
+    out_people.sort(key=lambda x: (x["peopleNm"], x["peopleCd"]))
 
-# save people index & individual person files
-people_idx = []
-for pid, obj in people_map.items():
-    obj["filmo"] = sorted(list(obj["filmo"]))
-    people_idx.append({"peopleCd": pid, "peopleNm": obj["peopleNm"], "filmoCnt": len(obj["filmo"])})
-    # 개별 person 파일(간단 버전)
-    (PEOPLE_DIR / f"{pid or 'unknown'}.json").write_text(
-        json.dumps(obj, ensure_ascii=False, indent=2), encoding="utf-8"
-    )
+    save_json(SEARCH / "movies.json", out_movies)
+    save_json(SEARCH / "people.json", out_people)
+    # 보조: people/unknown.json 없으면 만들어두기
+    unknown = PEOPLE_DIR / "unknown.json"
+    if not unknown.exists():
+        save_json(unknown, {"ok": True, "note": "fallback"})
+    print(f"[index] movies: {len(out_movies)} / people: {len(out_people)}")
 
-(SEARCH_DIR / "people.json").write_text(
-    json.dumps({"items": people_idx}, ensure_ascii=False, indent=2), encoding="utf-8"
-)
-
-print("[DONE] movies:", len(movies_idx), "people:", len(people_idx))
+if __name__ == "__main__":
+    scan_movies()
