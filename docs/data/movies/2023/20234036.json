@@ -1,0 +1,64 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20234036",
+      "movieNm": "매드 하이디",
+      "movieNmEn": "Mad Heidi",
+      "movieNmOg": "",
+      "showTm": "92",
+      "prdtYear": "2022",
+      "openDt": "20231214",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "스위스"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "액션"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "요하네스 하트만",
+          "peopleNmEn": "Johannes Hartmann"
+        },
+        {
+          "peopleNm": "산드로 클로프스타인",
+          "peopleNmEn": "Sandro Klopfstein"
+        }
+      ],
+      "actors": [],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20141088",
+          "companyNm": "와이드 릴리즈(주)",
+          "companyNmEn": "Wide Release",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20062868",
+          "companyNm": "(주)도키엔터테인먼트",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2023-MF02070",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    },
+    "source": "영화진흥위원회"
+  }
+}

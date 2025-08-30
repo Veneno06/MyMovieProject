@@ -1,0 +1,80 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20233569",
+      "movieNm": "조이 라이드",
+      "movieNmEn": "JOY RIDE",
+      "movieNmOg": "",
+      "showTm": "94",
+      "prdtYear": "2023",
+      "openDt": "20230830",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "코미디"
+        }
+      ],
+      "directors": [],
+      "actors": [
+        {
+          "peopleNm": "애슐리 박",
+          "peopleNmEn": "Ashley Park",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "스테파니 수",
+          "peopleNmEn": "Stephanie Hsu",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "셰리 콜라",
+          "peopleNmEn": "Sherry Cola",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "사브리나 우",
+          "peopleNmEn": "Sabrina Wu",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100285",
+          "companyNm": "판씨네마(주)",
+          "companyNmEn": "Pancinema Corp.",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100285",
+          "companyNm": "판씨네마(주)",
+          "companyNmEn": "Pancinema Corp.",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2023-MF02173",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    },
+    "source": "영화진흥위원회"
+  }
+}

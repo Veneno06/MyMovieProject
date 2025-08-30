@@ -1,0 +1,79 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20229205",
+      "movieNm": "메간",
+      "movieNmEn": "M3GAN",
+      "movieNmOg": "",
+      "showTm": "101",
+      "prdtYear": "2022",
+      "openDt": "20230125",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "공포(호러)"
+        },
+        {
+          "genreNm": "스릴러"
+        },
+        {
+          "genreNm": "코미디"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "제라드 존스톤",
+          "peopleNmEn": "Gerard Johnstone"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "앨리슨 윌리암스",
+          "peopleNmEn": "Allison Williams",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "바이올렛 맥그로우",
+          "peopleNmEn": "Violet McGraw",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100603",
+          "companyNm": "유니버설픽쳐스인터내셔널 코리아(유)",
+          "companyNmEn": "Universal Pictures International Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100603",
+          "companyNm": "유니버설픽쳐스인터내셔널 코리아(유)",
+          "companyNmEn": "Universal Pictures International Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2022-MF03284",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    },
+    "source": "영화진흥위원회"
+  }
+}

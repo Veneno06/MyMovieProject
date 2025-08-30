@@ -1,0 +1,78 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20231091",
+      "movieNm": "라스트 필름 쇼",
+      "movieNmEn": "Last Film Show",
+      "movieNmOg": "",
+      "showTm": "108",
+      "prdtYear": "2021",
+      "openDt": "20230412",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "인도"
+        },
+        {
+          "nationNm": "프랑스"
+        },
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "판 나린",
+          "peopleNmEn": "Nalin Pan"
+        }
+      ],
+      "actors": [],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20203241",
+          "companyNm": "주식회사 블루필름웍스",
+          "companyNmEn": "Blue Film Works",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20121836",
+          "companyNm": "(주)버킷스튜디오",
+          "companyNmEn": "BUCKET STUDIO",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20229272",
+          "companyNm": "(주)다시봄이엔티",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        },
+        {
+          "companyCd": "20121836",
+          "companyNm": "(주)버킷스튜디오",
+          "companyNmEn": "BUCKET STUDIO",
+          "companyPartNm": "제공"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2023-MF00826 ",
+          "watchGradeNm": "전체관람가"
+        }
+      ],
+      "staffs": []
+    },
+    "source": "영화진흥위원회"
+  }
+}

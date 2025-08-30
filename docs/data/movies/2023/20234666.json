@@ -1,0 +1,73 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20234666",
+      "movieNm": "톡 투 미",
+      "movieNmEn": "Talk to Me",
+      "movieNmOg": "",
+      "showTm": "94",
+      "prdtYear": "2023",
+      "openDt": "20231101",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "호주"
+        },
+        {
+          "nationNm": "영국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "공포(호러)"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "대니 필리푸",
+          "peopleNmEn": "Danny Philippou"
+        },
+        {
+          "peopleNm": "마이클 필리푸",
+          "peopleNmEn": "Michael Philippou"
+        }
+      ],
+      "actors": [],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20230981",
+          "companyNm": "주식회사 올랄라스토리",
+          "companyNmEn": "ohlalastory",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20230987",
+          "companyNm": "롯데컬처웍스(주)롯데시네마",
+          "companyNmEn": "",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20228951",
+          "companyNm": "(주)더쿱디스트리뷰션",
+          "companyNmEn": "THE COUP DISTRIBUTION",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2023-MF02715",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    },
+    "source": "영화진흥위원회"
+  }
+}

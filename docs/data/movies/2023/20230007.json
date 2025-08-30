@@ -1,0 +1,79 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20230007",
+      "movieNm": "TAR 타르",
+      "movieNmEn": "TAR",
+      "movieNmOg": "TÁR",
+      "showTm": "158",
+      "prdtYear": "2022",
+      "openDt": "20230222",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "토드 필드",
+          "peopleNmEn": "Todd Field"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "케이트 블란쳇",
+          "peopleNmEn": "Cate Blanchett",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "노에미 멜랑",
+          "peopleNmEn": "Noemie Merlant",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "니나 호스",
+          "peopleNmEn": "Nina Hoss",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100603",
+          "companyNm": "유니버설픽쳐스인터내셔널 코리아(유)",
+          "companyNmEn": "Universal Pictures International Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100603",
+          "companyNm": "유니버설픽쳐스인터내셔널 코리아(유)",
+          "companyNmEn": "Universal Pictures International Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2022-MF02818",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    },
+    "source": "영화진흥위원회"
+  }
+}

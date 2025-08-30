@@ -1,0 +1,77 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20239731",
+      "movieNm": "새비지 맨",
+      "movieNmEn": "Savage Salvation",
+      "movieNmOg": "Wash Me in the River",
+      "showTm": "101",
+      "prdtYear": "2022",
+      "openDt": "20230126",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "액션"
+        },
+        {
+          "genreNm": "스릴러"
+        }
+      ],
+      "directors": [],
+      "actors": [
+        {
+          "peopleNm": "로버트 드 니로",
+          "peopleNmEn": "Robert DeNiro",
+          "cast": "‘마이크’ 보안관",
+          "castEn": "Sheriff Church"
+        },
+        {
+          "peopleNm": "잭 휴스턴",
+          "peopleNmEn": "Jack Huston",
+          "cast": "존",
+          "castEn": "Shelby John"
+        },
+        {
+          "peopleNm": "존 말코비치",
+          "peopleNmEn": "John Malkovich",
+          "cast": "피터",
+          "castEn": "Peter"
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20141349",
+          "companyNm": "주식회사 디에스이이디",
+          "companyNmEn": "D.seeD",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20141349",
+          "companyNm": "주식회사 디에스이이디",
+          "companyNmEn": "D.seeD",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2023-MF00073",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    },
+    "source": "영화진흥위원회"
+  }
+}

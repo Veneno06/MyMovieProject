@@ -1,0 +1,67 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20230641",
+      "movieNm": "오토라는 남자",
+      "movieNmEn": "A Man Called Otto",
+      "movieNmOg": "",
+      "showTm": "125",
+      "prdtYear": "2022",
+      "openDt": "20230329",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "마크 포스터",
+          "peopleNmEn": "Marc Forster"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "톰 행크스",
+          "peopleNmEn": "Tom Hanks",
+          "cast": "오토",
+          "castEn": "Otto"
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20173221",
+          "companyNm": "소니픽쳐스엔터테인먼트코리아주식회사극장배급지점",
+          "companyNmEn": "Sony Pictures Releasing International",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20173221",
+          "companyNm": "소니픽쳐스엔터테인먼트코리아주식회사극장배급지점",
+          "companyNmEn": "Sony Pictures Releasing International",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2023-MF00512",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": []
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20231004",
+      "movieNm": "65",
+      "movieNmEn": "65",
+      "movieNmOg": "",
+      "showTm": "92",
+      "prdtYear": "2023",
+      "openDt": "20230420",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "액션"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "스콧 벡",
+          "peopleNmEn": "Scott Beck"
+        },
+        {
+          "peopleNm": "브라이언 우즈",
+          "peopleNmEn": "Bryan Woods"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "아담 드라이버",
+          "peopleNmEn": "Adam Driver",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "아리나 그린블랫",
+          "peopleNmEn": "Ariana Greenblatt",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        },
+        {
+          "showTypeGroupNm": "4D",
+          "showTypeNm": "4D"
+        },
+        {
+          "showTypeGroupNm": "DOLBYCINEMA",
+          "showTypeNm": "DOLBYCINEMA"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20173221",
+          "companyNm": "소니픽쳐스엔터테인먼트코리아주식회사극장배급지점",
+          "companyNmEn": "Sony Pictures Releasing International",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20173221",
+          "companyNm": "소니픽쳐스엔터테인먼트코리아주식회사극장배급지점",
+          "companyNmEn": "Sony Pictures Releasing International",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2023-MF00753",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": []
+    },
+    "source": "영화진흥위원회"
+  }
+}

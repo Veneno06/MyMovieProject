@@ -1,0 +1,85 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20239947",
+      "movieNm": "원 웨이",
+      "movieNmEn": "One Way",
+      "movieNmOg": "",
+      "showTm": "96",
+      "prdtYear": "2022",
+      "openDt": "20230209",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "액션"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "앤드류 베어드",
+          "peopleNmEn": "Andrew Baird"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "케빈 베이컨",
+          "peopleNmEn": "Kevin Bacon",
+          "cast": "",
+          "castEn": "Fred Sullivan Sr."
+        },
+        {
+          "peopleNm": "스톰 리드",
+          "peopleNmEn": "Storm Reid",
+          "cast": "",
+          "castEn": "Rachel"
+        },
+        {
+          "peopleNm": "트래비스 핌멜",
+          "peopleNmEn": "Travis Fimmel",
+          "cast": "",
+          "castEn": "Will"
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20203241",
+          "companyNm": "주식회사 블루필름웍스",
+          "companyNmEn": "Blue Film Works",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20203241",
+          "companyNm": "주식회사 블루필름웍스",
+          "companyNmEn": "Blue Film Works",
+          "companyPartNm": "수입사"
+        },
+        {
+          "companyCd": "20121836",
+          "companyNm": "(주)버킷스튜디오",
+          "companyNmEn": "BUCKET STUDIO",
+          "companyPartNm": "제공"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2023-MF00227",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    },
+    "source": "영화진흥위원회"
+  }
+}

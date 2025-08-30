@@ -1,0 +1,79 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20231413",
+      "movieNm": "한 남자",
+      "movieNmEn": "A Man",
+      "movieNmOg": "ある男",
+      "showTm": "122",
+      "prdtYear": "2022",
+      "openDt": "20230830",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "일본"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "범죄"
+        },
+        {
+          "genreNm": "멜로/로맨스"
+        },
+        {
+          "genreNm": "스릴러"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "이시카와 케이",
+          "peopleNmEn": "Kei Ishikawa"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "츠마부키 사토시",
+          "peopleNmEn": "Satoshi Tsumabuki",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "안도 사쿠라",
+          "peopleNmEn": "Sakura Ando",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20160021",
+          "companyNm": "트윈플러스파트너스(주)",
+          "companyNmEn": "",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20122956",
+          "companyNm": "(주)미디어캐슬",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2023-MF01648",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": []
+    },
+    "source": "영화진흥위원회"
+  }
+}

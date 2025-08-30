@@ -1,0 +1,85 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20231244",
+      "movieNm": "렌필드",
+      "movieNmEn": "Renfield",
+      "movieNmOg": "",
+      "showTm": "93",
+      "prdtYear": "2023",
+      "openDt": "20230419",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "코미디"
+        },
+        {
+          "genreNm": "판타지"
+        },
+        {
+          "genreNm": "공포(호러)"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "크리스 맥케이",
+          "peopleNmEn": "Chris McKay"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "니콜라스 홀트",
+          "peopleNmEn": "Nicholas Hoult",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "니콜라스 케이지",
+          "peopleNmEn": "Nicolas Cage ",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "아콰피나",
+          "peopleNmEn": "Awkwafina",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100603",
+          "companyNm": "유니버설픽쳐스인터내셔널 코리아(유)",
+          "companyNmEn": "Universal Pictures International Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100603",
+          "companyNm": "유니버설픽쳐스인터내셔널 코리아(유)",
+          "companyNmEn": "Universal Pictures International Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2023-MF00990",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    },
+    "source": "영화진흥위원회"
+  }
+}

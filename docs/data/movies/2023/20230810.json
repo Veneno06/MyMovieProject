@@ -1,0 +1,73 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20230810",
+      "movieNm": "피기",
+      "movieNmEn": "Piggy",
+      "movieNmOg": "Cerdita",
+      "showTm": "99",
+      "prdtYear": "2022",
+      "openDt": "20230426",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "스페인"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "스릴러"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "카를로타 페레다",
+          "peopleNmEn": "CARLOTA PEREDA"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "라우라 갈란",
+          "peopleNmEn": "LAURA GALAN",
+          "cast": "사라",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "카르멘 마치",
+          "peopleNmEn": "CARMEN MACHI",
+          "cast": "엄마",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20217646",
+          "companyNm": "해피송",
+          "companyNmEn": "Happy Song",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20217646",
+          "companyNm": "해피송",
+          "companyNmEn": "Happy Song",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2023-MF00012 ",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    },
+    "source": "영화진흥위원회"
+  }
+}

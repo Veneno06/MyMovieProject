@@ -1,0 +1,82 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20230200",
+      "movieNm": "똑똑똑",
+      "movieNmEn": "Knock at the Cabin",
+      "movieNmOg": "",
+      "showTm": "100",
+      "prdtYear": "2023",
+      "openDt": "20230308",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "미스터리"
+        },
+        {
+          "genreNm": "스릴러"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "M. 나이트 샤말란",
+          "peopleNmEn": "M. Night Shyamalan"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "데이브 바티스타",
+          "peopleNmEn": "Dave Bautista",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "조나단 그로프",
+          "peopleNmEn": "Jonathan Groff",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "루퍼트 그린트",
+          "peopleNmEn": "Rupert Grint",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100603",
+          "companyNm": "유니버설픽쳐스인터내셔널 코리아(유)",
+          "companyNmEn": "Universal Pictures International Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100603",
+          "companyNm": "유니버설픽쳐스인터내셔널 코리아(유)",
+          "companyNmEn": "Universal Pictures International Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2023-MF00355",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    },
+    "source": "영화진흥위원회"
+  }
+}

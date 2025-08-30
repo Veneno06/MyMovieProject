@@ -1,0 +1,96 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20235098",
+      "movieNm": "나폴레옹",
+      "movieNmEn": "Napoleon",
+      "movieNmOg": "",
+      "showTm": "158",
+      "prdtYear": "2023",
+      "openDt": "20231206",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "전쟁"
+        },
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "리들리 스콧",
+          "peopleNmEn": "Ridley Scott"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "호아킨 피닉스",
+          "peopleNmEn": "Joaquin Phoenix",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "바네사 커비",
+          "peopleNmEn": "Vanessa Kirby",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        },
+        {
+          "showTypeGroupNm": "4D",
+          "showTypeNm": "4D"
+        },
+        {
+          "showTypeGroupNm": "IMAX",
+          "showTypeNm": "IMAX"
+        },
+        {
+          "showTypeGroupNm": "ScreenX",
+          "showTypeNm": "ScreenX"
+        },
+        {
+          "showTypeGroupNm": "DOLBYCINEMA",
+          "showTypeNm": "DOLBYCINEMA"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20173221",
+          "companyNm": "소니픽쳐스엔터테인먼트코리아주식회사극장배급지점",
+          "companyNmEn": "Sony Pictures Releasing International",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20173221",
+          "companyNm": "소니픽쳐스엔터테인먼트코리아주식회사극장배급지점",
+          "companyNmEn": "Sony Pictures Releasing International",
+          "companyPartNm": "제공"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2023-MF03075 ",
+          "watchGradeNm": "15세이상관람가"
+        },
+        {
+          "auditNo": "2023-MF03074 ",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    },
+    "source": "영화진흥위원회"
+  }
+}

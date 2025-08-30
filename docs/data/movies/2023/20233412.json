@@ -1,0 +1,73 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20233412",
+      "movieNm": "어파이어",
+      "movieNmEn": "Afire",
+      "movieNmOg": "",
+      "showTm": "102",
+      "prdtYear": "2023",
+      "openDt": "20230913",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "독일"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "멜로/로맨스"
+        },
+        {
+          "genreNm": "코미디"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "크리스티안 펫졸드",
+          "peopleNmEn": "Christian Petzold"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "폴라 비어",
+          "peopleNmEn": "Paula Beer",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20168613",
+          "companyNm": "엠엔엠인터내셔널(주)",
+          "companyNmEn": "M&M International Inc.",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20168613",
+          "companyNm": "엠엔엠인터내셔널(주)",
+          "companyNmEn": "M&M International Inc.",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2023-MF02159",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": []
+    },
+    "source": "영화진흥위원회"
+  }
+}

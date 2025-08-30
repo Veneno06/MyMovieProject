@@ -1,0 +1,103 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20231010",
+      "movieNm": "에어",
+      "movieNmEn": "Air",
+      "movieNmOg": "",
+      "showTm": "111",
+      "prdtYear": "2023",
+      "openDt": "20230405",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "벤 애플렉",
+          "peopleNmEn": "Ben Affleck"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "맷 데이먼",
+          "peopleNmEn": "Matt Damon",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "벤 애플렉",
+          "peopleNmEn": "Ben Affleck",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "제이슨 베이트먼",
+          "peopleNmEn": "Jason Bateman",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "마론 웨이언스",
+          "peopleNmEn": "Marlon Wayans",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "크리스 메시나",
+          "peopleNmEn": "Chris Messina",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "크리스 터커",
+          "peopleNmEn": "Chris Tucker ",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "비올라 데이비스",
+          "peopleNmEn": "Viola Davis",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100043",
+          "companyNm": "워너브러더스 코리아(주)",
+          "companyNmEn": "Warner Bros. Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100043",
+          "companyNm": "워너브러더스 코리아(주)",
+          "companyNmEn": "Warner Bros. Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2023-MF00758 ",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    },
+    "source": "영화진흥위원회"
+  }
+}

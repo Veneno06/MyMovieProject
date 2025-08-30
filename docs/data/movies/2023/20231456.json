@@ -1,0 +1,65 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20231456",
+      "movieNm": "페이퍼 스파이더스",
+      "movieNmEn": "Paper Spiders",
+      "movieNmOg": "Paper Spiders",
+      "showTm": "109",
+      "prdtYear": "2021",
+      "openDt": "20230518",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "가족"
+        }
+      ],
+      "directors": [],
+      "actors": [
+        {
+          "peopleNm": "릴리 테일러",
+          "peopleNmEn": "Lili Taylor",
+          "cast": "던",
+          "castEn": "Dawn"
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20203241",
+          "companyNm": "주식회사 블루필름웍스",
+          "companyNmEn": "Blue Film Works",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20203241",
+          "companyNm": "주식회사 블루필름웍스",
+          "companyNmEn": "Blue Film Works",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2023-MF00950 ",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    },
+    "source": "영화진흥위원회"
+  }
+}

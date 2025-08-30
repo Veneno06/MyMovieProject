@@ -1,0 +1,91 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20230082",
+      "movieNm": "6번 칸",
+      "movieNmEn": "Compartment No. 6",
+      "movieNmOg": "Hytti nro 6",
+      "showTm": "107",
+      "prdtYear": "2021",
+      "openDt": "20230308",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "독일"
+        },
+        {
+          "nationNm": "핀란드"
+        },
+        {
+          "nationNm": "러시아"
+        },
+        {
+          "nationNm": "에스토니아"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "멜로/로맨스"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "유호 쿠오스마넨",
+          "peopleNmEn": "Juho Kuosmanen"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "세이디 하를라",
+          "peopleNmEn": "Seidi Haarla",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "유리 보리소프",
+          "peopleNmEn": "Yuriy Borisov",
+          "cast": "",
+          "castEn": "Ljoha"
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100123",
+          "companyNm": "(주)싸이더스",
+          "companyNmEn": "Sidus Corporation",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20239901",
+          "companyNm": "스튜디오 에이드",
+          "companyNmEn": "",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100123",
+          "companyNm": "(주)싸이더스",
+          "companyNmEn": "Sidus Corporation",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2022-MF03187",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    },
+    "source": "영화진흥위원회"
+  }
+}

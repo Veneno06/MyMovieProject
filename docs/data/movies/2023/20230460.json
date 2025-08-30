@@ -1,0 +1,76 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20230460",
+      "movieNm": "크리드 3",
+      "movieNmEn": "Creed 3",
+      "movieNmOg": "Creed III",
+      "showTm": "116",
+      "prdtYear": "2023",
+      "openDt": "20230301",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "액션"
+        },
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "마이클 B. 조던",
+          "peopleNmEn": "Michael B. Jordan"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "마이클 B. 조던",
+          "peopleNmEn": "Michael B. Jordan  ",
+          "cast": "크리드",
+          "castEn": "Adonis Creed"
+        },
+        {
+          "peopleNm": "테사 톰슨",
+          "peopleNmEn": "Tessa Thompson",
+          "cast": "비앙카",
+          "castEn": "Bianca"
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100043",
+          "companyNm": "워너브러더스 코리아(주)",
+          "companyNmEn": "Warner Bros. Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100043",
+          "companyNm": "워너브러더스 코리아(주)",
+          "companyNmEn": "Warner Bros. Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2023-MF00540",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20228914",
+      "movieNm": "안녕, 소중한 사람",
+      "movieNmEn": "More Than Ever",
+      "movieNmOg": "Plus que jamais",
+      "showTm": "123",
+      "prdtYear": "2022",
+      "openDt": "20230208",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "프랑스"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "에밀리 아테프",
+          "peopleNmEn": "Emily Atef"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "비키 크립스",
+          "peopleNmEn": "Vicky Krieps",
+          "cast": "엘렌",
+          "castEn": "Hélène Mouchet"
+        },
+        {
+          "peopleNm": "가스파르 울리엘",
+          "peopleNmEn": "Gaspard Ulliel",
+          "cast": "마티유",
+          "castEn": "Matthieu Mouchet"
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20063009",
+          "companyNm": "(주)티캐스트",
+          "companyNmEn": "TCast",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20063009",
+          "companyNm": "(주)티캐스트",
+          "companyNmEn": "TCast",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2022-MF03215 ",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    },
+    "source": "영화진흥위원회"
+  }
+}
