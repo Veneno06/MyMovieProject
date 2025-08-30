@@ -1,137 +1,146 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
 """
-영화 상세 캐시(docs/data/movies/**.json)를 스캔해
-- search/movies.json : 기간/국가/등급 필터용 가벼운 영화 인덱스
-- search/people.json : 배우/감독 이름 검색용 인덱스
+build_indices.py (확장 버전)
+- docs/data/movies/**.json 을 읽어서
+  1) movies.json  : 영화 인덱스 (movieCd, movieNm, openDt)
+  2) people.json  : 사람 인덱스 (peopleCd, peopleNm, repRoleNm, films[], filmoNames)
 를 생성한다.
-
-파일 구조 가정:
-  docs/
-    data/
-      movies/
-        2023/
-          20231234.json   # KOFIC movieInfoResult 구조
-        2024/
-          ...
-      search/
-        movies.json
-        people.json
 """
 
-from pathlib import Path
 import json
-import re
+import os
+import time
+from pathlib import Path
 
-ROOT = Path("docs/data")
-MOVIES_DIR = ROOT / "movies"
-SEARCH_DIR = ROOT / "search"
+ROOT = Path(__file__).resolve().parents[1]          # repo root
+DATA_DIR = ROOT / "docs" / "data"
+MOVIES_DIR = DATA_DIR / "movies"
+SEARCH_DIR = DATA_DIR / "search"
 SEARCH_DIR.mkdir(parents=True, exist_ok=True)
 
-def load_json(p: Path):
+def read_json(p: Path):
     try:
         with p.open("r", encoding="utf-8") as f:
             return json.load(f)
     except Exception:
         return None
 
-def digits(s: str) -> str:
-    return re.sub(r"\D", "", s or "")
+def to_ymd(s: str) -> str:
+    """YYYYMMDD 정규화 (없으면 '')"""
+    if not s:
+        return ""
+    s = str(s).replace("-", "")
+    return s if len(s) == 8 and s.isdigit() else ""
 
-def norm_open_dt(s: str) -> str:
-    # YYYYMMDD만 남김
-    return digits(s)[:8]
+def norm(s: str) -> str:
+    return (s or "").lower().replace(" ", "").strip()
 
-def is_kr(nations) -> bool:
-    # KOFIC movieInfo.nations: [{"nationNm": "한국"} ...]
-    if not nations:
-        return False
-    joined = " ".join([str(n.get("nationNm", "")) for n in nations])
-    return "한국" in joined
+def main():
+    # ─────────────────────────────
+    # 1) 영화 상세 캐시 훑기
+    # ─────────────────────────────
+    movie_index = []   # [{movieCd, movieNm, openDt}]
+    people_map = {}    # key: peopleCd or "name::<name>" → {peopleCd, peopleNm, repRoleNm, films[], filmoNames}
 
-def first_grade(movie_info) -> str:
-    audits = movie_info.get("audits") or []
-    if audits and isinstance(audits, list):
-        nm = (audits[0] or {}).get("watchGradeNm", "")
-        return str(nm or "")
-    return ""
+    # movies 디렉토리 구조(연도/파일) 지원
+    if not MOVIES_DIR.exists():
+        print("[index] movies dir not found:", MOVIES_DIR)
+        return
 
-def build_indices():
-    movie_index = []
-    people_map = {}  # key: peopleCd or "NM:<name>" -> {"peopleCd","peopleNm","roles":set(),"films":set()}
+    movie_files = list(MOVIES_DIR.rglob("*.json"))
+    # .gitkeep 등 무시
+    movie_files = [p for p in movie_files if p.name != ".gitkeep"]
 
-    json_files = sorted(MOVIES_DIR.glob("**/*.json"))
-    for jf in json_files:
-        data = load_json(jf)
-        if not data:
-            continue
-        info = (data.get("movieInfoResult") or {}).get("movieInfo") or {}
-        if not info:
+    for p in movie_files:
+        js = read_json(p)
+        if not js:
             continue
 
-        movieCd = info.get("movieCd")
+        info = js.get("movieInfoResult", {}).get("movieInfo", {})
+        movieCd = info.get("movieCd") or ""
         movieNm = info.get("movieNm") or ""
-        openDt  = norm_open_dt(info.get("openDt") or "")
-        grade   = first_grade(info)
-        kr      = is_kr(info.get("nations"))
+        openDt  = to_ymd(info.get("openDt") or "")
+        if not movieCd or not movieNm:
+            continue
 
-        # 영화 인덱스(검색/필터용, 가볍게)
-        if movieCd and movieNm:
-            movie_index.append({
+        # 영화 인덱스 축적
+        movie_index.append({
+            "movieCd": movieCd,
+            "movieNm": movieNm,
+            "openDt": openDt
+        })
+
+        # 배우 목록 → 사람 인덱스 확장
+        for a in info.get("actors", []):
+            peopleCd = a.get("peopleCd") or ""
+            peopleNm = a.get("peopleNm") or ""
+            part     = a.get("cast") or ""  # 역할(주연/조연/배역명 등)
+
+            if not peopleNm:  # 이름조차 없으면 스킵
+                continue
+
+            key = peopleCd if peopleCd else f"name::{peopleNm}"
+
+            if key not in people_map:
+                people_map[key] = {
+                    "peopleCd": peopleCd,                 # 없을 수도 있음(빈 문자열)
+                    "peopleNm": peopleNm,
+                    "repRoleNm": "배우",                  # 기본값
+                    "films": [],                          # [{movieCd, movieNm, openDt, part}]
+                }
+
+            entry = people_map[key]
+            # 코드가 빈 상태였는데, 이번에 코드가 있으면 승격
+            if not entry.get("peopleCd") and peopleCd:
+                entry["peopleCd"] = peopleCd
+
+            entry["films"].append({
                 "movieCd": movieCd,
                 "movieNm": movieNm,
-                "openDt": openDt,   # YYYYMMDD
-                "grade": grade,     # 관람등급(없을 수 있음)
-                "isKR": kr          # 국내 여부
+                "openDt": openDt,
+                "part": part
             })
 
-        # 인물 인덱스(배우/감독)
-        def add_person(p, role):
-            if not p:
-                return
-            cd = str(p.get("peopleCd") or "").strip()
-            nm = str(p.get("peopleNm") or "").strip()
-            if not (cd or nm):
-                return
-            key = cd if cd else f"NM:{nm}"
-            entry = people_map.setdefault(key, {
-                "peopleCd": cd,
-                "peopleNm": nm,
-                "roles": set(),
-                "films": set()
-            })
-            if role:
-                entry["roles"].add(role)
-            if movieNm:
-                entry["films"].add(movieNm)
+    # ─────────────────────────────
+    # 2) 후처리: 사람 인덱스 정렬/요약필드
+    # ─────────────────────────────
+    people_list = list(people_map.values())
+    for p in people_list:
+        # 영화 최근작 우선 정렬
+        p["films"].sort(key=lambda x: int(x.get("openDt") or 0), reverse=True)
+        # 요약 filmoNames (최대 몇 개만)
+        titles = [f["movieNm"] for f in p["films"] if f.get("movieNm")]
+        if titles:
+            p["filmoNames"] = " | ".join(titles[:10])
+        else:
+            p["filmoNames"] = ""
 
-        # 감독/배우 수집
-        for d in (info.get("directors") or []):
-            add_person(d, "감독")
-        for a in (info.get("actors") or []):
-            add_person(a, "배우")
+    # 이름 기준 정렬(가나다)
+    people_list.sort(key=lambda x: norm(x.get("peopleNm")))
 
-    # 정렬/가공
-    movie_index.sort(key=lambda m: (m["openDt"] or "00000000", m["movieNm"]))
-    # people.json은 이름 기준 정렬
-    people_list = []
-    for k, v in people_map.items():
-        people_list.append({
-            "peopleCd": v["peopleCd"],
-            "peopleNm": v["peopleNm"],
-            "repRoleNm": " / ".join(sorted(v["roles"])) if v["roles"] else "",
-            "filmoCount": len(v["films"])
-        })
-    people_list.sort(key=lambda p: (p["peopleNm"] or ""))
+    # ─────────────────────────────
+    # 3) 파일로 저장
+    # ─────────────────────────────
+    out_movies = {
+        "generatedAt": int(time.time()),
+        "count": len(movie_index),
+        "movies": movie_index
+    }
+    out_people = {
+        "generatedAt": int(time.time()),
+        "count": len(people_list),
+        "people": people_list
+    }
 
-    # 저장
-    with (SEARCH_DIR/"movies.json").open("w", encoding="utf-8") as f:
-        json.dump(movie_index, f, ensure_ascii=False)
-    with (SEARCH_DIR/"people.json").open("w", encoding="utf-8") as f:
-        json.dump(people_list, f, ensure_ascii=False)
+    with (SEARCH_DIR / "movies.json").open("w", encoding="utf-8") as f:
+        json.dump(out_movies, f, ensure_ascii=False, indent=2)
+    with (SEARCH_DIR / "people.json").open("w", encoding="utf-8") as f:
+        json.dump(out_people, f, ensure_ascii=False, indent=2)
 
     print(f"[index] movies: {len(movie_index)} / people: {len(people_list)}")
+    print(f"[index] wrote {SEARCH_DIR/'movies.json'}")
+    print(f"[index] wrote {SEARCH_DIR/'people.json'}")
 
 if __name__ == "__main__":
-    build_indices()
+    main()
