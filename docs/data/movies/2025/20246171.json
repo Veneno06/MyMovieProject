@@ -1,0 +1,82 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20246171",
+      "movieNm": "엠파이어",
+      "movieNmEn": "Empire",
+      "movieNmOg": "L'empire",
+      "showTm": "110",
+      "prdtYear": "2024",
+      "openDt": "20250820",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "프랑스"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "SF"
+        },
+        {
+          "genreNm": "코미디"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "브루노 뒤몽",
+          "peopleNmEn": "Bruno Dumont"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "리나 쿠드리",
+          "peopleNmEn": "Lyna Khoudri",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "아나마리아 바토로메이",
+          "peopleNmEn": "Anamaria Vartolomei",
+          "cast": "제인",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "파브리스 루치니",
+          "peopleNmEn": "Fabrice Luchini",
+          "cast": "벨제부트",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20154728",
+          "companyNm": "주식회사 씨엠닉스",
+          "companyNmEn": "CMNIX",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20154728",
+          "companyNm": "주식회사 씨엠닉스",
+          "companyNmEn": "CMNIX",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2025-MF01346 ",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    },
+    "source": "영화진흥위원회"
+  }
+}
