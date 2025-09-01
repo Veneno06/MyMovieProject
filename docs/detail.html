@@ -1,20 +1,24 @@
 <!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   <title>영화 상세 – K-Movie A Archive</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="assets/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <style>
+    .actor-link { margin-right:6px; }
+    .muted { color:#666; }
+  </style>
 </head>
 <body>
 <div class="container">
   <div class="header">
     <h1>영화 상세 정보</h1>
     <div class="spacer"></div>
-    <a href="index.html" class="btn">홈</a>
-    <a href="search.html" class="btn">영화 검색</a>
-    <a href="people-search.html" class="btn">배우 검색</a>
-    <a href="saved.html" class="btn"> 저장 목록</a>
+    <a class="btn" href="index.html">홈</a>
+    <a class="btn" href="search.html">영화 검색</a>
+    <a class="btn" href="people-search.html">배우 검색</a>
+    <a class="btn" href="saved.html">저장 목록</a>
   </div>
 
   <div id="movieDetail" class="grid"></div>
@@ -25,9 +29,10 @@
 </div>
 
 <script>
+/* ================= 공통 ================= */
 const params = new URLSearchParams(location.search);
-const movieCd = params.get('movieCd');
-const box     = document.getElementById('movieDetail');
+const movieCd = params.get('movieCd') || '';
+const box = document.getElementById('movieDetail');
 const saveBtn = document.getElementById('saveBtn');
 
 function getSaved(){ return JSON.parse(localStorage.getItem('savedMovies')||'[]'); }
@@ -35,109 +40,149 @@ function isSaved(cd){ return getSaved().includes(cd); }
 function setSaved(arr){ localStorage.setItem('savedMovies', JSON.stringify(arr)); }
 function renderSaveBtn(){ if (!movieCd) return; saveBtn.textContent = isSaved(movieCd) ? '⭐ 저장됨(해제)' : '☆ 영화 저장'; }
 saveBtn.addEventListener('click', ()=>{
-  let s=getSaved();
-  if (isSaved(movieCd)) s=s.filter(x=>x!==movieCd);
+  if (!movieCd) return;
+  let s = getSaved();
+  if (isSaved(movieCd)) s = s.filter(x=>x!==movieCd);
   else s.push(movieCd);
   setSaved(s); renderSaveBtn();
 });
 
-// 숫자 포맷 & 날짜 유틸
 const fmtNum = n => (n==null || isNaN(n)) ? '' : n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-function parseYMD(ymd){ if(!ymd) return null; const s=String(ymd).replace(/-/g,''); if(s.length!==8) return null; return new Date(+s.slice(0,4), +s.slice(4,6)-1, +s.slice(6,8)); }
+const INDEX_URL = 'data/search/movies.json';
+const YEARS_MANIFEST = 'data/years/_manifest.json'; // 존재하면 사용
 
-// ✅ 정적 캐시에서 영화 상세 읽기
-async function fetchMovieInfoLocal(cd){
-  const res = await fetch(`./data/movies/${encodeURIComponent(cd)}.json`);
-  if (!res.ok) throw new Error('영화 상세 캐시 없음');
-  const js  = await res.json();
-  return js.movieInfoResult?.movieInfo;
+async function tryFetchJson(url){
+  try{
+    const r = await fetch(url, { cache: 'no-store' });
+    if (!r.ok) return null;
+    return await r.json();
+  }catch{ return null; }
 }
 
-// ✅ (가능하면) 최신 일일 박스오피스에서 누적 관객수 가져오기
-async function fetchAudienceAccFromLatest(cd){
-  try{
-    const meta = await fetch('./data/latest.json?v=' + Date.now()).then(r=>r.json());
-    const day  = await fetch(meta.url + '?v=' + Date.now()).then(r=>r.json());
-    const list = day?.boxOfficeResult?.dailyBoxOfficeList || [];
-    const f = list.find(x => x.movieCd === cd);
-    if (f?.audiAcc){
-      const acc = parseInt(String(f.audiAcc).replace(/,/g,''),10);
-      if (!isNaN(acc)) return acc;
+/* 후보 경로 생성: 인덱스 연도 우선 → 매니페스트 연도들 → 레거시 루트 */
+async function guessDetailJsonPaths(cd, indexEntry){
+  const paths = new Set();
+
+  // 1) 인덱스에서 연도 추정
+  const yCandidate = (indexEntry?.openDt || '').slice(0,4) || indexEntry?.prdtYear || '';
+  if (yCandidate) paths.add(`data/movies/${yCandidate}/${cd}.json`);
+
+  // 2) 매니페스트 기반(있을 때만)
+  const manifest = await tryFetchJson(YEARS_MANIFEST);
+  if (manifest && manifest.years && Array.isArray(manifest.years)){
+    manifest.years.forEach(y => paths.add(`data/movies/${y}/${cd}.json`));
+  } else {
+    // 매니페스트가 없다면 최근 몇 년만 합리적으로 시도
+    const nowY = new Date().getFullYear();
+    for (let y = nowY+1; y >= 2015; y--){
+      paths.add(`data/movies/${y}/${cd}.json`);
     }
-  }catch(e){ /* ignore */ }
-  return null; // 없으면 표기 생략
+  }
+
+  // 3) 레거시 평면 구조(혹시 남아있을 수 있음)
+  paths.add(`data/movies/${cd}.json`);
+
+  return Array.from(paths);
 }
 
-async function load(){
-  if (!movieCd){ box.textContent='영화 코드가 없습니다.'; return; }
-  try{
-    const info = await fetchMovieInfoLocal(movieCd);
-    if (!info){ box.textContent='영화 정보를 찾을 수 없습니다.'; return; }
+/* 다양한 구조 허용적으로 파싱 */
+function pickMovieInfo(json){
+  if (!json) return null;
+  if (json.movieInfoResult?.movieInfo) return json.movieInfoResult.movieInfo;     // KOFIC 원본 래핑
+  if (json.movieInfo) return json.movieInfo;                                      // 단순 래핑
+  // 빌더가 평평하게 저장했을 수 있음
+  const keys = ['movieCd','movieNm','openDt','showTm','genres','directors','companys','actors','audits','audiAcc'];
+  const ok = keys.some(k => k in json);
+  return ok ? json : null;
+}
 
-    const title     = info.movieNm;
-    const prdtYear  = info.prdtYear || '';
-    const openDt    = info.openDt || '정보 없음';
-    const showTm    = info.showTm ? `${info.showTm}분` : '';
-    const genres    =(info.genres||[]).map(g=>g.genreNm).join(', ')||'정보 없음';
-    const directors =(info.directors||[]).map(d=>d.peopleNm).join(', ')||'정보 없음';
-    const companies =(info.companys||[]).map(c=>c.companyNm).join(', ')||'정보 없음';
+/* 메인 로딩 */
+(async function main(){
+  if (!movieCd){
+    box.textContent = '영화 코드가 없습니다.'; return;
+  }
 
-    // 배우 링크(원본 로직 유지)
-    const actorLinksShort = (info.actors || []).slice(0, 5).map(a => {
-      const cd = a.peopleCd;
-      const nm = a.peopleNm || '';
-      const href = cd
-        ? `person.html?peopleCd=${encodeURIComponent(cd)}`
-        : `person.html?peopleNm=${encodeURIComponent(nm)}&movieNm=${encodeURIComponent(title)}`;
-      return `<a href="${href}" class="actor-link">${nm}</a>`;
-    }).join(', ');
+  // 인덱스 읽어서 보조정보 확보(연도·등급·국가·audiAcc 후보)
+  const index = await tryFetchJson(INDEX_URL);
+  const list = index?.movies || [];
+  const idxEntry = list.find(m => m.movieCd === movieCd);
 
-    const actorLinksAll = (info.actors || []).map(a => {
-      const cd = a.peopleCd;
-      const nm = a.peopleNm || '';
-      const href = cd
-        ? `person.html?peopleCd=${encodeURIComponent(cd)}`
-        : `person.html?peopleNm=${encodeURIComponent(nm)}&movieNm=${encodeURIComponent(title)}`;
-      return `<a href="${href}" class="actor-link">${nm}</a>`;
-    }).join(', ');
+  // 캐시 파일 후보 경로들 만들고 순서대로 조회
+  const candidates = await guessDetailJsonPaths(movieCd, idxEntry);
+  let raw = null, usedUrl = '';
+  for (const u of candidates){
+    const j = await tryFetchJson(u);
+    const info = pickMovieInfo(j);
+    if (info) { raw = info; usedUrl = u; break; }
+  }
 
-    box.innerHTML=`
-      <div><strong>제목:</strong> ${title} ${prdtYear?`<span class="muted">(${prdtYear})</span>`:''}</div>
-      <div><strong>개봉일:</strong> ${openDt}${showTm?` · <strong>상영시간:</strong> ${showTm}`:''}</div>
-      <div><strong>장르:</strong> ${genres}</div>
-      <div><strong>감독:</strong> ${directors}</div>
-      <div><strong>제작사:</strong> ${companies}</div>
-      <div><strong>배우:</strong> 
-        <span id="actorsShort">${actorLinksShort}</span>
-        ${(info.actors||[]).length>5 ? ` <a href="#" id="actorsMore">더보기</a>
-        <span id="actorsAll" style="display:none">${actorLinksAll}</span>` : ''}
-      </div>
-
-      <!-- 관객수 라인 -->
-      <div><strong>관객수(누적):</strong> <span id="audiAccText">조회 중…</span></div>
-
-      <div class="muted">영화코드: ${movieCd}</div>
-    `;
-
-    if ((info.actors||[]).length>5){
-      document.getElementById('actorsMore').addEventListener('click', (e)=>{
-        e.preventDefault();
-        document.getElementById('actorsAll').style.display='inline';
-        document.getElementById('actorsShort').style.display='none';
-        e.target.style.display='none';
-      });
-    }
-
+  if (!raw){
+    box.innerHTML = `
+      <div style="padding:12px; border:1px solid #f3c2c2; background:#fff5f5; border-radius:8px;">
+        캐시된 상세 정보를 찾지 못했습니다.<br/>
+        <span class="muted">movieCd=${movieCd}</span>
+      </div>`;
     renderSaveBtn();
+    return;
+  }
 
-    // 누적 관객수(있을 때만)
-    const acc = await fetchAudienceAccFromLatest(movieCd);
-    document.getElementById('audiAccText').textContent =
-      (acc!=null) ? `${fmtNum(acc)}명` : '집계 데이터 없음';
+  // 필드 정리(두 구조를 모두 지원)
+  const title = raw.movieNm || idxEntry?.movieNm || '';
+  const prdtYear = raw.prdtYear || idxEntry?.prdtYear || '';
+  const openDtRaw = raw.openDt || idxEntry?.openDt || ''; // YYYYMMDD
+  const openFmt = openDtRaw ? `${openDtRaw.slice(0,4)}-${openDtRaw.slice(4,6)}-${openDtRaw.slice(6,8)}` : '정보 없음';
+  const showTm = raw.showTm ? `${raw.showTm}분` : '';
+  const genres = (raw.genres || idxEntry?.genres || []).map(g => g.genreNm || g).join(', ') || '정보 없음';
+  const directors = (raw.directors || []).map(d => d.peopleNm).join(', ') || '정보 없음';
+  const companies = (raw.companys || []).map(c => c.companyNm).join(', ') || '정보 없음';
 
-  }catch(e){ console.error(e); box.textContent='오류가 발생했습니다.'; }
-}
-load();
+  const actorArr = (raw.actors || []).map(a => ({
+    cd: a.peopleCd || '',
+    nm: a.peopleNm || '',
+  }));
+  const actorLinksShort = actorArr.slice(0,5).map(a => {
+    const href = a.cd
+      ? `person.html?peopleCd=${encodeURIComponent(a.cd)}`
+      : `person.html?peopleNm=${encodeURIComponent(a.nm)}&movieNm=${encodeURIComponent(title)}`;
+    return `<a href="${href}" class="actor-link">${a.nm}</a>`;
+  }).join(', ');
+  const actorLinksAll = actorArr.map(a => {
+    const href = a.cd
+      ? `person.html?peopleCd=${encodeURIComponent(a.cd)}`
+      : `person.html?peopleNm=${encodeURIComponent(a.nm)}&movieNm=${encodeURIComponent(title)}`;
+    return `<a href="${href}" class="actor-link">${a.nm}</a>`;
+  }).join(', ');
+
+  // 누적 관객수: 상세(audiAcc) > 인덱스(audiAcc) > 없음
+  const audiAcc = (raw.audiAcc != null ? raw.audiAcc : idxEntry?.audiAcc);
+  const audiText = (audiAcc != null) ? `${fmtNum(audiAcc)}명` : '집계 데이터 없음';
+
+  box.innerHTML = `
+    <div><strong>제목:</strong> ${title} ${prdtYear?`<span class="muted">(${prdtYear})</span>`:''}</div>
+    <div><strong>개봉일:</strong> ${openFmt}${showTm?` · <strong>상영시간:</strong> ${showTm}`:''}</div>
+    <div><strong>장르:</strong> ${genres}</div>
+    <div><strong>감독:</strong> ${directors}</div>
+    <div><strong>제작사:</strong> ${companies}</div>
+    <div><strong>배우:</strong>
+      <span id="actorsShort">${actorLinksShort || '정보 없음'}</span>
+      ${actorArr.length>5 ? ` <a href="#" id="actorsMore">더보기</a>
+      <span id="actorsAll" style="display:none">${actorLinksAll}</span>` : ''}
+    </div>
+    <div><strong>관객수(누적):</strong> <span id="audiAccText">${audiText}</span></div>
+    <div class="muted">영화코드: ${movieCd} · <span title="사용한 캐시 경로">${usedUrl || '캐시'}</span></div>
+  `;
+
+  if (actorArr.length>5){
+    document.getElementById('actorsMore').addEventListener('click', (e)=>{
+      e.preventDefault();
+      document.getElementById('actorsAll').style.display='inline';
+      document.getElementById('actorsShort').style.display='none';
+      e.target.style.display='none';
+    });
+  }
+
+  renderSaveBtn();
+})();
 </script>
 </body>
 </html>
