@@ -39,6 +39,7 @@
 
     <div id="gradeFilters" class="row">
       <span>등급:</span>
+      <!-- 레이블은 보기 좋게 띄어쓰기를 두지만, 비교는 정규화(공백 제거)로 처리 -->
       <label><input type="checkbox" value="전체관람가" checked> 전체관람가</label>
       <label><input type="checkbox" value="12세이상관람가" checked> 12세 이상 관람가</label>
       <label><input type="checkbox" value="15세이상관람가" checked> 15세 이상 관람가</label>
@@ -59,106 +60,134 @@
 </div>
 
 <script>
-/* ===== 경로 & 캐시버스터 ===== */
-const MOVIE_INDEX_URL  = 'data/search/movies.json?v=' + Date.now();
+const INDEX_URL = 'data/search/movies.json';
 
-/* ===== 유틸 ===== */
+// ---- 공통 유틸 ----
 const $ = s => document.querySelector(s);
-const pad = (n,w=2)=>String(n).padStart(w,'0');
-function isValidISODate(s){ if(!/^\d{4}-\d{2}-\d{2}$/.test(s)) return false; const d=new Date(s); return !isNaN(d.getTime()); }
-function normalizeDate(el){ const digits=(el.value||'').replace(/\D/g,'').slice(0,8); if(digits.length<8) return null; const y=+digits.slice(0,4), m=+digits.slice(4,6), d=+digits.slice(6,8); const dt=new Date(y,m-1,d); const v=`${dt.getFullYear()}-${pad(dt.getMonth()+1)}-${pad(dt.getDate())}`; el.value=v; return v; }
-function applyNationFilter(list){
-  const all=$('#nationAll'), kr=$('#nationKR'), fr=$('#nationFR');
-  if(all.checked) return list;
-  if(kr.checked)  return list.filter(m => (m.nation||m.nationAlt||'').includes('한국'));
-  if(fr.checked)  return list.filter(m => !(m.nation||m.nationAlt||'').includes('한국'));
-  return list;
+function pad(n,w=2){ return String(n).padStart(w,'0'); }
+function normalizeInputDate(el){
+  const digits=(el.value||'').replace(/\D/g,'').slice(0,8);
+  if(digits.length!==8) return null;
+  const y=+digits.slice(0,4), m=+digits.slice(4,6), d=+digits.slice(6,8);
+  const dt=new Date(y,m-1,d); if(isNaN(dt)) return null;
+  const v=`${dt.getFullYear()}-${pad(dt.getMonth()+1)}-${pad(dt.getDate())}`;
+  el.value=v; return v;
 }
-;(()=>{ // 날짜 초기값: 이번달 1일~말일
+function isValidISODate(s){
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(s)) return false;
+  const [y,m,d]=s.split('-').map(Number);
+  const dt=new Date(s);
+  return dt.getFullYear()===y && (dt.getMonth()+1)===m && dt.getDate()===d;
+}
+function ymdNum(iso){ return +iso.replace(/\D/g,''); }
+function normGrade(s){ return (s||'').replace(/\s+/g,''); } // 공백 제거 비교
+
+// 초기 날짜: 이번 달 1일 ~ 말일
+(function initDates(){
   const s=$('#startDate'), e=$('#endDate');
-  const now=new Date(), first=new Date(now.getFullYear(), now.getMonth(), 1), last=new Date(now.getFullYear(), now.getMonth()+1, 0);
+  const now=new Date();
+  const first=new Date(now.getFullYear(), now.getMonth(), 1);
+  const last =new Date(now.getFullYear(), now.getMonth()+1, 0);
   const fmt=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
   s.value=fmt(first); e.value=fmt(last);
-  ['blur','change'].forEach(ev=>{ s.addEventListener(ev,()=>normalizeDate(s)); e.addEventListener(ev,()=>normalizeDate(e)); });
+  ['blur','change'].forEach(evt=>{
+    s.addEventListener(evt, ()=>normalizeInputDate(s));
+    e.addEventListener(evt, ()=>normalizeInputDate(e));
+  });
 })();
 
-/* ===== 인덱스 로드 ===== */
-async function loadIndex(){
-  const res = await fetch(MOVIE_INDEX_URL);
-  if(!res.ok) throw new Error('index http '+res.status);
-  const j = await res.json();
-  // by_date가 있으면 그대로, 없으면 movies를 날짜로 묶기
-  const byDate = j.by_date || j.byDate;
-  if (byDate && typeof byDate==='object') return byDate;
-  const list = j.movies || [];
-  const m = {};
-  for (const it of list) {
-    const d = String(it.openDt||'').replace(/\D/g,''); if(!d) continue;
-    (m[d] ||= []).push(it);
+// 국가 체크박스 상호배타
+const nationAll=$('#nationAll'), nationKR=$('#nationKR'), nationFR=$('#nationFR');
+function syncNation(e){
+  const id=e.target.id;
+  if(id==='nationAll'){ nationAll.checked=true; nationKR.checked=false; nationFR.checked=false; }
+  else{
+    nationAll.checked=false;
+    if(nationKR.checked && nationFR.checked){ nationAll.checked=true; nationKR.checked=false; nationFR.checked=false; }
+    if(!nationKR.checked && !nationFR.checked) nationAll.checked=true;
   }
-  return m;
+}
+[nationAll, nationKR, nationFR].forEach(cb=>cb.addEventListener('change', syncNation));
+
+// 인덱스 1회 로드 캐시
+let MOVIE_INDEX=null, INDEX_PROMISE=null;
+async function loadIndex(){
+  if(MOVIE_INDEX) return MOVIE_INDEX;
+  if(!INDEX_PROMISE){
+    INDEX_PROMISE = fetch(INDEX_URL+'?v='+(Date.now()))
+      .then(r=>r.json())
+      .then(j=> (MOVIE_INDEX=j||{movies:[]}));
+  }
+  return INDEX_PROMISE;
 }
 
 function getSelectedGrades(){
-  return Array.from(document.querySelectorAll('#gradeFilters input[type="checkbox"]:checked')).map(el=>el.value);
+  // 체크된 value는 공백없는 표준형(예: 12세이상관람가). 비교도 공백 제거로 수행.
+  return Array.from(document.querySelectorAll('#gradeFilters input[type="checkbox"]:checked'))
+    .map(el=>normGrade(el.value));
 }
 
-/* ===== 검색 ===== */
 $('#searchBtn').addEventListener('click', async ()=>{
-  const out = $('#results'); out.textContent = '인덱스 불러오는 중…';
-  const sEl=$('#startDate'), eEl=$('#endDate');
-  const s=normalizeDate(sEl)||sEl.value, e=normalizeDate(eEl)||eEl.value;
-  if(!isValidISODate(s) || !isValidISODate(e)){ alert('YYYY-MM-DD 형식으로 입력해주세요.'); return; }
+  const resultDiv=$('#results');
+  resultDiv.textContent='인덱스 로드 중…';
+
+  const sVal=normalizeInputDate($('#startDate')) || $('#startDate').value;
+  const eVal=normalizeInputDate($('#endDate'))   || $('#endDate').value;
+  if(!isValidISODate(sVal)||!isValidISODate(eVal)){ resultDiv.textContent='날짜 형식을 확인하세요.'; return; }
+
+  let sN=ymdNum(sVal), eN=ymdNum(eVal);
+  if(eN<sN){ const t=sN; sN=eN; eN=t; }
 
   try{
-    const map = await loadIndex(); // {"YYYYMMDD":[...]}
-    const sYMD = s.replace(/\D/g,''), eYMD = e.replace(/\D/g,'');
-    const days = [];
-    for (let d = new Date(s); d <= new Date(e); d.setDate(d.getDate()+1)) {
-      days.push(String(d.getFullYear())+pad(d.getMonth()+1)+pad(d.getDate()));
+    const idx=await loadIndex(); // { movies:[{movieCd,movieNm,openDt,grade,repNation},...] }
+    const all=Array.isArray(idx.movies)?idx.movies:[];
+    // 1) 기간 필터 (openDt는 YYYYMMDD 숫자/문자 모두 허용)
+    let list=all.filter(m=>{
+      const n=parseInt(String(m.openDt||'').replace(/\D/g,''),10);
+      return (n && n>=sN && n<=eN);
+    });
+
+    // 2) 국가 필터 (repNation: 'K' | 'F')
+    if(!nationAll.checked){
+      if(nationKR.checked) list=list.filter(m=>m.repNation==='K');
+      else if(nationFR.checked) list=list.filter(m=>m.repNation==='F');
     }
-    // 모으기
-    let acc = [];
-    for (const key of days) acc = acc.concat(map[key]||[]);
-    // 국가, 등급 필터(등급은 인덱스에 들어있으면 표시/필터)
-    acc = applyNationFilter(acc);
-    const grades = getSelectedGrades();
-    if (grades.length) acc = acc.filter(m => (m.grade||'') && grades.some(g=>m.grade.includes(g)));
-    // 정렬
-    acc.sort((a,b)=> (+(b.openDt||0) - +(a.openDt||0)));
-    // 렌더
-    if(!acc.length){ out.innerHTML = `<div class="muted">조건에 맞는 결과가 없습니다.</div>`; return; }
-    out.innerHTML = '';
-    for (const m of acc) {
-      const open = String(m.openDt||'').replace(/\D/g,'');
-      const openFmt = open ? `${open.slice(0,4)}.${open.slice(4,6)}.${open.slice(6,8)}` : '';
-      const div = document.createElement('div');
+
+    // 3) 등급 필터 (정규화 비교)
+    const selGrades=getSelectedGrades(); // 공백 제거된 표준형
+    if(selGrades.length){
+      list=list.filter(m=>{
+        const g=normGrade(m.grade||''); // 공백 제거
+        return g && selGrades.includes(g);
+      });
+    }
+
+    // 4) 정렬 & 렌더
+    list.sort((a,b)=> (+(b.openDt||0) - +(a.openDt||0)));
+
+    resultDiv.innerHTML='';
+    if(!list.length){
+      resultDiv.innerHTML='<div class="muted">조건에 맞는 결과가 없습니다.</div>';
+      return;
+    }
+
+    const DETAIL_PAGE_URL='detail.html';
+    for(const m of list){
+      const o=String(m.openDt||''); const openFmt = o ? `${o.slice(0,4)}.${o.slice(4,6)}.${o.slice(6,8)}` : '';
+      const div=document.createElement('div');
       div.style.marginBottom='10px';
-      div.innerHTML =
-        `<a href="detail.html?movieCd=${encodeURIComponent(m.movieCd)}" style="font-size:18px;">${m.movieNm}</a>
-         <span class="muted"> (${openFmt})</span>
-         ${m.grade ? `<span class="badge">[${m.grade}]</span>` : ''}`;
-      out.appendChild(div);
+      div.innerHTML = `
+        <a href="${DETAIL_PAGE_URL}?movieCd=${m.movieCd}" style="font-size:18px;">${m.movieNm}</a>
+        <span class="muted"> (${openFmt})</span>
+        ${m.grade ? `<span class="badge">[${m.grade}]</span>` : ''}
+      `;
+      resultDiv.appendChild(div);
     }
   }catch(e){
     console.error(e);
-    out.innerHTML = `<div style="padding:10px;background:#fdecea;border:1px solid #f5c6cb;">
-      인덱스 로드 실패 — <a href="data/search/movies.json" target="_blank" rel="noopener">movies.json</a>이 열리는지 먼저 확인해주세요.
-    </div>`;
+    resultDiv.innerHTML='<div style="color:#b00020;">인덱스 로드 실패</div>';
   }
 });
-
-/* 국가 체크박스 상호배타 로직 */
-(function nationInit(){
-  const all=$('#nationAll'), kr=$('#nationKR'), fr=$('#nationFR');
-  function sync(){
-    if(this===all){ all.checked=true; kr.checked=false; fr.checked=false; return; }
-    all.checked=false;
-    if(kr.checked && fr.checked){ all.checked=true; kr.checked=false; fr.checked=false; }
-    if(!kr.checked && !fr.checked) all.checked=true;
-  }
-  [all,kr,fr].forEach(cb=>cb.addEventListener('change', sync));
-})();
 </script>
 </body>
 </html>
