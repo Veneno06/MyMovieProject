@@ -1,123 +1,194 @@
-#!/usr/bin/env python3
+# scripts/build_indices.py
 # -*- coding: utf-8 -*-
-
 import json
-from collections import defaultdict
+import time
 from pathlib import Path
-from typing import Any, Dict, List
 
-ROOT = Path(__file__).resolve().parents[1]
-DATA = ROOT / "docs" / "data"
-MOVIES = DATA / "movies"
-SEARCH = DATA / "search"
+ROOT = Path("docs/data")
+MOVIES_DIR = ROOT / "movies"
+SEARCH_DIR = ROOT / "search"
+PEOPLE_DIR = ROOT / "people"   # (지금은 사용 안 하지만 경로만 확보)
 
-def ensure_dir(p: Path) -> None:
-    p.mkdir(parents=True, exist_ok=True)
+def load_json(p: Path):
+    try:
+        with p.open("r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception as e:
+        print(f"[skip] invalid json: {p} ({e})")
+        return None
 
-def read_movie_files() -> List[Dict[str, Any]]:
-    out: List[Dict[str, Any]] = []
-    if not MOVIES.exists():
-        return out
-    for year_dir in sorted(MOVIES.iterdir()):
-        if not year_dir.is_dir():
-            continue
-        for jf in year_dir.glob("*.json"):
-            try:
-                out.append(json.loads(jf.read_text(encoding="utf-8")))
-            except Exception:
-                pass
+def first(lst, key):
+    if not isinstance(lst, list) or not lst:
+        return ""
+    v = lst[0].get(key, "")
+    return v if v is not None else ""
+
+def get_movie_info(raw):
+    """
+    상세 JSON 스키마를 유연하게 처리:
+    - API 원형: {"movieInfoResult":{"movieInfo":{...}}}
+    - 저장본(케이스1): {"movieInfo":{...}}
+    - 저장본(케이스2): {...}   # 필드가 최상위에 바로 있는 경우
+    """
+    if not isinstance(raw, dict):
+        return {}
+
+    if "movieInfo" in raw and isinstance(raw["movieInfo"], dict):
+        return raw["movieInfo"]
+
+    # KOFIC 응답 원형을 그대로 저장한 경우 대비
+    if "movieInfoResult" in raw and isinstance(raw["movieInfoResult"], dict):
+        mi = raw["movieInfoResult"].get("movieInfo")
+        if isinstance(mi, dict):
+            return mi
+
+    # 최상위에 바로 필드가 있을 수도 있음
+    return raw
+
+def rep_nation_from(m):
+    # 상세에는 보통 nations: [{nationNm:"한국"}] 형태
+    nations = m.get("nations") or []
+    names = [ (x.get("nationNm") or "") for x in nations if isinstance(x, dict) ]
+    joined = " ".join(names)
+    if "한국" in joined:
+        return "K"
+    # 한국이 아니면 외국 처리
+    if joined.strip():
+        return "F"
+    return ""  # 정보 없으면 빈 값
+
+def grade_from(m):
+    # 상세에는 audits: [{watchGradeNm:"..."}]
+    audits = m.get("audits") or []
+    g = first(audits, "watchGradeNm")
+    return g or ""
+
+def genres_from(m):
+    gl = m.get("genres") or []
+    out = []
+    for g in gl:
+        name = g.get("genreNm") if isinstance(g, dict) else ""
+        if name:
+            out.append(name)
     return out
 
-def normalize_movie_row(m: Dict[str, Any]) -> Dict[str, Any]:
-    info = m.get("movieInfo", {}) or {}
-    open_dt = (m.get("openDt") or info.get("openDt") or "").replace("-", "")
-    row = {
-        "movieCd": m.get("movieCd", ""),
-        "movieNm": m.get("movieNm") or info.get("movieNm", ""),
-        "openDt": open_dt,
-        "prdtYear": m.get("prdtYear") or info.get("prdtYear", ""),
-        "genres": [g.get("genreNm", "") for g in (info.get("genres") or [])],
-        "repNation": "",  # 간단 표기
-        "grade": "",
-        "audiAcc": m.get("audiAcc", None),
-    }
+def people_from(m):
+    # 배우/참여진
+    actors = m.get("actors") or []
+    out = []
+    for a in actors:
+        if not isinstance(a, dict):
+            continue
+        out.append({
+            "peopleCd": a.get("peopleCd") or "",
+            "peopleNm": a.get("peopleNm") or "",
+            "part":     a.get("cast") or a.get("castNm") or a.get("moviePartNm") or ""
+        })
+    return out
 
-    # 간단한 국가/등급 추출
-    alt = ",".join([c.get("nationNm","") for c in (info.get("nations") or [])])
-    row["repNation"] = "한국" if "한국" in alt else (alt.split(",")[0] if alt else "")
-    audits = info.get("audits") or []
-    if audits and audits[0].get("watchGradeNm"):
-        row["grade"] = audits[0]["watchGradeNm"]
-    return row
+def iter_detail_files():
+    # movies/ 하위의 연도/또는 기타 모든 폴더 재귀 탐색
+    if not MOVIES_DIR.exists():
+        return
+    for p in MOVIES_DIR.rglob("*.json"):
+        if p.name == ".gitkeep":
+            continue
+        yield p
 
-def build_movies_index(movies: List[Dict[str, Any]]) -> Dict[str, Any]:
-    rows = [normalize_movie_row(m) for m in movies]
-    # 날짜 내림차순
-    rows.sort(key=lambda r: int((r["openDt"] or "0").replace("-", "") or "0"), reverse=True)
-    return {
-        "generatedAt": int(Path("/proc/uptime").read_text().split()[0].split('.')[0]) if Path("/proc/uptime").exists() else 0,
-        "count": len(rows),
-        "movies": rows,
-    }
+def build_indexes():
+    movies_index = []
+    people_map = {}   # key: (peopleCd or peopleNm), value: dict
 
-def build_people_index(movies: List[Dict[str, Any]]) -> Dict[str, Any]:
-    """
-    key는 peopleCd 있으면 그걸 쓰고, 없으면 (peopleNm, movieNm) 조합으로 안정화.
-    films[]: { movieCd, movieNm, openDt, part, audiAcc }
-    """
-    people_map: Dict[str, Dict[str, Any]] = {}
+    total_files = 0
+    used_files = 0
 
-    def key_for(person: Dict[str, Any], movie_nm: str) -> str:
-        cd = person.get("peopleCd") or ""
-        nm = person.get("peopleNm") or ""
-        return f"id:{cd}" if cd else f"name:{nm}|work:{movie_nm}"
+    for p in iter_detail_files():
+        total_files += 1
+        raw = load_json(p)
+        if not raw:
+            continue
 
-    for m in movies:
-        info = m.get("movieInfo", {}) or {}
-        open_dt = (m.get("openDt") or info.get("openDt") or "").replace("-", "")
-        movie_cd = m.get("movieCd", "")
-        movie_nm = m.get("movieNm") or info.get("movieNm", "")
-        part_list = info.get("actors") or []  # 배우 위주. 필요 시 directors 등 추가 가능
-        acc = m.get("audiAcc", None)
+        m = get_movie_info(raw)
+        if not isinstance(m, dict):
+            continue
 
-        for a in part_list:
-            k = key_for(a, movie_nm)
-            if k not in people_map:
-                people_map[k] = {
-                    "peopleCd": a.get("peopleCd",""),
-                    "peopleNm": a.get("peopleNm",""),
-                    "repRoleNm": a.get("cast","") or a.get("castEn","") or "배우",
-                    "films": []
+        movieCd  = (m.get("movieCd") or "").strip()
+        movieNm  = (m.get("movieNm") or "").strip()
+        openDt   = (m.get("openDt") or "").replace("-", "").strip()
+        prdtYear = (m.get("prdtYear") or "").strip()
+        grade    = grade_from(m)
+        repNat   = rep_nation_from(m)
+        genres   = genres_from(m)
+
+        if not movieCd and not movieNm:
+            # 정보가 너무 부족한 레코드는 인덱스에서 제외
+            continue
+
+        movies_index.append({
+            "movieCd": movieCd,
+            "movieNm": movieNm,
+            "openDt":  openDt,     # YYYYMMDD 또는 ""
+            "prdtYear": prdtYear,
+            "repNation": repNat,   # "K" | "F" | ""
+            "grade": grade,        # 관람등급(문자열)
+            "genres": genres,      # ["드라마","..."]
+            "audiAcc": m.get("audiAcc") if isinstance(m.get("audiAcc"), (int, float)) else None
+        })
+        used_files += 1
+
+        # 사람 인덱스 구축(배우 검색용)
+        for person in people_from(m):
+            key = (person["peopleCd"] or "").strip() or f"NM::{person['peopleNm']}"
+            entry = people_map.get(key)
+            if not entry:
+                entry = {
+                    "peopleCd": person["peopleCd"],
+                    "peopleNm": person["peopleNm"],
+                    "repRoleNm": "배우",
+                    "films": [],
+                    "filmoNames": set()
                 }
-            people_map[k]["films"].append({
-                "movieCd": movie_cd,
-                "movieNm": movie_nm,
-                "openDt": open_dt,
-                "part": a.get("cast","") or a.get("castEn","") or "",
-                "audiAcc": acc if isinstance(acc, int) else None,
+                people_map[key] = entry
+
+            entry["films"].append({
+                "movieCd": movieCd,
+                "movieNm": movieNm,
+                "openDt":  openDt,
+                "part":    person["part"],
+                "audiAcc": None  # (선계산 버전이 저장돼 있으면 나중에 채울 수 있음)
             })
+            if movieNm:
+                entry["filmoNames"].add(movieNm)
 
-    # 각 인물의 films 최신 개봉일 순
-    for v in people_map.values():
-        v["films"].sort(key=lambda r: int((r["openDt"] or "0") or "0"), reverse=True)
+    # 정렬: 최신 개봉일 우선
+    def sort_key(m):
+        od = m.get("openDt") or ""
+        return int(od) if od.isdigit() else 0
+    movies_index.sort(key=sort_key, reverse=True)
 
-    rows = list(people_map.values())
-    rows.sort(key=lambda r: (r["peopleNm"], r["peopleCd"]))
-    return {
-        "generatedAt": 0,
-        "count": len(rows),
-        "people": rows,
-    }
+    # people.json 정리
+    people_list = []
+    for entry in people_map.values():
+        entry["filmoNames"] = " | ".join(sorted(entry["filmoNames"]))  # 검색 힌트
+        people_list.append(entry)
 
-def main():
-    ensure_dir(SEARCH)
-    movies = read_movie_files()
-    movies_idx = build_movies_index(movies)
-    people_idx = build_people_index(movies)
+    # 저장
+    SEARCH_DIR.mkdir(parents=True, exist_ok=True)
+    with (SEARCH_DIR / "movies.json").open("w", encoding="utf-8") as f:
+        json.dump({
+            "generatedAt": int(time.time()),
+            "count": len(movies_index),
+            "movies": movies_index
+        }, f, ensure_ascii=False, indent=2)
 
-    (SEARCH / "movies.json").write_text(json.dumps(movies_idx, ensure_ascii=False, indent=2), encoding="utf-8")
-    (SEARCH / "people.json").write_text(json.dumps(people_idx, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"[index] movies: {movies_idx['count']} / people: {people_idx['count']}")
+    with (SEARCH_DIR / "people.json").open("w", encoding="utf-8") as f:
+        json.dump({
+            "generatedAt": int(time.time()),
+            "count": len(people_list),
+            "people": people_list
+        }, f, ensure_ascii=False, indent=2)
+
+    print(f"[index] movies: {len(movies_index)} / people: {len(people_list)} / files: {used_files}/{total_files}")
 
 if __name__ == "__main__":
-    main()
+    build_indexes()
