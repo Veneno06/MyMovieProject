@@ -12,26 +12,24 @@ on:
         required: true
         type: string
       max_count:
-        description: '최대 작업 개수 (테스트용, 비워두면 전체)'
+        description: '최대 작업 개수 (비우면 전체)'
         required: false
         default: "999999"
         type: string
-      only_index:
+      skip_details:
         description: '상세 수집 건너뛰고 인덱스만 빌드'
         required: false
-        default: "false"
-        type: choice
-        options: ["false","true"]
-      audiacc_mode:
-        description: 'audiAcc(누적 관객수) 선계산 모드'
+        type: boolean
+        default: false
+      precompute_audiacc:
+        description: '인덱스/인물에 audiAcc 선계산 포함'
         required: false
-        default: "off"
-        type: choice
-        options: ["off","recent","all"]
-      audiacc_days:
-        description: 'recent 모드일 때 기준 일수 (예: 90)'
+        type: boolean
+        default: false
+      recent_days:
+        description: 'recent 모드 기준 일수 (예: 120)'
         required: false
-        default: "90"
+        default: "0"   # 0 이면 recent 모드 끔
         type: string
 
 permissions:
@@ -62,21 +60,23 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
 
-      - name: Build movie details (optional)
-        if: ${{ inputs.only_index != 'true' }}
+      # 상세 수집 단계 (옵션으로 건너뛰기)
+      - name: Build movie details
+        if: ${{ inputs.skip_details != 'true' }}
         env:
           KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
         run: |
           python scripts/build_movie_details.py \
             --year-start "${{ inputs.year_start }}" \
             --year-end   "${{ inputs.year_end }}" \
-            --max        "${{ inputs.max_count }}" \
-            --audiacc    "${{ inputs.audiacc_mode }}" \
-            --audiacc-days "${{ inputs.audiacc_days }}"
+            --max        "${{ inputs.max_count }}"
 
+      # 인덱스 생성 (recent/audiAcc 옵션 전달)
       - name: Build search & people indexes
         run: |
-          python scripts/build_indices.py
+          python scripts/build_indices.py \
+            ${{ inputs.precompute_audiacc == 'true' && '--precompute-audiacc' || '' }} \
+            ${{ inputs.recent_days != '0' && format('--recent-days {0}', inputs.recent_days) || '' }}
 
       - name: Commit caches
         env:
