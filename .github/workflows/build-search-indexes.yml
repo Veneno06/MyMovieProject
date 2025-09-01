@@ -1,0 +1,59 @@
+name: Build Search Indexes (only)
+
+on:
+  workflow_dispatch:
+    inputs:
+      audiacc_mode:
+        description: 'audiAcc 선계산 모드 (off/recent/all)'
+        required: false
+        default: 'recent'
+        type: string
+      recent_days:
+        description: 'recent 모드일 때 기준 일수'
+        required: false
+        default: '540'
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-indexes-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (full)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install deps
+        run: python -m pip install --upgrade pip
+
+      - name: Build search indexes
+        env:
+          KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
+        run: |
+          python scripts/build_indices.py \
+            --audiacc-mode "${{ inputs.audiacc_mode }}" \
+            --audiacc-days "${{ inputs.recent_days }}"
+
+      - name: Commit indexes
+        run: |
+          git config user.name  "actions-user"
+          git config user.email "actions@github.com"
+          git add docs/data/search
+          if git diff --staged --quiet; then
+            echo "No changes"; exit 0
+          fi
+          git commit -m "Build caches: search indexes with audiAcc"
+          git pull --rebase origin "${{ github.ref_name }}" || true
+          git push
