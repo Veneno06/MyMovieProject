@@ -1,209 +1,224 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-연도 캐시(또는 API)를 바탕으로 영화 상세를 저장합니다.
-저장 경로: docs/data/movies/<year|unknown>/<movieCd>.json
 
-- 기존 평평한 경로(docs/data/movies/<movieCd>.json)가 있으면
-  API 호출 없이 적절한 연도 폴더로 "이동" 합니다(쿼터 절약).
-- 연도 판단은 상세 JSON의 openDt(YYYYMMDD) 기준, 없으면 hint year 또는 'unknown'.
-
-환경:
-  KOFIC_API_KEY (GitHub Secrets)
-
-실행 예:
-  python scripts/build_movie_details.py --year-start 2023 --year-end 2024 --max 999999
-"""
-import os, sys, json, time, shutil, argparse
+import argparse
+import json
+import os
 from pathlib import Path
+from time import sleep, time
+from typing import Any, Dict, List, Optional, Tuple
 import requests
 
 ROOT = Path(__file__).resolve().parents[1]  # repo root
-DOCS = ROOT / "docs" / "data"
-MOVIES_DIR = DOCS / "movies"
-YEARS_DIR = DOCS / "years"
-SESSION = requests.Session()
-SESSION.headers.update({"User-Agent":"MyMovieProject/1.0 (+github-actions)"})
+DATA = ROOT / "docs" / "data"
+MOVIES_DIR = DATA / "movies"
+YEARS_DIR = DATA / "years"
 
-API_KEY = os.environ.get("KOFIC_API_KEY","").strip()
 API_BASE = "https://www.kobis.or.kr/kobisopenapi/webservice/rest"
+API_KEY = os.environ.get("KOFIC_API_KEY", "").strip()
 
-def ensure_dir(p: Path):
+SESSION = requests.Session()
+SESSION.headers.update({"User-Agent": "MyMovieProject/1.0"})
+TIMEOUT = 30
+
+def _get(url: str, params: Dict[str, str]) -> Dict[str, Any]:
+    """HTTP GET with small retry, return parsed JSON (dict)."""
+    for attempt in range(3):
+        try:
+            resp = SESSION.get(url, params=params, timeout=TIMEOUT)
+            txt = resp.text
+            if resp.status_code != 200:
+                raise RuntimeError(f"HTTP {resp.status_code}: {txt[:300]}")
+            js = json.loads(txt)
+            # fault 응답 처리
+            if isinstance(js, dict) and (js.get("faultInfo") or js.get("faultResult")):
+                raise RuntimeError(f"fault: {js}")
+            return js
+        except Exception as e:
+            if attempt == 2:
+                raise
+            sleep(1 + attempt)
+    return {}
+
+def norm_ymd(s: Optional[str]) -> str:
+    if not s:
+        return ""
+    return "".join(ch for ch in str(s) if ch.isdigit())[:8]
+
+def y_from_open_dt(open_dt_ymd: str) -> str:
+    return open_dt_ymd[:4] if len(open_dt_ymd) >= 4 else "unknown"
+
+def ensure_dir(p: Path) -> None:
     p.mkdir(parents=True, exist_ok=True)
 
-def load_json(p: Path, default=None):
-    if not p.exists():
-        return default
-    try:
-        with p.open("r", encoding="utf-8") as f:
-            return json.load(f)
-    except Exception:
-        return default
+def movie_detail_path(movie_cd: str, open_dt_ymd: str) -> Path:
+    y = y_from_open_dt(open_dt_ymd)
+    return MOVIES_DIR / y / f"{movie_cd}.json"
 
-def save_json(p: Path, data):
-    ensure_dir(p.parent)
-    with p.open("w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
+def compute_audi_acc(movie_cd: str, open_dt_ymd: str, weeks: int = 12) -> Optional[int]:
+    """
+    주간 박스오피스(weekGb=0)로 최대 누적 관객수(audiAcc)를 12주 스캔.
+    데이터가 전혀 없으면 개봉일 일간 박스오피스로 보정 시도.
+    """
+    # 개봉일 기준 주간 스캔 시작일: 개봉일 +3d
+    if open_dt_ymd and len(open_dt_ymd) == 8:
+        y, m, d = int(open_dt_ymd[:4]), int(open_dt_ymd[4:6]), int(open_dt_ymd[6:8])
+        from datetime import date, timedelta
+        base = date(y, m, d) + timedelta(days=3)
+    else:
+        from datetime import date
+        base = date.today()
 
-def get_year_from_open_dt(open_dt: str, fallback: str):
-    s = (open_dt or "").replace("-","")
-    if len(s) >= 4 and s[:4].isdigit():
-        return s[:4]
-    return fallback if fallback else "unknown"
-
-def kobis_get(url, params, timeout=30):
-    for _ in range(3):
+    best = None
+    from datetime import timedelta
+    for i in range(weeks):
+        target = base + timedelta(days=i * 7)
+        target_ymd = f"{target.year:04d}{target.month:02d}{target.day:02d}"
         try:
-            r = SESSION.get(url, params=params, timeout=timeout)
-            if r.status_code == 200:
-                return r.json()
-            # 4xx/5xx도 그대로 종료
-            return {"__http__": r.status_code, "__text__": r.text}
-        except requests.exceptions.RequestException:
-            time.sleep(1.0)
-    return {"__error__":"timeout"}
+            js = _get(
+                f"{API_BASE}/boxoffice/searchWeeklyBoxOfficeList.json",
+                {"key": API_KEY, "targetDt": target_ymd, "weekGb": "0"},
+            )
+            items = js.get("boxOfficeResult", {}).get("weeklyBoxOfficeList", [])
+            hit = next((x for x in items if x.get("movieCd") == movie_cd), None)
+            if hit and hit.get("audiAcc"):
+                val = int(str(hit["audiAcc"]).replace(",", ""))
+                best = max(best or val, val)
+        except Exception:
+            # 네트워크/쿼터 오류는 조용히 스킵
+            pass
+        sleep(0.15)  # 과호출 방지
 
-def fetch_detail(movie_cd: str):
-    url = f"{API_BASE}/movie/searchMovieInfo.json"
-    params = {"key": API_KEY, "movieCd": movie_cd}
-    return kobis_get(url, params)
+    if best is not None:
+        return best
 
-def fetch_codes_for_year(year: int, hard_cap=999999):
+    # 보정: 개봉일 일간 박스오피스
+    if open_dt_ymd:
+        try:
+            js = _get(
+                f"{API_BASE}/boxoffice/searchDailyBoxOfficeList.json",
+                {"key": API_KEY, "targetDt": open_dt_ymd},
+            )
+            items = js.get("boxOfficeResult", {}).get("dailyBoxOfficeList", [])
+            hit = next((x for x in items if x.get("movieCd") == movie_cd), None)
+            if hit and hit.get("audiAcc"):
+                return int(str(hit["audiAcc"]).replace(",", ""))
+        except Exception:
+            pass
+    return None
+
+def fetch_movie_info(movie_cd: str) -> Dict[str, Any]:
+    js = _get(
+        f"{API_BASE}/movie/searchMovieInfo.json",
+        {"key": API_KEY, "movieCd": movie_cd},
+    )
+    info = js.get("movieInfoResult", {}).get("movieInfo", {}) or {}
+    return info
+
+def read_year_candidates(year: int) -> List[str]:
     """
-    연도 캐시(year-YYYY.json)에 movieCds가 있으면 사용.
-    없으면 searchMovieList를 페이징으로 수집(쿼터 소모).
+    연도 캐시(year-YYYY.json)에 movieCds 가 있으면 그것을 사용.
+    없으면 movies/<year>/ 에 저장된 파일명을 스캔.
     """
-    yfile = YEARS_DIR / f"year-{year}.json"
-    data = load_json(yfile, {})
-    movie_cds = []
+    path = YEARS_DIR / f"year-{year}.json"
+    if path.exists():
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+            cds = data.get("movieCds") or []
+            if cds:
+                return [str(c) for c in cds]
+        except Exception:
+            pass
 
-    if isinstance(data, dict):
-        # 유연성: movieCds 또는 movieList[*].movieCd
-        if "movieCds" in data and isinstance(data["movieCds"], list):
-            movie_cds = [str(x) for x in data["movieCds"] if str(x)]
-        elif "movieList" in data and isinstance(data["movieList"], list):
-            for m in data["movieList"]:
-                cd = str(m.get("movieCd","")).strip()
-                if cd:
-                    movie_cds.append(cd)
+    # fallback: 이미 저장된 캐시에서 스캔
+    folder = MOVIES_DIR / f"{year}"
+    if folder.exists():
+        return [p.stem for p in folder.glob("*.json")]
+    return []
 
-    if movie_cds:
-        return movie_cds[:hard_cap]
+def save_json(path: Path, data: Dict[str, Any]) -> None:
+    ensure_dir(path.parent)
+    tmp = path.with_suffix(".json.tmp")
+    tmp.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+    tmp.replace(path)
 
-    # 연도 캐시에 없으면 API로 페이징 수집
-    print(f"[year {year}] cache empty → fetch via API ...")
-    cur = 1
-    item_per_page = 100
-    acc = []
-    while True and len(acc) < hard_cap:
-        url = f"{API_BASE}/movie/searchMovieList.json"
-        params = {
-            "key": API_KEY,
-            "openStartDt": str(year),
-            "openEndDt": str(year),
-            "itemPerPage": str(item_per_page),
-            "curPage": str(cur),
-        }
-        js = kobis_get(url, params)
-        lst = js.get("movieListResult", {}).get("movieList", []) or []
-        for m in lst:
-            cd = str(m.get("movieCd","")).strip()
-            if cd:
-                acc.append(cd)
-        tot = int(js.get("movieListResult",{}).get("totCnt", 0))
-        if cur * item_per_page >= tot:
+def build_for_year(year: int, max_count: int) -> Tuple[int, int]:
+    """
+    return (total_candidates, saved_or_updated)
+    """
+    cand = read_year_candidates(year)
+    total = len(cand)
+    saved = 0
+
+    print(f"[{year}] total candidates: {total}")
+    if total == 0:
+        return total, 0
+
+    for i, movie_cd in enumerate(cand, 1):
+        if i > max_count:
             break
-        cur += 1
-        time.sleep(0.1)
-    # 연도 파일에 결과 저장(다음 번부터는 캐시 사용)
-    out = {
-        "year": year,
-        "totCnt": len(acc),
-        "movieCds": acc,
-        "movieList": []
-    }
-    save_json(yfile, out)
-    return acc[:hard_cap]
 
-def migrate_if_flat_exists(movie_cd: str, hint_year: str) -> bool:
-    """
-    예전 평평한 파일(docs/data/movies/<cd>.json)을
-    docs/data/movies/<year>/ 로 이동.
-    반환: True(이동함) / False(없거나 이동 못함)
-    """
-    flat = MOVIES_DIR / f"{movie_cd}.json"
-    if not flat.exists():
-        return False
-    data = load_json(flat, {})
-    open_dt = ""
-    info = (data.get("movieInfoResult") or {}).get("movieInfo")
-    if info:
-        open_dt = info.get("openDt","")
-    year = get_year_from_open_dt(open_dt, hint_year)
-    dst = MOVIES_DIR / year / f"{movie_cd}.json"
-    ensure_dir(dst.parent)
-    try:
-        shutil.move(str(flat), str(dst))
-        print(f"[migrate] {flat.name} → {year}/{flat.name}")
-        return True
-    except Exception as e:
-        print(f"[migrate] failed {flat}: {e}")
-        return False
+        # 이미 캐시가 있고 audiAcc 도 있으면 스킵
+        # (파일 내 openDt 로 정확 경로 잡기 위해 우선 기존 파일 탐색)
+        existing_path = None
+        for p in (MOVIES_DIR / str(year)).glob(f"{movie_cd}.json"):
+            existing_path = p
+            break
+        if existing_path and existing_path.exists():
+            try:
+                cur = json.loads(existing_path.read_text(encoding="utf-8"))
+                if "audiAcc" in cur and isinstance(cur["audiAcc"], int):
+                    continue
+            except Exception:
+                pass
+
+        try:
+            info = fetch_movie_info(movie_cd)
+            open_dt = norm_ymd(info.get("openDt"))
+            path = movie_detail_path(movie_cd, open_dt or str(year))
+            payload = {
+                "movieCd": movie_cd,
+                "movieNm": info.get("movieNm", ""),
+                "openDt": open_dt,
+                "prdtYear": info.get("prdtYear", ""),
+                "movieInfo": info,  # 원본 전체 보관
+            }
+
+            # audiAcc 선계산
+            acc = compute_audi_acc(movie_cd, open_dt) if API_KEY else None
+            if acc is not None:
+                payload["audiAcc"] = acc
+
+            save_json(path, payload)
+            saved += 1
+        except Exception as e:
+            print(f"[warn] {year} {movie_cd}: {e}")
+            sleep(0.5)
+
+        sleep(0.15)  # 과호출 방지
+
+    return total, saved
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--year-start", type=int, required=True)
-    ap.add_argument("--year-end", type=int, required=True)
-    ap.add_argument("--max", type=int, default=999999)
+    ap.add_argument("--year-start", required=True, type=int)
+    ap.add_argument("--year-end", required=True, type=int)
+    ap.add_argument("--max", default="999999", type=str)
     args = ap.parse_args()
 
-    if not API_KEY:
-        print("ERROR: KOFIC_API_KEY is empty.")
-        sys.exit(1)
+    max_count = int(args.max) if str(args.max).isdigit() else 999_999
 
-    ensure_dir(MOVIES_DIR / "unknown")
-    saved = 0
-    for year in range(args.year_start, args.year_end+1):
-        codes = fetch_codes_for_year(year, hard_cap=args.max)
-        print(f"[{year}] total candidates: {len(codes)}")
-        for i, cd in enumerate(codes, 1):
-            # 경로 판단(연도별)
-            # 1) 이미 연도 폴더에 있으면 skip
-            # 2) 평평한 곳에 있으면 이동
-            # 3) 없으면 API로 받아 저장
-            #   - openDt로 연도 폴더 결정
-            #   - openDt가 없으면 hint year 폴더 사용
-            # check already sharded
-            already = False
-            for sub in list(MOVIES_DIR.iterdir()):
-                if sub.is_dir():
-                    dst = sub / f"{cd}.json"
-                    if dst.exists():
-                        already = True
-                        break
-            if already:
-                continue
+    ensure_dir(MOVIES_DIR)
+    ensure_dir(YEARS_DIR)
 
-            if migrate_if_flat_exists(cd, str(year)):
-                saved += 1
-                continue
+    total_saved = 0
+    for y in range(args.year_start, args.year_end + 1):
+        tot, saved = build_for_year(y, max_count)
+        total_saved += saved
 
-            # fetch
-            js = fetch_detail(cd)
-            info = (js.get("movieInfoResult") or {}).get("movieInfo")
-            open_dt = ""
-            if info:
-                open_dt = info.get("openDt","")
-            y = get_year_from_open_dt(open_dt, str(year))
-            dst = MOVIES_DIR / y / f"{cd}.json"
-            if dst.exists():
-                continue
-            save_json(dst, js)
-            print(f"[OK] {year} {cd} -> {dst.relative_to(MOVIES_DIR)}")
-            saved += 1
-            # 너무 빠른 호출 방지
-            time.sleep(0.1)
-    print(f"[DONE] saved/migrated details: {saved}")
+    print(f"[DONE] saved/migrated details: {total_saved}")
 
 if __name__ == "__main__":
+    if not API_KEY:
+        print("WARNING: KOFIC_API_KEY is empty. 'audiAcc' will not be computed.")
     main()
