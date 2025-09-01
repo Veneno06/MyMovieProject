@@ -2,6 +2,17 @@ name: Build Search Indexes (only)
 
 on:
   workflow_dispatch:
+    inputs:
+      audiacc_mode:
+        description: 'audiAcc 선계산 모드 (off/recent/all)'
+        required: false
+        default: 'recent'
+        type: string
+      recent_days:
+        description: 'recent 모드일 때 기준 일수'
+        required: false
+        default: '540'
+        type: string
 
 permissions:
   contents: write
@@ -27,11 +38,16 @@ jobs:
       - name: Install deps
         run: |
           python -m pip install --upgrade pip
-          pip install requests
+          # build_indices.py는 표준 라이브러리만 씁니다. (requests 불필요)
+          # 필요하다면 여기에 추가 패키지를 설치하세요.
 
       - name: Build indexes
+        env:
+          KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
         run: |
-          python scripts/build_indices.py
+          python scripts/build_indices.py \
+            --audiacc-mode "${{ inputs.audiacc_mode }}" \
+            --audiacc-days "${{ inputs.recent_days }}"
 
       - name: Commit indexes
         env:
@@ -44,7 +60,7 @@ jobs:
             echo "No index changes."
             exit 0
           fi
-          git commit -m "Rebuild search & people indexes"
+          git commit -m "Rebuild search & people indexes (audiAcc=${{ inputs.audiacc_mode }}, days=${{ inputs.recent_days }})"
           git fetch origin "$BRANCH"
           git pull --rebase origin "$BRANCH" || true
           git push origin "HEAD:$BRANCH" || git push --force-with-lease origin "HEAD:$BRANCH"
