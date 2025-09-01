@@ -4,14 +4,28 @@ on:
   workflow_dispatch:
     inputs:
       audiacc_mode:
-        description: 'audiAcc 선계산 모드 (off/recent/all)'
+        description: "audiAcc precompute (off | recent | all)"
+        required: true
+        default: "off"
+        type: choice
+        options:
+          - off
+          - recent
+          - all
+      audiacc_days:
+        description: "recent 모드일 때 최근 N일 (예: 120)"
         required: false
-        default: 'recent'
+        default: "120"
         type: string
-      recent_days:
-        description: 'recent 모드일 때 기준 일수'
+      audiacc_budget:
+        description: "이번 실행에서 audiAcc 계산에 허용할 최대 API 호출 수 (예: 600)"
         required: false
-        default: '540'
+        default: "600"
+        type: string
+      rate_sleep_ms:
+        description: "KOFIC 호출 간 슬립(ms) — 200~400 권장"
+        required: false
+        default: "250"
         type: string
 
 permissions:
@@ -38,8 +52,7 @@ jobs:
       - name: Install deps
         run: |
           python -m pip install --upgrade pip
-          # build_indices.py는 표준 라이브러리만 씁니다. (requests 불필요)
-          # 필요하다면 여기에 추가 패키지를 설치하세요.
+          pip install requests
 
       - name: Build indexes
         env:
@@ -47,7 +60,9 @@ jobs:
         run: |
           python scripts/build_indices.py \
             --audiacc-mode "${{ inputs.audiacc_mode }}" \
-            --audiacc-days "${{ inputs.recent_days }}"
+            --audiacc-days "${{ inputs.audiacc_days }}" \
+            --audiacc-budget "${{ inputs.audiacc_budget }}" \
+            --rate-sleep-ms "${{ inputs.rate_sleep_ms }}"
 
       - name: Commit indexes
         env:
@@ -60,7 +75,7 @@ jobs:
             echo "No index changes."
             exit 0
           fi
-          git commit -m "Rebuild search & people indexes (audiAcc=${{ inputs.audiacc_mode }}, days=${{ inputs.recent_days }})"
+          git commit -m "Rebuild search & people indexes"
           git fetch origin "$BRANCH"
           git pull --rebase origin "$BRANCH" || true
           git push origin "HEAD:$BRANCH" || git push --force-with-lease origin "HEAD:$BRANCH"
