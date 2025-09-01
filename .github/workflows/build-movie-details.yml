@@ -16,12 +16,27 @@ on:
         required: false
         default: "999999"
         type: string
+      only_index:
+        description: '상세 수집 건너뛰고 인덱스만 빌드'
+        required: false
+        default: "false"
+        type: choice
+        options: ["false","true"]
+      audiacc_mode:
+        description: 'audiAcc(누적 관객수) 선계산 모드'
+        required: false
+        default: "off"
+        type: choice
+        options: ["off","recent","all"]
+      audiacc_days:
+        description: 'recent 모드일 때 기준 일수 (예: 90)'
+        required: false
+        default: "90"
+        type: string
 
-# 푸시 권한
 permissions:
   contents: write
 
-# 같은 브랜치에서 중복 실행되면 이전 실행을 자동 취소
 concurrency:
   group: build-caches-${{ github.ref }}
   cancel-in-progress: true
@@ -47,14 +62,17 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
 
-      - name: Build movie details
+      - name: Build movie details (optional)
+        if: ${{ inputs.only_index != 'true' }}
         env:
           KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
         run: |
           python scripts/build_movie_details.py \
             --year-start "${{ inputs.year_start }}" \
             --year-end   "${{ inputs.year_end }}" \
-            --max        "${{ inputs.max_count }}"
+            --max        "${{ inputs.max_count }}" \
+            --audiacc    "${{ inputs.audiacc_mode }}" \
+            --audiacc-days "${{ inputs.audiacc_days }}"
 
       - name: Build search & people indexes
         run: |
@@ -62,27 +80,17 @@ jobs:
 
       - name: Commit caches
         env:
-          BRANCH: ${{ github.ref_name }}  # 보통 'main'
+          BRANCH: ${{ github.ref_name }}
         run: |
           set -eux
-
           git config user.name  "actions-user"
           git config user.email "actions@github.com"
-
-          # 변경사항 스테이징 (데이터 캐시만)
           git add docs/data
-
-          # 변경이 없으면 조용히 종료
           if git diff --staged --quiet; then
             echo "No changes to commit."
             exit 0
           fi
-
           git commit -m "Build caches: $GITHUB_RUN_ID"
-
-          # 원격 최신 이력 반영(충돌 없으면 자동 rebase)
           git fetch origin "$BRANCH"
           git pull --rebase origin "$BRANCH" || true
-
-          # 푸시. 경합이 있으면 안전한 강제푸시로 재시도
           git push origin "HEAD:$BRANCH" || git push --force-with-lease origin "HEAD:$BRANCH"
