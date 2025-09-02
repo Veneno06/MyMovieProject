@@ -1,173 +1,65 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8" />
-  <title>배우 검색 – K-Movie A Archive (캐시)</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="assets/style.css" />
+  <meta charset="utf-8"/>
+  <title>배우 검색</title>
+  <link rel="stylesheet" href="assets/style.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <style>
-    .card { padding:12px; background:#f7f7f7; border-radius:10px; }
-    .row { padding:10px 0; border-bottom:1px solid #eee; }
-    .row a { font-size:17px; font-weight:600; }
-    .muted { color:#666; font-size:13px; }
-    #pager { display:flex; gap:8px; align-items:center; }
+    body{max-width:900px;margin:2rem auto;padding:0 1rem;}
+    .muted{color:#666}
+    .btn{padding:.4rem .7rem;border:1px solid #bbb;border-radius:.4rem;background:#fff}
+    .row{padding:.5rem 0;border-bottom:1px solid #eee}
   </style>
 </head>
 <body>
-<div class="container">
-  <div class="header">
-    <h1>배우 검색</h1>
-    <div class="spacer"></div>
-    <a href="index.html" class="btn">홈</a>
-    <a href="search.html" class="btn">영화 검색</a>
-    <a href="people-search.html" class="btn">배우 검색</a>
-    <a href="saved.html" class="btn"> 저장 목록</a>
-  </div>
+  <h1>배우 검색</h1>
+  <p>
+    이름: <input id="q" placeholder="예: 이병헌" style="width:220px">
+    <label><input type="checkbox" id="actorOnly" checked> 배우만</label>
+    <button id="go" class="btn">검색</button>
+  </p>
 
-  <div class="card">
-    <label>이름: <input id="q" type="text" placeholder="예: 송강호" /></label>
-    <label style="margin-left:12px;">
-      <input type="checkbox" id="actorOnly" checked /> 배우만
-    </label>
-    <button class="btn" id="go">검색</button>
-  </div>
-
-  <div id="meta" class="muted" style="margin-top:8px;"></div>
-  <div id="list" style="margin-top:12px;"></div>
-
-  <div id="pager" style="margin:16px 0;">
-    <button class="btn" id="prev">◀ 이전</button>
-    <span id="pageInfo" class="muted"></span>
-    <button class="btn" id="next">다음 ▶</button>
-  </div>
-</div>
+  <div id="out"></div>
 
 <script>
-/* ===== 설정 ===== */
-const INDEX_URL = './data/search/people.json'; // 캐시 인덱스
-const ITEMS = 20;
+const P_URL = "data/search/people.json";
 
-/* ===== 엘리먼트 ===== */
-const q = document.getElementById('q');
-const actorOnly = document.getElementById('actorOnly');
-const go = document.getElementById('go');
-const list = document.getElementById('list');
-const meta = document.getElementById('meta');
-const prev = document.getElementById('prev');
-const next = document.getElementById('next');
-const pageInfo = document.getElementById('pageInfo');
+let PEOPLE = [];
 
-/* ===== 상태 ===== */
-let curPage = 1, lastPage = 1, currentQuery = '';
-let PEOPLE = [];   // 전체 인덱스 (캐시에서 로드)
+function norm(s){return (s||"").trim();}
 
-/* ===== 유틸 ===== */
-function roleLooksLikeActor(str){ return /(배우|출연|연기|Act)/i.test(str || ''); }
-function norm(s){ return (s||'').toLowerCase().replace(/\s+/g,'').trim(); }
-function getParam(name){ const u=new URLSearchParams(location.search); return u.get(name)||''; }
-function setStateToUrl(){
-  const p=new URLSearchParams();
-  if (currentQuery) p.set('q', currentQuery);
-  if (actorOnly.checked) p.set('actorOnly','1');
-  p.set('page', curPage);
-  history.replaceState({},'',location.pathname+'?'+p.toString());
+async function load(){
+  const res = await fetch(P_URL, {cache:"no-store"});
+  const j = await res.json();
+  PEOPLE = j.people || [];
 }
 
-/* ===== 렌더 ===== */
-function renderRow(p){
-  const row = document.createElement('div');
-  row.className = 'row';
+function run(){
+  const q = norm(document.querySelector("#q").value);
+  const actorOnly = document.querySelector("#actorOnly").checked;
 
-  const nameA = document.createElement('a');
-  nameA.href = `person.html?peopleCd=${encodeURIComponent(p.peopleCd)}`;
-  nameA.textContent = p.peopleNm || '(이름 없음)';
+  let rows = PEOPLE;
+  if(q) rows = rows.filter(p=> p.peopleNm && p.peopleNm.includes(q));
+  if(actorOnly) rows = rows.filter(p=> (p.repRoleNm||"").includes("배우"));
 
-  const role = document.createElement('div');
-  role.className = 'muted';
-  role.textContent = p.repRoleNm || '';
+  const out = document.querySelector("#out");
+  if(!rows.length){ out.innerHTML = `<p class="muted">총 0명 검색됨 (캐시)</p>`; return; }
 
-  const films = document.createElement('div');
-  films.className = 'muted';
-  films.style.marginTop = '4px';
-  const s = (p.filmoNames || '').split('|').slice(0,4).join(' | ');
-  films.textContent = s;
-
-  row.appendChild(nameA);
-  row.appendChild(role);
-  row.appendChild(films);
-  list.appendChild(row);
+  out.innerHTML = `<p class="muted">총 ${rows.length}명 검색됨 (캐시)</p>` +
+    rows.slice(0,200).map(p=>{
+      const code = p.peopleCd || "";
+      const link = code ? `person.html?peopleCd=${encodeURIComponent(code)}` 
+                        : `person.html?peopleNm=${encodeURIComponent(p.peopleNm)}`;
+      return `<div class="row">
+        <a href="${link}"><strong>${p.peopleNm}</strong></a>
+        <span class="muted">(${p.repRoleNm||'역할미상'})</span>
+      </div>`;
+    }).join("");
 }
 
-/* ===== 데이터 로드 ===== */
-async function loadIndex(){
-  if (PEOPLE.length) return PEOPLE;
-  const res = await fetch(INDEX_URL, { cache: 'no-store' });
-  if (!res.ok) throw new Error('인덱스 로드 실패');
-  const js = await res.json();
-  // 기대 스키마: [{peopleCd, peopleNm, repRoleNm, filmoNames}, ...]
-  PEOPLE = Array.isArray(js) ? js : (js.people || []);
-  return PEOPLE;
-}
-
-/* ===== 검색 ===== */
-async function search(page=1){
-  currentQuery = q.value.trim();
-  list.innerHTML = '불러오는 중...';
-  meta.textContent = '';
-  curPage = page;
-
-  try{
-    const all = await loadIndex();
-
-    // 1) 이름 매칭 (공백/대소문자 무시)
-    const nq = norm(currentQuery);
-    let items = nq ? all.filter(p => norm(p.peopleNm).includes(nq)) : [];
-
-    // 2) 배우만
-    if (actorOnly.checked) items = items.filter(p => roleLooksLikeActor(p.repRoleNm));
-
-    // 3) 정렬: 이름(가나다/알파벳) 기준
-    items.sort((a,b) => (a.peopleNm||'').localeCompare(b.peopleNm||'', 'ko'));
-
-    // 4) 페이지네이션
-    lastPage = Math.max(1, Math.ceil(items.length / ITEMS));
-    const start = (curPage-1)*ITEMS;
-    const pageItems = items.slice(start, start+ITEMS);
-
-    // 5) 렌더
-    list.innerHTML = '';
-    meta.textContent = `총 ${items.length.toLocaleString()}명 검색됨 (캐시)`;
-    if (pageItems.length === 0){
-      list.textContent = currentQuery ? '결과가 없습니다.' : '검색어를 입력해 주세요.';
-    } else {
-      pageItems.forEach(renderRow);
-    }
-
-    pageInfo.textContent = `${curPage} / ${lastPage}`;
-    prev.disabled = (curPage <= 1);
-    next.disabled = (curPage >= lastPage);
-
-    setStateToUrl();
-  }catch(e){
-    console.error(e);
-    list.innerHTML = '<div style="color:#b00020;">인덱스를 불러오지 못했습니다. (Actions에서 Build Movie Details & Indexes 완료 여부 확인)</div>';
-  }
-}
-
-/* ===== 이벤트 바인딩 ===== */
-go.addEventListener('click', ()=>search(1));
-q.addEventListener('keydown', (e)=>{ if (e.key==='Enter') search(1); });
-prev.addEventListener('click', ()=>{ if(curPage>1) search(curPage-1); });
-next.addEventListener('click', ()=>{ if(curPage<lastPage) search(curPage+1); });
-
-/* ===== URL 파라미터 복원 + 자동 검색 ===== */
-(async function init(){
-  try{ await loadIndex(); }catch{}
-  const qp = getParam('q'); const po = getParam('actorOnly'); const pg = parseInt(getParam('page')||'1',10);
-  if (qp){ q.value = qp; }
-  if (po==='1') actorOnly.checked = true;
-  if (qp){ search(isNaN(pg)?1:pg); }
-})();
+document.querySelector("#go").addEventListener("click", run);
+load().then(run);
 </script>
 </body>
 </html>
