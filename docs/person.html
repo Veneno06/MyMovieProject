@@ -1,162 +1,94 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="utf-8" />
-<title>배우 프로필 – K-Movie A Archive (캐시 확장)</title>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet" href="assets/style.css" />
-<style>
-  body { max-width: 900px; margin: 24px auto; padding: 0 12px; }
-  .film { padding:8px 0; border-bottom:1px solid #eee; }
-  .small { color:#666; font-size:13px; }
-  .muted { color:#777; }
-</style>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <meta charset="utf-8"/>
+  <title>배우 프로필</title>
+  <link rel="stylesheet" href="assets/style.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <style>
+    body{max-width:900px;margin:2rem auto;padding:0 1rem;}
+    .muted{color:#666}
+    .btn{padding:.35rem .6rem;border:1px solid #bbb;border-radius:.4rem;background:#fff}
+    .film{padding:.35rem 0;border-bottom:1px solid #eee}
+    .badgel{display:inline-block;border:1px solid #ddd;padding:.12rem .4rem;border-radius:.4rem;margin-left:.35rem;font-size:.82rem;color:#666}
+  </style>
 </head>
 <body>
-  <div class="header">
-    <h1>K-Movie A Archive</h1>
-    <div class="spacer"></div>
-    <a href="index.html" class="btn">홈</a>
-    <a href="search.html" class="btn">영화 검색</a>
-    <a href="people-search.html" class="btn">배우 검색</a>
-    <a href="saved.html" class="btn"> 저장 목록</a>
-  </div>
+  <h1>K-Movie A Archive</h1>
 
-  <h1 id="personName">배우 프로필</h1>
-  <p id="personMeta" class="small"></p>
-
-  <h3>출연작 (최신 개봉일 순)</h3>
-  <div id="filmList">불러오는 중…</div>
-
-  <p style="margin-top:12px;">
-    <button class="btn" onclick="history.back()">← 뒤로가기</button>
+  <p>
+    <a class="btn" href="index.html">홈</a>
+    <a class="btn" href="search.html">영화 검색</a>
+    <a class="btn" href="people-search.html">배우 검색</a>
+    <a class="btn" href="saved.html">저장 목록</a>
   </p>
 
-  <div id="chartWrap" style="margin-top:40px; display:none;">
-    <h3>개봉 시기별 관객수 추이</h3>
-    <div style="position:relative; height:400px;">
-      <canvas id="audiChart"></canvas>
-    </div>
-    <br>
-    <p class="small muted" style="margin-top:8px;">
-      캐시에 누적 관객수 데이터가 없으면 차트는 표시되지 않습니다.
-    </p>
-  </div>
+  <h2>배우 프로필</h2>
+  <div id="header" class="muted">로딩 중…</div>
+
+  <h3>출연작 (최신 개봉일 순)</h3>
+  <div id="films"></div>
+
+  <p><button class="btn" onclick="history.back()">← 뒤로가기</button></p>
 
 <script>
-/* ============== 설정(캐시 경로) ============== */
-const PEOPLE_INDEX_URL = './data/search/people.json';
+const P_URL = "data/search/people.json";
 
-/* ============== 유틸 ============== */
-const $ = s => document.querySelector(s);
-const fmtYMD = ymd => {
-  if(!ymd) return '';
-  const s = String(ymd).replace(/\D/g,'');
-  return s.length===8 ? `${s.slice(0,4)}-${s.slice(4,6)}-${s.slice(6,8)}` : '';
-};
-const norm = s => (s||'').toLowerCase().replace(/\s+/g,'').trim();
+function ymd(s){ if(!s||s.length!==8) return ""; return s.slice(0,4)+"-"+s.slice(4,6)+"-"+s.slice(6,8); }
 
-/* ============== 파라미터 ============== */
-const params = new URLSearchParams(location.search);
-const paramCd = params.get('peopleCd') || '';
-const paramNm = params.get('peopleNm') || '';
+function byQS(name){ return new URL(location.href).searchParams.get(name) || ""; }
 
-/* ============== 데이터 로드 ============== */
-async function loadPeopleIndex(){
-  const res = await fetch(PEOPLE_INDEX_URL, { cache: 'no-store' });
-  if (!res.ok) throw new Error('people.json 로드 실패');
-  const js = await res.json();
-  return Array.isArray(js) ? js : (js.people || []);
+let PEOPLE = [];
+
+async function load(){
+  const res = await fetch(P_URL, {cache:"no-store"});
+  const j = await res.json();
+  PEOPLE = j.people || [];
 }
 
-function findPerson(list){
-  if (paramCd) {
-    const hit = list.find(p => p.peopleCd && p.peopleCd === paramCd);
-    if (hit) return hit;
+function show(){
+  const peopleCd = byQS("peopleCd");
+  const peopleNm = byQS("peopleNm");
+
+  let row = null;
+
+  if(peopleCd){
+    row = PEOPLE.find(p=> (p.peopleCd||"") === peopleCd);
   }
-  if (paramNm) {
-    const t = norm(paramNm);
-    return list.find(p => norm(p.peopleNm) === t) ||
-           list.find(p => norm(p.peopleNm).includes(t)) || null;
+  if(!row && peopleNm){
+    // 동명이인 여러 명이면 첫 번째를 사용(페이지 상단에 안내)
+    const candidates = PEOPLE.filter(p=> (p.peopleNm||"") === peopleNm);
+    row = candidates[0] || null;
   }
-  return null;
-}
 
-/* ============== 렌더 ============== */
-function renderHeader(p){
-  $('#personName').textContent = p.peopleNm || '배우';
-  $('#personMeta').textContent = p.repRoleNm ? `분야: ${p.repRoleNm}` : '';
-}
+  const header = document.querySelector("#header");
+  const films = document.querySelector("#films");
 
-function renderFilms(p){
-  const box = $('#filmList');
-  box.innerHTML = '';
-  const films = (p.films || []).slice().sort((a,b)=> (+(b.openDt||0) - +(a.openDt||0)));
-  if (!films.length){
-    box.textContent = '캐시 기준의 출연작이 없습니다.';
+  if(!row){
+    header.innerHTML = `<span class="muted">배우를 찾을 수 없어요. (캐시 인덱스 확인)</span>`;
+    films.innerHTML = "";
     return;
   }
-  films.forEach(f=>{
-    const div = document.createElement('div');
-    div.className = 'film';
-    const openStr = fmtYMD(f.openDt);
-    const part = f.part ? ` · ${f.part}` : '';
-    div.innerHTML = `
-      <div><a href="detail.html?movieCd=${encodeURIComponent(f.movieCd)}"><strong>${f.movieNm}</strong></a></div>
-      <div class="small">${openStr}${part}</div>
-    `;
-    box.appendChild(div);
-  });
-}
 
-function maybeChart(p){
-  // 확장 캐시에는 audiAcc를 넣지 않았습니다(쿼터 절약).
-  // 향후 scripts 쪽에서 누적관객을 선계산해 넣으면 여기서 자동 표시됩니다.
-  const hasAcc = (p.films||[]).some(f => typeof f.audiAcc === 'number' && !isNaN(f.audiAcc));
-  if (!hasAcc) {
-    $('#chartWrap').style.display = 'none';
+  header.innerHTML = `<strong>${row.peopleNm}</strong> 
+    <span class="badgel">${row.repRoleNm || "역할미상"}</span>
+    ${peopleCd ? "" : `<span class="muted">※ 동명이인일 수 있어요.</span>`}`;
+
+  if(!row.films || !row.films.length){
+    films.innerHTML = `<p class="muted">필모그래피 없음</p>`;
     return;
   }
-  $('#chartWrap').style.display = 'block';
 
-  const rows = p.films.filter(f => typeof f.audiAcc === 'number');
-  rows.sort((a,b)=> (+(a.openDt||0) - +(b.openDt||0)));
-
-  const labels = rows.map(r => r.openDt ? `${String(r.openDt).slice(0,4)}-${String(r.openDt).slice(4,6)}` : '');
-  const data   = rows.map(r => r.audiAcc || 0);
-  const titles = rows.map(r => r.movieNm);
-
-  const ctx = document.getElementById('audiChart').getContext('2d');
-  new Chart(ctx, {
-    type: 'line',
-    data: { labels, datasets: [{ label: '관객수', data, borderColor: 'blue', fill:false, tension:.2, pointBackgroundColor:'blue' }] },
-    options:{
-      responsive:true,
-      plugins:{ tooltip:{ callbacks:{ label:(c)=> `${titles[c.dataIndex]}: ${c.formattedValue}명` } } },
-      scales:{ y:{ beginAtZero:true, ticks:{ callback:v=>v.toLocaleString() } } }
-    }
-  });
+  // 최신 개봉일 순으로 이미 정렬되어 있음
+  films.innerHTML = row.films.map(f=>{
+    const link = `detail.html?movieCd=${encodeURIComponent(f.movieCd)}`;
+    const when = f.openDt ? ` (${ymd(f.openDt)})` : "";
+    const part = f.part ? ` <span class="muted">· ${f.part}</span>` : "";
+    return `<div class="film"><a href="${link}">${f.movieNm}</a>${when}${part}</div>`;
+  }).join("");
 }
 
-/* ============== 메인 ============== */
-async function main(){
-  try{
-    const people = await loadPeopleIndex();
-    const p = findPerson(people);
-    if (!p){
-      $('#filmList').textContent = '배우를 찾을 수 없어요. (캐시 인덱스 확인)';
-      return;
-    }
-    renderHeader(p);
-    renderFilms(p);
-    maybeChart(p);
-  }catch(e){
-    console.error(e);
-    $('#filmList').innerHTML = '<div style="color:#b00020;">캐시를 불러오지 못했습니다. Actions에서 인덱스 생성 상태를 확인하세요.</div>';
-  }
-}
-main();
+load().then(show);
 </script>
 </body>
 </html>
