@@ -1,168 +1,121 @@
-# scripts/build_indices.py
-# 목적: docs/data/movies/**.json 읽어 검색 인덱스 두 개 생성(people.json, movies.json) — API 0회
-from __future__ import annotations
-import json, glob
-from pathlib import Path
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+import os, json, sys
 from datetime import datetime
 
-def repo_root_from_here(here: Path) -> Path:
-    cur = here.resolve()
-    for _ in range(8):
-        if (cur / ".git").exists() or (cur / "docs").exists():
-            return cur
-        cur = cur.parent
-    return here.resolve().parents[2]
+ROOT = os.path.dirname(os.path.dirname(__file__))
+DOCS_DIR = os.path.join(ROOT, "docs", "data")
+MOVIE_DIR = os.path.join(DOCS_DIR, "movies")
+SEARCH_DIR = os.path.join(DOCS_DIR, "search")
+os.makedirs(SEARCH_DIR, exist_ok=True)
 
-HERE = Path(__file__).resolve()
-ROOT = repo_root_from_here(HERE)
-MOVIE_DIR  = ROOT / "docs" / "data" / "movies"
-SEARCH_DIR = ROOT / "docs" / "data" / "search"
-SEARCH_DIR.mkdir(parents=True, exist_ok=True)
-
-def load_json(p: Path):
+def load_json(path):
     try:
-        return json.loads(p.read_text(encoding="utf-8"))
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
     except Exception:
         return None
 
-def yyyymmdd_to_iso(s: str) -> str:
-    s = (s or "").strip()
-    if len(s) == 8 and s.isdigit():
-        return f"{s[:4]}-{s[4:6]}-{s[6:]}"
-    return s
+def norm_open(dt):
+    if not dt: return ""
+    s = str(dt).strip().replace(".", "").replace("-", "")
+    return f"{s[0:4]}-{s[4:6]}-{s[6:8]}" if len(s)==8 and s.isdigit() else ""
 
-def normalize_detail(raw: dict) -> dict | None:
-    if not isinstance(raw, dict):
-        return None
+def is_korean(nm): 
+    nm = (nm or "").strip()
+    return ("한국" in nm) or ("대한민국" in nm)
 
-    # flat
-    if raw.get("movieCd"):
-        return {
-            "movieCd": (raw.get("movieCd") or "").strip(),
-            "movieNm": raw.get("movieNm", ""),
-            "openDt": yyyymmdd_to_iso(str(raw.get("openDt") or "")),
-            "prdtYear": str(raw.get("prdtYear") or ""),
-            "repNation": raw.get("repNation", ""),
-            "grade": raw.get("grade", ""),
-            "genres": raw.get("genres", []) or [],
-            "audiAcc": raw.get("audiAcc"),
-            "directors": raw.get("directors", []) or [],
-            "actors": raw.get("actors", []) or [],
-        }
+def first_or_empty(arr, key):
+    if isinstance(arr, list) and arr:
+        v = arr[0].get(key, "")
+        return v if isinstance(v, str) else ""
+    return ""
 
-    # raw
-    mi = ((raw.get("movieInfoResult") or {}).get("movieInfo") or {})
-    if not mi.get("movieCd"):
-        return None
+def scan_detail_files():
+    files = []
+    for root, _, names in os.walk(MOVIE_DIR):
+        for n in names:
+            if n.endswith(".json"):
+                files.append(os.path.join(root, n))
+    return files
 
-    def first(arr, key):
-        if isinstance(arr, list) and arr:
-            return arr[0].get(key, "")
-        return ""
-
-    rep_nation = first(mi.get("nations"), "nationNm")
-    grade      = first(mi.get("audits"),  "watchGradeNm")
-
-    genres = []
-    for g in mi.get("genres", []) or []:
-        n = g.get("genreNm", "")
-        if n: genres.append(n)
-
-    directors = []
-    for it in mi.get("directors", []) or []:
-        directors.append({
-            "peopleCd": (it.get("peopleCd") or "").strip(),
-            "peopleNm": (it.get("peopleNm") or "").strip(),
-            "repRoleNm": "감독",
-        })
-
-    actors = []
-    for it in mi.get("actors", []) or []:
-        actors.append({
-            "peopleCd": (it.get("peopleCd") or "").strip(),
-            "peopleNm": (it.get("peopleNm") or "").strip(),
-            "repRoleNm": "배우",
-            "cast": (it.get("cast") or "").strip(),
-        })
-
-    return {
-        "movieCd": (mi.get("movieCd") or "").strip(),
-        "movieNm": mi.get("movieNm", ""),
-        "openDt": yyyymmdd_to_iso(str(mi.get("openDt") or "")),
-        "prdtYear": str(mi.get("prdtYear") or ""),
-        "repNation": rep_nation,
-        "grade": grade,
-        "genres": genres,
-        "audiAcc": mi.get("audiAcc"),
-        "directors": directors,
-        "actors": actors,
-    }
-
-def build():
-    files = [Path(p) for p in glob.iglob(str(MOVIE_DIR / "**" / "*.json"), recursive=True)
-             if not p.endswith(".gitkeep")]
-    files.sort()
-    print(f"[paths] ROOT={ROOT}")
-    print(f"[paths] MOVIE_DIR={MOVIE_DIR}")
+def main():
+    files = scan_detail_files()
     print(f"[scan] detail files: {len(files)}")
 
     movies = []
-    people_map = {}  # peopleCd -> {...}
-    bad = miss = 0
+    people_map = {}
 
-    for p in files:
-        raw = load_json(p)
-        if not raw:
-            bad += 1
+    for fp in files:
+        d = load_json(fp)
+        if not d: 
+            continue
+        mi = (d.get("movieInfoResult") or {}).get("movieInfo") or {}
+        if not mi: 
             continue
 
-        d = normalize_detail(raw)
-        if not d or not d.get("movieCd"):
-            miss += 1
+        movieCd = (mi.get("movieCd") or "").strip()
+        movieNm = (mi.get("movieNm") or "").strip()
+        openDt  = norm_open(mi.get("openDt", ""))
+        prdtYear = str(mi.get("prdtYear", "")).strip()
+
+        nations = mi.get("nations") or []
+        repNation = "K" if any(is_korean(x.get("nationNm")) for x in nations) else "F"
+
+        grade = first_or_empty(mi.get("audits") or [], "watchGradeNm")
+        genres = [ (g.get("genreNm") or "").strip() for g in (mi.get("genres") or []) if (g.get("genreNm") or "").strip() ]
+
+        if not movieCd or not movieNm:
             continue
 
         movies.append({
-            "movieCd": d["movieCd"],
-            "movieNm": d["movieNm"],
-            "openDt": d["openDt"],
-            "prdtYear": d["prdtYear"],
-            "repNation": d["repNation"],
-            "grade": d["grade"],
-            "genres": d["genres"],
-            "audiAcc": d.get("audiAcc"),
+            "movieCd": movieCd,
+            "movieNm": movieNm,
+            "openDt": openDt,
+            "prdtYear": prdtYear,
+            "repNation": repNation,  # 'K' or 'F'
+            "grade": grade,
+            "genres": genres,
+            "audiAcc": None,
         })
 
-        for key, role in (("directors","감독"), ("actors","배우")):
-            for it in d.get(key, []) or []:
-                cd = (it.get("peopleCd") or "").strip()
-                nm = (it.get("peopleNm") or "").strip()
-                if not cd or not nm:
-                    continue
-                node = people_map.setdefault(cd, {
-                    "peopleCd": cd, "peopleNm": nm, "repRoleNm": role, "films": []
-                })
-                node["films"].append({
-                    "movieCd": d["movieCd"],
-                    "movieNm": d["movieNm"],
-                    "openDt": d["openDt"],
-                    "part": (it.get("cast") or "") if role == "배우" else "",
-                })
+        def add_person(p, role):
+            if not isinstance(p, dict): return
+            peopleCd = (p.get("peopleCd") or "").strip()
+            peopleNm = (p.get("peopleNm") or "").strip()
+            if not peopleCd and not peopleNm: return
+            key = peopleCd if peopleCd else f"n::{peopleNm}::{role}"
+            rec = people_map.get(key)
+            if not rec:
+                rec = {"peopleCd": peopleCd, "peopleNm": peopleNm, "repRoleNm": role, "films": []}
+                people_map[key] = rec
+            rec["films"].append({"movieCd": movieCd, "movieNm": movieNm, "openDt": openDt, "part": ""})
 
-    for v in people_map.values():
-        v["films"].sort(key=lambda x: x["openDt"], reverse=True)
+        for x in (mi.get("directors") or []): add_person(x, "감독")
+        for x in (mi.get("actors") or []):    add_person(x, "배우")
 
-    now = int(datetime.utcnow().timestamp())
-    (SEARCH_DIR / "movies.json").write_text(
-        json.dumps({"generatedAt": now, "count": len(movies), "movies": movies}, ensure_ascii=False, indent=2),
-        encoding="utf-8"
-    )
-    (SEARCH_DIR / "people.json").write_text(
-        json.dumps({"generatedAt": now, "count": len(people_map), "people": list(people_map.values())}, ensure_ascii=False, indent=2),
-        encoding="utf-8"
-    )
+    # 정렬
+    movies.sort(key=lambda m: m.get("openDt") or "9999-99-99")
+    for rec in people_map.values():
+        rec["films"].sort(key=lambda f: f.get("openDt") or "", reverse=True)
+    people = list(people_map.values())
 
-    print(f"[index] movies: {len(movies)} / people: {len(people_map)}")
-    print(f"[note] skipped: no_json={bad}, no_movieCd={miss}")
+    print(f"[index] movies: {len(movies)} / people: {len(people)}")
+
+    if len(movies) == 0:
+        print("[ERROR] Parsed movie count is 0. Will NOT overwrite search indexes.")
+        sys.exit(2)
+
+    out_movies = {"generatedAt": int(datetime.utcnow().timestamp()), "count": len(movies), "movies": movies}
+    out_people = {"generatedAt": int(datetime.utcnow().timestamp()), "count": len(people), "people": people}
+
+    with open(os.path.join(SEARCH_DIR, "movies.json"), "w", encoding="utf-8") as f:
+        json.dump(out_movies, f, ensure_ascii=False, indent=2)
+    with open(os.path.join(SEARCH_DIR, "people.json"), "w", encoding="utf-8") as f:
+        json.dump(out_people, f, ensure_ascii=False, indent=2)
+
+    print("[write] search indexes saved.")
 
 if __name__ == "__main__":
-    build()
+    main()
