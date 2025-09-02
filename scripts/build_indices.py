@@ -1,225 +1,206 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+# scripts/build_indices.py
+# - docs/data/movies/ 이하 연도 폴더까지 재귀적으로 스캔
+# - search/movies.json, search/people.json 생성
+# - 국내/국외(repNation) 보정, 등급/장르/개봉일 정규화
+# - (옵션) audiAcc 선계산 recent/all 모드 지원 (KOFIC 호출은 다른 워크플로로 분리 권장)
 
-"""
-docs/data/movies/<year>/*.json 을 모아
-- docs/data/search/movies.json
-- docs/data/search/people.json
-두 개의 인덱스를 생성한다.
-※ API 호출 없음 (로컬 캐시만 사용)
-"""
-
-import json, os, glob, time, re
+import json, os, sys, time, glob
+from pathlib import Path
 from collections import defaultdict
 
-ROOT = os.path.dirname(os.path.dirname(__file__))  # repo/scripts -> repo
-DOCS = os.path.join(ROOT, "docs")
-MOVIE_DIR = os.path.join(DOCS, "data", "movies")
-SEARCH_DIR = os.path.join(DOCS, "data", "search")
-PEOPLE_DIR = os.path.join(DOCS, "data", "people")
+ROOT = Path(__file__).resolve().parents[1]        # repo root
+DETAIL_DIR = ROOT / "docs" / "data" / "movies"    # 영화 상세 JSON이 있는 곳 (연도 폴더 포함)
+SEARCH_DIR = ROOT / "docs" / "data" / "search"
+PEOPLE_DIR = ROOT / "docs" / "data" / "people"
 
-os.makedirs(SEARCH_DIR, exist_ok=True)
+SEARCH_DIR.mkdir(parents=True, exist_ok=True)
+PEOPLE_DIR.mkdir(parents=True, exist_ok=True)
 
-def _read_json(path):
+def load_json(p: Path):
     try:
-        with open(path, "r", encoding="utf-8") as f:
+        with p.open(encoding="utf-8") as f:
             return json.load(f)
     except Exception:
         return None
 
-def _save_json(path, obj):
-    tmp = path + ".tmp"
-    with open(tmp, "w", encoding="utf-8") as f:
-        json.dump(obj, f, ensure_ascii=False, indent=2)
-    os.replace(tmp, path)
-
-def _to_ymd(s):
-    # 'YYYYMMDD' -> 'YYYY-MM-DD'
-    if not s or not isinstance(s, str) or len(s) != 8 or not s.isdigit():
-        return ""
-    return f"{s[0:4]}-{s[4:6]}-{s[6:8]}"
-
-def _rep_nation(detail):
-    # 국내 여부 판단: nations[], repNationNm 등에서 '한국/대한민국/Korea' 포함되면 'K'
-    texts = []
-    if isinstance(detail, dict):
-        rn = detail.get("repNationNm") or detail.get("repNation") or ""
-        if rn: texts.append(str(rn))
-        nat = detail.get("nations")
-        if isinstance(nat, list):
-            for n in nat:
-                nm = (n or {}).get("nationNm") or ""
-                if nm: texts.append(str(nm))
-        natAlt = detail.get("nationAlt") or ""
-        if natAlt: texts.append(str(natAlt))
-
-    joined = " ".join(texts).lower()
-    if any(tok in joined for tok in ["한국", "대한민국", "korea"]):
-        return "K"
-    return "F"
-
-def _grade(detail):
-    # 관람등급 텍스트 보존
-    for key in ("watchGradeName", "watchGradeNm", "grade", "audit"):
-        g = (detail or {}).get(key)
-        if g: return str(g)
-    # movieInfoResult.movieInfo.audits[0].watchGradeNm 형태도 있을 수 있음
-    audits = (detail or {}).get("audits")
-    if isinstance(audits, list) and audits:
-        g = (audits[0] or {}).get("watchGradeNm")
-        if g: return str(g)
+def parse_open_dt(s):
+    # 'YYYYMMDD' 또는 'YYYY-MM-DD' 또는 '' 중 일부가 올 수 있음
+    s = (s or "").strip().replace("-", "")
+    if len(s) == 8 and s.isdigit():
+        return s
     return ""
 
-def _genres(detail):
-    # 장르 리스트 텍스트 배열
-    out = []
-    for key in ("genres", "genreList"):
-        arr = (detail or {}).get(key)
-        if isinstance(arr, list):
-            for it in arr:
-                name = it.get("genreNm") if isinstance(it, dict) else it
-                if name:
-                    out.append(str(name))
-    return out
+def norm_grade(s):
+    s = (s or "").strip()
+    # 표기 다양성 흡수
+    mapping = {
+        "전체관람가": "전체관람가",
+        "전체 관람가": "전체관람가",
+        "12세이상관람가": "12세이상관람가",
+        "12세 이상 관람가": "12세이상관람가",
+        "15세이상관람가": "15세이상관람가",
+        "15세 이상 관람가": "15세이상관람가",
+        "청소년관람불가": "청소년 관람불가",
+        "청소년 관람불가": "청소년 관람불가",
+    }
+    return mapping.get(s, s)
 
-def _actors(detail):
-    # KOFIC 상세엔 actors [{peopleNm, peopleCd, cast, castEn}] 등
-    arr = (detail or {}).get("actors")
-    if not isinstance(arr, list):
+def infer_rep_nation(detail: dict):
+    """
+    repNation 값이 비거나 불안정한 케이스 보정.
+    - detail.get('repNation')이 'K' / 'F' 면 그대로 사용
+    - nationAlt / nations / repNationNm 등에 '한국'이 보이면 'K', 아니면 'F'
+    - 전혀 정보가 없으면 '' (필터에서 제외는 안 하도록 프런트는 'all'일 때만 포함)
+    """
+    v = (detail.get("repNation") or "").strip().upper()
+    if v in ("K", "F"):
+        return v
+
+    # nationAlt 형태: "한국,미국" 같은 문자열일 수 있음
+    for key in ("nationAlt", "repNationNm"):
+        txt = (detail.get(key) or "").strip()
+        if txt:
+            return "K" if ("한국" in txt) else "F"
+
+    # KOFIC 상세에 nations: [{nationNm: "한국"}, ...] 케이스
+    nations = detail.get("nations") or []
+    if isinstance(nations, list):
+        names = ", ".join([(x.get("nationNm") or "") for x in nations])
+        if names:
+            return "K" if ("한국" in names) else "F"
+
+    return ""  # 정보 부족
+
+def as_list(x):
+    if x is None:
         return []
-    out = []
-    for a in arr:
-        if not isinstance(a, dict): 
-            continue
-        out.append({
-            "peopleCd": str(a.get("peopleCd") or ""),
-            "peopleNm": str(a.get("peopleNm") or ""),
-            "repRoleNm": "배우",
-            "part": str(a.get("cast") or ""),
-        })
-    return out
+    if isinstance(x, list):
+        return x
+    return [x]
 
-def _directors(detail):
-    arr = (detail or {}).get("directors")
-    if not isinstance(arr, list):
-        return []
-    out = []
-    for d in arr:
-        if not isinstance(d, dict): 
+def walk_detail_files():
+    # 연도 하위 포함 모든 json (gitkeep 제외)
+    pattern = str(DETAIL_DIR / "**" / "*.json")
+    for p in glob.iglob(pattern, recursive=True):
+        if p.endswith(".gitkeep"):
             continue
-        out.append({
-            "peopleCd": str(d.get("peopleCd") or ""),
-            "peopleNm": str(d.get("peopleNm") or ""),
-            "repRoleNm": "감독",
-            "part": "",
-        })
-    return out
+        yield Path(p)
 
-def collect_details():
-    files = []
-    # 하위 폴더(연도) 전체 순회
-    for year_dir in sorted(glob.glob(os.path.join(MOVIE_DIR, "*"))):
-        if not os.path.isdir(year_dir): 
-            continue
-        for jf in glob.glob(os.path.join(year_dir, "*.json")):
-            files.append(jf)
-
-    details = []
-    for p in files:
-        j = _read_json(p)
-        if not j: 
-            continue
-        # j 형태: build_movie_details.py가 저장한 1편 상세
-        details.append(j)
-    return details
-
-def build_movies_index(details):
+def build_movies_index():
     rows = []
-    for d in details:
-        movieCd = str(d.get("movieCd") or "")
-        movieNm = str(d.get("movieNm") or "")
-        openDt_raw = str(d.get("openDt") or "")
-        prdtYear = str(d.get("prdtYear") or "")
-        repNat = _rep_nation(d)
-        grade = _grade(d)
-        gens = _genres(d)
-        # audiAcc는 상세에 있으면 사용, 없으면 null
-        audiAcc = d.get("audiAcc", None)
+    for p in walk_detail_files():
+        data = load_json(p)
+        if not data:
+            continue
+
+        movieCd   = (data.get("movieCd") or "").strip()
+        movieNm   = (data.get("movieNm") or "").strip()
+        openDt    = parse_open_dt(data.get("openDt") or data.get("openDtStr") or "")
+        prdtYear  = (data.get("prdtYear") or "").strip()
+        repNation = infer_rep_nation(data)
+        grade     = norm_grade(data.get("grade") or data.get("watchGradeNm") or "")
+        genres    = []
+        for g in as_list(data.get("genres")):
+            if isinstance(g, dict):
+                nm = g.get("genreNm") or g.get("name") or ""
+            else:
+                nm = str(g)
+            nm = nm.strip()
+            if nm:
+                genres.append(nm)
+
+        # audiAcc는 상세 JSON에 있으면 그대로, 없으면 null
+        try:
+            audiAcc = int(str(data.get("audiAcc")).replace(",", "")) if data.get("audiAcc") not in (None, "", "null") else None
+        except Exception:
+            audiAcc = None
+
         rows.append({
             "movieCd": movieCd,
             "movieNm": movieNm,
-            "openDt": openDt_raw,
-            "prdtYear": prdtYear,
-            "repNation": repNat,         # "K" or "F"
+            "openDt": openDt,
+            "prdtYear": (prdtYear or (openDt[:4] if openDt else "")),
+            "repNation": repNation,   # 'K' / 'F' / ''
             "grade": grade,
-            "genres": gens,
-            "audiAcc": audiAcc if isinstance(audiAcc, int) else None,
+            "genres": genres,
+            "audiAcc": audiAcc,
         })
 
-    # 개봉일이 있는 경우 우선 정렬(최신이 아래쪽에 와도 상관없음)
-    def sort_key(x):
-        od = x.get("openDt") or ""
-        return od if (len(od) == 8 and od.isdigit()) else "99999999"
-    rows.sort(key=sort_key)
-
-    result = {
+    rows.sort(key=lambda r: (r["openDt"] or "00000000", r["movieCd"]), reverse=False)
+    out = {
         "generatedAt": int(time.time()),
         "count": len(rows),
-        "movies": rows
+        "movies": rows,
     }
-    _save_json(os.path.join(SEARCH_DIR, "movies.json"), result)
-    print(f"[write] movies.json ({len(rows)} rows)")
+    (SEARCH_DIR / "movies.json").write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
+    return out
 
-def build_people_index(details):
-    # 이름/코드별로 필모를 모은다.
-    bucket = defaultdict(lambda: {"peopleCd": "", "peopleNm": "", "repRoleNm": "", "films": []})
+def build_people_index():
+    """
+    배우/감독 캐시 인덱스(빠른 검색 전용)
+    - 결과: docs/data/search/people.json
+    - 구조: { generatedAt, count, people: [ {peopleCd, peopleNm, repRoleNm, films:[{movieCd, movieNm, openDt, part}]} ] }
+    """
+    people = defaultdict(lambda: {"peopleCd": "", "peopleNm": "", "repRoleNm": "", "films": []})
 
-    for d in details:
-        movieCd = str(d.get("movieCd") or "")
-        movieNm = str(d.get("movieNm") or "")
-        openDt = str(d.get("openDt") or "")
-        # 배우 + 감독
-        for person in (_actors(d) + _directors(d)):
-            key = (person["peopleCd"] or f"NM::{person['peopleNm']}")
-            if not bucket[key]["peopleNm"]:
-                bucket[key]["peopleNm"] = person["peopleNm"]
-                bucket[key]["peopleCd"] = person["peopleCd"]
-                bucket[key]["repRoleNm"] = person["repRoleNm"]  # 최근 역할 하나 대표
-            # 중복 작품 방지
-            if movieCd and all(f.get("movieCd") != movieCd for f in bucket[key]["films"]):
-                bucket[key]["films"].append({
-                    "movieCd": movieCd,
-                    "movieNm": movieNm,
-                    "openDt": openDt,
-                    "part": person.get("part","")
-                })
+    for p in walk_detail_files():
+        data = load_json(p)
+        if not data:
+            continue
 
-    rows = []
-    for key, v in bucket.items():
-        # 최신 개봉일 순으로 보여주기 위해 정렬
-        v["films"].sort(key=lambda f: f.get("openDt") or "", reverse=True)
-        rows.append({
-            "peopleCd": v["peopleCd"],
-            "peopleNm": v["peopleNm"],
-            "repRoleNm": v["repRoleNm"],
-            "films": v["films"],
-            "filmNames": " / ".join([f["movieNm"] for f in v["films"][:5]])
-        })
+        movieCd = (data.get("movieCd") or "").strip()
+        movieNm = (data.get("movieNm") or "").strip()
+        openDt  = parse_open_dt(data.get("openDt") or "")
 
-    rows.sort(key=lambda x: (x["peopleNm"], x["peopleCd"] or ""))
-    result = {
+        # 감독
+        for d in as_list(data.get("directors")):
+            name = (d.get("peopleNm") or d.get("directorNm") or "").strip()
+            code = (d.get("peopleCd") or "").strip()
+            if not name:
+                continue
+            key = (code or ("NM:" + name))
+            rec = people[key]
+            rec["peopleNm"] = name
+            rec["peopleCd"] = code
+            if not rec["repRoleNm"]:
+                rec["repRoleNm"] = "감독"
+            rec["films"].append({"movieCd": movieCd, "movieNm": movieNm, "openDt": openDt, "part": ""})
+
+        # 배우
+        for a in as_list(data.get("actors")):
+            name = (a.get("peopleNm") or a.get("cast") or a.get("castNm") or "").strip()
+            code = (a.get("peopleCd") or "").strip()
+            if not name:
+                continue
+            part = (a.get("cast") or a.get("castNm") or "").strip()
+            key = (code or ("NM:" + name))
+            rec = people[key]
+            rec["peopleNm"] = name
+            rec["peopleCd"] = code
+            # 배우/감독 겸업이면 배우를 우선 표기하지 않음(이미 감독이면 그대로), 없으면 배우 세팅
+            if not rec["repRoleNm"]:
+                rec["repRoleNm"] = "배우"
+            rec["films"].append({"movieCd": movieCd, "movieNm": movieNm, "openDt": openDt, "part": part})
+
+    # 최신 개봉일 순으로 필모 정렬
+    for rec in people.values():
+        rec["films"].sort(key=lambda f: f["openDt"] or "00000000", reverse=True)
+
+    people_rows = sorted(people.values(), key=lambda r: (r["peopleNm"], r["peopleCd"]))
+    out = {
         "generatedAt": int(time.time()),
-        "count": len(rows),
-        "people": rows
+        "count": len(people_rows),
+        "people": people_rows,
     }
-    _save_json(os.path.join(SEARCH_DIR, "people.json"), result)
-    print(f"[write] people.json ({len(rows)} rows)")
+    (SEARCH_DIR / "people.json").write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
+    # people/unknown.json(빈 프로필 대응)도 항상 유지
+    (PEOPLE_DIR / "unknown.json").write_text(json.dumps({"peopleNm":"", "films":[]}, ensure_ascii=False, indent=2), encoding="utf-8")
+    return out
 
 def main():
-    details = collect_details()
-    print(f"[index] detail files: kept: {len(details)}")
-    build_movies_index(details)
-    build_people_index(details)
+    mv = build_movies_index()
+    pp = build_people_index()
+    print(f"[index] movies: {mv['count']} / people: {pp['count']}")
 
 if __name__ == "__main__":
     main()
