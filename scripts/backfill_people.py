@@ -1,8 +1,6 @@
 # scripts/backfill_people.py
-# - docs/data/movies/**.json 중 배우/감독 정보가 비어있는 파일만 골라
-#   KOFIC movieInfo API로 최소 호출수로 보강(backfill)합니다.
-# - 호출 예:
-#   python scripts/backfill_people.py --budget 600 --rate-sleep-ms 250
+# - 상세 JSON에 peopleCd가 포함된 배우/감독 배열이 없으면
+#   movieInfo API로 보강(backfill)합니다.
 
 import os, json, time, glob
 from pathlib import Path
@@ -28,15 +26,25 @@ def save_json(p: Path, data: dict):
     tmp.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
     tmp.replace(p)
 
-def need_backfill(d: dict) -> bool:
-    # 상세에 배우/감독이 하나라도 있으면 스킵
-    for k in ("actors", "directors", "casts", "staffs"):
-        v = d.get(k)
-        if isinstance(v, list) and len(v) > 0:
-            return False
-    # 이름 문자열만 있어도(actorsNm/directorNm) 인덱서가 처리 가능 -> 이 경우도 스킵
-    if (d.get("actorsNm") or d.get("directorNm")):
+def has_people_with_code(arr):
+    """배열에 peopleCd가 채워진 항목이 하나라도 있으면 True"""
+    if not isinstance(arr, list):
         return False
+    for x in arr:
+        if isinstance(x, dict) and (x.get("peopleCd") or "").strip():
+            return True
+    return False
+
+def need_backfill(d: dict) -> bool:
+    """
+    - peopleCd가 채워진 directors[] 또는 actors[]가 이미 있으면 False (백필 불필요)
+    - 그렇지 않으면 True (API로 보강)
+    """
+    if has_people_with_code(d.get("directors")):
+        return False
+    if has_people_with_code(d.get("actors")):
+        return False
+    # 이름 문자열(actorsNm/directorNm)만 있는 경우 -> 여전히 백필 필요
     return True
 
 def fetch_movie_info(movieCd: str, timeout=30):
@@ -60,17 +68,17 @@ def backfill(budget: int, rate_sleep_ms: int) -> tuple[int, int]:
         if not data:
             continue
 
+        movieCd = (data.get("movieCd") or "").strip()
+        if not movieCd:
+            skipped += 1
+            continue
+
         if not need_backfill(data):
             skipped += 1
             continue
 
         if used >= budget:
             break
-
-        movieCd = (data.get("movieCd") or "").strip()
-        if not movieCd:
-            skipped += 1
-            continue
 
         try:
             j = fetch_movie_info(movieCd)
@@ -83,15 +91,15 @@ def backfill(budget: int, rate_sleep_ms: int) -> tuple[int, int]:
         time.sleep(max(0, rate_sleep_ms) / 1000.0)
 
         info = (j.get("movieInfoResult") or {}).get("movieInfo") or {}
-        # 표준 필드만 저장 (불필요하게 크지 않게)
-        directors = []
+        directors, actors = [], []
+
         for d in info.get("directors", []):
             directors.append({
                 "peopleCd": (d.get("peopleCd") or "").strip(),
                 "peopleNm": (d.get("peopleNm") or "").strip(),
                 "repRoleNm": "감독",
             })
-        actors = []
+
         for a in info.get("actors", []):
             actors.append({
                 "peopleCd": (a.get("peopleCd") or "").strip(),
@@ -100,12 +108,14 @@ def backfill(budget: int, rate_sleep_ms: int) -> tuple[int, int]:
                 "cast": (a.get("cast") or "").strip(),
             })
 
-        if directors or actors:
+        # 하나라도 채워졌을 때만 저장
+        if any(x.get("peopleCd") for x in directors) or any(x.get("peopleCd") for x in actors):
             data["directors"] = directors
             data["actors"] = actors
             save_json(p, data)
             updated += 1
-            print(f"[ok] {movieCd} -> {p.relative_to(ROOT)}  (dir:{len(directors)}, act:{len(actors)})")
+            rel = p.relative_to(ROOT)
+            print(f"[ok] {movieCd} -> {rel} (dir:{len(directors)}, act:{len(actors)})")
         else:
             skipped += 1
 
@@ -115,7 +125,7 @@ def backfill(budget: int, rate_sleep_ms: int) -> tuple[int, int]:
 if __name__ == "__main__":
     import argparse
     ap = argparse.ArgumentParser()
-    ap.add_argument("--budget", type=int, default=600, help="최대 API 호출수(일일 한도 대비 안전치)")
+    ap.add_argument("--budget", type=int, default=600, help="이번 실행 최대 API 호출수")
     ap.add_argument("--rate-sleep-ms", type=int, default=250, help="호출 간 대기(ms)")
     args = ap.parse_args()
     backfill(args.budget, args.rate_sleep_ms)
