@@ -1,6 +1,4 @@
 # scripts/backfill_people.py
-# 상세 JSON에 peopleCd가 없는 배우/감독을 영화상세 API로 보강(backfill)
-
 from __future__ import annotations
 import os, json, time, glob
 from pathlib import Path
@@ -8,13 +6,11 @@ from urllib.parse import urlencode
 import requests
 
 def repo_root_from_here(here: Path) -> Path:
-    """여러 레벨을 거슬러 올라가며 리포 루트를 찾는다(./.git 또는 ./docs 존재 기준)."""
     cur = here.resolve()
     for _ in range(8):
         if (cur / ".git").exists() or (cur / "docs").exists():
             return cur
         cur = cur.parent
-    # GH Actions의 /work/<repo>/<repo>/ 에 맞춰 최후 보정
     return here.resolve().parents[2]
 
 HERE = Path(__file__).resolve()
@@ -37,16 +33,23 @@ def save_json(p: Path, data: dict):
     tmp.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
     tmp.replace(p)
 
-def has_people_with_code(arr) -> bool:
+def get_shape(raw: dict) -> tuple[str, dict]:
+    """('flat'/'raw', 대상 dict) 반환. raw면 movieInfo 참조 반환"""
+    if raw.get("movieCd"):
+        return "flat", raw
+    mi = ((raw.get("movieInfoResult") or {}).get("movieInfo") or {})
+    if mi.get("movieCd"):
+        return "raw", mi
+    return "none", {}
+
+def has_people_cd(arr) -> bool:
     if not isinstance(arr, list):
         return False
     return any(isinstance(x, dict) and (x.get("peopleCd") or "").strip() for x in arr)
 
-def need_backfill(d: dict) -> bool:
-    # directors/actors 배열에 peopleCd가 하나라도 있으면 이미 충분
-    if has_people_with_code(d.get("directors")): return False
-    if has_people_with_code(d.get("actors")):    return False
-    # 이름 문자열만 있는 상태(actorsNm/directorNm 등)는 보강 필요
+def need_backfill(target: dict) -> bool:
+    if has_people_cd(target.get("directors")): return False
+    if has_people_cd(target.get("actors")):    return False
     return True
 
 def fetch_movie_info(movieCd: str, timeout=30):
@@ -58,7 +61,7 @@ def fetch_movie_info(movieCd: str, timeout=30):
 
 def backfill(budget: int, rate_sleep_ms: int) -> tuple[int,int,int]:
     if not API_KEY:
-        raise RuntimeError("KOFIC_API_KEY 환경변수가 없습니다. Secrets에 넣고 env로 전달하세요.")
+        raise RuntimeError("KOFIC_API_KEY 비어있음")
 
     files = [Path(p) for p in glob.iglob(str(DETAIL_DIR / "**" / "*.json"), recursive=True)
              if not p.endswith(".gitkeep")]
@@ -70,17 +73,18 @@ def backfill(budget: int, rate_sleep_ms: int) -> tuple[int,int,int]:
     updated = skipped = used = 0
 
     for p in files:
-        d = load_json(p)
-        if not d:
+        raw = load_json(p)
+        shape, trg = get_shape(raw or {})
+        if shape == "none":
             skipped += 1
             continue
 
-        movieCd = (d.get("movieCd") or "").strip()
+        movieCd = (trg.get("movieCd") or "").strip()
         if not movieCd:
             skipped += 1
             continue
 
-        if not need_backfill(d):
+        if not need_backfill(trg):
             skipped += 1
             continue
 
@@ -100,14 +104,14 @@ def backfill(budget: int, rate_sleep_ms: int) -> tuple[int,int,int]:
         info = (j.get("movieInfoResult") or {}).get("movieInfo") or {}
         directors, actors = [], []
 
-        for it in info.get("directors", []):
+        for it in info.get("directors", []) or []:
             directors.append({
                 "peopleCd": (it.get("peopleCd") or "").strip(),
                 "peopleNm": (it.get("peopleNm") or "").strip(),
                 "repRoleNm": "감독",
             })
 
-        for it in info.get("actors", []):
+        for it in info.get("actors", []) or []:
             actors.append({
                 "peopleCd": (it.get("peopleCd") or "").strip(),
                 "peopleNm": (it.get("peopleNm") or "").strip(),
@@ -115,10 +119,11 @@ def backfill(budget: int, rate_sleep_ms: int) -> tuple[int,int,int]:
                 "cast": (it.get("cast") or "").strip(),
             })
 
-        if any(x.get("peopleCd") for x in directors) or any(x.get("peopleCd") for x in actors):
-            d["directors"] = directors
-            d["actors"]    = actors
-            save_json(p, d)
+        if any(x.get("peopleCd") for x in directors) or any(x.get("peopleCd") for x in actors)):
+            # 원래 구조 유지한 채로 덮어쓰기
+            trg["directors"] = directors
+            trg["actors"]    = actors
+            save_json(p, raw)
             updated += 1
             rel = p.relative_to(ROOT)
             print(f"[ok] {movieCd} -> {rel} (dir:{len(directors)}, act:{len(actors)})")
