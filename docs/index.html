@@ -2,133 +2,174 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
-  <title>K-Movie A Archive – 홈</title>
+  <title>K-Movie A Archive</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="assets/style.css" />
   <style>
-    /* 페이지 전용 살짝 보정 */
-    .tl-legend { color:#666; font-size:13px; margin:8px 0 0; }
+    .meta { color:#666; font-size:13px; margin-bottom:8px; }
+    .month-ctrl { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin:10px 0 8px; }
+    .month-ctrl input[type="month"]{ padding:6px 8px; border:1px solid var(--bd); border-radius:6px; background:#fff; }
+    .list .row{ padding:8px 0; border-bottom:1px solid #eee; }
+    .list .row a{ font-weight:600; }
+    .list .muted{ color:#666; font-size:13px; }
   </style>
 </head>
 <body>
-<div class="container">
-  <div class="header">
-    <h1>K-Movie A Archive</h1>
-    <div class="spacer"></div>
-    <a href="index.html" class="btn">홈</a>
-    <a href="search.html" class="btn">영화 검색</a>
-    <a href="people-search.html" class="btn">배우 검색</a>
-    <a href="saved.html" class="btn">저장 목록</a>
-  </div>
+  <div class="container">
+    <div class="header">
+      <h1>K-Movie A Archive</h1>
+      <div class="spacer"></div>
+      <a href="index.html" class="btn">홈</a>
+      <a href="search.html" class="btn">영화 검색</a>
+      <a href="people-search.html" class="btn">배우 검색</a>
+      <a href="saved.html" class="btn">저장 목록</a>
+    </div>
 
-  <h2>🗓️ 월간 타임라인</h2>
-  <div style="display:flex; align-items:center; gap:6px; margin:8px 0 10px;">
-    <button id="tlPrevBtn" class="btn">◀</button>
-    <strong id="tlRangeLabel" style="min-width:210px; text-align:center;"></strong>
-    <button id="tlNextBtn" class="btn">▶</button>
+    <div class="meta" id="rangeNote">데이터 범위: 불러오는 중…</div>
+
+    <h2>월간 타임라인</h2>
+    <div class="month-ctrl">
+      <button class="btn" id="prevMonth">◀ 이전 달</button>
+      <input type="month" id="monthPick" />
+      <button class="btn" id="nextMonth">다음 달 ▶</button>
+      <span class="meta" id="monthSummary"></span>
+    </div>
+
+    <div id="tlBar" class="tl-bar" role="list"></div>
+    <div id="tlPanel" class="tl-panel">날짜를 클릭하면 개봉작 목록이 나옵니다.</div>
   </div>
-  <div id="timelineBar" class="tl-bar"></div>
-  <div id="tlPanel" class="tl-panel">날짜를 클릭하면 해당일 개봉 영화가 표시됩니다.</div>
-  <div class="tl-legend">초록 점(•) 표시: 해당 날짜에 개봉작 존재</div>
-</div>
 
 <script>
-/** 인덱스(JSON) 경로 - 캐시 무시를 위해 v 파라미터 추가 */
-const MOVIE_INDEX_URL = 'data/search/movies.json?v=' + Date.now();
-const DETAIL_PAGE_URL = 'detail.html';
-const WINDOW_DAYS = 30;
+(async function(){
+  // 유틸
+  const pad2 = n => String(n).padStart(2,'0');
+  const ymdToDate = (ymd) => {
+    if(!ymd || String(ymd).length!==8) return null;
+    const s = String(ymd);
+    return new Date(+s.slice(0,4), +s.slice(4,6)-1, +s.slice(6,8));
+  };
+  const toYMD = (d) => `${d.getFullYear()}${pad2(d.getMonth()+1)}${pad2(d.getDate())}`;
+  const ymStr = (d) => `${d.getFullYear()}-${pad2(d.getMonth()+1)}`;
+  const addMonth = (d, delta) => { const nd=new Date(d); nd.setMonth(nd.getMonth()+delta); return nd; };
 
-const bar   = document.getElementById('timelineBar');
-const panel = document.getElementById('tlPanel');
-const label = document.getElementById('tlRangeLabel');
-const prev  = document.getElementById('tlPrevBtn');
-const next  = document.getElementById('tlNextBtn');
-
-const pad2 = v => String(v).padStart(2,'0');
-const ymd  = d => d.getFullYear() + pad2(d.getMonth()+1) + pad2(d.getDate());
-const fmtKR = d => `${d.getFullYear()}.${pad2(d.getMonth()+1)}.${pad2(d.getDate())}`;
-
-let dateMap = {}; // {"YYYYMMDD":[{movieCd,movieNm,openDt,grade?,nation?},...]}
-
-async function loadIndex() {
-  const res = await fetch(MOVIE_INDEX_URL);
-  if (!res.ok) throw new Error('index http ' + res.status);
-  const j = await res.json();
-
-  const byDate = j.by_date || j.byDate || null;
-  if (byDate && typeof byDate === 'object') {
-    dateMap = byDate;
+  // 데이터 로드 (검색 인덱스 캐시만 사용)
+  let moviesIdx;
+  try{
+    const res = await fetch('data/search/movies.json', {cache:'no-store'});
+    moviesIdx = await res.json();
+  }catch(e){
+    document.getElementById('tlPanel').innerHTML = `<span style="color:#b00020">인덱스 로드 실패</span>`;
     return;
   }
 
-  // by_date가 없으면 movies 배열을 날짜별로 묶어 만든다.
-  const list = j.movies || [];
-  dateMap = {};
-  for (const m of list) {
-    const d = String(m.openDt || '').replace(/\D/g,'');
-    if (!d) continue;
-    (dateMap[d] ||= []).push(m);
+  const items = (moviesIdx.movies || []).filter(m => m && m.openDt && String(m.openDt).length===8);
+  // 범위 표기
+  const years = items.map(m => +String(m.openDt).slice(0,4)).sort((a,b)=>a-b);
+  const minY = years[0], maxY = years[years.length-1];
+  document.getElementById('rangeNote').textContent = `데이터 범위: ${minY} – ${maxY} (인덱스 기준)`;
+
+  // 월 → 날짜별 작품 맵 구성
+  const monthMap = new Map(); // "YYYY-MM" -> Map("DD" -> Array(movie))
+  for(const m of items){
+    const d = ymdToDate(m.openDt);
+    if(!d) continue;
+    const ym = `${d.getFullYear()}-${pad2(d.getMonth()+1)}`;
+    const dd = pad2(d.getDate());
+    if(!monthMap.has(ym)) monthMap.set(ym, new Map());
+    const dayMap = monthMap.get(ym);
+    if(!dayMap.has(dd)) dayMap.set(dd, []);
+    dayMap.get(dd).push(m);
   }
-}
 
-function renderWindow(start) {
-  bar.innerHTML = '';
-  panel.innerHTML = '날짜를 클릭하면 해당일 개봉 영화가 표시됩니다.';
-  const end = new Date(start); end.setDate(end.getDate() + WINDOW_DAYS - 1);
-  label.textContent = `${fmtKR(start)} ~ ${fmtKR(end)}`;
+  const monthPick = document.getElementById('monthPick');
+  const tlBar = document.getElementById('tlBar');
+  const tlPanel = document.getElementById('tlPanel');
+  const monthSummary = document.getElementById('monthSummary');
 
-  for (let i=0; i<WINDOW_DAYS; i++) {
-    const d = new Date(start); d.setDate(d.getDate() + i);
-    const key = ymd(d);
-    const cell = document.createElement('div');
-    cell.className = 'tl-day';
-    if (ymd(d) === ymd(new Date())) cell.classList.add('today');
-    if ((dateMap[key] || []).length) cell.classList.add('hasMovies');
-
-    const dow = '일월화수목금토'[d.getDay()];
-    cell.innerHTML = `
-      <span class="d-label">${pad2(d.getMonth()+1)}/${pad2(d.getDate())}</span>
-      <span style="font-size:11px; color:#777">${dow}</span>
-    `;
-    cell.addEventListener('click', () => {
-      const list = (dateMap[key] || []).slice().sort((a,b)=> (+(b.openDt||0)-(+(a.openDt||0))));
-      if (!list.length) {
-        panel.innerHTML = `📭 <strong>${fmtKR(d)}</strong> 개봉작이 없습니다.`;
-        return;
-      }
-      const wrap = document.createElement('div');
-      for (const m of list) {
-        const open = String(m.openDt||'').replace(/\D/g,'');
-        const openFmt = open ? `${open.slice(0,4)}.${open.slice(4,6)}.${open.slice(6,8)}` : '';
-        const row = document.createElement('div');
-        row.innerHTML =
-          `<a href="${DETAIL_PAGE_URL}?movieCd=${encodeURIComponent(m.movieCd)}"><strong>${m.movieNm}</strong></a>
-           <span class="muted"> (${openFmt})</span>
-           ${m.grade ? `<span class="badge">[${m.grade}]</span>` : ''}`;
-        wrap.appendChild(row);
-      }
-      panel.innerHTML = ''; panel.appendChild(wrap);
-    });
-    bar.appendChild(cell);
+  // 초기 월 선택: 오늘 달 → 만약 해당 달 데이터가 없으면 "가장 최근에 데이터가 있는 달"로 폴백
+  const today = new Date();
+  let curMonth = ymStr(today);
+  if(!monthMap.has(curMonth)){
+    // today 이전에서 가장 최근 달 찾기
+    const months = Array.from(monthMap.keys()).sort();
+    const ymNumToday = +(`${today.getFullYear()}${pad2(today.getMonth()+1)}`);
+    const prev = [...months].filter(ym => +ym.replace('-','') <= ymNumToday).pop() || months.pop();
+    if(prev) curMonth = prev;
   }
-}
+  monthPick.value = curMonth;
 
-let start = new Date();
-start.setDate(start.getDate() - Math.floor(WINDOW_DAYS/2));
+  function renderMonth(ym){
+    const [yy, mm] = ym.split('-').map(Number);
+    const last = new Date(yy, mm, 0).getDate(); // month is 1-based in our string
+    tlBar.innerHTML = '';
+    tlPanel.textContent = '날짜를 클릭하면 개봉작 목록이 나옵니다.';
 
-(async function init(){
-  try {
-    bar.textContent = '인덱스 불러오는 중…';
-    await loadIndex();
-    renderWindow(start);
-  } catch(e) {
-    console.error(e);
-    panel.innerHTML = `<div style="color:#b00020;">인덱스를 불러오지 못했습니다. (data/search/movies.json 확인)</div>`;
+    const dayMap = monthMap.get(ym) || new Map();
+    const totalDays = dayMap.size;
+    let totalMovies = 0;
+    for(const arr of dayMap.values()) totalMovies += arr.length;
+    monthSummary.textContent = `(${ym}) 개봉일 ${totalDays}일, 작품 ${totalMovies}편`;
+
+    for(let d=1; d<=last; d++){
+      const dd = pad2(d);
+      const has = dayMap.has(dd);
+      const div = document.createElement('div');
+      div.className = 'tl-day' + (has ? ' hasMovies' : '');
+      div.setAttribute('role','listitem');
+      div.innerHTML = `<span class="d-label">${d}</span>`;
+      if(ym === ymStr(new Date())) div.classList.add('today');
+
+      div.addEventListener('click', ()=>{
+        const list = dayMap.get(dd) || [];
+        if(list.length===0){
+          tlPanel.innerHTML = `해당 날짜(${ym}-${dd})에는 등록된 개봉작이 없습니다.`;
+          return;
+        }
+        // 정렬: 국내/K 우선, 제목 가나다
+        list.sort((a,b)=>{
+          const nk = (b.repNation==='K') - (a.repNation==='K');
+          if(nk!==0) return nk;
+          return (a.movieNm||'').localeCompare(b.movieNm||'','ko');
+        });
+        const box = document.createElement('div');
+        box.className = 'list';
+        box.innerHTML = list.map(m=>{
+          const grade = m.grade ? ` [${m.grade}]` : '';
+          const nat = m.repNation==='K' ? '국내' : (m.repNation==='F' ? '국외' : '');
+          const ymd = `${ym}-${dd}`;
+          const link = `detail.html?movieCd=${encodeURIComponent(m.movieCd)}`;
+          return `
+            <div class="row">
+              <a href="${link}">${m.movieNm||'(제목 없음)'}</a>
+              <div class="muted">${ymd} · ${nat}${grade}</div>
+            </div>
+          `;
+        }).join('');
+        tlPanel.innerHTML = '';
+        tlPanel.appendChild(box);
+      });
+
+      tlBar.appendChild(div);
+    }
   }
+
+  renderMonth(monthPick.value);
+
+  // 이벤트
+  document.getElementById('prevMonth').addEventListener('click', ()=>{
+    const [y,m] = monthPick.value.split('-').map(Number);
+    const d = new Date(y, m-1, 1);
+    monthPick.value = ymStr(addMonth(d,-1));
+    renderMonth(monthPick.value);
+  });
+  document.getElementById('nextMonth').addEventListener('click', ()=>{
+    const [y,m] = monthPick.value.split('-').map(Number);
+    const d = new Date(y, m-1, 1);
+    monthPick.value = ymStr(addMonth(d, 1));
+    renderMonth(monthPick.value);
+  });
+  monthPick.addEventListener('change', ()=>renderMonth(monthPick.value));
 })();
-
-prev.addEventListener('click', () => { start.setDate(start.getDate()-WINDOW_DAYS); renderWindow(start); });
-next.addEventListener('click', () => { start.setDate(start.getDate()+WINDOW_DAYS); renderWindow(start); });
 </script>
 </body>
 </html>
