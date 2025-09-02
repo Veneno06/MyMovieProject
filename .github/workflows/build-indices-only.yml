@@ -5,28 +5,27 @@ on:
     inputs:
       audiacc_mode:
         description: "audiAcc precompute (off | recent | all)"
-        required: true
-        default: "off"
         type: choice
         options:
           - off
           - recent
           - all
-      audiacc_days:
+        default: off
+      recent_days:
         description: "recent 모드일 때 최근 N일 (예: 120)"
+        type: number
+        default: 120
         required: false
-        default: "120"
-        type: string
-      audiacc_budget:
-        description: "이번 실행에서 audiAcc 계산에 허용할 최대 API 호출 수 (예: 600)"
+      audiacc_max:
+        description: "이번 실행에서 audiAcc 갱신에 허용할 최대 API 호출 수 (예: 600)"
+        type: number
+        default: 600
         required: false
-        default: "600"
-        type: string
-      rate_sleep_ms:
-        description: "KOFIC 호출 간 슬립(ms) — 200~400 권장"
+      delay_ms:
+        description: "KOFIC 호출 간 간격(ms) – 200~400 권장"
+        type: number
+        default: 250
         required: false
-        default: "250"
-        type: string
 
 permissions:
   contents: write
@@ -60,9 +59,9 @@ jobs:
         run: |
           python scripts/build_indices.py \
             --audiacc-mode "${{ inputs.audiacc_mode }}" \
-            --audiacc-days "${{ inputs.audiacc_days }}" \
-            --audiacc-budget "${{ inputs.audiacc_budget }}" \
-            --rate-sleep-ms "${{ inputs.rate_sleep_ms }}"
+            --audiacc-days "${{ inputs.recent_days }}" \
+            --audiacc-max  "${{ inputs.audiacc_max }}" \
+            --delay-ms     "${{ inputs.delay_ms }}"
 
       - name: Commit indexes
         env:
@@ -70,6 +69,7 @@ jobs:
         run: |
           git config user.name  "actions-user"
           git config user.email "actions@github.com"
+          # 검색 인덱스 + people/unknown.json 갱신만 커밋
           git add docs/data/search docs/data/people/unknown.json || true
           if git diff --staged --quiet; then
             echo "No index changes."
