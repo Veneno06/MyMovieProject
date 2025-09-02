@@ -7,13 +7,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <style>
     body{max-width:900px;margin:2rem auto;padding:0 1rem;}
-    .muted{color:#666}
+    header{display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem}
+    header h1{flex:1;margin:0}
+    .nav{display:flex;gap:.5rem}
     .btn{padding:.4rem .7rem;border:1px solid #bbb;border-radius:.4rem;background:#fff}
+    .muted{color:#666}
     .row{padding:.5rem 0;border-bottom:1px solid #eee}
   </style>
 </head>
 <body>
-  <h1>배우 검색</h1>
+  <header>
+    <h1>배우 검색</h1>
+    <nav class="nav">
+      <a class="btn" href="index.html">홈</a>
+      <a class="btn" href="search.html">영화 검색</a>
+      <a class="btn" href="people-search.html">배우 검색</a>
+      <a class="btn" href="saved.html">저장 목록</a>
+    </nav>
+  </header>
+
   <p>
     이름: <input id="q" placeholder="예: 이병헌" style="width:220px">
     <label><input type="checkbox" id="actorOnly" checked> 배우만</label>
@@ -24,7 +36,6 @@
 
 <script>
 const P_URL = "data/search/people.json";
-
 let PEOPLE = [];
 
 function norm(s){return (s||"").trim();}
