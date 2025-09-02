@@ -1,0 +1,68 @@
+name: Backfill People & Reindex
+
+on:
+  workflow_dispatch:
+    inputs:
+      budget:
+        description: "이번 실행에서 허용할 최대 API 호출 수 (권장: 600)"
+        required: false
+        default: "600"
+        type: string
+      rate_sleep_ms:
+        description: "KOFIC 호출 간 대기(ms) (권장: 250)"
+        required: false
+        default: "250"
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: backfill-people-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (full)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: Backfill people fields (movieInfo)
+        env:
+          KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
+        run: |
+          python scripts/backfill_people.py \
+            --budget "${{ inputs.budget }}" \
+            --rate-sleep-ms "${{ inputs.rate_sleep_ms }}"
+
+      - name: Rebuild search indexes
+        run: |
+          python scripts/build_indices.py
+
+      - name: Commit updated caches
+        env:
+          BRANCH: ${{ github.ref_name }}
+        run: |
+          git config user.name  "actions-user"
+          git config user.email "actions@github.com"
+          git add docs/data/movies docs/data/search docs/data/people/unknown.json || true
+          if git diff --staged --quiet; then
+            echo "No changes."; exit 0
+          fi
+          git commit -m "Backfill people & rebuild search indexes"
+          git fetch origin "$BRANCH"
+          git pull --rebase origin "$BRANCH" || true
+          git push origin "HEAD:$BRANCH" || git push --force-with-lease origin "HEAD:$BRANCH"
