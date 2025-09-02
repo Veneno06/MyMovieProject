@@ -1,234 +1,115 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8">
-  <title>영화 검색 – K-Movie A Archive</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="assets/style.css">
+  <meta charset="utf-8"/>
+  <title>영화 검색(기간)</title>
+  <link rel="stylesheet" href="assets/style.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <style>
-    #searchControls { display:block; }
-    .row { display:block; margin:10px 0; }
-    .row > label:first-child { font-weight:600; margin-right:8px; }
-    .row input[type="date"], .row input[type="text"] { min-width:180px; }
-    .hint { color:#777; font-size:12px; margin-left:6px; }
-    #gradeFilters, #nationFilters { display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
-    .badge { color:#2f6f2f; margin-left:6px; }
-    .muted { color:#666; }
-    .note { padding:8px 10px; background:#f6f8ff; border:1px solid #dfe4ff; border-radius:8px; margin:8px 0; }
+    body{max-width:900px;margin:2rem auto;padding:0 1rem;}
+    .muted{color:#666;font-size:0.9rem}
+    .badge{display:inline-block;padding:.2rem .45rem;border:1px solid #ccc;border-radius:.5rem;margin-left:.3rem;font-size:.85rem;color:#555}
+    .btn{padding:.4rem .7rem;border:1px solid #bbb;border-radius:.4rem;background:#fff}
+    .list a{color:#1565c0;text-decoration:none}
+    .list small{color:#777}
+    .toolbar{background:#f7f7f7;border:1px solid #e6e6e6;padding:.6rem .8rem;border-radius:.5rem;margin:.75rem 0 1rem}
   </style>
 </head>
 <body>
-<div class="container">
-  <div class="header">
-    <h1>영화 검색(기간)</h1>
-    <div class="spacer"></div>
-    <a href="index.html" class="btn">홈</a>
-    <a href="saved.html" class="btn"> 저장 목록</a>
-    <a href="people-search.html" class="btn">배우 검색</a>
+  <h1>영화 검색(기간)</h1>
+
+  <div class="toolbar">
+    <div class="muted">데이터 범위: <span id="rangeText">로딩 중…</span> (인덱스 기준)</div>
+    <div style="margin-top:.4rem">
+      시작일: <input type="date" id="from"> &nbsp;
+      종료일: <input type="date" id="to"> &nbsp;
+      등급:
+      <label><input type="checkbox" class="gr" value="전체관람가" checked> 전체관람가</label>
+      <label><input type="checkbox" class="gr" value="12세이상관람가" checked> 12세 이상 관람가</label>
+      <label><input type="checkbox" class="gr" value="15세이상관람가" checked> 15세 이상 관람가</label>
+      <label><input type="checkbox" class="gr" value="청소년관람불가"> 청소년 관람불가</label>
+      <br>
+      국가:
+      <label><input type="radio" name="nat" value="all" checked> 모두</label>
+      <label><input type="radio" name="nat" value="K"> 국내 영화</label>
+      <label><input type="radio" name="nat" value="F"> 해외 영화</label>
+      &nbsp; <button id="go" class="btn">검색</button>
+    </div>
   </div>
 
-  <div id="dataNote" class="note" style="display:none"></div>
+  <div id="out" class="list"></div>
 
-  <div id="searchControls">
-    <div class="row">
-      <label for="startDate">시작일:</label>
-      <input type="date" id="startDate" placeholder="YYYY-MM-DD">
-      <small class="hint">입력 또는 달력에서 선택</small>
-    </div>
-    <div class="row">
-      <label for="endDate">종료일:</label>
-      <input type="date" id="endDate" placeholder="YYYY-MM-DD">
-    </div>
-
-    <div id="gradeFilters" class="row">
-      <span>등급:</span>
-      <label><input type="checkbox" value="전체관람가" checked> 전체관람가</label>
-      <label><input type="checkbox" value="12세이상관람가" checked> 12세 이상 관람가</label>
-      <label><input type="checkbox" value="15세이상관람가" checked> 15세 이상 관람가</label>
-      <label><input type="checkbox" value="청소년관람불가"> 청소년 관람불가</label>
-    </div>
-
-    <div id="nationFilters" class="row">
-      <span>국가:</span>
-      <label><input type="checkbox" id="nationAll" checked> 모두</label>
-      <label><input type="checkbox" id="nationKR"> 국내 영화</label>
-      <label><input type="checkbox" id="nationFR"> 국외 영화</label>
-    </div>
-
-    <button id="searchBtn" class="btn">검색</button>
-  </div>
-
-  <div id="results" style="margin-top:16px;"></div>
-</div>
+  <p class="muted">문제가 있나요? 인덱스를 갱신해 주세요 (Actions → Build Search Indexes only).</p>
 
 <script>
-/* ===== 공통 유틸 ===== */
-const $ = s => document.querySelector(s);
-function pad(n, w=2){ return String(n).padStart(w,'0'); }
-function daysInMonth(y, m){ return new Date(y, m, 0).getDate(); } // m=1..12
-function clampDateParts(y, m, d){
-  m = Math.min(12, Math.max(1, m));
-  d = Math.min(daysInMonth(y, m), Math.max(1, d));
-  return [y, m, d];
+const MOV_URL = "data/search/movies.json";
+
+function ymd(s){ // 'YYYYMMDD' -> 'YYYY-MM-DD'
+  if(!s || s.length!==8) return "";
+  return s.slice(0,4)+"-"+s.slice(4,6)+"-"+s.slice(6,8);
 }
-function normalizeInputDate(el){
-  const digits = (el.value || '').replace(/\D/g,'').slice(0,8);
-  if (digits.length < 8) return null;
-  let y = +digits.slice(0,4);
-  let m = +digits.slice(4,6);
-  let d = +digits.slice(6,8);
-  [y,m,d] = clampDateParts(y,m,d);
-  const val = `${y}-${pad(m)}-${pad(d)}`;
-  el.value = val;
-  return val;
+function ymdRaw(s){ // 'YYYY-MM-DD' -> 'YYYYMMDD'
+  if(!s || s.length!==10) return "";
+  return s.replace(/-/g,"");
 }
-function isValidISODate(s){
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(s)) return false;
-  const [y,m,d] = s.split('-').map(n=>+n);
-  const dt = new Date(s);
-  if (isNaN(dt.getTime())) return false;
-  return dt.getFullYear()===y && (dt.getMonth()+1)===m && dt.getDate()===d;
-}
-const toYMD = s => String(s||'').replace(/\D/g,''); // ISO -> YYYYMMDD 숫자만
-
-/* ===== UI 엘리먼트 ===== */
-const sEl = $('#startDate'), eEl = $('#endDate');
-const resultDiv = $('#results');
-const note = $('#dataNote');
-
-/* ===== 인덱스 로드 ===== */
-const INDEX_URL = 'data/search/movies.json'; // docs/ 기준
-let MOVIES = [];      // {movieCd, movieNm, openYmd, grade, nationAlt?}
-let MIN_Y = null, MAX_Y = null, MAX_OPEN = null;
-
-async function loadIndex(){
-  const res = await fetch(INDEX_URL, {cache:'no-store'});
-  if (!res.ok) throw new Error('index HTTP '+res.status);
-  const j = await res.json();
-  const arr = Array.isArray(j.movies) ? j.movies : (j.movies?.items || []);
-  MOVIES = arr.map(m => ({
-    ...m,
-    openYmd: String(m.openYmd || (m.openDt||'').replace(/\D/g,'')) // 폴백
-  })).filter(m => /^\d{8}$/.test(m.openYmd));
-  if (MOVIES.length){
-    const ys = MOVIES.map(m => +m.openYmd.slice(0,4));
-    MIN_Y = Math.min(...ys); MAX_Y = Math.max(...ys);
-    // 가장 최신 개봉일
-    MAX_OPEN = MOVIES.reduce((a,b)=> a.openYmd>b.openYmd ? a : b).openYmd;
-  }
-}
-
-/* ===== 국가 필터 (클라이언트) ===== */
-const nationAll = $('#nationAll');
-const nationKR  = $('#nationKR');
-const nationFR  = $('#nationFR');
-
-function syncNation(e){
-  const id = e.target.id;
-  if (id === 'nationAll') {
-    nationAll.checked = true; nationKR.checked = false; nationFR.checked = false;
-  } else {
-    nationAll.checked = false;
-    if (nationKR.checked && nationFR.checked) {
-      nationAll.checked = true; nationKR.checked = false; nationFR.checked = false;
-    }
-    if (!nationKR.checked && !nationFR.checked) nationAll.checked = true;
-  }
-}
-[nationAll, nationKR, nationFR].forEach(cb => cb.addEventListener('change', syncNation));
-
-function passNation(m){
-  if (nationAll.checked) return true;
-  const isKR = (m.nationAlt||'').includes('한국');
-  if (nationKR.checked) return isKR;
-  if (nationFR.checked) return !isKR;
+function within(d, a, b){ // 문자열 'YYYYMMDD'
+  if(!d) return false;
+  if(a && d < a) return false;
+  if(b && d > b) return false;
   return true;
 }
 
-/* ===== 등급 선택 ===== */
-function getSelectedGrades(){
-  return Array.from(document.querySelectorAll('#gradeFilters input[type="checkbox"]:checked'))
-    .map(el=>el.value);
+async function load(){
+  const res = await fetch(MOV_URL, {cache:"no-store"});
+  const j = await res.json();
+  window.__MOV = j.movies || [];
+  const first = (j.movies||[]).find(m=>m.openDt && m.openDt.length===8);
+  const last  = [...(j.movies||[])].reverse().find(m=>m.openDt && m.openDt.length===8);
+  const rText = (first && last) ? `${ymd(first.openDt)} ~ ${ymd(last.openDt)}` : "알 수 없음";
+  document.querySelector("#rangeText").textContent = rText;
+
+  // 기본 날짜: 올해 1/1 ~ 오늘
+  const today = new Date();
+  const y = today.getFullYear(), m = (""+(today.getMonth()+1)).padStart(2,'0'), d = (""+today.getDate()).padStart(2,'0');
+  document.querySelector("#from").value = `${y}-01-01`;
+  document.querySelector("#to").value = `${y}-${m}-${d}`;
 }
 
-/* ===== 기본 날짜 자동 세팅 ===== */
-function setSmartDefaultRange(){
-  if (!MAX_OPEN){ // 인덱스가 비었을 때
-    const today = new Date();
-    const first = new Date(today.getFullYear(), today.getMonth(), 1);
-    const last  = new Date(today.getFullYear(), today.getMonth()+1, 0);
-    const fmt = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
-    sEl.value = fmt(first); eEl.value = fmt(last);
-    note.style.display='block';
-    note.textContent = '인덱스가 비어 있습니다. (먼저 Actions에서 연도/상세 캐시를 생성하세요)';
-    return;
-  }
-  // 최신 개봉일의 "그 달"로 맞추기
-  const y = +MAX_OPEN.slice(0,4), m = +MAX_OPEN.slice(4,6);
-  const first = new Date(y, m-1, 1);
-  const last  = new Date(y, m, 0);
-  const fmt = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
-  sEl.value = fmt(first); eEl.value = fmt(last);
+function run(){
+  const from = ymdRaw(document.querySelector("#from").value);
+  const to   = ymdRaw(document.querySelector("#to").value);
+  const grs = Array.from(document.querySelectorAll(".gr:checked")).map(x=>x.value);
+  const nat = (document.querySelector('input[name="nat"]:checked')||{}).value || "all";
 
-  // 상단 안내
-  note.style.display='block';
-  note.innerHTML = `데이터 범위: <strong>${MIN_Y} ~ ${MAX_Y}</strong> (인덱스 기준)`;
-}
-
-/* ===== 검색 실행 ===== */
-$('#searchBtn').addEventListener('click', doSearch);
-
-async function doSearch(){
-  resultDiv.innerHTML = '';
-
-  const sVal = normalizeInputDate(sEl) || sEl.value;
-  const eVal = normalizeInputDate(eEl) || eEl.value;
-  if (!isValidISODate(sVal) || !isValidISODate(eVal)){
-    alert('날짜는 YYYY-MM-DD 형식이어야 합니다.'); return;
-  }
-  let sYMD = toYMD(sVal), eYMD = toYMD(eVal);
-  if (eYMD < sYMD){ const tmp = sYMD; sYMD = eYMD; eYMD = tmp; }
-
-  // 필터
-  const grades = getSelectedGrades();
-  const filtered = MOVIES.filter(m => {
-    const okDate = m.openYmd >= sYMD && m.openYmd <= eYMD;
-    const okNation = passNation(m);
-    const okGrade = !grades.length || (m.grade && grades.some(g => (m.grade||'').includes(g)));
-    return okDate && okNation && okGrade;
-  }).sort((a,b)=> (b.openYmd.localeCompare(a.openYmd)));
-
-  if (!filtered.length){
-    const human = (ymd)=> `${ymd.slice(0,4)}.${ymd.slice(4,6)}.${ymd.slice(6,8)}`;
-    resultDiv.innerHTML =
-      `<div class="muted">조건에 맞는 결과가 없습니다. (데이터 범위: ${MIN_Y??'N/A'}~${MAX_Y??'N/A'} / 선택: ${human(sYMD)}~${human(eYMD)})</div>`;
-    return;
-  }
-
-  // 렌더
-  filtered.forEach(m=>{
-    const openFmt = `${m.openYmd.slice(0,4)}.${m.openYmd.slice(4,6)}.${m.openYmd.slice(6,8)}`;
-    const div = document.createElement('div');
-    div.style.marginBottom = '10px';
-    div.innerHTML =
-      `<a href="detail.html?movieCd=${m.movieCd}" style="font-size:18px;">${m.movieNm}</a>
-       <span class="muted"> (${openFmt})</span>
-       ${m.grade ? `<span class="badge">[${m.grade}]</span>` : ''}`;
-    resultDiv.appendChild(div);
+  const rows = (window.__MOV||[]).filter(m=>{
+    // 날짜
+    if(!within(m.openDt || "", from, to)) return false;
+    // 등급
+    const g = m.grade || "";
+    if(grs.length && !grs.includes(g)) return false;
+    // 국가
+    if(nat !== "all"){
+      if ((m.repNation || "") !== nat) return false;   // "K" / "F"
+    }
+    return true;
   });
+
+  const out = document.querySelector("#out");
+  if(!rows.length){
+    out.innerHTML = `<p class="muted">조건에 맞는 결과가 없습니다. (데이터 범위: ${document.querySelector("#rangeText").textContent} / 선택: ${document.querySelector("#from").value}~${document.querySelector("#to").value})</p>`;
+    return;
+  }
+
+  out.innerHTML = rows.map(m=>{
+    const dt = m.openDt ? `(${ymd(m.openDt)})` : ``;
+    const g  = m.grade ? ` <span class="badge">[${m.grade}]</span>` : "";
+    const link = `detail.html?movieCd=${encodeURIComponent(m.movieCd)}`;
+    return `<p><a href="${link}">${m.movieNm}</a> ${dt}${g}</p>`;
+  }).join("");
 }
 
-/* ===== 시작 ===== */
-(async () => {
-  try{
-    await loadIndex();
-  }catch(e){
-    console.error(e);
-    note.style.display='block';
-    note.textContent = '인덱스 로드 실패 (movies.json 확인)';
-  }
-  setSmartDefaultRange();
-})();
+document.querySelector("#go").addEventListener("click", run);
+load().then(run);
 </script>
 </body>
 </html>
