@@ -6,26 +6,27 @@ on:
       audiacc_mode:
         description: "audiAcc precompute (off | recent | all)"
         type: choice
+        required: true
+        default: "off"
         options:
-          - off
-          - recent
-          - all
-        default: off
-      recent_days:
+          - "off"
+          - "recent"
+          - "all"
+      audiacc_days:
         description: "recent 모드일 때 최근 N일 (예: 120)"
-        type: number
-        default: 120
+        type: string
         required: false
-      audiacc_max:
-        description: "이번 실행에서 audiAcc 갱신에 허용할 최대 API 호출 수 (예: 600)"
-        type: number
-        default: 600
+        default: "120"
+      audiacc_budget:
+        description: "이번 실행에서 audiAcc 계산에 허용할 최대 API 호출 수 (예: 600)"
+        type: string
         required: false
-      delay_ms:
-        description: "KOFIC 호출 간 간격(ms) – 200~400 권장"
-        type: number
-        default: 250
+        default: "600"
+      rate_sleep_ms:
+        description: "KOFIC 요청 간 간격(ms) — 200~400 권장"
+        type: string
         required: false
+        default: "250"
 
 permissions:
   contents: write
@@ -46,7 +47,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
       - name: Install deps
         run: |
@@ -59,17 +60,17 @@ jobs:
         run: |
           python scripts/build_indices.py \
             --audiacc-mode "${{ inputs.audiacc_mode }}" \
-            --audiacc-days "${{ inputs.recent_days }}" \
-            --audiacc-max  "${{ inputs.audiacc_max }}" \
-            --delay-ms     "${{ inputs.delay_ms }}"
+            --audiacc-days "${{ inputs.audiacc_days }}" \
+            --audiacc-budget "${{ inputs.audiacc_budget }}" \
+            --rate-sleep-ms "${{ inputs.rate_sleep_ms }}"
 
       - name: Commit indexes
         env:
           BRANCH: ${{ github.ref_name }}
         run: |
+          set -eux
           git config user.name  "actions-user"
           git config user.email "actions@github.com"
-          # 검색 인덱스 + people/unknown.json 갱신만 커밋
           git add docs/data/search docs/data/people/unknown.json || true
           if git diff --staged --quiet; then
             echo "No index changes."
