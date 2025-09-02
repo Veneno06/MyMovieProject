@@ -2,274 +2,201 @@
 # -*- coding: utf-8 -*-
 
 """
-build_indices.py
-- docs/data/movies/YYYY/*.json 을 읽어 검색 인덱스 생성 (docs/data/search/{movies,people}.json)
-- 선택적으로 audiAcc(누적 관객수)를 선계산:
-  * off   : 계산 안 함 (API 0회, 가장 빠름)
-  * recent: 최근 N일 내 개봉작만 주간박스오피스 API로 최대 6~8회 탐색해 대략의 누적을 추정
-  * all   : 모든 타이틀에 대해 동일 계산 (권장 X)
-- 과도한 API 호출을 막기 위해 --audiacc-budget 으로 한 실행에서 허용할 최대 호출 수를 제한
+Rebuild search indexes from local detail caches (no API calls).
+
+Outputs:
+  - docs/data/search/movies.json
+  - docs/data/search/people.json
 """
 
-import os, sys, json, re, time, math, glob
-from datetime import datetime, timedelta
-from collections import defaultdict
-import argparse
-import requests
+import os, json, re, time, sys
+from pathlib import Path
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DOCS = os.path.join(ROOT, "docs")
-DATA = os.path.join(DOCS, "data")
-MOVIES_DIR = os.path.join(DATA, "movies")
-SEARCH_DIR = os.path.join(DATA, "search")
-PEOPLE_DIR = os.path.join(DATA, "people")
+ROOT = Path(__file__).resolve().parents[1] / "docs" / "data"
+DETAIL_DIR = ROOT / "movies"
+SEARCH_DIR = ROOT / "search"
+SEARCH_DIR.mkdir(parents=True, exist_ok=True)
 
-KOFIC_KEY = os.environ.get("KOFIC_API_KEY", "").strip()
-
-# --------- 공통 유틸 ---------
-def ymd_to_date(ymd: str):
-    if not ymd:
-        return None
-    s = re.sub(r"[^0-9]", "", str(ymd))
-    if len(s) != 8:
-        return None
+def read_json(path: Path):
     try:
-        return datetime(int(s[:4]), int(s[4:6]), int(s[6:8]))
-    except:
-        return None
-
-def ensure_dir(p):
-    if not os.path.isdir(p):
-        os.makedirs(p, exist_ok=True)
-
-def read_json(path):
-    try:
-        with open(path, "r", encoding="utf-8") as f:
+        with path.open("r", encoding="utf-8") as f:
             return json.load(f)
-    except:
+    except Exception as e:
+        # print(f"[warn] JSON read fail: {path} ({e})", file=sys.stderr)
         return None
 
-def write_json(path, obj):
-    ensure_dir(os.path.dirname(path))
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(obj, f, ensure_ascii=False, indent=2)
+def ymd8(s: str) -> str | None:
+    if not s:
+        return None
+    raw = re.sub(r"[^0-9]", "", str(s))
+    return raw if len(raw) == 8 else None
 
-def list_movie_detail_files():
-    years = []
-    for d in sorted(glob.glob(os.path.join(MOVIES_DIR, "*"))):
-        if os.path.isdir(d) and os.path.basename(d).isdigit():
-            years.append(os.path.basename(d))
-    files = []
-    for y in years:
-        files += sorted(glob.glob(os.path.join(MOVIES_DIR, y, "*.json")))
-    return files
+def to_grade(obj) -> str:
+    # audits: [{watchGradeNm: "12세이상관람가"}]
+    audits = obj.get("audits") or []
+    if isinstance(audits, list) and audits:
+        g = audits[0].get("watchGradeNm", "")
+        return g or ""
+    # 혹시 기존 캐시에 바로 grade 필드가 있다면
+    return obj.get("grade", "") or ""
 
-# --------- audiAcc 계산(선택) ---------
-class AudiAccEstimator:
+def to_rep_nation(obj) -> str:
+    # nations: [{nationNm:"한국"}, ...]
+    nations = obj.get("nations") or []
+    label = ""
+    if isinstance(nations, list) and nations:
+        nm = (nations[0].get("nationNm") or "").strip()
+        label = "K" if ("한국" in nm or nm == "대한민국" or nm.lower() in ("korea","south korea")) else "F"
+    # 캐시에 repNation 이미 있으면 우선
+    return (obj.get("repNation") or label or "").strip()
+
+def to_genres(obj) -> list[str]:
+    gs = obj.get("genres") or []
+    out = []
+    if isinstance(gs, list):
+        for g in gs:
+            if isinstance(g, dict):
+                name = g.get("genreNm") or g.get("name") or ""
+            else:
+                name = str(g)
+            name = name.strip()
+            if name:
+                out.append(name)
+    return out
+
+def extract_movie_row(obj: dict, fallback_code: str) -> dict | None:
     """
-    최근작만 대략 누적관객을 얻기 위해 KOFIC 주간 박스오피스 API를
-    (openDt + 3일)부터 최대 8주치 조회하며 같은 movieCd가 보이면 audiAcc를 기록.
-    - 호출 사이에 작은 sleep으로 속도 제한
-    - HTTP 에러/쿼터 핸들링(간단 백오프)
-    - 예산(budget) 소진 시 즉시 종료
+    필수: movieCd, openDt(YYYYMMDD).
+    openDt가 없거나 포맷이 틀리면 None 반환(=스킵).
     """
-    BASE = "https://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json"
+    movie_cd = (obj.get("movieCd") or fallback_code or "").strip()
+    open_dt = ymd8(obj.get("openDt") or obj.get("openDtStr") or "")
+    if not movie_cd or not open_dt:
+        return None
 
-    def __init__(self, mode: str, days: int, budget: int, rate_sleep_ms: int):
-        self.mode = mode   # 'off'|'recent'|'all'
-        self.days = int(days)
-        self.budget = int(budget)
-        self.rate_sleep = max(0, int(rate_sleep_ms)) / 1000.0
-        self.session = requests.Session()
+    row = {
+        "movieCd": movie_cd,
+        "movieNm": (obj.get("movieNm") or "").strip(),
+        "openDt": open_dt,
+        "prdtYear": str(obj.get("prdtYear") or "").strip(),
+        "repNation": to_rep_nation(obj),
+        "grade": to_grade(obj),
+        "genres": to_genres(obj),
+        # 인덱스에서는 audiAcc는 선택: 상세 페이지에서 별도로 표기 가능
+        "audiAcc": obj.get("audiAcc", None)
+    }
+    return row
 
-    def should_try(self, open_dt_str: str) -> bool:
-        if self.mode == "off":
-            return False
-        if self.mode == "all":
-            return True
-        # recent
-        d = ymd_to_date(open_dt_str)
-        if not d:
-            return False
-        return (datetime.utcnow() - d).days <= self.days
+def build_movies_index() -> list[dict]:
+    total_files = 0
+    kept = 0
+    skipped = 0
+    out = []
 
-    def fetch_week(self, target_dt: str):
-        if self.budget <= 0:
-            return None, "budget_exhausted"
-        params = {
-            "key": KOFIC_KEY,
-            "targetDt": target_dt,
-            "weekGb": "0"
-        }
-        url = self.BASE
-        tries = 0
-        while True:
-            tries += 1
-            if self.rate_sleep > 0:
-                time.sleep(self.rate_sleep)
-            try:
-                self.budget -= 1
-                resp = self.session.get(url, params=params, timeout=15)
-                if resp.status_code == 200:
-                    return resp.json(), None
-                # 429/5xx → 간단 백오프
-                if resp.status_code >= 500 or resp.status_code == 429:
-                    time.sleep(min(30, 2 ** min(tries, 6)))
-                    continue
-                return None, f"http_{resp.status_code}"
-            except requests.RequestException as e:
-                # 네트워크 오류 → 백오프 재시도
-                time.sleep(min(30, 2 ** min(tries, 6)))
-                if tries >= 5:
-                    return None, "network_error"
+    if not DETAIL_DIR.exists():
+        print(f"[error] detail dir not found: {DETAIL_DIR}", file=sys.stderr)
+        return out
 
-    def estimate(self, movie_cd: str, open_dt: str) -> int | None:
-        if not self.should_try(open_dt) or not KOFIC_KEY:
-            return None
-        d = ymd_to_date(open_dt)
-        if not d:
-            return None
-        # 기준일: 개봉일 + 3일 (ECMA 주간 커트오프 보정)
-        base = d + timedelta(days=3)
-        max_weeks = 8
-        best = None
-        for w in range(max_weeks):
-            target = base + timedelta(days=7 * w)
-            js, err = self.fetch_week(target.strftime("%Y%m%d"))
-            if err == "budget_exhausted":
-                # 전체 실행 시간을 막기 위해 즉시 포기
-                return None
-            if not js:
-                continue
-            lst = (js.get("boxOfficeResult") or {}).get("weeklyBoxOfficeList") or []
-            for row in lst:
-                if row.get("movieCd") == movie_cd:
-                    acc_str = row.get("audiAcc")
-                    try:
-                        acc = int(str(acc_str).replace(",", ""))
-                        best = acc if best is None else max(best, acc)
-                    except:
-                        pass
-            # 누적이 한번이라도 잡히면 다음 1~2주만 더 확인하고 종료(짧게)
-            if best is not None and w >= 2:
-                break
-        return best
-
-# --------- 인덱스 빌드 ---------
-def build_indices(audiacc_mode="off", audiacc_days=540, audiacc_budget=800, rate_sleep_ms=250):
-    ensure_dir(SEARCH_DIR)
-    ensure_dir(PEOPLE_DIR)
-
-    estimator = AudiAccEstimator(
-        mode=audiacc_mode,
-        days=int(audiacc_days),
-        budget=int(audiacc_budget),
-        rate_sleep_ms=int(rate_sleep_ms),
-    )
-
-    movies_out = []
-    people_map = defaultdict(lambda: {"peopleCd":"", "peopleNm":"", "repRoleNm":"", "films":[]})
-
-    detail_files = list_movie_detail_files()
-    now = int(time.time())
-
-    print(f"[index] scanning {len(detail_files)} detail files ...")
-    for i, path in enumerate(detail_files, 1):
-        js = read_json(path)
-        if not js:
+    for ydir in sorted(DETAIL_DIR.iterdir()):
+        if not ydir.is_dir():
             continue
-        # detail.json 구조 가정
-        movie_cd = js.get("movieCd") or ""
-        movie_nm = js.get("movieNm") or ""
-        open_dt = js.get("openDt") or ""
-        prdt_year = js.get("prdtYear") or ""
-        rep_nation = js.get("repNationNm") or ""
-        grade = js.get("audits", [{}])[0].get("watchGradeNm", "")
-        # 장르
-        genres = [g.get("genreNm") for g in (js.get("genres") or []) if g.get("genreNm")]
-
-        # audiAcc (선택)
-        audi_acc = None
-        if estimator.mode != "off":
-            audi_acc = estimator.estimate(movie_cd, open_dt)
-
-        movies_out.append({
-            "movieCd": movie_cd,
-            "movieNm": movie_nm,
-            "openDt": open_dt,
-            "prdtYear": prdt_year,
-            "repNation": rep_nation,
-            "grade": grade or "",
-            "genres": genres,
-            "audiAcc": audi_acc if isinstance(audi_acc, int) else None,
-        })
-
-        # 인물 인덱스
-        for a in js.get("actors") or []:
-            nm = a.get("peopleNm") or ""
-            if not nm:
+        if not ydir.name.isdigit():  # 2016, 2023, 2024, 2025 ...
+            continue
+        for f in sorted(ydir.glob("*.json")):
+            if f.name == ".gitkeep":
                 continue
-            key = a.get("peopleCd") or ("NM:" + nm)  # peopleCd 없으면 이름키
-            entry = people_map[key]
-            if not entry["peopleNm"]:
-                entry["peopleNm"] = nm
-                entry["peopleCd"] = a.get("peopleCd","")
-                entry["repRoleNm"] = "배우"
-            # 대표작 리스트에 추가(간단히)
-            if len(entry["films"]) < 6:
-                entry["films"].append({
-                    "movieCd": movie_cd,
-                    "movieNm": movie_nm,
-                    "openDt": open_dt,
-                    "part": a.get("cast","") or a.get("castNm","") or ""
-                })
+            total_files += 1
+            data = read_json(f)
+            if not data:
+                skipped += 1
+                continue
+            row = extract_movie_row(data, fallback_code=f.stem)
+            if row is None:
+                skipped += 1
+                continue
+            out.append(row)
+            kept += 1
 
-        if i % 500 == 0:
-            print(f"[index] {i}/{len(detail_files)} ... budget_left={estimator.budget}")
+    out.sort(key=lambda r: (r["openDt"], r.get("movieNm",""), r["movieCd"]))
+    print(f"[index] scanned files: {total_files}, kept: {kept}, skipped: {skipped}")
+    return out
 
-        # 예산이 다 떨어졌다면 이후는 audiAcc 없이 진행
-        if estimator.budget <= 0 and estimator.mode != "off":
-            print("[index] audiAcc budget exhausted → rest will be written with null")
-            estimator.mode = "off"
+def build_people_index(detail_files: list[Path]) -> list[dict]:
+    """
+    간단한 배우 인덱스: 이름 기준으로 필모 목록 구축.
+    사람이 5~6천명 수준이면 충분히 가볍습니다.
+    """
+    people_map: dict[str, dict] = {}
 
-    # 정렬(개봉일, 없으면 뒤로)
-    def sort_key(m):
-        d = ymd_to_date(m.get("openDt",""))
-        return (datetime.min if not d else d)
-    movies_out.sort(key=sort_key)
+    for f in detail_files:
+        data = read_json(f)
+        if not data: 
+            continue
+        movie_cd = (data.get("movieCd") or f.stem or "").strip()
+        movie_nm = (data.get("movieNm") or "").strip()
+        open_dt = ymd8(data.get("openDt") or "")
 
-    movies_json = {
-        "generatedAt": now,
-        "count": len(movies_out),
-        "movies": movies_out,
-    }
-    people_list = list(people_map.values())
-    people_json = {
-        "generatedAt": now,
-        "count": len(people_list),
-        "people": people_list,
-    }
+        # 배우 목록
+        actors = data.get("actors") or []
+        for a in actors:
+            name = (a.get("peopleNm") or "").strip()
+            if not name:
+                continue
+            entry = people_map.setdefault(name, {
+                "peopleCd": "",          # KOFIC peopleCd가 없는 케이스도 있어 빈값 허용
+                "peopleNm": name,
+                "repRoleNm": "배우",
+                "films": []
+            })
+            entry["films"].append({
+                "movieCd": movie_cd,
+                "movieNm": movie_nm,
+                "openDt": open_dt or ""
+            })
 
-    write_json(os.path.join(SEARCH_DIR, "movies.json"), movies_json)
-    write_json(os.path.join(SEARCH_DIR, "people.json"), people_json)
-    print(f"[index] done → movies: {len(movies_out)} / people: {len(people_list)}")
+    # 보기 좋게 정렬 및 필모  최신일자 우선
+    out = []
+    for name, info in people_map.items():
+        films = info["films"]
+        films = [f for f in films if ymd8(f.get("openDt"))] + [f for f in films if not ymd8(f.get("openDt"))]
+        films.sort(key=lambda x: (x.get("openDt") or "", x.get("movieNm") or ""), reverse=True)
+        info["films"] = films
+        info["filmNames"] = ", ".join([f.get("movieNm") or "" for f in films[:10]])
+        out.append(info)
+
+    out.sort(key=lambda x: x["peopleNm"])
+    return out
 
 def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--audiacc-mode", default="off", choices=["off","recent","all"])
-    ap.add_argument("--audiacc-days", default=540, type=int)
-    ap.add_argument("--audiacc-budget", default=800, type=int,
-                    help="이번 실행에서 audiAcc 계산에 허용할 최대 API 호출 수(초과 시 중단)")
-    ap.add_argument("--rate-sleep-ms", default=250, type=int,
-                    help="KOFIC 호출 간 슬립(ms) — 과한 호출로 인한 슬로틀링을 완화")
-    args = ap.parse_args()
-
-    build_indices(
-        audiacc_mode=args.audiacc_mode,
-        audiacc_days=args.audiacc_days,
-        audiacc_budget=args.audiacc_budget,
-        rate_sleep_ms=args.rate_sleep_ms,
+    # 영화 인덱스
+    movies = build_movies_index()
+    movies_doc = {
+        "generatedAt": int(time.time()),
+        "count": len(movies),
+        "movies": movies
+    }
+    (SEARCH_DIR / "movies.json").write_text(
+        json.dumps(movies_doc, ensure_ascii=False, indent=2),
+        encoding="utf-8"
     )
+    print(f"[write] {SEARCH_DIR / 'movies.json'}  ({len(movies)} rows)")
+
+    # people 인덱스도 함께(선택)
+    detail_files = []
+    for ydir in sorted(DETAIL_DIR.iterdir()):
+        if ydir.is_dir() and ydir.name.isdigit():
+            detail_files += sorted(ydir.glob("*.json"))
+    people = build_people_index(detail_files)
+    people_doc = {
+        "generatedAt": int(time.time()),
+        "count": len(people),
+        "people": people
+    }
+    (SEARCH_DIR / "people.json").write_text(
+        json.dumps(people_doc, ensure_ascii=False, indent=2),
+        encoding="utf-8"
+    )
+    print(f"[write] {SEARCH_DIR / 'people.json'}  ({len(people)} rows)")
 
 if __name__ == "__main__":
     main()
