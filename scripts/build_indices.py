@@ -2,161 +2,163 @@
 # -*- coding: utf-8 -*-
 
 """
-Rebuild search indexes from local detail caches (no API calls).
+Rebuild search indexes from local detail caches (NO API calls).
 
 Outputs:
   - docs/data/search/movies.json
   - docs/data/search/people.json
 """
 
-import os, json, re, time, sys
+from __future__ import annotations
+import os, re, sys, json, time
 from pathlib import Path
+from typing import Any
 
-ROOT = Path(__file__).resolve().parents[1] / "docs" / "data"
-DETAIL_DIR = ROOT / "movies"
-SEARCH_DIR = ROOT / "search"
+# ---------- Paths ----------
+REPO_ROOT = Path(__file__).resolve().parents[1]
+DATA_DIR  = REPO_ROOT / "docs" / "data"
+DETAIL_DIR = DATA_DIR / "movies"            # detail caches live here
+SEARCH_DIR = DATA_DIR / "search"
 SEARCH_DIR.mkdir(parents=True, exist_ok=True)
 
-def read_json(path: Path):
+# ---------- IO helpers ----------
+def read_json(p: Path) -> Any | None:
     try:
-        with path.open("r", encoding="utf-8") as f:
+        with p.open("r", encoding="utf-8") as f:
             return json.load(f)
     except Exception as e:
-        # print(f"[warn] JSON read fail: {path} ({e})", file=sys.stderr)
+        print(f"[warn] read fail: {p} ({e})", file=sys.stderr)
         return None
 
-def ymd8(s: str) -> str | None:
+def write_json(p: Path, obj: Any):
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(json.dumps(obj, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"[write] {p} ({len(obj.get('movies', obj.get('people', [])))} rows)")
+
+# ---------- normalize ----------
+def ymd8(s: str | None) -> str | None:
     if not s:
         return None
     raw = re.sub(r"[^0-9]", "", str(s))
     return raw if len(raw) == 8 else None
 
-def to_grade(obj) -> str:
-    # audits: [{watchGradeNm: "12세이상관람가"}]
+def primary_grade(obj: dict) -> str:
     audits = obj.get("audits") or []
     if isinstance(audits, list) and audits:
-        g = audits[0].get("watchGradeNm", "")
-        return g or ""
-    # 혹시 기존 캐시에 바로 grade 필드가 있다면
-    return obj.get("grade", "") or ""
+        g = (audits[0].get("watchGradeNm") or "").strip()
+        if g:
+            return g
+    return (obj.get("grade") or "").strip()
 
-def to_rep_nation(obj) -> str:
-    # nations: [{nationNm:"한국"}, ...]
+def primary_rep_nation(obj: dict) -> str:
     nations = obj.get("nations") or []
-    label = ""
     if isinstance(nations, list) and nations:
-        nm = (nations[0].get("nationNm") or "").strip()
-        label = "K" if ("한국" in nm or nm == "대한민국" or nm.lower() in ("korea","south korea")) else "F"
-    # 캐시에 repNation 이미 있으면 우선
-    return (obj.get("repNation") or label or "").strip()
+        nm = (nations[0].get("nationNm") or "").strip().lower()
+        if nm in ("대한민국", "한국", "korea", "south korea"):
+            return "K"
+    return (obj.get("repNation") or "").strip()
 
-def to_genres(obj) -> list[str]:
+def primary_genres(obj: dict) -> list[str]:
     gs = obj.get("genres") or []
-    out = []
+    out: list[str] = []
     if isinstance(gs, list):
         for g in gs:
-            if isinstance(g, dict):
-                name = g.get("genreNm") or g.get("name") or ""
-            else:
-                name = str(g)
-            name = name.strip()
+            name = (g.get("genreNm") if isinstance(g, dict) else str(g)).strip()
             if name:
                 out.append(name)
     return out
 
-def extract_movie_row(obj: dict, fallback_code: str) -> dict | None:
-    """
-    필수: movieCd, openDt(YYYYMMDD).
-    openDt가 없거나 포맷이 틀리면 None 반환(=스킵).
-    """
+# ---------- extractors ----------
+def coerce_movie_obj(data: dict) -> dict:
+    """Support both flattened and KOFIC-nested shapes."""
+    # KOFIC original: {"movieInfoResult":{"movieInfo": {...}}}
+    if "movieInfoResult" in data:
+        mir = data.get("movieInfoResult") or {}
+        mi  = mir.get("movieInfo") or {}
+        if isinstance(mi, dict) and mi:
+            return mi
+    return data
+
+def extract_movie_row(data: dict, fallback_code: str) -> dict | None:
+    obj = coerce_movie_obj(data)
+
     movie_cd = (obj.get("movieCd") or fallback_code or "").strip()
-    open_dt = ymd8(obj.get("openDt") or obj.get("openDtStr") or "")
+    open_dt  = ymd8(obj.get("openDt") or obj.get("openDtStr"))
     if not movie_cd or not open_dt:
         return None
 
-    row = {
+    return {
         "movieCd": movie_cd,
         "movieNm": (obj.get("movieNm") or "").strip(),
-        "openDt": open_dt,
+        "openDt":  open_dt,
         "prdtYear": str(obj.get("prdtYear") or "").strip(),
-        "repNation": to_rep_nation(obj),
-        "grade": to_grade(obj),
-        "genres": to_genres(obj),
-        # 인덱스에서는 audiAcc는 선택: 상세 페이지에서 별도로 표기 가능
-        "audiAcc": obj.get("audiAcc", None)
+        "repNation": primary_rep_nation(obj),
+        "grade":     primary_grade(obj),
+        "genres":    primary_genres(obj),
+        # keep if present; not required
+        "audiAcc": obj.get("audiAcc", None),
     }
-    return row
+
+# ---------- builders ----------
+def iter_detail_files() -> list[Path]:
+    if not DETAIL_DIR.exists():
+        print(f"[error] not found: {DETAIL_DIR}", file=sys.stderr)
+        return []
+    # robust: recurse all *.json under movies/
+    files = [p for p in DETAIL_DIR.rglob("*.json") if p.name != ".gitkeep"]
+    files.sort()
+    return files
 
 def build_movies_index() -> list[dict]:
-    total_files = 0
-    kept = 0
-    skipped = 0
-    out = []
+    files = iter_detail_files()
+    total = len(files)
+    kept = skipped = 0
+    out: list[dict] = []
 
-    if not DETAIL_DIR.exists():
-        print(f"[error] detail dir not found: {DETAIL_DIR}", file=sys.stderr)
-        return out
-
-    for ydir in sorted(DETAIL_DIR.iterdir()):
-        if not ydir.is_dir():
+    for p in files:
+        data = read_json(p)
+        if not data:
+            skipped += 1
             continue
-        if not ydir.name.isdigit():  # 2016, 2023, 2024, 2025 ...
+        row = extract_movie_row(data, fallback_code=p.stem)
+        if row is None:
+            skipped += 1
             continue
-        for f in sorted(ydir.glob("*.json")):
-            if f.name == ".gitkeep":
-                continue
-            total_files += 1
-            data = read_json(f)
-            if not data:
-                skipped += 1
-                continue
-            row = extract_movie_row(data, fallback_code=f.stem)
-            if row is None:
-                skipped += 1
-                continue
-            out.append(row)
-            kept += 1
+        out.append(row); kept += 1
 
     out.sort(key=lambda r: (r["openDt"], r.get("movieNm",""), r["movieCd"]))
-    print(f"[index] scanned files: {total_files}, kept: {kept}, skipped: {skipped}")
+    print(f"[index] detail files: {total}, kept: {kept}, skipped: {skipped}")
     return out
 
 def build_people_index(detail_files: list[Path]) -> list[dict]:
-    """
-    간단한 배우 인덱스: 이름 기준으로 필모 목록 구축.
-    사람이 5~6천명 수준이면 충분히 가볍습니다.
-    """
-    people_map: dict[str, dict] = {}
-
-    for f in detail_files:
-        data = read_json(f)
+    people: dict[str, dict] = {}
+    for p in detail_files:
+        data = read_json(p)
         if not data: 
             continue
-        movie_cd = (data.get("movieCd") or f.stem or "").strip()
-        movie_nm = (data.get("movieNm") or "").strip()
-        open_dt = ymd8(data.get("openDt") or "")
+        obj = coerce_movie_obj(data)
+        movie_cd = (obj.get("movieCd") or p.stem).strip()
+        movie_nm = (obj.get("movieNm") or "").strip()
+        open_dt  = ymd8(obj.get("openDt"))
 
-        # 배우 목록
-        actors = data.get("actors") or []
-        for a in actors:
+        for a in (obj.get("actors") or []):
             name = (a.get("peopleNm") or "").strip()
             if not name:
                 continue
-            entry = people_map.setdefault(name, {
-                "peopleCd": "",          # KOFIC peopleCd가 없는 케이스도 있어 빈값 허용
+            rec = people.setdefault(name, {
+                "peopleCd": (a.get("peopleCd") or "").strip(),
                 "peopleNm": name,
                 "repRoleNm": "배우",
                 "films": []
             })
-            entry["films"].append({
+            rec["films"].append({
                 "movieCd": movie_cd,
                 "movieNm": movie_nm,
-                "openDt": open_dt or ""
+                "openDt":  open_dt or ""
             })
 
-    # 보기 좋게 정렬 및 필모  최신일자 우선
     out = []
-    for name, info in people_map.items():
+    for name, info in people.items():
         films = info["films"]
         films = [f for f in films if ymd8(f.get("openDt"))] + [f for f in films if not ymd8(f.get("openDt"))]
         films.sort(key=lambda x: (x.get("openDt") or "", x.get("movieNm") or ""), reverse=True)
@@ -167,36 +169,23 @@ def build_people_index(detail_files: list[Path]) -> list[dict]:
     out.sort(key=lambda x: x["peopleNm"])
     return out
 
+# ---------- main ----------
 def main():
-    # 영화 인덱스
+    detail_files = iter_detail_files()
+
     movies = build_movies_index()
-    movies_doc = {
+    write_json(SEARCH_DIR / "movies.json", {
         "generatedAt": int(time.time()),
         "count": len(movies),
-        "movies": movies
-    }
-    (SEARCH_DIR / "movies.json").write_text(
-        json.dumps(movies_doc, ensure_ascii=False, indent=2),
-        encoding="utf-8"
-    )
-    print(f"[write] {SEARCH_DIR / 'movies.json'}  ({len(movies)} rows)")
+        "movies": movies,
+    })
 
-    # people 인덱스도 함께(선택)
-    detail_files = []
-    for ydir in sorted(DETAIL_DIR.iterdir()):
-        if ydir.is_dir() and ydir.name.isdigit():
-            detail_files += sorted(ydir.glob("*.json"))
     people = build_people_index(detail_files)
-    people_doc = {
+    write_json(SEARCH_DIR / "people.json", {
         "generatedAt": int(time.time()),
         "count": len(people),
-        "people": people
-    }
-    (SEARCH_DIR / "people.json").write_text(
-        json.dumps(people_doc, ensure_ascii=False, indent=2),
-        encoding="utf-8"
-    )
-    print(f"[write] {SEARCH_DIR / 'people.json'}  ({len(people)} rows)")
+        "people": people,
+    })
 
 if __name__ == "__main__":
     main()
