@@ -1,76 +1,86 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8"/>
-  <title>배우 검색</title>
-  <link rel="stylesheet" href="assets/style.css"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <style>
-    body{max-width:900px;margin:2rem auto;padding:0 1rem;}
-    header{display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem}
-    header h1{flex:1;margin:0}
-    .nav{display:flex;gap:.5rem}
-    .btn{padding:.4rem .7rem;border:1px solid #bbb;border-radius:.4rem;background:#fff}
-    .muted{color:#666}
-    .row{padding:.5rem 0;border-bottom:1px solid #eee}
-  </style>
+<meta charset="utf-8">
+<title>배우 검색</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple SD Gothic Neo, Noto Sans KR, 'Malgun Gothic', sans-serif; line-height:1.6; }
+.wrap { max-width:980px; margin:24px auto; padding:0 12px; }
+h1 { font-size:28px; margin:0 0 16px; }
+.ctrls { display:flex; gap:8px; margin-bottom:12px; }
+.ctrls a { padding:6px 10px; border:1px solid #e5e7eb; border-radius:8px; background:#fff; text-decoration:none; color:#111827; }
+.note { color:#6b7280; }
+ul.list { list-style:none; padding:0; margin:12px 0; }
+li { padding:6px 0; border-bottom:1px dashed #e5e7eb; }
+label { margin-right:8px; }
+</style>
 </head>
 <body>
-  <header>
-    <h1>배우 검색</h1>
-    <nav class="nav">
-      <a class="btn" href="index.html">홈</a>
-      <a class="btn" href="search.html">영화 검색</a>
-      <a class="btn" href="people-search.html">배우 검색</a>
-      <a class="btn" href="saved.html">저장 목록</a>
-    </nav>
-  </header>
+<div class="wrap">
+  <div class="ctrls">
+    <a href="index.html">홈</a>
+    <a href="search.html">영화 검색</a>
+    <a href="people-search.html">배우 검색</a>
+    <a href="saved.html">저장 목록</a>
+  </div>
 
-  <p>
-    이름: <input id="q" placeholder="예: 이병헌" style="width:220px">
-    <label><input type="checkbox" id="actorOnly" checked> 배우만</label>
-    <button id="go" class="btn">검색</button>
-  </p>
+  <h1>배우 검색</h1>
 
-  <div id="out"></div>
+  <form id="f" class="box">
+    이름: <input type="text" name="q" value="">
+    <label><input type="checkbox" name="actorOnly" checked> 배우만</label>
+    <button type="submit">검색</button>
+  </form>
+
+  <div id="total" class="note"></div>
+  <ul id="out" class="list"></ul>
+</div>
 
 <script>
-const P_URL = "data/search/people.json";
+const BASE = location.pathname.replace(/\/[^\/]*$/, '');
+const PEOPLE_URL = `${BASE}/data/search/people.json?v=${Date.now()}`;
+
 let PEOPLE = [];
 
-function norm(s){return (s||"").trim();}
-
-async function load(){
-  const res = await fetch(P_URL, {cache:"no-store"});
-  const j = await res.json();
+async function loadIndex(){
+  const r = await fetch(PEOPLE_URL);
+  if(!r.ok){ PEOPLE = []; return; }
+  const j = await r.json();
   PEOPLE = j.people || [];
 }
 
-function run(){
-  const q = norm(document.querySelector("#q").value);
-  const actorOnly = document.querySelector("#actorOnly").checked;
+function search(){
+  const f = new FormData(document.getElementById('f'));
+  const q = (f.get('q')||'').trim();
+  const actorOnly = f.get('actorOnly') !== null;
 
-  let rows = PEOPLE;
-  if(q) rows = rows.filter(p=> p.peopleNm && p.peopleNm.includes(q));
-  if(actorOnly) rows = rows.filter(p=> (p.repRoleNm||"").includes("배우"));
+  let list = PEOPLE;
+  if (actorOnly) list = list.filter(p => (p.repRoleNm||'') === '배우');
+  if (q) list = list.filter(p => (p.peopleNm||'').includes(q));
 
-  const out = document.querySelector("#out");
-  if(!rows.length){ out.innerHTML = `<p class="muted">총 0명 검색됨 (캐시)</p>`; return; }
+  list = list.slice(0, 200);
 
-  out.innerHTML = `<p class="muted">총 ${rows.length}명 검색됨 (캐시)</p>` +
-    rows.slice(0,200).map(p=>{
-      const code = p.peopleCd || "";
-      const link = code ? `person.html?peopleCd=${encodeURIComponent(code)}` 
-                        : `person.html?peopleNm=${encodeURIComponent(p.peopleNm)}`;
-      return `<div class="row">
-        <a href="${link}"><strong>${p.peopleNm}</strong></a>
-        <span class="muted">(${p.repRoleNm||'역할미상'})</span>
-      </div>`;
-    }).join("");
+  document.getElementById('total').textContent = `총 ${list.length}명 검색됨 (캐시)`;
+  const ul = document.getElementById('out');
+  ul.innerHTML = '';
+  for (const p of list) {
+    // peopleCd 없으면 이름 기반 링크로 폴백
+    const href = p.peopleCd
+      ? `person.html?peopleCd=${encodeURIComponent(p.peopleCd)}`
+      : `person.html?peopleNm=${encodeURIComponent(p.peopleNm)}`;
+    const li = document.createElement('li');
+    li.innerHTML = `<a href="${href}">${p.peopleNm}</a> <span class="note">${p.repRoleNm||''}</span>`;
+    ul.appendChild(li);
+  }
 }
 
-document.querySelector("#go").addEventListener("click", run);
-load().then(run);
+(async function main(){
+  await loadIndex();
+  const f = document.getElementById('f');
+  f.addEventListener('submit', (e)=>{ e.preventDefault(); search(); });
+  search();
+})();
 </script>
 </body>
 </html>
