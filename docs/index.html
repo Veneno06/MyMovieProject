@@ -21,6 +21,7 @@
     .row { padding:8px 0; border-bottom:1px solid #eee; }
     .row a { font-weight:600; }
     .muted { color:#666; font-size:13px; }
+    .day-btn.selected { background-color: #ddeeff; border-color: #aaccff; font-weight: bold; }
   </style>
 </head>
 <body>
@@ -118,7 +119,18 @@ function renderMonth(){
     btn.className = 'tl-day day-btn' + (byDay[d].length ? ' hasMovies' : '');
     btn.textContent = d;
     btn.title = byDay[d].length ? `${byDay[d].length}편` : '개봉작 없음';
-    btn.onclick = ()=> renderPanel(y,m,d, byDay[d]);
+    //btn.onclick = ()=> renderPanel(y,m,d, byDay[d]);
+    // 기존 btn.onclick 부분을 교체
+    btn.onclick = (e)=> {
+        // 이전에 선택된 버튼이 있다면 selected 클래스 제거
+        const currentSelected = bar.querySelector('.selected');
+        if (currentSelected) {
+            currentSelected.classList.remove('selected');
+        }
+        // 지금 클릭한 버튼에 selected 클래스 추가
+        e.currentTarget.classList.add('selected');
+        renderPanel(y,m,d, byDay[d]);
+    };
     bar.appendChild(btn);
   }
 
@@ -207,7 +219,7 @@ async function mainBoxoffice() {
       html += `<div class="note">기준일: ${meta.date}</div>`;
       html += '<ol style="margin:0; padding-left:20px;">'; // UI 유지를 위해 ol 태그에 기본 스타일 추가
       list.slice(0, 10).forEach(item => {
-        html += `<li style="padding-left: 5px;">${item.rank}. ${item.movieNm} - ${Number(item.audiCnt).toLocaleString()}명</li>`;
+        html += `<li style="padding-left: 5px;">${item.movieNm} - ${Number(item.audiCnt).toLocaleString()}명</li>`;
       });
       html += '</ol>';
       container.innerHTML = html;
