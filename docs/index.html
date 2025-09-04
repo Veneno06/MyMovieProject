@@ -103,7 +103,7 @@ function renderMonth(){
   const last = daysInMonth(y, m);
   for (let d=1; d<=last; d++){
     const btn = document.createElement('div');
-    btn.className = 'tl-day day-btn' + (byDay[d].length ? ' has' : '');
+    btn.className = 'tl-day day-btn' + (byDay[d].length ? ' hasMovies' : '');
     btn.textContent = d;
     btn.title = byDay[d].length ? `${byDay[d].length}편` : '개봉작 없음';
     btn.onclick = ()=> renderPanel(y,m,d, byDay[d]);
