@@ -15,7 +15,8 @@
       min-width:28px; text-align:center; padding:4px 6px;
       border:1px solid var(--bd); border-radius:12px; background:#fff; cursor:pointer;
     }
-    .day-btn.has { outline:2px solid var(--accent); }
+    /* .has 클래스 대신 .hasMovies를 사용하도록 CSS와 동기화 */
+    .day-btn.hasMovies { outline:2px solid var(--accent); }
     .note { color:#666; font-size:13px; margin-top:4px; }
     .list { margin-top:10px; }
     .row { padding:8px 0; border-bottom:1px solid #eee; }
@@ -45,20 +46,22 @@
 
   <div class="tl-bar" id="tlBar"></div>
   <div class="tl-panel" id="panel">날짜를 선택하면 해당 날짜의 개봉작을 보여줍니다.</div>
+  
+  <div id="boxoffice-container" style="margin-top: 30px;"></div>
 </div>
 
 <script>
+// --- 타임라인 기능 관련 스크립트 ---
 const MOVIE_INDEX_URL = 'data/search/movies.json';
 
-// 숫자만 8자리(YYYYMMDD)?
 const isYmd8 = (s) => /^\d{8}$/.test(String(s||'').trim());
 
 function ymParts(ym){ return [ym.getFullYear(), ym.getMonth()+1]; }
 function pad2(n){ return String(n).padStart(2,'0'); }
 function daysInMonth(y,m){ return new Date(y, m, 0).getDate(); } // m: 1~12
 
-let MOVIES = [];        // {movieCd, movieNm, openDt, grade, repNation, genres[], ...}
-let YM = new Date();    // 현재 표시 월
+let MOVIES = [];
+let YM = new Date(); // 기본값은 현재 월, 데이터 로드 후 최신 날짜로 변경됨
 
 function pickValidMovies(src){
   if (!src || !Array.isArray(src.movies)) return [];
@@ -103,6 +106,7 @@ function renderMonth(){
   const last = daysInMonth(y, m);
   for (let d=1; d<=last; d++){
     const btn = document.createElement('div');
+    // CSS에 정의된 .hasMovies 클래스 이름으로 수정
     btn.className = 'tl-day day-btn' + (byDay[d].length ? ' hasMovies' : '');
     btn.textContent = d;
     btn.title = byDay[d].length ? `${byDay[d].length}편` : '개봉작 없음';
@@ -110,7 +114,6 @@ function renderMonth(){
     bar.appendChild(btn);
   }
 
-  // 오늘 날짜가 이 달 안이면 자동 열기, 아니면 1일 열기
   const today = new Date();
   if (today.getFullYear()===y && (today.getMonth()+1)===m){
     renderPanel(y,m,today.getDate(), byDay[today.getDate()]||[]);
@@ -141,8 +144,7 @@ function renderPanel(y,m,d, list){
   box.innerHTML = `<div class="note">${ymd} 개봉작 ${list.length}편</div><div class="list">${rows}</div>`;
 }
 
-async function main(){
-  // 캐시 무력화
+async function mainTimeline(){
   const res = await fetch(`${MOVIE_INDEX_URL}?v=${Date.now()}`);
   if (!res.ok){
     document.getElementById('rangePill').textContent = '데이터 범위: 인덱스 로드 실패';
@@ -156,9 +158,18 @@ async function main(){
     rg ? `데이터 범위: ${rg.min} – ${rg.max} (인덱스 기준)`
        : '데이터 범위: 비어있음 / 인덱스 재생성이 필요할 수 있음';
 
+  // [핵심 수정] 데이터 중 가장 최신 날짜를 찾아 해당 월을 기본으로 설정
+  if (MOVIES.length > 0) {
+    const latestDateStr = MOVIES.reduce((max, m) => (m.openDt > max ? m.openDt : max), '0');
+    const year = parseInt(latestDateStr.slice(0, 4), 10);
+    const month = parseInt(latestDateStr.slice(4, 6), 10) - 1; // JS 월은 0부터 시작
+    if (!isNaN(year) && !isNaN(month)) {
+        YM = new Date(year, month);
+    }
+  }
+
   renderMonth();
 
-  // 버튼
   document.getElementById('prevM').onclick = ()=>{
     YM.setMonth(YM.getMonth()-1);
     renderMonth();
@@ -169,10 +180,45 @@ async function main(){
   };
 }
 
-main().catch(e=>{
-  console.error(e);
-  document.getElementById('rangePill').textContent = '데이터 범위: 오류';
+
+// --- 박스오피스 기능 관련 스크립트 (기존 script.js 내용 통합) ---
+async function mainBoxoffice() {
+  const container = document.getElementById('boxoffice-container');
+  try {
+    const ts = Date.now();
+    const metaResp = await fetch(`./data/latest.json?v=${ts}`);
+    if (!metaResp.ok) throw new Error('latest.json을 찾을 수 없습니다.');
+    const meta = await metaResp.json();
+
+    const dataResp = await fetch(`${meta.url}?v=${ts}`);
+    if (!dataResp.ok) throw new Error(`데이터 파일(${meta.url})을 찾을 수 없습니다.`);
+    const data = await dataResp.json();
+
+    const list = data?.boxOfficeResult?.dailyBoxOfficeList;
+    if (Array.isArray(list) && list.length > 0) {
+      let html = `<h2>최신 일일 박스오피스 TOP ${Math.min(10, list.length)}</h2>`;
+      html += `<div class="note">기준일: ${meta.date}</div>`;
+      html += '<ol>';
+      list.slice(0, 10).forEach(item => {
+        html += `<li>${item.rank}. ${item.movieNm} - ${Number(item.audiCnt).toLocaleString()}명</li>`;
+      });
+      html += '</ol>';
+      container.innerHTML = html;
+    }
+  } catch (err) {
+    console.error('Boxoffice Error:', err);
+    container.innerHTML = `<p style="color:red;">박스오피스 정보를 불러오는 데 실패했습니다: ${err.message}</p>`;
+  }
+}
+
+// --- 스크립트 실행 ---
+mainTimeline().catch(e=>{
+  console.error('Timeline Error:', e);
+  document.getElementById('rangePill').textContent = '데이터 범위: 오류 발생';
 });
+
+mainBoxoffice();
+
 </script>
 </body>
 </html>
