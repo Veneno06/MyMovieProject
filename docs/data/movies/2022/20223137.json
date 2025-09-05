@@ -1,0 +1,699 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20223137",
+      "movieNm": "효자",
+      "movieNmEn": "",
+      "movieNmOg": "",
+      "showTm": "116",
+      "prdtYear": "2021",
+      "openDt": "20220127",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "한국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "코미디"
+        },
+        {
+          "genreNm": "공포(호러)"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "이훈국",
+          "peopleNmEn": "LEE Hoon-guk"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "연운경",
+          "peopleNmEn": "",
+          "cast": "死母(춘자)",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "김뢰하",
+          "peopleNmEn": "KIM Roi-ha",
+          "cast": "길남",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "이철민",
+          "peopleNmEn": "LEE Cheol-min",
+          "cast": "길중",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "정경호",
+          "peopleNmEn": "JUNG Kyung-ho",
+          "cast": "길영",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "박효준",
+          "peopleNmEn": "PARK Hyo-jun",
+          "cast": "춘복",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "전운종",
+          "peopleNmEn": "JEON Woon-jong",
+          "cast": "길호",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "안민영",
+          "peopleNmEn": "AN Min-young",
+          "cast": "영숙",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "엄주연",
+          "peopleNmEn": "",
+          "cast": "미영",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "한지서",
+          "peopleNmEn": "",
+          "cast": "세라",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "이현웅",
+          "peopleNmEn": "LEE Hyun-woong",
+          "cast": "장씨",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "김민식",
+          "peopleNmEn": "kimminsik",
+          "cast": "민식",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "김필",
+          "peopleNmEn": "",
+          "cast": "경장",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "이관호",
+          "peopleNmEn": "",
+          "cast": "이씨",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "손종학",
+          "peopleNmEn": "SON Jong-hak",
+          "cast": "편집장",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "류혜린",
+          "peopleNmEn": "RYU Hye-rin",
+          "cast": "젊은 춘자",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "김미준",
+          "peopleNmEn": "",
+          "cast": "복자",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "나미희",
+          "peopleNmEn": "",
+          "cast": "리포터",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "문호진",
+          "peopleNmEn": "",
+          "cast": "문피디",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "이광수",
+          "peopleNmEn": "",
+          "cast": "순경1",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "신정만",
+          "peopleNmEn": "SIN Jeong-man",
+          "cast": "순경2",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "문경민",
+          "peopleNmEn": "",
+          "cast": "노인",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "유승일",
+          "peopleNmEn": "",
+          "cast": "이장",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "성낙경",
+          "peopleNmEn": "",
+          "cast": "성씨",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "박재현",
+          "peopleNmEn": "",
+          "cast": "정씨",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "이기문",
+          "peopleNmEn": "",
+          "cast": "방씨",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "박진수",
+          "peopleNmEn": "BARK JIN SOO",
+          "cast": "고씨",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "정제우",
+          "peopleNmEn": "",
+          "cast": "우제",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "이자은",
+          "peopleNmEn": "",
+          "cast": "자영",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "룡세형",
+          "peopleNmEn": "",
+          "cast": "목사",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "이진우",
+          "peopleNmEn": "",
+          "cast": "스님",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "김숙인",
+          "peopleNmEn": "",
+          "cast": "무당",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "홍석연",
+          "peopleNmEn": "HONG Seok-youn",
+          "cast": "마을어른",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "김나윤",
+          "peopleNmEn": "",
+          "cast": "아낙1",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "노은정",
+          "peopleNmEn": "",
+          "cast": "아낙2",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "김설희",
+          "peopleNmEn": "",
+          "cast": "베트남아낙",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "박상현",
+          "peopleNmEn": "",
+          "cast": "마을청년",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "오누리",
+          "peopleNmEn": "",
+          "cast": "미용실여",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "이훈진",
+          "peopleNmEn": "",
+          "cast": "운전수",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "조현진",
+          "peopleNmEn": "",
+          "cast": "길영처",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "김정빈",
+          "peopleNmEn": "",
+          "cast": "배달부",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "김지혜",
+          "peopleNmEn": "",
+          "cast": "분장 스텝",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "여시현",
+          "peopleNmEn": "",
+          "cast": "라디오 목소리",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "신성일",
+          "peopleNmEn": "",
+          "cast": "악사1",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "정량",
+          "peopleNmEn": "Liang Ding",
+          "cast": "악사2",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20191923",
+          "companyNm": "영화사 틈",
+          "companyNmEn": "",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20157193",
+          "companyNm": "(주)모그픽쳐스",
+          "companyNmEn": "",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20143338",
+          "companyNm": "(주)드림팩트엔터테인먼트",
+          "companyNmEn": "Dreamfact entertainment",
+          "companyPartNm": "배급사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2021-MF03075 ",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": [
+        {
+          "peopleNm": "이훈제",
+          "peopleNmEn": "",
+          "staffRoleNm": "제작"
+        },
+        {
+          "peopleNm": "김주오",
+          "peopleNmEn": "",
+          "staffRoleNm": "제작"
+        },
+        {
+          "peopleNm": "룡세형",
+          "peopleNmEn": "",
+          "staffRoleNm": "제작"
+        },
+        {
+          "peopleNm": "이훈국",
+          "peopleNmEn": "LEE Hoon-guk",
+          "staffRoleNm": "제작"
+        },
+        {
+          "peopleNm": "이훈제",
+          "peopleNmEn": "",
+          "staffRoleNm": "프로듀서"
+        },
+        {
+          "peopleNm": "김주오",
+          "peopleNmEn": "",
+          "staffRoleNm": "프로듀서"
+        },
+        {
+          "peopleNm": "룡세형",
+          "peopleNmEn": "",
+          "staffRoleNm": "프로듀서"
+        },
+        {
+          "peopleNm": "최연근",
+          "peopleNmEn": "",
+          "staffRoleNm": "라인프로듀서"
+        },
+        {
+          "peopleNm": "김진실",
+          "peopleNmEn": "",
+          "staffRoleNm": "제작팀"
+        },
+        {
+          "peopleNm": "신성일",
+          "peopleNmEn": "",
+          "staffRoleNm": "제작팀"
+        },
+        {
+          "peopleNm": "윤소현",
+          "peopleNmEn": "Yoon so hyeon",
+          "staffRoleNm": "데이타매니저"
+        },
+        {
+          "peopleNm": "이훈국",
+          "peopleNmEn": "LEE Hoon-guk",
+          "staffRoleNm": "시나리오(각본)"
+        },
+        {
+          "peopleNm": "신진현",
+          "peopleNmEn": "",
+          "staffRoleNm": "조감독"
+        },
+        {
+          "peopleNm": "정량",
+          "peopleNmEn": "Liang Ding",
+          "staffRoleNm": "연출팀"
+        },
+        {
+          "peopleNm": "김예원",
+          "peopleNmEn": "",
+          "staffRoleNm": "연출팀"
+        },
+        {
+          "peopleNm": "김지혜",
+          "peopleNmEn": "",
+          "staffRoleNm": "스크립터"
+        },
+        {
+          "peopleNm": "김현경",
+          "peopleNmEn": "Hyun-kyung KIM",
+          "staffRoleNm": "현장편집"
+        },
+        {
+          "peopleNm": "문성진",
+          "peopleNmEn": "Moon seong jin",
+          "staffRoleNm": "촬영"
+        },
+        {
+          "peopleNm": "양균상",
+          "peopleNmEn": "KYUN-SANG YANG",
+          "staffRoleNm": "촬영"
+        },
+        {
+          "peopleNm": "안경훈",
+          "peopleNmEn": "Ahn Kyounghoon",
+          "staffRoleNm": "촬영팀"
+        },
+        {
+          "peopleNm": "신형철",
+          "peopleNmEn": "",
+          "staffRoleNm": "촬영팀"
+        },
+        {
+          "peopleNm": "선희태",
+          "peopleNmEn": "",
+          "staffRoleNm": "촬영팀"
+        },
+        {
+          "peopleNm": "선호성",
+          "peopleNmEn": "",
+          "staffRoleNm": "촬영팀"
+        },
+        {
+          "peopleNm": "김진형",
+          "peopleNmEn": "Kim Jinhyeong",
+          "staffRoleNm": "촬영팀"
+        },
+        {
+          "peopleNm": "서창환",
+          "peopleNmEn": "",
+          "staffRoleNm": "조명"
+        },
+        {
+          "peopleNm": "장주영",
+          "peopleNmEn": "",
+          "staffRoleNm": "조명팀"
+        },
+        {
+          "peopleNm": "강호동",
+          "peopleNmEn": "",
+          "staffRoleNm": "조명팀"
+        },
+        {
+          "peopleNm": "이강헌",
+          "peopleNmEn": "Lee Kang-heon",
+          "staffRoleNm": "조명팀"
+        },
+        {
+          "peopleNm": "정용철",
+          "peopleNmEn": "Jeong Yong-chul",
+          "staffRoleNm": "미술/프로덕션 디자인"
+        },
+        {
+          "peopleNm": "김진실",
+          "peopleNmEn": "",
+          "staffRoleNm": "미술팀"
+        },
+        {
+          "peopleNm": "임형주",
+          "peopleNmEn": "LIM Hyung-ju",
+          "staffRoleNm": "동시녹음"
+        },
+        {
+          "peopleNm": "김이준",
+          "peopleNmEn": "",
+          "staffRoleNm": "붐오퍼레이터"
+        },
+        {
+          "peopleNm": "최선옥",
+          "peopleNmEn": "CHOI Sun-ok",
+          "staffRoleNm": "의상"
+        },
+        {
+          "peopleNm": "김진실",
+          "peopleNmEn": "",
+          "staffRoleNm": "의상팀"
+        },
+        {
+          "peopleNm": "왕민",
+          "peopleNmEn": "",
+          "staffRoleNm": "분장"
+        },
+        {
+          "peopleNm": "서유정",
+          "peopleNmEn": "",
+          "staffRoleNm": "분장팀"
+        },
+        {
+          "peopleNm": "김효경",
+          "peopleNmEn": "",
+          "staffRoleNm": "분장팀"
+        },
+        {
+          "peopleNm": "서승현",
+          "peopleNmEn": "Suh Seung Hyun",
+          "staffRoleNm": "편집"
+        },
+        {
+          "peopleNm": "조현수",
+          "peopleNmEn": "",
+          "staffRoleNm": "편집"
+        },
+        {
+          "peopleNm": "윤소현",
+          "peopleNmEn": "Yoon so hyeon",
+          "staffRoleNm": "편집"
+        },
+        {
+          "peopleNm": "김수진",
+          "peopleNmEn": "",
+          "staffRoleNm": "음악"
+        },
+        {
+          "peopleNm": "라언",
+          "peopleNmEn": "",
+          "staffRoleNm": "음악"
+        },
+        {
+          "peopleNm": "조란",
+          "peopleNmEn": "",
+          "staffRoleNm": "작사/작곡/편곡"
+        },
+        {
+          "peopleNm": "이윤정",
+          "peopleNmEn": "",
+          "staffRoleNm": "작사/작곡/편곡"
+        },
+        {
+          "peopleNm": "김수진",
+          "peopleNmEn": "",
+          "staffRoleNm": "작사/작곡/편곡"
+        },
+        {
+          "peopleNm": "한호철",
+          "peopleNmEn": "",
+          "staffRoleNm": "작사/작곡/편곡"
+        },
+        {
+          "peopleNm": "라언",
+          "peopleNmEn": "",
+          "staffRoleNm": "작사/작곡/편곡"
+        },
+        {
+          "peopleNm": "한호철",
+          "peopleNmEn": "",
+          "staffRoleNm": "음악 믹싱/레코딩"
+        },
+        {
+          "peopleNm": "장준구",
+          "peopleNmEn": "JANG Jun-gu",
+          "staffRoleNm": "사운드"
+        },
+        {
+          "peopleNm": "편지연",
+          "peopleNmEn": "",
+          "staffRoleNm": "사운드믹싱"
+        },
+        {
+          "peopleNm": "육혜미",
+          "peopleNmEn": "",
+          "staffRoleNm": "사운드효과"
+        },
+        {
+          "peopleNm": "정동호",
+          "peopleNmEn": "",
+          "staffRoleNm": "폴리"
+        },
+        {
+          "peopleNm": "김윤식",
+          "peopleNmEn": "",
+          "staffRoleNm": "폴리"
+        },
+        {
+          "peopleNm": "장준구",
+          "peopleNmEn": "JANG Jun-gu",
+          "staffRoleNm": "폴리"
+        },
+        {
+          "peopleNm": "이훈국",
+          "peopleNmEn": "LEE Hoon-guk",
+          "staffRoleNm": "기획"
+        },
+        {
+          "peopleNm": "서채우",
+          "peopleNmEn": "",
+          "staffRoleNm": "기타"
+        },
+        {
+          "peopleNm": "황성윤",
+          "peopleNmEn": "HWANG Seong-yun",
+          "staffRoleNm": "타이틀"
+        },
+        {
+          "peopleNm": "한종훈",
+          "peopleNmEn": "",
+          "staffRoleNm": "DI팀"
+        },
+        {
+          "peopleNm": "오완석",
+          "peopleNmEn": "",
+          "staffRoleNm": "DI팀"
+        },
+        {
+          "peopleNm": "송세진",
+          "peopleNmEn": "SONG Se-jin",
+          "staffRoleNm": "DI팀"
+        },
+        {
+          "peopleNm": "황동욱",
+          "peopleNmEn": "",
+          "staffRoleNm": "DI팀"
+        },
+        {
+          "peopleNm": "강하나",
+          "peopleNmEn": "",
+          "staffRoleNm": "홍보/마케팅 진행"
+        },
+        {
+          "peopleNm": "김유리",
+          "peopleNmEn": "",
+          "staffRoleNm": "홍보/마케팅 진행"
+        },
+        {
+          "peopleNm": "신가영",
+          "peopleNmEn": "",
+          "staffRoleNm": "홍보/마케팅 진행"
+        },
+        {
+          "peopleNm": "오승현",
+          "peopleNmEn": "OH SEUNG HYUN",
+          "staffRoleNm": "홍보/마케팅 진행"
+        },
+        {
+          "peopleNm": "최정빈",
+          "peopleNmEn": "",
+          "staffRoleNm": "온라인마케팅"
+        },
+        {
+          "peopleNm": "이희정",
+          "peopleNmEn": "",
+          "staffRoleNm": "온라인마케팅"
+        },
+        {
+          "peopleNm": "우지은",
+          "peopleNmEn": "",
+          "staffRoleNm": "온라인마케팅"
+        },
+        {
+          "peopleNm": "인구성",
+          "peopleNmEn": "",
+          "staffRoleNm": "포스터사진"
+        },
+        {
+          "peopleNm": "한종훈",
+          "peopleNmEn": "",
+          "staffRoleNm": "예고편"
+        },
+        {
+          "peopleNm": "이진",
+          "peopleNmEn": "",
+          "staffRoleNm": "배급진행"
+        },
+        {
+          "peopleNm": "김학중",
+          "peopleNmEn": "",
+          "staffRoleNm": "배급진행"
+        },
+        {
+          "peopleNm": "김용호",
+          "peopleNmEn": "",
+          "staffRoleNm": "VFX 슈퍼바이저"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20193082",
+      "movieNm": "웨스트 사이드 스토리",
+      "movieNmEn": "West Side Story",
+      "movieNmOg": "",
+      "showTm": "156",
+      "prdtYear": "2021",
+      "openDt": "20220112",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "뮤지컬"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "스티븐 스필버그",
+          "peopleNmEn": "Steven Spielberg"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "안셀 엘고트",
+          "peopleNmEn": "Ansel Elgort",
+          "cast": "토니",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "레이첼 지글러",
+          "peopleNmEn": "Rachel Zegler",
+          "cast": "마리아",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "아리아나 데보스",
+          "peopleNmEn": "Ariana DeBose",
+          "cast": "아니타",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "데이비드 알바즈",
+          "peopleNmEn": "David Alvarez",
+          "cast": "베르나르도",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "마이크 파이스트",
+          "peopleNmEn": "Mike Faist",
+          "cast": "리프",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        },
+        {
+          "showTypeGroupNm": "IMAX",
+          "showTypeNm": "IMAX"
+        },
+        {
+          "showTypeGroupNm": "DOLBYCINEMA",
+          "showTypeNm": "DOLBYCINEMA"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20161801",
+          "companyNm": "월트디즈니컴퍼니코리아 유한책임회사",
+          "companyNmEn": "The Walt Disney Company Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20161801",
+          "companyNm": "월트디즈니컴퍼니코리아 유한책임회사",
+          "companyNmEn": "The Walt Disney Company Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2021-MF03007",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

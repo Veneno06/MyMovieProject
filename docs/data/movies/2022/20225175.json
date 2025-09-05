@@ -1,0 +1,86 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20225175",
+      "movieNm": "엘비스",
+      "movieNmEn": "Elvis",
+      "movieNmOg": "",
+      "showTm": "159",
+      "prdtYear": "2022",
+      "openDt": "20220713",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "바즈 루어만",
+          "peopleNmEn": "Baz Luhrmann"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "오스틴 버틀러",
+          "peopleNmEn": "Austin Butler",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "톰 행크스",
+          "peopleNmEn": "Tom Hanks",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "올리비아 데종",
+          "peopleNmEn": "Olivia DeJonge",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        },
+        {
+          "showTypeGroupNm": "ScreenX",
+          "showTypeNm": "ScreenX"
+        },
+        {
+          "showTypeGroupNm": "DOLBYCINEMA",
+          "showTypeNm": "DOLBYCINEMA"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100043",
+          "companyNm": "워너브러더스 코리아(주)",
+          "companyNmEn": "Warner Bros. Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100043",
+          "companyNm": "워너브러더스 코리아(주)",
+          "companyNmEn": "Warner Bros. Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2022-MF01306",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

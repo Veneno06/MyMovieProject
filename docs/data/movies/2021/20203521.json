@@ -1,0 +1,62 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20203521",
+      "movieNm": "알파 테스트",
+      "movieNmEn": "Alpha Test",
+      "movieNmOg": "",
+      "showTm": "86",
+      "prdtYear": "2020",
+      "openDt": "20210204",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "SF"
+        },
+        {
+          "genreNm": "스릴러"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "아론 머티스",
+          "peopleNmEn": "Aaron Mirtes"
+        }
+      ],
+      "actors": [],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20139095",
+          "companyNm": "(주)퍼스트런",
+          "companyNmEn": "First Run Inc.",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20139095",
+          "companyNm": "(주)퍼스트런",
+          "companyNmEn": "First Run Inc.",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2020-MF01638",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

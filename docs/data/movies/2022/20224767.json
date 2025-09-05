@@ -1,0 +1,87 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20224767",
+      "movieNm": "메모리",
+      "movieNmEn": "Memory",
+      "movieNmOg": "",
+      "showTm": "113",
+      "prdtYear": "2022",
+      "openDt": "20220714",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "범죄"
+        },
+        {
+          "genreNm": "액션"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "마틴 캠벨",
+          "peopleNmEn": "Martin Campbell"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "리암 니슨",
+          "peopleNmEn": "Liam Neeson",
+          "cast": "알렉스",
+          "castEn": "Alex Lewis"
+        },
+        {
+          "peopleNm": "가이 피어스",
+          "peopleNmEn": "Guy Pearce",
+          "cast": "빈센트",
+          "castEn": "Special Agent Vincent Serra"
+        },
+        {
+          "peopleNm": "모니카 벨루치",
+          "peopleNmEn": "Monica Bellucci",
+          "cast": "다바나",
+          "castEn": "Davana Sealman"
+        },
+        {
+          "peopleNm": "레이 스티븐슨",
+          "peopleNmEn": "Ray Stevenson",
+          "cast": "대니",
+          "castEn": "Det. Danny Mora"
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20161101",
+          "companyNm": "(주)제이앤씨미디어그룹",
+          "companyNmEn": "",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20142369",
+          "companyNm": "(유)조이앤시네마",
+          "companyNmEn": "JOY N CINEMA",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2022-MF01323",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

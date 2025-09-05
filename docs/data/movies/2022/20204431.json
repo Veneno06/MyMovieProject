@@ -1,0 +1,112 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20204431",
+      "movieNm": "모비우스",
+      "movieNmEn": "Morbius",
+      "movieNmOg": "",
+      "showTm": "104",
+      "prdtYear": "2022",
+      "openDt": "20220330",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "액션"
+        },
+        {
+          "genreNm": "어드벤처"
+        },
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "다니엘 에스피노사",
+          "peopleNmEn": "Daniel Espinosa"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "자레드 레토",
+          "peopleNmEn": "Jared Leto",
+          "cast": "모비우스",
+          "castEn": "Dr. Michael Morbius"
+        },
+        {
+          "peopleNm": "맷 스미스",
+          "peopleNmEn": "Matt Smith",
+          "cast": "마일로",
+          "castEn": "Loxias Crown"
+        },
+        {
+          "peopleNm": "아드리아 아르호나",
+          "peopleNmEn": "Adria Arjona",
+          "cast": "마르틴",
+          "castEn": "Martine Bancroft"
+        },
+        {
+          "peopleNm": "자레드 해리스",
+          "peopleNmEn": "Jared Harris",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "타이레스 깁슨",
+          "peopleNmEn": "Tyrese Gibson",
+          "cast": "",
+          "castEn": "Simon Stroud"
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        },
+        {
+          "showTypeGroupNm": "4D",
+          "showTypeNm": "4D"
+        },
+        {
+          "showTypeGroupNm": "IMAX",
+          "showTypeNm": "IMAX"
+        },
+        {
+          "showTypeGroupNm": "ScreenX",
+          "showTypeNm": "ScreenX"
+        },
+        {
+          "showTypeGroupNm": "DOLBYCINEMA",
+          "showTypeNm": "DOLBYCINEMA"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20173221",
+          "companyNm": "소니픽쳐스엔터테인먼트코리아주식회사극장배급지점",
+          "companyNmEn": "Sony Pictures Releasing International",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20173221",
+          "companyNm": "소니픽쳐스엔터테인먼트코리아주식회사극장배급지점",
+          "companyNmEn": "Sony Pictures Releasing International",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2022-MF00650",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

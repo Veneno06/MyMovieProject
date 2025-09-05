@@ -1,0 +1,81 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20224719",
+      "movieNm": "셀링 이소벨",
+      "movieNmEn": "Apartment 407",
+      "movieNmOg": "Selling Isobel",
+      "showTm": "101",
+      "prdtYear": "2016",
+      "openDt": "20220601",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "영국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "범죄"
+        },
+        {
+          "genreNm": "스릴러"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "루돌프 부이텐닥",
+          "peopleNmEn": "Rudolf Buitendach"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "프리다 파렐",
+          "peopleNmEn": "Frida Farrell",
+          "cast": "이사벨",
+          "castEn": "Isobel"
+        },
+        {
+          "peopleNm": "가브리엘 올즈",
+          "peopleNmEn": "Gabriel Olds",
+          "cast": "피터",
+          "castEn": "Peter"
+        },
+        {
+          "peopleNm": "매튜 마든",
+          "peopleNmEn": "Matthew Marsden",
+          "cast": "마크",
+          "castEn": "Mark"
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20192382",
+          "companyNm": "(주)태양미디어그룹",
+          "companyNmEn": "",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20192382",
+          "companyNm": "(주)태양미디어그룹",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2022-MF00851",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}
