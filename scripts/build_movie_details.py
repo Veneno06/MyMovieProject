@@ -73,7 +73,6 @@ def fetch_movie_info(session, movieCd):
 
 def fetch_weekly_audi_acc(session, movieCd, openDtYMD, weeks=12):
     if not KOFIC_KEY: return None
-    # openDtYMD가 YYYY-MM-DD 형식일 수 있으므로 정규화
     openDtYMD = norm_ymd(openDtYMD)
     base = parse_date_ymd(openDtYMD) or datetime.now()
     base = base + timedelta(days=3)
@@ -83,7 +82,7 @@ def fetch_weekly_audi_acc(session, movieCd, openDtYMD, weeks=12):
         td = d.strftime("%Y%m%d")
         url = f"https://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json?key={KOFIC_KEY}&targetDt={td}&weekGb=0"
         try:
-            r = get(session, url, sleep=0.1) # 관객수 조회는 더 짧은 딜레이
+            r = get(session, url, sleep=0.1)
             js = r.json()
             if js.get("faultInfo") or js.get("faultResult"):
                 err = js.get("faultInfo") or js.get("faultResult") or {}
@@ -138,14 +137,12 @@ def main():
                     
                     if info.get("audiAcc") is not None: continue
 
-                    # [업그레이드] 파일은 있지만 관객수 정보가 없는 경우, 관객수만 추가 조회
                     acc = fetch_weekly_audi_acc(session, cd, info.get("openDt"))
                     if isinstance(acc, int):
                         info["audiAcc"] = acc
                         save_json(out, data)
                         total_updated_audi += 1
                 else:
-                    # 파일이 없는 경우, 영화 정보와 관객수 모두 조회
                     info, err = fetch_movie_info(session, cd)
                     if err:
                         if "320011" in err: raise RuntimeError("RATE_LIMIT")
