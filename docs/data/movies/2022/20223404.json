@@ -1,0 +1,87 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20223404",
+      "movieNm": "에펠",
+      "movieNmEn": "Eiffel",
+      "movieNmOg": "",
+      "showTm": "107",
+      "prdtYear": "2021",
+      "openDt": "20220323",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "프랑스"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "멜로/로맨스"
+        },
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "마르탱 부르불롱",
+          "peopleNmEn": "Martin Bourboulon"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "로맹 뒤리스",
+          "peopleNmEn": "Romain Duris",
+          "cast": "구스타브 에펠",
+          "castEn": "Gustave Eiffel"
+        },
+        {
+          "peopleNm": "에마 매키",
+          "peopleNmEn": "Emma Mackey",
+          "cast": "아드리안느",
+          "castEn": "Adrienne Bourgès"
+        },
+        {
+          "peopleNm": "피에르 델라돈챔프스",
+          "peopleNmEn": "Pierre Deladonchamps",
+          "cast": "",
+          "castEn": "Antoine de Restac"
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20203241",
+          "companyNm": "주식회사 블루필름웍스",
+          "companyNmEn": "Blue Film Works",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20228883",
+          "companyNm": "(주)플레이그램",
+          "companyNmEn": "Playgram CO., LTD.",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20061772",
+          "companyNm": "(주)영화사메이플러스",
+          "companyNmEn": "Mayplus",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2021-MF03096 ",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

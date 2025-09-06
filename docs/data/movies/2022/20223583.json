@@ -1,0 +1,90 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20223583",
+      "movieNm": "벨파스트",
+      "movieNmEn": "Belfast",
+      "movieNmOg": "",
+      "showTm": "98",
+      "prdtYear": "2021",
+      "openDt": "20220323",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "케네스 브래너",
+          "peopleNmEn": "Kenneth Branagh"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "케이트리오나 발피",
+          "peopleNmEn": "Caitriona Balfe",
+          "cast": "엄마",
+          "castEn": "Ma"
+        },
+        {
+          "peopleNm": "주디 덴치",
+          "peopleNmEn": "Judi Dench",
+          "cast": "할머니",
+          "castEn": "Granny"
+        },
+        {
+          "peopleNm": "제이미 도넌",
+          "peopleNmEn": "Jamie Dornan",
+          "cast": "아빠",
+          "castEn": "Pa"
+        },
+        {
+          "peopleNm": "시아란 힌즈",
+          "peopleNmEn": "Ciaran Hinds",
+          "cast": "할아버지",
+          "castEn": "Pop"
+        },
+        {
+          "peopleNm": "주드 힐",
+          "peopleNmEn": "Jude Hill",
+          "cast": "버디",
+          "castEn": "Buddy"
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100603",
+          "companyNm": "유니버설픽쳐스인터내셔널 코리아(유)",
+          "companyNmEn": "Universal Pictures International Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100603",
+          "companyNm": "유니버설픽쳐스인터내셔널 코리아(유)",
+          "companyNmEn": "Universal Pictures International Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2021-MF03153",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

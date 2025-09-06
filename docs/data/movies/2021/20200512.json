@@ -1,0 +1,81 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20200512",
+      "movieNm": "미스터 존스",
+      "movieNmEn": "Mr. Jones",
+      "movieNmOg": "",
+      "showTm": "118",
+      "prdtYear": "2019",
+      "openDt": "20210107",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "폴란드"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "스릴러"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "아그네츠카 홀란드",
+          "peopleNmEn": "Agnieszka Holland"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "제임스 노턴",
+          "peopleNmEn": "James Norton",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "바네사 커비",
+          "peopleNmEn": "Vanessa Kirby",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "피터 사스가드",
+          "peopleNmEn": "Peter Sarsgaard",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20161941",
+          "companyNm": "(주)디오시네마",
+          "companyNmEn": "D.O.CINEMA",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20187181",
+          "companyNm": "(주)제이브로",
+          "companyNmEn": "jbro.co.ltd",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2020-MF02120 ",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

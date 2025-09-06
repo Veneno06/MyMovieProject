@@ -46,7 +46,9 @@ def main():
 
     movies = []
     people_map = {}
+    movie_audi_map = {} # [추가] 영화코드별 관객수 조회를 위한 맵
 
+    # --- 1차 스캔: 영화 정보 및 관객수 맵 생성 ---
     for fp in files:
         d = load_json(fp)
         if not d: 
@@ -65,6 +67,9 @@ def main():
 
         grade = first_or_empty(mi.get("audits") or [], "watchGradeNm")
         genres = [ (g.get("genreNm") or "").strip() for g in (mi.get("genres") or []) if (g.get("genreNm") or "").strip() ]
+        
+        # [수정] 상세 정보 파일에서 audiAcc 값을 읽어옴
+        audiAcc = mi.get("audiAcc") 
 
         if not movieCd or not movieNm:
             continue
@@ -74,12 +79,27 @@ def main():
             "movieNm": movieNm,
             "openDt": openDt,
             "prdtYear": prdtYear,
-            "repNation": repNation,  # 'K' or 'F'
+            "repNation": repNation,
             "grade": grade,
             "genres": genres,
-            "audiAcc": None,
+            "audiAcc": audiAcc, # [수정] None 대신 읽어온 audiAcc 값을 저장
         })
+        
+        # [추가] 관객수 맵에 저장
+        if audiAcc is not None:
+            movie_audi_map[movieCd] = audiAcc
 
+    # --- 2차 스캔: 배우 정보에 관객수 추가 ---
+    for fp in files:
+        d = load_json(fp)
+        if not d: continue
+        mi = (d.get("movieInfoResult") or {}).get("movieInfo") or {}
+        if not mi: continue
+        
+        movieCd = (mi.get("movieCd") or "").strip()
+        movieNm = (mi.get("movieNm") or "").strip()
+        openDt  = norm_open(mi.get("openDt", ""))
+        
         def add_person(p, role):
             if not isinstance(p, dict): return
             peopleCd = (p.get("peopleCd") or "").strip()
@@ -90,7 +110,16 @@ def main():
             if not rec:
                 rec = {"peopleCd": peopleCd, "peopleNm": peopleNm, "repRoleNm": role, "films": []}
                 people_map[key] = rec
-            rec["films"].append({"movieCd": movieCd, "movieNm": movieNm, "openDt": openDt, "part": ""})
+            
+            # [수정] 영화 정보에 관객수(audiAcc)도 함께 추가
+            film_info = {
+                "movieCd": movieCd, 
+                "movieNm": movieNm, 
+                "openDt": openDt, 
+                "part": "",
+                "audiAcc": movie_audi_map.get(movieCd) # 맵에서 관객수 조회
+            }
+            rec["films"].append(film_info)
 
         for x in (mi.get("directors") or []): add_person(x, "감독")
         for x in (mi.get("actors") or []):    add_person(x, "배우")
@@ -98,7 +127,7 @@ def main():
     # 정렬
     movies.sort(key=lambda m: m.get("openDt") or "9999-99-99")
     for rec in people_map.values():
-        rec["films"].sort(key=lambda f: f.get("openDt") or "", reverse=True)
+        rec["films"].sort(key=lambda f: f.get("openDt") or "9999-99-99", reverse=True)
     people = list(people_map.values())
 
     print(f"[index] movies: {len(movies)} / people: {len(people)}")

@@ -8,12 +8,15 @@
 body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple SD Gothic Neo, Noto Sans KR, 'Malgun Gothic', sans-serif; line-height:1.6; }
 .wrap { max-width:980px; margin:24px auto; padding:0 12px; }
 h1 { font-size:28px; margin:0 0 16px; }
+h2 { font-size:20px; margin:24px 0 8px; }
 .ctrls { display:flex; gap:8px; margin-bottom:12px; }
 .ctrls a { padding:6px 10px; border:1px solid #e5e7eb; border-radius:8px; background:#fff; text-decoration:none; color:#111827; }
 .note { color:#6b7280; }
 ul.list { list-style:none; padding:0; margin:12px 0; }
-li { padding:6px 0; border-bottom:1px dashed #e5e7eb; }
+li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
+.audi { font-size: 14px; color: #333; }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 <div class="wrap">
@@ -28,6 +31,12 @@ li { padding:6px 0; border-bottom:1px dashed #e5e7eb; }
   <div class="note">출연작 (최신 개봉일 순)</div>
   <ul id="out" class="list"></ul>
   <div id="msg" class="note"></div>
+
+  <div id="chart-container" style="display:none;">
+    <h2>개봉 시기별 관객수 추이</h2>
+    <canvas id="audiChart"></canvas>
+    <div class="note" style="font-size:12px; text-align: right; margin-top: 4px;">* 점에 마우스를 가까이하면 텍스트는 영화 제목입니다. (집계가 없는 작품은 0으로 표기)</div>
+  </div>
 </div>
 
 <script>
@@ -35,7 +44,7 @@ const BASE = location.pathname.replace(/\/[^\/]*$/, '');
 const PEOPLE_URL = `${BASE}/data/search/people.json?v=${Date.now()}`;
 
 function getParam(k){ return new URL(location.href).searchParams.get(k) || ""; }
-
+const fmtNum = n => (n==null || isNaN(n)) ? '' : n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 let PEOPLE = [];
 
 async function loadIndex(){
@@ -54,7 +63,12 @@ function render(){
     item = PEOPLE.find(p => p.peopleCd === cd);
   }
   if (!item && nm) {
-    item = PEOPLE.find(p => p.peopleNm === nm);
+    // 동명이인일 경우를 대비해, 함께 전달된 영화 제목으로 배우를 특정
+    const movieNm = getParam('movieNm') || '';
+    if(movieNm) {
+        item = PEOPLE.find(p => p.peopleNm === nm && p.films.some(f => f.movieNm === movieNm));
+    }
+    if(!item) item = PEOPLE.find(p => p.peopleNm === nm);
   }
 
   const out = document.getElementById('out');
@@ -69,14 +83,85 @@ function render(){
 
   title.textContent = item.peopleNm;
   out.innerHTML = '';
+  const filmsWithAudi = [];
+
   for (const f of (item.films||[])) {
     const date = f.openDt ? `${f.openDt.slice(0,4)}.${f.openDt.slice(4,6)}.${f.openDt.slice(6,8)}` : '개봉일미상';
+    // [수정] 관객수 정보 표시 추가
+    const audiStr = (f.audiAcc != null) ? ` / <span class="audi">누적 ${fmtNum(f.audiAcc)}명</span>` : '';
     const li = document.createElement('li');
     li.innerHTML = `<a href="detail.html?movieCd=${encodeURIComponent(f.movieCd)}">${f.movieNm}</a>
-      <span class="note">(${date}${f.part? ' · '+f.part:''})</span>`;
+      <span class="note">(${date}${f.part? ' · '+f.part:''}${audiStr})</span>`;
     out.appendChild(li);
+
+    // 차트용 데이터 수집
+    if (f.openDt) filmsWithAudi.push(f);
+  }
+
+  // [추가] 차트 그리기
+  if (filmsWithAudi.length > 1) {
+    document.getElementById('chart-container').style.display = 'block';
+    drawAudiChart(filmsWithAudi);
   }
 }
+
+function drawAudiChart(films){
+    // 개봉일 순으로 정렬
+    films.sort((a,b) => (a.openDt || '').localeCompare(b.openDt || ''));
+
+    const labels = films.map(f => f.openDt.slice(0,4)+'-'+f.openDt.slice(4,6));
+    const dataPoints = films.map(f => f.audiAcc || 0);
+    const movieTitles = films.map(f => f.movieNm);
+
+    const ctx = document.getElementById('audiChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: '관객수',
+                data: dataPoints,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                fill: true,
+                tension: 0.1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function(value, index, values) {
+                            return value.toLocaleString() + '명';
+                        }
+                    }
+                }
+            },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        // 툴팁에 영화 제목 표시
+                        title: function(tooltipItems) {
+                            return movieTitles[tooltipItems[0].dataIndex];
+                        },
+                        label: function(context) {
+                            let label = context.dataset.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            if (context.parsed.y !== null) {
+                                label += context.parsed.y.toLocaleString() + '명';
+                            }
+                            return label;
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
+
 (async function main(){
   await loadIndex();
   render();

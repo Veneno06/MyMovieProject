@@ -2,7 +2,8 @@ name: KOFIC Daily Fetch
 
 on:
   schedule:
-    - cron: "10 15 * * *"   # 매일 KST 00:10 (UTC 15:10)
+    # 한국 시간 기준 매일 오전 9시 10분에 실행 (UTC 00:10)
+    - cron: "10 0 * * *"
   workflow_dispatch:
 
 permissions:
@@ -31,26 +32,37 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
 
-      - name: Fetch and save KOFIC daily data
+      - name: Fetch KOFIC Daily Box Office
         env:
           KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
-          # TARGET_DT: "20250826"  # 필요시 강제 날짜
+        run: |
+          TARGET_DT=$(TZ=Asia/Seoul date -d "yesterday" +%Y%m%d)
+          TARGET_DT_FMT=$(TZ=Asia/Seoul date -d "yesterday" +%Y-%m-%d)
+          echo "Fetching data for $TARGET_DT"
+          
+          curl -s "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=${KOFIC_API_KEY}&targetDt=${TARGET_DT}" > docs/data/${TARGET_DT}.json
+          
+          # [수정] 잘못된 cp 명령어 대신, 올바른 JSON 형식으로 latest.json 파일을 생성
+          echo "{\"url\": \"data/${TARGET_DT}.json\", \"date\": \"${TARGET_DT_FMT}\"}" > docs/data/latest.json
+          
+          echo "Daily box office data for $TARGET_DT and latest.json saved."
+
+      - name: Update movie details from new daily file
+        env:
+          KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
         run: |
           python scripts/update_data.py
 
-      # 가볍게: 현재 연도만 일부 보강 (신규 영화 상세 캐시 확보)
       - name: Light refresh current-year details
         env:
           KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
         run: |
-          # KST 기준 연도
           YEAR=$(TZ=Asia/Seoul date +%Y)
           python scripts/build_movie_details.py \
             --year-start "$YEAR" \
             --year-end   "$YEAR" \
             --max        "300"
 
-      # 검색 인덱스 재생성 (movies.json / people.json)
       - name: Rebuild search indexes
         run: |
           python scripts/build_indices.py
@@ -64,10 +76,8 @@ jobs:
           git config user.email "actions@github.com"
           git add docs/data/
           if git diff --staged --quiet; then
-            echo "No changes"
+            echo "No new data to commit."
             exit 0
           fi
-          git commit -m "Daily KOFIC update (and reindex)"
-          git fetch origin "$BRANCH"
-          git pull --rebase origin "$BRANCH" || true
-          git push origin "HEAD:$BRANCH" || git push --force-with-lease origin "HEAD:$BRANCH"
+          git commit -m "KOFIC: Daily data update"
+          git push origin "HEAD:$BRANCH"

@@ -1,0 +1,115 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20223839",
+      "movieNm": "버즈 라이트이어",
+      "movieNmEn": "Lightyear",
+      "movieNmOg": "",
+      "showTm": "104",
+      "prdtYear": "2022",
+      "openDt": "20220615",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "애니메이션"
+        },
+        {
+          "genreNm": "액션"
+        },
+        {
+          "genreNm": "어드벤처"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "앵거스 맥클레인",
+          "peopleNmEn": "Angus MacLane"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "크리스 에반스",
+          "peopleNmEn": "Chris Evans",
+          "cast": "버즈 라이트이어",
+          "castEn": "Buzz Lightyear"
+        },
+        {
+          "peopleNm": "타이카 와이티티",
+          "peopleNmEn": "Taika Waititi",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "피터 손",
+          "peopleNmEn": "Peter SOHN",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털 더빙"
+        },
+        {
+          "showTypeGroupNm": "4D",
+          "showTypeNm": "4D 더빙"
+        },
+        {
+          "showTypeGroupNm": "4D",
+          "showTypeNm": "4D"
+        },
+        {
+          "showTypeGroupNm": "IMAX",
+          "showTypeNm": "IMAX"
+        },
+        {
+          "showTypeGroupNm": "DOLBYCINEMA",
+          "showTypeNm": "DOLBYCINEMA"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20161801",
+          "companyNm": "월트디즈니컴퍼니코리아 유한책임회사",
+          "companyNmEn": "The Walt Disney Company Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20161801",
+          "companyNm": "월트디즈니컴퍼니코리아 유한책임회사",
+          "companyNmEn": "The Walt Disney Company Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2022-MF01249",
+          "watchGradeNm": "전체관람가"
+        }
+      ],
+      "staffs": [
+        {
+          "peopleNm": "피트 닥터",
+          "peopleNmEn": "Pete Docter",
+          "staffRoleNm": "시나리오(각본)"
+        },
+        {
+          "peopleNm": "피트 닥터",
+          "peopleNmEn": "Pete Docter",
+          "staffRoleNm": "기획"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20216303",
+      "movieNm": "랜드",
+      "movieNmEn": "Land",
+      "movieNmOg": "",
+      "showTm": "89",
+      "prdtYear": "2020",
+      "openDt": "20210317",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "로빈 라이트",
+          "peopleNmEn": "Robin Wright"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "로빈 라이트",
+          "peopleNmEn": "Robin Wright",
+          "cast": "이디",
+          "castEn": "Edee"
+        },
+        {
+          "peopleNm": "데미안 비쉬어",
+          "peopleNmEn": "Demian Bichir",
+          "cast": "미겔",
+          "castEn": "Miguel"
+        },
+        {
+          "peopleNm": "킴 디킨스",
+          "peopleNmEn": "Kim Dickens",
+          "cast": "엠마",
+          "castEn": "Emma"
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100603",
+          "companyNm": "유니버설픽쳐스인터내셔널 코리아(유)",
+          "companyNmEn": "Universal Pictures International Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100603",
+          "companyNm": "유니버설픽쳐스인터내셔널 코리아(유)",
+          "companyNmEn": "Universal Pictures International Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2021-MF00418",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

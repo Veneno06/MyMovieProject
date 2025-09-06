@@ -1,0 +1,90 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20210601",
+      "movieNm": "크림",
+      "movieNmEn": "Cream",
+      "movieNmOg": "Hab",
+      "showTm": "88",
+      "prdtYear": "2021",
+      "openDt": "20211104",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "헝가리"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "멜로/로맨스"
+        },
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "코미디"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "노라 라코스",
+          "peopleNmEn": "Nora Lakos"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "비카 케레케스",
+          "peopleNmEn": "Vica Kerekes",
+          "cast": "도라",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "라즐로 마트라이",
+          "peopleNmEn": "Laszlo Matray",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "미클로시 바냐이",
+          "peopleNmEn": "Miklos Banyai",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "페렌크 엘렉",
+          "peopleNmEn": "Ferenc Elek",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100842",
+          "companyNm": "알토미디어(주)",
+          "companyNmEn": "",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100842",
+          "companyNm": "알토미디어(주)",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2021-MF02250",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

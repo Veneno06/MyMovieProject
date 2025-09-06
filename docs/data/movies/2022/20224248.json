@@ -1,0 +1,75 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20224248",
+      "movieNm": "파리, 13구",
+      "movieNmEn": "Paris, 13th District",
+      "movieNmOg": "Les Olympiades, Paris 13e",
+      "showTm": "105",
+      "prdtYear": "2021",
+      "openDt": "20220512",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "프랑스"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "멜로/로맨스"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "자크 오디아르",
+          "peopleNmEn": "Jacques Audiard"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "노에미 멜랑",
+          "peopleNmEn": "Noemie Merlant",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20061718",
+          "companyNm": "찬란",
+          "companyNmEn": "Challan Film",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20216842",
+          "companyNm": "(주)하이스트레인저",
+          "companyNmEn": "Histranger",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20061718",
+          "companyNm": "찬란",
+          "companyNmEn": "Challan Film",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2022-MF00723 ",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

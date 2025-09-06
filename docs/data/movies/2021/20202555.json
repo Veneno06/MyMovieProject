@@ -1,0 +1,96 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20202555",
+      "movieNm": "톰과 제리",
+      "movieNmEn": "Tom and Jerry",
+      "movieNmOg": "",
+      "showTm": "100",
+      "prdtYear": "2021",
+      "openDt": "20210224",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "애니메이션"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "팀 스토리",
+          "peopleNmEn": "Tim Story"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "클로이 모레츠",
+          "peopleNmEn": "Chloe Moretz",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "마이클 페나",
+          "peopleNmEn": "Michael Pena",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "켄 정",
+          "peopleNmEn": "Ken Jeong",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "크리스티나 청",
+          "peopleNmEn": "Christina Chong",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털 더빙"
+        },
+        {
+          "showTypeGroupNm": "4D",
+          "showTypeNm": "4D 더빙"
+        },
+        {
+          "showTypeGroupNm": "4D",
+          "showTypeNm": "4D"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100043",
+          "companyNm": "워너브러더스 코리아(주)",
+          "companyNmEn": "Warner Bros. Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100043",
+          "companyNm": "워너브러더스 코리아(주)",
+          "companyNmEn": "Warner Bros. Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2021-MF00153",
+          "watchGradeNm": "전체관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

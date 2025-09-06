@@ -1,0 +1,93 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20218349",
+      "movieNm": "정글 크루즈",
+      "movieNmEn": "Jungle Cruise",
+      "movieNmOg": "",
+      "showTm": "127",
+      "prdtYear": "2021",
+      "openDt": "20210728",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "액션"
+        },
+        {
+          "genreNm": "어드벤처"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "자움 콜렛 세라",
+          "peopleNmEn": "Jaume Collet-Serra"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "드웨인 존슨",
+          "peopleNmEn": "Dwayne Johnson",
+          "cast": "프랭크",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "에밀리 블런트",
+          "peopleNmEn": "Emily Blunt",
+          "cast": "릴리",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "에드가 라미레즈",
+          "peopleNmEn": "Edgar Ramirez",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        },
+        {
+          "showTypeGroupNm": "4D",
+          "showTypeNm": "4D"
+        },
+        {
+          "showTypeGroupNm": "IMAX",
+          "showTypeNm": "IMAX"
+        },
+        {
+          "showTypeGroupNm": "DOLBYCINEMA",
+          "showTypeNm": "DOLBYCINEMA"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20161801",
+          "companyNm": "월트디즈니컴퍼니코리아 유한책임회사",
+          "companyNmEn": "The Walt Disney Company Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20161801",
+          "companyNm": "월트디즈니컴퍼니코리아 유한책임회사",
+          "companyNmEn": "The Walt Disney Company Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2021-MF01752",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}
