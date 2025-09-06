@@ -2,7 +2,6 @@
 import os, sys, json, time, argparse, re
 from datetime import datetime, timedelta
 import requests
-# [수정] 자동 재시도를 위해 필요한 라이브러리 추가
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
@@ -14,7 +13,6 @@ MOVIES_DIR = os.path.join(DATA, "movies")
 KOFIC_KEY = os.environ.get("KOFIC_API_KEY", "").strip()
 HEADERS = {"User-Agent": "cache-builder/1.0"}
 
-# [추가] build_year_cache.py에 있던 강력한 자동 재시도 세션 생성 함수
 def make_session() -> requests.Session:
     s = requests.Session()
     retries = Retry(
@@ -46,11 +44,10 @@ def save_json(path, obj):
         json.dump(obj, f, ensure_ascii=False, indent=2)
     os.replace(tmp, path)
 
-# [수정] requests.get 대신 session.get을 사용하도록 변경
 def get(session, url, timeout=30, sleep=0.13):
     time.sleep(sleep)
     r = session.get(url, timeout=timeout)
-    r.raise_for_status() # 오류 발생 시 여기서 예외를 던짐
+    r.raise_for_status()
     return r
 
 def norm_ymd(s):
@@ -62,7 +59,6 @@ def parse_date_ymd(s):
     if len(s) != 8: return None
     return datetime(int(s[:4]), int(s[4:6]), int(s[6:]))
 
-# [수정] session을 인자로 받도록 변경
 def fetch_movie_info(session, movieCd):
     url = f"https://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?key={KOFIC_KEY}&movieCd={movieCd}"
     try:
@@ -73,13 +69,12 @@ def fetch_movie_info(session, movieCd):
         info = (j.get("movieInfoResult") or {}).get("movieInfo")
         return info, None
     except requests.exceptions.RequestException as e:
-        # 재시도 후에도 실패하면 여기서 잡힘
         return None, f"http_error={e}"
 
-
-def fetch_weekly_audi_acc(session, movieCd, openDtYMD, weeks=8):
-    # 이 함수는 현재 로직에서 호출되진 않지만, 호환성을 위해 session을 받도록 수정
+def fetch_weekly_audi_acc(session, movieCd, openDtYMD, weeks=12):
     if not KOFIC_KEY: return None
+    # openDtYMD가 YYYY-MM-DD 형식일 수 있으므로 정규화
+    openDtYMD = norm_ymd(openDtYMD)
     base = parse_date_ymd(openDtYMD) or datetime.now()
     base = base + timedelta(days=3)
     max_acc = None
@@ -88,13 +83,12 @@ def fetch_weekly_audi_acc(session, movieCd, openDtYMD, weeks=8):
         td = d.strftime("%Y%m%d")
         url = f"https://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json?key={KOFIC_KEY}&targetDt={td}&weekGb=0"
         try:
-            r = get(session, url)
+            r = get(session, url, sleep=0.1) # 관객수 조회는 더 짧은 딜레이
             js = r.json()
             if js.get("faultInfo") or js.get("faultResult"):
                 err = js.get("faultInfo") or js.get("faultResult") or {}
                 code = str(err.get("errorCode") or err.get("errorcode") or "")
-                if code == "320011":
-                    raise RuntimeError("RATE_LIMIT")
+                if code == "320011": raise RuntimeError("RATE_LIMIT")
                 continue
             items = (js.get("boxOfficeResult") or {}).get("weeklyBoxOfficeList") or []
             for it in items:
@@ -104,36 +98,26 @@ def fetch_weekly_audi_acc(session, movieCd, openDtYMD, weeks=8):
                     a = int(str(a).replace(",", ""))
                     max_acc = a if max_acc is None else max(max_acc, a)
         except requests.exceptions.RequestException:
-            # 재시도 후에도 실패하면 그냥 다음 주로 넘어감
             continue
     return max_acc
 
 def collect_candidates(year):
     p = os.path.join(YEARS_DIR, f"year-{year}.json")
     j = load_json(p, {"movieList": [], "movieCds": []})
-    cds = set(j.get("movieCds") or [])
-    for row in j.get("movieList") or []:
-        cd = str(row.get("movieCd") or "").strip()
-        if cd: cds.add(cd)
-    return sorted(cds)
+    return sorted(list(set(j.get("movieCds") or [m.get("movieCd") for m in j.get("movieList", []) if m.get("movieCd")])))
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--year-start", required=True)
     ap.add_argument("--year-end", required=True)
-    ap.add_argument("--max", default="999999")
-    ap.add_argument("--audiacc", choices=["off","recent","all"], default="off")
-    ap.add_argument("--audiacc-days", default="90")
+    ap.add_argument("--audiacc", choices=["off","all"], default="off")
     args = ap.parse_args()
 
     y1, y2 = int(args.year_start), int(args.year_end)
-    max_count = int(str(args.max))
-    # mode = args.audiacc # 현재 사용되지 않음
-    # days = int(str(args.audiacc_days)) # 현재 사용되지 않음
-
-    # [수정] main 함수 시작 시 session 생성
+    mode = args.audiacc
     session = make_session()
-    total_saved = 0
+    total_newly_saved = 0
+    total_updated_audi = 0
     
     try:
         for y in range(y1, y2+1):
@@ -143,37 +127,46 @@ def main():
             ensure_dir(out_dir)
 
             for i, cd in enumerate(cds):
-                if total_saved >= max_count:
-                    break
+                print(f"  -> Processing {y} ({i+1}/{len(cds)}): {cd}", end='\r')
                 out = os.path.join(out_dir, f"{cd}.json")
+
                 if os.path.exists(out):
-                    continue
+                    if mode == "off": continue
+                    
+                    data = load_json(out)
+                    info = (data.get("movieInfoResult") or {}).get("movieInfo") or {}
+                    
+                    if info.get("audiAcc") is not None: continue
 
-                print(f"  -> Fetching {y} ({i+1}/{len(cds)}): {cd}", end='\r')
-                
-                # [수정] fetch_movie_info에 session 전달
-                info, err = fetch_movie_info(session, cd)
-                
-                if err:
-                    if "320011" in err:
-                        print(f"\n[warn] {y} {cd}: {err} (stop early)")
-                        raise RuntimeError("RATE_LIMIT")
-                    print(f"\n[warn] {y} {cd}: {err}")
-                    continue
-                if not info:
-                    continue
-
-                # 상세 정보가 아닌 원본 API 응답 전체를 저장 (기존 로직 유지)
-                # movieInfoResult.movieInfo 형태가 되도록 재구성
-                save_json(out, {"movieInfoResult": {"movieInfo": info}})
-                total_saved += 1
+                    # [업그레이드] 파일은 있지만 관객수 정보가 없는 경우, 관객수만 추가 조회
+                    acc = fetch_weekly_audi_acc(session, cd, info.get("openDt"))
+                    if isinstance(acc, int):
+                        info["audiAcc"] = acc
+                        save_json(out, data)
+                        total_updated_audi += 1
+                else:
+                    # 파일이 없는 경우, 영화 정보와 관객수 모두 조회
+                    info, err = fetch_movie_info(session, cd)
+                    if err:
+                        if "320011" in err: raise RuntimeError("RATE_LIMIT")
+                        print(f"\n[warn] {y} {cd}: {err}")
+                        continue
+                    if not info: continue
+                    
+                    if mode == "all":
+                        acc = fetch_weekly_audi_acc(session, cd, info.get("openDt"))
+                        if isinstance(acc, int): info["audiAcc"] = acc
+                    
+                    save_json(out, {"movieInfoResult": {"movieInfo": info}})
+                    total_newly_saved += 1
             
-            print(f"\n[{y}] year done. Total files saved so far: {total_saved}")
+            print(f"\n[{y}] year done.")
 
-        print(f"\n[DONE] Total newly saved details: {total_saved}")
+        print(f"\n[DONE] Total newly saved: {total_newly_saved}, Total audiAcc updated: {total_updated_audi}")
 
     except RuntimeError as e:
         if str(e) == "RATE_LIMIT":
+            print("\n[STOP] API rate limit reached.")
             sys.exit(0)
         raise
 
