@@ -2,8 +2,6 @@ name: KOFIC Daily Fetch
 
 on:
   schedule:
-    # [수정] 한국 시간 기준 매일 오후 3시 30분에 실행 (UTC 06:30)
-    # 데이터 집계가 확실히 끝났을 시간으로 변경하여 안정성 확보
     - cron: "30 6 * * *"
   workflow_dispatch:
 
@@ -44,14 +42,17 @@ jobs:
           echo "Fetching data for $TARGET_DT"
           curl -s "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=${KOFIC_API_KEY}&targetDt=${TARGET_DT}" > "$DAILY_FILE"
           
-          # [추가] 다운로드한 데이터가 유효한지 확인하는 방어 코드
-          # JSON 파일 안에 boxOfficeResult.dailyBoxOfficeList[0] 필드가 존재하는지 확인
+          # [추가] 최종 진단을 위한 디버깅 코드
+          echo "--- DEBUG: Content of ${DAILY_FILE} ---"
+          cat "$DAILY_FILE"
+          echo
+          echo "--- END DEBUG ---"
+
           if ! jq -e '.boxOfficeResult.dailyBoxOfficeList[0]' "$DAILY_FILE" > /dev/null; then
             echo "Fetched data is invalid or empty. Skipping update."
             exit 0
           fi
           
-          # 유효한 데이터일 때만 latest.json 파일을 생성
           echo "{\"url\": \"data/${TARGET_DT}.json\", \"date\": \"${TARGET_DT_FMT}\"}" > docs/data/latest.json
           echo "Daily box office data for $TARGET_DT and latest.json saved."
 
