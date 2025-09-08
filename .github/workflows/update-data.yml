@@ -2,8 +2,9 @@ name: KOFIC Daily Fetch
 
 on:
   schedule:
-    # 한국 시간 기준 매일 오전 9시 10분에 실행 (UTC 00:10)
-    - cron: "10 0 * * *"
+    # [수정] 한국 시간 기준 매일 오후 3시 30분에 실행 (UTC 06:30)
+    # 데이터 집계가 확실히 끝났을 시간으로 변경하여 안정성 확보
+    - cron: "30 6 * * *"
   workflow_dispatch:
 
 permissions:
@@ -38,13 +39,20 @@ jobs:
         run: |
           TARGET_DT=$(TZ=Asia/Seoul date -d "yesterday" +%Y%m%d)
           TARGET_DT_FMT=$(TZ=Asia/Seoul date -d "yesterday" +%Y-%m-%d)
+          DAILY_FILE="docs/data/${TARGET_DT}.json"
+          
           echo "Fetching data for $TARGET_DT"
+          curl -s "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=${KOFIC_API_KEY}&targetDt=${TARGET_DT}" > "$DAILY_FILE"
           
-          curl -s "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=${KOFIC_API_KEY}&targetDt=${TARGET_DT}" > docs/data/${TARGET_DT}.json
+          # [추가] 다운로드한 데이터가 유효한지 확인하는 방어 코드
+          # JSON 파일 안에 boxOfficeResult.dailyBoxOfficeList[0] 필드가 존재하는지 확인
+          if ! jq -e '.boxOfficeResult.dailyBoxOfficeList[0]' "$DAILY_FILE" > /dev/null; then
+            echo "Fetched data is invalid or empty. Skipping update."
+            exit 0
+          fi
           
-          # [수정] 잘못된 cp 명령어 대신, 올바른 JSON 형식으로 latest.json 파일을 생성
+          # 유효한 데이터일 때만 latest.json 파일을 생성
           echo "{\"url\": \"data/${TARGET_DT}.json\", \"date\": \"${TARGET_DT_FMT}\"}" > docs/data/latest.json
-          
           echo "Daily box office data for $TARGET_DT and latest.json saved."
 
       - name: Update movie details from new daily file
@@ -52,16 +60,6 @@ jobs:
           KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
         run: |
           python scripts/update_data.py
-
-      - name: Light refresh current-year details
-        env:
-          KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
-        run: |
-          YEAR=$(TZ=Asia/Seoul date +%Y)
-          python scripts/build_movie_details.py \
-            --year-start "$YEAR" \
-            --year-end   "$YEAR" \
-            --max        "300"
 
       - name: Rebuild search indexes
         run: |
