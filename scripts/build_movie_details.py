@@ -16,10 +16,7 @@ HEADERS = {"User-Agent": "cache-builder/1.0"}
 def make_session() -> requests.Session:
     s = requests.Session()
     retries = Retry(
-        total=8,
-        connect=5,
-        read=5,
-        backoff_factor=1.5,
+        total=8, connect=5, read=5, backoff_factor=1.5,
         status_forcelist=[429, 500, 502, 503, 504],
     )
     adapter = HTTPAdapter(max_retries=retries)
@@ -110,10 +107,13 @@ def main():
     ap.add_argument("--year-start", required=True)
     ap.add_argument("--year-end", required=True)
     ap.add_argument("--audiacc", choices=["off","all"], default="off")
+    # [추가] 관객수 조회 기간(주)을 설정하는 옵션
+    ap.add_argument("--audiacc-weeks", default="5")
     args = ap.parse_args()
 
     y1, y2 = int(args.year_start), int(args.year_end)
     mode = args.audiacc
+    weeks = int(args.audiacc_weeks) # [추가] 옵션 값 읽기
     session = make_session()
     total_newly_saved = 0
     total_updated_audi = 0
@@ -131,13 +131,12 @@ def main():
 
                 if os.path.exists(out):
                     if mode == "off": continue
-                    
                     data = load_json(out)
                     info = (data.get("movieInfoResult") or {}).get("movieInfo") or {}
-                    
                     if info.get("audiAcc") is not None: continue
-
-                    acc = fetch_weekly_audi_acc(session, cd, info.get("openDt"))
+                    
+                    # [수정] 조회 기간(weeks)을 옵션으로 전달
+                    acc = fetch_weekly_audi_acc(session, cd, info.get("openDt"), weeks=weeks)
                     if isinstance(acc, int):
                         info["audiAcc"] = acc
                         save_json(out, data)
@@ -151,14 +150,14 @@ def main():
                     if not info: continue
                     
                     if mode == "all":
-                        acc = fetch_weekly_audi_acc(session, cd, info.get("openDt"))
+                        # [수정] 조회 기간(weeks)을 옵션으로 전달
+                        acc = fetch_weekly_audi_acc(session, cd, info.get("openDt"), weeks=weeks)
                         if isinstance(acc, int): info["audiAcc"] = acc
                     
                     save_json(out, {"movieInfoResult": {"movieInfo": info}})
                     total_newly_saved += 1
             
             print(f"\n[{y}] year done.")
-
         print(f"\n[DONE] Total newly saved: {total_newly_saved}, Total audiAcc updated: {total_updated_audi}")
 
     except RuntimeError as e:
