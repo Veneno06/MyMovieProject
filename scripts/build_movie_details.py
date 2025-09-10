@@ -68,34 +68,40 @@ def fetch_movie_info(session, movieCd):
     except requests.exceptions.RequestException as e:
         return None, f"http_error={e}"
 
-def fetch_weekly_audi_acc(session, movieCd, openDtYMD, weeks=12):
+# [최종 수정] 사용자의 아이디어를 반영한 새로운 관객수 조회 함수
+def fetch_final_audi_acc(session, movieCd, openDtYMD):
     if not KOFIC_KEY: return None
     openDtYMD = norm_ymd(openDtYMD)
-    base = parse_date_ymd(openDtYMD) or datetime.now()
-    base = base + timedelta(days=3)
-    max_acc = None
-    for i in range(weeks):
-        d = (base + timedelta(weeks=i))
-        td = d.strftime("%Y%m%d")
-        url = f"https://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json?key={KOFIC_KEY}&targetDt={td}&weekGb=0"
-        try:
-            r = get(session, url, sleep=0.1)
-            js = r.json()
-            if js.get("faultInfo") or js.get("faultResult"):
-                err = js.get("faultInfo") or js.get("faultResult") or {}
-                code = str(err.get("errorCode") or err.get("errorcode") or "")
-                if code == "320011": raise RuntimeError("RATE_LIMIT")
-                continue
-            items = (js.get("boxOfficeResult") or {}).get("weeklyBoxOfficeList") or []
-            for it in items:
-                if it.get("movieCd") == movieCd:
-                    a = it.get("audiAcc")
-                    if a is None: continue
-                    a = int(str(a).replace(",", ""))
-                    max_acc = a if max_acc is None else max(max_acc, a)
-        except requests.exceptions.RequestException:
-            continue
-    return max_acc
+    
+    # 개봉일이 없으면 조회 불가
+    open_date = parse_date_ymd(openDtYMD)
+    if not open_date: return None
+
+    # 개봉일로부터 150일(약 5달) 후 날짜를 계산
+    target_date = open_date + timedelta(days=150)
+    
+    # 만약 조회 시점이 미래라면, 조회 불가
+    if target_date > datetime.now(): return None
+        
+    td = target_date.strftime("%Y%m%d")
+    url = f"https://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key={KOFIC_KEY}&targetDt={td}"
+    
+    try:
+        r = get(session, url, sleep=0.1)
+        js = r.json()
+        if js.get("faultInfo") or js.get("faultResult"):
+            err = js.get("faultInfo") or js.get("faultResult") or {}
+            code = str(err.get("errorCode") or err.get("errorcode") or "")
+            if code == "320011": raise RuntimeError("RATE_LIMIT")
+            return None # 오류 발생 시 None 반환
+            
+        items = (js.get("boxOfficeResult") or {}).get("dailyBoxOfficeList") or []
+        for it in items:
+            if it.get("movieCd") == movieCd:
+                return int(str(it.get("audiAcc", "0")).replace(",", ""))
+        return None # 박스오피스 목록에 영화가 없으면 None 반환
+    except requests.exceptions.RequestException:
+        return None
 
 def collect_candidates(year):
     p = os.path.join(YEARS_DIR, f"year-{year}.json")
@@ -107,13 +113,10 @@ def main():
     ap.add_argument("--year-start", required=True)
     ap.add_argument("--year-end", required=True)
     ap.add_argument("--audiacc", choices=["off","all"], default="off")
-    # [추가] 관객수 조회 기간(주)을 설정하는 옵션
-    ap.add_argument("--audiacc-weeks", default="5")
     args = ap.parse_args()
 
     y1, y2 = int(args.year_start), int(args.year_end)
     mode = args.audiacc
-    weeks = int(args.audiacc_weeks) # [추가] 옵션 값 읽기
     session = make_session()
     total_newly_saved = 0
     total_updated_audi = 0
@@ -132,11 +135,12 @@ def main():
                 if os.path.exists(out):
                     if mode == "off": continue
                     data = load_json(out)
-                    info = (data.get("movieInfoResult") or {}).get("movieInfo") or {}
+                    info_wrapper = data.get("movieInfoResult", {}) if isinstance(data.get("movieInfoResult"), dict) else {}
+                    info = info_wrapper.get("movieInfo", data)
                     if info.get("audiAcc") is not None: continue
                     
-                    # [수정] 조회 기간(weeks)을 옵션으로 전달
-                    acc = fetch_weekly_audi_acc(session, cd, info.get("openDt"), weeks=weeks)
+                    # [최종 수정] 새로운 관객수 조회 함수 호출
+                    acc = fetch_final_audi_acc(session, cd, info.get("openDt"))
                     if isinstance(acc, int):
                         info["audiAcc"] = acc
                         save_json(out, data)
@@ -150,8 +154,8 @@ def main():
                     if not info: continue
                     
                     if mode == "all":
-                        # [수정] 조회 기간(weeks)을 옵션으로 전달
-                        acc = fetch_weekly_audi_acc(session, cd, info.get("openDt"), weeks=weeks)
+                        # [최종 수정] 새로운 관객수 조회 함수 호출
+                        acc = fetch_final_audi_acc(session, cd, info.get("openDt"))
                         if isinstance(acc, int): info["audiAcc"] = acc
                     
                     save_json(out, {"movieInfoResult": {"movieInfo": info}})
