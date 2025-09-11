@@ -102,6 +102,15 @@ def collect_candidates(year):
     j = load_json(p, {"movieList": [], "movieCds": []})
     return sorted(list(set(j.get("movieCds") or [m.get("movieCd") for m in j.get("movieList", []) if m.get("movieCd")])))
 
+# [최종 수정] 데이터 구조를 안전하게 파악하는 함수 추가
+def get_movie_info_from_data(data):
+    if not isinstance(data, dict): return None
+    if "movieInfoResult" in data and "movieInfo" in data["movieInfoResult"]:
+        return data["movieInfoResult"]["movieInfo"]
+    if "movieCd" in data:
+        return data
+    return None
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--year-start", required=True)
@@ -132,16 +141,14 @@ def main():
                     if mode == "off": continue
                     
                     data = load_json(out)
-                    info_wrapper = data.get("movieInfoResult", {}) if isinstance(data.get("movieInfoResult"), dict) else {}
-                    info = info_wrapper.get("movieInfo", data)
-
-                    if info.get("audiAcc") is not None: continue
+                    info = get_movie_info_from_data(data) # [최종 수정] 안전한 방식으로 info 객체 가져오기
+                    if info is None or info.get("audiAcc") is not None:
+                        continue
 
                     acc = fetch_weekly_audi_acc(session, cd, info.get("openDt"), weeks=weeks)
                     if isinstance(acc, int):
-                        print(f"\n[DEBUG] Found audiAcc for {cd}: {acc}. SAVING NOW...") # <-- 이 한 줄만 추가
-                        info["audiAcc"] = acc
-                        save_json(out, data)
+                        info["audiAcc"] = acc # info 객체에 audiAcc 추가
+                        save_json(out, data)  # 항상 최상위 data 객체를 저장
                         total_updated_audi += 1
                 else:
                     info, err = fetch_movie_info(session, cd)
