@@ -1,0 +1,111 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "19950366",
+      "movieNm": "토이 스토리",
+      "movieNmEn": "Toy Story",
+      "movieNmOg": "",
+      "showTm": "80",
+      "prdtYear": "1994",
+      "openDt": "19951230",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "애니메이션"
+        },
+        {
+          "genreNm": "코미디"
+        },
+        {
+          "genreNm": "판타지"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "존 라세터",
+          "peopleNmEn": "John Lasseter"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "톰 행크스",
+          "peopleNmEn": "Tom Hanks",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "팀 알렌",
+          "peopleNmEn": "Tim Allen",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "짐 바니",
+          "peopleNmEn": "Jim Varney",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20104491",
+          "companyNm": "픽사 애니메이션 스튜디오",
+          "companyNmEn": "Pixar Animation Studios",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20161801",
+          "companyNm": "월트디즈니컴퍼니코리아 유한책임회사",
+          "companyNmEn": "The Walt Disney Company Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20161801",
+          "companyNm": "월트디즈니컴퍼니코리아 유한책임회사",
+          "companyNmEn": "The Walt Disney Company Korea",
+          "companyPartNm": "수입사"
+        },
+        {
+          "companyCd": "20060452",
+          "companyNm": "월트디즈니컴퍼니코리아(주)",
+          "companyNmEn": "The Walt Disney Company Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "95-377",
+          "watchGradeNm": "연소자관람가"
+        },
+        {
+          "auditNo": "2025-MF02188 ",
+          "watchGradeNm": "전체관람가"
+        }
+      ],
+      "staffs": [
+        {
+          "peopleNm": "랜디 뉴먼",
+          "peopleNmEn": "Randy Newman",
+          "staffRoleNm": "음악"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

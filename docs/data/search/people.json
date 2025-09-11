@@ -1,6 +1,6 @@
 {
-  "generatedAt": 1757518364,
-  "count": 12797,
+  "generatedAt": 1757573386,
+  "count": 12801,
   "people": [
     {
       "peopleCd": "",
@@ -13610,6 +13610,14 @@
           "movieCd": "20225175",
           "movieNm": "엘비스",
           "openDt": "2022-07-13",
+          "part": "",
+          "audiAcc": null,
+          "actorCount": 3
+        },
+        {
+          "movieCd": "19950366",
+          "movieNm": "토이 스토리",
+          "openDt": "1995-12-30",
           "part": "",
           "audiAcc": null,
           "actorCount": 3
@@ -31130,6 +31138,14 @@
           "part": "",
           "audiAcc": null,
           "actorCount": 3
+        },
+        {
+          "movieCd": "20030047",
+          "movieNm": "모노노케 히메",
+          "openDt": "2003-04-25",
+          "part": "",
+          "audiAcc": null,
+          "actorCount": 2
         }
       ]
     },
@@ -110847,6 +110863,14 @@
           "part": "",
           "audiAcc": null,
           "actorCount": 7
+        },
+        {
+          "movieCd": "20030047",
+          "movieNm": "모노노케 히메",
+          "openDt": "2003-04-25",
+          "part": "",
+          "audiAcc": null,
+          "actorCount": 2
         }
       ]
     },
@@ -116677,6 +116701,51 @@
     },
     {
       "peopleCd": "",
+      "peopleNm": "존 라세터",
+      "repRoleNm": "감독",
+      "films": [
+        {
+          "movieCd": "19950366",
+          "movieNm": "토이 스토리",
+          "openDt": "1995-12-30",
+          "part": "",
+          "audiAcc": null,
+          "actorCount": 3
+        }
+      ]
+    },
+    {
+      "peopleCd": "",
+      "peopleNm": "팀 알렌",
+      "repRoleNm": "배우",
+      "films": [
+        {
+          "movieCd": "19950366",
+          "movieNm": "토이 스토리",
+          "openDt": "1995-12-30",
+          "part": "",
+          "audiAcc": null,
+          "actorCount": 3
+        }
+      ]
+    },
+    {
+      "peopleCd": "",
+      "peopleNm": "짐 바니",
+      "repRoleNm": "배우",
+      "films": [
+        {
+          "movieCd": "19950366",
+          "movieNm": "토이 스토리",
+          "openDt": "1995-12-30",
+          "part": "",
+          "audiAcc": null,
+          "actorCount": 3
+        }
+      ]
+    },
+    {
+      "peopleCd": "",
       "peopleNm": "헨리 토마스",
       "repRoleNm": "배우",
       "films": [
@@ -119396,6 +119465,37 @@
           "part": "",
           "audiAcc": null,
           "actorCount": 3
+        }
+      ]
+    },
+    {
+      "peopleCd": "",
+      "peopleNm": "김덕영",
+      "repRoleNm": "감독",
+      "films": [
+        {
+          "movieCd": "20257083",
+          "movieNm": "건국전쟁2",
+          "openDt": "2025-09-10",
+          "part": "",
+          "audiAcc": null,
+          "actorCount": 0
+        },
+        {
+          "movieCd": "20240769",
+          "movieNm": "감독판 김일성의 아이들",
+          "openDt": "2024-06-25",
+          "part": "",
+          "audiAcc": null,
+          "actorCount": 0
+        },
+        {
+          "movieCd": "20247074",
+          "movieNm": "건국전쟁",
+          "openDt": "2024-02-01",
+          "part": "",
+          "audiAcc": 1160625,
+          "actorCount": 0
         }
       ]
     },
@@ -153429,29 +153529,6 @@
     },
     {
       "peopleCd": "",
-      "peopleNm": "김덕영",
-      "repRoleNm": "감독",
-      "films": [
-        {
-          "movieCd": "20240769",
-          "movieNm": "감독판 김일성의 아이들",
-          "openDt": "2024-06-25",
-          "part": "",
-          "audiAcc": null,
-          "actorCount": 0
-        },
-        {
-          "movieCd": "20247074",
-          "movieNm": "건국전쟁",
-          "openDt": "2024-02-01",
-          "part": "",
-          "audiAcc": 1160625,
-          "actorCount": 0
-        }
-      ]
-    },
-    {
-      "peopleCd": "",
       "peopleNm": "김서경",
       "repRoleNm": "배우",
       "films": [
@@ -174184,6 +174261,21 @@
           "part": "",
           "audiAcc": null,
           "actorCount": 13
+        }
+      ]
+    },
+    {
+      "peopleCd": "",
+      "peopleNm": "마츠다 요지",
+      "repRoleNm": "배우",
+      "films": [
+        {
+          "movieCd": "20030047",
+          "movieNm": "모노노케 히메",
+          "openDt": "2003-04-25",
+          "part": "",
+          "audiAcc": null,
+          "actorCount": 2
         }
       ]
     },
