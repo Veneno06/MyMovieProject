@@ -139,6 +139,7 @@ def main():
 
                     acc = fetch_weekly_audi_acc(session, cd, info.get("openDt"), weeks=weeks)
                     if isinstance(acc, int):
+                        print(f"\n[DEBUG] Found audiAcc for {cd}: {acc}. SAVING NOW...") # <-- 이 한 줄만 추가
                         info["audiAcc"] = acc
                         save_json(out, data)
                         total_updated_audi += 1
