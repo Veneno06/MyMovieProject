@@ -95,6 +95,10 @@ def main():
                 rec = {"peopleCd": peopleCd, "peopleNm": peopleNm, "repRoleNm": role, "films": []}
                 people_map[key] = rec
             
+            # [수정] 이미 추가된 영화인지 확인하여 중복 방지
+            if any(f.get("movieCd") == movieCd for f in rec["films"]):
+                return
+
             extra_data = movie_extra_data_map.get(movieCd, {})
             film_info = {
                 "movieCd": movieCd, "movieNm": movieNm, "openDt": openDt, "part": "",
