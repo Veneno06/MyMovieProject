@@ -46,50 +46,34 @@ def main():
 
     movies = []
     people_map = {}
-    movie_audi_map = {} # [추가] 영화코드별 관객수 조회를 위한 맵
+    movie_extra_data_map = {}
 
-    # --- 1차 스캔: 영화 정보 및 관객수 맵 생성 ---
     for fp in files:
         d = load_json(fp)
-        if not d: 
-            continue
+        if not d: continue
         mi = (d.get("movieInfoResult") or {}).get("movieInfo") or {}
-        if not mi: 
-            continue
+        if not mi: continue
 
         movieCd = (mi.get("movieCd") or "").strip()
         movieNm = (mi.get("movieNm") or "").strip()
         openDt  = norm_open(mi.get("openDt", ""))
         prdtYear = str(mi.get("prdtYear", "")).strip()
-
         nations = mi.get("nations") or []
         repNation = "K" if any(is_korean(x.get("nationNm")) for x in nations) else "F"
-
         grade = first_or_empty(mi.get("audits") or [], "watchGradeNm")
         genres = [ (g.get("genreNm") or "").strip() for g in (mi.get("genres") or []) if (g.get("genreNm") or "").strip() ]
-        
-        # [수정] 상세 정보 파일에서 audiAcc 값을 읽어옴
-        audiAcc = mi.get("audiAcc") 
+        audiAcc = mi.get("audiAcc")
+        actorCount = len(mi.get("actors", []))
 
-        if not movieCd or not movieNm:
-            continue
+        if not movieCd or not movieNm: continue
 
         movies.append({
-            "movieCd": movieCd,
-            "movieNm": movieNm,
-            "openDt": openDt,
-            "prdtYear": prdtYear,
-            "repNation": repNation,
-            "grade": grade,
-            "genres": genres,
-            "audiAcc": audiAcc, # [수정] None 대신 읽어온 audiAcc 값을 저장
+            "movieCd": movieCd, "movieNm": movieNm, "openDt": openDt, "prdtYear": prdtYear,
+            "repNation": repNation, "grade": grade, "genres": genres, "audiAcc": audiAcc,
         })
         
-        # [추가] 관객수 맵에 저장
-        if audiAcc is not None:
-            movie_audi_map[movieCd] = audiAcc
+        movie_extra_data_map[movieCd] = { "audiAcc": audiAcc, "actorCount": actorCount }
 
-    # --- 2차 스캔: 배우 정보에 관객수 추가 ---
     for fp in files:
         d = load_json(fp)
         if not d: continue
@@ -111,20 +95,21 @@ def main():
                 rec = {"peopleCd": peopleCd, "peopleNm": peopleNm, "repRoleNm": role, "films": []}
                 people_map[key] = rec
             
-            # [수정] 영화 정보에 관객수(audiAcc)도 함께 추가
+            # [수정] 이미 추가된 영화인지 확인하여 중복 방지
+            if any(f.get("movieCd") == movieCd for f in rec["films"]):
+                return
+
+            extra_data = movie_extra_data_map.get(movieCd, {})
             film_info = {
-                "movieCd": movieCd, 
-                "movieNm": movieNm, 
-                "openDt": openDt, 
-                "part": "",
-                "audiAcc": movie_audi_map.get(movieCd) # 맵에서 관객수 조회
+                "movieCd": movieCd, "movieNm": movieNm, "openDt": openDt, "part": "",
+                "audiAcc": extra_data.get("audiAcc"),
+                "actorCount": extra_data.get("actorCount")
             }
             rec["films"].append(film_info)
 
         for x in (mi.get("directors") or []): add_person(x, "감독")
         for x in (mi.get("actors") or []):    add_person(x, "배우")
 
-    # 정렬
     movies.sort(key=lambda m: m.get("openDt") or "9999-99-99")
     for rec in people_map.values():
         rec["films"].sort(key=lambda f: f.get("openDt") or "9999-99-99", reverse=True)

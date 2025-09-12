@@ -1,6 +1,6 @@
 {
-  "generatedAt": 1757656124,
-  "count": 6145,
+  "generatedAt": 1757656724,
+  "count": 6148,
   "movies": [
     {
       "movieCd": "20020328",
@@ -14,6 +14,35 @@
         "가족",
         "어드벤처",
         "판타지"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "19950366",
+      "movieNm": "토이 스토리",
+      "openDt": "1995-12-30",
+      "prdtYear": "1994",
+      "repNation": "F",
+      "grade": "연소자관람가",
+      "genres": [
+        "애니메이션",
+        "코미디",
+        "판타지"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20030047",
+      "movieNm": "모노노케 히메",
+      "openDt": "2003-04-25",
+      "prdtYear": "1997",
+      "repNation": "F",
+      "grade": "전체관람가",
+      "genres": [
+        "애니메이션",
+        "드라마",
+        "액션",
+        "어드벤처"
       ],
       "audiAcc": null
     },
@@ -77225,6 +77254,18 @@
         "다큐멘터리",
         "어드벤처",
         "가족"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20257083",
+      "movieNm": "건국전쟁2",
+      "openDt": "2025-09-10",
+      "prdtYear": "2025",
+      "repNation": "K",
+      "grade": "12세이상관람가",
+      "genres": [
+        "다큐멘터리"
       ],
       "audiAcc": null
     },
