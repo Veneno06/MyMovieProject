@@ -42,12 +42,6 @@ jobs:
           echo "Fetching data for $TARGET_DT"
           curl -s "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=${KOFIC_API_KEY}&targetDt=${TARGET_DT}" > "$DAILY_FILE"
           
-          # [추가] 최종 진단을 위한 디버깅 코드
-          echo "--- DEBUG: Content of ${DAILY_FILE} ---"
-          cat "$DAILY_FILE"
-          echo
-          echo "--- END DEBUG ---"
-
           if ! jq -e '.boxOfficeResult.dailyBoxOfficeList[0]' "$DAILY_FILE" > /dev/null; then
             echo "Fetched data is invalid or empty. Skipping update."
             exit 0
@@ -61,6 +55,19 @@ jobs:
           KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
         run: |
           python scripts/update_data.py
+
+      # [수정] 현재 연도 상세 정보를 보강할 때, 관객수 정보도 함께 가져오도록 --audiacc all 추가
+      - name: Light refresh current-year details
+        env:
+          KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
+        run: |
+          YEAR=$(TZ=Asia/Seoul date +%Y)
+          python scripts/build_movie_details.py \
+            --year-start "$YEAR" \
+            --year-end   "$YEAR" \
+            --max        "300" \
+            --audiacc    "all" \
+            --audiacc-weeks "5"
 
       - name: Rebuild search indexes
         run: |
