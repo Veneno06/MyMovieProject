@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ko">
 <head>
-<meta charset="utf-g">
+<meta charset="utf-8">
 <title>배우 프로필</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <style>
@@ -18,22 +18,29 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
 .chart-buttons { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
 .chart-buttons button { padding:4px 10px; border:1px solid #ccc; border-radius:16px; background:#f0f0f0; cursor:pointer; font-size:14px; }
 .chart-buttons button.active { background:#333; color:#fff; border-color:#333; font-weight:bold; }
+/* [추가] 버튼 클래스 재사용을 위해 .btn 스타일 일부를 복사 */
+.btn { padding:6px 10px; border:1px solid #e6e6e6; border-radius:6px; background:#fafafa; cursor:pointer; }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 <div class="wrap">
   <div class="ctrls">
-    <a href="index.html">홈</a>
-    <a href="search.html">영화 검색</a>
-    <a href="people-search.html">배우 검색</a>
-    <a href="saved.html">저장 목록</a>
+    <a href="index.html" class="btn">홈</a>
+    <a href="search.html" class="btn">영화 검색</a>
+    <a href="people-search.html" class="btn">배우 검색</a>
+    <a href="saved.html" class="btn">저장한 배우</a>
   </div>
 
   <h1 id="title">배우 프로필</h1>
   <div class="note">출연작 (최신 개봉일 순)</div>
   <ul id="out" class="list"></ul>
   <div id="msg" class="note"></div>
+
+  <div style="margin-top:12px; display:flex; gap:8px;">
+    <button class="btn" onclick="history.back()">🔙 뒤로</button>
+    <button class="btn" id="saveBtn" style="display:none;">☆ 배우 저장</button>
+  </div>
 
   <div id="chart-container" style="display:none;">
     <h2>개봉 시기별 관객수 추이</h2>
@@ -55,6 +62,38 @@ function getParam(k){ return new URL(location.href).searchParams.get(k) || ""; }
 const fmtNum = n => (n==null || isNaN(n)) ? '' : n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 let PEOPLE = [];
 let myChart = null;
+let currentPerson = null; // [추가] 현재 페이지의 배우 정보를 저장할 변수
+
+// --- [추가] LocalStorage 배우 저장 관련 기능 ---
+const saveBtn = document.getElementById('saveBtn');
+
+function getSavedPeople() { 
+  // 영화 저장을 위해 사용하던 savedMovies와의 충돌을 피하기 위해 'savedPeople' 키 사용
+  return JSON.parse(localStorage.getItem('savedPeople') || '{}'); 
+}
+function setSavedPeople(obj) { localStorage.setItem('savedPeople', JSON.stringify(obj)); }
+function isSaved(id) { return !!getSavedPeople()[id]; }
+
+function renderSaveBtn() {
+    if (!currentPerson || !currentPerson.peopleCd) return;
+    saveBtn.style.display = 'inline-block';
+    saveBtn.textContent = isSaved(currentPerson.peopleCd) ? '⭐ 저장됨(해제)' : '☆ 배우 저장';
+}
+
+saveBtn.addEventListener('click', () => {
+    if (!currentPerson || !currentPerson.peopleCd) return;
+    const saved = getSavedPeople();
+    if (isSaved(currentPerson.peopleCd)) {
+        delete saved[currentPerson.peopleCd];
+    } else {
+        // 간단한 정보만 저장 (이름)
+        saved[currentPerson.peopleCd] = { name: currentPerson.peopleNm };
+    }
+    setSaved(saved);
+    renderSaveBtn();
+});
+// --- 배우 저장 기능 끝 ---
+
 
 async function loadIndex(){
   const r = await fetch(PEOPLE_URL);
@@ -88,6 +127,10 @@ function render(){
     msg.textContent = '배우를 찾을 수 없어요. (캐시 인덱스 확인)';
     return;
   }
+  
+  // [추가] 현재 배우 정보를 전역 변수에 저장하고 저장 버튼 렌더링
+  currentPerson = item;
+  renderSaveBtn();
 
   title.textContent = item.peopleNm;
   out.innerHTML = '';
@@ -109,7 +152,7 @@ function render(){
     
     const btnTotal = document.getElementById('btnTotalAudi');
     const btnPerActor = document.getElementById('btnAudiPerActor');
-    const btnPerFilmography = document.getElementById('btnAudiPerFilmography'); // [추가] 새 버튼 참조
+    const btnPerFilmography = document.getElementById('btnAudiPerFilmography');
 
     btnTotal.addEventListener('click', () => {
         drawAudiChart(filmsWithAudi, 'totalAudi');
@@ -125,7 +168,6 @@ function render(){
         btnPerFilmography.classList.remove('active');
     });
 
-    // [추가] 새 버튼 이벤트 리스너
     btnPerFilmography.addEventListener('click', () => {
         drawAudiChart(filmsWithAudi, 'audiPerFilmography');
         btnPerFilmography.classList.add('active');
@@ -148,7 +190,6 @@ function drawAudiChart(films, dataType = 'totalAudi'){
     let dataPoints;
     let yAxisLabel;
 
-    // [추가] '관객수/출연작' 그래프 계산 로직
     if (dataType === 'audiPerFilmography') {
         const totalFilms = films.length;
         dataPoints = films.map(f => (f.audiAcc && totalFilms > 0) ? Math.round(f.audiAcc / totalFilms) : 0);
@@ -169,7 +210,7 @@ function drawAudiChart(films, dataType = 'totalAudi'){
         data: {
             labels: labels,
             datasets: [{
-                label: '값', // 범례 이름을 '관객수'에서 '값'으로 일반화
+                label: '값',
                 data: dataPoints,
                 borderColor: 'rgba(75, 192, 192, 1)',
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
@@ -191,7 +232,7 @@ function drawAudiChart(films, dataType = 'totalAudi'){
                 }
             },
             plugins: {
-                legend: { display: false }, // 범례는 버튼으로 대체되었으므로 숨김
+                legend: { display: false },
                 tooltip: {
                     callbacks: {
                         title: function(tooltipItems) { return movieTitles[tooltipItems[0].dataIndex]; },
