@@ -18,7 +18,6 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
 .chart-buttons { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
 .chart-buttons button { padding:4px 10px; border:1px solid #ccc; border-radius:16px; background:#f0f0f0; cursor:pointer; font-size:14px; }
 .chart-buttons button.active { background:#333; color:#fff; border-color:#333; font-weight:bold; }
-/* [추가] 버튼 클래스 재사용을 위해 .btn 스타일 일부를 복사 */
 .btn { padding:6px 10px; border:1px solid #e6e6e6; border-radius:6px; background:#fafafa; cursor:pointer; }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -62,20 +61,22 @@ function getParam(k){ return new URL(location.href).searchParams.get(k) || ""; }
 const fmtNum = n => (n==null || isNaN(n)) ? '' : n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 let PEOPLE = [];
 let myChart = null;
-let currentPerson = null; // [추가] 현재 페이지의 배우 정보를 저장할 변수
+let currentPerson = null;
 
-// --- [추가] LocalStorage 배우 저장 관련 기능 ---
+// --- [수정] 배우 저장 관련 기능 전체 추가 ---
 const saveBtn = document.getElementById('saveBtn');
 
 function getSavedPeople() { 
-  // 영화 저장을 위해 사용하던 savedMovies와의 충돌을 피하기 위해 'savedPeople' 키 사용
   return JSON.parse(localStorage.getItem('savedPeople') || '{}'); 
 }
 function setSavedPeople(obj) { localStorage.setItem('savedPeople', JSON.stringify(obj)); }
 function isSaved(id) { return !!getSavedPeople()[id]; }
 
 function renderSaveBtn() {
-    if (!currentPerson || !currentPerson.peopleCd) return;
+    if (!currentPerson || !currentPerson.peopleCd) {
+        saveBtn.style.display = 'none'; // peopleCd가 없으면 저장 버튼 숨김
+        return;
+    }
     saveBtn.style.display = 'inline-block';
     saveBtn.textContent = isSaved(currentPerson.peopleCd) ? '⭐ 저장됨(해제)' : '☆ 배우 저장';
 }
@@ -86,14 +87,12 @@ saveBtn.addEventListener('click', () => {
     if (isSaved(currentPerson.peopleCd)) {
         delete saved[currentPerson.peopleCd];
     } else {
-        // 간단한 정보만 저장 (이름)
         saved[currentPerson.peopleCd] = { name: currentPerson.peopleNm };
     }
     setSaved(saved);
     renderSaveBtn();
 });
 // --- 배우 저장 기능 끝 ---
-
 
 async function loadIndex(){
   const r = await fetch(PEOPLE_URL);
@@ -127,8 +126,8 @@ function render(){
     msg.textContent = '배우를 찾을 수 없어요. (캐시 인덱스 확인)';
     return;
   }
-  
-  // [추가] 현재 배우 정보를 전역 변수에 저장하고 저장 버튼 렌더링
+
+  // [수정] 현재 배우 정보 저장 및 저장 버튼 표시 함수 호출
   currentPerson = item;
   renderSaveBtn();
 
@@ -167,7 +166,7 @@ function render(){
         btnTotal.classList.remove('active');
         btnPerFilmography.classList.remove('active');
     });
-
+    
     btnPerFilmography.addEventListener('click', () => {
         drawAudiChart(filmsWithAudi, 'audiPerFilmography');
         btnPerFilmography.classList.add('active');
