@@ -18,13 +18,13 @@
     <a class="btn" href="index.html">홈</a>
     <a class="btn" href="search.html">영화 검색</a>
     <a class="btn" href="people-search.html">배우 검색</a>
-    <a class="btn" href="saved.html">저장 목록</a>
+    <a class="btn" href="saved.html">저장한 배우</a>
   </div>
 
   <div id="movieDetail" class="grid"></div>
   <div style="margin-top:12px; display:flex; gap:8px;">
     <button class="btn" onclick="history.back()">🔙 뒤로</button>
-    <button class="btn" id="saveBtn">☆ 영화 저장</button>
+    <!--<button class="btn" id="saveBtn">☆ 영화 저장</button>-->
   </div>
 </div>
 
@@ -33,9 +33,9 @@
 const params = new URLSearchParams(location.search);
 const movieCd = params.get('movieCd') || '';
 const box = document.getElementById('movieDetail');
-const saveBtn = document.getElementById('saveBtn');
+//const saveBtn = document.getElementById('saveBtn');
 
-function getSaved(){ return JSON.parse(localStorage.getItem('savedMovies')||'[]'); }
+//function getSaved(){ return JSON.parse(localStorage.getItem('savedMovies')||'[]'); }
 function isSaved(cd){ return getSaved().includes(cd); }
 function setSaved(arr){ localStorage.setItem('savedMovies', JSON.stringify(arr)); }
 function renderSaveBtn(){ if (!movieCd) return; saveBtn.textContent = isSaved(movieCd) ? '⭐ 저장됨(해제)' : '☆ 영화 저장'; }
