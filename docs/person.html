@@ -63,36 +63,46 @@ let PEOPLE = [];
 let myChart = null;
 let currentPerson = null;
 
-// --- [수정] 배우 저장 관련 기능 전체 추가 ---
 const saveBtn = document.getElementById('saveBtn');
 
-function getSavedPeople() { 
-  return JSON.parse(localStorage.getItem('savedPeople') || '{}'); 
+// [수정] 배우 고유 ID를 결정하는 함수
+function getPersonId(person) {
+    if (person && person.peopleCd) return person.peopleCd; // ID가 있으면 ID 사용
+    if (person && person.peopleNm) return `name::${person.peopleNm}`; // ID가 없으면 이름 사용
+    return null;
 }
+
+function getSavedPeople() { return JSON.parse(localStorage.getItem('savedPeople') || '{}'); }
 function setSavedPeople(obj) { localStorage.setItem('savedPeople', JSON.stringify(obj)); }
 function isSaved(id) { return !!getSavedPeople()[id]; }
 
 function renderSaveBtn() {
-    if (!currentPerson || !currentPerson.peopleCd) {
-        saveBtn.style.display = 'none'; // peopleCd가 없으면 저장 버튼 숨김
+    const personId = getPersonId(currentPerson);
+    if (!personId) {
+        saveBtn.style.display = 'none';
         return;
     }
     saveBtn.style.display = 'inline-block';
-    saveBtn.textContent = isSaved(currentPerson.peopleCd) ? '⭐ 저장됨(해제)' : '☆ 배우 저장';
+    saveBtn.textContent = isSaved(personId) ? '⭐ 저장됨(해제)' : '☆ 배우 저장';
 }
 
 saveBtn.addEventListener('click', () => {
-    if (!currentPerson || !currentPerson.peopleCd) return;
+    const personId = getPersonId(currentPerson);
+    if (!personId) return;
+    
     const saved = getSavedPeople();
-    if (isSaved(currentPerson.peopleCd)) {
-        delete saved[currentPerson.peopleCd];
+    if (isSaved(personId)) {
+        delete saved[personId];
     } else {
-        saved[currentPerson.peopleCd] = { name: currentPerson.peopleNm };
+        saved[personId] = { 
+            name: currentPerson.peopleNm,
+            peopleCd: currentPerson.peopleCd || null // ID도 함께 저장
+        };
     }
     setSaved(saved);
     renderSaveBtn();
 });
-// --- 배우 저장 기능 끝 ---
+
 
 async function loadIndex(){
   const r = await fetch(PEOPLE_URL);
@@ -126,8 +136,7 @@ function render(){
     msg.textContent = '배우를 찾을 수 없어요. (캐시 인덱스 확인)';
     return;
   }
-
-  // [수정] 현재 배우 정보 저장 및 저장 버튼 표시 함수 호출
+  
   currentPerson = item;
   renderSaveBtn();
 
@@ -185,7 +194,7 @@ function drawAudiChart(films, dataType = 'totalAudi'){
 
     films.sort((a,b) => (a.openDt || '').localeCompare(b.openDt || ''));
 
-    const labels = films.map(f => f.openDt.slice(0,7));
+    const labels = films.map(f => f.openDt ? f.openDt.slice(0,7) : '미상');
     let dataPoints;
     let yAxisLabel;
 
