@@ -1,0 +1,81 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20184276",
+      "movieNm": "아이스",
+      "movieNmEn": "ICE",
+      "movieNmOg": "Lyod",
+      "showTm": "89",
+      "prdtYear": "2018",
+      "openDt": "20190207",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "러시아"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "멜로/로맨스"
+        },
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "올레그 트로핌",
+          "peopleNmEn": "Oleg Trofim"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "아글라야 타라소바",
+          "peopleNmEn": "Aglaya Tarasova",
+          "cast": "나디아 ",
+          "castEn": "Nadya"
+        },
+        {
+          "peopleNm": "알렉산더 페트로브",
+          "peopleNmEn": "Alexander Petrov",
+          "cast": "사샤",
+          "castEn": "Sasha"
+        },
+        {
+          "peopleNm": "밀로스 비코비치",
+          "peopleNmEn": "Milos Bikovic",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20062417",
+          "companyNm": "(주)마노엔터테인먼트",
+          "companyNmEn": "Mano Entertainment Inc.",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20062417",
+          "companyNm": "(주)마노엔터테인먼트",
+          "companyNmEn": "Mano Entertainment Inc.",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2018-MF02363",
+          "watchGradeNm": "전체관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

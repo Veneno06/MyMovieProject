@@ -1,0 +1,105 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20179696",
+      "movieNm": "그것",
+      "movieNmEn": "It",
+      "movieNmOg": "",
+      "showTm": "134",
+      "prdtYear": "2017",
+      "openDt": "20170906",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "공포(호러)"
+        },
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "안드레스 무시에티",
+          "peopleNmEn": "Andres Muschietti"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "빌 스카스가드",
+          "peopleNmEn": "Bill Skarsgard",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "핀 울프하드",
+          "peopleNmEn": "Finn Wolfhard",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "하비에르 보텟",
+          "peopleNmEn": "Javier Botet",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "소피아 릴리스",
+          "peopleNmEn": "Sophia Lillis",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "오웬 티그",
+          "peopleNmEn": "Owen Teague",
+          "cast": "패트릭",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        },
+        {
+          "showTypeGroupNm": "4D",
+          "showTypeNm": "4D"
+        },
+        {
+          "showTypeGroupNm": "IMAX",
+          "showTypeNm": "IMAX"
+        },
+        {
+          "showTypeGroupNm": "DOLBYCINEMA",
+          "showTypeNm": "DOLBYCINEMA"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100043",
+          "companyNm": "워너브러더스 코리아(주)",
+          "companyNmEn": "Warner Bros. Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100043",
+          "companyNm": "워너브러더스 코리아(주)",
+          "companyNmEn": "Warner Bros. Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2017-MF01433",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

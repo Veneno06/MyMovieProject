@@ -1,0 +1,81 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20177501",
+      "movieNm": "플립",
+      "movieNmEn": "Flipped",
+      "movieNmOg": "",
+      "showTm": "89",
+      "prdtYear": "2010",
+      "openDt": "20170712",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "멜로/로맨스"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "롭 라이너",
+          "peopleNmEn": "Rob Reiner"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "매들린 캐롤",
+          "peopleNmEn": "Madeline Carroll",
+          "cast": "줄리",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "캘런 맥오리피",
+          "peopleNmEn": "Callan McAuliffe",
+          "cast": "브라이스",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20230987",
+          "companyNm": "롯데컬처웍스(주)롯데시네마",
+          "companyNmEn": "",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20122837",
+          "companyNm": "(주)팝엔터테인먼트",
+          "companyNmEn": "Pop Entertainment",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20122837",
+          "companyNm": "(주)팝엔터테인먼트",
+          "companyNmEn": "Pop Entertainment",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2017-MF01154",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

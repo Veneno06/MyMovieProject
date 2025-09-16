@@ -1,0 +1,75 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20170723",
+      "movieNm": "로우",
+      "movieNmEn": "RAW",
+      "movieNmOg": "RAW",
+      "showTm": "98",
+      "prdtYear": "2017",
+      "openDt": "20170805",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "스릴러"
+        },
+        {
+          "genreNm": "공포(호러)"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "줄리아 듀코나우",
+          "peopleNmEn": "Julia Ducournau"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "가렌스 마릴러",
+          "peopleNmEn": "Garance Marillier",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "엘라 룸프",
+          "peopleNmEn": "Ella Rumpf",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100603",
+          "companyNm": "유니버설픽쳐스인터내셔널 코리아(유)",
+          "companyNmEn": "Universal Pictures International Korea",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100603",
+          "companyNm": "유니버설픽쳐스인터내셔널 코리아(유)",
+          "companyNmEn": "Universal Pictures International Korea",
+          "companyPartNm": "배급사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2017-MF00966",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

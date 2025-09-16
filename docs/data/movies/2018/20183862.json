@@ -1,0 +1,82 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20183862",
+      "movieNm": "로미오와 줄리엣",
+      "movieNmEn": "",
+      "movieNmOg": "Romeo et Juliette",
+      "showTm": "169",
+      "prdtYear": "2017",
+      "openDt": "20180520",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "독일"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "공연"
+        },
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "멜로/로맨스"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "위르겐 플림",
+          "peopleNmEn": "Jurgen Flimm"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "후안 디에고 플로레즈",
+          "peopleNmEn": "Juan Diego Florez",
+          "cast": "로미오",
+          "castEn": "Romeo"
+        },
+        {
+          "peopleNm": "아이다 가리풀리나",
+          "peopleNmEn": "Aida Garifullina",
+          "cast": "줄리엣",
+          "castEn": "Juliette"
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20126015",
+          "companyNm": "(주)케빈앤컴퍼니",
+          "companyNmEn": "",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20126015",
+          "companyNm": "(주)케빈앤컴퍼니",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2018-MF00652",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

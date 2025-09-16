@@ -1,0 +1,108 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20184891",
+      "movieNm": "수퍼 소닉",
+      "movieNmEn": "Sonic the Hedgehog",
+      "movieNmOg": "",
+      "showTm": "98",
+      "prdtYear": "2019",
+      "openDt": "20200212",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "애니메이션"
+        },
+        {
+          "genreNm": "액션"
+        },
+        {
+          "genreNm": "어드벤처"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "제프 파울러",
+          "peopleNmEn": "Jeff Fowler"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "제임스 마스던",
+          "peopleNmEn": "James Marsden",
+          "cast": "톰 와코우스키",
+          "castEn": "Tom Wachowski"
+        },
+        {
+          "peopleNm": "짐 캐리",
+          "peopleNmEn": "Jim Carrey",
+          "cast": "닥터 아이보 로보트닉",
+          "castEn": "Dr. Ivo Robotnik"
+        },
+        {
+          "peopleNm": "벤 슈왈츠",
+          "peopleNmEn": "Ben Schwartz",
+          "cast": "소닉 더 헤지혹",
+          "castEn": "Sonic the Hedgehog"
+        },
+        {
+          "peopleNm": "티카 섬터",
+          "peopleNmEn": "Tika Sumpter",
+          "cast": "매디 와코우스키",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털 더빙"
+        },
+        {
+          "showTypeGroupNm": "4D",
+          "showTypeNm": "4D 더빙"
+        },
+        {
+          "showTypeGroupNm": "4D",
+          "showTypeNm": "4D"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20104469",
+          "companyNm": "파라마운트 픽쳐스",
+          "companyNmEn": "Paramount Pictures",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20188021",
+          "companyNm": "롯데컬처웍스(주)롯데엔터테인먼트",
+          "companyNmEn": "Lotte Entertainment",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20188021",
+          "companyNm": "롯데컬처웍스(주)롯데엔터테인먼트",
+          "companyNmEn": "Lotte Entertainment",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2020-MF00242",
+          "watchGradeNm": "전체관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20201105",
+      "movieNm": "극장판 기븐",
+      "movieNmEn": "Given the Movie",
+      "movieNmOg": "",
+      "showTm": "59",
+      "prdtYear": "2020",
+      "openDt": "20201126",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "일본"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "애니메이션"
+        },
+        {
+          "genreNm": "멜로/로맨스"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "야마구치 히카루",
+          "peopleNmEn": "Hikaru Yamaguchi"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "야노 쇼고",
+          "peopleNmEn": "Shogo Yano",
+          "cast": "사토 마후유\t",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "우치다 유우마",
+          "peopleNmEn": "Yuma Uchida",
+          "cast": "우에노야마 리츠카",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "나카자와 마사토모",
+          "peopleNmEn": "Nakazawa Masatomo",
+          "cast": "나카야마 하루키\t",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "에구치 타쿠야",
+          "peopleNmEn": "Takuya Eguchi",
+          "cast": "카지 아키히코\t",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20137515",
+          "companyNm": "(주)애니플러스",
+          "companyNmEn": "ANIPLUS",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20137515",
+          "companyNm": "(주)애니플러스",
+          "companyNmEn": "ANIPLUS",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2020-MF02077",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

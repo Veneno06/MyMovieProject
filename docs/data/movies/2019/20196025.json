@@ -1,0 +1,107 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20196025",
+      "movieNm": "덤보",
+      "movieNmEn": "Dumbo",
+      "movieNmOg": "",
+      "showTm": "111",
+      "prdtYear": "2018",
+      "openDt": "20190327",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "가족"
+        },
+        {
+          "genreNm": "판타지"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "팀 버튼",
+          "peopleNmEn": "Tim Burton"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "콜린 파렐",
+          "peopleNmEn": "Colin Farrell",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "마이클 키튼",
+          "peopleNmEn": "Michael Keaton",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "대니 드비토",
+          "peopleNmEn": "Danny DeVito",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "에바 그린",
+          "peopleNmEn": "Eva Green ",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털 더빙"
+        },
+        {
+          "showTypeGroupNm": "4D",
+          "showTypeNm": "4D 더빙"
+        },
+        {
+          "showTypeGroupNm": "4D",
+          "showTypeNm": "4D"
+        },
+        {
+          "showTypeGroupNm": "IMAX",
+          "showTypeNm": "IMAX"
+        },
+        {
+          "showTypeGroupNm": "IMAX",
+          "showTypeNm": "IMAX 더빙"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20161801",
+          "companyNm": "월트디즈니컴퍼니코리아 유한책임회사",
+          "companyNmEn": "The Walt Disney Company Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20161801",
+          "companyNm": "월트디즈니컴퍼니코리아 유한책임회사",
+          "companyNmEn": "The Walt Disney Company Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2019-MF00442",
+          "watchGradeNm": "전체관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

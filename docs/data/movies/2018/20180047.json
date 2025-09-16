@@ -1,0 +1,100 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20180047",
+      "movieNm": "스텝 바이 스텝",
+      "movieNmEn": "Step By Step",
+      "movieNmOg": "Patients",
+      "showTm": "111",
+      "prdtYear": "2016",
+      "openDt": "20181011",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "프랑스"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "그랜드 콥스 마라드",
+          "peopleNmEn": "Grand Corps Malade"
+        },
+        {
+          "peopleNm": "메흐디 이디르",
+          "peopleNmEn": "Mehdi Idir"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "파블로 폴리",
+          "peopleNmEn": "Pablo Pauly",
+          "cast": "벤",
+          "castEn": "Ben"
+        },
+        {
+          "peopleNm": "무사 만살리",
+          "peopleNmEn": "Moussa Mansaly",
+          "cast": "투생",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "프랑크 팔리스",
+          "peopleNmEn": "Franck Falise",
+          "cast": "스티브",
+          "castEn": "Steve"
+        },
+        {
+          "peopleNm": "나일리아 아르준",
+          "peopleNmEn": "Nailia Harzoune",
+          "cast": "사미아",
+          "castEn": "Samia"
+        },
+        {
+          "peopleNm": "수피안 게라브",
+          "peopleNmEn": "Soufiane Guerrab",
+          "cast": "파리드",
+          "castEn": "Farid"
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100827",
+          "companyNm": "(주)에스와이코마드",
+          "companyNmEn": "SYcomad",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100827",
+          "companyNm": "(주)에스와이코마드",
+          "companyNmEn": "SYcomad",
+          "companyPartNm": "수입사"
+        },
+        {
+          "companyCd": "20188621",
+          "companyNm": "(주)미디어테라스",
+          "companyNmEn": "",
+          "companyPartNm": "공동제공"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2018-MF01632",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

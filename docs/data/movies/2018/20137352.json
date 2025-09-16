@@ -1,0 +1,89 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20137352",
+      "movieNm": "루비 스팍스",
+      "movieNmEn": "Ruby Sparks",
+      "movieNmOg": "",
+      "showTm": "104",
+      "prdtYear": "2012",
+      "openDt": "20180510",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "코미디"
+        },
+        {
+          "genreNm": "판타지"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "조나단 데이턴",
+          "peopleNmEn": "Jonathan Dayton"
+        },
+        {
+          "peopleNm": "발레리 페리스",
+          "peopleNmEn": "Valerie Faris"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "폴 다노",
+          "peopleNmEn": "Paul Dano",
+          "cast": "캘빈 역",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "조 카잔",
+          "peopleNmEn": "Zoe Kazan",
+          "cast": "루비 역",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20122837",
+          "companyNm": "(주)팝엔터테인먼트",
+          "companyNmEn": "Pop Entertainment",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20157108",
+          "companyNm": "(주)영화사 안다미로",
+          "companyNmEn": "Andamiro films",
+          "companyPartNm": "수입사"
+        },
+        {
+          "companyCd": "20188822",
+          "companyNm": "플레이리스트(주)",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2013-F88",
+          "watchGradeNm": "15세이상관람가"
+        },
+        {
+          "auditNo": "2018-MF00757",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

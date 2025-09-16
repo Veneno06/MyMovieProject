@@ -1,0 +1,66 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20171683",
+      "movieNm": "파울라",
+      "movieNmEn": "Paula",
+      "movieNmOg": "",
+      "showTm": "123",
+      "prdtYear": "2016",
+      "openDt": "20171109",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "독일"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "크리스찬 슈뵈초브",
+          "peopleNmEn": "Christian Schwochow"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "카를라 주리",
+          "peopleNmEn": "Carla Juri",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20139842",
+          "companyNm": "(주)라이크콘텐츠",
+          "companyNmEn": "Like Contents Inc.",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20157108",
+          "companyNm": "(주)영화사 안다미로",
+          "companyNmEn": "Andamiro films",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2017-MF01346",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

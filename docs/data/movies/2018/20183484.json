@@ -1,0 +1,78 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20183484",
+      "movieNm": "위시업",
+      "movieNmEn": "Status Update",
+      "movieNmOg": "",
+      "showTm": "106",
+      "prdtYear": "2018",
+      "openDt": "20181213",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "뮤지컬"
+        },
+        {
+          "genreNm": "코미디"
+        },
+        {
+          "genreNm": "멜로/로맨스"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "스콧 스피어",
+          "peopleNmEn": "Scott Speer"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "로스 린치",
+          "peopleNmEn": "Ross Lynch",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "올리비아 홀트",
+          "peopleNmEn": "Olivia Holt",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20172421",
+          "companyNm": "(주)영화사 그램",
+          "companyNmEn": "gram FILMS",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20141848",
+          "companyNm": "(주)이놀미디어",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2018-MF02311",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

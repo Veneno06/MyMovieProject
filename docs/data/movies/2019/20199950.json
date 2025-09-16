@@ -1,0 +1,104 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20199950",
+      "movieNm": "조커",
+      "movieNmEn": "Joker",
+      "movieNmOg": "",
+      "showTm": "122",
+      "prdtYear": "2019",
+      "openDt": "20191002",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "액션"
+        },
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "스릴러"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "토드 필립스",
+          "peopleNmEn": "Todd Phillips"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "호아킨 피닉스",
+          "peopleNmEn": "Joaquin Phoenix",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "재지 비츠",
+          "peopleNmEn": "Zazie Beetz",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "로버트 드 니로",
+          "peopleNmEn": "Robert DeNiro",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "프란시스 콘로이",
+          "peopleNmEn": "Frances Conroy",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "브렛 컬렌",
+          "peopleNmEn": "Brett Cullen",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        },
+        {
+          "showTypeGroupNm": "IMAX",
+          "showTypeNm": "IMAX"
+        },
+        {
+          "showTypeGroupNm": "DOLBYCINEMA",
+          "showTypeNm": "DOLBYCINEMA"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100043",
+          "companyNm": "워너브러더스 코리아(주)",
+          "companyNmEn": "Warner Bros. Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100043",
+          "companyNm": "워너브러더스 코리아(주)",
+          "companyNmEn": "Warner Bros. Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2019-MF01822",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

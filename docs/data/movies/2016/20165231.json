@@ -1,0 +1,69 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20165231",
+      "movieNm": "펫",
+      "movieNmEn": "PET",
+      "movieNmOg": "",
+      "showTm": "93",
+      "prdtYear": "2016",
+      "openDt": "20161130",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        },
+        {
+          "nationNm": "스페인"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "스릴러"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "카를레스 토렌스",
+          "peopleNmEn": "Carles Torrens"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "도미니크 모나한",
+          "peopleNmEn": "Dominic Monaghan",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20141154",
+          "companyNm": "(주)영화사선",
+          "companyNmEn": "SUNPICTURES FILM",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20141154",
+          "companyNm": "(주)영화사선",
+          "companyNmEn": "SUNPICTURES FILM",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2016-MF01883",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

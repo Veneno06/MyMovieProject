@@ -1,0 +1,83 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20193265",
+      "movieNm": "지구 최후의 밤",
+      "movieNmEn": "Long Day's Journey Into Night",
+      "movieNmOg": "",
+      "showTm": "138",
+      "prdtYear": "2018",
+      "openDt": "20190725",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "중국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "미스터리"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "비간",
+          "peopleNmEn": "Gan Bi"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "탕웨이",
+          "peopleNmEn": "Tang Wei",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "황각",
+          "peopleNmEn": "Jue Huang",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        },
+        {
+          "showTypeGroupNm": "3D",
+          "showTypeNm": "3D 디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20061718",
+          "companyNm": "찬란",
+          "companyNmEn": "Challan Film",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20061718",
+          "companyNm": "찬란",
+          "companyNmEn": "Challan Film",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2019-MF01140",
+          "watchGradeNm": "12세이상관람가"
+        },
+        {
+          "auditNo": "2021-MF03062",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

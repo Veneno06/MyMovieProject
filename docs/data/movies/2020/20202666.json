@@ -1,0 +1,78 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20202666",
+      "movieNm": "가을의 마티네",
+      "movieNmEn": "At the end of the Matinee",
+      "movieNmOg": "",
+      "showTm": "123",
+      "prdtYear": "2019",
+      "openDt": "20201231",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "일본"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "멜로/로맨스"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "니시타니 히로시",
+          "peopleNmEn": "Hiroshi Nishitani"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "후쿠야마 마사하루",
+          "peopleNmEn": "Masaharu Fukuyama",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "이시다 유리코",
+          "peopleNmEn": "Yuriko Ishida",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20061718",
+          "companyNm": "찬란",
+          "companyNmEn": "Challan Film",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20061718",
+          "companyNm": "찬란",
+          "companyNmEn": "Challan Film",
+          "companyPartNm": "수입사"
+        },
+        {
+          "companyCd": "20121836",
+          "companyNm": "(주)버킷스튜디오",
+          "companyNmEn": "BUCKET STUDIO",
+          "companyPartNm": "공동제공"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2020-MF02928",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

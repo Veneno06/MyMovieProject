@@ -1,0 +1,91 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20200245",
+      "movieNm": "코드 8",
+      "movieNmEn": "CODE 8",
+      "movieNmOg": "",
+      "showTm": "98",
+      "prdtYear": "2019",
+      "openDt": "20200702",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "캐나다"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "SF"
+        },
+        {
+          "genreNm": "액션"
+        },
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [],
+      "actors": [
+        {
+          "peopleNm": "로비 아멜",
+          "peopleNmEn": "Robbie Amell",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "스티븐 아멜",
+          "peopleNmEn": "Stephen Amell",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "성 강",
+          "peopleNmEn": "Sung Kang",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20122837",
+          "companyNm": "(주)팝엔터테인먼트",
+          "companyNmEn": "Pop Entertainment",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20140488",
+          "companyNm": "주식회사 더쿱",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        },
+        {
+          "companyCd": "20122837",
+          "companyNm": "(주)팝엔터테인먼트",
+          "companyNmEn": "Pop Entertainment",
+          "companyPartNm": "제공"
+        },
+        {
+          "companyCd": "20140488",
+          "companyNm": "주식회사 더쿱",
+          "companyNmEn": "",
+          "companyPartNm": "공동제공"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2020-MF01297 ",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

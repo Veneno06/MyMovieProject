@@ -1,0 +1,82 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20200845",
+      "movieNm": "비바리움",
+      "movieNmEn": "Vivarium",
+      "movieNmOg": "",
+      "showTm": "97",
+      "prdtYear": "2019",
+      "openDt": "20200716",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        },
+        {
+          "nationNm": "덴마크"
+        },
+        {
+          "nationNm": "벨기에"
+        },
+        {
+          "nationNm": "아일랜드"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "미스터리"
+        },
+        {
+          "genreNm": "SF"
+        },
+        {
+          "genreNm": "공포(호러)"
+        }
+      ],
+      "directors": [],
+      "actors": [
+        {
+          "peopleNm": "제시 아이젠버그",
+          "peopleNmEn": "Jesse Eisenberg",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "이모겐 푸츠",
+          "peopleNmEn": "Imogen Poots",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20143338",
+          "companyNm": "(주)드림팩트엔터테인먼트",
+          "companyNmEn": "Dreamfact entertainment",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100355",
+          "companyNm": "주식회사 루믹스미디어",
+          "companyNmEn": "Lumixmedia Inc.",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2020-MF01408",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

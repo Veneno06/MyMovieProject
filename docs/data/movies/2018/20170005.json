@@ -1,0 +1,84 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20170005",
+      "movieNm": "포르토",
+      "movieNmEn": "Porto",
+      "movieNmOg": "",
+      "showTm": "76",
+      "prdtYear": "2016",
+      "openDt": "20180131",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "프랑스"
+        },
+        {
+          "nationNm": "폴란드"
+        },
+        {
+          "nationNm": "포르투갈"
+        },
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "멜로/로맨스"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "게이브 클링거",
+          "peopleNmEn": "Gabe Klinger"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "안톤 옐친",
+          "peopleNmEn": "Anton Yelchin",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "루시 루카스",
+          "peopleNmEn": "Lucie Lucas",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20101102",
+          "companyNm": "오드",
+          "companyNmEn": "AUD",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20101102",
+          "companyNm": "오드",
+          "companyNmEn": "AUD",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2017-MF01022",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

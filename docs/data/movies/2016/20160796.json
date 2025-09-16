@@ -1,0 +1,79 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20160796",
+      "movieNm": "괴테",
+      "movieNmEn": "Goethe!",
+      "movieNmOg": "",
+      "showTm": "104",
+      "prdtYear": "2010",
+      "openDt": "20161130",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "독일"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "멜로/로맨스"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "필립 슈톨츨",
+          "peopleNmEn": "Philipp Stolzl"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "알렉산더 펠링",
+          "peopleNmEn": "Alexander Fehling",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "미리엄 스테인",
+          "peopleNmEn": "Miriam Stein",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20063058",
+          "companyNm": "(주)피터팬픽쳐스",
+          "companyNmEn": "Peterpan Pictures",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20063058",
+          "companyNm": "(주)피터팬픽쳐스",
+          "companyNmEn": "Peterpan Pictures",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2016-MF01693",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}
