@@ -24,7 +24,6 @@
   <div id="movieDetail" class="grid"></div>
   <div style="margin-top:12px; display:flex; gap:8px;">
     <button class="btn" onclick="history.back()">🔙 뒤로</button>
-    <!--<button class="btn" id="saveBtn">☆ 영화 저장</button>-->
   </div>
 </div>
 
@@ -33,23 +32,12 @@
 const params = new URLSearchParams(location.search);
 const movieCd = params.get('movieCd') || '';
 const box = document.getElementById('movieDetail');
-//const saveBtn = document.getElementById('saveBtn');
 
-//function getSaved(){ return JSON.parse(localStorage.getItem('savedMovies')||'[]'); }
-function isSaved(cd){ return getSaved().includes(cd); }
-function setSaved(arr){ localStorage.setItem('savedMovies', JSON.stringify(arr)); }
-function renderSaveBtn(){ if (!movieCd) return; saveBtn.textContent = isSaved(movieCd) ? '⭐ 저장됨(해제)' : '☆ 영화 저장'; }
-saveBtn.addEventListener('click', ()=>{
-  if (!movieCd) return;
-  let s = getSaved();
-  if (isSaved(movieCd)) s = s.filter(x=>x!==movieCd);
-  else s.push(movieCd);
-  setSaved(s); renderSaveBtn();
-});
+// [수정] 영화 저장 관련 로직 전체 삭제
 
 const fmtNum = n => (n==null || isNaN(n)) ? '' : n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 const INDEX_URL = 'data/search/movies.json';
-const YEARS_MANIFEST = 'data/years/_manifest.json'; // 존재하면 사용
+const YEARS_MANIFEST = 'data/years/_manifest.json';
 
 async function tryFetchJson(url){
   try{
@@ -59,38 +47,29 @@ async function tryFetchJson(url){
   }catch{ return null; }
 }
 
-/* 후보 경로 생성: 인덱스 연도 우선 → 매니페스트 연도들 → 레거시 루트 */
 async function guessDetailJsonPaths(cd, indexEntry){
   const paths = new Set();
 
-  // 1) 인덱스에서 연도 추정
   const yCandidate = (indexEntry?.openDt || '').slice(0,4) || indexEntry?.prdtYear || '';
   if (yCandidate) paths.add(`data/movies/${yCandidate}/${cd}.json`);
 
-  // 2) 매니페스트 기반(있을 때만)
   const manifest = await tryFetchJson(YEARS_MANIFEST);
   if (manifest && manifest.years && Array.isArray(manifest.years)){
     manifest.years.forEach(y => paths.add(`data/movies/${y}/${cd}.json`));
   } else {
-    // 매니페스트가 없다면 최근 몇 년만 합리적으로 시도
     const nowY = new Date().getFullYear();
-    for (let y = nowY+1; y >= 2015; y--){
+    for (let y = nowY+1; y >= 2003; y--){ // 범위를 2003년까지 늘림
       paths.add(`data/movies/${y}/${cd}.json`);
     }
   }
-
-  // 3) 레거시 평면 구조(혹시 남아있을 수 있음)
   paths.add(`data/movies/${cd}.json`);
-
   return Array.from(paths);
 }
 
-/* 다양한 구조 허용적으로 파싱 */
 function pickMovieInfo(json){
   if (!json) return null;
-  if (json.movieInfoResult?.movieInfo) return json.movieInfoResult.movieInfo;     // KOFIC 원본 래핑
-  if (json.movieInfo) return json.movieInfo;                                      // 단순 래핑
-  // 빌더가 평평하게 저장했을 수 있음
+  if (json.movieInfoResult?.movieInfo) return json.movieInfoResult.movieInfo;
+  if (json.movieInfo) return json.movieInfo;
   const keys = ['movieCd','movieNm','openDt','showTm','genres','directors','companys','actors','audits','audiAcc'];
   const ok = keys.some(k => k in json);
   return ok ? json : null;
@@ -102,12 +81,10 @@ function pickMovieInfo(json){
     box.textContent = '영화 코드가 없습니다.'; return;
   }
 
-  // 인덱스 읽어서 보조정보 확보(연도·등급·국가·audiAcc 후보)
   const index = await tryFetchJson(INDEX_URL);
   const list = index?.movies || [];
   const idxEntry = list.find(m => m.movieCd === movieCd);
 
-  // 캐시 파일 후보 경로들 만들고 순서대로 조회
   const candidates = await guessDetailJsonPaths(movieCd, idxEntry);
   let raw = null, usedUrl = '';
   for (const u of candidates){
@@ -122,15 +99,16 @@ function pickMovieInfo(json){
         캐시된 상세 정보를 찾지 못했습니다.<br/>
         <span class="muted">movieCd=${movieCd}</span>
       </div>`;
-    renderSaveBtn();
     return;
   }
 
-  // 필드 정리(두 구조를 모두 지원)
   const title = raw.movieNm || idxEntry?.movieNm || '';
   const prdtYear = raw.prdtYear || idxEntry?.prdtYear || '';
-  const openDtRaw = raw.openDt || idxEntry?.openDt || ''; // YYYYMMDD
-  const openFmt = openDtRaw ? `${openDtRaw.slice(0,4)}-${openDtRaw.slice(4,6)}-${openDtRaw.slice(6,8)}` : '정보 없음';
+  
+  // [수정] openDt 형식이 YYYY-MM-DD 또는 YYYYMMDD일 수 있으므로 정규화
+  const openDtRaw = (raw.openDt || idxEntry?.openDt || '').replace(/-/g, '');
+  const openFmt = openDtRaw.length === 8 ? `${openDtRaw.slice(0,4)}-${openDtRaw.slice(4,6)}-${openDtRaw.slice(6,8)}` : '정보 없음';
+
   const showTm = raw.showTm ? `${raw.showTm}분` : '';
   const genres = (raw.genres || idxEntry?.genres || []).map(g => g.genreNm || g).join(', ') || '정보 없음';
   const directors = (raw.directors || []).map(d => d.peopleNm).join(', ') || '정보 없음';
@@ -153,7 +131,6 @@ function pickMovieInfo(json){
     return `<a href="${href}" class="actor-link">${a.nm}</a>`;
   }).join(', ');
 
-  // 누적 관객수: 상세(audiAcc) > 인덱스(audiAcc) > 없음
   const audiAcc = (raw.audiAcc != null ? raw.audiAcc : idxEntry?.audiAcc);
   const audiText = (audiAcc != null) ? `${fmtNum(audiAcc)}명` : '집계 데이터 없음';
 
@@ -180,8 +157,8 @@ function pickMovieInfo(json){
       e.target.style.display='none';
     });
   }
-
-  renderSaveBtn();
+  
+  // [수정] renderSaveBtn() 호출 삭제
 })();
 </script>
 </body>
