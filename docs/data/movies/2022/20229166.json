@@ -1,13 +1,13 @@
 {
   "movieInfoResult": {
     "movieInfo": {
-      "movieCd": "20239573",
-      "movieNm": "서치 2",
-      "movieNmEn": "Missing",
+      "movieCd": "20229166",
+      "movieNm": "라일 라일 크로커다일",
+      "movieNmEn": "Lyle, Lyle, Crocodile",
       "movieNmOg": "",
-      "showTm": "110",
+      "showTm": "105",
       "prdtYear": "2022",
-      "openDt": "20230222",
+      "openDt": "20230118",
       "prdtStatNm": "개봉",
       "typeNm": "장편",
       "nations": [
@@ -17,44 +17,59 @@
       ],
       "genres": [
         {
-          "genreNm": "미스터리"
+          "genreNm": "가족"
         },
         {
-          "genreNm": "스릴러"
+          "genreNm": "뮤지컬"
+        },
+        {
+          "genreNm": "드라마"
         }
       ],
       "directors": [
         {
-          "peopleNm": "니콜라스 D 존슨",
-          "peopleNmEn": "Nicholas D. Johnson"
+          "peopleNm": "조쉬 고든",
+          "peopleNmEn": "Josh Gordon"
         },
         {
-          "peopleNm": "윌 메릭",
-          "peopleNmEn": "Will Merrick"
+          "peopleNm": "윌 스펙",
+          "peopleNmEn": "Will Speck"
         }
       ],
       "actors": [
         {
-          "peopleNm": "스톰 리드",
-          "peopleNmEn": "Storm Reid",
+          "peopleNm": "하비에르 바르뎀",
+          "peopleNmEn": "Javier Bardem",
+          "cast": "",
+          "castEn": "Hector P. Valenti"
+        },
+        {
+          "peopleNm": "콘스탄스 우",
+          "peopleNmEn": "Constance Wu",
+          "cast": "",
+          "castEn": "Mrs. Primm"
+        },
+        {
+          "peopleNm": "스쿳 맥네이리",
+          "peopleNmEn": "Scoot McNairy",
+          "cast": "",
+          "castEn": "Mr. Primm"
+        },
+        {
+          "peopleNm": "윈슬로우 페글리",
+          "peopleNmEn": "Winslow Fegley",
           "cast": "",
           "castEn": ""
         },
         {
-          "peopleNm": "켄 렁",
-          "peopleNmEn": "Ken Leung",
+          "peopleNm": "숀 멘데스",
+          "peopleNmEn": "Shawn Mendes",
           "cast": "",
           "castEn": ""
         },
         {
-          "peopleNm": "다니엘 헤니",
-          "peopleNmEn": "Daniel Henney",
-          "cast": "",
-          "castEn": ""
-        },
-        {
-          "peopleNm": "니아 롱",
-          "peopleNmEn": "Nia Long",
+          "peopleNm": "브렛 겔맨",
+          "peopleNmEn": "Brett Gelman",
           "cast": "",
           "castEn": ""
         }
@@ -63,6 +78,10 @@
         {
           "showTypeGroupNm": "2D",
           "showTypeNm": "디지털"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털 더빙"
         }
       ],
       "companys": [
@@ -81,13 +100,12 @@
       ],
       "audits": [
         {
-          "auditNo": "2023-MF00232 ",
-          "watchGradeNm": "12세이상관람가"
+          "auditNo": "2022-MF02998",
+          "watchGradeNm": "전체관람가"
         }
       ],
       "staffs": [],
-      "audiAcc": 395500
-    },
-    "source": "영화진흥위원회"
+      "audiAcc": 25987
+    }
   }
 }
