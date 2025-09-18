@@ -1,0 +1,76 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20211423",
+      "movieNm": "피그",
+      "movieNmEn": "Pig",
+      "movieNmOg": "",
+      "showTm": "91",
+      "prdtYear": "2021",
+      "openDt": "20220223",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "스릴러"
+        }
+      ],
+      "directors": [],
+      "actors": [
+        {
+          "peopleNm": "니콜라스 케이지",
+          "peopleNmEn": "Nicolas Cage ",
+          "cast": "롭",
+          "castEn": "Rob"
+        },
+        {
+          "peopleNm": "알렉스 울프",
+          "peopleNmEn": "Alex Wolff",
+          "cast": "아미르",
+          "castEn": "Amir"
+        },
+        {
+          "peopleNm": "아담 아킨",
+          "peopleNmEn": "Adam Arkin",
+          "cast": "다리우스",
+          "castEn": "Darius"
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100285",
+          "companyNm": "판씨네마(주)",
+          "companyNmEn": "Pancinema Corp.",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100285",
+          "companyNm": "판씨네마(주)",
+          "companyNmEn": "Pancinema Corp.",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2021-MF03154",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}
