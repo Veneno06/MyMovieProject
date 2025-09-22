@@ -14,6 +14,7 @@ h1 { font-size:28px; margin:0 0 16px; }
 ul.list { list-style:none; padding:0; margin:12px 0; }
 li { padding:6px 0; border-bottom:1px dashed #e5e7eb; }
 label { margin-right:8px; }
+.box { background:#f6f7f9; border:1px solid #e5e7eb; border-radius:8px; padding:12px; }
 </style>
 </head>
 <body>
@@ -25,7 +26,7 @@ label { margin-right:8px; }
     <a href="saved.html">저장한 배우</a>
   </div>
 
-  <h1>배우 검색</h1>
+  <h1>배우/감독 검색</h1>
 
   <form id="f" class="box">
     이름: <input type="text" name="q" value="">
@@ -44,10 +45,15 @@ const PEOPLE_URL = `${BASE}/data/search/people.json?v=${Date.now()}`;
 let PEOPLE = [];
 
 async function loadIndex(){
-  const r = await fetch(PEOPLE_URL);
-  if(!r.ok){ PEOPLE = []; return; }
-  const j = await r.json();
-  PEOPLE = j.people || [];
+  try {
+    const r = await fetch(PEOPLE_URL);
+    if(!r.ok){ throw new Error('Failed to load people index'); }
+    const j = await r.json();
+    PEOPLE = j.people || [];
+  } catch(e) {
+    PEOPLE = [];
+    document.getElementById('total').textContent = '데이터를 불러오는 데 실패했습니다.';
+  }
 }
 
 function search(){
@@ -56,19 +62,28 @@ function search(){
   const actorOnly = f.get('actorOnly') !== null;
 
   let list = PEOPLE;
-  if (actorOnly) list = list.filter(p => (p.repRoleNm||'') === '배우');
-  if (q) list = list.filter(p => (p.peopleNm||'').includes(q));
+  if (actorOnly) {
+    list = list.filter(p => (p.repRoleNm||'') === '배우');
+  }
+  if (q) {
+    // [수정] 검색어가 포함된 모든 결과를 찾도록 .filter() 사용
+    list = list.filter(p => (p.peopleNm||'').includes(q));
+  }
+
+  // 검색 결과가 없거나, 검색어가 없을 때는 목록을 비움
+  if (!q) {
+    list = [];
+  }
 
   list = list.slice(0, 200);
 
-  document.getElementById('total').textContent = `총 ${list.length}명 검색됨 (캐시)`;
+  document.getElementById('total').textContent = q ? `총 ${list.length}명 검색됨 (캐시)` : '검색어를 입력하세요.';
   const ul = document.getElementById('out');
   ul.innerHTML = '';
+  
   for (const p of list) {
-    // peopleCd 없으면 이름 기반 링크로 폴백
-    const href = p.peopleCd
-      ? `person.html?peopleCd=${encodeURIComponent(p.peopleCd)}`
-      : `person.html?peopleNm=${encodeURIComponent(p.peopleNm)}`;
+    // [수정] 새로 추가된 personKey를 사용하여 고유한 링크 생성
+    const href = `person.html?personKey=${encodeURIComponent(p.personKey)}`;
     const li = document.createElement('li');
     li.innerHTML = `<a href="${href}">${p.peopleNm}</a> <span class="note">${p.repRoleNm||''}</span>`;
     ul.appendChild(li);
@@ -79,6 +94,12 @@ function search(){
   await loadIndex();
   const f = document.getElementById('f');
   f.addEventListener('submit', (e)=>{ e.preventDefault(); search(); });
+
+  // 페이지 로드 시 URL에 검색어가 있으면 바로 검색 실행
+  const initialQuery = new URLSearchParams(location.search).get('q');
+  if (initialQuery) {
+    f.q.value = initialQuery;
+  }
   search();
 })();
 </script>
