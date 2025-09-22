@@ -65,13 +65,8 @@ let currentPerson = null;
 
 const saveBtn = document.getElementById('saveBtn');
 
-// [수정] 배우 고유 ID를 결정하는 함수
-function getPersonId(person) {
-    if (person && person.peopleCd) return person.peopleCd; // ID가 있으면 ID 사용
-    if (person && person.peopleNm) return `name::${person.peopleNm}`; // ID가 없으면 이름 사용
-    return null;
-}
-
+// [수정] 저장/조회 시 고유 키(personKey)를 사용
+function getPersonId(person) { return person?.personKey || null; }
 function getSavedPeople() { return JSON.parse(localStorage.getItem('savedPeople') || '{}'); }
 function setSavedPeople(obj) { localStorage.setItem('savedPeople', JSON.stringify(obj)); }
 function isSaved(id) { return !!getSavedPeople()[id]; }
@@ -94,10 +89,7 @@ saveBtn.addEventListener('click', () => {
     if (isSaved(personId)) {
         delete saved[personId];
     } else {
-        saved[personId] = { 
-            name: currentPerson.peopleNm,
-            peopleCd: currentPerson.peopleCd || null // ID도 함께 저장
-        };
+        saved[personId] = { name: currentPerson.peopleNm };
     }
     setSaved(saved);
     renderSaveBtn();
@@ -112,20 +104,9 @@ async function loadIndex(){
 }
 
 function render(){
-  const cd = getParam('peopleCd') || '';
-  const nm = getParam('peopleNm') || '';
-  let item = null;
-
-  if (cd) {
-    item = PEOPLE.find(p => p.peopleCd === cd);
-  }
-  if (!item && nm) {
-    const movieNm = getParam('movieNm') || '';
-    if(movieNm) {
-        item = PEOPLE.find(p => p.peopleNm === nm && p.films.some(f => f.movieNm === movieNm));
-    }
-    if(!item) item = PEOPLE.find(p => p.peopleNm === nm);
-  }
+  // [수정] name, cd 대신 personKey를 기본으로 사용
+  const key = getParam('personKey') || '';
+  const item = PEOPLE.find(p => p.personKey === key);
 
   const out = document.getElementById('out');
   const title = document.getElementById('title');
