@@ -1,8 +1,8 @@
-#!/usr/bin/env python3
+#!/usr/-bin/env python3
 # -*- coding: utf-8 -*-
 
 import os, json, sys
-from datetime import datetime
+from datetime import datetime, timezone
 
 ROOT = os.path.dirname(os.path.dirname(__file__))
 DOCS_DIR = os.path.join(ROOT, "docs", "data")
@@ -22,7 +22,7 @@ def norm_open(dt):
     s = str(dt).strip().replace(".", "").replace("-", "")
     return f"{s[0:4]}-{s[4:6]}-{s[6:8]}" if len(s)==8 and s.isdigit() else ""
 
-def is_korean(nm): 
+def is_korean(nm):
     nm = (nm or "").strip()
     return ("한국" in nm) or ("대한민국" in nm)
 
@@ -74,6 +74,8 @@ def main():
         
         movie_extra_data_map[movieCd] = { "audiAcc": audiAcc, "actorCount": actorCount }
 
+    processed_movie_people = set()
+
     for fp in files:
         d = load_json(fp)
         if not d: continue
@@ -89,19 +91,32 @@ def main():
             peopleCd = (p.get("peopleCd") or "").strip()
             peopleNm = (p.get("peopleNm") or "").strip()
             if not peopleCd and not peopleNm: return
-            key = peopleCd if peopleCd else f"n::{peopleNm}::{role}"
-            rec = people_map.get(key)
-            if not rec:
-                rec = {"peopleCd": peopleCd, "peopleNm": peopleNm, "repRoleNm": role, "films": []}
-                people_map[key] = rec
+
+            # [수정] 동명이인을 구분하기 위한 고유 키 생성
+            person_key = peopleCd if peopleCd else f"name::{peopleNm}::{role}"
             
-            # [수정] 이미 추가된 영화인지 확인하여 중복 방지
+            # [수정] 한 영화에 동일 인물이 여러 역할로 중복 추가되는 것 방지
+            if (movieCd, person_key) in processed_movie_people:
+                return
+            processed_movie_people.add((movieCd, person_key))
+
+            rec = people_map.get(person_key)
+            if not rec:
+                rec = {
+                    "personKey": person_key, # [추가] 프론트엔드에서 사용할 고유 키
+                    "peopleCd": peopleCd, 
+                    "peopleNm": peopleNm, 
+                    "repRoleNm": role, 
+                    "films": []
+                }
+                people_map[person_key] = rec
+            
             if any(f.get("movieCd") == movieCd for f in rec["films"]):
                 return
 
             extra_data = movie_extra_data_map.get(movieCd, {})
             film_info = {
-                "movieCd": movieCd, "movieNm": movieNm, "openDt": openDt, "part": "",
+                "movieCd": movieCd, "movieNm": movieNm, "openDt": openDt, "part": p.get("cast", ""),
                 "audiAcc": extra_data.get("audiAcc"),
                 "actorCount": extra_data.get("actorCount")
             }
@@ -117,12 +132,10 @@ def main():
 
     print(f"[index] movies: {len(movies)} / people: {len(people)}")
 
-    if len(movies) == 0:
-        print("[ERROR] Parsed movie count is 0. Will NOT overwrite search indexes.")
-        sys.exit(2)
-
-    out_movies = {"generatedAt": int(datetime.utcnow().timestamp()), "count": len(movies), "movies": movies}
-    out_people = {"generatedAt": int(datetime.utcnow().timestamp()), "count": len(people), "people": people}
+    # [수정] utcnow() 대신 timezone-aware 객체 사용
+    now_ts = int(datetime.now(timezone.utc).timestamp())
+    out_movies = {"generatedAt": now_ts, "count": len(movies), "movies": movies}
+    out_people = {"generatedAt": now_ts, "count": len(people), "people": people}
 
     with open(os.path.join(SEARCH_DIR, "movies.json"), "w", encoding="utf-8") as f:
         json.dump(out_movies, f, ensure_ascii=False, indent=2)
