@@ -41,7 +41,6 @@ label { margin-right:8px; }
 <script>
 const BASE = location.pathname.replace(/\/[^\/]*$/, '');
 const PEOPLE_URL = `${BASE}/data/search/people.json?v=${Date.now()}`;
-
 let PEOPLE = [];
 
 async function loadIndex(){
@@ -58,23 +57,18 @@ async function loadIndex(){
 
 function search(){
   const f = new FormData(document.getElementById('f'));
-  const q = (f.get('q')||'').trim();
+  const q = (f.get('q')||'').trim().toLowerCase();
   const actorOnly = f.get('actorOnly') !== null;
 
   let list = PEOPLE;
+  if (q) {
+    list = list.filter(p => (p.peopleNm||'').toLowerCase().includes(q));
+  }
   if (actorOnly) {
     list = list.filter(p => (p.repRoleNm||'') === '배우');
   }
-  if (q) {
-    // [수정] 검색어가 포함된 모든 결과를 찾도록 .filter() 사용
-    list = list.filter(p => (p.peopleNm||'').includes(q));
-  }
 
-  // 검색 결과가 없거나, 검색어가 없을 때는 목록을 비움
-  if (!q) {
-    list = [];
-  }
-
+  if (!q) list = [];
   list = list.slice(0, 200);
 
   document.getElementById('total').textContent = q ? `총 ${list.length}명 검색됨 (캐시)` : '검색어를 입력하세요.';
@@ -82,7 +76,6 @@ function search(){
   ul.innerHTML = '';
   
   for (const p of list) {
-    // [수정] 새로 추가된 personKey를 사용하여 고유한 링크 생성
     const href = `person.html?personKey=${encodeURIComponent(p.personKey)}`;
     const li = document.createElement('li');
     li.innerHTML = `<a href="${href}">${p.peopleNm}</a> <span class="note">${p.repRoleNm||''}</span>`;
@@ -95,7 +88,6 @@ function search(){
   const f = document.getElementById('f');
   f.addEventListener('submit', (e)=>{ e.preventDefault(); search(); });
 
-  // 페이지 로드 시 URL에 검색어가 있으면 바로 검색 실행
   const initialQuery = new URLSearchParams(location.search).get('q');
   if (initialQuery) {
     f.q.value = initialQuery;
