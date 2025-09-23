@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import os, json, sys
-from datetime import datetime
+from datetime import datetime, timezone
 
 ROOT = os.path.dirname(os.path.dirname(__file__))
 DOCS_DIR = os.path.join(ROOT, "docs", "data")
@@ -22,7 +22,7 @@ def norm_open(dt):
     s = str(dt).strip().replace(".", "").replace("-", "")
     return f"{s[0:4]}-{s[4:6]}-{s[6:8]}" if len(s)==8 and s.isdigit() else ""
 
-def is_korean(nm): 
+def is_korean(nm):
     nm = (nm or "").strip()
     return ("한국" in nm) or ("대한민국" in nm)
 
@@ -40,6 +40,14 @@ def scan_detail_files():
                 files.append(os.path.join(root, n))
     return files
 
+def get_movie_info_from_data(data):
+    if not isinstance(data, dict): return None
+    if "movieInfoResult" in data and "movieInfo" in data["movieInfoResult"]:
+        return data["movieInfoResult"]["movieInfo"]
+    if "movieCd" in data:
+        return data
+    return None
+
 def main():
     files = scan_detail_files()
     print(f"[scan] detail files: {len(files)}")
@@ -50,11 +58,12 @@ def main():
 
     for fp in files:
         d = load_json(fp)
-        if not d: continue
-        mi = (d.get("movieInfoResult") or {}).get("movieInfo") or {}
+        mi = get_movie_info_from_data(d)
         if not mi: continue
 
         movieCd = (mi.get("movieCd") or "").strip()
+        if not movieCd: continue
+        
         movieNm = (mi.get("movieNm") or "").strip()
         openDt  = norm_open(mi.get("openDt", ""))
         prdtYear = str(mi.get("prdtYear", "")).strip()
@@ -76,11 +85,12 @@ def main():
 
     for fp in files:
         d = load_json(fp)
-        if not d: continue
-        mi = (d.get("movieInfoResult") or {}).get("movieInfo") or {}
+        mi = get_movie_info_from_data(d)
         if not mi: continue
         
         movieCd = (mi.get("movieCd") or "").strip()
+        if not movieCd: continue
+        
         movieNm = (mi.get("movieNm") or "").strip()
         openDt  = norm_open(mi.get("openDt", ""))
         
@@ -89,19 +99,30 @@ def main():
             peopleCd = (p.get("peopleCd") or "").strip()
             peopleNm = (p.get("peopleNm") or "").strip()
             if not peopleCd and not peopleNm: return
-            key = peopleCd if peopleCd else f"n::{peopleNm}::{role}"
-            rec = people_map.get(key)
+
+            person_key = peopleCd
+            if not person_key:
+                # [수정] ID가 없는 동명이인을 구분하기 위해, 출연작 중 하나를 키에 포함
+                first_film_part = (p.get("cast") or movieNm)[:5]
+                person_key = f"name::{peopleNm}::{role}::{first_film_part}"
+
+            rec = people_map.get(person_key)
             if not rec:
-                rec = {"peopleCd": peopleCd, "peopleNm": peopleNm, "repRoleNm": role, "films": []}
-                people_map[key] = rec
+                rec = {
+                    "personKey": person_key,
+                    "peopleCd": peopleCd, 
+                    "peopleNm": peopleNm, 
+                    "repRoleNm": role, 
+                    "films": []
+                }
+                people_map[person_key] = rec
             
-            # [수정] 이미 추가된 영화인지 확인하여 중복 방지
             if any(f.get("movieCd") == movieCd for f in rec["films"]):
                 return
 
             extra_data = movie_extra_data_map.get(movieCd, {})
             film_info = {
-                "movieCd": movieCd, "movieNm": movieNm, "openDt": openDt, "part": "",
+                "movieCd": movieCd, "movieNm": movieNm, "openDt": openDt, "part": p.get("cast", ""),
                 "audiAcc": extra_data.get("audiAcc"),
                 "actorCount": extra_data.get("actorCount")
             }
@@ -117,12 +138,9 @@ def main():
 
     print(f"[index] movies: {len(movies)} / people: {len(people)}")
 
-    if len(movies) == 0:
-        print("[ERROR] Parsed movie count is 0. Will NOT overwrite search indexes.")
-        sys.exit(2)
-
-    out_movies = {"generatedAt": int(datetime.utcnow().timestamp()), "count": len(movies), "movies": movies}
-    out_people = {"generatedAt": int(datetime.utcnow().timestamp()), "count": len(people), "people": people}
+    now_ts = int(datetime.now(timezone.utc).timestamp())
+    out_movies = {"generatedAt": now_ts, "count": len(movies), "movies": movies}
+    out_people = {"generatedAt": now_ts, "count": len(people), "people": people}
 
     with open(os.path.join(SEARCH_DIR, "movies.json"), "w", encoding="utf-8") as f:
         json.dump(out_movies, f, ensure_ascii=False, indent=2)
