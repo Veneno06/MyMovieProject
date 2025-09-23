@@ -65,7 +65,6 @@ let currentPerson = null;
 
 const saveBtn = document.getElementById('saveBtn');
 
-// [수정] 저장/조회 시 고유 키(personKey)를 사용
 function getPersonId(person) { return person?.personKey || null; }
 function getSavedPeople() { return JSON.parse(localStorage.getItem('savedPeople') || '{}'); }
 function setSavedPeople(obj) { localStorage.setItem('savedPeople', JSON.stringify(obj)); }
@@ -89,7 +88,7 @@ saveBtn.addEventListener('click', () => {
     if (isSaved(personId)) {
         delete saved[personId];
     } else {
-        saved[personId] = { name: currentPerson.peopleNm };
+        saved[personId] = { name: currentPerson.peopleNm, personKey: currentPerson.personKey };
     }
     setSaved(saved);
     renderSaveBtn();
@@ -104,7 +103,6 @@ async function loadIndex(){
 }
 
 function render(){
-  // [수정] name, cd 대신 personKey를 기본으로 사용
   const key = getParam('personKey') || '';
   const item = PEOPLE.find(p => p.personKey === key);
 
