@@ -38,6 +38,8 @@ def scan_detail_files():
         for n in names:
             if n.endswith(".json"):
                 files.append(os.path.join(root, n))
+    # 안정적인 순서 보장
+    files.sort()
     return files
 
 def get_movie_info_from_data(data):
@@ -54,13 +56,12 @@ def main():
 
     movies = []
     people_map = {}
-    movie_extra_data_map = {}
     
-    # [최종 수정] 데이터 파편화를 막기 위한 조회용 맵 추가
+    # [최종 수정] 데이터 파편화와 누락을 막기 위한 조회용 맵
     cd_to_key_map = {}
     name_role_to_key_map = {}
 
-    # 1차 스캔: 영화 정보 및 부가 정보 집계
+    # [최종 수정] 모든 데이터를 단 한 번의 순회로 처리 (One-Pass)
     for fp in files:
         d = load_json(fp)
         mi = get_movie_info_from_data(d)
@@ -81,32 +82,19 @@ def main():
 
         if not movieCd or not movieNm: continue
 
+        # 1. 영화 목록에 추가
         movies.append({
             "movieCd": movieCd, "movieNm": movieNm, "openDt": openDt, "prdtYear": prdtYear,
             "repNation": repNation, "grade": grade, "genres": genres, "audiAcc": audiAcc,
         })
         
-        movie_extra_data_map[movieCd] = { "audiAcc": audiAcc, "actorCount": actorCount }
-
-    # 2차 스캔: 인물 정보 통합
-    for fp in files:
-        d = load_json(fp)
-        mi = get_movie_info_from_data(d)
-        if not mi: continue
-        
-        movieCd = (mi.get("movieCd") or "").strip()
-        if not movieCd: continue
-        
-        movieNm = (mi.get("movieNm") or "").strip()
-        openDt  = norm_open(mi.get("openDt", ""))
-        
+        # 2. 인물 정보에 영화 추가
         def add_person(p, role):
             if not isinstance(p, dict): return
             peopleCd = (p.get("peopleCd") or "").strip()
             peopleNm = (p.get("peopleNm") or "").strip()
             if not peopleCd and not peopleNm: return
 
-            # [최종 수정] 동일 인물을 찾는 통합 로직
             person_key = None
             name_role_key = f"{peopleNm}::{role}"
 
@@ -119,23 +107,18 @@ def main():
 
             rec = people_map.get(person_key)
             if not rec:
-                rec = {
-                    "personKey": person_key, "peopleCd": peopleCd, 
-                    "peopleNm": peopleNm, "repRoleNm": role, "films": []
-                }
+                rec = {"personKey": person_key, "peopleCd": peopleCd, "peopleNm": peopleNm, "repRoleNm": role, "films": []}
                 people_map[person_key] = rec
-                # 조회용 맵에 등록
                 if peopleCd: cd_to_key_map[peopleCd] = person_key
                 name_role_to_key_map[name_role_key] = person_key
 
             if any(f.get("movieCd") == movieCd for f in rec["films"]):
                 return
 
-            extra_data = movie_extra_data_map.get(movieCd, {})
             film_info = {
                 "movieCd": movieCd, "movieNm": movieNm, "openDt": openDt, "part": p.get("cast", ""),
-                "audiAcc": extra_data.get("audiAcc"),
-                "actorCount": extra_data.get("actorCount")
+                "audiAcc": audiAcc, # 현재 루프에서 직접 가져온 관객수 정보 사용
+                "actorCount": actorCount
             }
             rec["films"].append(film_info)
 
