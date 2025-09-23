@@ -55,7 +55,12 @@ def main():
     movies = []
     people_map = {}
     movie_extra_data_map = {}
+    
+    # [최종 수정] 데이터 파편화를 막기 위한 조회용 맵 추가
+    cd_to_key_map = {}
+    name_role_to_key_map = {}
 
+    # 1차 스캔: 영화 정보 및 부가 정보 집계
     for fp in files:
         d = load_json(fp)
         mi = get_movie_info_from_data(d)
@@ -83,6 +88,7 @@ def main():
         
         movie_extra_data_map[movieCd] = { "audiAcc": audiAcc, "actorCount": actorCount }
 
+    # 2차 스캔: 인물 정보 통합
     for fp in files:
         d = load_json(fp)
         mi = get_movie_info_from_data(d)
@@ -100,23 +106,28 @@ def main():
             peopleNm = (p.get("peopleNm") or "").strip()
             if not peopleCd and not peopleNm: return
 
-            person_key = peopleCd
-            if not person_key:
-                # [수정] ID가 없는 동명이인을 구분하기 위해, 출연작 중 하나를 키에 포함
-                first_film_part = (p.get("cast") or movieNm)[:5]
-                person_key = f"name::{peopleNm}::{role}::{first_film_part}"
+            # [최종 수정] 동일 인물을 찾는 통합 로직
+            person_key = None
+            name_role_key = f"{peopleNm}::{role}"
+
+            if peopleCd and peopleCd in cd_to_key_map:
+                person_key = cd_to_key_map[peopleCd]
+            elif name_role_key in name_role_to_key_map:
+                person_key = name_role_to_key_map[name_role_key]
+            else:
+                person_key = peopleCd if peopleCd else f"name::{name_role_key}"
 
             rec = people_map.get(person_key)
             if not rec:
                 rec = {
-                    "personKey": person_key,
-                    "peopleCd": peopleCd, 
-                    "peopleNm": peopleNm, 
-                    "repRoleNm": role, 
-                    "films": []
+                    "personKey": person_key, "peopleCd": peopleCd, 
+                    "peopleNm": peopleNm, "repRoleNm": role, "films": []
                 }
                 people_map[person_key] = rec
-            
+                # 조회용 맵에 등록
+                if peopleCd: cd_to_key_map[peopleCd] = person_key
+                name_role_to_key_map[name_role_key] = person_key
+
             if any(f.get("movieCd") == movieCd for f in rec["films"]):
                 return
 
