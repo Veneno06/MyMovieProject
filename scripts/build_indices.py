@@ -1,4 +1,4 @@
-#!/usr/-bin/env python3
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 import os, json, sys
@@ -40,6 +40,14 @@ def scan_detail_files():
                 files.append(os.path.join(root, n))
     return files
 
+def get_movie_info_from_data(data):
+    if not isinstance(data, dict): return None
+    if "movieInfoResult" in data and "movieInfo" in data["movieInfoResult"]:
+        return data["movieInfoResult"]["movieInfo"]
+    if "movieCd" in data:
+        return data
+    return None
+
 def main():
     files = scan_detail_files()
     print(f"[scan] detail files: {len(files)}")
@@ -50,11 +58,12 @@ def main():
 
     for fp in files:
         d = load_json(fp)
-        if not d: continue
-        mi = (d.get("movieInfoResult") or {}).get("movieInfo") or {}
+        mi = get_movie_info_from_data(d)
         if not mi: continue
 
         movieCd = (mi.get("movieCd") or "").strip()
+        if not movieCd: continue
+        
         movieNm = (mi.get("movieNm") or "").strip()
         openDt  = norm_open(mi.get("openDt", ""))
         prdtYear = str(mi.get("prdtYear", "")).strip()
@@ -74,15 +83,14 @@ def main():
         
         movie_extra_data_map[movieCd] = { "audiAcc": audiAcc, "actorCount": actorCount }
 
-    processed_movie_people = set()
-
     for fp in files:
         d = load_json(fp)
-        if not d: continue
-        mi = (d.get("movieInfoResult") or {}).get("movieInfo") or {}
+        mi = get_movie_info_from_data(d)
         if not mi: continue
         
         movieCd = (mi.get("movieCd") or "").strip()
+        if not movieCd: continue
+        
         movieNm = (mi.get("movieNm") or "").strip()
         openDt  = norm_open(mi.get("openDt", ""))
         
@@ -92,18 +100,16 @@ def main():
             peopleNm = (p.get("peopleNm") or "").strip()
             if not peopleCd and not peopleNm: return
 
-            # [수정] 동명이인을 구분하기 위한 고유 키 생성
-            person_key = peopleCd if peopleCd else f"name::{peopleNm}::{role}"
-            
-            # [수정] 한 영화에 동일 인물이 여러 역할로 중복 추가되는 것 방지
-            if (movieCd, person_key) in processed_movie_people:
-                return
-            processed_movie_people.add((movieCd, person_key))
+            person_key = peopleCd
+            if not person_key:
+                # [수정] ID가 없는 동명이인을 구분하기 위해, 출연작 중 하나를 키에 포함
+                first_film_part = (p.get("cast") or movieNm)[:5]
+                person_key = f"name::{peopleNm}::{role}::{first_film_part}"
 
             rec = people_map.get(person_key)
             if not rec:
                 rec = {
-                    "personKey": person_key, # [추가] 프론트엔드에서 사용할 고유 키
+                    "personKey": person_key,
                     "peopleCd": peopleCd, 
                     "peopleNm": peopleNm, 
                     "repRoleNm": role, 
@@ -132,7 +138,6 @@ def main():
 
     print(f"[index] movies: {len(movies)} / people: {len(people)}")
 
-    # [수정] utcnow() 대신 timezone-aware 객체 사용
     now_ts = int(datetime.now(timezone.utc).timestamp())
     out_movies = {"generatedAt": now_ts, "count": len(movies), "movies": movies}
     out_people = {"generatedAt": now_ts, "count": len(people), "people": people}
