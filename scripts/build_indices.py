@@ -38,7 +38,6 @@ def scan_detail_files():
         for n in names:
             if n.endswith(".json"):
                 files.append(os.path.join(root, n))
-    # 안정적인 순서 보장
     files.sort()
     return files
 
@@ -57,11 +56,29 @@ def main():
     movies = []
     people_map = {}
     
-    # [최종 수정] 데이터 파편화와 누락을 막기 위한 조회용 맵
+    # [최종 수정] 인물 중심의 통합을 위한 조회용 맵
     cd_to_key_map = {}
-    name_role_to_key_map = {}
+    name_role_to_cd_map = {}
 
-    # [최종 수정] 모든 데이터를 단 한 번의 순회로 처리 (One-Pass)
+    # 1차 스캔: 모든 인물 정보를 수집하고 고유 ID(peopleCd)를 기준으로 통합
+    for fp in files:
+        d = load_json(fp)
+        mi = get_movie_info_from_data(d)
+        if not mi: continue
+
+        def process_person_for_map(p, role):
+            if not isinstance(p, dict): return
+            peopleCd = (p.get("peopleCd") or "").strip()
+            peopleNm = (p.get("peopleNm") or "").strip()
+            if not peopleCd or not peopleNm: return
+            
+            name_role_key = f"{peopleNm}::{role}"
+            name_role_to_cd_map[name_role_key] = peopleCd
+
+        for x in (mi.get("directors") or []): process_person_for_map(x, "감독")
+        for x in (mi.get("actors") or []):    process_person_for_map(x, "배우")
+
+    # 2차 스캔: 영화 정보 및 최종 인물 정보 구축
     for fp in files:
         d = load_json(fp)
         mi = get_movie_info_from_data(d)
@@ -82,42 +99,35 @@ def main():
 
         if not movieCd or not movieNm: continue
 
-        # 1. 영화 목록에 추가
         movies.append({
             "movieCd": movieCd, "movieNm": movieNm, "openDt": openDt, "prdtYear": prdtYear,
             "repNation": repNation, "grade": grade, "genres": genres, "audiAcc": audiAcc,
         })
         
-        # 2. 인물 정보에 영화 추가
         def add_person(p, role):
             if not isinstance(p, dict): return
             peopleCd = (p.get("peopleCd") or "").strip()
             peopleNm = (p.get("peopleNm") or "").strip()
-            if not peopleCd and not peopleNm: return
+            if not peopleNm: return
 
-            person_key = None
+            # [최종 수정] 가장 정확한 고유 키 찾기
             name_role_key = f"{peopleNm}::{role}"
+            if not peopleCd and name_role_key in name_role_to_cd_map:
+                peopleCd = name_role_to_cd_map[name_role_key]
 
-            if peopleCd and peopleCd in cd_to_key_map:
-                person_key = cd_to_key_map[peopleCd]
-            elif name_role_key in name_role_to_key_map:
-                person_key = name_role_to_key_map[name_role_key]
-            else:
-                person_key = peopleCd if peopleCd else f"name::{name_role_key}"
+            person_key = peopleCd if peopleCd else f"name::{name_role_key}"
 
             rec = people_map.get(person_key)
             if not rec:
                 rec = {"personKey": person_key, "peopleCd": peopleCd, "peopleNm": peopleNm, "repRoleNm": role, "films": []}
                 people_map[person_key] = rec
-                if peopleCd: cd_to_key_map[peopleCd] = person_key
-                name_role_to_key_map[name_role_key] = person_key
-
+            
             if any(f.get("movieCd") == movieCd for f in rec["films"]):
                 return
 
             film_info = {
                 "movieCd": movieCd, "movieNm": movieNm, "openDt": openDt, "part": p.get("cast", ""),
-                "audiAcc": audiAcc, # 현재 루프에서 직접 가져온 관객수 정보 사용
+                "audiAcc": audiAcc,
                 "actorCount": actorCount
             }
             rec["films"].append(film_info)
@@ -125,7 +135,7 @@ def main():
         for x in (mi.get("directors") or []): add_person(x, "감독")
         for x in (mi.get("actors") or []):    add_person(x, "배우")
 
-    movies.sort(key=lambda m: m.get("openDt") or "9999-99-99")
+    movies.sort(key=lambda m: m.get("openDt") or "9999-9-99")
     for rec in people_map.values():
         rec["films"].sort(key=lambda f: f.get("openDt") or "9999-99-99", reverse=True)
     people = list(people_map.values())
