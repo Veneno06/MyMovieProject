@@ -1,0 +1,78 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20184568",
+      "movieNm": "리지",
+      "movieNmEn": "LIzzie",
+      "movieNmOg": "",
+      "showTm": "105",
+      "prdtYear": "2018",
+      "openDt": "20190110",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "범죄"
+        },
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "스릴러"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "크레이그 맥닐",
+          "peopleNmEn": "Craig Macneill"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "크리스틴 스튜어트",
+          "peopleNmEn": "Kristen Stewart",
+          "cast": "브리짓",
+          "castEn": "Briget Sullivan"
+        },
+        {
+          "peopleNm": "클로에 세비니",
+          "peopleNmEn": "Chloe Sevigny",
+          "cast": "리지",
+          "castEn": "Lizzie Borden"
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20122837",
+          "companyNm": "(주)팝엔터테인먼트",
+          "companyNmEn": "Pop Entertainment",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20141652",
+          "companyNm": "씨네라인월드(주)",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2018-MF02242",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

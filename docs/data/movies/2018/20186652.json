@@ -1,0 +1,661 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20186652",
+      "movieNm": "오늘도 평화로운",
+      "movieNmEn": "Super Margin",
+      "movieNmOg": "",
+      "showTm": "90",
+      "prdtYear": "2019",
+      "openDt": "20190404",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "한국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "액션"
+        },
+        {
+          "genreNm": "코미디"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "백승기",
+          "peopleNmEn": "BAEK Seungkee"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "손이용",
+          "peopleNmEn": "SON Yi-yong",
+          "cast": "영준",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "신민구",
+          "peopleNmEn": "",
+          "cast": "쫄보 대학생",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "김민걸",
+          "peopleNmEn": "",
+          "cast": "중국 맥북남",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "윤단비",
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "김수현",
+          "peopleNmEn": "",
+          "cast": "인천역 행인",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "김명직",
+          "peopleNmEn": "",
+          "cast": "조직원",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "민지혁",
+          "peopleNmEn": "",
+          "cast": "쿨럭쿨럭",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "박지나",
+          "peopleNmEn": "",
+          "cast": "지나",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "감승민",
+          "peopleNmEn": "KAM Seung-min",
+          "cast": "박병춘",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "서현민",
+          "peopleNmEn": "",
+          "cast": "꼬마",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "이해인",
+          "peopleNmEn": "",
+          "cast": "임청하",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "이지혜",
+          "peopleNmEn": "",
+          "cast": "탕빙빙",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "조근직",
+          "peopleNmEn": "",
+          "cast": "탕수육",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "공자관",
+          "peopleNmEn": "GONG Ja-gwan",
+          "cast": "작업장 소장",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "박미나",
+          "peopleNmEn": "",
+          "cast": "짜장면 주인 역",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "고경호",
+          "peopleNmEn": "",
+          "cast": "경찰1",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "류재훈",
+          "peopleNmEn": "",
+          "cast": "조직원",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "권민정",
+          "peopleNmEn": "",
+          "cast": "등굣길 학생들",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "김건우",
+          "peopleNmEn": "",
+          "cast": "조직원",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "김다연",
+          "peopleNmEn": "",
+          "cast": "중국 행인",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "김도윤",
+          "peopleNmEn": "",
+          "cast": "등굣길 학생들",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "김민걸",
+          "peopleNmEn": "",
+          "cast": "고장차 운전자",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "김민경",
+          "peopleNmEn": "",
+          "cast": "모자 장수",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "김민정",
+          "peopleNmEn": "",
+          "cast": "호구 대학생",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "오창경",
+          "peopleNmEn": "OH Chang-kyung",
+          "cast": "킬러",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "윤성원",
+          "peopleNmEn": "",
+          "cast": "카페 커플 역",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "강민주",
+          "peopleNmEn": "",
+          "cast": "등굣길 학생들",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "정주은",
+          "peopleNmEn": "",
+          "cast": "조직원",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "이종환",
+          "peopleNmEn": "",
+          "cast": "난장파브르",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "이상현",
+          "peopleNmEn": "",
+          "cast": "옥상 조직원",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "이지규",
+          "peopleNmEn": "",
+          "cast": "맥북 거지/조직원 역",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "전동범",
+          "peopleNmEn": "",
+          "cast": "잣또이찌 ",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "김수환",
+          "peopleNmEn": "",
+          "cast": "물김",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "김종원",
+          "peopleNmEn": "",
+          "cast": "좀약 사기꾼",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "윤진",
+          "peopleNmEn": "YUN Jin",
+          "cast": "만신사제",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "고경표",
+          "peopleNmEn": "",
+          "cast": "사기꾼선배3",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "이교형",
+          "peopleNmEn": "",
+          "cast": "조직원",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "고홍진",
+          "peopleNmEn": "",
+          "cast": "14년전 호구",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "이기준",
+          "peopleNmEn": "",
+          "cast": "조직원",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "구예형",
+          "peopleNmEn": "",
+          "cast": "추격자",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "김영덕",
+          "peopleNmEn": "",
+          "cast": "북경 타이슨 코치",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "권함",
+          "peopleNmEn": "",
+          "cast": "조직원",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "최환",
+          "peopleNmEn": "",
+          "cast": "다리 아픈 행인",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "차지원",
+          "peopleNmEn": "",
+          "cast": "아기 엄마",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "김필환",
+          "peopleNmEn": "",
+          "cast": "귀신",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "류의지",
+          "peopleNmEn": "",
+          "cast": "등굣길 학생들",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "이유진",
+          "peopleNmEn": "",
+          "cast": "등굣길 학생들",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "웁쓰양",
+          "peopleNmEn": "",
+          "cast": "멍때리기 고수",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "위지웅",
+          "peopleNmEn": "WI Ji-woong",
+          "cast": "이소룡",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "노시윤",
+          "peopleNmEn": "",
+          "cast": "등굣길 학생들",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "정우성",
+          "peopleNmEn": "",
+          "cast": "옥상 조직원",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "정광우",
+          "peopleNmEn": "",
+          "cast": "경찰2",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "박근수",
+          "peopleNmEn": "",
+          "cast": "조선족 브로커",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "신아리",
+          "peopleNmEn": "",
+          "cast": "사기꾼선배2",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "신예주",
+          "peopleNmEn": "",
+          "cast": "사기꾼선배1",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "최별",
+          "peopleNmEn": "",
+          "cast": "우는 아기",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "이병권",
+          "peopleNmEn": "",
+          "cast": "총 맞는 학생",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "양군",
+          "peopleNmEn": "",
+          "cast": "조직원",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "최윤제",
+          "peopleNmEn": "",
+          "cast": "카페커플",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "엄선영",
+          "peopleNmEn": "",
+          "cast": "벽돌 구매자",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "전민호",
+          "peopleNmEn": "",
+          "cast": "북경 타이슨",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "전수현",
+          "peopleNmEn": "",
+          "cast": "등굣길 학생들",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "임진혁",
+          "peopleNmEn": "",
+          "cast": "조직원",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "백승건",
+          "peopleNmEn": "",
+          "cast": "옥상 조직원",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "손철민",
+          "peopleNmEn": "",
+          "cast": "조직원",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "오지안",
+          "peopleNmEn": "",
+          "cast": "등굣길 학생들",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "하영주",
+          "peopleNmEn": "",
+          "cast": "등굣길 학생들",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "변동욱",
+          "peopleNmEn": "",
+          "cast": "셀카 대학생",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "한성현",
+          "peopleNmEn": "",
+          "cast": "조직원",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "이민수",
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "김성준",
+          "peopleNmEn": "",
+          "cast": "총맞는학생",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "권오상",
+          "peopleNmEn": "",
+          "cast": "모자구매자역,도시락 배달부역,중식 배달부역",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "이원철",
+          "peopleNmEn": "",
+          "cast": "옥상 조직원",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털 영문자막"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20190461",
+          "companyNm": "꾸러기스튜디오",
+          "companyNmEn": "",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20172421",
+          "companyNm": "(주)영화사 그램",
+          "companyNmEn": "gram FILMS",
+          "companyPartNm": "배급사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2019-MF00475",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": [
+        {
+          "peopleNm": "백승기",
+          "peopleNmEn": "BAEK Seungkee",
+          "staffRoleNm": "제작"
+        },
+        {
+          "peopleNm": "백승기",
+          "peopleNmEn": "BAEK Seungkee",
+          "staffRoleNm": "프로듀서"
+        },
+        {
+          "peopleNm": "홍정욱",
+          "peopleNmEn": "",
+          "staffRoleNm": "사운드"
+        },
+        {
+          "peopleNm": "방경식",
+          "peopleNmEn": "",
+          "staffRoleNm": "사운드"
+        },
+        {
+          "peopleNm": "김인영",
+          "peopleNmEn": "KIM In-young",
+          "staffRoleNm": "작사/작곡/편곡"
+        },
+        {
+          "peopleNm": "김진희",
+          "peopleNmEn": "",
+          "staffRoleNm": "작사/작곡/편곡"
+        },
+        {
+          "peopleNm": "박연희",
+          "peopleNmEn": "",
+          "staffRoleNm": "음악진행"
+        },
+        {
+          "peopleNm": "박승주",
+          "peopleNmEn": "",
+          "staffRoleNm": "음악"
+        },
+        {
+          "peopleNm": "성충경",
+          "peopleNmEn": "",
+          "staffRoleNm": "편집팀"
+        },
+        {
+          "peopleNm": "박지용",
+          "peopleNmEn": "",
+          "staffRoleNm": "편집"
+        },
+        {
+          "peopleNm": "백승기",
+          "peopleNmEn": "BAEK Seungkee",
+          "staffRoleNm": "편집"
+        },
+        {
+          "peopleNm": "김다연",
+          "peopleNmEn": "",
+          "staffRoleNm": "분장"
+        },
+        {
+          "peopleNm": "김민걸",
+          "peopleNmEn": "",
+          "staffRoleNm": "동시녹음"
+        },
+        {
+          "peopleNm": "백승기",
+          "peopleNmEn": "BAEK Seungkee",
+          "staffRoleNm": "시나리오(각본)"
+        },
+        {
+          "peopleNm": "박대현",
+          "peopleNmEn": "",
+          "staffRoleNm": "조감독"
+        },
+        {
+          "peopleNm": "박가인",
+          "peopleNmEn": "",
+          "staffRoleNm": "연출팀"
+        },
+        {
+          "peopleNm": "백승기",
+          "peopleNmEn": "BAEK Seungkee",
+          "staffRoleNm": "촬영"
+        },
+        {
+          "peopleNm": "노기훈",
+          "peopleNmEn": "",
+          "staffRoleNm": "촬영"
+        },
+        {
+          "peopleNm": "유재윤",
+          "peopleNmEn": "",
+          "staffRoleNm": "미술팀"
+        },
+        {
+          "peopleNm": "성충경",
+          "peopleNmEn": "",
+          "staffRoleNm": "DI팀"
+        },
+        {
+          "peopleNm": "이종환",
+          "peopleNmEn": "",
+          "staffRoleNm": "타이틀"
+        },
+        {
+          "peopleNm": "허진희",
+          "peopleNmEn": "",
+          "staffRoleNm": "배급진행"
+        },
+        {
+          "peopleNm": "금민선",
+          "peopleNmEn": "",
+          "staffRoleNm": "스틸"
+        },
+        {
+          "peopleNm": "신민구",
+          "peopleNmEn": "",
+          "staffRoleNm": "스틸"
+        },
+        {
+          "peopleNm": "박상근",
+          "peopleNmEn": "",
+          "staffRoleNm": "배급진행"
+        },
+        {
+          "peopleNm": "권오상",
+          "peopleNmEn": "",
+          "staffRoleNm": "스틸"
+        },
+        {
+          "peopleNm": "박선용",
+          "peopleNmEn": "",
+          "staffRoleNm": "홍보/마케팅 진행"
+        },
+        {
+          "peopleNm": "허진희",
+          "peopleNmEn": "",
+          "staffRoleNm": "홍보/마케팅 진행"
+        },
+        {
+          "peopleNm": "현성은",
+          "peopleNmEn": "HYUN Seong-eun",
+          "staffRoleNm": "홍보/마케팅 진행"
+        },
+        {
+          "peopleNm": "백승기",
+          "peopleNmEn": "BAEK Seungkee",
+          "staffRoleNm": "기획"
+        },
+        {
+          "peopleNm": "오석근",
+          "peopleNmEn": "",
+          "staffRoleNm": "스틸"
+        }
+      ]
+    }
+  }
+}
