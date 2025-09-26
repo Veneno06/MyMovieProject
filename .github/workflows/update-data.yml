@@ -2,7 +2,6 @@ name: KOFIC Daily Fetch
 
 on:
   schedule:
-    # 한국 시간 기준 매일 오후 3시 30분에 실행 (UTC 06:30)
     - cron: "30 6 * * *"
   workflow_dispatch:
 
@@ -16,7 +15,7 @@ concurrency:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 15 # 작업 시간을 줄임
+    timeout-minutes: 15
 
     steps:
       - name: Checkout
@@ -57,9 +56,6 @@ jobs:
         run: |
           python scripts/update_data.py
 
-      # [수정] 복잡성을 유발하고 오류가 발생했던 Light refresh 단계 제거
-      # - name: Light refresh current-year details ...
-
       - name: Rebuild search indexes
         run: |
           python scripts/build_indices.py
@@ -77,6 +73,6 @@ jobs:
             exit 0
           fi
           git commit -m "KOFIC: Daily data update"
-          # [추가] push 하기 전에 pull을 먼저 실행하여 원격 변경사항을 합칩니다.
+          # [핵심 수정] push 하기 전에 pull을 먼저 실행하여 원격 변경사항을 합칩니다.
           git pull --rebase origin "$BRANCH"
           git push origin "HEAD:$BRANCH"
