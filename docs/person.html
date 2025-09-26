@@ -88,7 +88,8 @@ saveBtn.addEventListener('click', () => {
     if (isSaved(personId)) {
         delete saved[personId];
     } else {
-        saved[personId] = { name: currentPerson.peopleNm, personKey: currentPerson.personKey };
+        // [수정] 저장하는 데이터 구조를 단순화하고 일관성 유지
+        saved[personId] = { name: currentPerson.peopleNm };
     }
     setSaved(saved);
     renderSaveBtn();
