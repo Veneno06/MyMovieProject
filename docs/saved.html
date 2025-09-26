@@ -45,20 +45,6 @@ function removeSaved(id) {
     render();
 }
 
-// [수정] ID 또는 이름으로 배우를 찾는 함수
-function findPerson(peopleList, savedKey, savedInfo) {
-    // ID가 있으면 ID로 찾기 (가장 정확)
-    if (savedInfo.peopleCd) {
-        return peopleList.find(p => p.peopleCd === savedInfo.peopleCd);
-    }
-    // ID가 없으면 이름으로 찾기
-    if (savedKey.startsWith('name::')) {
-        const name = savedKey.split('::')[1];
-        return peopleList.find(p => p.peopleNm === name);
-    }
-    return null;
-}
-
 async function render() {
     const saved = getSavedPeople();
     const savedKeys = Object.keys(saved);
@@ -77,13 +63,8 @@ async function render() {
     const peopleIndex = await res.json();
     const allPeople = peopleIndex.people || [];
 
-    const savedPeopleDetails = [];
-    for (const key of savedKeys) {
-        const person = findPerson(allPeople, key, saved[key]);
-        if (person) {
-            savedPeopleDetails.push(person);
-        }
-    }
+    // [수정] 저장된 personKey와 일치하는 배우 정보만 필터링
+    const savedPeopleDetails = allPeople.filter(p => savedKeys.includes(p.personKey));
     
     savedPeopleDetails.sort((a, b) => (a.peopleNm || '').localeCompare(b.peopleNm || ''));
 
@@ -96,12 +77,11 @@ async function render() {
             .map(film => film.movieNm)
             .join(', ');
 
-        // [수정] 삭제 버튼에 전달할 ID를 결정 (ID 또는 이름)
-        const personId = person.peopleCd || `name::${person.peopleNm}`;
+        const personId = person.personKey;
 
         div.innerHTML = `
           <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
-            <a href="person.html?peopleCd=${person.peopleCd || ''}&peopleNm=${encodeURIComponent(person.peopleNm)}"><strong>${person.peopleNm}</strong></a>
+            <a href="person.html?personKey=${encodeURIComponent(personId)}"><strong>${person.peopleNm}</strong></a>
             <span class="muted">(${person.repRoleNm || ''})</span>
             <div class="spacer"></div>
             <button class="btn" onclick="removeSaved('${personId}')">삭제</button>
