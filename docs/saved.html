@@ -46,17 +46,12 @@ function removeSaved(id) {
 }
 
 async function render() {
-    console.log('[DEBUG/saved.html] Render started.');
     const saved = getSavedPeople();
-    console.log('[DEBUG/saved.html] Data loaded from localStorage:', saved);
-  
     const savedKeys = Object.keys(saved);
-    console.log('[DEBUG/saved.html] Saved keys found:', savedKeys);
 
     LIST_BOX.innerHTML = '';
     if (savedKeys.length === 0) {
         LIST_BOX.innerHTML = '<div class="muted">저장된 배우가 없습니다.</div>';
-        console.log('[DEBUG/saved.html] No saved keys. Render finished.');
         return;
     }
 
@@ -68,9 +63,7 @@ async function render() {
     const peopleIndex = await res.json();
     const allPeople = peopleIndex.people || [];
 
-    // [수정] 저장된 personKey와 일치하는 배우 정보만 필터링
     const savedPeopleDetails = allPeople.filter(p => savedKeys.includes(p.personKey));
-    console.log('[DEBUG/saved.html] Filtered result (matching people):', savedPeopleDetails);
     
     savedPeopleDetails.sort((a, b) => (a.peopleNm || '').localeCompare(b.peopleNm || ''));
 
@@ -96,7 +89,6 @@ async function render() {
         `;
         LIST_BOX.appendChild(div);
     });
-    console.log('[DEBUG/saved.html] Render finished.');
 }
 
 render();
