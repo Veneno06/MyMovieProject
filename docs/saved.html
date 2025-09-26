@@ -11,12 +11,17 @@
         padding: 12px;
         border-radius: 8px;
         margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
     }
+    .actor-info { flex-grow: 1; }
     .film-list {
         font-size: 14px;
         color: #555;
         margin-top: 6px;
     }
+    .compare-section { margin-top: 20px; padding-top: 15px; border-top: 1px solid #eee; }
   </style>
 </head>
 <body>
@@ -30,6 +35,10 @@
   </div>
 
   <div id="savedPeopleList" class="grid"></div>
+  
+  <div class="compare-section">
+      <button class="btn" id="compareBtn" disabled>스타 파워 비교 (2명 선택)</button>
+  </div>
 </div>
 
 <script>
@@ -45,6 +54,13 @@ function removeSaved(id) {
     render();
 }
 
+// [추가] 체크박스 상태에 따라 비교 버튼 활성화/비활성화
+function updateCompareButtonState() {
+    const checkboxes = document.querySelectorAll('.actor-checkbox:checked');
+    const compareBtn = document.getElementById('compareBtn');
+    compareBtn.disabled = checkboxes.length !== 2;
+}
+
 async function render() {
     const saved = getSavedPeople();
     const savedKeys = Object.keys(saved);
@@ -52,6 +68,7 @@ async function render() {
     LIST_BOX.innerHTML = '';
     if (savedKeys.length === 0) {
         LIST_BOX.innerHTML = '<div class="muted">저장된 배우가 없습니다.</div>';
+        document.querySelector('.compare-section').style.display = 'none';
         return;
     }
 
@@ -64,32 +81,44 @@ async function render() {
     const allPeople = peopleIndex.people || [];
 
     const savedPeopleDetails = allPeople.filter(p => savedKeys.includes(p.personKey));
-    
     savedPeopleDetails.sort((a, b) => (a.peopleNm || '').localeCompare(b.peopleNm || ''));
 
     savedPeopleDetails.forEach(person => {
         const div = document.createElement('div');
         div.className = 'actor-card';
-
-        const topFilms = (person.films || [])
-            .slice(0, 3)
-            .map(film => film.movieNm)
-            .join(', ');
-
         const personId = person.personKey;
 
         div.innerHTML = `
-          <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
-            <a href="person.html?personKey=${encodeURIComponent(personId)}"><strong>${person.peopleNm}</strong></a>
-            <span class="muted">(${person.repRoleNm || ''})</span>
-            <div class="spacer"></div>
-            <button class="btn" onclick="removeSaved('${personId}')">삭제</button>
+          <input type="checkbox" class="actor-checkbox" value="${personId}" style="transform: scale(1.5);">
+          <div class="actor-info">
+            <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+              <a href="person.html?personKey=${encodeURIComponent(personId)}"><strong>${person.peopleNm}</strong></a>
+              <span class="muted">(${person.repRoleNm || ''})</span>
+              <div class="spacer"></div>
+              <button class="btn" onclick="removeSaved('${personId}')">삭제</button>
+            </div>
+            <div class="film-list">주요 출연작: ${(person.films || []).slice(0, 3).map(f => f.movieNm).join(', ') || '정보 없음'}</div>
           </div>
-          <div class="film-list">주요 출연작: ${topFilms || '정보 없음'}</div>
         `;
         LIST_BOX.appendChild(div);
     });
+    
+    // [추가] 이벤트 리스너 연결
+    document.querySelectorAll('.actor-checkbox').forEach(cb => {
+        cb.addEventListener('change', updateCompareButtonState);
+    });
+    updateCompareButtonState();
 }
+
+// [추가] 비교 버튼 클릭 이벤트
+document.getElementById('compareBtn').addEventListener('click', () => {
+    const checkboxes = document.querySelectorAll('.actor-checkbox:checked');
+    if (checkboxes.length === 2) {
+        const p1 = encodeURIComponent(checkboxes[0].value);
+        const p2 = encodeURIComponent(checkboxes[1].value);
+        window.location.href = `compare.html?p1=${p1}&p2=${p2}`;
+    }
+});
 
 render();
 </script>
