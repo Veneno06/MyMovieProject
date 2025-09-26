@@ -80,22 +80,17 @@ function renderSaveBtn() {
     saveBtn.textContent = isSaved(personId) ? '⭐ 저장됨(해제)' : '☆ 배우 저장';
 }
 
-// [수정] 디버깅 메시지가 추가된 저장 기능
 saveBtn.addEventListener('click', () => {
     const personId = getPersonId(currentPerson);
     if (!personId) return;
     
-    console.log(`[DEBUG/person.html] Save button clicked for personId: ${personId}`);
-    
     const saved = getSavedPeople();
     if (isSaved(personId)) {
         delete saved[personId];
-        console.log(`[DEBUG/person.html] Person REMOVED. Current saved data:`, saved);
     } else {
-        saved[personId] = { name: currentPerson.peopleNm };
-        console.log(`[DEBUG/person.html] Person ADDED. Current saved data:`, saved);
+        saved[personId] = { name: currentPerson.peopleNm, personKey: currentPerson.personKey };
     }
-    setSavedPeople(saved);
+    setSaved(saved);
     renderSaveBtn();
 });
 
