@@ -1,0 +1,97 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20168381",
+      "movieNm": "얼라이드",
+      "movieNmEn": "Allied",
+      "movieNmOg": "",
+      "showTm": "123",
+      "prdtYear": "2017",
+      "openDt": "20170111",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "스릴러"
+        },
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "멜로/로맨스"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "로버트 저메키스",
+          "peopleNmEn": "Robert Zemeckis"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "브래드 피트",
+          "peopleNmEn": "Brad Pitt",
+          "cast": "맥스",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "마리옹 꼬띠아르",
+          "peopleNmEn": "Marion Cotillard",
+          "cast": "매리앤",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "리지 캐플란",
+          "peopleNmEn": "Lizzy Caplan",
+          "cast": "브리짓",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "매튜 구드",
+          "peopleNmEn": "Matthew Goode",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "자레드 해리스",
+          "peopleNmEn": "Jared Harris",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100520",
+          "companyNm": "롯데쇼핑㈜롯데엔터테인먼트",
+          "companyNmEn": "Lotte shopping Lotte Entertainment Co.,Ltd",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100520",
+          "companyNm": "롯데쇼핑㈜롯데엔터테인먼트",
+          "companyNmEn": "Lotte shopping Lotte Entertainment Co.,Ltd",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2016-MF02005",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": [],
+      "audiAcc": 499678
+    }
+  }
+}
