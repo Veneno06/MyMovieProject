@@ -1,0 +1,82 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20232130",
+      "movieNm": "숨",
+      "movieNmEn": "Breath",
+      "movieNmOg": "",
+      "showTm": "71",
+      "prdtYear": "2023",
+      "openDt": "20250312",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "한국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "다큐멘터리"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "윤재호",
+          "peopleNmEn": "Jero YUN"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "유재철",
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "김새별",
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털 영문자막"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20189661",
+          "companyNm": "빈스로드",
+          "companyNmEn": "",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20218022",
+          "companyNm": "시네마로드",
+          "companyNmEn": "",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100036",
+          "companyNm": "㈜인디스토리",
+          "companyNmEn": "INDIESTORY Inc. ",
+          "companyPartNm": "배급사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2025-MF00306",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}
