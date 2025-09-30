@@ -1,10 +1,6 @@
 {
-<<<<<<< HEAD
-  "generatedAt": 1759196320,
-=======
-  "generatedAt": 1759159987,
->>>>>>> 22a3ab492d0cce321d3fd0ed29ba7858bb0347ac
-  "count": 19094,
+  "generatedAt": 1759215068,
+  "count": 19209,
   "movies": [
     {
       "movieCd": "20020328",
@@ -12386,6 +12382,18 @@
       "audiAcc": null
     },
     {
+      "movieCd": "20150155",
+      "movieNm": "투란도트",
+      "openDt": "2016-07-02",
+      "prdtYear": "2015",
+      "repNation": "F",
+      "grade": "전체관람가",
+      "genres": [
+        "공연"
+      ],
+      "audiAcc": null
+    },
+    {
       "movieCd": "20164161",
       "movieNm": "마탄의 사수",
       "openDt": "2016-07-03",
@@ -12433,6 +12441,32 @@
         "멜로/로맨스"
       ],
       "audiAcc": null
+    },
+    {
+      "movieCd": "20159058",
+      "movieNm": "도리를 찾아서",
+      "openDt": "2016-07-06",
+      "prdtYear": "2016",
+      "repNation": "F",
+      "grade": "전체관람가",
+      "genres": [
+        "애니메이션",
+        "어드벤처",
+        "코미디"
+      ],
+      "audiAcc": 2564991
+    },
+    {
+      "movieCd": "20159644",
+      "movieNm": "봉이 김선달",
+      "openDt": "2016-07-06",
+      "prdtYear": "2016",
+      "repNation": "K",
+      "grade": "12세이상관람가",
+      "genres": [
+        "사극"
+      ],
+      "audiAcc": 2043660
     },
     {
       "movieCd": "20159058",
@@ -12583,6 +12617,31 @@
       "genres": [
         "액션",
         "스릴러"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20070157",
+      "movieNm": "환상의 빛",
+      "openDt": "2016-07-07",
+      "prdtYear": "1995",
+      "repNation": "F",
+      "grade": "15세이상관람가",
+      "genres": [
+        "드라마"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20156942",
+      "movieNm": "로렐",
+      "openDt": "2016-07-07",
+      "prdtYear": "2015",
+      "repNation": "F",
+      "grade": "15세이상관람가",
+      "genres": [
+        "드라마",
+        "멜로/로맨스"
       ],
       "audiAcc": null
     },
@@ -12788,6 +12847,32 @@
         "범죄",
         "액션"
       ],
+      "audiAcc": 3096296
+    },
+    {
+      "movieCd": "20158982",
+      "movieNm": "트릭",
+      "openDt": "2016-07-13",
+      "prdtYear": "2016",
+      "repNation": "K",
+      "grade": "15세이상관람가",
+      "genres": [
+        "스릴러",
+        "드라마"
+      ],
+      "audiAcc": 30622
+    },
+    {
+      "movieCd": "20150203",
+      "movieNm": "나우 유 씨 미 2",
+      "openDt": "2016-07-13",
+      "prdtYear": "2016",
+      "repNation": "F",
+      "grade": "12세이상관람가",
+      "genres": [
+        "범죄",
+        "액션"
+      ],
       "audiAcc": null
     },
     {
@@ -12826,7 +12911,7 @@
       "genres": [
         "드라마"
       ],
-      "audiAcc": null
+      "audiAcc": 25229
     },
     {
       "movieCd": "20165201",
@@ -12839,7 +12924,7 @@
         "공포(호러)",
         "스릴러"
       ],
-      "audiAcc": null
+      "audiAcc": 382478
     },
     {
       "movieCd": "20166072",
@@ -12927,6 +13012,31 @@
       "audiAcc": null
     },
     {
+      "movieCd": "20088370",
+      "movieNm": "패신저스",
+      "openDt": "2016-07-14",
+      "prdtYear": "2008",
+      "repNation": "F",
+      "grade": "12세이상관람가",
+      "genres": [
+        "미스터리",
+        "멜로/로맨스"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20150468",
+      "movieNm": "말로니의 두 번째 이야기",
+      "openDt": "2016-07-14",
+      "prdtYear": "2015",
+      "repNation": "F",
+      "grade": "15세이상관람가",
+      "genres": [
+        "드라마"
+      ],
+      "audiAcc": null
+    },
+    {
       "movieCd": "20162583",
       "movieNm": "불륜관계",
       "openDt": "2016-07-14",
@@ -12974,7 +13084,7 @@
       "genres": [
         "코미디"
       ],
-      "audiAcc": null
+      "audiAcc": 36786
     },
     {
       "movieCd": "20165401",
@@ -13177,6 +13287,19 @@
         "액션",
         "스릴러"
       ],
+      "audiAcc": 11223583
+    },
+    {
+      "movieCd": "20156564",
+      "movieNm": "부산행",
+      "openDt": "2016-07-20",
+      "prdtYear": "2016",
+      "repNation": "K",
+      "grade": "15세이상관람가",
+      "genres": [
+        "액션",
+        "스릴러"
+      ],
       "audiAcc": null
     },
     {
@@ -13191,7 +13314,7 @@
         "어드벤처",
         "코미디"
       ],
-      "audiAcc": null
+      "audiAcc": 547390
     },
     {
       "movieCd": "20164521",
@@ -13203,7 +13326,7 @@
       "genres": [
         "애니메이션"
       ],
-      "audiAcc": null
+      "audiAcc": 265728
     },
     {
       "movieCd": "20166081",
@@ -13275,6 +13398,20 @@
       "genres": [
         "멜로/로맨스",
         "드라마"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20150488",
+      "movieNm": "이지머니 3",
+      "openDt": "2016-07-21",
+      "prdtYear": "2013",
+      "repNation": "F",
+      "grade": "청소년관람불가",
+      "genres": [
+        "범죄",
+        "드라마",
+        "스릴러"
       ],
       "audiAcc": null
     },
@@ -13559,6 +13696,32 @@
         "전쟁",
         "드라마"
       ],
+      "audiAcc": 6954191
+    },
+    {
+      "movieCd": "20140281",
+      "movieNm": "사랑해, 매기",
+      "openDt": "2016-07-27",
+      "prdtYear": "2014",
+      "repNation": "F",
+      "grade": "15세이상관람가",
+      "genres": [
+        "코미디",
+        "드라마"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20156250",
+      "movieNm": "인천상륙작전",
+      "openDt": "2016-07-27",
+      "prdtYear": "2016",
+      "repNation": "K",
+      "grade": "12세이상관람가",
+      "genres": [
+        "전쟁",
+        "드라마"
+      ],
       "audiAcc": null
     },
     {
@@ -13572,7 +13735,7 @@
         "액션",
         "스릴러"
       ],
-      "audiAcc": null
+      "audiAcc": 2539270
     },
     {
       "movieCd": "20163189",
@@ -13599,7 +13762,7 @@
         "코미디",
         "가족"
       ],
-      "audiAcc": null
+      "audiAcc": 115083
     },
     {
       "movieCd": "20166087",
@@ -13672,6 +13835,18 @@
       "genres": [
         "멜로/로맨스",
         "드라마"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20150467",
+      "movieNm": "베티블루 37.2 디오리지널",
+      "openDt": "2016-07-28",
+      "prdtYear": "1986",
+      "repNation": "F",
+      "grade": "청소년관람불가",
+      "genres": [
+        "멜로/로맨스"
       ],
       "audiAcc": null
     },
@@ -13948,6 +14123,45 @@
         "사극",
         "드라마"
       ],
+      "audiAcc": 5528893
+    },
+    {
+      "movieCd": "20152963",
+      "movieNm": "수어사이드 스쿼드",
+      "openDt": "2016-08-03",
+      "prdtYear": "2016",
+      "repNation": "F",
+      "grade": "15세이상관람가",
+      "genres": [
+        "액션"
+      ],
+      "audiAcc": 1882718
+    },
+    {
+      "movieCd": "20156082",
+      "movieNm": "마이펫의 이중생활",
+      "openDt": "2016-08-03",
+      "prdtYear": "2016",
+      "repNation": "F",
+      "grade": "전체관람가",
+      "genres": [
+        "애니메이션",
+        "코미디",
+        "가족"
+      ],
+      "audiAcc": 2514105
+    },
+    {
+      "movieCd": "20150979",
+      "movieNm": "덕혜옹주",
+      "openDt": "2016-08-03",
+      "prdtYear": "2016",
+      "repNation": "K",
+      "grade": "12세이상관람가",
+      "genres": [
+        "사극",
+        "드라마"
+      ],
       "audiAcc": null
     },
     {
@@ -13988,7 +14202,7 @@
         "미스터리",
         "어드벤처"
       ],
-      "audiAcc": null
+      "audiAcc": 459210
     },
     {
       "movieCd": "20166176",
@@ -14167,6 +14381,18 @@
       "audiAcc": null
     },
     {
+      "movieCd": "20149714",
+      "movieNm": "보이 앤 더 월드",
+      "openDt": "2016-08-04",
+      "prdtYear": "2013",
+      "repNation": "F",
+      "grade": "12세이상관람가",
+      "genres": [
+        "애니메이션"
+      ],
+      "audiAcc": null
+    },
+    {
       "movieCd": "20163261",
       "movieNm": "나의 딸",
       "openDt": "2016-08-04",
@@ -14254,6 +14480,32 @@
       "audiAcc": null
     },
     {
+      "movieCd": "20150156",
+      "movieNm": "마농 레스코",
+      "openDt": "2016-08-06",
+      "prdtYear": "2015",
+      "repNation": "F",
+      "grade": "전체관람가",
+      "genres": [
+        "공연"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20154881",
+      "movieNm": "야동보기 좋은 날",
+      "openDt": "2016-08-08",
+      "prdtYear": "2015",
+      "repNation": "K",
+      "grade": "15세이상관람가",
+      "genres": [
+        "코미디",
+        "드라마",
+        "판타지"
+      ],
+      "audiAcc": null
+    },
+    {
       "movieCd": "20154881",
       "movieNm": "야동보기 좋은 날",
       "openDt": "2016-08-08",
@@ -14278,6 +14530,30 @@
         "공연"
       ],
       "audiAcc": null
+    },
+    {
+      "movieCd": "20150968",
+      "movieNm": "국가대표 2",
+      "openDt": "2016-08-10",
+      "prdtYear": "2016",
+      "repNation": "K",
+      "grade": "12세이상관람가",
+      "genres": [
+        "드라마"
+      ],
+      "audiAcc": 645363
+    },
+    {
+      "movieCd": "20154910",
+      "movieNm": "터널",
+      "openDt": "2016-08-10",
+      "prdtYear": "2016",
+      "repNation": "K",
+      "grade": "12세이상관람가",
+      "genres": [
+        "드라마"
+      ],
+      "audiAcc": 7076050
     },
     {
       "movieCd": "20150968",
@@ -14315,7 +14591,7 @@
         "가족",
         "판타지"
       ],
-      "audiAcc": null
+      "audiAcc": 100675
     },
     {
       "movieCd": "20165746",
@@ -14339,7 +14615,7 @@
       "genres": [
         "애니메이션"
       ],
-      "audiAcc": null
+      "audiAcc": 56102
     },
     {
       "movieCd": "20166023",
@@ -14410,6 +14686,18 @@
       "grade": "청소년관람불가",
       "genres": [
         "성인물(에로)"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20136088",
+      "movieNm": "리우 2096",
+      "openDt": "2016-08-11",
+      "prdtYear": "2012",
+      "repNation": "F",
+      "grade": "청소년관람불가",
+      "genres": [
+        "애니메이션"
       ],
       "audiAcc": null
     },
@@ -14534,6 +14822,20 @@
       "audiAcc": null
     },
     {
+      "movieCd": "20155883",
+      "movieNm": "태평륜",
+      "openDt": "2016-08-12",
+      "prdtYear": "2014",
+      "repNation": "F",
+      "grade": "15세이상관람가",
+      "genres": [
+        "드라마",
+        "액션",
+        "전쟁"
+      ],
+      "audiAcc": null
+    },
+    {
       "movieCd": "20168148",
       "movieNm": "꿈꾸는 나비",
       "openDt": "2016-08-12",
@@ -14555,6 +14857,18 @@
       "grade": "청소년관람불가",
       "genres": [
         "공포(호러)"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20150485",
+      "movieNm": "오페라",
+      "openDt": "2016-08-16",
+      "prdtYear": "2014",
+      "repNation": "F",
+      "grade": "청소년관람불가",
+      "genres": [
+        "코미디"
       ],
       "audiAcc": null
     },
@@ -14594,6 +14908,31 @@
         "멜로/로맨스"
       ],
       "audiAcc": null
+    },
+    {
+      "movieCd": "20148460",
+      "movieNm": "서울역",
+      "openDt": "2016-08-17",
+      "prdtYear": "2016",
+      "repNation": "K",
+      "grade": "15세이상관람가",
+      "genres": [
+        "애니메이션"
+      ],
+      "audiAcc": 121578
+    },
+    {
+      "movieCd": "20150567",
+      "movieNm": "스타트렉 비욘드",
+      "openDt": "2016-08-17",
+      "prdtYear": "2016",
+      "repNation": "F",
+      "grade": "12세이상관람가",
+      "genres": [
+        "액션",
+        "SF"
+      ],
+      "audiAcc": 1127332
     },
     {
       "movieCd": "20148460",
@@ -14707,6 +15046,19 @@
       "genres": [
         "멜로/로맨스",
         "판타지"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20152105",
+      "movieNm": "시발, 놈: 인류의 시작",
+      "openDt": "2016-08-18",
+      "prdtYear": "2016",
+      "repNation": "K",
+      "grade": "15세이상관람가",
+      "genres": [
+        "코미디",
+        "드라마"
       ],
       "audiAcc": null
     },
@@ -14947,7 +15299,7 @@
       "genres": [
         "공포(호러)"
       ],
-      "audiAcc": null
+      "audiAcc": 1081038
     },
     {
       "movieCd": "20164321",
@@ -14983,7 +15335,7 @@
       "genres": [
         "드라마"
       ],
-      "audiAcc": null
+      "audiAcc": 89966
     },
     {
       "movieCd": "20167641",
@@ -15096,6 +15448,68 @@
         "드라마",
         "코미디"
       ],
+      "audiAcc": 50358
+    },
+    {
+      "movieCd": "20150970",
+      "movieNm": "범죄의 여왕",
+      "openDt": "2016-08-25",
+      "prdtYear": "2016",
+      "repNation": "K",
+      "grade": "15세이상관람가",
+      "genres": [
+        "스릴러",
+        "코미디"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20155321",
+      "movieNm": "최악의 하루",
+      "openDt": "2016-08-25",
+      "prdtYear": "2016",
+      "repNation": "K",
+      "grade": "15세이상관람가",
+      "genres": [
+        "멜로/로맨스"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20143309",
+      "movieNm": "내셔널 갤러리",
+      "openDt": "2016-08-25",
+      "prdtYear": "2014",
+      "repNation": "F",
+      "grade": "전체관람가",
+      "genres": [
+        "다큐멘터리"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20148384",
+      "movieNm": "그림자들의 섬",
+      "openDt": "2016-08-25",
+      "prdtYear": "2014",
+      "repNation": "K",
+      "grade": "15세이상관람가",
+      "genres": [
+        "다큐멘터리"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20150901",
+      "movieNm": "올레",
+      "openDt": "2016-08-25",
+      "prdtYear": "2016",
+      "repNation": "K",
+      "grade": "15세이상관람가",
+      "genres": [
+        "드라마",
+        "코미디"
+      ],
       "audiAcc": null
     },
     {
@@ -15135,7 +15549,7 @@
         "코미디",
         "SF"
       ],
-      "audiAcc": null
+      "audiAcc": 479470
     },
     {
       "movieCd": "20163260",
@@ -15401,7 +15815,7 @@
         "범죄",
         "스릴러"
       ],
-      "audiAcc": null
+      "audiAcc": 516530
     },
     {
       "movieCd": "20167562",
@@ -15427,7 +15841,7 @@
         "드라마",
         "SF"
       ],
-      "audiAcc": null
+      "audiAcc": 56266
     },
     {
       "movieCd": "20168182",
@@ -15452,6 +15866,30 @@
       "grade": "청소년관람불가",
       "genres": [
         "멜로/로맨스"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20133071",
+      "movieNm": "브링 홈: 아버지의 땅",
+      "openDt": "2016-09-01",
+      "prdtYear": "2013",
+      "repNation": "K",
+      "grade": "전체관람가",
+      "genres": [
+        "다큐멘터리"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20153085",
+      "movieNm": "캠핑",
+      "openDt": "2016-09-01",
+      "prdtYear": "2015",
+      "repNation": "K",
+      "grade": "청소년관람불가",
+      "genres": [
+        "스릴러"
       ],
       "audiAcc": null
     },
@@ -15764,6 +16202,18 @@
       "audiAcc": null
     },
     {
+      "movieCd": "20150157",
+      "movieNm": "마담 버터플라이",
+      "openDt": "2016-09-03",
+      "prdtYear": "2016",
+      "repNation": "F",
+      "grade": "전체관람가",
+      "genres": [
+        "공연"
+      ],
+      "audiAcc": null
+    },
+    {
       "movieCd": "20167513",
       "movieNm": "파우스트",
       "openDt": "2016-09-03",
@@ -15787,6 +16237,30 @@
         "전쟁"
       ],
       "audiAcc": null
+    },
+    {
+      "movieCd": "20159646",
+      "movieNm": "밀정",
+      "openDt": "2016-09-07",
+      "prdtYear": "2016",
+      "repNation": "K",
+      "grade": "15세이상관람가",
+      "genres": [
+        "액션"
+      ],
+      "audiAcc": 7458824
+    },
+    {
+      "movieCd": "20159648",
+      "movieNm": "고산자, 대동여지도",
+      "openDt": "2016-09-07",
+      "prdtYear": "2016",
+      "repNation": "K",
+      "grade": "전체관람가",
+      "genres": [
+        "사극"
+      ],
+      "audiAcc": 949563
     },
     {
       "movieCd": "20159646",
@@ -15836,7 +16310,7 @@
         "가족",
         "판타지"
       ],
-      "audiAcc": null
+      "audiAcc": 502798
     },
     {
       "movieCd": "20165941",
@@ -15850,7 +16324,7 @@
         "어드벤처",
         "코미디"
       ],
-      "audiAcc": null
+      "audiAcc": 114860
     },
     {
       "movieCd": "20166541",
@@ -15864,7 +16338,7 @@
         "판타지",
         "어드벤처"
       ],
-      "audiAcc": null
+      "audiAcc": 138081
     },
     {
       "movieCd": "20166721",
@@ -15878,7 +16352,7 @@
         "어드벤처",
         "가족"
       ],
-      "audiAcc": null
+      "audiAcc": 131232
     },
     {
       "movieCd": "20169026",
@@ -15925,6 +16399,43 @@
       "grade": "청소년관람불가",
       "genres": [
         "성인물(에로)"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20134445",
+      "movieNm": "금병매",
+      "openDt": "2016-09-08",
+      "prdtYear": "2008",
+      "repNation": "F",
+      "grade": "청소년관람불가",
+      "genres": [
+        "멜로/로맨스",
+        "사극"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20151063",
+      "movieNm": "깡치",
+      "openDt": "2016-09-08",
+      "prdtYear": "2016",
+      "repNation": "K",
+      "grade": "청소년관람불가",
+      "genres": [
+        "액션"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20154429",
+      "movieNm": "왕초와 용가리",
+      "openDt": "2016-09-08",
+      "prdtYear": "2016",
+      "repNation": "K",
+      "grade": "15세이상관람가",
+      "genres": [
+        "다큐멘터리"
       ],
       "audiAcc": null
     },
@@ -16317,7 +16828,7 @@
         "액션",
         "서부극(웨스턴)"
       ],
-      "audiAcc": null
+      "audiAcc": 918835
     },
     {
       "movieCd": "20167154",
@@ -16329,7 +16840,7 @@
       "genres": [
         "애니메이션"
       ],
-      "audiAcc": null
+      "audiAcc": 204625
     },
     {
       "movieCd": "20167839",
@@ -16342,7 +16853,7 @@
         "어드벤처",
         "드라마"
       ],
-      "audiAcc": null
+      "audiAcc": 1388980
     },
     {
       "movieCd": "20168401",
@@ -16355,7 +16866,7 @@
         "멜로/로맨스",
         "드라마"
       ],
-      "audiAcc": null
+      "audiAcc": 94240
     },
     {
       "movieCd": "20168721",
@@ -16367,7 +16878,7 @@
       "genres": [
         "애니메이션"
       ],
-      "audiAcc": null
+      "audiAcc": 61382
     },
     {
       "movieCd": "20160362",
@@ -16554,6 +17065,56 @@
       "genres": [
         "액션",
         "공포(호러)"
+      ],
+      "audiAcc": 201145
+    },
+    {
+      "movieCd": "20068730",
+      "movieNm": "칠드런 오브 맨",
+      "openDt": "2016-09-22",
+      "prdtYear": "2006",
+      "repNation": "F",
+      "grade": "15세이상관람가",
+      "genres": [
+        "SF",
+        "액션",
+        "스릴러"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20141591",
+      "movieNm": "한강블루스",
+      "openDt": "2016-09-22",
+      "prdtYear": "2016",
+      "repNation": "K",
+      "grade": "12세이상관람가",
+      "genres": [
+        "드라마"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20149646",
+      "movieNm": "아스모덱시아",
+      "openDt": "2016-09-22",
+      "prdtYear": "2014",
+      "repNation": "F",
+      "grade": "15세이상관람가",
+      "genres": [
+        "공포(호러)"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20152369",
+      "movieNm": "나홀로 휴가",
+      "openDt": "2016-09-22",
+      "prdtYear": "2015",
+      "repNation": "K",
+      "grade": "청소년관람불가",
+      "genres": [
+        "멜로/로맨스"
       ],
       "audiAcc": null
     },
@@ -16924,6 +17485,19 @@
         "범죄",
         "액션"
       ],
+      "audiAcc": 2577172
+    },
+    {
+      "movieCd": "20153443",
+      "movieNm": "아수라",
+      "openDt": "2016-09-28",
+      "prdtYear": "2016",
+      "repNation": "K",
+      "grade": "청소년관람불가",
+      "genres": [
+        "범죄",
+        "액션"
+      ],
       "audiAcc": null
     },
     {
@@ -16938,7 +17512,7 @@
         "가족",
         "판타지"
       ],
-      "audiAcc": null
+      "audiAcc": 88276
     },
     {
       "movieCd": "20164094",
@@ -16964,7 +17538,7 @@
         "미스터리",
         "판타지"
       ],
-      "audiAcc": null
+      "audiAcc": 2705153
     },
     {
       "movieCd": "20168361",
@@ -16989,7 +17563,7 @@
         "코미디",
         "멜로/로맨스"
       ],
-      "audiAcc": null
+      "audiAcc": 803928
     },
     {
       "movieCd": "20168891",
@@ -17001,7 +17575,7 @@
       "genres": [
         "드라마"
       ],
-      "audiAcc": null
+      "audiAcc": 607841
     },
     {
       "movieCd": "20169035",
@@ -17024,6 +17598,31 @@
       "grade": "청소년관람불가",
       "genres": [
         "성인물(에로)"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20081142",
+      "movieNm": "대사건",
+      "openDt": "2016-09-29",
+      "prdtYear": "2004",
+      "repNation": "F",
+      "grade": "15세이상관람가",
+      "genres": [
+        "액션",
+        "스릴러"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20158359",
+      "movieNm": "할머니의 먼 집",
+      "openDt": "2016-09-29",
+      "prdtYear": "2016",
+      "repNation": "K",
+      "grade": "전체관람가",
+      "genres": [
+        "다큐멘터리"
       ],
       "audiAcc": null
     },
@@ -17317,6 +17916,18 @@
       "audiAcc": null
     },
     {
+      "movieCd": "20150158",
+      "movieNm": "로베르토 드브뢰",
+      "openDt": "2016-10-01",
+      "prdtYear": "2016",
+      "repNation": "F",
+      "grade": "전체관람가",
+      "genres": [
+        "공연"
+      ],
+      "audiAcc": null
+    },
+    {
       "movieCd": "20160943",
       "movieNm": "마야의 신음작렬",
       "openDt": "2016-10-01",
@@ -17410,7 +18021,7 @@
       "genres": [
         "스릴러"
       ],
-      "audiAcc": null
+      "audiAcc": 986332
     },
     {
       "movieCd": "20168822",
@@ -17532,7 +18143,7 @@
       "genres": [
         "드라마"
       ],
-      "audiAcc": null
+      "audiAcc": 83937
     },
     {
       "movieCd": "20167207",
@@ -17710,6 +18321,45 @@
       "genres": [
         "코미디"
       ],
+      "audiAcc": 6804596
+    },
+    {
+      "movieCd": "20159524",
+      "movieNm": "우리친구 피들스틱스",
+      "openDt": "2016-10-13",
+      "prdtYear": "2014",
+      "repNation": "F",
+      "grade": "전체관람가",
+      "genres": [
+        "가족",
+        "코미디"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20088556",
+      "movieNm": "글래디에이터 - 템플기사단",
+      "openDt": "2016-10-13",
+      "prdtYear": "2008",
+      "repNation": "F",
+      "grade": "15세이상관람가",
+      "genres": [
+        "액션",
+        "어드벤처",
+        "드라마"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20153444",
+      "movieNm": "럭키",
+      "openDt": "2016-10-13",
+      "prdtYear": "2015",
+      "repNation": "K",
+      "grade": "15세이상관람가",
+      "genres": [
+        "코미디"
+      ],
       "audiAcc": null
     },
     {
@@ -17749,7 +18399,7 @@
         "액션",
         "스릴러"
       ],
-      "audiAcc": null
+      "audiAcc": 67709
     },
     {
       "movieCd": "20160261",
@@ -17884,7 +18534,7 @@
       "genres": [
         "다큐멘터리"
       ],
-      "audiAcc": null
+      "audiAcc": 108802
     },
     {
       "movieCd": "20164171",
@@ -17908,7 +18558,7 @@
       "genres": [
         "액션"
       ],
-      "audiAcc": null
+      "audiAcc": 93632
     },
     {
       "movieCd": "20169028",
@@ -18021,6 +18671,19 @@
         "미스터리",
         "스릴러"
       ],
+      "audiAcc": 675249
+    },
+    {
+      "movieCd": "20156007",
+      "movieNm": "인페르노",
+      "openDt": "2016-10-19",
+      "prdtYear": "2016",
+      "repNation": "F",
+      "grade": "15세이상관람가",
+      "genres": [
+        "미스터리",
+        "스릴러"
+      ],
       "audiAcc": null
     },
     {
@@ -18086,6 +18749,30 @@
         "코미디"
       ],
       "audiAcc": null
+    },
+    {
+      "movieCd": "20048815",
+      "movieNm": "천국에 있는 것처럼",
+      "openDt": "2016-10-20",
+      "prdtYear": "2004",
+      "repNation": "F",
+      "grade": "12세이상관람가",
+      "genres": [
+        "드라마"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20151022",
+      "movieNm": "걷기왕",
+      "openDt": "2016-10-20",
+      "prdtYear": "2016",
+      "repNation": "K",
+      "grade": "12세이상관람가",
+      "genres": [
+        "드라마"
+      ],
+      "audiAcc": 82266
     },
     {
       "movieCd": "20048815",
@@ -18357,6 +19044,20 @@
       "audiAcc": null
     },
     {
+      "movieCd": "20131341",
+      "movieNm": "불량선생",
+      "openDt": "2016-10-25",
+      "prdtYear": "2012",
+      "repNation": "F",
+      "grade": "청소년관람불가",
+      "genres": [
+        "멜로/로맨스",
+        "액션",
+        "드라마"
+      ],
+      "audiAcc": null
+    },
+    {
       "movieCd": "20162009",
       "movieNm": "두처제",
       "openDt": "2016-10-25",
@@ -18403,6 +19104,31 @@
       "genres": [
         "공포(호러)"
       ],
+      "audiAcc": 273028
+    },
+    {
+      "movieCd": "20136737",
+      "movieNm": "캡처링 대디",
+      "openDt": "2016-10-26",
+      "prdtYear": "2013",
+      "repNation": "F",
+      "grade": "12세이상관람가",
+      "genres": [
+        "드라마",
+        "코미디"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20150564",
+      "movieNm": "혼숨",
+      "openDt": "2016-10-26",
+      "prdtYear": "2016",
+      "repNation": "K",
+      "grade": "15세이상관람가",
+      "genres": [
+        "공포(호러)"
+      ],
       "audiAcc": null
     },
     {
@@ -18418,7 +19144,7 @@
         "가족",
         "판타지"
       ],
-      "audiAcc": null
+      "audiAcc": 16254
     },
     {
       "movieCd": "20162545",
@@ -18430,7 +19156,7 @@
       "genres": [
         "다큐멘터리"
       ],
-      "audiAcc": null
+      "audiAcc": 174356
     },
     {
       "movieCd": "20163181",
@@ -18444,7 +19170,7 @@
         "어드벤처",
         "판타지"
       ],
-      "audiAcc": null
+      "audiAcc": 5380054
     },
     {
       "movieCd": "20168842",
@@ -18456,6 +19182,55 @@
       "genres": [
         "코미디",
         "가족",
+        "드라마"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20038886",
+      "movieNm": "벨빌의 세 쌍둥이",
+      "openDt": "2016-10-27",
+      "prdtYear": "2003",
+      "repNation": "F",
+      "grade": "12세이상관람가",
+      "genres": [
+        "애니메이션",
+        "코미디"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20138783",
+      "movieNm": "와와의 학교 가는 날",
+      "openDt": "2016-10-27",
+      "prdtYear": "2015",
+      "repNation": "F",
+      "grade": "전체관람가",
+      "genres": [
+        "드라마"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20155385",
+      "movieNm": "흔들리는 물결",
+      "openDt": "2016-10-27",
+      "prdtYear": "2015",
+      "repNation": "K",
+      "grade": "12세이상관람가",
+      "genres": [
+        "멜로/로맨스"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20155750",
+      "movieNm": "플라워 쇼",
+      "openDt": "2016-10-27",
+      "prdtYear": "2016",
+      "repNation": "F",
+      "grade": "12세이상관람가",
+      "genres": [
         "드라마"
       ],
       "audiAcc": null
@@ -18781,7 +19556,7 @@
         "멜로/로맨스",
         "드라마"
       ],
-      "audiAcc": null
+      "audiAcc": 51217
     },
     {
       "movieCd": "20162766",
@@ -18809,6 +19584,19 @@
       "audiAcc": null
     },
     {
+      "movieCd": "20155301",
+      "movieNm": "두 번째 스물",
+      "openDt": "2016-11-03",
+      "prdtYear": "2015",
+      "repNation": "K",
+      "grade": "청소년관람불가",
+      "genres": [
+        "멜로/로맨스",
+        "드라마"
+      ],
+      "audiAcc": null
+    },
+    {
       "movieCd": "20161165",
       "movieNm": "무한대를 본 남자",
       "openDt": "2016-11-03",
@@ -18818,7 +19606,7 @@
       "genres": [
         "드라마"
       ],
-      "audiAcc": null
+      "audiAcc": 23069
     },
     {
       "movieCd": "20161527",
@@ -18831,7 +19619,7 @@
         "범죄",
         "드라마"
       ],
-      "audiAcc": null
+      "audiAcc": 74630
     },
     {
       "movieCd": "20161569",
@@ -18855,7 +19643,7 @@
       "genres": [
         "액션"
       ],
-      "audiAcc": null
+      "audiAcc": 60786
     },
     {
       "movieCd": "20161805",
@@ -19070,6 +19858,18 @@
       "audiAcc": null
     },
     {
+      "movieCd": "20150159",
+      "movieNm": "엘렉트라",
+      "openDt": "2016-11-05",
+      "prdtYear": "2016",
+      "repNation": "F",
+      "grade": "12세이상관람가",
+      "genres": [
+        "공연"
+      ],
+      "audiAcc": null
+    },
+    {
       "movieCd": "20164268",
       "movieNm": "맛 2016: 삼시색기",
       "openDt": "2016-11-05",
@@ -19115,7 +19915,7 @@
       "genres": [
         "공포(호러)"
       ],
-      "audiAcc": null
+      "audiAcc": 313861
     },
     {
       "movieCd": "20162147",
@@ -19127,7 +19927,7 @@
       "genres": [
         "드라마"
       ],
-      "audiAcc": null
+      "audiAcc": 48438
     },
     {
       "movieCd": "20163107",
@@ -19152,7 +19952,7 @@
       "genres": [
         "드라마"
       ],
-      "audiAcc": null
+      "audiAcc": 746692
     },
     {
       "movieCd": "20163878",
@@ -19192,6 +19992,31 @@
         "공포(호러)",
         "범죄",
         "스릴러"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20142706",
+      "movieNm": "시소",
+      "openDt": "2016-11-10",
+      "prdtYear": "2016",
+      "repNation": "K",
+      "grade": "전체관람가",
+      "genres": [
+        "다큐멘터리"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20155805",
+      "movieNm": "뷰티풀 레이디스",
+      "openDt": "2016-11-10",
+      "prdtYear": "2015",
+      "repNation": "F",
+      "grade": "15세이상관람가",
+      "genres": [
+        "드라마",
+        "범죄"
       ],
       "audiAcc": null
     },
@@ -19281,7 +20106,7 @@
         "애니메이션",
         "어드벤처"
       ],
-      "audiAcc": null
+      "audiAcc": 91968
     },
     {
       "movieCd": "20162829",
@@ -19659,6 +20484,19 @@
         "드라마",
         "판타지"
       ],
+      "audiAcc": 506877
+    },
+    {
+      "movieCd": "20154905",
+      "movieNm": "가려진 시간",
+      "openDt": "2016-11-16",
+      "prdtYear": "2016",
+      "repNation": "K",
+      "grade": "12세이상관람가",
+      "genres": [
+        "드라마",
+        "판타지"
+      ],
       "audiAcc": null
     },
     {
@@ -19685,7 +20523,7 @@
         "가족",
         "판타지"
       ],
-      "audiAcc": null
+      "audiAcc": 4611260
     },
     {
       "movieCd": "20162629",
@@ -19697,7 +20535,7 @@
       "genres": [
         "애니메이션"
       ],
-      "audiAcc": null
+      "audiAcc": 49187
     },
     {
       "movieCd": "20162928",
@@ -19710,7 +20548,7 @@
         "멜로/로맨스",
         "코미디"
       ],
-      "audiAcc": null
+      "audiAcc": 20906
     },
     {
       "movieCd": "20164503",
@@ -19747,6 +20585,44 @@
       "genres": [
         "멜로/로맨스",
         "드라마"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20151783",
+      "movieNm": "드래곤 포스 극장판",
+      "openDt": "2016-11-17",
+      "prdtYear": "2014",
+      "repNation": "F",
+      "grade": "전체관람가",
+      "genres": [
+        "애니메이션",
+        "액션",
+        "어드벤처"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20154428",
+      "movieNm": "야근 대신 뜨개질",
+      "openDt": "2016-11-17",
+      "prdtYear": "2016",
+      "repNation": "K",
+      "grade": "12세이상관람가",
+      "genres": [
+        "다큐멘터리"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20159286",
+      "movieNm": "연애담",
+      "openDt": "2016-11-17",
+      "prdtYear": "2016",
+      "repNation": "K",
+      "grade": "청소년관람불가",
+      "genres": [
+        "멜로/로맨스"
       ],
       "audiAcc": null
     },
@@ -20168,6 +21044,19 @@
         "코미디",
         "드라마"
       ],
+      "audiAcc": 2975602
+    },
+    {
+      "movieCd": "20154661",
+      "movieNm": "형",
+      "openDt": "2016-11-23",
+      "prdtYear": "2016",
+      "repNation": "K",
+      "grade": "12세이상관람가",
+      "genres": [
+        "코미디",
+        "드라마"
+      ],
       "audiAcc": null
     },
     {
@@ -20181,7 +21070,7 @@
         "공포(호러)",
         "스릴러"
       ],
-      "audiAcc": null
+      "audiAcc": 38525
     },
     {
       "movieCd": "20163257",
@@ -20192,6 +21081,44 @@
       "grade": "청소년관람불가",
       "genres": [
         "드라마"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20122235",
+      "movieNm": "찡찡 막막",
+      "openDt": "2016-11-24",
+      "prdtYear": "2013",
+      "repNation": "K",
+      "grade": "15세이상관람가",
+      "genres": [
+        "멜로/로맨스",
+        "드라마"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20140256",
+      "movieNm": "딜쿠샤",
+      "openDt": "2016-11-24",
+      "prdtYear": "2015",
+      "repNation": "K",
+      "grade": "12세이상관람가",
+      "genres": [
+        "다큐멘터리",
+        "판타지"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20155387",
+      "movieNm": "혼자",
+      "openDt": "2016-11-24",
+      "prdtYear": "2016",
+      "repNation": "K",
+      "grade": "청소년관람불가",
+      "genres": [
+        "스릴러"
       ],
       "audiAcc": null
     },
@@ -20330,7 +21257,7 @@
       "genres": [
         "공연"
       ],
-      "audiAcc": null
+      "audiAcc": 33104
     },
     {
       "movieCd": "20163903",
@@ -20343,7 +21270,7 @@
         "애니메이션",
         "가족"
       ],
-      "audiAcc": null
+      "audiAcc": 62799
     },
     {
       "movieCd": "20164183",
@@ -20614,6 +21541,32 @@
       "audiAcc": null
     },
     {
+      "movieCd": "20137981",
+      "movieNm": "탱고",
+      "openDt": "2016-11-28",
+      "prdtYear": "2013",
+      "repNation": "K",
+      "grade": "청소년관람불가",
+      "genres": [
+        "멜로/로맨스"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20149660",
+      "movieNm": "레몬 트리 패시지 : 죽음의 질주",
+      "openDt": "2016-11-28",
+      "prdtYear": "2014",
+      "repNation": "F",
+      "grade": "청소년관람불가",
+      "genres": [
+        "공포(호러)",
+        "미스터리",
+        "스릴러"
+      ],
+      "audiAcc": null
+    },
+    {
       "movieCd": "20164623",
       "movieNm": "내 여동생은 어린신부",
       "openDt": "2016-11-28",
@@ -20761,6 +21714,30 @@
       "genres": [
         "미스터리"
       ],
+      "audiAcc": 1139535
+    },
+    {
+      "movieCd": "20149258",
+      "movieNm": "작은 형",
+      "openDt": "2016-11-30",
+      "prdtYear": "2015",
+      "repNation": "K",
+      "grade": "15세이상관람가",
+      "genres": [
+        "드라마"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20153741",
+      "movieNm": "미씽: 사라진 여자",
+      "openDt": "2016-11-30",
+      "prdtYear": "2015",
+      "repNation": "K",
+      "grade": "15세이상관람가",
+      "genres": [
+        "미스터리"
+      ],
       "audiAcc": null
     },
     {
@@ -20774,7 +21751,7 @@
         "범죄",
         "액션"
       ],
-      "audiAcc": null
+      "audiAcc": 49954
     },
     {
       "movieCd": "20160796",
@@ -20813,7 +21790,7 @@
         "판타지",
         "공포(호러)"
       ],
-      "audiAcc": null
+      "audiAcc": 71088
     },
     {
       "movieCd": "20162207",
@@ -20954,7 +21931,7 @@
         "범죄",
         "드라마"
       ],
-      "audiAcc": null
+      "audiAcc": 591883
     },
     {
       "movieCd": "20167150",
@@ -21318,6 +22295,19 @@
         "드라마",
         "스릴러"
       ],
+      "audiAcc": 4545686
+    },
+    {
+      "movieCd": "20144641",
+      "movieNm": "판도라",
+      "openDt": "2016-12-07",
+      "prdtYear": "2016",
+      "repNation": "K",
+      "grade": "12세이상관람가",
+      "genres": [
+        "드라마",
+        "스릴러"
+      ],
       "audiAcc": null
     },
     {
@@ -21330,7 +22320,7 @@
       "genres": [
         "애니메이션"
       ],
-      "audiAcc": null
+      "audiAcc": 319473
     },
     {
       "movieCd": "20166804",
@@ -21403,6 +22393,43 @@
         "드라마",
         "뮤지컬",
         "멜로/로맨스"
+      ],
+      "audiAcc": 2728945
+    },
+    {
+      "movieCd": "20151944",
+      "movieNm": "스톱",
+      "openDt": "2016-12-08",
+      "prdtYear": "2015",
+      "repNation": "K",
+      "grade": "15세이상관람가",
+      "genres": [
+        "드라마"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20157064",
+      "movieNm": "커튼콜",
+      "openDt": "2016-12-08",
+      "prdtYear": "2016",
+      "repNation": "K",
+      "grade": "15세이상관람가",
+      "genres": [
+        "코미디"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20158355",
+      "movieNm": "600 마일",
+      "openDt": "2016-12-08",
+      "prdtYear": "2015",
+      "repNation": "F",
+      "grade": "15세이상관람가",
+      "genres": [
+        "드라마",
+        "스릴러"
       ],
       "audiAcc": null
     },
@@ -21480,7 +22507,7 @@
         "판타지",
         "액션"
       ],
-      "audiAcc": null
+      "audiAcc": 205900
     },
     {
       "movieCd": "20163011",
@@ -21789,6 +22816,32 @@
         "판타지",
         "드라마"
       ],
+      "audiAcc": 1143445
+    },
+    {
+      "movieCd": "20155223",
+      "movieNm": "목숨 건 연애",
+      "openDt": "2016-12-14",
+      "prdtYear": "2016",
+      "repNation": "K",
+      "grade": "15세이상관람가",
+      "genres": [
+        "멜로/로맨스",
+        "코미디"
+      ],
+      "audiAcc": 37650
+    },
+    {
+      "movieCd": "20152371",
+      "movieNm": "당신, 거기 있어줄래요",
+      "openDt": "2016-12-14",
+      "prdtYear": "2016",
+      "repNation": "K",
+      "grade": "12세이상관람가",
+      "genres": [
+        "판타지",
+        "드라마"
+      ],
       "audiAcc": null
     },
     {
@@ -21826,6 +22879,32 @@
       "genres": [
         "범죄",
         "스릴러"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20080215",
+      "movieNm": "내 심장이 건너 뛴 박동",
+      "openDt": "2016-12-15",
+      "prdtYear": "2005",
+      "repNation": "F",
+      "grade": "15세이상관람가",
+      "genres": [
+        "드라마"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20120111",
+      "movieNm": "기억의 소리",
+      "openDt": "2016-12-15",
+      "prdtYear": "2016",
+      "repNation": "K",
+      "grade": "15세이상관람가",
+      "genres": [
+        "드라마",
+        "미스터리",
+        "판타지"
       ],
       "audiAcc": null
     },
@@ -21905,7 +22984,7 @@
         "애니메이션",
         "가족"
       ],
-      "audiAcc": null
+      "audiAcc": 21676
     },
     {
       "movieCd": "20164526",
@@ -22194,7 +23273,7 @@
         "액션",
         "범죄"
       ],
-      "audiAcc": null
+      "audiAcc": 7133595
     },
     {
       "movieCd": "20162025",
@@ -22207,7 +23286,7 @@
         "애니메이션",
         "뮤지컬"
       ],
-      "audiAcc": null
+      "audiAcc": 1710057
     },
     {
       "movieCd": "20165285",
@@ -22219,7 +23298,7 @@
       "genres": [
         "애니메이션"
       ],
-      "audiAcc": null
+      "audiAcc": 43229
     },
     {
       "movieCd": "20166401",
@@ -22322,7 +23401,7 @@
         "판타지",
         "가족"
       ],
-      "audiAcc": null
+      "audiAcc": 238452
     },
     {
       "movieCd": "20163993",
@@ -22559,7 +23638,7 @@
       "genres": [
         "애니메이션"
       ],
-      "audiAcc": null
+      "audiAcc": 119420
     },
     {
       "movieCd": "20163183",
@@ -22574,7 +23653,7 @@
         "판타지",
         "SF"
       ],
-      "audiAcc": null
+      "audiAcc": 979088
     },
     {
       "movieCd": "20163822",
@@ -22600,7 +23679,7 @@
       "genres": [
         "애니메이션"
       ],
-      "audiAcc": null
+      "audiAcc": 22733
     },
     {
       "movieCd": "20166764",
@@ -22650,6 +23729,30 @@
       "genres": [
         "스릴러",
         "액션"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20021261",
+      "movieNm": "타임 체인저",
+      "openDt": "2016-12-29",
+      "prdtYear": "2002",
+      "repNation": "F",
+      "grade": "12세이상관람가",
+      "genres": [
+        "SF"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20153401",
+      "movieNm": "파파좀비",
+      "openDt": "2016-12-29",
+      "prdtYear": "2016",
+      "repNation": "K",
+      "grade": "전체관람가",
+      "genres": [
+        "드라마"
       ],
       "audiAcc": null
     },
@@ -238441,6 +239544,42 @@
       "audiAcc": 50068
     },
     {
+      "movieCd": "20257231",
+      "movieNm": "계약직 여직원과 대물 작가의 야설 일기",
+      "openDt": "2025-08-28",
+      "prdtYear": "2023",
+      "repNation": "F",
+      "grade": "청소년관람불가",
+      "genres": [
+        "성인물(에로)"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20257307",
+      "movieNm": "가슴 큰 장모님",
+      "openDt": "2025-08-28",
+      "prdtYear": "2025",
+      "repNation": "K",
+      "grade": "청소년관람불가",
+      "genres": [
+        "성인물(에로)"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20257370",
+      "movieNm": "엄마 친구의 커다란 가슴",
+      "openDt": "2025-08-28",
+      "prdtYear": "2025",
+      "repNation": "K",
+      "grade": "청소년관람불가",
+      "genres": [
+        "성인물(에로)"
+      ],
+      "audiAcc": null
+    },
+    {
       "movieCd": "20255426",
       "movieNm": "남자들이 유부녀에게 환장하는 이유",
       "openDt": "2025-08-29",
@@ -238919,6 +240058,62 @@
       "audiAcc": null
     },
     {
+      "movieCd": "20257429",
+      "movieNm": "혼자 즐기는 장모 안타까워 넣어준 사위",
+      "openDt": "2025-09-03",
+      "prdtYear": "2024",
+      "repNation": "F",
+      "grade": "청소년관람불가",
+      "genres": [
+        "성인물(에로)",
+        "드라마",
+        "멜로/로맨스"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20257430",
+      "movieNm": "맛 좋은 과부-상복 입고 AV 체험",
+      "openDt": "2025-09-03",
+      "prdtYear": "2023",
+      "repNation": "F",
+      "grade": "청소년관람불가",
+      "genres": [
+        "성인물(에로)",
+        "드라마",
+        "멜로/로맨스"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20257431",
+      "movieNm": "4인용 텐트-유부녀1 남자3 무삭제판",
+      "openDt": "2025-09-03",
+      "prdtYear": "2023",
+      "repNation": "F",
+      "grade": "청소년관람불가",
+      "genres": [
+        "성인물(에로)",
+        "드라마",
+        "멜로/로맨스"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20257447",
+      "movieNm": "부드럽게 넣어도 잘 싸는 아이카",
+      "openDt": "2025-09-03",
+      "prdtYear": "2023",
+      "repNation": "F",
+      "grade": "청소년관람불가",
+      "genres": [
+        "성인물(에로)",
+        "드라마",
+        "멜로/로맨스"
+      ],
+      "audiAcc": null
+    },
+    {
       "movieCd": "20256048",
       "movieNm": "그날 처제는 맛있었다",
       "openDt": "2025-09-04",
@@ -238968,6 +240163,34 @@
       "audiAcc": null
     },
     {
+      "movieCd": "20257432",
+      "movieNm": "결혼 앞둔 예비신부 전 남친 맛에 떡실신",
+      "openDt": "2025-09-04",
+      "prdtYear": "2024",
+      "repNation": "F",
+      "grade": "청소년관람불가",
+      "genres": [
+        "성인물(에로)",
+        "드라마",
+        "멜로/로맨스"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20257433",
+      "movieNm": "남편 대신 아들과 물빼는 새엄마",
+      "openDt": "2025-09-04",
+      "prdtYear": "2023",
+      "repNation": "F",
+      "grade": "청소년관람불가",
+      "genres": [
+        "성인물(에로)",
+        "드라마",
+        "멜로/로맨스"
+      ],
+      "audiAcc": null
+    },
+    {
       "movieCd": "20257434",
       "movieNm": "마더테레사 앤드 미",
       "openDt": "2025-09-04",
@@ -238975,6 +240198,34 @@
       "repNation": "F",
       "grade": "12세이상관람가",
       "genres": [
+        "드라마",
+        "멜로/로맨스"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20257448",
+      "movieNm": "온천에서 외간남자와 물빼는 유부녀",
+      "openDt": "2025-09-04",
+      "prdtYear": "2022",
+      "repNation": "F",
+      "grade": "청소년관람불가",
+      "genres": [
+        "성인물(에로)",
+        "드라마",
+        "멜로/로맨스"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20257449",
+      "movieNm": "쉬운엄마-양아들 맛에 신들린 골반 무삭제판",
+      "openDt": "2025-09-04",
+      "prdtYear": "2023",
+      "repNation": "F",
+      "grade": "청소년관람불가",
+      "genres": [
+        "성인물(에로)",
         "드라마",
         "멜로/로맨스"
       ],
@@ -239015,6 +240266,76 @@
       "grade": "청소년관람불가",
       "genres": [
         "성인물(에로)"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20257435",
+      "movieNm": "AV배우 출신 여자친구의 오르가즘",
+      "openDt": "2025-09-05",
+      "prdtYear": "2022",
+      "repNation": "F",
+      "grade": "청소년관람불가",
+      "genres": [
+        "성인물(에로)",
+        "드라마",
+        "멜로/로맨스"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20257436",
+      "movieNm": "상복 입은 젊은 미녀 과부들의 하룻밤",
+      "openDt": "2025-09-05",
+      "prdtYear": "2023",
+      "repNation": "F",
+      "grade": "청소년관람불가",
+      "genres": [
+        "성인물(에로)",
+        "드라마",
+        "멜로/로맨스"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20257437",
+      "movieNm": "미녀 새엄마를 맛 보는 아들",
+      "openDt": "2025-09-05",
+      "prdtYear": "2023",
+      "repNation": "F",
+      "grade": "청소년관람불가",
+      "genres": [
+        "성인물(에로)",
+        "드라마",
+        "멜로/로맨스"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20257450",
+      "movieNm": "폭포수처럼 흐르는 AV스타 레이코의 섹스",
+      "openDt": "2025-09-05",
+      "prdtYear": "2023",
+      "repNation": "F",
+      "grade": "청소년관람불가",
+      "genres": [
+        "성인물(에로)",
+        "드라마",
+        "멜로/로맨스"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20257451",
+      "movieNm": "새엄마 물 맛-너무 맛있어요 새엄마 무삭제판",
+      "openDt": "2025-09-06",
+      "prdtYear": "2023",
+      "repNation": "F",
+      "grade": "청소년관람불가",
+      "genres": [
+        "성인물(에로)",
+        "드라마",
+        "멜로/로맨스"
       ],
       "audiAcc": null
     },
@@ -239170,6 +240491,42 @@
       "audiAcc": 20849
     },
     {
+      "movieCd": "20257360",
+      "movieNm": "은혼 진선조 동란편 온 씨어터",
+      "openDt": "2025-09-10",
+      "prdtYear": "2025",
+      "repNation": "F",
+      "grade": "15세이상관람가",
+      "genres": [
+        "애니메이션"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20257515",
+      "movieNm": "음탕한 육덕 여동생",
+      "openDt": "2025-09-10",
+      "prdtYear": "2025",
+      "repNation": "K",
+      "grade": "청소년관람불가",
+      "genres": [
+        "성인물(에로)"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20257541",
+      "movieNm": "나이 많은 유부녀들의 영계 시식",
+      "openDt": "2025-09-10",
+      "prdtYear": "2025",
+      "repNation": "K",
+      "grade": "청소년관람불가",
+      "genres": [
+        "성인물(에로)"
+      ],
+      "audiAcc": null
+    },
+    {
       "movieCd": "20175206",
       "movieNm": "엄마없는 하늘아래",
       "openDt": "2025-09-11",
@@ -239219,6 +240576,30 @@
       "audiAcc": null
     },
     {
+      "movieCd": "20257516",
+      "movieNm": "뭐든지 다 해준다는 여 후배",
+      "openDt": "2025-09-11",
+      "prdtYear": "2025",
+      "repNation": "K",
+      "grade": "청소년관람불가",
+      "genres": [
+        "성인물(에로)"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20257517",
+      "movieNm": "여사친의 천박한 욕정",
+      "openDt": "2025-09-11",
+      "prdtYear": "2025",
+      "repNation": "K",
+      "grade": "청소년관람불가",
+      "genres": [
+        "성인물(에로)"
+      ],
+      "audiAcc": null
+    },
+    {
       "movieCd": "20256338",
       "movieNm": "재벌집 여비서-고자아들을 부탁해 무삭제판",
       "openDt": "2025-09-12",
@@ -239243,6 +240624,30 @@
         "성인물(에로)",
         "드라마",
         "멜로/로맨스"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20257542",
+      "movieNm": "클럽에서 꼬신 동네 아줌마",
+      "openDt": "2025-09-12",
+      "prdtYear": "2025",
+      "repNation": "K",
+      "grade": "청소년관람불가",
+      "genres": [
+        "성인물(에로)"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20257543",
+      "movieNm": "섹스하고 싶어 미칠 것 같아요",
+      "openDt": "2025-09-12",
+      "prdtYear": "2025",
+      "repNation": "K",
+      "grade": "청소년관람불가",
+      "genres": [
+        "성인물(에로)"
       ],
       "audiAcc": null
     },
@@ -239375,6 +240780,18 @@
       "audiAcc": null
     },
     {
+      "movieCd": "20257844",
+      "movieNm": "초속5센티미터 X 특별영상 '어느 봄의 기억'",
+      "openDt": "2025-09-17",
+      "prdtYear": "2025",
+      "repNation": "F",
+      "grade": "전체관람가",
+      "genres": [
+        "애니메이션"
+      ],
+      "audiAcc": null
+    },
+    {
       "movieCd": "20246553",
       "movieNm": "데드 포 어 달러",
       "openDt": "2025-09-18",
@@ -239400,6 +240817,32 @@
       "audiAcc": 49303
     },
     {
+      "movieCd": "20257730",
+      "movieNm": "꽉 물고 안놔주는 유부녀 마사지사",
+      "openDt": "2025-09-18",
+      "prdtYear": "2024",
+      "repNation": "F",
+      "grade": "청소년관람불가",
+      "genres": [
+        "멜로/로맨스",
+        "드라마"
+      ],
+      "audiAcc": null
+    },
+    {
+      "movieCd": "20257747",
+      "movieNm": "사위 떡맛에 몸 보신하는 장모님",
+      "openDt": "2025-09-18",
+      "prdtYear": "2024",
+      "repNation": "F",
+      "grade": "청소년관람불가",
+      "genres": [
+        "멜로/로맨스",
+        "드라마"
+      ],
+      "audiAcc": null
+    },
+    {
       "movieCd": "20257095",
       "movieNm": "명탐정 코난: 17년 전의 진상",
       "openDt": "2025-09-19",
@@ -239408,6 +240851,18 @@
       "grade": "12세이상관람가",
       "genres": [
         "애니메이션"
+      ],
+      "audiAcc": 71601
+    },
+    {
+      "movieCd": "20257745",
+      "movieNm": "노래방 : K여대생의 화끈한 서비스",
+      "openDt": "2025-09-19",
+      "prdtYear": "2025",
+      "repNation": "K",
+      "grade": "청소년관람불가",
+      "genres": [
+        "성인물(에로)"
       ],
       "audiAcc": null
     },
