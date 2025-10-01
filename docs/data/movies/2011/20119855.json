@@ -1,0 +1,79 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20119855",
+      "movieNm": "라스트 나잇",
+      "movieNmEn": "Last Night",
+      "movieNmOg": "",
+      "showTm": "92",
+      "prdtYear": "2010",
+      "openDt": "20110407",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        },
+        {
+          "nationNm": "프랑스"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "멜로/로맨스"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "마시 태지딘",
+          "peopleNmEn": "Massy Tadjedin"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "키이라 나이틀리",
+          "peopleNmEn": "Keira Knightley",
+          "cast": "조안나 리드",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "샘 워싱턴",
+          "peopleNmEn": "Sam Worthington",
+          "cast": "마이클 리드",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100123",
+          "companyNm": "(주)싸이더스",
+          "companyNmEn": "Sidus Corporation",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100419",
+          "companyNm": "데이지엔터테인먼트",
+          "companyNmEn": "Daisy Entertainment ",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2011-F121",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

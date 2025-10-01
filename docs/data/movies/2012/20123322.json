@@ -1,0 +1,82 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20123322",
+      "movieNm": "칼리지",
+      "movieNmEn": "College",
+      "movieNmOg": "",
+      "showTm": "94",
+      "prdtYear": "2008",
+      "openDt": "20121213",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "코미디"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "뎁 헤이갠",
+          "peopleNmEn": "Deb Hagan"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "드레이크 벨",
+          "peopleNmEn": "Drake Bell",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "앤드류 캘드웰",
+          "peopleNmEn": "Andrew Caldwell",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "케빈 코베이스",
+          "peopleNmEn": "Kevin Covais",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100285",
+          "companyNm": "판씨네마(주)",
+          "companyNmEn": "Pancinema Corp.",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100285",
+          "companyNm": "판씨네마(주)",
+          "companyNmEn": "Pancinema Corp.",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2012-F923 ",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20110235",
+      "movieNm": "워터 포 엘리펀트",
+      "movieNmEn": "Water For Elephants",
+      "movieNmOg": "",
+      "showTm": "120",
+      "prdtYear": "2011",
+      "openDt": "20110504",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "프란시스 로렌스",
+          "peopleNmEn": "Francis Lawrence"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "리즈 위더스푼",
+          "peopleNmEn": "Reese Witherspoon",
+          "cast": "말레나",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "로버트 패틴슨",
+          "peopleNmEn": "Robert Pattinson",
+          "cast": "제이콥",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "크리스토프 왈츠",
+          "peopleNmEn": "Christoph Waltz",
+          "cast": "오거스트",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100041",
+          "companyNm": "이십세기폭스코리아(주)",
+          "companyNmEn": "20th Century Fox Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100041",
+          "companyNm": "이십세기폭스코리아(주)",
+          "companyNmEn": "20th Century Fox Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2011-F157",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

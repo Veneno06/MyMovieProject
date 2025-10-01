@@ -1,0 +1,78 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20090013",
+      "movieNm": "트랩",
+      "movieNmEn": "The Flock",
+      "movieNmOg": "",
+      "showTm": "105",
+      "prdtYear": "2007",
+      "openDt": "20090129",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "범죄"
+        },
+        {
+          "genreNm": "스릴러"
+        },
+        {
+          "genreNm": "액션"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "유위강",
+          "peopleNmEn": "LAU Andrew"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "리차드 기어",
+          "peopleNmEn": "Richard Gere",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "클레어 데인즈",
+          "peopleNmEn": "Claire Danes",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100137",
+          "companyNm": "아이비젼엔터테인먼트(주)",
+          "companyNmEn": "Ivision Entertainment",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100084",
+          "companyNm": "㈜코리아스크린",
+          "companyNmEn": "Korea Screen Inc.",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2008-F449",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

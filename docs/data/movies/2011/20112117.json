@@ -1,0 +1,91 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20112117",
+      "movieNm": "로맨틱 크라운",
+      "movieNmEn": "Larry Crowne",
+      "movieNmOg": "",
+      "showTm": "99",
+      "prdtYear": "2011",
+      "openDt": "20110817",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "멜로/로맨스"
+        },
+        {
+          "genreNm": "코미디"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "톰 행크스",
+          "peopleNmEn": "Tom Hanks"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "줄리아 로버츠",
+          "peopleNmEn": "Julia Roberts ",
+          "cast": "메르세데스 테이노 ",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "구구 바샤-로",
+          "peopleNmEn": "Gugu Mbatha-Raw",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "톰 행크스",
+          "peopleNmEn": "Tom Hanks",
+          "cast": "래리 크라운 ",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "윌머 발더라마",
+          "peopleNmEn": "Wilmer Valderrama",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100123",
+          "companyNm": "(주)싸이더스",
+          "companyNmEn": "Sidus Corporation",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100285",
+          "companyNm": "판씨네마(주)",
+          "companyNmEn": "Pancinema Corp.",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2011-F417",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

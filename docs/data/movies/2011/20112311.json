@@ -1,0 +1,76 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20112311",
+      "movieNm": "머니볼",
+      "movieNmEn": "Moneyball",
+      "movieNmOg": "",
+      "showTm": "132",
+      "prdtYear": "2011",
+      "openDt": "20111117",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "베넷 밀러",
+          "peopleNmEn": "Bennett Miller"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "조나 힐",
+          "peopleNmEn": "Jonah Hill",
+          "cast": "피터 브랜드 ",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "브래드 피트",
+          "peopleNmEn": "Brad Pitt",
+          "cast": "빌리 빈",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100616",
+          "companyNm": "한국소니픽쳐스릴리징브에나비스타영화㈜",
+          "companyNmEn": "Sony Pictures Realizing Buena Vista ",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100616",
+          "companyNm": "한국소니픽쳐스릴리징브에나비스타영화㈜",
+          "companyNmEn": "Sony Pictures Realizing Buena Vista ",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2011-F582",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

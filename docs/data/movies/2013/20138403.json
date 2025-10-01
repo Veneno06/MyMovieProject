@@ -1,0 +1,77 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20138403",
+      "movieNm": "멤피스",
+      "movieNmEn": "Memphis",
+      "movieNmOg": "",
+      "showTm": "131",
+      "prdtYear": "2011",
+      "openDt": "20130523",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "공연"
+        },
+        {
+          "genreNm": "뮤지컬"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "크리스토퍼 애슐리",
+          "peopleNmEn": "Christopher Ashley"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "차드 킴벌",
+          "peopleNmEn": "Chad Kimball",
+          "cast": "휴이 칼훈",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털 4K"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20125075",
+          "companyNm": "(주) 인스터 글로벌",
+          "companyNmEn": "insterglobal",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20125075",
+          "companyNm": "(주) 인스터 글로벌",
+          "companyNmEn": "insterglobal",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2012-F822",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

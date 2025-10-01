@@ -1,0 +1,88 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20090555",
+      "movieNm": "게이머",
+      "movieNmEn": "Gamer",
+      "movieNmOg": "",
+      "showTm": "94",
+      "prdtYear": "2009",
+      "openDt": "20091001",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "액션"
+        },
+        {
+          "genreNm": "SF"
+        },
+        {
+          "genreNm": "스릴러"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "브라이언 테일러",
+          "peopleNmEn": "Brian Taylor"
+        },
+        {
+          "peopleNm": "마크 네빌딘",
+          "peopleNmEn": "Mark Neveldine"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "제라드 버틀러",
+          "peopleNmEn": "Gerard Butler",
+          "cast": "케이블 ",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "앰버 발레타",
+          "peopleNmEn": "Amber Valletta",
+          "cast": "앤지 ",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20104247",
+          "companyNm": "라이온스 게이트 필름즈",
+          "companyNmEn": "Lions Gate Films Inc.",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100844",
+          "companyNm": "(주)시너지하우스 (시너지)",
+          "companyNmEn": "Cinergy",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20104520",
+          "companyNm": "영화사이슈",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2009-F326",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

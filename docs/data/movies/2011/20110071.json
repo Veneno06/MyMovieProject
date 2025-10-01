@@ -1,0 +1,85 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20110071",
+      "movieNm": "제인 에어",
+      "movieNmEn": "Jane Eyre",
+      "movieNmOg": "",
+      "showTm": "119",
+      "prdtYear": "2011",
+      "openDt": "20110420",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "영국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "멜로/로맨스"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "캐리 후쿠나가",
+          "peopleNmEn": "Cary Fukunaga"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "마이클 패스벤더",
+          "peopleNmEn": "Michael Fassbender",
+          "cast": "로체스터",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "미아 와시코브스카",
+          "peopleNmEn": "Mia Wasikowska",
+          "cast": "제인 에어",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100844",
+          "companyNm": "(주)시너지하우스 (시너지)",
+          "companyNmEn": "Cinergy",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100285",
+          "companyNm": "판씨네마(주)",
+          "companyNmEn": "Pancinema Corp.",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2011-F161",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": [
+        {
+          "peopleNm": "메이리 벳",
+          "peopleNmEn": "Mairi Bett",
+          "staffRoleNm": "제작"
+        }
+      ]
+    }
+  }
+}

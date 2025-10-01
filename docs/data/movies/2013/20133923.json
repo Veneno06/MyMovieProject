@@ -1,0 +1,79 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20133923",
+      "movieNm": "비스트",
+      "movieNmEn": "Beasts of the Southern Wild",
+      "movieNmOg": "",
+      "showTm": "93",
+      "prdtYear": "2012",
+      "openDt": "20130207",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "판타지"
+        },
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "벤 제틀린",
+          "peopleNmEn": "Benh Zeitlin"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "쿠벤자네 왈리스",
+          "peopleNmEn": "Quvenzhane Wallis",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "드와이트 헨리",
+          "peopleNmEn": "Dwight Henry",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20101135",
+          "companyNm": "주식회사 마운틴픽쳐스",
+          "companyNmEn": "Mountain Pictures Co.,Ltd",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20101135",
+          "companyNm": "주식회사 마운틴픽쳐스",
+          "companyNmEn": "Mountain Pictures Co.,Ltd",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2013-F63",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20111891",
+      "movieNm": "드라이브 앵그리 3D",
+      "movieNmEn": "Drive Angry 3D",
+      "movieNmOg": "",
+      "showTm": "104",
+      "prdtYear": "2011",
+      "openDt": "20110825",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "액션"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "패트릭 루지어",
+          "peopleNmEn": "Patrick Lussier"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "니콜라스 케이지",
+          "peopleNmEn": "Nicolas Cage ",
+          "cast": "밀턴 ",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "앰버 허드",
+          "peopleNmEn": "Amber Heard",
+          "cast": "파이퍼 ",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        },
+        {
+          "showTypeGroupNm": "3D",
+          "showTypeNm": "3D 디지털"
+        },
+        {
+          "showTypeGroupNm": "4D",
+          "showTypeNm": "4D"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100520",
+          "companyNm": "롯데쇼핑㈜롯데엔터테인먼트",
+          "companyNmEn": "Lotte shopping Lotte Entertainment Co.,Ltd",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20122497",
+          "companyNm": "(유)조이앤컨텐츠그룹",
+          "companyNmEn": "JOY N CONTENTS GROUP",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2011-F423",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

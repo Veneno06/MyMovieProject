@@ -1,0 +1,82 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20122233",
+      "movieNm": "해피 이벤트",
+      "movieNmEn": "A Happy Event",
+      "movieNmOg": "Un heureux évenement",
+      "showTm": "109",
+      "prdtYear": "2012",
+      "openDt": "20130425",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "프랑스"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "멜로/로맨스"
+        },
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "코미디"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "레미 베잔송",
+          "peopleNmEn": "Remi Bezancon"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "루이즈 보르고앙",
+          "peopleNmEn": "Louise Bourgoin",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "피오 마르마이",
+          "peopleNmEn": "Pio Marmai",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20101135",
+          "companyNm": "주식회사 마운틴픽쳐스",
+          "companyNmEn": "Mountain Pictures Co.,Ltd",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20062469",
+          "companyNm": "(주)더블앤조이픽쳐스",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2012-F684 ",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

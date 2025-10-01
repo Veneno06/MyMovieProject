@@ -1,0 +1,75 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20081703",
+      "movieNm": "예스맨",
+      "movieNmEn": "Yes Man",
+      "movieNmOg": "",
+      "showTm": "104",
+      "prdtYear": "2008",
+      "openDt": "20081217",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "코미디"
+        },
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "페이튼 리드",
+          "peopleNmEn": "Peyton Reed"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "짐 캐리",
+          "peopleNmEn": "Jim Carrey",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "주이 디샤넬",
+          "peopleNmEn": "Zooey Deschanel",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100043",
+          "companyNm": "워너브러더스 코리아(주)",
+          "companyNmEn": "Warner Bros. Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100043",
+          "companyNm": "워너브러더스 코리아(주)",
+          "companyNmEn": "Warner Bros. Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2008-F452",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

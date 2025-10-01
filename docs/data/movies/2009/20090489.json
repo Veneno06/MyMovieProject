@@ -1,0 +1,88 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20090489",
+      "movieNm": "벨라",
+      "movieNmEn": "Bella",
+      "movieNmOg": "",
+      "showTm": "91",
+      "prdtYear": "2006",
+      "openDt": "20091001",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        },
+        {
+          "nationNm": "멕시코"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "멜로/로맨스"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "알레한드로 고메즈 몬테베르드",
+          "peopleNmEn": "Alejandro Gomez Monteverde"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "에두아도 베라스테구이",
+          "peopleNmEn": "Eduardo Verastegui",
+          "cast": "호세 ",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "타미 블랜차드",
+          "peopleNmEn": "Tammy Blanchard",
+          "cast": "니나 ",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20101090",
+          "companyNm": "크로스픽쳐스(주)",
+          "companyNmEn": "Kross Pictures, Inc.",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20101095",
+          "companyNm": "실버스푼",
+          "companyNmEn": "",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20101090",
+          "companyNm": "크로스픽쳐스(주)",
+          "companyNmEn": "Kross Pictures, Inc.",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2009-F315",
+          "watchGradeNm": "전체관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

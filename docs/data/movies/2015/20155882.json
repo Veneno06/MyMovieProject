@@ -1,0 +1,78 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20155882",
+      "movieNm": "유닛7",
+      "movieNmEn": "UNIT 7",
+      "movieNmOg": "Grupo 7",
+      "showTm": "95",
+      "prdtYear": "2012",
+      "openDt": "20150122",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "스페인"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "범죄"
+        },
+        {
+          "genreNm": "액션"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "알베르토 로드리게즈",
+          "peopleNmEn": "Alberto Rodriguez"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "마리오 카사스",
+          "peopleNmEn": "Mario Casas",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "안토니오 드 라 토레",
+          "peopleNmEn": "Antonio de la Torre",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20141088",
+          "companyNm": "와이드 릴리즈(주)",
+          "companyNmEn": "Wide Release",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100084",
+          "companyNm": "㈜코리아스크린",
+          "companyNmEn": "Korea Screen Inc.",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2014-MF01451 ",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

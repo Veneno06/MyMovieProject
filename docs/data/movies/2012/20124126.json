@@ -1,0 +1,79 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20124126",
+      "movieNm": "미스터 나이스",
+      "movieNmEn": "Mr. Nice",
+      "movieNmOg": "",
+      "showTm": "121",
+      "prdtYear": "2010",
+      "openDt": "20120209",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "영국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "코미디"
+        },
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "버나드 로즈",
+          "peopleNmEn": "Bernard Rose"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "리스 이판",
+          "peopleNmEn": "Rhys Ifans",
+          "cast": "하워드 막스 ",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "클로에 세비니",
+          "peopleNmEn": "Chloe Sevigny",
+          "cast": "주디 막스 ",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20101135",
+          "companyNm": "주식회사 마운틴픽쳐스",
+          "companyNmEn": "Mountain Pictures Co.,Ltd",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20101135",
+          "companyNm": "주식회사 마운틴픽쳐스",
+          "companyNmEn": "Mountain Pictures Co.,Ltd",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2012-F84",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

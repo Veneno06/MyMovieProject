@@ -1,0 +1,85 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20090011",
+      "movieNm": "티스",
+      "movieNmEn": "Teeth",
+      "movieNmOg": "",
+      "showTm": "93",
+      "prdtYear": "2007",
+      "openDt": "20090115",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "코미디"
+        },
+        {
+          "genreNm": "공포(호러)"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "밋첼 릭텐스타인",
+          "peopleNmEn": ""
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "제스 웨이슬러",
+          "peopleNmEn": "Jess Weixler",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "존 헨슬리",
+          "peopleNmEn": "John Hensley",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "조쉬 파이스",
+          "peopleNmEn": "Josh Pais",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100801",
+          "companyNm": "(유)마스엔터테인먼트코리아",
+          "companyNmEn": "Mars Entertainment Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100801",
+          "companyNm": "(유)마스엔터테인먼트코리아",
+          "companyNmEn": "Mars Entertainment Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2008-F285",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20123602",
+      "movieNm": "셰임",
+      "movieNmEn": "Shame",
+      "movieNmOg": "",
+      "showTm": "101",
+      "prdtYear": "2011",
+      "openDt": "20130509",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "영국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "스티브 맥퀸",
+          "peopleNmEn": "Steve McQueen"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "마이클 패스벤더",
+          "peopleNmEn": "Michael Fassbender",
+          "cast": "브랜든 설리반",
+          "castEn": "Brandon"
+        },
+        {
+          "peopleNm": "캐리 멀리건",
+          "peopleNmEn": "Carey Mulligan",
+          "cast": "씨씨",
+          "castEn": "Sissy"
+        },
+        {
+          "peopleNm": "제임스 뱃지 데일",
+          "peopleNmEn": "James Badge Dale",
+          "cast": "데이비드",
+          "castEn": "David"
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100132",
+          "companyNm": "㈜영화사 백두대간",
+          "companyNmEn": "BaekDu-DaeGan Flims Co. Ltd",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100132",
+          "companyNm": "㈜영화사 백두대간",
+          "companyNmEn": "BaekDu-DaeGan Flims Co. Ltd",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2012-F786 ",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

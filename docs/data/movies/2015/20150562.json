@@ -1,0 +1,109 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20150562",
+      "movieNm": "팬",
+      "movieNmEn": "PAN",
+      "movieNmOg": "",
+      "showTm": "111",
+      "prdtYear": "2015",
+      "openDt": "20151008",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "판타지"
+        },
+        {
+          "genreNm": "어드벤처"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "조 라이트",
+          "peopleNmEn": "Joe Wright"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "휴 잭맨",
+          "peopleNmEn": "Hugh Jackman",
+          "cast": "검은수염",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "가렛 헤드룬드",
+          "peopleNmEn": "Garrett Hedlund",
+          "cast": "후크",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "루니 마라",
+          "peopleNmEn": "Rooney Mara",
+          "cast": "타이거 릴리",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "리바이 밀러",
+          "peopleNmEn": "Levi Miller",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "아만다 사이프리드",
+          "peopleNmEn": "Amanda Seyfried",
+          "cast": "메리",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        },
+        {
+          "showTypeGroupNm": "3D",
+          "showTypeNm": "3D 디지털"
+        },
+        {
+          "showTypeGroupNm": "4D",
+          "showTypeNm": "4D"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100043",
+          "companyNm": "워너브러더스 코리아(주)",
+          "companyNmEn": "Warner Bros. Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100043",
+          "companyNm": "워너브러더스 코리아(주)",
+          "companyNmEn": "Warner Bros. Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2015-MF01112 ",
+          "watchGradeNm": "전체관람가"
+        },
+        {
+          "auditNo": "2015-MF01121 ",
+          "watchGradeNm": "전체관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20090175",
+      "movieNm": "여름의 조각들",
+      "movieNmEn": "Summer Hours",
+      "movieNmOg": "L'Heure D'ete",
+      "showTm": "100",
+      "prdtYear": "2008",
+      "openDt": "20090326",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "프랑스"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "가족"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "올리비에 아사야스",
+          "peopleNmEn": "Olivier Assayas"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "줄리엣 비노쉬",
+          "peopleNmEn": "Juliette Binoche",
+          "cast": "아드리엔",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "제레미 레니에",
+          "peopleNmEn": "Jeremie Renier",
+          "cast": "제레미",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20104272",
+          "companyNm": "엠케이투 프로덕션즈",
+          "companyNmEn": "MK2 Productions",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100888",
+          "companyNm": "(주)영화사구안",
+          "companyNmEn": "",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100285",
+          "companyNm": "판씨네마(주)",
+          "companyNmEn": "Pancinema Corp.",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2009-F82",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

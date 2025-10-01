@@ -1,0 +1,85 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20135581",
+      "movieNm": "호프 스프링즈",
+      "movieNmEn": "Hope Springs",
+      "movieNmOg": "",
+      "showTm": "100",
+      "prdtYear": "2012",
+      "openDt": "20130404",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "멜로/로맨스"
+        },
+        {
+          "genreNm": "코미디"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "데이빗 프랭클",
+          "peopleNmEn": "David Frankel"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "메릴 스트립",
+          "peopleNmEn": "Meryl Streep",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "토미 리 존스",
+          "peopleNmEn": "Tommy Lee Jones",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "스티브 카렐",
+          "peopleNmEn": "Steve Carell",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100844",
+          "companyNm": "(주)시너지하우스 (시너지)",
+          "companyNmEn": "Cinergy",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100419",
+          "companyNm": "데이지엔터테인먼트",
+          "companyNmEn": "Daisy Entertainment ",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2013-F97",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

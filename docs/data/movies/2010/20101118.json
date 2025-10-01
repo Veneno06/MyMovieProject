@@ -1,0 +1,89 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20101118",
+      "movieNm": "스위치",
+      "movieNmEn": "The Switch",
+      "movieNmOg": "The Switch",
+      "showTm": "102",
+      "prdtYear": "2010",
+      "openDt": "20101201",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "멜로/로맨스"
+        },
+        {
+          "genreNm": "코미디"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "조쉬 고든",
+          "peopleNmEn": "Josh Gordon"
+        },
+        {
+          "peopleNm": "윌 스펙",
+          "peopleNmEn": "Will Speck"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "제니퍼 애니스턴",
+          "peopleNmEn": "Jennifer Aniston",
+          "cast": "캐시 라슨",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "제이슨 베이트먼",
+          "peopleNmEn": "Jason Bateman",
+          "cast": "웨일리 마스",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20102201",
+          "companyNm": "보나피데프로덕션즈",
+          "companyNmEn": "Bona Fide Productions",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20114672",
+          "companyNm": "씨너스엔터테인먼트(주)",
+          "companyNmEn": "CINUS ENTERTAINMENT",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20101138",
+          "companyNm": "(주)새인컴퍼니",
+          "companyNmEn": "SANE COMPANY Inc.",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2010-F464",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

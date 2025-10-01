@@ -1,0 +1,86 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20101400",
+      "movieNm": "라인의 황금",
+      "movieNmEn": "Das Rheingold",
+      "movieNmOg": "Das Rheingold",
+      "showTm": "180",
+      "prdtYear": "2010",
+      "openDt": "20101218",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "공연"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "로베르 르빠쥬",
+          "peopleNmEn": ""
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "브린테펠",
+          "peopleNmEn": "Bryn Terfel",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "웬디 브린하머",
+          "peopleNmEn": "Wendy Bryn Harmer",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20112111",
+          "companyNm": "메트로폴리탄 오페라",
+          "companyNmEn": "Metropolitan Opera",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20062944",
+          "companyNm": "(주)에이치엠엔",
+          "companyNmEn": "",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20062944",
+          "companyNm": "(주)에이치엠엔",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2010-F521",
+          "watchGradeNm": "전체관람가"
+        },
+        {
+          "auditNo": "",
+          "watchGradeNm": "전체관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

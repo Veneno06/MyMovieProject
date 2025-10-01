@@ -1,0 +1,78 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20090091",
+      "movieNm": "13일의 금요일",
+      "movieNmEn": "Friday The 13th",
+      "movieNmOg": "",
+      "showTm": "97",
+      "prdtYear": "2009",
+      "openDt": "20090312",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "공포(호러)"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "마커스 니스펠",
+          "peopleNmEn": "Marcus Nispel"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "다니엘 파나베이커",
+          "peopleNmEn": "Danielle Panabaker",
+          "cast": "제나",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "아만다 라이거티",
+          "peopleNmEn": "Amanda Righetti",
+          "cast": "휘트니 밀러",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100109",
+          "companyNm": "씨제이엔터테인먼트",
+          "companyNmEn": "CJ Entertainment",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100109",
+          "companyNm": "씨제이엔터테인먼트",
+          "companyNmEn": "CJ Entertainment",
+          "companyPartNm": "수입사"
+        },
+        {
+          "companyCd": "20100109",
+          "companyNm": "씨제이엔터테인먼트",
+          "companyNmEn": "CJ Entertainment",
+          "companyPartNm": "홍보사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2009-F68",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

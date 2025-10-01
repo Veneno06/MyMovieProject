@@ -1,0 +1,94 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20110502",
+      "movieNm": "레지던트",
+      "movieNmEn": "The Resident",
+      "movieNmOg": "",
+      "showTm": "91",
+      "prdtYear": "2010",
+      "openDt": "20110602",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "영국"
+        },
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "스릴러"
+        },
+        {
+          "genreNm": "공포(호러)"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "안티 조키넨",
+          "peopleNmEn": "Antti Jokinen"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "힐러리 스웽크",
+          "peopleNmEn": "Hilary Swank",
+          "cast": "줄리엣 디브로 ",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "제프리 딘 모건",
+          "peopleNmEn": "Jeffrey Dean Morgan",
+          "cast": "맥스",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "크리스토퍼 리",
+          "peopleNmEn": "Christopher Lee",
+          "cast": "오거스트",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100103",
+          "companyNm": "(주)쇼박스",
+          "companyNmEn": "Showbox Corp",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100103",
+          "companyNm": "(주)쇼박스",
+          "companyNmEn": "Showbox Corp",
+          "companyPartNm": "수입사"
+        },
+        {
+          "companyCd": "20101311",
+          "companyNm": "(주)케이앤엔터테인먼트",
+          "companyNmEn": "K&Entertainment",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2011-F251",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

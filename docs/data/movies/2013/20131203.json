@@ -1,0 +1,91 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20131203",
+      "movieNm": "킬링시즌",
+      "movieNmEn": "Killing Season",
+      "movieNmOg": "",
+      "showTm": "90",
+      "prdtYear": "2013",
+      "openDt": "20130905",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "액션"
+        },
+        {
+          "genreNm": "스릴러"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "마크 스티븐 존슨",
+          "peopleNmEn": "Mark Steven Johnson"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "로버트 드 니로",
+          "peopleNmEn": "Robert DeNiro",
+          "cast": "벤자민 포드",
+          "castEn": "Benjamin Ford"
+        },
+        {
+          "peopleNm": "존 트라볼타",
+          "peopleNmEn": "John Travolta",
+          "cast": "에밀 코바쉬",
+          "castEn": "Emil Kovac"
+        },
+        {
+          "peopleNm": "마일로 벤티밀리아",
+          "peopleNmEn": "Milo Ventimiglia",
+          "cast": "크리스 포드",
+          "castEn": "Chris Ford"
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20122895",
+          "companyNm": "(주)팝파트너스",
+          "companyNmEn": "POP PARTNERS",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20122497",
+          "companyNm": "(유)조이앤컨텐츠그룹",
+          "companyNmEn": "JOY N CONTENTS GROUP",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2013-MF00531",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": [
+        {
+          "peopleNm": "에번 도허티",
+          "peopleNmEn": "Evan Daugherty",
+          "staffRoleNm": "시나리오(각본)"
+        }
+      ]
+    }
+  }
+}

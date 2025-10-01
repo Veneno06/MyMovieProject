@@ -1,0 +1,88 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20110988",
+      "movieNm": "음모자",
+      "movieNmEn": "The Conspirator",
+      "movieNmOg": "",
+      "showTm": "123",
+      "prdtYear": "2010",
+      "openDt": "20110630",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "로버트 레드포드",
+          "peopleNmEn": "Robert Redford"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "로빈 라이트",
+          "peopleNmEn": "Robin Wright",
+          "cast": "메리 서랫",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "노먼 리더스",
+          "peopleNmEn": "Norman Reedus",
+          "cast": "루이스",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "케빈 클라인",
+          "peopleNmEn": "Kevin Kline",
+          "cast": "에드윈 스탠턴",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "제임스 맥어보이",
+          "peopleNmEn": "James McAvoy",
+          "cast": "프레더릭 에이큰 ",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100285",
+          "companyNm": "판씨네마(주)",
+          "companyNmEn": "Pancinema Corp.",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100285",
+          "companyNm": "판씨네마(주)",
+          "companyNmEn": "Pancinema Corp.",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2011-F310",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

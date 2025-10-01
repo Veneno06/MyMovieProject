@@ -1,0 +1,75 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20080073",
+      "movieNm": "보딩 게이트",
+      "movieNmEn": "Boarding Gate",
+      "movieNmOg": "",
+      "showTm": "106",
+      "prdtYear": "2007",
+      "openDt": "20080221",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "프랑스"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "스릴러"
+        },
+        {
+          "genreNm": "액션"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "올리비에 아사야스",
+          "peopleNmEn": "Olivier Assayas"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "아시아 아르젠토",
+          "peopleNmEn": "Asia Argento",
+          "cast": "산드라 ",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "마이클 매드슨",
+          "peopleNmEn": "Michael Madsen",
+          "cast": "마일즈 렌버그 ",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100313",
+          "companyNm": "라인트리엔터테인먼트 ",
+          "companyNmEn": "",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100313",
+          "companyNm": "라인트리엔터테인먼트 ",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2008-F70",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

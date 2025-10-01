@@ -1,0 +1,448 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20148009",
+      "movieNm": "메이크 유어 무브",
+      "movieNmEn": "Make Your Move",
+      "movieNmOg": "",
+      "showTm": "109",
+      "prdtYear": "2011",
+      "openDt": "20140417",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "한국"
+        },
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "멜로/로맨스"
+        },
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "듀안 아들러",
+          "peopleNmEn": "Duane Adler"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "보아",
+          "peopleNmEn": "BoA",
+          "cast": "아야",
+          "castEn": "Aya"
+        },
+        {
+          "peopleNm": "데릭 허프",
+          "peopleNmEn": "Derek Hough",
+          "cast": "도니",
+          "castEn": "Donny"
+        },
+        {
+          "peopleNm": "웨슬리 조나단",
+          "peopleNmEn": "Wesley Jonathan",
+          "cast": "닉",
+          "castEn": "Nick"
+        },
+        {
+          "peopleNm": "윌 윤 리",
+          "peopleNmEn": "Will Yun Lee",
+          "cast": "카즈",
+          "castEn": "Kaz"
+        },
+        {
+          "peopleNm": "정윤호",
+          "peopleNmEn": "JUNG Yoon-ho",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        },
+        {
+          "showTypeGroupNm": "3D",
+          "showTypeNm": "3D 디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20110854",
+          "companyNm": "(주)씨제이이엔엠",
+          "companyNmEn": "CJ ENM Corp.",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20114613",
+          "companyNm": "(주)에스엠엔터테인먼트",
+          "companyNmEn": "SM Entertainment",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20110854",
+          "companyNm": "(주)씨제이이엔엠",
+          "companyNmEn": "CJ ENM Corp.",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20110854",
+          "companyNm": "(주)씨제이이엔엠",
+          "companyNmEn": "CJ ENM Corp.",
+          "companyPartNm": "제공"
+        },
+        {
+          "companyCd": "20141089",
+          "companyNm": "라이온스게이트 인터네셔널",
+          "companyNmEn": "Lionsgate International LLC.",
+          "companyPartNm": "해외세일즈사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2014-MF00259 ",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": [
+        {
+          "peopleNm": "남종우",
+          "peopleNmEn": "STEVEN NAM",
+          "staffRoleNm": "제작"
+        },
+        {
+          "peopleNm": "한세민",
+          "peopleNmEn": "Nikki Semin Han",
+          "staffRoleNm": "제작"
+        },
+        {
+          "peopleNm": "정태성",
+          "peopleNmEn": "JUNG Tae-sung",
+          "staffRoleNm": "제작"
+        },
+        {
+          "peopleNm": "이수만",
+          "peopleNmEn": "Soo Man Lee",
+          "staffRoleNm": "제작"
+        },
+        {
+          "peopleNm": "이성호",
+          "peopleNmEn": "Sung Ho Lee",
+          "staffRoleNm": "제작"
+        },
+        {
+          "peopleNm": "이미경",
+          "peopleNmEn": "LEE Mi-kyoung",
+          "staffRoleNm": "제작"
+        },
+        {
+          "peopleNm": "KEO LEE",
+          "peopleNmEn": "KEO LEE",
+          "staffRoleNm": "프로듀서"
+        },
+        {
+          "peopleNm": "FRANCIS CHUNG",
+          "peopleNmEn": "FRANCIS CHUNG",
+          "staffRoleNm": "프로듀서"
+        },
+        {
+          "peopleNm": "최정민",
+          "peopleNmEn": "CHOI Jung-min",
+          "staffRoleNm": "프로듀서"
+        },
+        {
+          "peopleNm": "로버트 W. 코트",
+          "peopleNmEn": "Robert W. Cort",
+          "staffRoleNm": "프로듀서"
+        },
+        {
+          "peopleNm": "KHAN KWON",
+          "peopleNmEn": "KHAN KWON",
+          "staffRoleNm": "제작팀"
+        },
+        {
+          "peopleNm": "듀안 아들러",
+          "peopleNmEn": "Duane Adler",
+          "staffRoleNm": "시나리오(각본)"
+        },
+        {
+          "peopleNm": "김영민",
+          "peopleNmEn": "KIM Young-min",
+          "staffRoleNm": "프로듀서"
+        },
+        {
+          "peopleNm": "김태훈",
+          "peopleNmEn": "KIM Tae-hun",
+          "staffRoleNm": "VFX 슈퍼바이저"
+        },
+        {
+          "peopleNm": "심기욱",
+          "peopleNmEn": "Shim Ki-wook",
+          "staffRoleNm": "VFX 슈퍼바이저"
+        },
+        {
+          "peopleNm": "박장진",
+          "peopleNmEn": "PARK Jang-jin",
+          "staffRoleNm": "VFX 슈퍼바이저"
+        },
+        {
+          "peopleNm": "박의동",
+          "peopleNmEn": "PARK Ui-dong",
+          "staffRoleNm": "VFX 슈퍼바이저"
+        },
+        {
+          "peopleNm": "양일석",
+          "peopleNmEn": "STEIN YANG",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "박성현",
+          "peopleNmEn": "PARK Sung-hyun",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "류아영",
+          "peopleNmEn": "RYU Ah-young",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "김현우",
+          "peopleNmEn": "KIM Hyun-woo",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "김혁",
+          "peopleNmEn": "KIM Hyuk",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "김인내",
+          "peopleNmEn": "KIM In-nae",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "김용우",
+          "peopleNmEn": "KIM Yong-woo",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "김영화",
+          "peopleNmEn": "KIM Young-hwa",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "김승호",
+          "peopleNmEn": "KIM Seung-ho",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "김민한",
+          "peopleNmEn": "KIM Min-han",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "김명선",
+          "peopleNmEn": "KIM Myoung-sun",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "김경원",
+          "peopleNmEn": "Gyeangwon Kim",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "곽동진",
+          "peopleNmEn": "",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "강태형",
+          "peopleNmEn": "KANG Tae-hyung",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "강주희",
+          "peopleNmEn": "KANG Joo-hee",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "강은선",
+          "peopleNmEn": "EUNSUN KANG",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "조수인",
+          "peopleNmEn": "SUIN JO",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "정주호",
+          "peopleNmEn": "JEONG Ju-ho",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "정연주",
+          "peopleNmEn": "JEONG Yeon-ju",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "정연웅",
+          "peopleNmEn": "Yeonwoong Jung",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "정민지",
+          "peopleNmEn": "JUNG Min-ji",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "정광식",
+          "peopleNmEn": "GWANGSIK JUNG",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "전천우",
+          "peopleNmEn": "JEON Cheon-woo",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "장훈수",
+          "peopleNmEn": "JANG Hoon-soo",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "임승진",
+          "peopleNmEn": "LIM Seung-jin",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "이소리",
+          "peopleNmEn": "LEE So-ri",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "윤정열",
+          "peopleNmEn": "CHUNGYEOL YOON",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "위옥기",
+          "peopleNmEn": "OKKI WIE",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "오형조",
+          "peopleNmEn": "HYUNGJO OH",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "신진",
+          "peopleNmEn": "",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "신성아",
+          "peopleNmEn": "SHIN Sung-a",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "손진영",
+          "peopleNmEn": "JIN-YOUNG SON",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "손선영",
+          "peopleNmEn": "SON Sun-young",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "서하식",
+          "peopleNmEn": "HASIK SEO",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "백혜령",
+          "peopleNmEn": "BAEK Hye-ryeong",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "박수진",
+          "peopleNmEn": "SUJIN PARK",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "문경희",
+          "peopleNmEn": "KYUNGHEE MOON",
+          "staffRoleNm": "VFX 매니지먼트"
+        },
+        {
+          "peopleNm": "김성아",
+          "peopleNmEn": "Sunga Kim",
+          "staffRoleNm": "VFX 매니지먼트"
+        },
+        {
+          "peopleNm": "허재정",
+          "peopleNmEn": "HUH Jae-jeong",
+          "staffRoleNm": "VFX 매니지먼트"
+        },
+        {
+          "peopleNm": "채유라",
+          "peopleNmEn": "CHAE Yu-ra",
+          "staffRoleNm": "VFX 매니지먼트"
+        },
+        {
+          "peopleNm": "채보현",
+          "peopleNmEn": "BOHYUN CHAE",
+          "staffRoleNm": "VFX 매니지먼트"
+        },
+        {
+          "peopleNm": "진희영",
+          "peopleNmEn": "CHIN Hee-young",
+          "staffRoleNm": "VFX 매니지먼트"
+        },
+        {
+          "peopleNm": "이승희",
+          "peopleNmEn": "SEUNGHEE LEE",
+          "staffRoleNm": "VFX 매니지먼트"
+        },
+        {
+          "peopleNm": "유희정",
+          "peopleNmEn": "RYU Hee-jung",
+          "staffRoleNm": "VFX 매니지먼트"
+        },
+        {
+          "peopleNm": "오근창",
+          "peopleNmEn": "GEUNCHANG OH",
+          "staffRoleNm": "VFX 매니지먼트"
+        },
+        {
+          "peopleNm": "양창주",
+          "peopleNmEn": "YANG Chang-joo",
+          "staffRoleNm": "VFX 매니지먼트"
+        },
+        {
+          "peopleNm": "강성주",
+          "peopleNmEn": "",
+          "staffRoleNm": "VFX 매니지먼트"
+        },
+        {
+          "peopleNm": "최연우",
+          "peopleNmEn": "YEONU CHOI",
+          "staffRoleNm": "기타"
+        }
+      ]
+    }
+  }
+}

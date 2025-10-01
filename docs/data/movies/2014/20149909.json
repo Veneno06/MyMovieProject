@@ -1,0 +1,308 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20149909",
+      "movieNm": "열애",
+      "movieNmEn": "",
+      "movieNmOg": "",
+      "showTm": "84",
+      "prdtYear": "2014",
+      "openDt": "20140723",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "한국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "멜로/로맨스"
+        },
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "이숭환",
+          "peopleNmEn": "LEE Soong-hwan"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "정민",
+          "peopleNmEn": "Jeong Min",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "오수아",
+          "peopleNmEn": "OH Soo-a",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "허동원",
+          "peopleNmEn": "HEO Dong-won",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "우혜진",
+          "peopleNmEn": "WOO Hye-jin",
+          "cast": "다방아가씨",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "박지수",
+          "peopleNmEn": "PARK Ji-su",
+          "cast": "화장품 점원",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "유혜진",
+          "peopleNmEn": "",
+          "cast": "다방녀",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "이원희",
+          "peopleNmEn": "",
+          "cast": "동우친구",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "이종혁",
+          "peopleNmEn": "",
+          "cast": "다방남",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20063099",
+          "companyNm": "(주)케이알씨지",
+          "companyNmEn": "KRCG",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20063099",
+          "companyNm": "(주)케이알씨지",
+          "companyNmEn": "KRCG",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20122497",
+          "companyNm": "(유)조이앤컨텐츠그룹",
+          "companyNmEn": "JOY N CONTENTS GROUP",
+          "companyPartNm": "제공"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2014-MF00727 ",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": [
+        {
+          "peopleNm": "이숭환",
+          "peopleNmEn": "LEE Soong-hwan",
+          "staffRoleNm": "제작"
+        },
+        {
+          "peopleNm": "최광건",
+          "peopleNmEn": "",
+          "staffRoleNm": "프로듀서"
+        },
+        {
+          "peopleNm": "이성화",
+          "peopleNmEn": "",
+          "staffRoleNm": "사운드"
+        },
+        {
+          "peopleNm": "이영화",
+          "peopleNmEn": "LEE Young-wha",
+          "staffRoleNm": "분장팀"
+        },
+        {
+          "peopleNm": "장은정",
+          "peopleNmEn": "",
+          "staffRoleNm": "분장"
+        },
+        {
+          "peopleNm": "이영화",
+          "peopleNmEn": "LEE Young-wha",
+          "staffRoleNm": "의상팀"
+        },
+        {
+          "peopleNm": "장은정",
+          "peopleNmEn": "",
+          "staffRoleNm": "의상"
+        },
+        {
+          "peopleNm": "김선아",
+          "peopleNmEn": "Kim Sun-ah",
+          "staffRoleNm": "제작팀"
+        },
+        {
+          "peopleNm": "이정현",
+          "peopleNmEn": "",
+          "staffRoleNm": "제작팀"
+        },
+        {
+          "peopleNm": "최민혁",
+          "peopleNmEn": "",
+          "staffRoleNm": "제작팀"
+        },
+        {
+          "peopleNm": "인구성",
+          "peopleNmEn": "",
+          "staffRoleNm": "제작회계"
+        },
+        {
+          "peopleNm": "문윤희",
+          "peopleNmEn": "",
+          "staffRoleNm": "데이타매니저"
+        },
+        {
+          "peopleNm": "최대희",
+          "peopleNmEn": "",
+          "staffRoleNm": "조감독"
+        },
+        {
+          "peopleNm": "전소민",
+          "peopleNmEn": "",
+          "staffRoleNm": "조감독"
+        },
+        {
+          "peopleNm": "이정근",
+          "peopleNmEn": "",
+          "staffRoleNm": "연출팀"
+        },
+        {
+          "peopleNm": "이현지",
+          "peopleNmEn": "",
+          "staffRoleNm": "연출팀"
+        },
+        {
+          "peopleNm": "이지은",
+          "peopleNmEn": "LEE Ji-eun",
+          "staffRoleNm": "스크립터"
+        },
+        {
+          "peopleNm": "이영인",
+          "peopleNmEn": "",
+          "staffRoleNm": "촬영"
+        },
+        {
+          "peopleNm": "이정훈",
+          "peopleNmEn": "LEE Jung-hoon",
+          "staffRoleNm": "촬영팀"
+        },
+        {
+          "peopleNm": "김두복",
+          "peopleNmEn": "",
+          "staffRoleNm": "지미집"
+        },
+        {
+          "peopleNm": "김균현",
+          "peopleNmEn": "",
+          "staffRoleNm": "지미집"
+        },
+        {
+          "peopleNm": "조성우",
+          "peopleNmEn": "JO Seong-woo",
+          "staffRoleNm": "지미집"
+        },
+        {
+          "peopleNm": "김균현",
+          "peopleNmEn": "",
+          "staffRoleNm": "특수촬영"
+        },
+        {
+          "peopleNm": "강주화",
+          "peopleNmEn": "",
+          "staffRoleNm": "특수촬영"
+        },
+        {
+          "peopleNm": "최정수",
+          "peopleNmEn": "",
+          "staffRoleNm": "조명"
+        },
+        {
+          "peopleNm": "우석민",
+          "peopleNmEn": "",
+          "staffRoleNm": "미술/프로덕션 디자인"
+        },
+        {
+          "peopleNm": "유정근",
+          "peopleNmEn": "",
+          "staffRoleNm": "아트디렉터"
+        },
+        {
+          "peopleNm": "이정민",
+          "peopleNmEn": "",
+          "staffRoleNm": "미술팀"
+        },
+        {
+          "peopleNm": "이현지",
+          "peopleNmEn": "",
+          "staffRoleNm": "소품"
+        },
+        {
+          "peopleNm": "한동훈",
+          "peopleNmEn": "",
+          "staffRoleNm": "동시녹음"
+        },
+        {
+          "peopleNm": "나영길",
+          "peopleNmEn": "",
+          "staffRoleNm": "붐오퍼레이터"
+        },
+        {
+          "peopleNm": "윤상빈",
+          "peopleNmEn": "",
+          "staffRoleNm": "붐오퍼레이터"
+        },
+        {
+          "peopleNm": "이영인",
+          "peopleNmEn": "",
+          "staffRoleNm": "포스터사진"
+        },
+        {
+          "peopleNm": "문윤희",
+          "peopleNmEn": "",
+          "staffRoleNm": "광고디자인"
+        },
+        {
+          "peopleNm": "윤수비",
+          "peopleNmEn": "",
+          "staffRoleNm": "홍보/마케팅 진행"
+        },
+        {
+          "peopleNm": "전소민",
+          "peopleNmEn": "",
+          "staffRoleNm": "타이틀"
+        },
+        {
+          "peopleNm": "전소민",
+          "peopleNmEn": "",
+          "staffRoleNm": "포스터사진"
+        },
+        {
+          "peopleNm": "문윤희",
+          "peopleNmEn": "",
+          "staffRoleNm": "메이킹필름"
+        }
+      ]
+    }
+  }
+}

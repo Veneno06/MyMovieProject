@@ -1,0 +1,94 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20127509",
+      "movieNm": "카페 드 플로르",
+      "movieNmEn": "Cafe de flore",
+      "movieNmOg": "",
+      "showTm": "120",
+      "prdtYear": "2011",
+      "openDt": "20120719",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "캐나다"
+        },
+        {
+          "nationNm": "프랑스"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "멜로/로맨스"
+        },
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "장 마크 발레",
+          "peopleNmEn": "Jean-Marc Vallee"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "바네사 파라디",
+          "peopleNmEn": "Vanessa Paradis",
+          "cast": "재클린",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "케빈 파랑",
+          "peopleNmEn": "Kevin Parent",
+          "cast": "앙투안 고딘",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "헬렌 플로렝",
+          "peopleNmEn": "Helene Florent",
+          "cast": "카롤",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20114812",
+          "companyNm": "씨네21아이(주)",
+          "companyNmEn": "",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20114812",
+          "companyNm": "씨네21아이(주)",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2012-F423",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": [
+        {
+          "peopleNm": "장 마크 발레",
+          "peopleNmEn": "Jean-Marc Vallee",
+          "staffRoleNm": "시나리오(각본)"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20111532",
+      "movieNm": "원라이프",
+      "movieNmEn": "One Life",
+      "movieNmOg": "",
+      "showTm": "84",
+      "prdtYear": "2011",
+      "openDt": "20110817",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "영국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "다큐멘터리"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "마이클 건톤",
+          "peopleNmEn": "Michael Gunton"
+        },
+        {
+          "peopleNm": "마샤 홈즈",
+          "peopleNmEn": "Martha Holmes"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "다니엘 크레이그",
+          "peopleNmEn": "Daniel Craig",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "더빙"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털 더빙"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100906",
+          "companyNm": "유나이티드픽처스(주)",
+          "companyNmEn": "United Pictures",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20110854",
+          "companyNm": "(주)씨제이이엔엠",
+          "companyNmEn": "CJ ENM Corp.",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100906",
+          "companyNm": "유나이티드픽처스(주)",
+          "companyNmEn": "United Pictures",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2011-F373",
+          "watchGradeNm": "전체관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

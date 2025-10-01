@@ -1,0 +1,104 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20100143",
+      "movieNm": "일라이",
+      "movieNmEn": "The Book Of Eli",
+      "movieNmOg": "The Book Of Eli",
+      "showTm": "117",
+      "prdtYear": "2009",
+      "openDt": "20100415",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "액션"
+        },
+        {
+          "genreNm": "어드벤처"
+        },
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "스릴러"
+        },
+        {
+          "genreNm": "서부극(웨스턴)"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "알렌 휴즈",
+          "peopleNmEn": "Allen Hughes"
+        },
+        {
+          "peopleNm": "알버트 휴즈",
+          "peopleNmEn": "Albert Hughes"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "덴젤 워싱턴",
+          "peopleNmEn": "Denzel Washington ",
+          "cast": "일라이 ",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "게리 올드만",
+          "peopleNmEn": "Gary Oldman",
+          "cast": "카네기 ",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20101669",
+          "companyNm": "알콘엔터테인먼트",
+          "companyNmEn": "Alcon Entertainment",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100103",
+          "companyNm": "(주)쇼박스",
+          "companyNmEn": "Showbox Corp",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100354",
+          "companyNm": "㈜케이디미디어",
+          "companyNmEn": "KD Media",
+          "companyPartNm": "수입사"
+        },
+        {
+          "companyCd": "20100813",
+          "companyNm": "원더월드 스튜디오",
+          "companyNmEn": "Wonderworld Studios Inc",
+          "companyPartNm": "제작서비스-시각효과/특수효과"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2010-F100",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

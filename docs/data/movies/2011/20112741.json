@@ -1,0 +1,85 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20112741",
+      "movieNm": "스톤",
+      "movieNmEn": "STONE",
+      "movieNmOg": "",
+      "showTm": "105",
+      "prdtYear": "2010",
+      "openDt": "20111006",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "스릴러"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "존 커랜",
+          "peopleNmEn": "John Curran"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "로버트 드 니로",
+          "peopleNmEn": "Robert DeNiro",
+          "cast": "존 메이브리 ",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "에드워드 노튼",
+          "peopleNmEn": "Edward Norton",
+          "cast": "제랄드 크리슨 스톤 ",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "밀라 요보비치",
+          "peopleNmEn": "Milla Jovovich",
+          "cast": "루세타 크리슨 ",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100929",
+          "companyNm": "KT&G 상상마당 영화사업팀 컴퍼니에스에스(주)",
+          "companyNmEn": "KT&G SangsangMadang",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20122497",
+          "companyNm": "(유)조이앤컨텐츠그룹",
+          "companyNmEn": "JOY N CONTENTS GROUP",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2011-F539",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

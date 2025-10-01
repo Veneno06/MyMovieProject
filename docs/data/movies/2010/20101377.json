@@ -1,0 +1,85 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20101377",
+      "movieNm": "크리스마스 스타!",
+      "movieNmEn": "Nativity!",
+      "movieNmOg": "Nativity!",
+      "showTm": "106",
+      "prdtYear": "2009",
+      "openDt": "20101223",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "영국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "코미디"
+        },
+        {
+          "genreNm": "가족"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "데비 아이싯",
+          "peopleNmEn": "Debbie Isitt"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "마틴 프리먼",
+          "peopleNmEn": "Martin Freeman",
+          "cast": "폴 마든스",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "애슐리 젠슨",
+          "peopleNmEn": "Ashley Jensen",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20112293",
+          "companyNm": "미러볼 필름",
+          "companyNmEn": "MIRRORBALL FILMS",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100285",
+          "companyNm": "판씨네마(주)",
+          "companyNmEn": "Pancinema Corp.",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100285",
+          "companyNm": "판씨네마(주)",
+          "companyNmEn": "Pancinema Corp.",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2010-F510",
+          "watchGradeNm": "전체관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

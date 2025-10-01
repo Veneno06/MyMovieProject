@@ -1,0 +1,109 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20132082",
+      "movieNm": "바람이 분다",
+      "movieNmEn": "The Wind Rises",
+      "movieNmOg": "風立ちぬ",
+      "showTm": "126",
+      "prdtYear": "2013",
+      "openDt": "20130905",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "일본"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "애니메이션"
+        },
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "미야자키 하야오",
+          "peopleNmEn": "Hayao Miyazaki"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "안노 히데아키",
+          "peopleNmEn": "Hideaki Anno",
+          "cast": "지로",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "타키모토 미오리",
+          "peopleNmEn": "Miori Takimoto",
+          "cast": "나호코",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "더빙"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털 더빙"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20103214",
+          "companyNm": "스튜디오 지브리",
+          "companyNmEn": "Studio Ghibli",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100520",
+          "companyNm": "롯데쇼핑㈜롯데엔터테인먼트",
+          "companyNmEn": "Lotte shopping Lotte Entertainment Co.,Ltd",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100065",
+          "companyNm": "대원미디어(주)",
+          "companyNmEn": "Daewon media Co., Ltd.",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2013-MF00543",
+          "watchGradeNm": "전체관람가"
+        }
+      ],
+      "staffs": [
+        {
+          "peopleNm": "미야자키 하야오",
+          "peopleNmEn": "Hayao Miyazaki",
+          "staffRoleNm": "시나리오(각본)"
+        },
+        {
+          "peopleNm": "히사이시 조",
+          "peopleNmEn": "Joe Hisaishi",
+          "staffRoleNm": "사운드"
+        },
+        {
+          "peopleNm": "미야자키 하야오",
+          "peopleNmEn": "Hayao Miyazaki",
+          "staffRoleNm": "기획"
+        }
+      ]
+    }
+  }
+}

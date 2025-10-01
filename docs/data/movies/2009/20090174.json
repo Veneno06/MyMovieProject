@@ -1,0 +1,103 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20090174",
+      "movieNm": "카오스",
+      "movieNmEn": "Chaos",
+      "movieNmOg": "",
+      "showTm": "105",
+      "prdtYear": "2005",
+      "openDt": "20090326",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "영국"
+        },
+        {
+          "nationNm": "미국"
+        },
+        {
+          "nationNm": "캐나다"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "액션"
+        },
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "범죄"
+        },
+        {
+          "genreNm": "스릴러"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "토니 기글리오",
+          "peopleNmEn": "Tony Giglio"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "제이슨 스타뎀",
+          "peopleNmEn": "Jason Statham",
+          "cast": "쿠엔틴 코너스",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "라이언 필립",
+          "peopleNmEn": "Ryan Phillippe",
+          "cast": "쉐인 덱커",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "웨슬리 스나입스",
+          "peopleNmEn": "Wesley Snipes",
+          "cast": "로렌즈",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100123",
+          "companyNm": "(주)싸이더스",
+          "companyNmEn": "Sidus Corporation",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100366",
+          "companyNm": "(주)코랄픽쳐스",
+          "companyNmEn": "Coral Pictures",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2009-F69 ",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": [
+        {
+          "peopleNm": "크리스 어거스트",
+          "peopleNmEn": "Chris August",
+          "staffRoleNm": "아트디렉터"
+        }
+      ]
+    }
+  }
+}

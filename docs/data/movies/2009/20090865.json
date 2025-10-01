@@ -1,0 +1,100 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20090865",
+      "movieNm": "러블리 본즈",
+      "movieNmEn": "The Lovely Bones",
+      "movieNmOg": "The Lovely Bones",
+      "showTm": "135",
+      "prdtYear": "2009",
+      "openDt": "20100225",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "범죄"
+        },
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "판타지"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "피터 잭슨",
+          "peopleNmEn": "Peter Jackson"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "마크 월버그",
+          "peopleNmEn": "Mark Wahlberg",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "레이첼 와이즈",
+          "peopleNmEn": "Rachel Weisz",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "시얼샤 로넌",
+          "peopleNmEn": "Saoirse Ronan",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20101430",
+          "companyNm": "윙누트 필름",
+          "companyNmEn": "WingNut Films",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20103164",
+          "companyNm": "드림웍스 프로덕션 LLC",
+          "companyNmEn": "DreamWorks Productions LLC",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100109",
+          "companyNm": "씨제이엔터테인먼트",
+          "companyNmEn": "CJ Entertainment",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100109",
+          "companyNm": "씨제이엔터테인먼트",
+          "companyNmEn": "CJ Entertainment",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2010-F8",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

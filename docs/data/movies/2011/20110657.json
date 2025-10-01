@@ -1,0 +1,110 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20110657",
+      "movieNm": "리오",
+      "movieNmEn": "Rio",
+      "movieNmOg": "",
+      "showTm": "96",
+      "prdtYear": "2011",
+      "openDt": "20110727",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "애니메이션"
+        },
+        {
+          "genreNm": "어드벤처"
+        },
+        {
+          "genreNm": "코미디"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "카를로스 살다나",
+          "peopleNmEn": "Carlos Saldanha"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "송중기",
+          "peopleNmEn": "SONG Joong-ki",
+          "cast": "블루",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "박보영",
+          "peopleNmEn": "PARK Bo-young",
+          "cast": "쥬엘",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "더빙"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털 더빙"
+        },
+        {
+          "showTypeGroupNm": "3D",
+          "showTypeNm": "3D 디지털"
+        },
+        {
+          "showTypeGroupNm": "3D",
+          "showTypeNm": "3D 더빙"
+        },
+        {
+          "showTypeGroupNm": "4D",
+          "showTypeNm": "4D 더빙"
+        },
+        {
+          "showTypeGroupNm": "4D",
+          "showTypeNm": "4D"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100041",
+          "companyNm": "이십세기폭스코리아(주)",
+          "companyNmEn": "20th Century Fox Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100041",
+          "companyNm": "이십세기폭스코리아(주)",
+          "companyNmEn": "20th Century Fox Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2011-F238 ",
+          "watchGradeNm": "전체관람가"
+        },
+        {
+          "auditNo": "2011-F256 ",
+          "watchGradeNm": "전체관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

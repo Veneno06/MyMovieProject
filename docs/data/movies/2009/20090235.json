@@ -1,0 +1,92 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20090235",
+      "movieNm": "스타 트렉: 더 비기닝",
+      "movieNmEn": "Star Trek",
+      "movieNmOg": "",
+      "showTm": "126",
+      "prdtYear": "2009",
+      "openDt": "20090507",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "SF"
+        },
+        {
+          "genreNm": "액션"
+        },
+        {
+          "genreNm": "어드벤처"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "J.J. 에이브럼스",
+          "peopleNmEn": "Jeffrey Jacob Abrams"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "크리스 파인",
+          "peopleNmEn": "Chris Pine",
+          "cast": "제임스 커크",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "재커리 퀸토",
+          "peopleNmEn": "Zachary Quinto",
+          "cast": "스팍",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "칼 어번",
+          "peopleNmEn": "Karl Urban",
+          "cast": "닥터 레나드 본즈 맥코이",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        },
+        {
+          "showTypeGroupNm": "IMAX",
+          "showTypeNm": "IMAX"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100109",
+          "companyNm": "씨제이엔터테인먼트",
+          "companyNmEn": "CJ Entertainment",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100109",
+          "companyNm": "씨제이엔터테인먼트",
+          "companyNmEn": "CJ Entertainment",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2009-F129",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

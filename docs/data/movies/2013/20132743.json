@@ -1,0 +1,88 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20132743",
+      "movieNm": "허니",
+      "movieNmEn": "Honey",
+      "movieNmOg": "",
+      "showTm": "104",
+      "prdtYear": "2010",
+      "openDt": "20130926",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "터키"
+        },
+        {
+          "nationNm": "독일"
+        },
+        {
+          "nationNm": "프랑스"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "세미 카플라노글루",
+          "peopleNmEn": "Semih Kaplanoglu"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "보라 알타스",
+          "peopleNmEn": "Bora Altas",
+          "cast": "유수프",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "에르달 베식시오글루",
+          "peopleNmEn": "Erdal Besikcioglu",
+          "cast": "야쿱",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "툴린 오젠",
+          "peopleNmEn": "Tulin Ozen",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100132",
+          "companyNm": "㈜영화사 백두대간",
+          "companyNmEn": "BaekDu-DaeGan Flims Co. Ltd",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100132",
+          "companyNm": "㈜영화사 백두대간",
+          "companyNmEn": "BaekDu-DaeGan Flims Co. Ltd",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2013-MF00588 ",
+          "watchGradeNm": "전체관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

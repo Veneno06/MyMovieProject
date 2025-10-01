@@ -1,0 +1,91 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20090029",
+      "movieNm": "알파독",
+      "movieNmEn": "Alpha Dog",
+      "movieNmOg": "",
+      "showTm": "113",
+      "prdtYear": "2006",
+      "openDt": "20090129",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "범죄"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "닉 카사베츠",
+          "peopleNmEn": "Nick Cassavetes"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "벤 포스터",
+          "peopleNmEn": "Ben Foster",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "저스틴 팀버레이크",
+          "peopleNmEn": "Justin Timberlake",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "에밀 허쉬",
+          "peopleNmEn": "Emile Hirsch",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "안톤 옐친",
+          "peopleNmEn": "Anton Yelchin",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100123",
+          "companyNm": "(주)싸이더스",
+          "companyNmEn": "Sidus Corporation",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100366",
+          "companyNm": "(주)코랄픽쳐스",
+          "companyNmEn": "Coral Pictures",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2009-F12",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

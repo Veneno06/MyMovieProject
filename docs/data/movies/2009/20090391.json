@@ -1,0 +1,123 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20090391",
+      "movieNm": "업",
+      "movieNmEn": "Up",
+      "movieNmOg": "",
+      "showTm": "101",
+      "prdtYear": "2008",
+      "openDt": "20090729",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "애니메이션"
+        },
+        {
+          "genreNm": "코미디"
+        },
+        {
+          "genreNm": "어드벤처"
+        },
+        {
+          "genreNm": "가족"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "피트 닥터",
+          "peopleNmEn": "Pete Docter"
+        },
+        {
+          "peopleNm": "밥 피터슨",
+          "peopleNmEn": "Bob Peterson"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "에드워드 애스너",
+          "peopleNmEn": "Edward Asner",
+          "cast": "칼 프레드릭슨",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "밥 피터슨",
+          "peopleNmEn": "Bob Peterson",
+          "cast": "더그",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "이순재",
+          "peopleNmEn": "LEE Soon-jae",
+          "cast": "칼 프레드릭슨 (한국어 목소리)",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "더빙"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털 더빙"
+        },
+        {
+          "showTypeGroupNm": "3D",
+          "showTypeNm": "3D 디지털"
+        },
+        {
+          "showTypeGroupNm": "3D",
+          "showTypeNm": "3D 더빙"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20101412",
+          "companyNm": "월트 디즈니 픽쳐스",
+          "companyNmEn": "Walt Disney Pictures",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20104491",
+          "companyNm": "픽사 애니메이션 스튜디오",
+          "companyNmEn": "Pixar Animation Studios",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100616",
+          "companyNm": "한국소니픽쳐스릴리징브에나비스타영화㈜",
+          "companyNmEn": "Sony Pictures Realizing Buena Vista ",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100616",
+          "companyNm": "한국소니픽쳐스릴리징브에나비스타영화㈜",
+          "companyNmEn": "Sony Pictures Realizing Buena Vista ",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2009-F167",
+          "watchGradeNm": "전체관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

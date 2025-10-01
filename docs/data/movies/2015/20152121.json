@@ -1,0 +1,97 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20152121",
+      "movieNm": "리그레션",
+      "movieNmEn": "Regression",
+      "movieNmOg": "",
+      "showTm": "106",
+      "prdtYear": "2015",
+      "openDt": "20151015",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "스페인"
+        },
+        {
+          "nationNm": "캐나다"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "스릴러"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "알레한드로 아메나바르",
+          "peopleNmEn": "Alejandro Amenabar"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "엠마 왓슨",
+          "peopleNmEn": "Emma Watson",
+          "cast": "안젤라 그레이",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "에단 호크",
+          "peopleNmEn": "Ethan Hawke",
+          "cast": "브루스 케너",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "아론 애쉬모어",
+          "peopleNmEn": "Aaron Ashmore",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "데이빗 듈리스",
+          "peopleNmEn": "David Thewlis",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "데본 보스틱",
+          "peopleNmEn": "Devon Bostick",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "2013216",
+          "companyNm": "(주)박수엔터테인먼트",
+          "companyNmEn": "Boxoo Entertainment  ",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20137056",
+          "companyNm": "(주)수키픽쳐스",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2015-MF01151",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

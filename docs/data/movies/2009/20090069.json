@@ -1,0 +1,78 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20090069",
+      "movieNm": "프로스트 VS 닉슨",
+      "movieNmEn": "Frost/Nixon",
+      "movieNmOg": "",
+      "showTm": "122",
+      "prdtYear": "2008",
+      "openDt": "20090305",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "론 하워드",
+          "peopleNmEn": "Ron Howard"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "프랭크 란젤라",
+          "peopleNmEn": "Frank Langella",
+          "cast": "리차드 닉슨 ",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "마이클 쉰",
+          "peopleNmEn": "Michael Sheen",
+          "cast": "데이빗 프로스트 ",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20104147",
+          "companyNm": "이메이진엔터테인먼트",
+          "companyNmEn": "Imagine Entertainment",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100603",
+          "companyNm": "유니버설픽쳐스인터내셔널 코리아(유)",
+          "companyNmEn": "Universal Pictures International Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100603",
+          "companyNm": "유니버설픽쳐스인터내셔널 코리아(유)",
+          "companyNmEn": "Universal Pictures International Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2008-F454",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

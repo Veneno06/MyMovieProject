@@ -1,0 +1,88 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20123388",
+      "movieNm": "드래곤 아이즈",
+      "movieNmEn": "Dragon Eyes",
+      "movieNmOg": "",
+      "showTm": "92",
+      "prdtYear": "2012",
+      "openDt": "20121220",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "액션"
+        },
+        {
+          "genreNm": "범죄"
+        },
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "존 하이암스",
+          "peopleNmEn": "John Hyams"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "장 끌로드 반담",
+          "peopleNmEn": "Jean-Claude Van Damme",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "피터 웰러",
+          "peopleNmEn": "Peter Weller",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "크리스탈 만테콘",
+          "peopleNmEn": "Crystal Mantecon",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20112175",
+          "companyNm": "(주)소나무픽쳐스",
+          "companyNmEn": "Sonamu Pictures",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20112175",
+          "companyNm": "(주)소나무픽쳐스",
+          "companyNmEn": "Sonamu Pictures",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2012-F817",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

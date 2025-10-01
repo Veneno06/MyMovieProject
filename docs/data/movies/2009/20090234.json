@@ -1,0 +1,88 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20090234",
+      "movieNm": "천사와 악마",
+      "movieNmEn": "Angels & Demons",
+      "movieNmOg": "",
+      "showTm": "138",
+      "prdtYear": "2009",
+      "openDt": "20090514",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "미스터리"
+        },
+        {
+          "genreNm": "범죄"
+        },
+        {
+          "genreNm": "스릴러"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "론 하워드",
+          "peopleNmEn": "Ron Howard"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "톰 행크스",
+          "peopleNmEn": "Tom Hanks",
+          "cast": "로버트 랭던",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "이완 맥그리거",
+          "peopleNmEn": "Ewan McGregor",
+          "cast": "카를로 벤트레스카",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20102771",
+          "companyNm": "콜럼비아 픽쳐스 코포레이션",
+          "companyNmEn": "Columbia Pictures Corporation",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100616",
+          "companyNm": "한국소니픽쳐스릴리징브에나비스타영화㈜",
+          "companyNmEn": "Sony Pictures Realizing Buena Vista ",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100616",
+          "companyNm": "한국소니픽쳐스릴리징브에나비스타영화㈜",
+          "companyNmEn": "Sony Pictures Realizing Buena Vista ",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2009-F133",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

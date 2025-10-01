@@ -1,0 +1,91 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20130443",
+      "movieNm": "페인리스",
+      "movieNmEn": "Painless",
+      "movieNmOg": "Insensibles",
+      "showTm": "105",
+      "prdtYear": "2012",
+      "openDt": "20130808",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "스페인"
+        },
+        {
+          "nationNm": "프랑스"
+        },
+        {
+          "nationNm": "포르투갈"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "공포(호러)"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "후앙 카를로스 메디나",
+          "peopleNmEn": "Juan Carlos Medina"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "알렉스 브렌데뮬",
+          "peopleNmEn": "Alex Brendemuhl",
+          "cast": "",
+          "castEn": "David"
+        },
+        {
+          "peopleNm": "토마스 레마르쿼즈",
+          "peopleNmEn": "Tomas Lemarquis",
+          "cast": "베르카노",
+          "castEn": "Berkano"
+        },
+        {
+          "peopleNm": "데렉 드 린트",
+          "peopleNmEn": "Derek De Lint",
+          "cast": "",
+          "castEn": "Dr. Holzmann"
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20121879",
+          "companyNm": "씨네그루(주)다우기술",
+          "companyNmEn": "Daou Tech Inc.",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20121879",
+          "companyNm": "씨네그루(주)다우기술",
+          "companyNmEn": "Daou Tech Inc.",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2013-MF00381",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20100764",
+      "movieNm": "엑스페리먼트",
+      "movieNmEn": "The Experiment",
+      "movieNmOg": "The Experiment",
+      "showTm": "95",
+      "prdtYear": "2010",
+      "openDt": "20100811",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "스릴러"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "폴 쉐어링",
+          "peopleNmEn": "Paul Scheuring"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "애드리언 브로디",
+          "peopleNmEn": "Adrien Brody",
+          "cast": "트래비스 ",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "포레스트 휘테커",
+          "peopleNmEn": "Forest Whitaker",
+          "cast": "배리스 ",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "캠 지갠뎃",
+          "peopleNmEn": "Cam Gigandet",
+          "cast": "채즈 ",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20112117",
+          "companyNm": "인페르노 디스트리뷰션",
+          "companyNmEn": "Inferno Distribution",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20101138",
+          "companyNm": "(주)새인컴퍼니",
+          "companyNmEn": "SANE COMPANY Inc.",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20101138",
+          "companyNm": "(주)새인컴퍼니",
+          "companyNmEn": "SANE COMPANY Inc.",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2010-F304 ",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

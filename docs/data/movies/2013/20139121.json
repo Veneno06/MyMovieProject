@@ -1,0 +1,91 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20139121",
+      "movieNm": "인 더 하우스",
+      "movieNmEn": "In the House",
+      "movieNmOg": "Dans la Maison",
+      "showTm": "104",
+      "prdtYear": "2012",
+      "openDt": "20130704",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "프랑스"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "스릴러"
+        },
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "프랑수아 오종",
+          "peopleNmEn": "Francois Ozon"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "파브리스 루치니",
+          "peopleNmEn": "Fabrice Luchini",
+          "cast": "제르망",
+          "castEn": "Germain"
+        },
+        {
+          "peopleNm": "크리스틴 스콧 토마스",
+          "peopleNmEn": "Kristin Scott Thomas",
+          "cast": "쟝",
+          "castEn": "Jeanne Germain"
+        },
+        {
+          "peopleNm": "에른스트 움하우어",
+          "peopleNmEn": "Ernst Umhauer",
+          "cast": "클로드",
+          "castEn": "Claude Garcia"
+        },
+        {
+          "peopleNm": "엠마누엘 자이그너",
+          "peopleNmEn": "Emmanuelle Seigner",
+          "cast": "에스더",
+          "castEn": "Esther Artole"
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20061718",
+          "companyNm": "찬란",
+          "companyNmEn": "Challan Film",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20061718",
+          "companyNm": "찬란",
+          "companyNmEn": "Challan Film",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2013-MF00264 ",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

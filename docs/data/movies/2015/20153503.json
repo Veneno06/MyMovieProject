@@ -1,0 +1,66 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20153503",
+      "movieNm": "시티즌포",
+      "movieNmEn": "Citizenfour",
+      "movieNmOg": "",
+      "showTm": "113",
+      "prdtYear": "2014",
+      "openDt": "20151119",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        },
+        {
+          "nationNm": "독일"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "다큐멘터리"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "로라 포이트러스",
+          "peopleNmEn": "Laura Poitras"
+        }
+      ],
+      "actors": [],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "2014994",
+          "companyNm": "에스디시코리아 주식회사",
+          "companyNmEn": "SDCKOREA Inc.",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "2014994",
+          "companyNm": "에스디시코리아 주식회사",
+          "companyNmEn": "SDCKOREA Inc.",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2015-MF01190 ",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

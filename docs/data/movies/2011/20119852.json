@@ -1,0 +1,85 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20119852",
+      "movieNm": "한나",
+      "movieNmEn": "Hanna",
+      "movieNmOg": "",
+      "showTm": "110",
+      "prdtYear": "2011",
+      "openDt": "20110414",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "액션"
+        },
+        {
+          "genreNm": "스릴러"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "조 라이트",
+          "peopleNmEn": "Joe Wright"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "시얼샤 로넌",
+          "peopleNmEn": "Saoirse Ronan",
+          "cast": "한나",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "케이트 블란쳇",
+          "peopleNmEn": "Cate Blanchett",
+          "cast": "마리사",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "에릭 바나",
+          "peopleNmEn": "Eric Bana",
+          "cast": "에릭",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100616",
+          "companyNm": "한국소니픽쳐스릴리징브에나비스타영화㈜",
+          "companyNmEn": "Sony Pictures Realizing Buena Vista ",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100616",
+          "companyNm": "한국소니픽쳐스릴리징브에나비스타영화㈜",
+          "companyNmEn": "Sony Pictures Realizing Buena Vista ",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2011-F130",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

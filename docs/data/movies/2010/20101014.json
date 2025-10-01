@@ -1,0 +1,124 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20101014",
+      "movieNm": "워리어스 웨이",
+      "movieNmEn": "Warrior's Way",
+      "movieNmOg": "The Warrior's Way",
+      "showTm": "100",
+      "prdtYear": "2010",
+      "openDt": "20101201",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "액션"
+        },
+        {
+          "genreNm": "판타지"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "이승무",
+          "peopleNmEn": "LEE Seung-moo"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "장동건",
+          "peopleNmEn": "JANG Dong-gun",
+          "cast": "양",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "케이트 보스워스",
+          "peopleNmEn": "Kate Bosworth",
+          "cast": "린",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "제프리 러쉬",
+          "peopleNmEn": "Geoffrey Rush",
+          "cast": "론",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "대니 휴스턴",
+          "peopleNmEn": "Danny Huston",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20112284",
+          "companyNm": "컬쳐 언플러그드 스튜디오",
+          "companyNmEn": "CULTURE UNPLUGGED STUDIOS",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100295",
+          "companyNm": "(주)에스씨에스엔터테인먼트",
+          "companyNmEn": "SCS Entertainment Inc.",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100869",
+          "companyNm": "에스케이텔레콤(주)",
+          "companyNmEn": "SK Telecom",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100869",
+          "companyNm": "에스케이텔레콤(주)",
+          "companyNmEn": "SK Telecom",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2010-F467",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": [
+        {
+          "peopleNm": "유은정",
+          "peopleNmEn": "YOO Eun-jung",
+          "staffRoleNm": "프로듀서"
+        },
+        {
+          "peopleNm": "남종우",
+          "peopleNmEn": "STEVEN NAM",
+          "staffRoleNm": "프로듀서"
+        },
+        {
+          "peopleNm": "김우형",
+          "peopleNmEn": "KIM Wu-hyeong",
+          "staffRoleNm": "촬영"
+        },
+        {
+          "peopleNm": "이주익",
+          "peopleNmEn": "LEE Joo-ick",
+          "staffRoleNm": "프로듀서"
+        }
+      ]
+    }
+  }
+}

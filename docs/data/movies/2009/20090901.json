@@ -1,0 +1,87 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20090901",
+      "movieNm": "시네도키, 뉴욕",
+      "movieNmEn": "Synecdoche, New York",
+      "movieNmOg": "Synecdoche, New York",
+      "showTm": "123",
+      "prdtYear": "2008",
+      "openDt": "20100107",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "코미디"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "찰리 카우프만",
+          "peopleNmEn": "Charlie Kaufman"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "캐서린 키너",
+          "peopleNmEn": "Catherine Keener",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "필립 세이모어 호프만",
+          "peopleNmEn": "Philip Seymour Hoffman",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "새디 골드스테인",
+          "peopleNmEn": "Sadie Goldstein",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "톰 누난",
+          "peopleNmEn": "Tom Noonan",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100209",
+          "companyNm": "(주)스폰지이엔티",
+          "companyNmEn": "Sponge Ent. Inc.",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100209",
+          "companyNm": "(주)스폰지이엔티",
+          "companyNmEn": "Sponge Ent. Inc.",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2010-F3",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

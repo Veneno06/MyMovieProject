@@ -1,0 +1,110 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20135001",
+      "movieNm": "몬스터 대학교",
+      "movieNmEn": "Monsters University",
+      "movieNmOg": "",
+      "showTm": "110",
+      "prdtYear": "2013",
+      "openDt": "20130912",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "애니메이션"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "댄 스캔론",
+          "peopleNmEn": "Dan Scanlon"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "빌리 크리스탈",
+          "peopleNmEn": "Billy Crystal",
+          "cast": "",
+          "castEn": "마이크"
+        },
+        {
+          "peopleNm": "존 굿맨",
+          "peopleNmEn": "John Goodman",
+          "cast": "",
+          "castEn": "설리"
+        },
+        {
+          "peopleNm": "스티브 부세미",
+          "peopleNmEn": "Steve Buscemi",
+          "cast": "",
+          "castEn": "랜달 보그스"
+        },
+        {
+          "peopleNm": "롭 리글",
+          "peopleNmEn": "Rob Riggle",
+          "cast": "",
+          "castEn": "케니"
+        },
+        {
+          "peopleNm": "피터 손",
+          "peopleNmEn": "Peter SOHN",
+          "cast": "스퀴시",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털 더빙"
+        },
+        {
+          "showTypeGroupNm": "3D",
+          "showTypeNm": "3D 디지털"
+        },
+        {
+          "showTypeGroupNm": "3D",
+          "showTypeNm": "3D 더빙"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20125636",
+          "companyNm": "소니픽쳐스릴리징월트디즈니스튜디오스코리아(주)",
+          "companyNmEn": "SONY PICTURES RELEASING WALT DISNEY STUDIOS (KOREA) INC.",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20125636",
+          "companyNm": "소니픽쳐스릴리징월트디즈니스튜디오스코리아(주)",
+          "companyNmEn": "SONY PICTURES RELEASING WALT DISNEY STUDIOS (KOREA) INC.",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2013-MF00416 ",
+          "watchGradeNm": "전체관람가"
+        },
+        {
+          "auditNo": "2013-MF00415 ",
+          "watchGradeNm": "전체관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

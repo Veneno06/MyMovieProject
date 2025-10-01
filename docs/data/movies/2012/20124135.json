@@ -1,0 +1,76 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20124135",
+      "movieNm": "도망자",
+      "movieNmEn": "The Prey",
+      "movieNmOg": "La proie",
+      "showTm": "100",
+      "prdtYear": "2011",
+      "openDt": "20120126",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "프랑스"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "스릴러"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "에릭 바레트",
+          "peopleNmEn": "Eric Valette"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "알베르 뒤퐁텔",
+          "peopleNmEn": "Albert Dupontel",
+          "cast": "프랭크 아드리엔 ",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "앨리스 태그리오니",
+          "peopleNmEn": "Alice Taglioni",
+          "cast": "클레어 린네",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20101135",
+          "companyNm": "주식회사 마운틴픽쳐스",
+          "companyNmEn": "Mountain Pictures Co.,Ltd",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20112244",
+          "companyNm": "(주)포커스엔터테인먼트",
+          "companyNmEn": "FOCUS Entertainment Co., Ltd.",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2011-F758",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

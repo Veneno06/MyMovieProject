@@ -1,0 +1,84 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20090251",
+      "movieNm": "보이 A",
+      "movieNmEn": "Boy A",
+      "movieNmOg": "",
+      "showTm": "100",
+      "prdtYear": "2007",
+      "openDt": "20090521",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "영국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "멜로/로맨스"
+        },
+        {
+          "genreNm": "범죄"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "존 크로울리",
+          "peopleNmEn": "John Crowley"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "앤드류 가필드",
+          "peopleNmEn": "Andrew Garfield",
+          "cast": "잭 버리지",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "피터 뮬란",
+          "peopleNmEn": "Peter Mullan",
+          "cast": "테리",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20103544",
+          "companyNm": "필름포",
+          "companyNmEn": "FilmFour",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100888",
+          "companyNm": "(주)영화사구안",
+          "companyNmEn": "",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100419",
+          "companyNm": "데이지엔터테인먼트",
+          "companyNmEn": "Daisy Entertainment ",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2009-F144",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

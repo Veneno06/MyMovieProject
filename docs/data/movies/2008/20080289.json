@@ -1,0 +1,73 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20080289",
+      "movieNm": "비투스",
+      "movieNmEn": "Vitus",
+      "movieNmOg": "",
+      "showTm": "121",
+      "prdtYear": "2006",
+      "openDt": "20080409",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "스위스"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "판타지"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "프레디 M 뮤러",
+          "peopleNmEn": "Fredi M. Murer"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "테오 게오르규",
+          "peopleNmEn": "Teo Gheorghiu",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20101105",
+          "companyNm": "이미지팩토리",
+          "companyNmEn": "",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20101105",
+          "companyNm": "이미지팩토리",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2008-F29",
+          "watchGradeNm": "전체관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

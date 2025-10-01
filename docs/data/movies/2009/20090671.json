@@ -1,0 +1,91 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20090671",
+      "movieNm": "굿바이 초콜릿",
+      "movieNmEn": "Meet Bill",
+      "movieNmOg": "",
+      "showTm": "86",
+      "prdtYear": "2007",
+      "openDt": "20091015",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "코미디"
+        },
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "버니 골드먼",
+          "peopleNmEn": "Bernie Goldmann"
+        },
+        {
+          "peopleNm": "멜리사 월렉",
+          "peopleNmEn": "Melisa Wallack"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "아론 에크하트",
+          "peopleNmEn": "Aaron Eckhart",
+          "cast": "빌",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "제시카 알바",
+          "peopleNmEn": "Jessica Alba",
+          "cast": "루시",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "엘리자베스 뱅크스",
+          "peopleNmEn": "Elizabeth Banks",
+          "cast": "제스",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20103960",
+          "companyNm": "그리네스트리트필름",
+          "companyNmEn": "Greene Street Films Inc.",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20101095",
+          "companyNm": "실버스푼",
+          "companyNmEn": "",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100084",
+          "companyNm": "㈜코리아스크린",
+          "companyNmEn": "Korea Screen Inc.",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2009-F350",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

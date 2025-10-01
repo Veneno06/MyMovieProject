@@ -1,0 +1,88 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20135462",
+      "movieNm": "글로리아",
+      "movieNmEn": "Gloria",
+      "movieNmOg": "",
+      "showTm": "109",
+      "prdtYear": "2013",
+      "openDt": "20131205",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "칠레"
+        },
+        {
+          "nationNm": "스페인"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "코미디"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "세바스찬 렐리오",
+          "peopleNmEn": "Sebastian Lelio"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "폴리나 가르시아",
+          "peopleNmEn": "Paulina Garcia",
+          "cast": "",
+          "castEn": "Gloria"
+        },
+        {
+          "peopleNm": "세르지오 헤르난데즈",
+          "peopleNmEn": "Sergio Hernandez",
+          "cast": "",
+          "castEn": "Rodolfo"
+        },
+        {
+          "peopleNm": "디에고 폰테킬라",
+          "peopleNmEn": "Diego Fontecilla",
+          "cast": "",
+          "castEn": "Pedro"
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100285",
+          "companyNm": "판씨네마(주)",
+          "companyNmEn": "Pancinema Corp.",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100285",
+          "companyNm": "판씨네마(주)",
+          "companyNmEn": "Pancinema Corp.",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2013-MF00841",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

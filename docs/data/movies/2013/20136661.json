@@ -1,0 +1,80 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20136661",
+      "movieNm": "프랑스 다이어리",
+      "movieNmEn": "Journal de France",
+      "movieNmOg": "",
+      "showTm": "101",
+      "prdtYear": "2012",
+      "openDt": "20130606",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "프랑스"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "다큐멘터리"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "레이몽 드파르동",
+          "peopleNmEn": "Raymond Depardon"
+        },
+        {
+          "peopleNm": "클로딘 누가레",
+          "peopleNmEn": "Claudine Nougaret"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "레이몽 드파르동",
+          "peopleNmEn": "Raymond Depardon",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "클로딘 누가레",
+          "peopleNmEn": "Claudine Nougaret",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20061718",
+          "companyNm": "찬란",
+          "companyNmEn": "Challan Film",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20061718",
+          "companyNm": "찬란",
+          "companyNmEn": "Challan Film",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2013-MF00064",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

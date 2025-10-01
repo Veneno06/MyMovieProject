@@ -1,0 +1,368 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20100202",
+      "movieNm": "하하하",
+      "movieNmEn": "Hahaha",
+      "movieNmOg": "",
+      "showTm": "116",
+      "prdtYear": "2010",
+      "openDt": "20100505",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "한국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "멜로/로맨스"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "홍상수",
+          "peopleNmEn": "HONG Sang-soo"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "김상경",
+          "peopleNmEn": "KIM Sang-kyung",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "유준상",
+          "peopleNmEn": "YU Jun-sang",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "문소리",
+          "peopleNmEn": "MOON So-ri",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "예지원",
+          "peopleNmEn": "YEA Ji-won",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "김강우",
+          "peopleNmEn": "KIM Kang-woo",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "윤여정",
+          "peopleNmEn": "YOUN Yuh-jung",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "기주봉",
+          "peopleNmEn": "KI Joo-bong",
+          "cast": "통영 향토 역사관 관장 ",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "김규리",
+          "peopleNmEn": "KIM Gyu-ri",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "김영호",
+          "peopleNmEn": "KIM Young-ho",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "이상철",
+          "peopleNmEn": "",
+          "cast": "큰아버지",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털 영문자막"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100332",
+          "companyNm": "(주)영화제작전원사 ",
+          "companyNmEn": "Jeonwonsa Film Co.",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100209",
+          "companyNm": "(주)스폰지이엔티",
+          "companyNmEn": "Sponge Ent. Inc.",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100851",
+          "companyNm": "(주)화인컷",
+          "companyNmEn": "Finecut Co., Ltd.",
+          "companyPartNm": "해외세일즈사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2010-F117",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": [
+        {
+          "peopleNm": "홍상수",
+          "peopleNmEn": "HONG Sang-soo",
+          "staffRoleNm": "시나리오(각본)"
+        },
+        {
+          "peopleNm": "김수정",
+          "peopleNmEn": "",
+          "staffRoleNm": "제작팀"
+        },
+        {
+          "peopleNm": "김경희",
+          "peopleNmEn": "KIM Kyoung-hee",
+          "staffRoleNm": "프로듀서"
+        },
+        {
+          "peopleNm": "김용주",
+          "peopleNmEn": "Kim Yong-joo",
+          "staffRoleNm": "사운드"
+        },
+        {
+          "peopleNm": "정용진",
+          "peopleNmEn": "JEONG Yong-jin",
+          "staffRoleNm": "작사/작곡/편곡"
+        },
+        {
+          "peopleNm": "위정윤",
+          "peopleNmEn": "WE Zong-yun",
+          "staffRoleNm": "음악진행"
+        },
+        {
+          "peopleNm": "정용진",
+          "peopleNmEn": "JEONG Yong-jin",
+          "staffRoleNm": "음악"
+        },
+        {
+          "peopleNm": "이세훈",
+          "peopleNmEn": "LEE Sae-hoon",
+          "staffRoleNm": "편집팀"
+        },
+        {
+          "peopleNm": "함성원",
+          "peopleNmEn": "HAM Sung-won",
+          "staffRoleNm": "편집"
+        },
+        {
+          "peopleNm": "윤상일",
+          "peopleNmEn": "",
+          "staffRoleNm": "동시녹음팀"
+        },
+        {
+          "peopleNm": "송예진",
+          "peopleNmEn": "SONG Ye-jin",
+          "staffRoleNm": "동시녹음"
+        },
+        {
+          "peopleNm": "유금정",
+          "peopleNmEn": "",
+          "staffRoleNm": "조명팀"
+        },
+        {
+          "peopleNm": "이의행",
+          "peopleNmEn": "LEE Ui-haeng",
+          "staffRoleNm": "조명"
+        },
+        {
+          "peopleNm": "지윤정",
+          "peopleNmEn": "JI Yun-jeong",
+          "staffRoleNm": "촬영팀"
+        },
+        {
+          "peopleNm": "박홍열",
+          "peopleNmEn": "PARK Hongyeol",
+          "staffRoleNm": "촬영"
+        },
+        {
+          "peopleNm": "김민정",
+          "peopleNmEn": "",
+          "staffRoleNm": "스크립터"
+        },
+        {
+          "peopleNm": "손은선",
+          "peopleNmEn": "EUN-SUN SON",
+          "staffRoleNm": "연출팀"
+        },
+        {
+          "peopleNm": "복성원",
+          "peopleNmEn": "",
+          "staffRoleNm": "연출팀"
+        },
+        {
+          "peopleNm": "이광국",
+          "peopleNmEn": "LEE Kwang-kuk",
+          "staffRoleNm": "조감독"
+        },
+        {
+          "peopleNm": "유리나",
+          "peopleNmEn": "",
+          "staffRoleNm": "제작팀"
+        },
+        {
+          "peopleNm": "조영호",
+          "peopleNmEn": "JO Young-ho",
+          "staffRoleNm": "현상팀"
+        },
+        {
+          "peopleNm": "신상준",
+          "peopleNmEn": "SIN Sang-joon",
+          "staffRoleNm": "현상팀"
+        },
+        {
+          "peopleNm": "서충환",
+          "peopleNmEn": "SEO Chung-hwan",
+          "staffRoleNm": "아날로그색보정"
+        },
+        {
+          "peopleNm": "박지웅",
+          "peopleNmEn": "PARK Ji-woong",
+          "staffRoleNm": "아날로그색보정"
+        },
+        {
+          "peopleNm": "박지원",
+          "peopleNmEn": "",
+          "staffRoleNm": "현상팀"
+        },
+        {
+          "peopleNm": "안정권",
+          "peopleNmEn": "",
+          "staffRoleNm": "현상팀"
+        },
+        {
+          "peopleNm": "김동기",
+          "peopleNmEn": "KIM Dong-gi",
+          "staffRoleNm": "현상팀"
+        },
+        {
+          "peopleNm": "서동섭",
+          "peopleNmEn": "",
+          "staffRoleNm": "현상팀"
+        },
+        {
+          "peopleNm": "김규성",
+          "peopleNmEn": "KIM Kyu-sung",
+          "staffRoleNm": "현상팀"
+        },
+        {
+          "peopleNm": "우순도",
+          "peopleNmEn": "",
+          "staffRoleNm": "현상팀"
+        },
+        {
+          "peopleNm": "우순도",
+          "peopleNmEn": "",
+          "staffRoleNm": "현상팀"
+        },
+        {
+          "peopleNm": "장원석",
+          "peopleNmEn": "JANG Won-seok",
+          "staffRoleNm": "현상팀"
+        },
+        {
+          "peopleNm": "정행숙",
+          "peopleNmEn": "JUNG Haeng-sook",
+          "staffRoleNm": "현상팀"
+        },
+        {
+          "peopleNm": "윤광병",
+          "peopleNmEn": "",
+          "staffRoleNm": "현상팀"
+        },
+        {
+          "peopleNm": "권병규",
+          "peopleNmEn": "KWON Byung-kyu",
+          "staffRoleNm": "현상팀"
+        },
+        {
+          "peopleNm": "김지훈",
+          "peopleNmEn": "KIM Ji-hun",
+          "staffRoleNm": "현상팀"
+        },
+        {
+          "peopleNm": "이천규",
+          "peopleNmEn": "LEE Chun-kyu",
+          "staffRoleNm": "현상팀"
+        },
+        {
+          "peopleNm": "정현진",
+          "peopleNmEn": "",
+          "staffRoleNm": "DI팀"
+        },
+        {
+          "peopleNm": "한대광",
+          "peopleNmEn": "HAN Dae-kwang",
+          "staffRoleNm": "DI팀"
+        },
+        {
+          "peopleNm": "주영견",
+          "peopleNmEn": "JU Young-kyun",
+          "staffRoleNm": "DI팀"
+        },
+        {
+          "peopleNm": "류연",
+          "peopleNmEn": "RYU Yeon",
+          "staffRoleNm": "DI팀"
+        },
+        {
+          "peopleNm": "권윤경",
+          "peopleNmEn": "KWON Youn-kyoung",
+          "staffRoleNm": "DI팀"
+        },
+        {
+          "peopleNm": "윤명순",
+          "peopleNmEn": "YOON Myung-soon",
+          "staffRoleNm": "텔레시네"
+        },
+        {
+          "peopleNm": "서민부",
+          "peopleNmEn": "SEO Min-bu",
+          "staffRoleNm": "DI팀"
+        },
+        {
+          "peopleNm": "박란",
+          "peopleNmEn": "",
+          "staffRoleNm": "DI팀"
+        },
+        {
+          "peopleNm": "류인영",
+          "peopleNmEn": "",
+          "staffRoleNm": "DI팀"
+        }
+      ]
+    }
+  }
+}

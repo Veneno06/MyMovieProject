@@ -1,0 +1,76 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20110255",
+      "movieNm": "레드라인",
+      "movieNmEn": "Redline",
+      "movieNmOg": "",
+      "showTm": "102",
+      "prdtYear": "2010",
+      "openDt": "20110512",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "일본"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "애니메이션"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "코이케 타케시",
+          "peopleNmEn": "Takeshi Koike"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "아오이 유우",
+          "peopleNmEn": "Yu Aoi",
+          "cast": "소노시",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "기무라 다쿠야",
+          "peopleNmEn": "Kimura Takuya ",
+          "cast": "JP",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20101087",
+          "companyNm": "에이원엔터테인먼트",
+          "companyNmEn": "",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20122502",
+          "companyNm": "(주)아인스M&M",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2011-F197",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

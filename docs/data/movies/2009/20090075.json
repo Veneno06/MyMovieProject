@@ -1,0 +1,546 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20090075",
+      "movieNm": "히말라야, 바람이 머무는 곳",
+      "movieNmEn": "Himalaya, Where The Wind Dwells",
+      "movieNmOg": "",
+      "showTm": "96",
+      "prdtYear": "2008",
+      "openDt": "20090611",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "한국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "전수일",
+          "peopleNmEn": "JEON Soo-il"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "최민식",
+          "peopleNmEn": "CHOI Min-shik",
+          "cast": "최",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "치링 키펄",
+          "peopleNmEn": "",
+          "cast": "페마",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100269",
+          "companyNm": "쇼이스트(주)",
+          "companyNmEn": "ShowEast Co., Ltd.",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100018",
+          "companyNm": "(주)동녘필름",
+          "companyNmEn": "Dongnyuk Film",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20062587",
+          "companyNm": "한국예술영화관협회 ",
+          "companyNmEn": "",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100269",
+          "companyNm": "쇼이스트(주)",
+          "companyNmEn": "ShowEast Co., Ltd.",
+          "companyPartNm": "제공"
+        },
+        {
+          "companyCd": "20062453",
+          "companyNm": "유미디어",
+          "companyNmEn": "UMEDIA",
+          "companyPartNm": "해외세일즈사"
+        },
+        {
+          "companyCd": "20110446",
+          "companyNm": "(사)부산영상위원회",
+          "companyNmEn": "Busan Film Commission",
+          "companyPartNm": "제작서비스-촬영"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2009-F177",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": [
+        {
+          "peopleNm": "이성진",
+          "peopleNmEn": "LEE Seong-jin",
+          "staffRoleNm": "투자"
+        },
+        {
+          "peopleNm": "서효승",
+          "peopleNmEn": "SEO Hyo-seong",
+          "staffRoleNm": "제작"
+        },
+        {
+          "peopleNm": "김동주",
+          "peopleNmEn": "KIM Dong-joo",
+          "staffRoleNm": "제작"
+        },
+        {
+          "peopleNm": "전수일",
+          "peopleNmEn": "JEON Soo-il",
+          "staffRoleNm": "제작"
+        },
+        {
+          "peopleNm": "김륜희",
+          "peopleNmEn": "KIM Ryun-hui",
+          "staffRoleNm": "프로듀서"
+        },
+        {
+          "peopleNm": "한호정",
+          "peopleNmEn": "",
+          "staffRoleNm": "라인프로듀서"
+        },
+        {
+          "peopleNm": "서용우",
+          "peopleNmEn": "SEO Yong-woo",
+          "staffRoleNm": "라인프로듀서"
+        },
+        {
+          "peopleNm": "김완",
+          "peopleNmEn": "",
+          "staffRoleNm": "제작팀"
+        },
+        {
+          "peopleNm": "윤석동",
+          "peopleNmEn": "",
+          "staffRoleNm": "제작팀"
+        },
+        {
+          "peopleNm": "김정렬",
+          "peopleNmEn": "KIM Jung-yeol",
+          "staffRoleNm": "제작팀"
+        },
+        {
+          "peopleNm": "정다혜",
+          "peopleNmEn": "",
+          "staffRoleNm": "제작회계"
+        },
+        {
+          "peopleNm": "권선영",
+          "peopleNmEn": "KWON Sun-young",
+          "staffRoleNm": "제작회계"
+        },
+        {
+          "peopleNm": "전수일",
+          "peopleNmEn": "JEON Soo-il",
+          "staffRoleNm": "시나리오(각본)"
+        },
+        {
+          "peopleNm": "김전한",
+          "peopleNmEn": "KIM Jeon-han",
+          "staffRoleNm": "윤색"
+        },
+        {
+          "peopleNm": "박제욱",
+          "peopleNmEn": "PARK Je-wook",
+          "staffRoleNm": "조감독"
+        },
+        {
+          "peopleNm": "김준형",
+          "peopleNmEn": "KIM Jun-hyeong",
+          "staffRoleNm": "연출팀"
+        },
+        {
+          "peopleNm": "김우영",
+          "peopleNmEn": "",
+          "staffRoleNm": "연출팀"
+        },
+        {
+          "peopleNm": "김민지",
+          "peopleNmEn": "",
+          "staffRoleNm": "스크립터"
+        },
+        {
+          "peopleNm": "김성태",
+          "peopleNmEn": "KIM Sung-tai",
+          "staffRoleNm": "촬영"
+        },
+        {
+          "peopleNm": "김수현",
+          "peopleNmEn": "",
+          "staffRoleNm": "촬영팀"
+        },
+        {
+          "peopleNm": "남영우",
+          "peopleNmEn": "",
+          "staffRoleNm": "촬영팀"
+        },
+        {
+          "peopleNm": "박정훈",
+          "peopleNmEn": "PARK Jung-hoon",
+          "staffRoleNm": "촬영팀"
+        },
+        {
+          "peopleNm": "김홍기",
+          "peopleNmEn": "KIM Hong-ki",
+          "staffRoleNm": "촬영팀"
+        },
+        {
+          "peopleNm": "이준식",
+          "peopleNmEn": "Lee Jun-sic",
+          "staffRoleNm": "조명"
+        },
+        {
+          "peopleNm": "김창훈",
+          "peopleNmEn": "",
+          "staffRoleNm": "조명팀"
+        },
+        {
+          "peopleNm": "이상훈",
+          "peopleNmEn": "",
+          "staffRoleNm": "조명팀"
+        },
+        {
+          "peopleNm": "김대열",
+          "peopleNmEn": "",
+          "staffRoleNm": "조명팀"
+        },
+        {
+          "peopleNm": "김학도",
+          "peopleNmEn": "",
+          "staffRoleNm": "조명팀"
+        },
+        {
+          "peopleNm": "김문준",
+          "peopleNmEn": "",
+          "staffRoleNm": "조명팀"
+        },
+        {
+          "peopleNm": "조윤아",
+          "peopleNmEn": "",
+          "staffRoleNm": "미술/프로덕션 디자인"
+        },
+        {
+          "peopleNm": "김주현",
+          "peopleNmEn": "Kim Zoo-hyun",
+          "staffRoleNm": "아트디렉터"
+        },
+        {
+          "peopleNm": "양영진",
+          "peopleNmEn": "",
+          "staffRoleNm": "미술팀"
+        },
+        {
+          "peopleNm": "이상목",
+          "peopleNmEn": "",
+          "staffRoleNm": "미술팀"
+        },
+        {
+          "peopleNm": "최영희",
+          "peopleNmEn": "",
+          "staffRoleNm": "동시녹음"
+        },
+        {
+          "peopleNm": "김신용",
+          "peopleNmEn": "KIM Sin-yong",
+          "staffRoleNm": "동시녹음"
+        },
+        {
+          "peopleNm": "김준택",
+          "peopleNmEn": "",
+          "staffRoleNm": "붐오퍼레이터"
+        },
+        {
+          "peopleNm": "최민호",
+          "peopleNmEn": "CHOI Min-ho",
+          "staffRoleNm": "붐오퍼레이터"
+        },
+        {
+          "peopleNm": "한민정",
+          "peopleNmEn": "HAN Min-jung",
+          "staffRoleNm": "의상"
+        },
+        {
+          "peopleNm": "김슬아",
+          "peopleNmEn": "",
+          "staffRoleNm": "의상팀"
+        },
+        {
+          "peopleNm": "한민정",
+          "peopleNmEn": "HAN Min-jung",
+          "staffRoleNm": "분장"
+        },
+        {
+          "peopleNm": "한진성",
+          "peopleNmEn": "",
+          "staffRoleNm": "분장팀"
+        },
+        {
+          "peopleNm": "김인수",
+          "peopleNmEn": "KIM In-soo",
+          "staffRoleNm": "편집"
+        },
+        {
+          "peopleNm": "노봉서",
+          "peopleNmEn": "NOH Bong-seo",
+          "staffRoleNm": "편집"
+        },
+        {
+          "peopleNm": "정진희",
+          "peopleNmEn": "JUNG Jin-hee",
+          "staffRoleNm": "네가편집"
+        },
+        {
+          "peopleNm": "이윤희",
+          "peopleNmEn": "LEE Yun-hee",
+          "staffRoleNm": "네가편집"
+        },
+        {
+          "peopleNm": "김형석",
+          "peopleNmEn": "KIM Hyeong-seok",
+          "staffRoleNm": "음악"
+        },
+        {
+          "peopleNm": "장준선",
+          "peopleNmEn": "",
+          "staffRoleNm": "음악진행"
+        },
+        {
+          "peopleNm": "이승철",
+          "peopleNmEn": "LEE Seung-chul",
+          "staffRoleNm": "사운드"
+        },
+        {
+          "peopleNm": "한명환",
+          "peopleNmEn": "HAN Myung-hwan",
+          "staffRoleNm": "사운드믹싱"
+        },
+        {
+          "peopleNm": "백여진",
+          "peopleNmEn": "",
+          "staffRoleNm": "대사"
+        },
+        {
+          "peopleNm": "정진영",
+          "peopleNmEn": "",
+          "staffRoleNm": "사운드효과"
+        },
+        {
+          "peopleNm": "남지은",
+          "peopleNmEn": "NAM Ji-eun",
+          "staffRoleNm": "사운드효과"
+        },
+        {
+          "peopleNm": "송윤재",
+          "peopleNmEn": "SONG Yoon-jae",
+          "staffRoleNm": "사운드효과"
+        },
+        {
+          "peopleNm": "김용국",
+          "peopleNmEn": "KIM Yong-kook",
+          "staffRoleNm": "폴리"
+        },
+        {
+          "peopleNm": "박기영",
+          "peopleNmEn": "Park Ki-Young/PARK Gi-yeong",
+          "staffRoleNm": "사운드팀"
+        },
+        {
+          "peopleNm": "조인숙",
+          "peopleNmEn": "CHO In-sook",
+          "staffRoleNm": "기획"
+        },
+        {
+          "peopleNm": "안광남",
+          "peopleNmEn": "",
+          "staffRoleNm": "운송"
+        },
+        {
+          "peopleNm": "박민철",
+          "peopleNmEn": "",
+          "staffRoleNm": "현상팀"
+        },
+        {
+          "peopleNm": "김성국",
+          "peopleNmEn": "KIM Seong-kuk",
+          "staffRoleNm": "현상팀"
+        },
+        {
+          "peopleNm": "김상휘",
+          "peopleNmEn": "KIM Sang-hui",
+          "staffRoleNm": "현상팀"
+        },
+        {
+          "peopleNm": "최광진",
+          "peopleNmEn": "CHOI Kwang-jin",
+          "staffRoleNm": "현상팀"
+        },
+        {
+          "peopleNm": "채동겸",
+          "peopleNmEn": "CHAE Dong-kyeom",
+          "staffRoleNm": "현상팀"
+        },
+        {
+          "peopleNm": "김경현",
+          "peopleNmEn": "KIM Kyung-hyun",
+          "staffRoleNm": "현상팀"
+        },
+        {
+          "peopleNm": "권오기",
+          "peopleNmEn": "KWON O-ki",
+          "staffRoleNm": "현상팀"
+        },
+        {
+          "peopleNm": "주성충",
+          "peopleNmEn": "JU Sung-chung",
+          "staffRoleNm": "현상팀"
+        },
+        {
+          "peopleNm": "강혜원",
+          "peopleNmEn": "",
+          "staffRoleNm": "현상팀"
+        },
+        {
+          "peopleNm": "박창인",
+          "peopleNmEn": "",
+          "staffRoleNm": "현상팀"
+        },
+        {
+          "peopleNm": "송영철",
+          "peopleNmEn": "SONG Young-cheol",
+          "staffRoleNm": "현상팀"
+        },
+        {
+          "peopleNm": "송성훈",
+          "peopleNmEn": "SONG Sung-hun",
+          "staffRoleNm": "현상팀"
+        },
+        {
+          "peopleNm": "최정곤",
+          "peopleNmEn": "CHOI Jung-gon",
+          "staffRoleNm": "현상팀"
+        },
+        {
+          "peopleNm": "윤정환",
+          "peopleNmEn": "YUN Jong-hwan",
+          "staffRoleNm": "아날로그색보정"
+        },
+        {
+          "peopleNm": "주광동",
+          "peopleNmEn": "JOO Kwang-dong",
+          "staffRoleNm": "아날로그색보정"
+        },
+        {
+          "peopleNm": "서광열",
+          "peopleNmEn": "SEO Kwang-yeol",
+          "staffRoleNm": "아날로그옵티컬"
+        },
+        {
+          "peopleNm": "양정철",
+          "peopleNmEn": "",
+          "staffRoleNm": "텔레시네"
+        },
+        {
+          "peopleNm": "김진영",
+          "peopleNmEn": "KIM Jin-young",
+          "staffRoleNm": "홍보/마케팅 진행"
+        },
+        {
+          "peopleNm": "김태주",
+          "peopleNmEn": "KIM Tae-joo",
+          "staffRoleNm": "홍보/마케팅 진행"
+        },
+        {
+          "peopleNm": "채윤희",
+          "peopleNmEn": "CHAI Yoon-hee",
+          "staffRoleNm": "홍보/마케팅 진행"
+        },
+        {
+          "peopleNm": "김지인",
+          "peopleNmEn": "",
+          "staffRoleNm": "온라인마케팅"
+        },
+        {
+          "peopleNm": "김경은",
+          "peopleNmEn": "KIM Gyeong-eun",
+          "staffRoleNm": "온라인마케팅"
+        },
+        {
+          "peopleNm": "류선혜",
+          "peopleNmEn": "",
+          "staffRoleNm": "온라인마케팅"
+        },
+        {
+          "peopleNm": "편두숙",
+          "peopleNmEn": "PYEON Du-suk",
+          "staffRoleNm": "온라인마케팅"
+        },
+        {
+          "peopleNm": "박봉우",
+          "peopleNmEn": "",
+          "staffRoleNm": "광고디자인"
+        },
+        {
+          "peopleNm": "최지웅",
+          "peopleNmEn": "CHOI Jee-woong",
+          "staffRoleNm": "광고디자인"
+        },
+        {
+          "peopleNm": "김영실",
+          "peopleNmEn": "",
+          "staffRoleNm": "포스터사진"
+        },
+        {
+          "peopleNm": "김영실",
+          "peopleNmEn": "",
+          "staffRoleNm": "스틸"
+        },
+        {
+          "peopleNm": "홍여진",
+          "peopleNmEn": "",
+          "staffRoleNm": "스틸"
+        },
+        {
+          "peopleNm": "백의정",
+          "peopleNmEn": "PAIK Eui-jeong",
+          "staffRoleNm": "메이킹필름"
+        },
+        {
+          "peopleNm": "남화정",
+          "peopleNmEn": "NAM Hwa-jung",
+          "staffRoleNm": "예고편"
+        },
+        {
+          "peopleNm": "오병걸",
+          "peopleNmEn": "OH Byung-geol",
+          "staffRoleNm": "현상팀"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20090930",
+      "movieNm": "이상한 나라의 앨리스",
+      "movieNmEn": "Alice In Wonderland",
+      "movieNmOg": "Alice In Wonderland",
+      "showTm": "108",
+      "prdtYear": "2010",
+      "openDt": "20100304",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "판타지"
+        },
+        {
+          "genreNm": "어드벤처"
+        },
+        {
+          "genreNm": "가족"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "팀 버튼",
+          "peopleNmEn": "Tim Burton"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "조니 뎁",
+          "peopleNmEn": "Johnny Depp",
+          "cast": "모자 장수",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "앤 해서웨이",
+          "peopleNmEn": "Anne Hathaway",
+          "cast": "하얀 여왕",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "헬레나 본햄 카터",
+          "peopleNmEn": "Helena Bonham Carter ",
+          "cast": "붉은 여왕",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "크리스핀 글로버",
+          "peopleNmEn": "Crispin Glover",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "미아 와시코브스카",
+          "peopleNmEn": "Mia Wasikowska",
+          "cast": "앨리스",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "마튼 초카스",
+          "peopleNmEn": "Marton Csokas",
+          "cast": "찰스 킹슬리",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        },
+        {
+          "showTypeGroupNm": "3D",
+          "showTypeNm": "3D 디지털"
+        },
+        {
+          "showTypeGroupNm": "IMAX",
+          "showTypeNm": "IMAX"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20101412",
+          "companyNm": "월트 디즈니 픽쳐스",
+          "companyNmEn": "Walt Disney Pictures",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100616",
+          "companyNm": "한국소니픽쳐스릴리징브에나비스타영화㈜",
+          "companyNmEn": "Sony Pictures Realizing Buena Vista ",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100616",
+          "companyNm": "한국소니픽쳐스릴리징브에나비스타영화㈜",
+          "companyNmEn": "Sony Pictures Realizing Buena Vista ",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2010-F52",
+          "watchGradeNm": "전체관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

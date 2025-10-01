@@ -1,0 +1,91 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20134073",
+      "movieNm": "디스커넥트",
+      "movieNmEn": "Disconnect",
+      "movieNmOg": "",
+      "showTm": "115",
+      "prdtYear": "2012",
+      "openDt": "20131107",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "스릴러"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "헨리 알렉스 루빈",
+          "peopleNmEn": "Henry Alex Rubin"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "제이슨 베이트먼",
+          "peopleNmEn": "Jason Bateman",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "알렉산더 스카스가드",
+          "peopleNmEn": "Alexander Skarsgard",
+          "cast": "데릭",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "폴라 패튼",
+          "peopleNmEn": "Paula Patton",
+          "cast": "신디",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "프랭크 그릴로",
+          "peopleNmEn": "Frank Grillo",
+          "cast": "마이크",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20139135",
+          "companyNm": "(주)영화사 빅",
+          "companyNmEn": "Big Film",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20111583",
+          "companyNm": "(주)메인타이틀픽쳐스",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2013-MF00718",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

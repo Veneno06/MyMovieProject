@@ -1,0 +1,91 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20124666",
+      "movieNm": "크로니클",
+      "movieNmEn": "Chronicle",
+      "movieNmOg": "",
+      "showTm": "84",
+      "prdtYear": "2012",
+      "openDt": "20120315",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "액션"
+        },
+        {
+          "genreNm": "스릴러"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "조쉬 트랭크",
+          "peopleNmEn": "Josh Trank"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "데인 드한",
+          "peopleNmEn": "Dane DeHaan",
+          "cast": "앤드류 디트머 ",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "알렉스 러셀",
+          "peopleNmEn": "Alex Russell",
+          "cast": "맷 게레티 ",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "마이클 B. 조던",
+          "peopleNmEn": "Michael B. Jordan  ",
+          "cast": "스티브 몽고메리 ",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "애슐리 힌쇼",
+          "peopleNmEn": "Ashley Hinshaw  ",
+          "cast": "케이시 레터 ",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100041",
+          "companyNm": "이십세기폭스코리아(주)",
+          "companyNmEn": "20th Century Fox Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100041",
+          "companyNm": "이십세기폭스코리아(주)",
+          "companyNmEn": "20th Century Fox Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2012-F70",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20112501",
+      "movieNm": "프로젝트 님",
+      "movieNmEn": "Project Nim",
+      "movieNmOg": "",
+      "showTm": "93",
+      "prdtYear": "2011",
+      "openDt": "20120809",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "영국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "다큐멘터리"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "제임스 마쉬",
+          "peopleNmEn": "James Marsh"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "번 코엔",
+          "peopleNmEn": "Bern Cohen",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "레이건 레너드",
+          "peopleNmEn": "Reagan Leonard",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20114813",
+          "companyNm": "(주)영화사 조제",
+          "companyNmEn": "Film JoseE ",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100209",
+          "companyNm": "(주)스폰지이엔티",
+          "companyNmEn": "Sponge Ent. Inc.",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2012-F209",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": [
+        {
+          "peopleNm": "마이클 시몬스",
+          "peopleNmEn": "Michael Simmonds",
+          "staffRoleNm": "촬영"
+        },
+        {
+          "peopleNm": "존 배섹",
+          "peopleNmEn": "John Battsek",
+          "staffRoleNm": "기획"
+        }
+      ]
+    }
+  }
+}

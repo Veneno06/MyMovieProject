@@ -1,0 +1,95 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20111113",
+      "movieNm": "퍼스트 어벤져",
+      "movieNmEn": "Captain America: The First Avenger",
+      "movieNmOg": "",
+      "showTm": "123",
+      "prdtYear": "2011",
+      "openDt": "20110728",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "액션"
+        },
+        {
+          "genreNm": "SF"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "조 존스톤",
+          "peopleNmEn": "Joe Johnston"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "크리스 에반스",
+          "peopleNmEn": "Chris Evans",
+          "cast": "스티브 로저스, 캡틴 아메리카 ",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "휴고 위빙",
+          "peopleNmEn": "Hugo Weaving",
+          "cast": "요한 슈미트, 레드 스컬 ",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "헤일리 앳웰",
+          "peopleNmEn": "Hayley Atwell",
+          "cast": "페기 카터 ",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "토미 리 존스",
+          "peopleNmEn": "Tommy Lee Jones",
+          "cast": "체스터 필립스 ",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        },
+        {
+          "showTypeGroupNm": "3D",
+          "showTypeNm": "3D 디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20110854",
+          "companyNm": "(주)씨제이이엔엠",
+          "companyNmEn": "CJ ENM Corp.",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20110854",
+          "companyNm": "(주)씨제이이엔엠",
+          "companyNmEn": "CJ ENM Corp.",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2011-F390 ",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

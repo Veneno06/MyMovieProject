@@ -1,0 +1,88 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20101279",
+      "movieNm": "코파카바나",
+      "movieNmEn": "Copacabana",
+      "movieNmOg": "",
+      "showTm": "107",
+      "prdtYear": "2010",
+      "openDt": "20110526",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "프랑스"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "마르끄 피투시",
+          "peopleNmEn": "Marc Fitoussi"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "이자벨 위페르",
+          "peopleNmEn": "Isabelle Huppert",
+          "cast": "바부",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "롤리타 샤마",
+          "peopleNmEn": "Lolita Chammah",
+          "cast": "에스메랄다",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "오레 아티카",
+          "peopleNmEn": "Aure Atika",
+          "cast": "리디에",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20063009",
+          "companyNm": "(주)티캐스트",
+          "companyNmEn": "TCast",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20063009",
+          "companyNm": "(주)티캐스트",
+          "companyNmEn": "TCast",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2011-F237 ",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": [
+        {
+          "peopleNm": "마르끄 피투시",
+          "peopleNmEn": "Marc Fitoussi",
+          "staffRoleNm": "투자"
+        }
+      ]
+    }
+  }
+}

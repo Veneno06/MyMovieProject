@@ -1,0 +1,365 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20125526",
+      "movieNm": "듀엣",
+      "movieNmEn": "Duet",
+      "movieNmOg": "",
+      "showTm": "97",
+      "prdtYear": "2012",
+      "openDt": "20120419",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "한국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "이상빈",
+          "peopleNmEn": "LEE Sang-bin"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "고아성",
+          "peopleNmEn": "KO Asung",
+          "cast": "낸시",
+          "castEn": "Nancy"
+        },
+        {
+          "peopleNm": "제임스 페이지",
+          "peopleNmEn": "James Page",
+          "cast": "주드",
+          "castEn": "Jude"
+        },
+        {
+          "peopleNm": "장윤정",
+          "peopleNmEn": "JANG Yoon-jung",
+          "cast": "THE ANFIELD GUEST HOUSE",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "최두원",
+          "peopleNmEn": "DOO-WON CHOI",
+          "cast": "낸시 남자친구",
+          "castEn": "NANCY'S EX BOYFRIEND"
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20110919",
+          "companyNm": "(주)스테이지팩토리",
+          "companyNmEn": "Stage Factory",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20114813",
+          "companyNm": "(주)영화사 조제",
+          "companyNmEn": "Film JoseE ",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20110919",
+          "companyNm": "(주)스테이지팩토리",
+          "companyNmEn": "Stage Factory",
+          "companyPartNm": "해외세일즈사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2012-F216",
+          "watchGradeNm": "전체관람가"
+        }
+      ],
+      "staffs": [
+        {
+          "peopleNm": "오민호",
+          "peopleNmEn": "OH Min-ho",
+          "staffRoleNm": "제작"
+        },
+        {
+          "peopleNm": "우수인",
+          "peopleNmEn": "WOO Su-in",
+          "staffRoleNm": "프로듀서"
+        },
+        {
+          "peopleNm": "장찬우",
+          "peopleNmEn": "JANG Chan-woo",
+          "staffRoleNm": "사운드팀"
+        },
+        {
+          "peopleNm": "김영호",
+          "peopleNmEn": "KIM Young-ho",
+          "staffRoleNm": "사운드팀"
+        },
+        {
+          "peopleNm": "오남훈",
+          "peopleNmEn": "NAM-HOON OH",
+          "staffRoleNm": "사운드효과"
+        },
+        {
+          "peopleNm": "김영호",
+          "peopleNmEn": "KIM Young-ho",
+          "staffRoleNm": "대사"
+        },
+        {
+          "peopleNm": "김규만",
+          "peopleNmEn": "Kim Kyou Man",
+          "staffRoleNm": "사운드디자이너"
+        },
+        {
+          "peopleNm": "허동혁",
+          "peopleNmEn": "DONG-HYUK HEO",
+          "staffRoleNm": "음악 믹싱/레코딩"
+        },
+        {
+          "peopleNm": "오혜석",
+          "peopleNmEn": "HYE-SEOK OH",
+          "staffRoleNm": "음악 믹싱/레코딩"
+        },
+        {
+          "peopleNm": "김영수",
+          "peopleNmEn": "",
+          "staffRoleNm": "작사/작곡/편곡"
+        },
+        {
+          "peopleNm": "김영수",
+          "peopleNmEn": "",
+          "staffRoleNm": "작사/작곡/편곡"
+        },
+        {
+          "peopleNm": "손연지",
+          "peopleNmEn": "SON Yeon-ji",
+          "staffRoleNm": "편집팀"
+        },
+        {
+          "peopleNm": "이세훈",
+          "peopleNmEn": "LEE Sae-hoon",
+          "staffRoleNm": "편집"
+        },
+        {
+          "peopleNm": "장윤정",
+          "peopleNmEn": "JANG Yoon-jung",
+          "staffRoleNm": "분장"
+        },
+        {
+          "peopleNm": "윤정후",
+          "peopleNmEn": "JUNG-HOO YUN",
+          "staffRoleNm": "붐오퍼레이터"
+        },
+        {
+          "peopleNm": "최재영",
+          "peopleNmEn": "",
+          "staffRoleNm": "동시녹음"
+        },
+        {
+          "peopleNm": "라현경",
+          "peopleNmEn": "RA Hyun-kyung",
+          "staffRoleNm": "미술/프로덕션 디자인"
+        },
+        {
+          "peopleNm": "김진용",
+          "peopleNmEn": "KIM Jin-yong",
+          "staffRoleNm": "조명"
+        },
+        {
+          "peopleNm": "정진용",
+          "peopleNmEn": "JIN-YONG JUNG",
+          "staffRoleNm": "촬영팀"
+        },
+        {
+          "peopleNm": "원순애",
+          "peopleNmEn": "WON Soon-ae",
+          "staffRoleNm": "카메라오퍼레이터"
+        },
+        {
+          "peopleNm": "김진우",
+          "peopleNmEn": "",
+          "staffRoleNm": "촬영"
+        },
+        {
+          "peopleNm": "이현구",
+          "peopleNmEn": "HYUN-GOO LEE",
+          "staffRoleNm": "현장편집"
+        },
+        {
+          "peopleNm": "이현구",
+          "peopleNmEn": "HYUN-GOO LEE",
+          "staffRoleNm": "스크립터"
+        },
+        {
+          "peopleNm": "유나리",
+          "peopleNmEn": "YOO Na-ry",
+          "staffRoleNm": "프로듀서"
+        },
+        {
+          "peopleNm": "박근영",
+          "peopleNmEn": "PARK GEUN YOUNG",
+          "staffRoleNm": "라인프로듀서"
+        },
+        {
+          "peopleNm": "이정화",
+          "peopleNmEn": "",
+          "staffRoleNm": "라인프로듀서"
+        },
+        {
+          "peopleNm": "이상진",
+          "peopleNmEn": "LEE Sang-jin",
+          "staffRoleNm": "라인프로듀서"
+        },
+        {
+          "peopleNm": "류국영",
+          "peopleNmEn": "",
+          "staffRoleNm": "제작팀"
+        },
+        {
+          "peopleNm": "최두원",
+          "peopleNmEn": "DOO-WON CHOI",
+          "staffRoleNm": "제작팀"
+        },
+        {
+          "peopleNm": "한경건",
+          "peopleNmEn": "KYEONG-KEON HAN",
+          "staffRoleNm": "로케이션매니저"
+        },
+        {
+          "peopleNm": "이상빈",
+          "peopleNmEn": "LEE Sang-bin",
+          "staffRoleNm": "시나리오(각본)"
+        },
+        {
+          "peopleNm": "김선호",
+          "peopleNmEn": "",
+          "staffRoleNm": "VFX 매니지먼트"
+        },
+        {
+          "peopleNm": "김미혜",
+          "peopleNmEn": "",
+          "staffRoleNm": "식당차"
+        },
+        {
+          "peopleNm": "계나영",
+          "peopleNmEn": "",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "김미정",
+          "peopleNmEn": "",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "김민희",
+          "peopleNmEn": "",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "박인성",
+          "peopleNmEn": "PARK In-sung",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "나성국",
+          "peopleNmEn": "NA Sung-kuk",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "박상민",
+          "peopleNmEn": "",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "박상철",
+          "peopleNmEn": "",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "박치현",
+          "peopleNmEn": "PARK Chi-hyeon",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "성둘이",
+          "peopleNmEn": "DOOL-YI SUNG",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "서상화",
+          "peopleNmEn": "SEO Sang-hwa",
+          "staffRoleNm": "VFX 슈퍼바이저"
+        },
+        {
+          "peopleNm": "김기정",
+          "peopleNmEn": "",
+          "staffRoleNm": "캐스팅디렉터"
+        },
+        {
+          "peopleNm": "박지만",
+          "peopleNmEn": "JI-MAN PARK",
+          "staffRoleNm": "스틸"
+        },
+        {
+          "peopleNm": "오민호",
+          "peopleNmEn": "OH Min-ho",
+          "staffRoleNm": "기획"
+        },
+        {
+          "peopleNm": "조영은",
+          "peopleNmEn": "YEONG-EUN JO",
+          "staffRoleNm": "홍보/마케팅 진행"
+        },
+        {
+          "peopleNm": "최송이",
+          "peopleNmEn": "SONG-YI CHOI",
+          "staffRoleNm": "홍보/마케팅 진행"
+        },
+        {
+          "peopleNm": "이지윤",
+          "peopleNmEn": "",
+          "staffRoleNm": "홍보/마케팅 진행"
+        },
+        {
+          "peopleNm": "장영근",
+          "peopleNmEn": "YOUNG-GUEN JANG",
+          "staffRoleNm": "DI팀"
+        },
+        {
+          "peopleNm": "송보혜",
+          "peopleNmEn": "BO-HYE SONG",
+          "staffRoleNm": "DI팀"
+        },
+        {
+          "peopleNm": "우진오",
+          "peopleNmEn": "JIN-OH WOO",
+          "staffRoleNm": "DI팀"
+        },
+        {
+          "peopleNm": "김민형",
+          "peopleNmEn": "",
+          "staffRoleNm": "VFX 매니지먼트"
+        },
+        {
+          "peopleNm": "임효상",
+          "peopleNmEn": "HYO-SANG IM",
+          "staffRoleNm": "VFX 아티스트"
+        }
+      ]
+    }
+  }
+}

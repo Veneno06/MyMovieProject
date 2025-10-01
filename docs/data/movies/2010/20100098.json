@@ -1,0 +1,88 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20100098",
+      "movieNm": "디어 존",
+      "movieNmEn": "Dear John",
+      "movieNmOg": "Dear John",
+      "showTm": "107",
+      "prdtYear": "2010",
+      "openDt": "20100304",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "멜로/로맨스"
+        },
+        {
+          "genreNm": "전쟁"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "라세 할스트롬",
+          "peopleNmEn": "Lasse Hallstrom"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "채닝 테이텀",
+          "peopleNmEn": "Channing Tatum",
+          "cast": "존 타이리",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "아만다 사이프리드",
+          "peopleNmEn": "Amanda Seyfried",
+          "cast": "사바나 커티스",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20112126",
+          "companyNm": "릴레티비티 미디어",
+          "companyNmEn": "Relativity Media",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20063190",
+          "companyNm": "(주)화앤담이엔티",
+          "companyNmEn": "Hwa&Dam Ent.",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20101104",
+          "companyNm": "(주)나이너스엔터테인먼트",
+          "companyNmEn": "9ers Entertainment",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2010-F55",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

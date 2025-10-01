@@ -1,0 +1,97 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20111671",
+      "movieNm": "콜롬비아나",
+      "movieNmEn": "Colombiana",
+      "movieNmOg": "",
+      "showTm": "105",
+      "prdtYear": "2011",
+      "openDt": "20110831",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        },
+        {
+          "nationNm": "프랑스"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "액션"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "올리비에 메가턴",
+          "peopleNmEn": "Olivier Megaton"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "칼럼 블루",
+          "peopleNmEn": "Callum Blue",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "조 샐다나",
+          "peopleNmEn": "Zoe Saldana",
+          "cast": "카탈리아 ",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100844",
+          "companyNm": "(주)시너지하우스 (시너지)",
+          "companyNmEn": "Cinergy",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100520",
+          "companyNm": "롯데쇼핑㈜롯데엔터테인먼트",
+          "companyNmEn": "Lotte shopping Lotte Entertainment Co.,Ltd",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100419",
+          "companyNm": "데이지엔터테인먼트",
+          "companyNmEn": "Daisy Entertainment ",
+          "companyPartNm": "수입사"
+        },
+        {
+          "companyCd": "20100520",
+          "companyNm": "롯데쇼핑㈜롯데엔터테인먼트",
+          "companyNmEn": "Lotte shopping Lotte Entertainment Co.,Ltd",
+          "companyPartNm": "제공"
+        },
+        {
+          "companyCd": "20100844",
+          "companyNm": "(주)시너지하우스 (시너지)",
+          "companyNmEn": "Cinergy",
+          "companyPartNm": "제공"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2011-F452",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

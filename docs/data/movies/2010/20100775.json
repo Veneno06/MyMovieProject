@@ -1,0 +1,82 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20100775",
+      "movieNm": "소라닌",
+      "movieNmEn": "Solanin,",
+      "movieNmOg": "ソラニン",
+      "showTm": "125",
+      "prdtYear": "2010",
+      "openDt": "20100826",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "일본"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "미키 타카히로",
+          "peopleNmEn": "Takahiro Miki"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "코라 켄고",
+          "peopleNmEn": "Kengo Koura",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "미야자키 아오이",
+          "peopleNmEn": "Aoi Miyazaki",
+          "cast": "메이코",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20101897",
+          "companyNm": "아스믹에이스엔터테인먼트",
+          "companyNmEn": "Asmik Ace Entertainment",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100209",
+          "companyNm": "(주)스폰지이엔티",
+          "companyNmEn": "Sponge Ent. Inc.",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100209",
+          "companyNm": "(주)스폰지이엔티",
+          "companyNmEn": "Sponge Ent. Inc.",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2010-F344 ",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20112692",
+      "movieNm": "드라이브",
+      "movieNmEn": "Drive",
+      "movieNmOg": "",
+      "showTm": "100",
+      "prdtYear": "2011",
+      "openDt": "20111117",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "액션"
+        },
+        {
+          "genreNm": "멜로/로맨스"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "니콜라스 윈딩 레픈",
+          "peopleNmEn": "Nicolas Winding Refn"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "라이언 고슬링",
+          "peopleNmEn": "Ryan Gosling",
+          "cast": "드라이버",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "캐리 멀리건",
+          "peopleNmEn": "Carey Mulligan",
+          "cast": "아이린",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20111613",
+          "companyNm": "주식회사 풍경소리",
+          "companyNmEn": "PoongKyung SoRi Inc.",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100285",
+          "companyNm": "판씨네마(주)",
+          "companyNmEn": "Pancinema Corp.",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20111613",
+          "companyNm": "주식회사 풍경소리",
+          "companyNmEn": "PoongKyung SoRi Inc.",
+          "companyPartNm": "수입사"
+        },
+        {
+          "companyCd": "20100285",
+          "companyNm": "판씨네마(주)",
+          "companyNmEn": "Pancinema Corp.",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2011-F608",
+          "watchGradeNm": "청소년관람불가"
+        },
+        {
+          "auditNo": "2020-MF01861",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

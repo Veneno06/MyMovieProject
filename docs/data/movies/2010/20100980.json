@@ -1,0 +1,85 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20100980",
+      "movieNm": "22 블렛",
+      "movieNmEn": "22 Bullets",
+      "movieNmOg": "22 Bullets",
+      "showTm": "118",
+      "prdtYear": "2010",
+      "openDt": "20101014",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "프랑스"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "액션"
+        },
+        {
+          "genreNm": "범죄"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "리샤르 베리",
+          "peopleNmEn": "Richard Berry"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "장 르노",
+          "peopleNmEn": "Jean Reno",
+          "cast": "찰리",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "카드 메라드",
+          "peopleNmEn": "Kad Merad",
+          "cast": "자키아",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20103795",
+          "companyNm": "유로파 Corp.",
+          "companyNmEn": "Company:Europa Corp.",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100354",
+          "companyNm": "㈜케이디미디어",
+          "companyNmEn": "KD Media",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100354",
+          "companyNm": "㈜케이디미디어",
+          "companyNmEn": "KD Media",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2010-F398",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

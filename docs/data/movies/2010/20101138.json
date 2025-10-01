@@ -1,0 +1,88 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20101138",
+      "movieNm": "베리드",
+      "movieNmEn": "Buried",
+      "movieNmOg": "Buried",
+      "showTm": "95",
+      "prdtYear": "2010",
+      "openDt": "20101208",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "스페인"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "로드리고 코르테스",
+          "peopleNmEn": "Rodrigo Cortes"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "라이언 레이놀즈",
+          "peopleNmEn": "Ryan Reynolds",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20112273",
+          "companyNm": "버서스 프로덕션",
+          "companyNmEn": "Versus Production",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20063190",
+          "companyNm": "(주)화앤담이엔티",
+          "companyNmEn": "Hwa&Dam Ent.",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20062827",
+          "companyNm": "크리스리픽쳐스인터내셔널(주)",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        },
+        {
+          "companyCd": "20063002",
+          "companyNm": "(주)인디플러그",
+          "companyNmEn": "Indieplug Inc",
+          "companyPartNm": "공동제공"
+        },
+        {
+          "companyCd": "20100914",
+          "companyNm": "스튜디오느림보",
+          "companyNmEn": "Studio Nurimbo",
+          "companyPartNm": "공동제공"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2010-F447",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20090421",
+      "movieNm": "룸바",
+      "movieNmEn": "Rumba",
+      "movieNmOg": "",
+      "showTm": "77",
+      "prdtYear": "2008",
+      "openDt": "20090806",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "프랑스"
+        },
+        {
+          "nationNm": "벨기에"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "코미디"
+        },
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "브루노 로미",
+          "peopleNmEn": "Bruno Romy"
+        },
+        {
+          "peopleNm": "도미니크 아벨",
+          "peopleNmEn": "Dominique Abel"
+        },
+        {
+          "peopleNm": "피오나 고든",
+          "peopleNmEn": "Fiona Gordon"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "도미니크 아벨",
+          "peopleNmEn": "Dominique Abel",
+          "cast": "돔",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "피오나 고든",
+          "peopleNmEn": "Fiona Gordon",
+          "cast": "피오나",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20104272",
+          "companyNm": "엠케이투 프로덕션즈",
+          "companyNmEn": "MK2 Productions",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100801",
+          "companyNm": "(유)마스엔터테인먼트코리아",
+          "companyNmEn": "Mars Entertainment Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100801",
+          "companyNm": "(유)마스엔터테인먼트코리아",
+          "companyNmEn": "Mars Entertainment Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2009-F116",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

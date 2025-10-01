@@ -1,0 +1,85 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20100118",
+      "movieNm": "오페라-장미의 기사",
+      "movieNmEn": "Opera-Der Rosenkavalier",
+      "movieNmOg": "DER ROSENKAVALIER",
+      "showTm": "285",
+      "prdtYear": "2010",
+      "openDt": "20100306",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "뮤지컬"
+        },
+        {
+          "genreNm": "공연"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "바바라 윌리스 스위츠",
+          "peopleNmEn": "Barbara Willis Sweete"
+        },
+        {
+          "peopleNm": "나데니 엘 매릴",
+          "peopleNmEn": ""
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "르네 플레밍",
+          "peopleNmEn": "Renee Fleming",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "수잔 그래햄",
+          "peopleNmEn": "Susan Graham",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20112111",
+          "companyNm": "메트로폴리탄 오페라",
+          "companyNmEn": "Metropolitan Opera",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100609",
+          "companyNm": "㈜메가박스",
+          "companyNmEn": "Megabox Inc.",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20062944",
+          "companyNm": "(주)에이치엠엔",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2010-F74",
+          "watchGradeNm": "전체관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

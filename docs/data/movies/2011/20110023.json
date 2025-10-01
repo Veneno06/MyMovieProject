@@ -1,0 +1,73 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20110023",
+      "movieNm": "세인트 클라우드",
+      "movieNmEn": "Charlie St. Cloud",
+      "movieNmOg": "",
+      "showTm": "99",
+      "prdtYear": "2010",
+      "openDt": "20110113",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "멜로/로맨스"
+        },
+        {
+          "genreNm": "판타지"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "버 스티어스",
+          "peopleNmEn": "Burr Steers"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "잭 애프론",
+          "peopleNmEn": "Zachary David Alexander Efron",
+          "cast": "찰리 세인트 클라우드",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100603",
+          "companyNm": "유니버설픽쳐스인터내셔널 코리아(유)",
+          "companyNmEn": "Universal Pictures International Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100603",
+          "companyNm": "유니버설픽쳐스인터내셔널 코리아(유)",
+          "companyNmEn": "Universal Pictures International Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2010-F375",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

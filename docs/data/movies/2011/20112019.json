@@ -1,0 +1,383 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20112019",
+      "movieNm": "이방인들",
+      "movieNmEn": "The Strangers",
+      "movieNmOg": "",
+      "showTm": "127",
+      "prdtYear": "2011",
+      "openDt": "20120510",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "한국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "최용석",
+          "peopleNmEn": "CHOI Yong-suk"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "한수연",
+          "peopleNmEn": "HAN Soo-yeon",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "여현수",
+          "peopleNmEn": "YEO Hyeon-soo",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "김중기",
+          "peopleNmEn": "KIM Jung-ki",
+          "cast": "성진",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "장기훈",
+          "peopleNmEn": "",
+          "cast": "정환",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "최진선",
+          "peopleNmEn": "",
+          "cast": "은임",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "이영미",
+          "peopleNmEn": "",
+          "cast": "체육관 아줌마들",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "이영윤",
+          "peopleNmEn": "",
+          "cast": "체육관 아줌마들",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "양명숙",
+          "peopleNmEn": "",
+          "cast": "체육관 아줌마들",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20062886",
+          "companyNm": "필름문",
+          "companyNmEn": "FILM DOORS",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20101160",
+          "companyNm": "(주)판다미디어",
+          "companyNmEn": "Panda Media",
+          "companyPartNm": "배급사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2012-F263",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": [
+        {
+          "peopleNm": "김재식",
+          "peopleNmEn": "KIM Jae-Sik",
+          "staffRoleNm": "제작"
+        },
+        {
+          "peopleNm": "이재석",
+          "peopleNmEn": "LEE Jae-suk",
+          "staffRoleNm": "프로듀서"
+        },
+        {
+          "peopleNm": "정재윤",
+          "peopleNmEn": "",
+          "staffRoleNm": "사운드팀"
+        },
+        {
+          "peopleNm": "예은지",
+          "peopleNmEn": "",
+          "staffRoleNm": "사운드팀"
+        },
+        {
+          "peopleNm": "정재웅",
+          "peopleNmEn": "",
+          "staffRoleNm": "사운드"
+        },
+        {
+          "peopleNm": "황대귀",
+          "peopleNmEn": "Hwang Dae-gwi",
+          "staffRoleNm": "음악"
+        },
+        {
+          "peopleNm": "안현진",
+          "peopleNmEn": "",
+          "staffRoleNm": "편집팀"
+        },
+        {
+          "peopleNm": "최용석",
+          "peopleNmEn": "CHOI Yong-suk",
+          "staffRoleNm": "편집"
+        },
+        {
+          "peopleNm": "구유화",
+          "peopleNmEn": "KOO Yu-hwa",
+          "staffRoleNm": "헤어"
+        },
+        {
+          "peopleNm": "김미리",
+          "peopleNmEn": "",
+          "staffRoleNm": "헤어"
+        },
+        {
+          "peopleNm": "구유화",
+          "peopleNmEn": "KOO Yu-hwa",
+          "staffRoleNm": "분장"
+        },
+        {
+          "peopleNm": "김미리",
+          "peopleNmEn": "",
+          "staffRoleNm": "분장"
+        },
+        {
+          "peopleNm": "김기현",
+          "peopleNmEn": "",
+          "staffRoleNm": "의상팀"
+        },
+        {
+          "peopleNm": "양규섭",
+          "peopleNmEn": "",
+          "staffRoleNm": "제작팀"
+        },
+        {
+          "peopleNm": "손승웅",
+          "peopleNmEn": "SON Seung-ung",
+          "staffRoleNm": "제작팀"
+        },
+        {
+          "peopleNm": "김보배",
+          "peopleNmEn": "",
+          "staffRoleNm": "제작팀"
+        },
+        {
+          "peopleNm": "전주협",
+          "peopleNmEn": "",
+          "staffRoleNm": "제작팀"
+        },
+        {
+          "peopleNm": "최용석",
+          "peopleNmEn": "CHOI Yong-suk",
+          "staffRoleNm": "시나리오(각본)"
+        },
+        {
+          "peopleNm": "양명숙",
+          "peopleNmEn": "",
+          "staffRoleNm": "조감독"
+        },
+        {
+          "peopleNm": "이용성",
+          "peopleNmEn": "",
+          "staffRoleNm": "연출팀"
+        },
+        {
+          "peopleNm": "김경훈",
+          "peopleNmEn": "",
+          "staffRoleNm": "연출팀"
+        },
+        {
+          "peopleNm": "전나리",
+          "peopleNmEn": "",
+          "staffRoleNm": "연출팀"
+        },
+        {
+          "peopleNm": "이형록",
+          "peopleNmEn": "",
+          "staffRoleNm": "연출팀"
+        },
+        {
+          "peopleNm": "윤민영",
+          "peopleNmEn": "",
+          "staffRoleNm": "스크립터"
+        },
+        {
+          "peopleNm": "김보람",
+          "peopleNmEn": "KIM Bo-ram",
+          "staffRoleNm": "촬영"
+        },
+        {
+          "peopleNm": "조강식",
+          "peopleNmEn": "",
+          "staffRoleNm": "촬영팀"
+        },
+        {
+          "peopleNm": "가정화",
+          "peopleNmEn": "",
+          "staffRoleNm": "촬영팀"
+        },
+        {
+          "peopleNm": "김재식",
+          "peopleNmEn": "KIM Jae-Sik",
+          "staffRoleNm": "촬영장비"
+        },
+        {
+          "peopleNm": "박찬윤",
+          "peopleNmEn": "PARK Chan-yun",
+          "staffRoleNm": "조명"
+        },
+        {
+          "peopleNm": "문일호",
+          "peopleNmEn": "",
+          "staffRoleNm": "조명팀"
+        },
+        {
+          "peopleNm": "이준호",
+          "peopleNmEn": "",
+          "staffRoleNm": "조명팀"
+        },
+        {
+          "peopleNm": "함영철",
+          "peopleNmEn": "",
+          "staffRoleNm": "조명팀"
+        },
+        {
+          "peopleNm": "서수걸",
+          "peopleNmEn": "",
+          "staffRoleNm": "발전차"
+        },
+        {
+          "peopleNm": "임유진",
+          "peopleNmEn": "",
+          "staffRoleNm": "아트디렉터"
+        },
+        {
+          "peopleNm": "김기현",
+          "peopleNmEn": "",
+          "staffRoleNm": "미술팀"
+        },
+        {
+          "peopleNm": "전나리",
+          "peopleNmEn": "",
+          "staffRoleNm": "미술팀"
+        },
+        {
+          "peopleNm": "임유진",
+          "peopleNmEn": "",
+          "staffRoleNm": "소품"
+        },
+        {
+          "peopleNm": "김기현",
+          "peopleNmEn": "",
+          "staffRoleNm": "소품팀"
+        },
+        {
+          "peopleNm": "이광우",
+          "peopleNmEn": "",
+          "staffRoleNm": "동시녹음"
+        },
+        {
+          "peopleNm": "이성철",
+          "peopleNmEn": "",
+          "staffRoleNm": "동시녹음"
+        },
+        {
+          "peopleNm": "허상욱",
+          "peopleNmEn": "",
+          "staffRoleNm": "동시녹음팀"
+        },
+        {
+          "peopleNm": "임유진",
+          "peopleNmEn": "",
+          "staffRoleNm": "의상"
+        },
+        {
+          "peopleNm": "김종근",
+          "peopleNmEn": "KIM Jong-geun",
+          "staffRoleNm": "홍보/마케팅 진행"
+        },
+        {
+          "peopleNm": "나종찬",
+          "peopleNmEn": "NA Jong-chan",
+          "staffRoleNm": "DI팀"
+        },
+        {
+          "peopleNm": "노병욱",
+          "peopleNmEn": "NOH Byung-wook",
+          "staffRoleNm": "DI팀"
+        },
+        {
+          "peopleNm": "김다은",
+          "peopleNmEn": "",
+          "staffRoleNm": "타이틀"
+        },
+        {
+          "peopleNm": "김민지",
+          "peopleNmEn": "",
+          "staffRoleNm": "예고편"
+        },
+        {
+          "peopleNm": "조정환",
+          "peopleNmEn": "",
+          "staffRoleNm": "운송"
+        },
+        {
+          "peopleNm": "이재석",
+          "peopleNmEn": "LEE Jae-suk",
+          "staffRoleNm": "기획"
+        },
+        {
+          "peopleNm": "김창언",
+          "peopleNmEn": "",
+          "staffRoleNm": "스틸"
+        },
+        {
+          "peopleNm": "박경빈",
+          "peopleNmEn": "",
+          "staffRoleNm": "스틸"
+        },
+        {
+          "peopleNm": "김현진",
+          "peopleNmEn": "",
+          "staffRoleNm": "포스터사진"
+        },
+        {
+          "peopleNm": "조설희",
+          "peopleNmEn": "",
+          "staffRoleNm": "광고디자인"
+        },
+        {
+          "peopleNm": "최용석",
+          "peopleNmEn": "CHOI Yong-suk",
+          "staffRoleNm": "기획"
+        }
+      ]
+    }
+  }
+}

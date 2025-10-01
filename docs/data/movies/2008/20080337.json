@@ -1,0 +1,88 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20080337",
+      "movieNm": "테이큰",
+      "movieNmEn": "Taken",
+      "movieNmOg": "",
+      "showTm": "93",
+      "prdtYear": "2008",
+      "openDt": "20080409",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "프랑스"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "범죄"
+        },
+        {
+          "genreNm": "스릴러"
+        },
+        {
+          "genreNm": "액션"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "피에르 모렐",
+          "peopleNmEn": "Pierre Morel"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "리암 니슨",
+          "peopleNmEn": "Liam Neeson",
+          "cast": "브라이언 밀스",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "매기 그레이스",
+          "peopleNmEn": "Maggie Grace",
+          "cast": "킴",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20061098",
+          "companyNm": "㈜스튜디오이쩜영",
+          "companyNmEn": "",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100398",
+          "companyNm": "와이즈앤와이드엔터테인먼트(주)",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2008-F143",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": [
+        {
+          "peopleNm": "뤽 베송",
+          "peopleNmEn": "Luc Besson",
+          "staffRoleNm": "제작"
+        }
+      ]
+    }
+  }
+}

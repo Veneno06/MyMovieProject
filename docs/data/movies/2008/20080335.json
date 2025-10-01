@@ -1,0 +1,91 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20080335",
+      "movieNm": "애프터 웨딩",
+      "movieNmEn": "After The Wedding",
+      "movieNmOg": "Efter Brylluppet",
+      "showTm": "123",
+      "prdtYear": "2006",
+      "openDt": "20080417",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "덴마크"
+        },
+        {
+          "nationNm": "스웨덴"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "수잔 비에르",
+          "peopleNmEn": "Susanne Bier"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "시드 바벳 크누센",
+          "peopleNmEn": "Sidse Babett Knudsen",
+          "cast": "헬렌 ",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "매즈 미켈슨",
+          "peopleNmEn": "Mads Mikkelsen",
+          "cast": "제이콥 ",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100631",
+          "companyNm": "(주)영화사 진진",
+          "companyNmEn": "JINJIN Pictures",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100352",
+          "companyNm": "(주)더쿱와이드",
+          "companyNmEn": "",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100631",
+          "companyNm": "(주)영화사 진진",
+          "companyNmEn": "JINJIN Pictures",
+          "companyPartNm": "수입사"
+        },
+        {
+          "companyCd": "20100352",
+          "companyNm": "(주)더쿱와이드",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2008-F136",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

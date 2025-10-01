@@ -1,0 +1,75 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20090219",
+      "movieNm": "제독의 연인",
+      "movieNmEn": "The Admiral",
+      "movieNmOg": "Admiral",
+      "showTm": "123",
+      "prdtYear": "2008",
+      "openDt": "20090423",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "러시아"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "전쟁"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "안드레이 크라프추크",
+          "peopleNmEn": "Andrei Kravchuk"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "엘리자베타 보야르스카야",
+          "peopleNmEn": "Elizaveta Boyarskaya",
+          "cast": "안나",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "콘스탄틴 카벤스키",
+          "peopleNmEn": "Konstantin Khabensky ",
+          "cast": "코르챠크 제독",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100123",
+          "companyNm": "(주)싸이더스",
+          "companyNmEn": "Sidus Corporation",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20103809",
+          "companyNm": "(주)미로비젼",
+          "companyNmEn": "Mirovision Inc. ",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2009-F112",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

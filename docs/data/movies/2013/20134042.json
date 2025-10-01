@@ -1,0 +1,95 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20134042",
+      "movieNm": "스카이포스 3D",
+      "movieNmEn": "Sky Force 3D",
+      "movieNmOg": "",
+      "showTm": "81",
+      "prdtYear": "2012",
+      "openDt": "20130228",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        },
+        {
+          "nationNm": "홍콩"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "애니메이션"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "토니 탕",
+          "peopleNmEn": "Tony Tang"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "아론 크렙스",
+          "peopleNmEn": "Aaron Krebs",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "헤더 고든",
+          "peopleNmEn": "Heather Gordon",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털 더빙"
+        },
+        {
+          "showTypeGroupNm": "3D",
+          "showTypeNm": "3D 디지털"
+        },
+        {
+          "showTypeGroupNm": "3D",
+          "showTypeNm": "3D 더빙"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20110752",
+          "companyNm": "(주)미디어데이",
+          "companyNmEn": "Mediaday",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100634",
+          "companyNm": "(주)누리픽쳐스",
+          "companyNmEn": "NOORI PICTURES",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2013-F75",
+          "watchGradeNm": "전체관람가"
+        },
+        {
+          "auditNo": "2013-F85 ",
+          "watchGradeNm": "전체관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

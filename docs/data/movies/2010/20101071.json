@@ -1,0 +1,91 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20101071",
+      "movieNm": "아메리칸",
+      "movieNmEn": "The American",
+      "movieNmOg": "",
+      "showTm": "105",
+      "prdtYear": "2010",
+      "openDt": "20101229",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "범죄"
+        },
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "안톤 코르빈",
+          "peopleNmEn": "Anton Corbijn"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "조지 클루니",
+          "peopleNmEn": "George Clooney",
+          "cast": "잭/애드워드",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20103649",
+          "companyNm": "포커스피쳐스",
+          "companyNmEn": "Focus Features",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20112294",
+          "companyNm": "스모크하우스",
+          "companyNmEn": "Smoke House",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20112295",
+          "companyNm": "디스이즈댓프로덕션",
+          "companyNmEn": "This is That Productions",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100479",
+          "companyNm": "(주)화천공사",
+          "companyNmEn": "",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100209",
+          "companyNm": "(주)스폰지이엔티",
+          "companyNmEn": "Sponge Ent. Inc.",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2010-F544",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

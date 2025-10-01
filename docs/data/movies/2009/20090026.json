@@ -1,0 +1,88 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20090026",
+      "movieNm": "세븐 파운즈",
+      "movieNmEn": "Seven Pounds",
+      "movieNmOg": "",
+      "showTm": "123",
+      "prdtYear": "2008",
+      "openDt": "20090205",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "가브리엘 무치노",
+          "peopleNmEn": "Gabriele Muccino"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "윌 스미스",
+          "peopleNmEn": "Will Smith",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "우디 해럴슨",
+          "peopleNmEn": "Woody Harrelson",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "로자리오 도슨",
+          "peopleNmEn": "Rosario Dawson",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20102771",
+          "companyNm": "콜럼비아 픽쳐스 코포레이션",
+          "companyNmEn": "Columbia Pictures Corporation",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100616",
+          "companyNm": "한국소니픽쳐스릴리징브에나비스타영화㈜",
+          "companyNmEn": "Sony Pictures Realizing Buena Vista ",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100616",
+          "companyNm": "한국소니픽쳐스릴리징브에나비스타영화㈜",
+          "companyNmEn": "Sony Pictures Realizing Buena Vista ",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2008-F485",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

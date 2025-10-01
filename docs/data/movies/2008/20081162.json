@@ -1,0 +1,78 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20081162",
+      "movieNm": "슈퍼히어로",
+      "movieNmEn": "Superhero Movie",
+      "movieNmOg": "",
+      "showTm": "86",
+      "prdtYear": "2008",
+      "openDt": "20080821",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "SF"
+        },
+        {
+          "genreNm": "액션"
+        },
+        {
+          "genreNm": "코미디"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "크레이그 마진",
+          "peopleNmEn": "Craig Mazin"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "드레이크 벨",
+          "peopleNmEn": "Drake Bell",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "사라 팩스톤",
+          "peopleNmEn": "Sara Paxton",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100123",
+          "companyNm": "(주)싸이더스",
+          "companyNmEn": "Sidus Corporation",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100419",
+          "companyNm": "데이지엔터테인먼트",
+          "companyNmEn": "Daisy Entertainment ",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2008-F314",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

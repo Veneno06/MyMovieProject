@@ -1,0 +1,85 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20100826",
+      "movieNm": "리멤버 미",
+      "movieNmEn": "Remember Me",
+      "movieNmOg": "",
+      "showTm": "112",
+      "prdtYear": "2010",
+      "openDt": "20110303",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "멜로/로맨스"
+        },
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "앨런 콜터",
+          "peopleNmEn": "Allen Coulter"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "로버트 패틴슨",
+          "peopleNmEn": "Robert Pattinson",
+          "cast": "타일러 호킨스",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "에밀리 드 라빈",
+          "peopleNmEn": "Emilie de Ravin",
+          "cast": "앨리 크레이",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "크리스 쿠퍼",
+          "peopleNmEn": "Chris Cooper",
+          "cast": "닐 크레이그",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100354",
+          "companyNm": "㈜케이디미디어",
+          "companyNmEn": "KD Media",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100354",
+          "companyNm": "㈜케이디미디어",
+          "companyNmEn": "KD Media",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2010-F265 ",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

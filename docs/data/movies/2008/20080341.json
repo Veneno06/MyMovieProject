@@ -1,0 +1,85 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20080341",
+      "movieNm": "캔디",
+      "movieNmEn": "Candy",
+      "movieNmOg": "",
+      "showTm": "108",
+      "prdtYear": "2006",
+      "openDt": "20080417",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "호주"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "멜로/로맨스"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "닐 암필드",
+          "peopleNmEn": "Neil Armfield"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "애비 코니시",
+          "peopleNmEn": "Abbie Cornish",
+          "cast": "캔디",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "히스 레저",
+          "peopleNmEn": "Heath Ledger",
+          "cast": "댄",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "제프리 러쉬",
+          "peopleNmEn": "Geoffrey Rush",
+          "cast": "캐스퍼",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100892",
+          "companyNm": "프리비젼엔터테인먼트",
+          "companyNmEn": "Prevision Entertainment",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100366",
+          "companyNm": "(주)코랄픽쳐스",
+          "companyNmEn": "Coral Pictures",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2008-F107",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

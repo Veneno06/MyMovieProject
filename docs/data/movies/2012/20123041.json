@@ -1,0 +1,85 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20123041",
+      "movieNm": "마마",
+      "movieNmEn": "MAMA",
+      "movieNmOg": "",
+      "showTm": "100",
+      "prdtYear": "2012",
+      "openDt": "20130123",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "공포(호러)"
+        },
+        {
+          "genreNm": "스릴러"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "안드레스 무시에티",
+          "peopleNmEn": "Andres Muschietti"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "제시카 차스테인",
+          "peopleNmEn": "Jessica Chastain",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "니콜라이 코스터 왈도",
+          "peopleNmEn": "Nikolaj Coster-Waldau",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100603",
+          "companyNm": "유니버설픽쳐스인터내셔널 코리아(유)",
+          "companyNmEn": "Universal Pictures International Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100603",
+          "companyNm": "유니버설픽쳐스인터내셔널 코리아(유)",
+          "companyNmEn": "Universal Pictures International Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2012-F993 ",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": [
+        {
+          "peopleNm": "길예르모 델 토로",
+          "peopleNmEn": "Guillermo Del Toro",
+          "staffRoleNm": "제작"
+        }
+      ]
+    }
+  }
+}

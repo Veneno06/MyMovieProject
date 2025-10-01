@@ -1,0 +1,101 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20101011",
+      "movieNm": "쏘우 3D",
+      "movieNmEn": "Saw 3D",
+      "movieNmOg": "Saw 3D",
+      "showTm": "89",
+      "prdtYear": "2010",
+      "openDt": "20101118",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        },
+        {
+          "nationNm": "캐나다"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "공포(호러)"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "케빈 그루터트",
+          "peopleNmEn": "Kevin Greutert"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "토빈 벨",
+          "peopleNmEn": "Tobin Bell",
+          "cast": "직쏘 / 존",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "코스타스 맨다이어",
+          "peopleNmEn": "Costas Mandylor",
+          "cast": "호프만",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "벳시 러셀",
+          "peopleNmEn": "Betsy Russell",
+          "cast": "질",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "캐리 엘위스",
+          "peopleNmEn": "Cary Elwes",
+          "cast": "닥터 고든",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "3D",
+          "showTypeNm": "3D 디지털"
+        },
+        {
+          "showTypeGroupNm": "4D",
+          "showTypeNm": "4D"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20112270",
+          "companyNm": "어비거보트",
+          "companyNmEn": "A BIGGER BOAT",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100354",
+          "companyNm": "㈜케이디미디어",
+          "companyNmEn": "KD Media",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20112222",
+          "companyNm": "코리아스토리",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2010-F454",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

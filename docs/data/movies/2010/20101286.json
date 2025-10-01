@@ -1,0 +1,115 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20101286",
+      "movieNm": "2AM SHOW",
+      "movieNmEn": "2AM SHOW",
+      "movieNmOg": "",
+      "showTm": "70",
+      "prdtYear": "2010",
+      "openDt": "20101209",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "한국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "공연"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "정성복",
+          "peopleNmEn": "Jung ‘Myron’ Sung-bok"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "이창민",
+          "peopleNmEn": "LEE Chang-min",
+          "cast": "본인",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "조 권",
+          "peopleNmEn": "Jo Kwon",
+          "cast": "본인",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "임슬옹",
+          "peopleNmEn": "LIM Seul-ong",
+          "cast": "본인",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "정진운",
+          "peopleNmEn": "JEONG Jin-woon",
+          "cast": "본인",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "3D",
+          "showTypeNm": "3D 디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100869",
+          "companyNm": "에스케이텔레콤(주)",
+          "companyNmEn": "SK Telecom",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100869",
+          "companyNm": "에스케이텔레콤(주)",
+          "companyNmEn": "SK Telecom",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100904",
+          "companyNm": "엠라인디스트리뷰션(주)",
+          "companyNmEn": "M-Line Distribution",
+          "companyPartNm": "해외세일즈사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2010-F500",
+          "watchGradeNm": "전체관람가"
+        }
+      ],
+      "staffs": [
+        {
+          "peopleNm": "신성환",
+          "peopleNmEn": "SHIN Seong-whan",
+          "staffRoleNm": "촬영"
+        },
+        {
+          "peopleNm": "정요한",
+          "peopleNmEn": "JEONG Yo-hwan",
+          "staffRoleNm": "3D 촬영팀"
+        },
+        {
+          "peopleNm": "장세경",
+          "peopleNmEn": "JANG Se kyung",
+          "staffRoleNm": "3D 촬영팀"
+        },
+        {
+          "peopleNm": "신경원",
+          "peopleNmEn": "SHIN Kyung-won",
+          "staffRoleNm": "3D 촬영팀"
+        }
+      ]
+    }
+  }
+}

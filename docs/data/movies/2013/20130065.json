@@ -1,0 +1,82 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20130065",
+      "movieNm": "슈퍼스타",
+      "movieNmEn": "Superstar",
+      "movieNmOg": "",
+      "showTm": "112",
+      "prdtYear": "2013",
+      "openDt": "20130801",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "프랑스"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "자비에 지아놀리",
+          "peopleNmEn": "Xavier Giannoli"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "카드 메라드",
+          "peopleNmEn": "Kad Merad",
+          "cast": "마르탕 카진스키",
+          "castEn": "Martin Kazinski"
+        },
+        {
+          "peopleNm": "세실 드 프랑스",
+          "peopleNmEn": "Cecile De France",
+          "cast": "플루 아나우드",
+          "castEn": "Fleur Arnaud"
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20122837",
+          "companyNm": "(주)팝엔터테인먼트",
+          "companyNmEn": "Pop Entertainment",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20063233",
+          "companyNm": "(주)컴퍼니엘",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2013-MF00427 ",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": [
+        {
+          "peopleNm": "한현국",
+          "peopleNmEn": "",
+          "staffRoleNm": "VFX 아티스트"
+        }
+      ]
+    }
+  }
+}

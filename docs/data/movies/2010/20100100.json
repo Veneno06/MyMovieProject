@@ -1,0 +1,85 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20100100",
+      "movieNm": "크레이지 하트",
+      "movieNmEn": "Crazy Heart",
+      "movieNmOg": "Crazy Heart",
+      "showTm": "112",
+      "prdtYear": "2010",
+      "openDt": "20100304",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "멜로/로맨스"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "스콧 쿠퍼",
+          "peopleNmEn": "Scott Cooper"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "제프 브리지스",
+          "peopleNmEn": "Jeff Bridges",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "매기 질렌할",
+          "peopleNmEn": "Maggie Gyllenhaal",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20112100",
+          "companyNm": "부처스 런 필름",
+          "companyNmEn": "Butcher's Run Films ",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100041",
+          "companyNm": "이십세기폭스코리아(주)",
+          "companyNmEn": "20th Century Fox Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100041",
+          "companyNm": "이십세기폭스코리아(주)",
+          "companyNmEn": "20th Century Fox Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2010-F56",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

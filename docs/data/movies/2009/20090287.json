@@ -1,0 +1,82 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20090287",
+      "movieNm": "펠햄 123",
+      "movieNmEn": "The Taking Of Pelham 1 2 3",
+      "movieNmOg": "",
+      "showTm": "105",
+      "prdtYear": "2009",
+      "openDt": "20090611",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "액션"
+        },
+        {
+          "genreNm": "스릴러"
+        },
+        {
+          "genreNm": "범죄"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "토니 스콧",
+          "peopleNmEn": "Tony Scott"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "존 트라볼타",
+          "peopleNmEn": "John Travolta",
+          "cast": "라이더",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "덴젤 워싱턴",
+          "peopleNmEn": "Denzel Washington ",
+          "cast": "가버",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100616",
+          "companyNm": "한국소니픽쳐스릴리징브에나비스타영화㈜",
+          "companyNmEn": "Sony Pictures Realizing Buena Vista ",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100616",
+          "companyNm": "한국소니픽쳐스릴리징브에나비스타영화㈜",
+          "companyNmEn": "Sony Pictures Realizing Buena Vista ",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2009-F156",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

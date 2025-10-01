@@ -1,0 +1,78 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20080363",
+      "movieNm": "스트리트 킹",
+      "movieNmEn": "Street Kings",
+      "movieNmOg": "",
+      "showTm": "108",
+      "prdtYear": "2008",
+      "openDt": "20080417",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "범죄"
+        },
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "스릴러"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "데이비드 에이어",
+          "peopleNmEn": "David Ayer"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "키아누 리브스",
+          "peopleNmEn": "Keanu Reeves",
+          "cast": "톰 러들로 형사 ",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "포레스트 휘테커",
+          "peopleNmEn": "Forest Whitaker",
+          "cast": "잭 완더 반장 ",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100041",
+          "companyNm": "이십세기폭스코리아(주)",
+          "companyNmEn": "20th Century Fox Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100041",
+          "companyNm": "이십세기폭스코리아(주)",
+          "companyNmEn": "20th Century Fox Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2008-F151",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

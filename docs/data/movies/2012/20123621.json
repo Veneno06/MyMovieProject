@@ -1,0 +1,91 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20123621",
+      "movieNm": "카페",
+      "movieNmEn": "Cafe",
+      "movieNmOg": "",
+      "showTm": "95",
+      "prdtYear": "2010",
+      "openDt": "20130411",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "멜로/로맨스"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "마크 얼바움",
+          "peopleNmEn": "Marc Erlbaum"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "제니퍼 러브 휴잇",
+          "peopleNmEn": "Jennifer Love Hewitt",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "제이미 케네디",
+          "peopleNmEn": "Jamie Kennedy",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "다니엘 에릭 골드",
+          "peopleNmEn": "Daniel Eric Gold",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100829",
+          "companyNm": "예지림엔터테인먼트",
+          "companyNmEn": "",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20062868",
+          "companyNm": "(주)도키엔터테인먼트",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        },
+        {
+          "companyCd": "20062868",
+          "companyNm": "(주)도키엔터테인먼트",
+          "companyNmEn": "",
+          "companyPartNm": "제공"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2012-F783",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

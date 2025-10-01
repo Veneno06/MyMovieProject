@@ -1,0 +1,75 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20139942",
+      "movieNm": "맥베드",
+      "movieNmEn": "MACBETH",
+      "movieNmOg": "",
+      "showTm": "105",
+      "prdtYear": "2006",
+      "openDt": "20130704",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "호주"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "범죄"
+        },
+        {
+          "genreNm": "스릴러"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "제프리 라이트",
+          "peopleNmEn": "Jeffrey Wright"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "샘 워싱턴",
+          "peopleNmEn": "Sam Worthington",
+          "cast": "맥베드",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "빅토리아 힐",
+          "peopleNmEn": "Victoria Hill",
+          "cast": "맥베드 부인",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20136655",
+          "companyNm": "스크린조이",
+          "companyNmEn": "",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20136655",
+          "companyNm": "스크린조이",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2013-MF00329",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

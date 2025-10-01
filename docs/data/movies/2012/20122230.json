@@ -1,0 +1,88 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20122230",
+      "movieNm": "브로큰",
+      "movieNmEn": "Broken",
+      "movieNmOg": "",
+      "showTm": "90",
+      "prdtYear": "2012",
+      "openDt": "20130718",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "영국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "루퍼스 노리스",
+          "peopleNmEn": "Rufus Norris"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "킬리언 머피",
+          "peopleNmEn": "Cillian Murphy ",
+          "cast": "마이크",
+          "castEn": "Mike Kiernan"
+        },
+        {
+          "peopleNm": "팀 로스",
+          "peopleNmEn": "Tim Roth",
+          "cast": "아치",
+          "castEn": "Archie"
+        },
+        {
+          "peopleNm": "엘로이스 로렌스",
+          "peopleNmEn": "Eloise Laurence",
+          "cast": "스쿤크 ",
+          "castEn": "Skunk"
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100285",
+          "companyNm": "판씨네마(주)",
+          "companyNmEn": "Pancinema Corp.",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100285",
+          "companyNm": "판씨네마(주)",
+          "companyNmEn": "Pancinema Corp.",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2012-F890 ",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": [
+        {
+          "peopleNm": "마크 오로우",
+          "peopleNmEn": "Mark O'Rowe",
+          "staffRoleNm": "시나리오(각본)"
+        }
+      ]
+    }
+  }
+}

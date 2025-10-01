@@ -1,0 +1,103 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20090850",
+      "movieNm": "공주와 개구리",
+      "movieNmEn": "The Princess And The Frog",
+      "movieNmOg": "",
+      "showTm": "98",
+      "prdtYear": "2009",
+      "openDt": "20100121",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "애니메이션"
+        },
+        {
+          "genreNm": "멜로/로맨스"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "존 머스커",
+          "peopleNmEn": "John Musker"
+        },
+        {
+          "peopleNm": "론 클레멘츠",
+          "peopleNmEn": "Ron Clements"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "애니카 노니 로즈",
+          "peopleNmEn": "Anika Noni Rose",
+          "cast": "티아나",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "브루노 캄포스",
+          "peopleNmEn": "Bruno Campos",
+          "cast": "나빈왕자",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "키스 데이빗",
+          "peopleNmEn": "Keith David",
+          "cast": "닥터 파실리에",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "더빙"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털 더빙"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20112092",
+          "companyNm": "월트디즈니 애니메이션 스튜디오",
+          "companyNmEn": "Walt Disney Animation Studios",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100616",
+          "companyNm": "한국소니픽쳐스릴리징브에나비스타영화㈜",
+          "companyNmEn": "Sony Pictures Realizing Buena Vista ",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100616",
+          "companyNm": "한국소니픽쳐스릴리징브에나비스타영화㈜",
+          "companyNmEn": "Sony Pictures Realizing Buena Vista ",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2009-F411",
+          "watchGradeNm": "전체관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

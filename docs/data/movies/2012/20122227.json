@@ -1,0 +1,85 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20122227",
+      "movieNm": "테이크 쉘터",
+      "movieNmEn": "Take shelter",
+      "movieNmOg": "",
+      "showTm": "121",
+      "prdtYear": "2011",
+      "openDt": "20130418",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "스릴러"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "제프 니콜스",
+          "peopleNmEn": "Jeff Nichols"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "마이클 섀넌",
+          "peopleNmEn": "Michael Shannon",
+          "cast": "커티스",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "제시카 차스테인",
+          "peopleNmEn": "Jessica Chastain",
+          "cast": "사만다",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "쉐어 위햄",
+          "peopleNmEn": "Shea Whigham",
+          "cast": "드와트",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20061718",
+          "companyNm": "찬란",
+          "companyNmEn": "Challan Film",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20061718",
+          "companyNm": "찬란",
+          "companyNmEn": "Challan Film",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2012-F900 ",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

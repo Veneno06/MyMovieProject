@@ -1,0 +1,78 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20080054",
+      "movieNm": "주노",
+      "movieNmEn": "Juno",
+      "movieNmOg": "",
+      "showTm": "95",
+      "prdtYear": "2007",
+      "openDt": "20080221",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        },
+        {
+          "nationNm": "캐나다"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "코미디"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "제이슨 라이트맨",
+          "peopleNmEn": "Jason Reitman"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "엘렌 페이지",
+          "peopleNmEn": "Ellen Page",
+          "cast": "주노 맥거프 ",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "마이클 세라",
+          "peopleNmEn": "Michael Cera",
+          "cast": "폴린 블리커 ",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20103809",
+          "companyNm": "(주)미로비젼",
+          "companyNmEn": "Mirovision Inc. ",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20103809",
+          "companyNm": "(주)미로비젼",
+          "companyNmEn": "Mirovision Inc. ",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2008-F43",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

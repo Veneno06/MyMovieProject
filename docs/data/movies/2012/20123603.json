@@ -1,0 +1,94 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20123603",
+      "movieNm": "플라이트",
+      "movieNmEn": "Flight",
+      "movieNmOg": "",
+      "showTm": "138",
+      "prdtYear": "2012",
+      "openDt": "20130228",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "로버트 저메키스",
+          "peopleNmEn": "Robert Zemeckis"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "덴젤 워싱턴",
+          "peopleNmEn": "Denzel Washington ",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "돈 치들",
+          "peopleNmEn": "Don Cheadle",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "켈리 라일리",
+          "peopleNmEn": "Kelly Reilly",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "존 굿맨",
+          "peopleNmEn": "John Goodman",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20104469",
+          "companyNm": "파라마운트 픽쳐스",
+          "companyNmEn": "Paramount Pictures",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20110854",
+          "companyNm": "(주)씨제이이엔엠",
+          "companyNmEn": "CJ ENM Corp.",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20110854",
+          "companyNm": "(주)씨제이이엔엠",
+          "companyNmEn": "CJ ENM Corp.",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2012-F899 ",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

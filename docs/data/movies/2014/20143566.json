@@ -1,0 +1,79 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20143566",
+      "movieNm": "마담 보바리",
+      "movieNmEn": "Gemma Bovery",
+      "movieNmOg": "",
+      "showTm": "99",
+      "prdtYear": "2014",
+      "openDt": "20150402",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "프랑스"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "멜로/로맨스"
+        },
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "앤 폰테인",
+          "peopleNmEn": "Anne Fontaine"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "젬마 아터튼",
+          "peopleNmEn": "Gemma Arterton",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "파브리스 루치니",
+          "peopleNmEn": "Fabrice Luchini",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20101087",
+          "companyNm": "에이원엔터테인먼트",
+          "companyNmEn": "",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100349",
+          "companyNm": "㈜세종커뮤니케이션스",
+          "companyNmEn": "Sejong Communications",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2014-MF01301 ",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

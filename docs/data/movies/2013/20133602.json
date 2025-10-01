@@ -1,0 +1,108 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20133602",
+      "movieNm": "노아",
+      "movieNmEn": "Noah",
+      "movieNmOg": "",
+      "showTm": "139",
+      "prdtYear": "2013",
+      "openDt": "20140320",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "어드벤처"
+        },
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "판타지"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "대런 아로노프스키",
+          "peopleNmEn": "Darren Aronofsky"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "러셀 크로우",
+          "peopleNmEn": "Russell Crowe",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "엠마 왓슨",
+          "peopleNmEn": "Emma Watson",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "로건 레먼",
+          "peopleNmEn": "Logan Lerman",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "안소니 홉킨스",
+          "peopleNmEn": "Anthony Hopkins",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "제니퍼 코넬리",
+          "peopleNmEn": "Jennifer Connelly",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        },
+        {
+          "showTypeGroupNm": "4D",
+          "showTypeNm": "4D"
+        },
+        {
+          "showTypeGroupNm": "IMAX",
+          "showTypeNm": "IMAX"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20110854",
+          "companyNm": "(주)씨제이이엔엠",
+          "companyNmEn": "CJ ENM Corp.",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20110854",
+          "companyNm": "(주)씨제이이엔엠",
+          "companyNmEn": "CJ ENM Corp.",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2014-MF00231 ",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

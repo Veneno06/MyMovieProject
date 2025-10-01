@@ -1,0 +1,85 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20113306",
+      "movieNm": "50/50",
+      "movieNmEn": "",
+      "movieNmOg": "",
+      "showTm": "100",
+      "prdtYear": "2011",
+      "openDt": "20111124",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "코미디"
+        },
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "조나단 레빈",
+          "peopleNmEn": "Jonathan Levine"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "조셉 고든 레빗",
+          "peopleNmEn": "Joseph Gordon-Levitt",
+          "cast": "애덤 ",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "세스 로건",
+          "peopleNmEn": "Seth Rogen",
+          "cast": "카일 ",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100520",
+          "companyNm": "롯데쇼핑㈜롯데엔터테인먼트",
+          "companyNmEn": "Lotte shopping Lotte Entertainment Co.,Ltd",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20125875",
+          "companyNm": "(주)프레인글로벌",
+          "companyNmEn": "Prain Global Inc. ",
+          "companyPartNm": "수입사"
+        },
+        {
+          "companyCd": "20063255",
+          "companyNm": "(주)드림웨스트픽쳐스",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2011-F629 ",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

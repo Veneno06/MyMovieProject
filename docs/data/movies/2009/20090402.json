@@ -1,0 +1,85 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20090402",
+      "movieNm": "해피 플라이트",
+      "movieNmEn": "Happy Flight",
+      "movieNmOg": "",
+      "showTm": "102",
+      "prdtYear": "2008",
+      "openDt": "20090716",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "일본"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "코미디"
+        },
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "야구치 시노부",
+          "peopleNmEn": "Shinobu Yaguchi"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "아야세 하루카",
+          "peopleNmEn": "Haruka Ayase",
+          "cast": "에츠코",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "타나베 세이이치",
+          "peopleNmEn": "Seiichi Tanabe",
+          "cast": "스즈키",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20101730",
+          "companyNm": "알타미라픽쳐스",
+          "companyNmEn": "Altamira Pictures Inc.",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100892",
+          "companyNm": "프리비젼엔터테인먼트",
+          "companyNmEn": "Prevision Entertainment",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20101311",
+          "companyNm": "(주)케이앤엔터테인먼트",
+          "companyNmEn": "K&Entertainment",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2009-F237",
+          "watchGradeNm": "전체관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

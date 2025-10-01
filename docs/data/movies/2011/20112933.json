@@ -1,0 +1,79 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20112933",
+      "movieNm": "비기너스",
+      "movieNmEn": "Beginners",
+      "movieNmOg": "",
+      "showTm": "105",
+      "prdtYear": "2010",
+      "openDt": "20111110",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "멜로/로맨스"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "마이크 밀스",
+          "peopleNmEn": "Mike Mills"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "크리스토퍼 플러머",
+          "peopleNmEn": "Christopher Plummer",
+          "cast": "할",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "이완 맥그리거",
+          "peopleNmEn": "Ewan McGregor",
+          "cast": "올리버",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100603",
+          "companyNm": "유니버설픽쳐스인터내셔널 코리아(유)",
+          "companyNmEn": "Universal Pictures International Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100603",
+          "companyNm": "유니버설픽쳐스인터내셔널 코리아(유)",
+          "companyNmEn": "Universal Pictures International Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2011-FMV0228",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

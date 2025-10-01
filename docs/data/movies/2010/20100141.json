@@ -1,0 +1,394 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20100141",
+      "movieNm": "아마존의 눈물",
+      "movieNmEn": "Tears in the Amazon",
+      "movieNmOg": "",
+      "showTm": "88",
+      "prdtYear": "2010",
+      "openDt": "20100325",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "한국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "다큐멘터리"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "김진만",
+          "peopleNmEn": "KIM Jin-man"
+        },
+        {
+          "peopleNm": "김현철",
+          "peopleNmEn": "Kim Hyun-chul"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "김남길",
+          "peopleNmEn": "KIM Nam-gil",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20103412",
+          "companyNm": "(주)MBC",
+          "companyNmEn": "MBC",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20101135",
+          "companyNm": "주식회사 마운틴픽쳐스",
+          "companyNmEn": "Mountain Pictures Co.,Ltd",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20101135",
+          "companyNm": "주식회사 마운틴픽쳐스",
+          "companyNmEn": "Mountain Pictures Co.,Ltd",
+          "companyPartNm": "제공"
+        },
+        {
+          "companyCd": "20100904",
+          "companyNm": "엠라인디스트리뷰션(주)",
+          "companyNmEn": "M-Line Distribution",
+          "companyPartNm": "해외세일즈사"
+        },
+        {
+          "companyCd": "20123797",
+          "companyNm": "리얼디스퀘어",
+          "companyNmEn": "Real D Square Co., Ltd.",
+          "companyPartNm": "제작서비스-3D 컨버전"
+        },
+        {
+          "companyCd": "20101530",
+          "companyNm": "롯데쇼핑㈜롯데시네마",
+          "companyNmEn": "Lotte shopping Lotte cinema Co., Ltd.",
+          "companyPartNm": "기타"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2010-F102",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": [
+        {
+          "peopleNm": "윤미현",
+          "peopleNmEn": "YOON Mi-hyun",
+          "staffRoleNm": "프로듀서"
+        },
+        {
+          "peopleNm": "이영준",
+          "peopleNmEn": "",
+          "staffRoleNm": "제작팀"
+        },
+        {
+          "peopleNm": "박용혁",
+          "peopleNmEn": "",
+          "staffRoleNm": "사운드효과"
+        },
+        {
+          "peopleNm": "허관회",
+          "peopleNmEn": "",
+          "staffRoleNm": "사운드효과"
+        },
+        {
+          "peopleNm": "유석원",
+          "peopleNmEn": "",
+          "staffRoleNm": "사운드효과"
+        },
+        {
+          "peopleNm": "전치환",
+          "peopleNmEn": "",
+          "staffRoleNm": "사운드효과"
+        },
+        {
+          "peopleNm": "박찬민",
+          "peopleNmEn": "PARK Chan-min",
+          "staffRoleNm": "음악 믹싱/레코딩"
+        },
+        {
+          "peopleNm": "심현정",
+          "peopleNmEn": "SIM Hyeon-jeong",
+          "staffRoleNm": "작사/작곡/편곡"
+        },
+        {
+          "peopleNm": "김은영",
+          "peopleNmEn": "Kim Eun-yeong",
+          "staffRoleNm": "편집"
+        },
+        {
+          "peopleNm": "문수정",
+          "peopleNmEn": "Moon Sujung",
+          "staffRoleNm": "편집"
+        },
+        {
+          "peopleNm": "김대원",
+          "peopleNmEn": "KIM Dae-won",
+          "staffRoleNm": "편집"
+        },
+        {
+          "peopleNm": "우수호",
+          "peopleNmEn": "WOO Su-ho",
+          "staffRoleNm": "편집"
+        },
+        {
+          "peopleNm": "이영근",
+          "peopleNmEn": "",
+          "staffRoleNm": "동시녹음"
+        },
+        {
+          "peopleNm": "이태상",
+          "peopleNmEn": "",
+          "staffRoleNm": "동시녹음"
+        },
+        {
+          "peopleNm": "하림",
+          "peopleNmEn": "HA Rim",
+          "staffRoleNm": "촬영"
+        },
+        {
+          "peopleNm": "송인혁",
+          "peopleNmEn": "SONG In-hyuck",
+          "staffRoleNm": "촬영"
+        },
+        {
+          "peopleNm": "최재필",
+          "peopleNmEn": "CHOI Jae-pil",
+          "staffRoleNm": "촬영"
+        },
+        {
+          "peopleNm": "김만태",
+          "peopleNmEn": "",
+          "staffRoleNm": "촬영"
+        },
+        {
+          "peopleNm": "권윤미",
+          "peopleNmEn": "",
+          "staffRoleNm": "연출팀"
+        },
+        {
+          "peopleNm": "김민아",
+          "peopleNmEn": "",
+          "staffRoleNm": "조감독"
+        },
+        {
+          "peopleNm": "김정민",
+          "peopleNmEn": "",
+          "staffRoleNm": "조감독"
+        },
+        {
+          "peopleNm": "고혜림",
+          "peopleNmEn": "GO Hye-rim",
+          "staffRoleNm": "시나리오(각본)"
+        },
+        {
+          "peopleNm": "허태정",
+          "peopleNmEn": "HEO Tae-jung",
+          "staffRoleNm": "프로듀서"
+        },
+        {
+          "peopleNm": "문기영",
+          "peopleNmEn": "",
+          "staffRoleNm": "제작관리"
+        },
+        {
+          "peopleNm": "윤광중",
+          "peopleNmEn": "",
+          "staffRoleNm": "제작관리"
+        },
+        {
+          "peopleNm": "문아영",
+          "peopleNmEn": "",
+          "staffRoleNm": "제작팀"
+        },
+        {
+          "peopleNm": "김희준",
+          "peopleNmEn": "",
+          "staffRoleNm": "사운드팀"
+        },
+        {
+          "peopleNm": "민경호",
+          "peopleNmEn": "",
+          "staffRoleNm": "광고디자인"
+        },
+        {
+          "peopleNm": "김성수",
+          "peopleNmEn": "",
+          "staffRoleNm": "광고동영상"
+        },
+        {
+          "peopleNm": "손효색",
+          "peopleNmEn": "SON Hyo-saek",
+          "staffRoleNm": "온라인마케팅"
+        },
+        {
+          "peopleNm": "이경천",
+          "peopleNmEn": "",
+          "staffRoleNm": "온라인마케팅"
+        },
+        {
+          "peopleNm": "우창우",
+          "peopleNmEn": "",
+          "staffRoleNm": "온라인마케팅"
+        },
+        {
+          "peopleNm": "윤승현",
+          "peopleNmEn": "",
+          "staffRoleNm": "온라인마케팅"
+        },
+        {
+          "peopleNm": "김미리",
+          "peopleNmEn": "",
+          "staffRoleNm": "홍보/마케팅 진행"
+        },
+        {
+          "peopleNm": "남궁성우",
+          "peopleNmEn": "",
+          "staffRoleNm": "홍보/마케팅 진행"
+        },
+        {
+          "peopleNm": "한임경",
+          "peopleNmEn": "",
+          "staffRoleNm": "홍보/마케팅 진행"
+        },
+        {
+          "peopleNm": "채윤희",
+          "peopleNmEn": "CHAI Yoon-hee",
+          "staffRoleNm": "홍보/마케팅 진행"
+        },
+        {
+          "peopleNm": "김태주",
+          "peopleNmEn": "KIM Tae-joo",
+          "staffRoleNm": "홍보/마케팅 진행"
+        },
+        {
+          "peopleNm": "채지수",
+          "peopleNmEn": "",
+          "staffRoleNm": "홍보/마케팅 진행"
+        },
+        {
+          "peopleNm": "권민경",
+          "peopleNmEn": "",
+          "staffRoleNm": "홍보/마케팅 진행"
+        },
+        {
+          "peopleNm": "한선진",
+          "peopleNmEn": "",
+          "staffRoleNm": "현상팀"
+        },
+        {
+          "peopleNm": "강경일",
+          "peopleNmEn": "KANG Kyung-il",
+          "staffRoleNm": "DI팀"
+        },
+        {
+          "peopleNm": "송보경",
+          "peopleNmEn": "SONG Bo-kyung",
+          "staffRoleNm": "DI팀"
+        },
+        {
+          "peopleNm": "김동윤",
+          "peopleNmEn": "KIM Dong-yoon",
+          "staffRoleNm": "DI팀"
+        },
+        {
+          "peopleNm": "박진호",
+          "peopleNmEn": "PARK Jin-ho",
+          "staffRoleNm": "DI팀"
+        },
+        {
+          "peopleNm": "배경민",
+          "peopleNmEn": "",
+          "staffRoleNm": "DI팀"
+        },
+        {
+          "peopleNm": "류연",
+          "peopleNmEn": "RYU Yeon",
+          "staffRoleNm": "DI팀"
+        },
+        {
+          "peopleNm": "이지영",
+          "peopleNmEn": "",
+          "staffRoleNm": "DI팀"
+        },
+        {
+          "peopleNm": "박란",
+          "peopleNmEn": "",
+          "staffRoleNm": "DI팀"
+        },
+        {
+          "peopleNm": "정수정",
+          "peopleNmEn": "",
+          "staffRoleNm": "DI팀"
+        },
+        {
+          "peopleNm": "최용준",
+          "peopleNmEn": "CHOI Yong-joon",
+          "staffRoleNm": "DI팀"
+        },
+        {
+          "peopleNm": "김시범",
+          "peopleNmEn": "",
+          "staffRoleNm": "DI팀"
+        },
+        {
+          "peopleNm": "정헌규",
+          "peopleNmEn": "",
+          "staffRoleNm": "타이틀"
+        },
+        {
+          "peopleNm": "옥승경",
+          "peopleNmEn": "",
+          "staffRoleNm": "타이틀"
+        },
+        {
+          "peopleNm": "이재혁",
+          "peopleNmEn": "",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
+          "peopleNm": "기정모",
+          "peopleNmEn": "",
+          "staffRoleNm": "VFX 슈퍼바이저"
+        },
+        {
+          "peopleNm": "유종미",
+          "peopleNmEn": "",
+          "staffRoleNm": "광고동영상"
+        },
+        {
+          "peopleNm": "정성후",
+          "peopleNmEn": "JUNG Sung-hwo",
+          "staffRoleNm": "기획"
+        },
+        {
+          "peopleNm": "정길상",
+          "peopleNmEn": "",
+          "staffRoleNm": "시각효과"
+        }
+      ]
+    }
+  }
+}
