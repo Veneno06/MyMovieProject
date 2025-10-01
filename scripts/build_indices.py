@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr//env python3
 # -*- coding: utf-8 -*-
 
 import os, json, sys
@@ -56,29 +56,10 @@ def main():
     movies = []
     people_map = {}
     
-    # [최종 수정] 인물 중심의 통합을 위한 조회용 맵
     cd_to_key_map = {}
     name_role_to_cd_map = {}
 
-    # 1차 스캔: 모든 인물 정보를 수집하고 고유 ID(peopleCd)를 기준으로 통합
-    for fp in files:
-        d = load_json(fp)
-        mi = get_movie_info_from_data(d)
-        if not mi: continue
-
-        def process_person_for_map(p, role):
-            if not isinstance(p, dict): return
-            peopleCd = (p.get("peopleCd") or "").strip()
-            peopleNm = (p.get("peopleNm") or "").strip()
-            if not peopleCd or not peopleNm: return
-            
-            name_role_key = f"{peopleNm}::{role}"
-            name_role_to_cd_map[name_role_key] = peopleCd
-
-        for x in (mi.get("directors") or []): process_person_for_map(x, "감독")
-        for x in (mi.get("actors") or []):    process_person_for_map(x, "배우")
-
-    # 2차 스캔: 영화 정보 및 최종 인물 정보 구축
+    # [수정] 1차 스캔과 2차 스캔을 하나로 통합하여 효율성 증대 및 오류 해결
     for fp in files:
         d = load_json(fp)
         mi = get_movie_info_from_data(d)
@@ -104,16 +85,18 @@ def main():
             "repNation": repNation, "grade": grade, "genres": genres, "audiAcc": audiAcc,
         })
         
+        # [복원 및 수정] 누락되었던 인물 정보 추가 로직
         def add_person(p, role):
             if not isinstance(p, dict): return
             peopleCd = (p.get("peopleCd") or "").strip()
             peopleNm = (p.get("peopleNm") or "").strip()
             if not peopleNm: return
 
-            # [최종 수정] 가장 정확한 고유 키 찾기
             name_role_key = f"{peopleNm}::{role}"
             if not peopleCd and name_role_key in name_role_to_cd_map:
                 peopleCd = name_role_to_cd_map[name_role_key]
+            elif peopleCd and name_role_key not in name_role_to_cd_map:
+                name_role_to_cd_map[name_role_key] = peopleCd
 
             person_key = peopleCd if peopleCd else f"name::{name_role_key}"
 
@@ -121,21 +104,21 @@ def main():
             if not rec:
                 rec = {"personKey": person_key, "peopleCd": peopleCd, "peopleNm": peopleNm, "repRoleNm": role, "films": []}
                 people_map[person_key] = rec
+                if peopleCd: cd_to_key_map[peopleCd] = person_key
             
             if any(f.get("movieCd") == movieCd for f in rec["films"]):
                 return
 
             film_info = {
                 "movieCd": movieCd, "movieNm": movieNm, "openDt": openDt, "part": p.get("cast", ""),
-                "audiAcc": audiAcc,
-                "actorCount": actorCount
+                "audiAcc": audiAcc, "actorCount": actorCount
             }
             rec["films"].append(film_info)
 
         for x in (mi.get("directors") or []): add_person(x, "감독")
         for x in (mi.get("actors") or []):    add_person(x, "배우")
 
-    movies.sort(key=lambda m: m.get("openDt") or "9999-9-99")
+    movies.sort(key=lambda m: m.get("openDt") or "9999-99-99")
     for rec in people_map.values():
         rec["films"].sort(key=lambda f: f.get("openDt") or "9999-99-99", reverse=True)
     people = list(people_map.values())
