@@ -1,0 +1,78 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20050037",
+      "movieNm": "호스티지",
+      "movieNmEn": "Hostage",
+      "movieNmOg": "",
+      "showTm": "113",
+      "prdtYear": "2005",
+      "openDt": "20050318",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "스릴러"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "플로렝 에밀리오 시리",
+          "peopleNmEn": "Florent Emilio Siri"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "케빈 폴락",
+          "peopleNmEn": "Kevin Pollak",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "브루스 윌리스",
+          "peopleNmEn": "Bruce Willis",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20104369",
+          "companyNm": "미라맥스 필름즈",
+          "companyNmEn": "Miramax Films",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100269",
+          "companyNm": "쇼이스트(주)",
+          "companyNmEn": "ShowEast Co., Ltd.",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100269",
+          "companyNm": "쇼이스트(주)",
+          "companyNmEn": "ShowEast Co., Ltd.",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2005-F041",
+          "watchGradeNm": "15세관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20030431",
+      "movieNm": "스페니쉬 아파트먼트",
+      "movieNmEn": "Spanish Apartment",
+      "movieNmOg": "",
+      "showTm": "122",
+      "prdtYear": "2002",
+      "openDt": "20040101",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "스페인"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "코미디"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "세드릭 클래피쉬",
+          "peopleNmEn": "Cedric Klapisch"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "주디스 고드레쉬",
+          "peopleNmEn": "Judith Godreche",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "로맹 뒤리스",
+          "peopleNmEn": "Romain Duris",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20101507",
+          "companyNm": "이십세기폭스필름코퍼레이션",
+          "companyNmEn": "20th Century Fox Film Corporation",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20101507",
+          "companyNm": "이십세기폭스필름코퍼레이션",
+          "companyNmEn": "20th Century Fox Film Corporation",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2003-F333",
+          "watchGradeNm": "15세관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

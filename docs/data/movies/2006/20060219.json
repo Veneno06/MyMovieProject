@@ -1,0 +1,84 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20060219",
+      "movieNm": "마이애미 바이스",
+      "movieNmEn": "Miami Vice",
+      "movieNmOg": "",
+      "showTm": "132",
+      "prdtYear": "2006",
+      "openDt": "20060817",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "액션"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "마이클 만",
+          "peopleNmEn": "Michael Mann"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "콜린 파렐",
+          "peopleNmEn": "Colin Farrell",
+          "cast": "Det. 제임스 소니 크로켓",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "제이미 폭스",
+          "peopleNmEn": "Jamie Foxx",
+          "cast": "Det. 리카도 텁스",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "공리",
+          "peopleNmEn": "Li Gong",
+          "cast": "이사벨라",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20101382",
+          "companyNm": "유니버셜 픽쳐스",
+          "companyNmEn": "Universal Pictures",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100649",
+          "companyNm": "UIP코리아",
+          "companyNmEn": "United International Pictures Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100649",
+          "companyNm": "UIP코리아",
+          "companyNmEn": "United International Pictures Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2006-B061",
+          "watchGradeNm": "18세관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

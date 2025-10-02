@@ -1,0 +1,82 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20040592",
+      "movieNm": "몬스터",
+      "movieNmEn": "Monster",
+      "movieNmOg": "",
+      "showTm": "109",
+      "prdtYear": "2003",
+      "openDt": "20040618",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "독일"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "팻티 젠킨스",
+          "peopleNmEn": "Patty Jenkins"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "샤를리즈 테론",
+          "peopleNmEn": "Charlize Theron",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "크리스티나 리치",
+          "peopleNmEn": "Christina Ricci",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100250",
+          "companyNm": "무비즈엔터테인먼트㈜",
+          "companyNmEn": "Movies Entertainment",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20139757",
+          "companyNm": "(주)엔케이컨텐츠",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        },
+        {
+          "companyCd": "20100630",
+          "companyNm": "시네마루",
+          "companyNmEn": "Cine maru",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2004-F141",
+          "watchGradeNm": "18세관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

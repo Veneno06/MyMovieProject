@@ -1,0 +1,87 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20050117",
+      "movieNm": "pm 11:14",
+      "movieNmEn": "11:14",
+      "movieNmOg": "",
+      "showTm": "85",
+      "prdtYear": "2003",
+      "openDt": "20050602",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "스릴러"
+        },
+        {
+          "genreNm": "범죄"
+        },
+        {
+          "genreNm": "코미디"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "그레그 마크스",
+          "peopleNmEn": "Greg Marcks"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "힐러리 스웽크",
+          "peopleNmEn": "Hilary Swank",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "패트릭 스웨이즈",
+          "peopleNmEn": "Patrick Swayze",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20104270",
+          "companyNm": "엠디피 월드와이드",
+          "companyNmEn": "MDP Worldwide",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100103",
+          "companyNm": "(주)쇼박스",
+          "companyNmEn": "Showbox Corp",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100329",
+          "companyNm": "(주)쇼타임",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2005-F105",
+          "watchGradeNm": "15세관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20060073",
+      "movieNm": "크래쉬",
+      "movieNmEn": "Crash",
+      "movieNmOg": "",
+      "showTm": "112",
+      "prdtYear": "2004",
+      "openDt": "20060406",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "범죄"
+        },
+        {
+          "genreNm": "미스터리"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "폴 해기스",
+          "peopleNmEn": "Paul Haggis"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "맷 딜런",
+          "peopleNmEn": "Matt Dillon",
+          "cast": "백인 경찰 - 라이언",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "산드라 블록",
+          "peopleNmEn": "Sandra Bullock",
+          "cast": "백인 지방 검사의 아내 - 진 카봇",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "브렌든 프레이저",
+          "peopleNmEn": "Brendan Fraser",
+          "cast": "백인 지방 검사 - 리차드 카봇",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20102197",
+          "companyNm": "밥야리프로덕션즈",
+          "companyNmEn": "Bob Yari Productions",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100427",
+          "companyNm": "(주)스튜디오이쩜영",
+          "companyNmEn": "STUDIO 2.0",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100239",
+          "companyNm": "(주)타이거픽쳐스",
+          "companyNmEn": "Tiger Pictures Inc.",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2006-F080",
+          "watchGradeNm": "15세관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

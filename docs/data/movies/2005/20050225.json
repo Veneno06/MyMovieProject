@@ -1,0 +1,88 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20050225",
+      "movieNm": "찰리와 초콜릿 공장",
+      "movieNmEn": "Charlie And The Chocolate Factory",
+      "movieNmOg": "",
+      "showTm": "114",
+      "prdtYear": "2005",
+      "openDt": "20050916",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "코미디"
+        },
+        {
+          "genreNm": "가족"
+        },
+        {
+          "genreNm": "판타지"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "팀 버튼",
+          "peopleNmEn": "Tim Burton"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "프레디 하이모어",
+          "peopleNmEn": "Freddie Highmore",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "조니 뎁",
+          "peopleNmEn": "Johnny Depp",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20101401",
+          "companyNm": "빌리지 로드쇼 픽쳐스",
+          "companyNmEn": "Village Roadshow Pictures",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100043",
+          "companyNm": "워너브러더스 코리아(주)",
+          "companyNmEn": "Warner Bros. Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100043",
+          "companyNm": "워너브러더스 코리아(주)",
+          "companyNmEn": "Warner Bros. Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2005-F218",
+          "watchGradeNm": "전체관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

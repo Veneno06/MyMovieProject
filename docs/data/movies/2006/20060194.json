@@ -1,0 +1,81 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20060194",
+      "movieNm": "가필드 2",
+      "movieNmEn": "Garfield 2",
+      "movieNmOg": "",
+      "showTm": "77",
+      "prdtYear": "2006",
+      "openDt": "20060727",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "애니메이션"
+        },
+        {
+          "genreNm": "코미디"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "팀 힐",
+          "peopleNmEn": "Tim Hill"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "빌 머레이",
+          "peopleNmEn": "Bill Murray",
+          "cast": "가필드",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "브레킨 메이어",
+          "peopleNmEn": "Breckin Meyer",
+          "cast": "존",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20101507",
+          "companyNm": "이십세기폭스필름코퍼레이션",
+          "companyNmEn": "20th Century Fox Film Corporation",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100041",
+          "companyNm": "이십세기폭스코리아(주)",
+          "companyNmEn": "20th Century Fox Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100041",
+          "companyNm": "이십세기폭스코리아(주)",
+          "companyNmEn": "20th Century Fox Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2006-F206",
+          "watchGradeNm": "전체관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

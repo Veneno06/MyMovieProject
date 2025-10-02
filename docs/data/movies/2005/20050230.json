@@ -1,0 +1,93 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20050230",
+      "movieNm": "헐리우드 엔딩",
+      "movieNmEn": "Hollywood Ending",
+      "movieNmOg": "",
+      "showTm": "111",
+      "prdtYear": "2002",
+      "openDt": "20050930",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "코미디"
+        },
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "우디 알렌",
+          "peopleNmEn": "Woody Allen"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "테이어 레오니",
+          "peopleNmEn": "Tea Leoni",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "우디 앨런",
+          "peopleNmEn": "Woody Allen",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20104482",
+          "companyNm": "퍼디도 프로덕션",
+          "companyNmEn": "Perdido Productions",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20103953",
+          "companyNm": "그라비아프로덕션",
+          "companyNmEn": "Gravier Productions",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20102885",
+          "companyNm": "드림웍스 SKG",
+          "companyNmEn": "DreamWorks SKG ",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100132",
+          "companyNm": "㈜영화사 백두대간",
+          "companyNmEn": "BaekDu-DaeGan Flims Co. Ltd",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100132",
+          "companyNm": "㈜영화사 백두대간",
+          "companyNmEn": "BaekDu-DaeGan Flims Co. Ltd",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2005-F205",
+          "watchGradeNm": "15세관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

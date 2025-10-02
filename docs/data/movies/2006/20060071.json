@@ -1,0 +1,85 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20060071",
+      "movieNm": "프로듀서스",
+      "movieNmEn": "The Producers",
+      "movieNmOg": "",
+      "showTm": "134",
+      "prdtYear": "2005",
+      "openDt": "20070126",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "코미디"
+        },
+        {
+          "genreNm": "뮤지컬"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "수잔 스트로맨",
+          "peopleNmEn": "Susan Stroman"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "네이단 레인",
+          "peopleNmEn": "Nathan Lane",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "매튜 브로데릭",
+          "peopleNmEn": "Matthew Broderick",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20101382",
+          "companyNm": "유니버셜 픽쳐스",
+          "companyNmEn": "Universal Pictures",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100616",
+          "companyNm": "한국소니픽쳐스릴리징브에나비스타영화㈜",
+          "companyNmEn": "Sony Pictures Realizing Buena Vista ",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100616",
+          "companyNm": "한국소니픽쳐스릴리징브에나비스타영화㈜",
+          "companyNmEn": "Sony Pictures Realizing Buena Vista ",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2006-F129",
+          "watchGradeNm": "12세관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

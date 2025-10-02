@@ -1,0 +1,91 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20040744",
+      "movieNm": "샤크",
+      "movieNmEn": "Shark Tale",
+      "movieNmOg": "",
+      "showTm": "90",
+      "prdtYear": "2004",
+      "openDt": "20050107",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "애니메이션"
+        },
+        {
+          "genreNm": "코미디"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "비키 젠슨",
+          "peopleNmEn": "Vicky Jenson"
+        },
+        {
+          "peopleNm": "롭 레터맨",
+          "peopleNmEn": "Rob Letterman"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "윌 스미스",
+          "peopleNmEn": "Will Smith",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "로버트 드 니로",
+          "peopleNmEn": "Robert DeNiro",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20103156",
+          "companyNm": "드림웍스 애니메이션",
+          "companyNmEn": "DreamWorks Animation",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20102885",
+          "companyNm": "드림웍스 SKG",
+          "companyNmEn": "DreamWorks SKG ",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100109",
+          "companyNm": "씨제이엔터테인먼트",
+          "companyNmEn": "CJ Entertainment",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100109",
+          "companyNm": "씨제이엔터테인먼트",
+          "companyNmEn": "CJ Entertainment",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2004-F375",
+          "watchGradeNm": "전체관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

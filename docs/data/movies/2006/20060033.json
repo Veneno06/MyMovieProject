@@ -1,0 +1,85 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20060033",
+      "movieNm": "오만과 편견",
+      "movieNmEn": "Pride & Prejudice, 2005",
+      "movieNmOg": "",
+      "showTm": "128",
+      "prdtYear": "2005",
+      "openDt": "20060324",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "멜로/로맨스"
+        },
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "조 라이트",
+          "peopleNmEn": "Joe Wright"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "키이라 나이틀리",
+          "peopleNmEn": "Keira Knightley",
+          "cast": "엘리자베스 베넷",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "매튜 맥퍼딘",
+          "peopleNmEn": "Matthew Macfadyen",
+          "cast": "다아시",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20101439",
+          "companyNm": "워킹 타이틀 필름",
+          "companyNmEn": "Working Title Films",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100649",
+          "companyNm": "UIP코리아",
+          "companyNmEn": "United International Pictures Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100649",
+          "companyNm": "UIP코리아",
+          "companyNmEn": "United International Pictures Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2005-F266",
+          "watchGradeNm": "12세관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

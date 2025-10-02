@@ -1,0 +1,94 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20060012",
+      "movieNm": "미 앤 유 앤 에브리원",
+      "movieNmEn": "Me And You And Everyone We Know",
+      "movieNmOg": "",
+      "showTm": "91",
+      "prdtYear": "2005",
+      "openDt": "20060127",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        },
+        {
+          "nationNm": "영국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "코미디"
+        },
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "미란다 줄라이",
+          "peopleNmEn": ""
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "미란다 줄라이",
+          "peopleNmEn": "",
+          "cast": "크리스틴",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "존 혹스",
+          "peopleNmEn": "John Hawkes",
+          "cast": "리차드",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20103990",
+          "companyNm": "IFC필름",
+          "companyNmEn": "IFC Films",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20103544",
+          "companyNm": "필름포",
+          "companyNmEn": "FilmFour",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100487",
+          "companyNm": "(주)동숭아트센터",
+          "companyNmEn": "",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100487",
+          "companyNm": "(주)동숭아트센터",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2006-F020",
+          "watchGradeNm": "15세관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

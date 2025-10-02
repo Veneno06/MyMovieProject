@@ -1,0 +1,84 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20050004",
+      "movieNm": "네버랜드를 찾아서",
+      "movieNmEn": "Finding Neverland",
+      "movieNmOg": "",
+      "showTm": "101",
+      "prdtYear": "2004",
+      "openDt": "20050225",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "마크 포스터",
+          "peopleNmEn": "Marc Forster"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "더스틴 호프만",
+          "peopleNmEn": "Dustin Hoffman",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "케이트 윈슬렛",
+          "peopleNmEn": "Kate Winslet",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "조니 뎁",
+          "peopleNmEn": "Johnny Depp",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20104369",
+          "companyNm": "미라맥스 필름즈",
+          "companyNmEn": "Miramax Films",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20101568",
+          "companyNm": "브에나비스타인터내셔널코리아",
+          "companyNmEn": "Vuenavista International Kores",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20101568",
+          "companyNm": "브에나비스타인터내셔널코리아",
+          "companyNmEn": "Vuenavista International Kores",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2004-F351",
+          "watchGradeNm": "12세관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

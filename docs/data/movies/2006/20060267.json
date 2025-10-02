@@ -1,0 +1,78 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20060267",
+      "movieNm": "글래스톤베리",
+      "movieNmEn": "Glastonbury",
+      "movieNmOg": "",
+      "showTm": "138",
+      "prdtYear": "2006",
+      "openDt": "20060914",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "영국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "다큐멘터리"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "줄리언 템플",
+          "peopleNmEn": "Julien Temple"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "비요크",
+          "peopleNmEn": "Bjork ",
+          "cast": "본인",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "데이빗 보위",
+          "peopleNmEn": "David Bowie",
+          "cast": "본인",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20104051",
+          "companyNm": "한웨이필름",
+          "companyNmEn": "Hanway",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100209",
+          "companyNm": "(주)스폰지이엔티",
+          "companyNmEn": "Sponge Ent. Inc.",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100209",
+          "companyNm": "(주)스폰지이엔티",
+          "companyNmEn": "Sponge Ent. Inc.",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2006-F264",
+          "watchGradeNm": "15세관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

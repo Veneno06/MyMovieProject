@@ -1,0 +1,78 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20060058",
+      "movieNm": "윌러드",
+      "movieNmEn": "Willard",
+      "movieNmOg": "",
+      "showTm": "100",
+      "prdtYear": "2003",
+      "openDt": "20060309",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "공포(호러)"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "글렌 모건",
+          "peopleNmEn": "Glen Morgan"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "크리스핀 글로버",
+          "peopleNmEn": "Crispin Glover",
+          "cast": "윌러드 스타일스",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "데이비드 파커",
+          "peopleNmEn": "David Parker",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20104412",
+          "companyNm": "뉴라인 시네마",
+          "companyNmEn": "New Line Cinema",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100354",
+          "companyNm": "㈜케이디미디어",
+          "companyNmEn": "KD Media",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100354",
+          "companyNm": "㈜케이디미디어",
+          "companyNmEn": "KD Media",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2005-F131",
+          "watchGradeNm": "15세관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20060152",
+      "movieNm": "오멘",
+      "movieNmEn": "The Omen",
+      "movieNmOg": "",
+      "showTm": "109",
+      "prdtYear": "2006",
+      "openDt": "20060606",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "공포(호러)"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "존 무어",
+          "peopleNmEn": "John Moore"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "리브 슈라이버",
+          "peopleNmEn": "Liev Schreiber",
+          "cast": "로버트 쏜",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "줄리아 스타일즈",
+          "peopleNmEn": "Julia Stiles",
+          "cast": "캐서린 쏜",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "미아 프레",
+          "peopleNmEn": "Mia Frye ",
+          "cast": "베이록 부인",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "샤무스 데이비 피츠패트릭",
+          "peopleNmEn": "Seamus Davey-Fitzpatrick",
+          "cast": "데미안",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20101507",
+          "companyNm": "이십세기폭스필름코퍼레이션",
+          "companyNmEn": "20th Century Fox Film Corporation",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100041",
+          "companyNm": "이십세기폭스코리아(주)",
+          "companyNmEn": "20th Century Fox Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100041",
+          "companyNm": "이십세기폭스코리아(주)",
+          "companyNmEn": "20th Century Fox Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2006-F165",
+          "watchGradeNm": "18세관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20060086",
+      "movieNm": "와일드",
+      "movieNmEn": "The Wild",
+      "movieNmOg": "",
+      "showTm": "81",
+      "prdtYear": "2006",
+      "openDt": "20060420",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "애니메이션"
+        },
+        {
+          "genreNm": "코미디"
+        },
+        {
+          "genreNm": "어드벤처"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "스티브 스파즈 윌리엄스",
+          "peopleNmEn": "Steve Spaz Williams"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "키퍼 서덜랜드",
+          "peopleNmEn": "Kiefer Sutherland",
+          "cast": "사자 샘슨 목소리",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "짐 벨루시",
+          "peopleNmEn": "James Belushi",
+          "cast": "다람쥐 베니 목소리",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "에디 이자드",
+          "peopleNmEn": "Eddie Izzard",
+          "cast": "코알라 나이젤",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20101412",
+          "companyNm": "월트 디즈니 픽쳐스",
+          "companyNmEn": "Walt Disney Pictures",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20101568",
+          "companyNm": "브에나비스타인터내셔널코리아",
+          "companyNmEn": "Vuenavista International Kores",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20101568",
+          "companyNm": "브에나비스타인터내셔널코리아",
+          "companyNmEn": "Vuenavista International Kores",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2006-F087",
+          "watchGradeNm": "전체관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

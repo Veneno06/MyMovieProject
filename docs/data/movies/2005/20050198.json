@@ -1,0 +1,81 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20050198",
+      "movieNm": "인 굿 컴퍼니",
+      "movieNmEn": "In Good Company",
+      "movieNmOg": "",
+      "showTm": "109",
+      "prdtYear": "2004",
+      "openDt": "20050826",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "코미디"
+        },
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "폴 웨이츠",
+          "peopleNmEn": "Paul Weitz"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "토퍼 그레이스",
+          "peopleNmEn": "Topher Grace",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "데니스 퀘이드",
+          "peopleNmEn": "Dennis Quaid",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20101382",
+          "companyNm": "유니버셜 픽쳐스",
+          "companyNmEn": "Universal Pictures",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20060623",
+          "companyNm": "스폰지",
+          "companyNmEn": "",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20060623",
+          "companyNm": "스폰지",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2005-F214",
+          "watchGradeNm": "15세관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

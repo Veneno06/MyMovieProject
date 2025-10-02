@@ -1,0 +1,78 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20060094",
+      "movieNm": "판타스틱 애니월드",
+      "movieNmEn": "Cyberworld",
+      "movieNmOg": "Cyberworld",
+      "showTm": "44",
+      "prdtYear": "2000",
+      "openDt": "20060413",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "캐나다"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "애니메이션"
+        },
+        {
+          "genreNm": "어드벤처"
+        },
+        {
+          "genreNm": "가족"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "콜린 데이비스",
+          "peopleNmEn": "Colin Davis"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "제나 엘프만",
+          "peopleNmEn": "Jenna Elfman",
+          "cast": "피그",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "매트 프류어",
+          "peopleNmEn": "Matt Frewer",
+          "cast": "프래즐리드",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20063188",
+          "companyNm": "씨제이 씨지브이(CJ CGV)(주)",
+          "companyNmEn": "CJ CGV",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20063188",
+          "companyNm": "씨제이 씨지브이(CJ CGV)(주)",
+          "companyNmEn": "CJ CGV",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2006-F078",
+          "watchGradeNm": "전체관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

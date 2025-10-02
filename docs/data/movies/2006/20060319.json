@@ -1,0 +1,87 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20060319",
+      "movieNm": "박물관이 살아있다!",
+      "movieNmEn": "Night At The Museum",
+      "movieNmOg": "",
+      "showTm": "108",
+      "prdtYear": "2006",
+      "openDt": "20061221",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "코미디"
+        },
+        {
+          "genreNm": "어드벤처"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "숀 레비",
+          "peopleNmEn": "Shawn Levy"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "벤 스틸러",
+          "peopleNmEn": "Ben Stiller",
+          "cast": "래리 데일리",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "로빈 윌리엄스",
+          "peopleNmEn": "Robin Williams",
+          "cast": "테디 루즈벨트",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20101507",
+          "companyNm": "이십세기폭스필름코퍼레이션",
+          "companyNmEn": "20th Century Fox Film Corporation",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20101490",
+          "companyNm": "1492픽쳐스",
+          "companyNmEn": "1492 Pictures",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100041",
+          "companyNm": "이십세기폭스코리아(주)",
+          "companyNmEn": "20th Century Fox Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100041",
+          "companyNm": "이십세기폭스코리아(주)",
+          "companyNmEn": "20th Century Fox Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2006-F386",
+          "watchGradeNm": "전체관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

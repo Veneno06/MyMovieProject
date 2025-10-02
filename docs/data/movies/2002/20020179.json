@@ -1,0 +1,81 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20020179",
+      "movieNm": "탕기",
+      "movieNmEn": "Tanguy",
+      "movieNmOg": "",
+      "showTm": "108",
+      "prdtYear": "2001",
+      "openDt": "20061228",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "프랑스"
+        },
+        {
+          "nationNm": "일본"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "코미디"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "에티엔느 샤틸리에",
+          "peopleNmEn": ""
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "사빈 아젬마",
+          "peopleNmEn": "Sabine Azéma",
+          "cast": "엄마 에디뜨 게츠",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "앙드레 뒤솔리에",
+          "peopleNmEn": "Andre Dussollier",
+          "cast": "아빠 폴 게츠 ",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20103136",
+          "companyNm": "TF1 필름 프로덕션",
+          "companyNmEn": "TF1 Films Production ",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100255",
+          "companyNm": "거원시네마(주)",
+          "companyNmEn": "",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100255",
+          "companyNm": "거원시네마(주)",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2003-F355",
+          "watchGradeNm": "15세관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20050030",
+      "movieNm": "쿨",
+      "movieNmEn": "Be Cool",
+      "movieNmOg": "",
+      "showTm": "112",
+      "prdtYear": "2005",
+      "openDt": "20050408",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "코미디"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "F. 게리 그레이",
+          "peopleNmEn": "F. Gary Gray"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "존 트라볼타",
+          "peopleNmEn": "John Travolta",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "우마 서먼",
+          "peopleNmEn": "Uma Thurman",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20104352",
+          "companyNm": "메트로-골드윈-마이어",
+          "companyNmEn": "Metro-Goldwyn-Mayer (MGM)",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20104182",
+          "companyNm": "저지필름",
+          "companyNmEn": "Jersey Films",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20101507",
+          "companyNm": "이십세기폭스필름코퍼레이션",
+          "companyNmEn": "20th Century Fox Film Corporation",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20101507",
+          "companyNm": "이십세기폭스필름코퍼레이션",
+          "companyNmEn": "20th Century Fox Film Corporation",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2005-F054",
+          "watchGradeNm": "15세관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

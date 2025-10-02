@@ -1,0 +1,87 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20060007",
+      "movieNm": "열두명의 웬수들2",
+      "movieNmEn": "Cheaper By The Dozen 2",
+      "movieNmOg": "",
+      "showTm": "93",
+      "prdtYear": "2005",
+      "openDt": "20060126",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "코미디"
+        },
+        {
+          "genreNm": "가족"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "아담 쉥크만",
+          "peopleNmEn": "Adam Shankman"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "스티브 마틴",
+          "peopleNmEn": "Steve Martin",
+          "cast": "톰 베이커",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "보니 헌트",
+          "peopleNmEn": "Bonnie Hunt",
+          "cast": "케이트 베이커",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "블레이크 우드러프",
+          "peopleNmEn": "Blake Woodruff",
+          "cast": "마이크 베이커 역",
+          "castEn": "마이크 베이커"
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20101507",
+          "companyNm": "이십세기폭스필름코퍼레이션",
+          "companyNmEn": "20th Century Fox Film Corporation",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100041",
+          "companyNm": "이십세기폭스코리아(주)",
+          "companyNmEn": "20th Century Fox Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100041",
+          "companyNm": "이십세기폭스코리아(주)",
+          "companyNmEn": "20th Century Fox Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2005-F363",
+          "watchGradeNm": "전체관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

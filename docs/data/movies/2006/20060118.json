@@ -1,0 +1,81 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20060118",
+      "movieNm": "세일즈우먼",
+      "movieNmEn": "Le Secret",
+      "movieNmOg": "Le Secret",
+      "showTm": "107",
+      "prdtYear": "2000",
+      "openDt": "20060518",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "프랑스"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "멜로/로맨스"
+        },
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "비르지니 와공",
+          "peopleNmEn": "Virginie Wagon"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "토니 토드",
+          "peopleNmEn": "Tony Todd",
+          "cast": "빌 웨스트",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "안 코에상",
+          "peopleNmEn": "Anne Coesens",
+          "cast": "마리 콜밴트",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20101289",
+          "companyNm": "스튜디오 카날",
+          "companyNmEn": "Studio Canal",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100892",
+          "companyNm": "프리비젼엔터테인먼트",
+          "companyNmEn": "Prevision Entertainment",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20102389",
+          "companyNm": "CNS엔터테인먼트",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2006-F100",
+          "watchGradeNm": "18세관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

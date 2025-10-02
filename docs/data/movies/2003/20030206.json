@@ -1,0 +1,78 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20030206",
+      "movieNm": "베이직",
+      "movieNmEn": "Basic",
+      "movieNmOg": "",
+      "showTm": "98",
+      "prdtYear": "2003",
+      "openDt": "20040206",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "액션"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "존 맥티어난",
+          "peopleNmEn": "John McTiernan"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "사무엘 L. 잭슨",
+          "peopleNmEn": "Samuel L. Jackson",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "코니 닐슨",
+          "peopleNmEn": "Connie Nielsen",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "존 트라볼타",
+          "peopleNmEn": "John Travolta",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100060",
+          "companyNm": "코리아픽쳐스(주)",
+          "companyNmEn": "Korea Pictures",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100060",
+          "companyNm": "코리아픽쳐스(주)",
+          "companyNmEn": "Korea Pictures",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2003-F265",
+          "watchGradeNm": "15세관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

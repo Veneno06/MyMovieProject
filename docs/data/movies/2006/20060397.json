@@ -1,0 +1,78 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20060397",
+      "movieNm": "클릭",
+      "movieNmEn": "Click",
+      "movieNmOg": "",
+      "showTm": "107",
+      "prdtYear": "2006",
+      "openDt": "20070201",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "코미디"
+        },
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "판타지"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "프랭크 코라치",
+          "peopleNmEn": "Frank Coraci"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "아담 샌들러",
+          "peopleNmEn": "Adam Sandler",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "케이트 베킨세일",
+          "peopleNmEn": "Kate Beckinsale",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100616",
+          "companyNm": "한국소니픽쳐스릴리징브에나비스타영화㈜",
+          "companyNmEn": "Sony Pictures Realizing Buena Vista ",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100616",
+          "companyNm": "한국소니픽쳐스릴리징브에나비스타영화㈜",
+          "companyNmEn": "Sony Pictures Realizing Buena Vista ",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2006-F384",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

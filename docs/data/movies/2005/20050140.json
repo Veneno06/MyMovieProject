@@ -1,0 +1,82 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20050140",
+      "movieNm": "마다가스카",
+      "movieNmEn": "Madagascar",
+      "movieNmOg": "",
+      "showTm": "86",
+      "prdtYear": "2005",
+      "openDt": "20050714",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "애니메이션"
+        },
+        {
+          "genreNm": "코미디"
+        },
+        {
+          "genreNm": "어드벤처"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "에릭 다넬",
+          "peopleNmEn": "Eric Darnell"
+        },
+        {
+          "peopleNm": "톰 맥그라스",
+          "peopleNmEn": "Tom McGrath"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "벤 스틸러",
+          "peopleNmEn": "Ben Stiller",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20102885",
+          "companyNm": "드림웍스 SKG",
+          "companyNmEn": "DreamWorks SKG ",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100109",
+          "companyNm": "씨제이엔터테인먼트",
+          "companyNmEn": "CJ Entertainment",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100109",
+          "companyNm": "씨제이엔터테인먼트",
+          "companyNmEn": "CJ Entertainment",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2005-F147",
+          "watchGradeNm": "전체관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

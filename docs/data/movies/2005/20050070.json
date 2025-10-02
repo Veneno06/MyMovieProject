@@ -1,0 +1,78 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20050070",
+      "movieNm": "브라더스",
+      "movieNmEn": "Brothers",
+      "movieNmOg": "Brødre",
+      "showTm": "110",
+      "prdtYear": "2004",
+      "openDt": "20050423",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "덴마크"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "수잔 비에르",
+          "peopleNmEn": "Susanne Bier"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "코니 닐슨",
+          "peopleNmEn": "Connie Nielsen",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "율리히 톰센",
+          "peopleNmEn": "Ulrich Thomsen",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20103800",
+          "companyNm": "젠트로파 엔터테인먼트",
+          "companyNmEn": "Zentropa Entertainments",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20104343",
+          "companyNm": "미디어 소소",
+          "companyNmEn": "Media SoSo",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20104343",
+          "companyNm": "미디어 소소",
+          "companyNmEn": "Media SoSo",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2005-F098",
+          "watchGradeNm": "15세관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

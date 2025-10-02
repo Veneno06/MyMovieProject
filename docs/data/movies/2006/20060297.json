@@ -1,0 +1,76 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20060297",
+      "movieNm": "댈러웨이 부인",
+      "movieNmEn": "Mrs. Dalloway",
+      "movieNmOg": "",
+      "showTm": "96",
+      "prdtYear": "1997",
+      "openDt": "20060928",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "영국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "마를렌 고리스",
+          "peopleNmEn": "Marleen Gorris"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "바네사 레드그레이브",
+          "peopleNmEn": "Vanessa Redgrave",
+          "cast": "클라리사 델러웨이 부인",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "나타샤 맥켈혼",
+          "peopleNmEn": "Natascha McElhone",
+          "cast": "어린 클라리사",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100132",
+          "companyNm": "㈜영화사 백두대간",
+          "companyNmEn": "BaekDu-DaeGan Flims Co. Ltd",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100132",
+          "companyNm": "㈜영화사 백두대간",
+          "companyNmEn": "BaekDu-DaeGan Flims Co. Ltd",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2006-F285",
+          "watchGradeNm": "12세관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

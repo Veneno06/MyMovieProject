@@ -1,0 +1,88 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20060013",
+      "movieNm": "타임 투 리브",
+      "movieNmEn": "Time To Leave",
+      "movieNmOg": "Le Temps Qui Reste",
+      "showTm": "80",
+      "prdtYear": "2005",
+      "openDt": "20060209",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "프랑스"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "프랑수아 오종",
+          "peopleNmEn": "Francois Ozon"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "멜빌 푸포",
+          "peopleNmEn": "Melvil Poupaud",
+          "cast": "로맹",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "잔느 모로",
+          "peopleNmEn": "Jeanne Moreau",
+          "cast": "로라 ",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20103471",
+          "companyNm": "피델라이트프로덕션",
+          "companyNmEn": "Fidelite Productions",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20101289",
+          "companyNm": "스튜디오 카날",
+          "companyNmEn": "Studio Canal",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20060623",
+          "companyNm": "스폰지",
+          "companyNmEn": "",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20060623",
+          "companyNm": "스폰지",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2006-F033",
+          "watchGradeNm": "18세관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

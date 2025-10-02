@@ -1,0 +1,82 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20050012",
+      "movieNm": "레이",
+      "movieNmEn": "Ray",
+      "movieNmOg": "",
+      "showTm": "152",
+      "prdtYear": "2004",
+      "openDt": "20050225",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "테일러 핵포드",
+          "peopleNmEn": "Taylor Hackford"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "케리 워싱턴",
+          "peopleNmEn": "Kerry Washington",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "제이미 폭스",
+          "peopleNmEn": "Jamie Foxx",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20102235",
+          "companyNm": "브리스톨베이프로덕션즈",
+          "companyNmEn": "Bristol Bay Productions",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100649",
+          "companyNm": "UIP코리아",
+          "companyNmEn": "United International Pictures Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100649",
+          "companyNm": "UIP코리아",
+          "companyNmEn": "United International Pictures Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2004-F358",
+          "watchGradeNm": "15세관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20070642",
+      "movieNm": "아메리칸 갱스터",
+      "movieNmEn": "American Gangster",
+      "movieNmOg": "",
+      "showTm": "156",
+      "prdtYear": "2007",
+      "openDt": "20071227",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "범죄"
+        },
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "리들리 스콧",
+          "peopleNmEn": "Ridley Scott"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "덴젤 워싱턴",
+          "peopleNmEn": "Denzel Washington ",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "러셀 크로우",
+          "peopleNmEn": "Russell Crowe",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20101382",
+          "companyNm": "유니버셜 픽쳐스",
+          "companyNmEn": "Universal Pictures",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100603",
+          "companyNm": "유니버설픽쳐스인터내셔널 코리아(유)",
+          "companyNmEn": "Universal Pictures International Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100603",
+          "companyNm": "유니버설픽쳐스인터내셔널 코리아(유)",
+          "companyNmEn": "Universal Pictures International Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2007-F416",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

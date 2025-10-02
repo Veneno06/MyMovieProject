@@ -1,0 +1,85 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20070024",
+      "movieNm": "천년을 흐르는 사랑",
+      "movieNmEn": "The Fountain",
+      "movieNmOg": "",
+      "showTm": "96",
+      "prdtYear": "2006",
+      "openDt": "20070308",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "SF"
+        },
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "대런 아로노프스키",
+          "peopleNmEn": "Darren Aronofsky"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "휴 잭맨",
+          "peopleNmEn": "Hugh Jackman",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "레이첼 와이즈",
+          "peopleNmEn": "Rachel Weisz",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20101185",
+          "companyNm": "리젠시 엔터프라이즈",
+          "companyNmEn": "Regency Enterprises",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20101507",
+          "companyNm": "이십세기폭스필름코퍼레이션",
+          "companyNmEn": "20th Century Fox Film Corporation",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20101507",
+          "companyNm": "이십세기폭스필름코퍼레이션",
+          "companyNmEn": "20th Century Fox Film Corporation",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2006-F296",
+          "watchGradeNm": "15세관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

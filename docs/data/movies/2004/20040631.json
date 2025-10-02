@@ -1,0 +1,76 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20040631",
+      "movieNm": "터미널",
+      "movieNmEn": "The Terminal",
+      "movieNmOg": "",
+      "showTm": "128",
+      "prdtYear": "2004",
+      "openDt": "20040827",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "스티븐 스필버그",
+          "peopleNmEn": "Steven Spielberg"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "톰 행크스",
+          "peopleNmEn": "Tom Hanks",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "캐서린 제타-존스",
+          "peopleNmEn": "Catherine Zeta-Jones ",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100109",
+          "companyNm": "씨제이엔터테인먼트",
+          "companyNmEn": "CJ Entertainment",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100109",
+          "companyNm": "씨제이엔터테인먼트",
+          "companyNmEn": "CJ Entertainment",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2004-F225",
+          "watchGradeNm": "전체관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

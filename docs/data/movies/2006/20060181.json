@@ -1,0 +1,89 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20060181",
+      "movieNm": "티켓",
+      "movieNmEn": "Tickets",
+      "movieNmOg": "Tickets",
+      "showTm": "109",
+      "prdtYear": "2005",
+      "openDt": "20060623",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "이탈리아"
+        },
+        {
+          "nationNm": "영국"
+        },
+        {
+          "nationNm": "이란"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "코미디"
+        },
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "에르마노 올미",
+          "peopleNmEn": "Ermanno Olmi"
+        },
+        {
+          "peopleNm": "압바스 키아로스타미",
+          "peopleNmEn": "Abbas Kiarostami"
+        },
+        {
+          "peopleNm": "켄 로치",
+          "peopleNmEn": "Ken Loach"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "칼로 델레 피아네",
+          "peopleNmEn": "Carlo Delle Piane",
+          "cast": "노교수",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20103921",
+          "companyNm": "판당고",
+          "companyNmEn": "Fandango",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100487",
+          "companyNm": "(주)동숭아트센터",
+          "companyNmEn": "",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100487",
+          "companyNm": "(주)동숭아트센터",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2006-F038",
+          "watchGradeNm": "12세관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

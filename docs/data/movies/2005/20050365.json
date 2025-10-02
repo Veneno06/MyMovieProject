@@ -1,0 +1,82 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20050365",
+      "movieNm": "올리버 트위스트",
+      "movieNmEn": "Oliver Twist",
+      "movieNmOg": "",
+      "showTm": "129",
+      "prdtYear": "2005",
+      "openDt": "20051229",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "체코"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "로만 폴란스키",
+          "peopleNmEn": "Roman Polanski"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "벤 킹슬리",
+          "peopleNmEn": "Ben Kingsley",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "바니 클락",
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20112178",
+          "companyNm": "P.P.Films",
+          "companyNmEn": "R.P.Productions",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100303",
+          "companyNm": "(주)시네마서비스",
+          "companyNmEn": "Cinema Service Co.,Ltd.",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20060668",
+          "companyNm": "(주)팬텀 엔터테인먼트 그룹",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2005-F335",
+          "watchGradeNm": "12세관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

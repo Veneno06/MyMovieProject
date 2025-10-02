@@ -1,0 +1,82 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20060318",
+      "movieNm": "해피 피트",
+      "movieNmEn": "Happy Feet",
+      "movieNmOg": "",
+      "showTm": "108",
+      "prdtYear": "2006",
+      "openDt": "20061221",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        },
+        {
+          "nationNm": "호주"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "애니메이션"
+        },
+        {
+          "genreNm": "코미디"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "조지 밀러",
+          "peopleNmEn": "George Miller"
+        },
+        {
+          "peopleNm": "주디 모리스",
+          "peopleNmEn": "Judy Morris"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "로빈 윌리엄스",
+          "peopleNmEn": "Robin Williams",
+          "cast": "레이몬/러브레이스/클리터스",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20101401",
+          "companyNm": "빌리지 로드쇼 픽쳐스",
+          "companyNmEn": "Village Roadshow Pictures",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100043",
+          "companyNm": "워너브러더스 코리아(주)",
+          "companyNmEn": "Warner Bros. Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100043",
+          "companyNm": "워너브러더스 코리아(주)",
+          "companyNmEn": "Warner Bros. Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2006-F370 ",
+          "watchGradeNm": "전체관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20060340",
+      "movieNm": "프레스티지",
+      "movieNmEn": "The Prestige",
+      "movieNmOg": "",
+      "showTm": "126",
+      "prdtYear": "2006",
+      "openDt": "20061102",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        },
+        {
+          "nationNm": "영국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "스릴러"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "크리스토퍼 놀란",
+          "peopleNmEn": "Christopher Nolan"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "휴 잭맨",
+          "peopleNmEn": "Hugh Jackman",
+          "cast": "루퍼트 엔지어",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "크리스찬 베일",
+          "peopleNmEn": "Christian Bale ",
+          "cast": "알프레드 보든",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100043",
+          "companyNm": "워너브러더스 코리아(주)",
+          "companyNmEn": "Warner Bros. Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100043",
+          "companyNm": "워너브러더스 코리아(주)",
+          "companyNmEn": "Warner Bros. Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2006-F331",
+          "watchGradeNm": "15세관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20060042",
+      "movieNm": "앙코르",
+      "movieNmEn": "Walk The Line",
+      "movieNmOg": "",
+      "showTm": "135",
+      "prdtYear": "2005",
+      "openDt": "20060309",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "제임스 맨골드",
+          "peopleNmEn": "James Mangold"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "호아킨 피닉스",
+          "peopleNmEn": "Joaquin Phoenix",
+          "cast": "조니 캐쉬",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "리즈 위더스푼",
+          "peopleNmEn": "Reese Witherspoon",
+          "cast": "준 카터 ",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20103671",
+          "companyNm": "폭스2000픽처스",
+          "companyNmEn": "Fox 2000 Pictures",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100041",
+          "companyNm": "이십세기폭스코리아(주)",
+          "companyNmEn": "20th Century Fox Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100041",
+          "companyNm": "이십세기폭스코리아(주)",
+          "companyNmEn": "20th Century Fox Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2005-F354",
+          "watchGradeNm": "15세관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20070149",
+      "movieNm": "캐쉬백",
+      "movieNmEn": "Cashback",
+      "movieNmOg": "",
+      "showTm": "101",
+      "prdtYear": "2006",
+      "openDt": "20070503",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "영국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "코미디"
+        },
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "멜로/로맨스"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "숀 엘리스",
+          "peopleNmEn": "Sean Ellis"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "숀 비거스태프",
+          "peopleNmEn": "Sean Biggerstaff",
+          "cast": "벤 윌리스",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "에밀리아 폭스",
+          "peopleNmEn": "Emilia Fox",
+          "cast": "샤론 핀티",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20060623",
+          "companyNm": "스폰지",
+          "companyNmEn": "",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20060623",
+          "companyNm": "스폰지",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2006-F422",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

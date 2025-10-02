@@ -1,0 +1,81 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20060256",
+      "movieNm": "워터스",
+      "movieNmEn": "Waters",
+      "movieNmOg": "Waters",
+      "showTm": "109",
+      "prdtYear": "2006",
+      "openDt": "20060914",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "일본"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "코미디"
+        },
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "니시무라 료",
+          "peopleNmEn": "Ryo Nishimura"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "오구리 슌",
+          "peopleNmEn": "Shun Oguri",
+          "cast": "료헤이",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "마쓰오 도시노부",
+          "peopleNmEn": "",
+          "cast": "나오토",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100892",
+          "companyNm": "프리비젼엔터테인먼트",
+          "companyNmEn": "Prevision Entertainment",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100415",
+          "companyNm": "시네마밸리",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        },
+        {
+          "companyCd": "20102389",
+          "companyNm": "CNS엔터테인먼트",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2006-F252",
+          "watchGradeNm": "12세관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

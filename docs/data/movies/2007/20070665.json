@@ -1,0 +1,91 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20070665",
+      "movieNm": "안경",
+      "movieNmEn": "Glasses",
+      "movieNmOg": "めがね",
+      "showTm": "106",
+      "prdtYear": "2007",
+      "openDt": "20071129",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "일본"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "코미디"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "오기가미 나오코",
+          "peopleNmEn": "Ogigami Naoko"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "코바야시 사토미",
+          "peopleNmEn": "Satomi Kobayashi",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "이치카와 미카코",
+          "peopleNmEn": "Mikako Ichikawa",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20158370",
+          "companyNm": "(주)디스테이션",
+          "companyNmEn": "",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20060623",
+          "companyNm": "스폰지",
+          "companyNmEn": "",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20139757",
+          "companyNm": "(주)엔케이컨텐츠",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        },
+        {
+          "companyCd": "20060623",
+          "companyNm": "스폰지",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2007-F488",
+          "watchGradeNm": "전체관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

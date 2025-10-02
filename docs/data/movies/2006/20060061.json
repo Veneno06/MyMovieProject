@@ -1,0 +1,88 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20060061",
+      "movieNm": "히든",
+      "movieNmEn": "Hidden",
+      "movieNmOg": "Cache",
+      "showTm": "118",
+      "prdtYear": "2005",
+      "openDt": "20060330",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "프랑스"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "스릴러"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "미카엘 하네케",
+          "peopleNmEn": "Michael Haneke"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "줄리엣 비노쉬",
+          "peopleNmEn": "Juliette Binoche",
+          "cast": "조르쥬",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "다니엘 오떼유",
+          "peopleNmEn": "Daniel Auteuil",
+          "cast": "안느",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20157108",
+          "companyNm": "(주)영화사 안다미로",
+          "companyNmEn": "Andamiro films",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100209",
+          "companyNm": "(주)스폰지이엔티",
+          "companyNmEn": "Sponge Ent. Inc.",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20157108",
+          "companyNm": "(주)영화사 안다미로",
+          "companyNmEn": "Andamiro films",
+          "companyPartNm": "수입사"
+        },
+        {
+          "companyCd": "20100209",
+          "companyNm": "(주)스폰지이엔티",
+          "companyNmEn": "Sponge Ent. Inc.",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2006-F084 ",
+          "watchGradeNm": "15세관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

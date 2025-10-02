@@ -1,0 +1,78 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20050286",
+      "movieNm": "블루스톰",
+      "movieNmEn": "Into The Blue",
+      "movieNmOg": "",
+      "showTm": "109",
+      "prdtYear": "2005",
+      "openDt": "20051117",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "액션"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "존 스톡웰",
+          "peopleNmEn": "John Stockwell"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "폴 워커",
+          "peopleNmEn": "Paul Walker",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "제시카 알바",
+          "peopleNmEn": "Jessica Alba",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20102179",
+          "companyNm": "콜럼비아 픽쳐스 필름 프로덕션",
+          "companyNmEn": "COLUMBIA PICTURES FILM PRODUCTION",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20101507",
+          "companyNm": "이십세기폭스필름코퍼레이션",
+          "companyNmEn": "20th Century Fox Film Corporation",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20101507",
+          "companyNm": "이십세기폭스필름코퍼레이션",
+          "companyNmEn": "20th Century Fox Film Corporation",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2005-F216",
+          "watchGradeNm": "15세관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

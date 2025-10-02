@@ -1,0 +1,92 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20060008",
+      "movieNm": "더 차일드",
+      "movieNmEn": "The Child",
+      "movieNmOg": "",
+      "showTm": "95",
+      "prdtYear": "2005",
+      "openDt": "20060127",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "벨기에"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "장 피에르 다르덴",
+          "peopleNmEn": "Jean-Pierre Dardenne"
+        },
+        {
+          "peopleNm": "뤽 다르덴",
+          "peopleNmEn": "Luc Dardenne"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "제레미 레니에",
+          "peopleNmEn": "Jeremie Renier",
+          "cast": "브루노",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "데보라 프랑수아",
+          "peopleNmEn": "Deborah Francois",
+          "cast": "소냐",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20061718",
+          "companyNm": "찬란",
+          "companyNmEn": "Challan Film",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20060623",
+          "companyNm": "스폰지",
+          "companyNmEn": "",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20061718",
+          "companyNm": "찬란",
+          "companyNmEn": "Challan Film",
+          "companyPartNm": "수입사"
+        },
+        {
+          "companyCd": "20060623",
+          "companyNm": "스폰지",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2006-F027",
+          "watchGradeNm": "12세관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

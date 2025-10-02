@@ -1,0 +1,93 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20050113",
+      "movieNm": "미스터 & 미세스 스미스",
+      "movieNmEn": "Mr. And Mrs. Smith",
+      "movieNmOg": "",
+      "showTm": "120",
+      "prdtYear": "2005",
+      "openDt": "20050616",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "멜로/로맨스"
+        },
+        {
+          "genreNm": "액션"
+        },
+        {
+          "genreNm": "어드벤처"
+        },
+        {
+          "genreNm": "스릴러"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "더그 라이만",
+          "peopleNmEn": "Doug Liman"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "안젤리나 졸리",
+          "peopleNmEn": "Angelina Jolie",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "브래드 피트",
+          "peopleNmEn": "Brad Pitt",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "빈스 본",
+          "peopleNmEn": "Vince Vaughn",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20111681",
+          "companyNm": "뉴리전시 픽쳐스",
+          "companyNmEn": "New Regency Pictures",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20101507",
+          "companyNm": "이십세기폭스필름코퍼레이션",
+          "companyNmEn": "20th Century Fox Film Corporation",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20101507",
+          "companyNm": "이십세기폭스필름코퍼레이션",
+          "companyNmEn": "20th Century Fox Film Corporation",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2005-F135",
+          "watchGradeNm": "15세관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

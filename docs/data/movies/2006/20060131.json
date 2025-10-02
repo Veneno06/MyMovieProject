@@ -1,0 +1,81 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20060131",
+      "movieNm": "5x2",
+      "movieNmEn": "Five times two",
+      "movieNmOg": "Five Times Two",
+      "showTm": "90",
+      "prdtYear": "2004",
+      "openDt": "20060526",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "프랑스"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "멜로/로맨스"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "프랑수아 오종",
+          "peopleNmEn": "Francois Ozon"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "발레리아 브루니 테데스키",
+          "peopleNmEn": "Valeria Bruni Tedeschi",
+          "cast": "마리온",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "스테판 프레스",
+          "peopleNmEn": "Stephane Freiss",
+          "cast": "질",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20102413",
+          "companyNm": "까날 플러스",
+          "companyNmEn": "Canal+",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100209",
+          "companyNm": "(주)스폰지이엔티",
+          "companyNmEn": "Sponge Ent. Inc.",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100209",
+          "companyNm": "(주)스폰지이엔티",
+          "companyNmEn": "Sponge Ent. Inc.",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2006-F156",
+          "watchGradeNm": "18세관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

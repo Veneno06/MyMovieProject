@@ -1,0 +1,89 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20060392",
+      "movieNm": "미스 리틀 선샤인",
+      "movieNmEn": "Little Miss Sunshine",
+      "movieNmOg": "",
+      "showTm": "102",
+      "prdtYear": "2006",
+      "openDt": "20061221",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "코미디"
+        },
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "조나단 데이턴",
+          "peopleNmEn": "Jonathan Dayton"
+        },
+        {
+          "peopleNm": "발레리 페리스",
+          "peopleNmEn": "Valerie Faris"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "그렉 키니어",
+          "peopleNmEn": "Greg Kinnear",
+          "cast": "프랭크",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "토니 콜렛",
+          "peopleNmEn": "Toni Collette",
+          "cast": "쉐릴",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20102144",
+          "companyNm": "빅비치필름즈",
+          "companyNmEn": "Big Beach Films",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20100041",
+          "companyNm": "이십세기폭스코리아(주)",
+          "companyNmEn": "20th Century Fox Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100041",
+          "companyNm": "이십세기폭스코리아(주)",
+          "companyNmEn": "20th Century Fox Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2006-F390",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

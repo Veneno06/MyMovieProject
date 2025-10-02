@@ -1,0 +1,84 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20060163",
+      "movieNm": "프리덤랜드",
+      "movieNmEn": "Freedomland",
+      "movieNmOg": "",
+      "showTm": "112",
+      "prdtYear": "2006",
+      "openDt": "20060616",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "스릴러"
+        },
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "범죄"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "조 로스",
+          "peopleNmEn": "Joe Roth"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "사무엘 L. 잭슨",
+          "peopleNmEn": "Samuel L. Jackson",
+          "cast": "로렌조 카운실",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "줄리안 무어",
+          "peopleNmEn": "Julianne Moore",
+          "cast": "브렌다 마틴",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20101193",
+          "companyNm": "레볼루션 스튜디오",
+          "companyNmEn": "Revolution Studios",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20101589",
+          "companyNm": "소니픽쳐스릴리징코리아",
+          "companyNmEn": "Sony Pictures Releasing of Korea Inc.",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20101589",
+          "companyNm": "소니픽쳐스릴리징코리아",
+          "companyNmEn": "Sony Pictures Releasing of Korea Inc.",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2006-F144",
+          "watchGradeNm": "15세관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}

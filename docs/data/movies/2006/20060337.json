@@ -1,0 +1,76 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20060337",
+      "movieNm": "디파티드",
+      "movieNmEn": "The Departed",
+      "movieNmOg": "",
+      "showTm": "149",
+      "prdtYear": "2006",
+      "openDt": "20061123",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "마틴 스코세이지",
+          "peopleNmEn": "Martin Scorsese"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "레오나르도 디카프리오",
+          "peopleNmEn": "Leonardo Dicaprio",
+          "cast": "빌리 코스티건",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "맷 데이먼",
+          "peopleNmEn": "Matt Damon",
+          "cast": "콜린 설리반",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100043",
+          "companyNm": "워너브러더스 코리아(주)",
+          "companyNmEn": "Warner Bros. Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100043",
+          "companyNm": "워너브러더스 코리아(주)",
+          "companyNmEn": "Warner Bros. Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2006-F349",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    }
+  }
+}
