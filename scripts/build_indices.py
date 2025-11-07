@@ -102,8 +102,8 @@ def main():
     # [핵심 수정] 영화 중복 추가를 방지하기 위한 Set
     processed_movie_cds = set()
 
-    print("[pass 1]
-영화 정보 및 인물 데이터 스캔 중...")
+    # [오류 수정] print 문을 한 줄로 합쳤습니다.
+    print("[pass 1] 영화 정보 및 인물 데이터 스캔 중...")
     
     # --- 1단계: 모든 영화/인물 스캔 및 임시 맵 생성 ---
     for i, fp in enumerate(files):
@@ -174,8 +174,8 @@ def main():
     print(f"\n[pass 1] 완료. {len(movies)}개 영화, {len(people_map)}명(중복 포함) 인물 발견.")
 
     # --- 2단계: 동명이인 분리(Clustering) 작업 ---
-    print("[pass 2]
-동명이인 분리 작업 중... (API 사용 없음)")
+    # [오류 수정] print 문을 한 줄로 합쳤습니다.
+    print("[pass 2] 동명이인 분리 작업 중... (API 사용 없음)")
     
     final_people_list = []
     separated_count = 0
@@ -230,7 +230,7 @@ def main():
             # 1개 그룹 = 동명이인이 아님
             final_people_list.append(personData)
 
-    print(f"[pass 2] 완료. 총 {separated_count}개의 동명이인 그룹 분리.")
+    print(f"\n[pass 2] 완료. 총 {separated_count}개의 동명이인 그룹 분리.")
     print("="*40)
     
     # --- 3단계: 최종 저장 ---
