@@ -4,13 +4,14 @@
 <meta charset="utf-8">
 <title>저장한 배우</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- [UI 유지] assets/style.css를 참조하지만, 아래의 고유 스타일로 덮어씁니다. -->
 <link rel="stylesheet" href="assets/style.css">
 <style>
-/* 페이지 고유 스타일(사이트 공통 스타일은 assets/style.css 사용) */
+/* [UI 유지] 당신이 제공한 컴팩트한 UI 스타일을 그대로 사용합니다. */
 .wrap { max-width:980px; margin:24px auto; padding:0 12px; }
 h1 { font-size:28px; margin:0 0 16px; }
 .ctrls { display:flex; gap:8px; margin-bottom:12px; }
-.ctrls a { padding:6px 10px; border:1px solid #e5e7eb; border-radius:8px; background:#fff; text-decoration:none; color:#111827; }
+/* .ctrls a 스타일은 assets/style.css의 .btn을 따릅니다. */
 .list { list-style:none; padding:0; margin:16px 0; }
 .item { padding:14px 16px; border:1px solid #e5e7eb; border-radius:12px; background:#fff; display:flex; align-items:flex-start; gap:12px; }
 .item + .item { margin-top:10px; }
@@ -20,110 +21,136 @@ h1 { font-size:28px; margin:0 0 16px; }
 .item .actions { display:flex; gap:8px; }
 .note { color:#6b7280; font-size:13px; }
 .footer-actions { margin-top:12px; display:flex; gap:8px; align-items:center; }
-.btn-danger { background:#fee2e2; border:1px solid #fecaca; }
+.btn-danger { background:#fee2e2; border:1px solid #fecaca; color: #991b1b; }
 .btn-danger:hover { background:#fecaca; }
 </style>
 </head>
 <body>
+<!-- [UI 유지] 당신이 제공한 HTML 구조를 그대로 사용합니다. -->
 <div class="wrap">
-  <div class="ctrls">
-    <a href="index.html" class="btn">홈</a>
-    <a href="search.html" class="btn">영화 검색</a>
-    <a href="people-search.html" class="btn">배우 검색</a>
-  </div>
+  <div class="ctrls">
+    <a href="index.html" class="btn">홈</a>
+    <a href="search.html" class="btn">영화 검색</a>
+    <a href="people-search.html" class="btn">배우 검색</a>
+    <!-- 현재 페이지 링크는 제거 -->
+  </div>
 
-  <h1>저장한 배우</h1>
+  <h1>저장한 배우</h1>
 
-  <ul id="list" class="list"></ul>
-  <div id="msg" class="note"></div>
+  <ul id="list" class="list"></ul>
+  <div id="msg" class="note"></div>
 
-  <div class="footer-actions">
-    <button id="compareBtn" class="btn" disabled>스타 파워 비교 (2명 선택)</button>
-  </div>
+  <div class="footer-actions">
+    <button id="compareBtn" class="btn" disabled>스타 파워 비교 (2명 선택)</button>
+  </div>
 </div>
 
 <script>
-/* ---------------- 로컬스토리지 유틸 ---------------- */
+/* ---------------- 로컬스토리지 유틸 (공통) ---------------- */
 function getSavedPeople() {
-  try { return JSON.parse(localStorage.getItem('savedPeople') || '{}'); }
-  catch { return {}; }
+  try { return JSON.parse(localStorage.getItem('savedPeople') || '{}'); }
+  catch { return {}; }
 }
 function setSavedPeople(obj) {
-  localStorage.setItem('savedPeople', JSON.stringify(obj));
+  localStorage.setItem('savedPeople', JSON.stringify(obj));
 }
 
-/* ---------------- 렌더링 ---------------- */
-const listEl = document.getElementById('list');
-const msgEl = document.getElementById('msg');
-const compareBtn = document.getElementById('compareBtn');
+/* ---------------- 전역 변수 (기능 병합) ---------------- */
+const LIST_BOX = document.getElementById('list');
+const MSG_EL = document.getElementById('msg');
+const COMPARE_BTN = document.getElementById('compareBtn');
+// [기능 병합] '주요 출연작'을 표시하기 위해 people.json URL 추가
+const PEOPLE_INDEX_URL = 'data/search/people.json'; 
 
-function render() {
-  const saved = getSavedPeople();
-  const entries = Object.values(saved);
-  // 이름 오름차순
-  entries.sort((a,b) => (a.name||'').localeCompare(b.name||'', 'ko'));
+/* ---------------- 렌더링 (기능 + UI 병합) ---------------- */
+async function render() {
+  const saved = getSavedPeople();
+  const savedKeys = Object.keys(saved);
 
-  listEl.innerHTML = '';
-  if (entries.length === 0) {
-    msgEl.textContent = '저장된 배우가 없습니다.';
-    compareBtn.disabled = true;
-    return;
+  LIST_BOX.innerHTML = '';
+  if (savedKeys.length === 0) {
+    MSG_EL.textContent = '저장된 배우가 없습니다.';
+    COMPARE_BTN.disabled = true;
+    return;
+  }
+  MSG_EL.textContent = '';
+
+  // [기능 병합] people.json에서 전체 배우 정보를 가져옴 (주요 출연작 표시용)
+  const res = await fetch(`${PEOPLE_INDEX_URL}?v=${Date.now()}`);
+  if (!res.ok) {
+      MSG_EL.textContent = '배우 목록을 불러오는 데 실패했습니다.';
+      return;
   }
-  msgEl.textContent = '';
+  const peopleIndex = await res.json();
+  const allPeople = peopleIndex.people || [];
 
-  for (const p of entries) {
-    const li = document.createElement('li');
-    li.className = 'item';
-    li.innerHTML = `
-      <input type="checkbox" class="pick" data-key="${p.personKey}" aria-label="${p.name}">
-      <div class="meta">
-        <div><span class="name">${p.name}</span> <span class="role">(배우)</span></div>
-        <div class="note">personKey: ${p.personKey}</div>
-      </div>
-      <div class="actions">
-        <button class="btn btn-danger del" data-key="${p.personKey}">삭제</button>
-      </div>
-    `;
-    listEl.appendChild(li);
-  }
+  // 저장된 키를 기반으로 전체 정보 필터링
+  const savedPeopleDetails = allPeople.filter(p => savedKeys.includes(p.personKey));
+  savedPeopleDetails.sort((a, b) => (a.peopleNm || '').localeCompare(b.peopleNm || ''));
 
-  updateCompareState();
+  // [UI 병합] 당신이 제공한 새 UI(.item)로 렌더링
+  savedPeopleDetails.forEach(person => {
+    const li = document.createElement('li');
+    li.className = 'item';
+    const personId = person.personKey;
+    const personName = person.peopleNm || '이름 없음';
+    const personRole = person.repRoleNm || '배우';
+    // [기능 병합] '주요 출연작' 정보를 가져와서 new UI에 맞게 삽입
+    const filmsStr = (person.films || []).slice(0, 3).map(f => f.movieNm).join(', ') || '정보 없음';
+
+    li.innerHTML = `
+      <input type="checkbox" class="pick" data-key="${personId}" aria-label="${personName}" style="margin-top: 4px;">
+      <div class="meta">
+        <div><span class="name">${personName}</span> <span class="role">(${personRole})</span></div>
+        <div class="note">주요 출연작: ${filmsStr}</div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-danger del" data-key="${personId}">삭제</button>
+      </div>
+    `;
+    LIST_BOX.appendChild(li);
+  });
+  
+  updateCompareState();
 }
 
-/* ---------------- 이벤트 핸들링 ---------------- */
-// 삭제(핵심 수정: setSavedPeople 사용 & 위임 처리)
-listEl.addEventListener('click', (e) => {
-  const btn = e.target.closest('.del');
-  if (!btn) return;
+/* ---------------- 이벤트 핸들링 (당신이 제공한 코드 + 버그 수정) ---------------- */
 
-  const key = btn.getAttribute('data-key');
-  if (!key) return;
+// 삭제 기능 (당신이 제공한 이벤트 위임 방식 사용, 로직은 이미 정상)
+LIST_BOX.addEventListener('click', (e) => {
+  const btn = e.target.closest('.del');
+  if (!btn) return;
 
-  const saved = getSavedPeople();
-  if (saved[key]) {
-    delete saved[key];
-    setSavedPeople(saved);   // <= 버그 원인: setSaved(...)가 아니라 setSavedPeople(...)
-  }
-  render();
+  const key = btn.getAttribute('data-key');
+  if (!key) return;
+
+  const saved = getSavedPeople();
+  if (saved[key]) {
+    delete saved[key];
+    setSavedPeople(saved); // 이미 올바른 함수명
+  }
+  render(); // 다시 렌더링
 });
 
-// 비교 버튼 상태 업데이트
-listEl.addEventListener('change', (e) => {
-  if (e.target.classList.contains('pick')) updateCompareState();
+// 비교 버튼 상태 업데이트 (당신이 제공한 코드와 동일)
+LIST_BOX.addEventListener('change', (e) => {
+  if (e.target.classList.contains('pick')) updateCompareState();
 });
 
 function updateCompareState() {
-  const picked = [...document.querySelectorAll('.pick:checked')];
-  compareBtn.disabled = picked.length !== 2;
+  const picked = [...document.querySelectorAll('.pick:checked')];
+  COMPARE_BTN.disabled = picked.length !== 2;
 }
 
-// 비교 페이지로 이동(기존 설계에 맞춰 쿼리스트링 두 명)
-compareBtn.addEventListener('click', () => {
-  const picked = [...document.querySelectorAll('.pick:checked')].map(i => i.getAttribute('data-key'));
-  if (picked.length === 2) {
-    // 예: compare.html?A=key1&B=key2 (사이트의 실제 비교 페이지 규격에 맞게 수정)
-    location.href = `compare.html?A=${encodeURIComponent(picked[0])}&B=${encodeURIComponent(picked[1])}`;
-  }
+// 비교 페이지로 이동 (p1/p2 로직으로 수정)
+COMPARE_BTN.addEventListener('click', () => {
+  const picked = [...document.querySelectorAll('.pick:checked')].map(i => i.getAttribute('data-key'));
+  if (picked.length === 2) {
+    // [기능 수정] compare.html은 'p1'과 'p2' 파라미터를 사용합니다.
+    const p1 = encodeURIComponent(picked[0]);
+    const p2 = encodeURIComponent(picked[1]);
+    location.href = `compare.html?p1=${p1}&p2=${p2}`;
+  }
 });
 
 /* ---------------- 시작 ---------------- */
