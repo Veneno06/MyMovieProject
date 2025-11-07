@@ -4,13 +4,15 @@
 <meta charset="utf-8">
 <title>배우 프로필</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<!-- assets/style.css 링크 추가 --><link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/style.css"><!-- 있어도 OK, 1번 스타일이 우선 -->
 <style>
-/* person.html 고유 스타일 (UI 공통 스타일은 assets/style.css로 이동) */
+/* === 1번 디자인/UI 유지 === */
+body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple SD Gothic Neo, Noto Sans KR, 'Malgun Gothic', sans-serif; line-height:1.6; }
 .wrap { max-width:980px; margin:24px auto; padding:0 12px; }
 h1 { font-size:28px; margin:0 0 16px; }
 h2 { font-size:20px; margin:24px 0 8px; }
-/* .ctrls a 스타일 제거 - assets/style.css의 .btn 사용 */
+.ctrls { display:flex; gap:8px; margin-bottom:12px; }
+.ctrls a { padding:6px 10px; border:1px solid #e5e7eb; border-radius:8px; background:#fff; text-decoration:none; color:#111827; }
 .note { color:#6b7280; }
 ul.list { list-style:none; padding:0; margin:12px 0; }
 li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
@@ -18,41 +20,41 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
 .chart-buttons { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
 .chart-buttons button { padding:4px 10px; border:1px solid #ccc; border-radius:16px; background:#f0f0f0; cursor:pointer; font-size:14px; }
 .chart-buttons button.active { background:#333; color:#fff; border-color:#333; font-weight:bold; }
-/* .btn 스타일 제거 - assets/style.css의 .btn 사용 */
+.btn { padding:6px 10px; border:1px solid #e6e6e6; border-radius:6px; background:#fafafa; cursor:pointer; }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 <div class="wrap">
-    <div class="ctrls">
-    <a href="index.html" class="btn">홈</a>
-    <a href="search.html" class="btn">영화 검색</a>
-    <a href="people-search.html" class="btn">배우 검색</a>
-    <a href="saved.html" class="btn">저장한 배우</a>
-  </div>
+  <div class="ctrls">
+    <a href="index.html" class="btn">홈</a>
+    <a href="search.html" class="btn">영화 검색</a>
+    <a href="people-search.html" class="btn">배우 검색</a>
+    <a href="saved.html" class="btn">저장한 배우</a>
+  </div>
 
-  <h1 id="title">배우 프로필</h1>
-  <div class="note">출연작 (최신 개봉일 순)</div>
-  <ul id="out" class="list"></ul>
-  <div id="msg" class="note"></div>
+  <h1 id="title">배우 프로필</h1>
+  <div class="note">출연작 (최신 개봉일 순)</div>
+  <ul id="out" class="list"></ul>
+  <div id="msg" class="note"></div>
 
-  <div style="margin-top:12px; display:flex; gap:8px;">
-    <button class="btn" onclick="history.back()">🔙 뒤로</button>
-    <button class="btn" id="saveBtn" style="display:none;">☆ 배우 저장</button>
-  </div>
+  <div style="margin-top:12px; display:flex; gap:8px;">
+    <button class="btn" onclick="history.back()">🔙 뒤로</button>
+    <button class="btn" id="saveBtn" style="display:none;">☆ 배우 저장</button>
+  </div>
 
-  <div id="chart-container" style="display:none;">
-    <h2>개봉 시기별 관객수 추이</h2>
-        <div class="chart-buttons">
-        <button id="btnTotalAudi" class="active">관객수</button>
-        <button id="btnAudiPerActor">관객수/배우 수</button>
-        <button id="btnAudiPerFilmography">관객수/출연작</button>
-        <button id="btnAudiPerCareer">관객수/연기경력</button>
-        <button id="btnAudiBonus">500만+ 가중치</button>
-    </div>
-    <canvas id="audiChart"></canvas>
-    <div class="note" style="font-size:12px; text-align: right; margin-top: 4px;">* 점에 마우스를 가까이하면 나타나는 텍스트는 영화 제목입니다.</div>
-  </div>
+  <div id="chart-container" style="display:none;">
+    <h2>개봉 시기별 관객수 추이</h2>
+    <div class="chart-buttons">
+        <button id="btnTotalAudi" class="active">관객수</button>
+        <button id="btnAudiPerActor">관객수/배우 수</button>
+        <button id="btnAudiPerFilmography">관객수/출연작</button>
+        <button id="btnAudiPerCareer">관객수/연기경력</button>
+        <button id="btnAudiBonus">500만+ 가중치</button>
+    </div>
+    <canvas id="audiChart"></canvas>
+    <div class="note" style="font-size:12px; text-align: right; margin-top: 4px;">* 점에 마우스를 가까이하면 나타나는 텍스트는 영화 제목입니다.</div>
+  </div>
 </div>
 
 <script>
@@ -73,182 +75,183 @@ function setSavedPeople(obj) { localStorage.setItem('savedPeople', JSON.stringif
 function isSaved(id) { return !!getSavedPeople()[id]; }
 
 function renderSaveBtn() {
-    const personId = getPersonId(currentPerson);
-    if (!personId) {
-        saveBtn.style.display = 'none';
-        return;
-    }
-    saveBtn.style.display = 'inline-block';
-    saveBtn.textContent = isSaved(personId) ? '⭐ 저장됨(해제)' : '☆ 배우 저장';
+    const personId = getPersonId(currentPerson);
+    if (!personId) {
+        saveBtn.style.display = 'none';
+        return;
+    }
+    saveBtn.style.display = 'inline-block';
+    saveBtn.textContent = isSaved(personId) ? '⭐ 저장됨(해제)' : '☆ 배우 저장';
 }
 
 saveBtn.addEventListener('click', () => {
-    const personId = getPersonId(currentPerson);
-    if (!personId) return;
-    
-    const saved = getSavedPeople();
-    if (isSaved(personId)) {
-        delete saved[personId];
-    } else {
-        saved[personId] = { name: currentPerson.peopleNm, personKey: currentPerson.personKey };
-    }
-    // [오류 수정] setSaved(saved) -> setSavedPeople(saved)로 수정
-    setSavedPeople(saved);
-    renderSaveBtn();
+    const personId = getPersonId(currentPerson);
+    if (!personId) return;
+    
+    const saved = getSavedPeople();
+    if (isSaved(personId)) {
+        delete saved[personId];
+    } else {
+        saved[personId] = { name: currentPerson.peopleNm, personKey: currentPerson.personKey };
+    }
+    // 2번 기능의 버그 수정 반영: setSavedPeople 사용
+    setSavedPeople(saved);
+    renderSaveBtn();
 });
 
-
 async function loadIndex(){
-  const r = await fetch(PEOPLE_URL);
-  if(!r.ok){ PEOPLE = []; return; }
-  const j = await r.json();
-  PEOPLE = j.people || [];
+  const r = await fetch(PEOPLE_URL);
+  if(!r.ok){ PEOPLE = []; return; }
+  const j = await r.json();
+  PEOPLE = j.people || [];
 }
 
 function render(){
-  const key = getParam('personKey') || '';
-  const item = PEOPLE.find(p => p.personKey === key);
+  const key = getParam('personKey') || '';
+  const item = PEOPLE.find(p => p.personKey === key);
 
-  const out = document.getElementById('out');
-  const title = document.getElementById('title');
-  const msg = document.getElementById('msg');
+  const out = document.getElementById('out');
+  const title = document.getElementById('title');
+  const msg = document.getElementById('msg');
 
-  if (!item) {
-    title.textContent = '배우 프로필';
-    msg.textContent = '배우를 찾을 수 없어요. (캐시 인덱스 확인)';
-    return;
-  }
-  
-  currentPerson = item;
-  renderSaveBtn();
+  if (!item) {
+    title.textContent = '배우 프로필';
+    msg.textContent = '배우를 찾을 수 없어요. (캐시 인덱스 확인)';
+    return;
+  }
+  
+  currentPerson = item;
+  renderSaveBtn();
 
-  title.textContent = item.peopleNm;
-  out.innerHTML = '';
-  const filmsWithAudi = [];
+  title.textContent = item.peopleNm;
+  out.innerHTML = '';
+  const filmsWithAudi = [];
 
-  for (const f of (item.films||[])) {
-    const date = f.openDt ? f.openDt.replace(/-/g, '.') : '개봉일미상';
-    const audiStr = (f.audiAcc != null) ? ` / <span class="audi">누적 ${fmtNum(f.audiAcc)}명</span>` : '';
-    const li = document.createElement('li');
-    li.innerHTML = `<a href="detail.html?movieCd=${encodeURIComponent(f.movieCd)}">${f.movieNm}</a>
-      <span class="note">(${date}${f.part? ' · '+f.part:''}${audiStr})</span>`;
-    out.appendChild(li);
+  for (const f of (item.films||[])) {
+    const date = f.openDt ? f.openDt.replace(/-/g, '.') : '개봉일미상';
+    const audiStr = (f.audiAcc != null) ? ` / <span class="audi">누적 ${fmtNum(f.audiAcc)}명</span>` : '';
+    const li = document.createElement('li');
+    li.innerHTML = `<a href="detail.html?movieCd=${encodeURIComponent(f.movieCd)}">${f.movieNm}</a>
+      <span class="note">(${date}${f.part? ' · '+f.part:''}${audiStr})</span>`;
+    out.appendChild(li);
 
-    if (f.openDt) filmsWithAudi.push(f);
-  }
+    if (f.openDt) filmsWithAudi.push(f);
+  }
 
-  if (filmsWithAudi.length > 1) {
-    document.getElementById('chart-container').style.display = 'block';
-    
-    const buttons = [
-        { id: 'btnTotalAudi', type: 'totalAudi' },
-        { id: 'btnAudiPerActor', type: 'audiPerActor' },
-        { id: 'btnAudiPerFilmography', type: 'audiPerFilmography' },
-        { id: 'btnAudiPerCareer', type: 'audiPerCareer' },
-        { id: 'btnAudiBonus', type: 'audiBonus' }
-    ];
+  if (filmsWithAudi.length > 1) {
+    document.getElementById('chart-container').style.display = 'block';
+    
+    const buttons = [
+        { id: 'btnTotalAudi', type: 'totalAudi' },
+        { id: 'btnAudiPerActor', type: 'audiPerActor' },
+        { id: 'btnAudiPerFilmography', type: 'audiPerFilmography' },
+        { id: 'btnAudiPerCareer', type: 'audiPerCareer' },
+        { id: 'btnAudiBonus', type: 'audiBonus' }
+    ];
 
-    buttons.forEach(btnInfo => {
-        const button = document.getElementById(btnInfo.id);
-        button.addEventListener('click', () => {
-            drawAudiChart(filmsWithAudi, btnInfo.type);
-            document.querySelectorAll('.chart-buttons button').forEach(b => b.classList.remove('active'));
-            button.classList.add('active');
-        });
-    });
+    buttons.forEach(btnInfo => {
+        const button = document.getElementById(btnInfo.id);
+        if (!button) return;
+        button.addEventListener('click', () => {
+            drawAudiChart(filmsWithAudi, btnInfo.type);
+            document.querySelectorAll('.chart-buttons button').forEach(b => b.classList.remove('active'));
+            button.classList.add('active');
+        });
+    });
 
-    drawAudiChart(filmsWithAudi, 'totalAudi');
-  }
+    drawAudiChart(filmsWithAudi, 'totalAudi');
+  }
 }
 
 function drawAudiChart(films, dataType = 'totalAudi'){
-    if (myChart) {
-        myChart.destroy();
-    }
+    if (myChart) {
+        myChart.destroy();
+    }
 
-    films.sort((a,b) => (a.openDt || '').localeCompare(b.openDt || ''));
+    films.sort((a,b) => (a.openDt || '').localeCompare(b.openDt || ''));
 
-    const firstYear = (films.length > 0 && films[0].openDt) ? parseInt(films[0].openDt.slice(0, 4), 10) : new Date().getFullYear();
+    const firstYear = (films.length > 0 && films[0].openDt) ? parseInt(films[0].openDt.slice(0, 4), 10) : new Date().getFullYear();
 
-    const labels = films.map(f => f.openDt ? f.openDt.slice(0,7) : '미상');
-    let dataPoints;
-    let yAxisLabel;
+    const labels = films.map(f => f.openDt ? f.openDt.slice(0,7) : '미상');
+    let dataPoints;
+    let yAxisLabel;
 
-    if (dataType === 'audiPerFilmography') {
-        const totalFilms = films.length;
-        dataPoints = films.map(f => (f.audiAcc && totalFilms > 0) ? Math.round(f.audiAcc / totalFilms) : 0);
-        yAxisLabel = '관객수/출연작 수 (명)';
-    } else if (dataType === 'audiPerActor') {
-        dataPoints = films.map(f => (f.audiAcc && f.actorCount > 0) ? Math.round(f.audiAcc / f.actorCount) : 0);
-        yAxisLabel = '관객수/배우 수 (명)';
-    } else if (dataType === 'audiPerCareer') {
-        dataPoints = films.map(f => {
-            const currentYear = f.openDt ? parseInt(f.openDt.slice(0, 4), 10) : firstYear;
-            const careerDuration = Math.max(1, currentYear - firstYear + 1);
-            return (f.audiAcc && careerDuration > 0) ? Math.round(f.audiAcc / careerDuration) : 0;
-        });
-        yAxisLabel = '관객수/연기경력 (명)';
-    } else if (dataType === 'audiBonus') {
-        dataPoints = films.map(f => {
-            const audi = f.audiAcc || 0;
-            return audi > 5000000 ? audi * 2 : audi;
-        });
-        yAxisLabel = '500만+ 가중치 (명)';
-    } else {
-        dataPoints = films.map(f => f.audiAcc || 0);
-        yAxisLabel = '관객수 (명)';
-    }
-    
-    const movieTitles = films.map(f => f.movieNm);
+    if (dataType === 'audiPerFilmography') {
+        const totalFilms = films.length;
+        dataPoints = films.map(f => (f.audiAcc && totalFilms > 0) ? Math.round(f.audiAcc / totalFilms) : 0);
+        yAxisLabel = '관객수/출연작 수 (명)';
+    } else if (dataType === 'audiPerActor') {
+        dataPoints = films.map(f => (f.audiAcc && f.actorCount > 0) ? Math.round(f.audiAcc / f.actorCount) : 0);
+        yAxisLabel = '관객수/배우 수 (명)';
+    } else if (dataType === 'audiPerCareer') {
+        dataPoints = films.map(f => {
+            const currentYear = f.openDt ? parseInt(f.openDt.slice(0, 4), 10) : firstYear;
+            const careerDuration = Math.max(1, currentYear - firstYear + 1);
+            return (f.audiAcc && careerDuration > 0) ? Math.round(f.audiAcc / careerDuration) : 0;
+        });
+        yAxisLabel = '관객수/연기경력 (명)';
+    } else if (dataType === 'audiBonus') {
+        dataPoints = films.map(f => {
+            const audi = f.audiAcc || 0;
+            return audi > 5000000 ? audi * 2 : audi;
+        });
+        yAxisLabel = '500만+ 가중치 (명)';
+    } else {
+        dataPoints = films.map(f => f.audiAcc || 0);
+        yAxisLabel = '관객수 (명)';
+    }
+    
+    const movieTitles = films.map(f => f.movieNm);
 
-    const ctx = document.getElementById('audiChart').getContext('2d');
-    myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: '값',
-                data: dataPoints,
-                borderColor: 'rgba(75, 192, 192, 1)',
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                fill: true,
-                tension: 0.1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        callback: function(value) { return value.toLocaleString(); }
-                    },
-                    title: {
-                        display: true,
-                        text: yAxisLabel
-                    }
-                }
-            },
-            plugins: {
-                legend: { display: false },
-                tooltip: {
-                    callbacks: {
-                        title: function(tooltipItems) { return movieTitles[tooltipItems[0].dataIndex]; },
-                        label: function(context) {
-                            let label = yAxisLabel.split(' (')[0] || ''; 
-                            if (label) { label += ': '; }
-                            if (context.parsed.y !== null) { label += context.parsed.y.toLocaleString() + '명'; }
-                            return label;
-                        }
-                    }
-                }
-            }
-        }
-    });
+    const ctx = document.getElementById('audiChart').getContext('2d');
+    myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: '값',
+                data: dataPoints,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                fill: true,
+                tension: 0.1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function(value) { return value.toLocaleString(); }
+                    },
+                    title: {
+                        display: true,
+                        text: yAxisLabel
+                    }
+                }
+            },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) { return movieTitles[tooltipItems[0].dataIndex]; },
+                        label: function(context) {
+                            // 2번 기능의 툴팁 라벨 처리 로직 반영
+                            let label = yAxisLabel.split(' (')[0] || '';
+                            if (label) { label += ': '; }
+                            if (context.parsed.y !== null) { label += context.parsed.y.toLocaleString() + '명'; }
+                            return label;
+                        }
+                    }
+                }
+            }
+        }
+    });
 }
 
 (async function main(){
-  await loadIndex();
-  render();
+  await loadIndex();
+  render();
 })();
 </script>
 </body>
