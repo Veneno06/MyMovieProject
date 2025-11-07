@@ -18,38 +18,37 @@ h1, h2 { text-align: center; }
 </head>
 <body>
 <div class="container">
-  <div class="header">
-    <h1>스타 파워 비교</h1>
-    <div class="spacer"></div>
-    <a href="index.html" class="btn">홈</a>
-    <a href="saved.html" class="btn">저장 목록</a>
-  </div>
+  <div class="header">
+    <h1>스타 파워 비교</h1>
+    <div class="spacer"></div>
+    <a href="index.html" class="btn">홈</a>
+    <a href="saved.html" class="btn">저장 목록</a>
+  </div>
 
-  <div class="compare-container">
-    <div class="actor-panel" id="panel1">
-        <h2 id="name1">로딩 중...</h2>
-        <canvas id="chart1"></canvas>
-    </div>
-    <div class="actor-panel" id="panel2">
-        <h2 id="name2">로딩 중...</h2>
-        <canvas id="chart2"></canvas>
-    </div>
-    <div class="actor-panel" id="panel3" style="display: none;">
-        <h2 id="name3">로딩 중...</h2>
-        <canvas id="chart3"></canvas>
-    </div>
-  </div>
-  
-  <div class="controls-container">
-      <!-- [UI 수정] person.html과 동일하게 버튼 5개로 수정 -->
-      <div class="chart-buttons">
-          <button id="btnTotalAudi" class="active">관객수</button>
-          <button id="btnAudiPerActor">관객수/배우 수</button>
-          <button id="btnAudiPerFilmography">관객수/출연작</button>
-          <button id="btnAudiPerCareer">관객수/연기경력</button>
-          <button id="btnAudiBonus">500만+ 가중치</button>
-      </div>
-  </div>
+  <div class="compare-container">
+    <div class="actor-panel" id="panel1">
+        <h2 id="name1">로딩 중...</h2>
+        <canvas id="chart1"></canvas>
+    </div>
+    <div class="actor-panel" id="panel2">
+        <h2 id="name2">로딩 중...</h2>
+        <canvas id="chart2"></canvas>
+    </div>
+    <div class="actor-panel" id="panel3" style="display: none;">
+        <h2 id="name3">로딩 중...</h2>
+        <canvas id="chart3"></canvas>
+    </div>
+  </div>
+  
+  <div class="controls-container">
+      <div class="chart-buttons">
+          <button id="btnTotalAudi" class="active">관객수</button>
+          <button id="btnAudiPerActor">관객수/배우 수</button>
+          <button id="btnAudiPerFilmography">관객수/출연작</button>
+          <button id="btnAudiPerCareer">관객수/연기경력</button>
+          <button id="btnAudiBonus">500만+ 가중치</button>
+      </div>
+  </div>
 </div>
 
 <script>
@@ -61,137 +60,147 @@ let chart1 = null, chart2 = null, chart3 = null;
 function getParam(k){ return new URLSearchParams(location.search).get(k) || ""; }
 
 async function main() {
-    try {
-        const res = await fetch(PEOPLE_URL);
-        const data = await res.json();
-        PEOPLE = data.people || [];
+    try {
+        const res = await fetch(PEOPLE_URL);
+        const data = await res.json();
+        PEOPLE = data.people || [];
 
-        const p1Key = getParam('p1');
-        const p2Key = getParam('p2');
-        const p3Key = getParam('p3'); 
+        const p1Key = getParam('p1');
+        const p2Key = getParam('p2');
+        const p3Key = getParam('p3');
 
-        person1 = PEOPLE.find(p => p.personKey === p1Key);
-        person2 = PEOPLE.find(p => p.personKey === p2Key);
-        person3 = PEOPLE.find(p => p.personKey === p3Key); 
+        person1 = PEOPLE.find(p => p.personKey === p1Key);
+        person2 = PEOPLE.find(p => p.personKey === p2Key);
+        person3 = PEOPLE.find(p => p.personKey === p3Key);
 
-        if (person1) {
-            document.getElementById('name1').textContent = person1.peopleNm;
-        } else {
-            document.getElementById('panel1').style.display = 'none';
-        }
-        
-        if (person2) {
-            document.getElementById('name2').textContent = person2.peopleNm;
-        } else {
-            document.getElementById('panel2').style.display = 'none';
-        }
+        // 이름 또는 비활성화 처리
+        if (person1) document.getElementById('name1').textContent = person1.peopleNm;
+        else document.getElementById('panel1').style.display = 'none';
 
-        if (person3) {
-            document.getElementById('panel3').style.display = 'block'; 
-            document.getElementById('name3').textContent = person3.peopleNm;
-        }
-        
-        setupButtonListeners();
-        renderCharts('totalAudi');
+        if (person2) document.getElementById('name2').textContent = person2.peopleNm;
+        else document.getElementById('panel2').style.display = 'none';
 
-    } catch(e) {
-        console.error("Failed to load data or render charts", e);
-        document.getElementById('name1').textContent = "오류 발생";
-        document.getElementById('name2').textContent = "오류 발생";
-        if(document.getElementById('name3')) document.getElementById('name3').textContent = "오류 발생";
-    }
+        if (person3) {
+            document.getElementById('panel3').style.display = 'block';
+            document.getElementById('name3').textContent = person3.peopleNm;
+        }
+
+        setupButtonListeners();
+        renderCharts('totalAudi');
+
+    } catch(e) {
+        console.error("Failed to load or render charts", e);
+        ['name1','name2','name3'].forEach(id=>{
+            if(document.getElementById(id))
+              document.getElementById(id).textContent = "오류 발생";
+        });
+    }
 }
 
 function setupButtonListeners() {
-    // [UI 수정] 5개 버튼 모두에 리스너 추가
-    const buttons = [
-        { id: 'btnTotalAudi', type: 'totalAudi' },
-        { id: 'btnAudiPerActor', type: 'audiPerActor' },
-        { id: 'btnAudiPerFilmography', type: 'audiPerFilmography' },
-        { id: 'btnAudiPerCareer', type: 'audiPerCareer' },
-        { id: 'btnAudiBonus', type: 'audiBonus' }
-    ];
-    buttons.forEach(btnInfo => {
-        const button = document.getElementById(btnInfo.id);
-        button.addEventListener('click', () => {
-            renderCharts(btnInfo.type);
-            buttons.forEach(b => document.getElementById(b.id).classList.remove('active'));
-            button.classList.add('active');
-        });
-    });
+    const buttons = [
+        { id: 'btnTotalAudi', type: 'totalAudi' },
+        { id: 'btnAudiPerActor', type: 'audiPerActor' },
+        { id: 'btnAudiPerFilmography', type: 'audiPerFilmography' },
+        { id: 'btnAudiPerCareer', type: 'audiPerCareer' },
+        { id: 'btnAudiBonus', type: 'audiBonus' }
+    ];
+
+    buttons.forEach(btnInfo => {
+        const button = document.getElementById(btnInfo.id);
+        button.addEventListener('click', () => {
+            renderCharts(btnInfo.type);
+            buttons.forEach(b => document.getElementById(b.id).classList.remove('active'));
+            button.classList.add('active');
+        });
+    });
 }
 
 function renderCharts(dataType) {
-    if (chart1) chart1.destroy();
-    if (chart2) chart2.destroy();
-    if (chart3) chart3.destroy();
-    
-    if (person1) chart1 = drawChart('chart1', person1, dataType);
-    if (person2) chart2 = drawChart('chart2', person2, dataType);
-    if (person3) chart3 = drawChart('chart3', person3, dataType);
+    if (chart1) chart1.destroy();
+    if (chart2) chart2.destroy();
+    if (chart3) chart3.destroy();
+
+    if (person1) chart1 = drawChart('chart1', person1, dataType);
+    if (person2) chart2 = drawChart('chart2', person2, dataType);
+    if (person3) chart3 = drawChart('chart3', person3, dataType);
 }
 
-// [기능 수정] person.html과 동일한 차트 로직으로 수정
+// === 기능: person.html의 고급 로직 반영 ===
 function drawChart(canvasId, personData, dataType) {
-    const films = (personData.films || []).filter(f => f.openDt).sort((a,b) => (a.openDt || '').localeCompare(b.openDt || ''));
-    
-    // 연기 경력 계산을 위한 첫 영화 연도
-    const firstYear = (films.length > 0 && films[0].openDt) ? parseInt(films[0].openDt.slice(0, 4), 10) : new Date().getFullYear();
+    const films = (personData.films || []).filter(f => f.openDt)
+        .sort((a,b) => (a.openDt || '').localeCompare(b.openDt || ''));
 
-    const labels = films.map(f => f.openDt ? f.openDt.slice(0,7) : '미상');
-    let dataPoints;
-    let yAxisLabel;
+    const firstYear = (films.length > 0 && films[0].openDt)
+        ? parseInt(films[0].openDt.slice(0, 4), 10)
+        : new Date().getFullYear();
 
-    if (dataType === 'audiPerFilmography') {
-        dataPoints = films.map(f => (f.audiAcc && films.length > 0) ? Math.round(f.audiAcc / films.length) : 0);
-        yAxisLabel = '관객수/출연작';
-    } else if (dataType === 'audiPerActor') {
-        dataPoints = films.map(f => (f.audiAcc && f.actorCount > 0) ? Math.round(f.audiAcc / f.actorCount) : 0);
-        yAxisLabel = '관객수/배우 수';
-    } else if (dataType === 'audiPerCareer') { // [추가된 로직 1]
-        dataPoints = films.map(f => {
-            const currentYear = f.openDt ? parseInt(f.openDt.slice(0, 4), 10) : firstYear;
-            const careerDuration = Math.max(1, currentYear - firstYear + 1);
-            return (f.audiAcc && careerDuration > 0) ? Math.round(f.audiAcc / careerDuration) : 0;
-        });
-        yAxisLabel = '관객수/연기경력';
-    } else if (dataType === 'audiBonus') { // [추가된 로직 2]
-        dataPoints = films.map(f => {
-            const audi = f.audiAcc || 0;
-            return audi > 5000000 ? audi * 2 : audi;
-        });
-        yAxisLabel = '500만+ 가중치';
-    } else { // 'totalAudi' (기본값)
-        dataPoints = films.map(f => f.audiAcc || 0);
-        yAxisLabel = '관객수';
-    }
+    const labels = films.map(f => f.openDt ? f.openDt.slice(0,7) : '미상');
+    let dataPoints;
+    let yAxisLabel;
 
-    const movieTitles = films.map(f => f.movieNm);
-    const ctx = document.getElementById(canvasId).getContext('2d');
+    if (dataType === 'audiPerFilmography') {
+        const totalFilms = films.length;
+        dataPoints = films.map(f => (f.audiAcc && totalFilms > 0) ? Math.round(f.audiAcc / totalFilms) : 0);
+        yAxisLabel = '관객수/출연작';
+    } 
+    else if (dataType === 'audiPerActor') {
+        dataPoints = films.map(f => (f.audiAcc && f.actorCount > 0) ? Math.round(f.audiAcc / f.actorCount) : 0);
+        yAxisLabel = '관객수/배우 수';
+    } 
+    else if (dataType === 'audiPerCareer') {
+        dataPoints = films.map(f => {
+            const currentYear = f.openDt ? parseInt(f.openDt.slice(0, 4), 10) : firstYear;
+            const careerDuration = Math.max(1, currentYear - firstYear + 1);
+            return (f.audiAcc && careerDuration > 0) ? Math.round(f.audiAcc / careerDuration) : 0;
+        });
+        yAxisLabel = '관객수/연기경력';
+    } 
+    else if (dataType === 'audiBonus') {
+        dataPoints = films.map(f => {
+            const audi = f.audiAcc || 0;
+            return audi > 5000000 ? audi * 2 : audi;
+        });
+        yAxisLabel = '500만+ 가중치';
+    } 
+    else {
+        dataPoints = films.map(f => f.audiAcc || 0);
+        yAxisLabel = '관객수';
+    }
 
-    return new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: yAxisLabel,
-                data: dataPoints,
-                borderColor: 'rgba(75, 192, 192, 1)',
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                fill: true, tension: 0.1
-            }]
-        },
-        options: {
-            scales: { y: { beginAtZero: true, ticks: { callback: value => value.toLocaleString() } } },
-            plugins: {
-                legend: { display: false },
-                tooltip: { callbacks: {
-                    title: (tooltipItems) => movieTitles[tooltipItems[0].dataIndex],
-                    label: (context) => `${yAxisLabel}: ${context.parsed.y.toLocaleString()}명`
-                }}
-            }
-        }
-    });
+    const movieTitles = films.map(f => f.movieNm);
+    const ctx = document.getElementById(canvasId).getContext('2d');
+
+    return new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels,
+            datasets: [{
+                label: yAxisLabel,
+                data: dataPoints,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                fill: true, tension: 0.1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: { callback: v => v.toLocaleString() }
+                }
+            },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    callbacks: {
+                        title: (tt) => movieTitles[tt[0].dataIndex],
+                        label: (ctx) => `${yAxisLabel}: ${ctx.parsed.y.toLocaleString()}명`
+                    }
+                }
+            }
+        }
+    });
 }
 
 main();
