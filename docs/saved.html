@@ -1,159 +1,152 @@
 <!doctype html>
 <html lang="ko">
 <head>
-<meta charset="utf-8">
-<title>저장한 배우</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<!-- [UI 유지] assets/style.css를 참조하지만, 아래의 고유 스타일로 덮어씁니다. -->
-<link rel="stylesheet" href="assets/style.css">
-<style>
-/* [UI 유지] 당신이 제공한 컴팩트한 UI 스타일을 그대로 사용합니다. */
-.wrap { max-width:980px; margin:24px auto; padding:0 12px; }
-h1 { font-size:28px; margin:0 0 16px; }
-.ctrls { display:flex; gap:8px; margin-bottom:12px; }
-/* .ctrls a 스타일은 assets/style.css의 .btn을 따릅니다. */
-.list { list-style:none; padding:0; margin:16px 0; }
-.item { padding:14px 16px; border:1px solid #e5e7eb; border-radius:12px; background:#fff; display:flex; align-items:flex-start; gap:12px; }
-.item + .item { margin-top:10px; }
-.item .meta { flex:1; }
-.item .meta .name { font-weight:700; }
-.item .meta .role { color:#6b7280; margin-left:6px; }
-.item .actions { display:flex; gap:8px; }
-.note { color:#6b7280; font-size:13px; }
-.footer-actions { margin-top:12px; display:flex; gap:8px; align-items:center; }
-.btn-danger { background:#fee2e2; border:1px solid #fecaca; color: #991b1b; }
-.btn-danger:hover { background:#fecaca; }
-</style>
+  <meta charset="utf-8">
+  <title>저장한 배우 – K-Movie A Archive</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/style.css">
+  <style>
+    .actor-card {
+      border: 1px solid #e6e6e6;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      background: #fff;
+    }
+    .actor-info { flex-grow: 1; }
+    .film-list {
+      font-size: 14px;
+      color: #555;
+      margin-top: 6px;
+    }
+    .compare-section { margin-top: 20px; padding-top: 15px; border-top: 1px solid #eee; }
+    .muted { color:#6b7280; }
+  </style>
 </head>
 <body>
-<!-- [UI 유지] 당신이 제공한 HTML 구조를 그대로 사용합니다. -->
-<div class="wrap">
-  <div class="ctrls">
-    <a href="index.html" class="btn">홈</a>
-    <a href="search.html" class="btn">영화 검색</a>
-    <a href="people-search.html" class="btn">배우 검색</a>
-    <!-- 현재 페이지 링크는 제거 -->
-  </div>
+<div class="container">
+  <div class="header">
+    <h1>저장한 배우</h1>
+    <div class="spacer"></div>
+    <a href="index.html" class="btn">홈</a>
+    <a href="search.html" class="btn">영화 검색</a>
+    <a href="people-search.html" class="btn">배우 검색</a>
+  </div>
 
-  <h1>저장한 배우</h1>
+  <div id="savedPeopleList" class="grid"></div>
 
-  <ul id="list" class="list"></ul>
-  <div id="msg" class="note"></div>
-
-  <div class="footer-actions">
-    <button id="compareBtn" class="btn" disabled>스타 파워 비교 (2명 선택)</button>
-  </div>
+  <div class="compare-section">
+    <button class="btn" id="compareBtn" disabled>스타 파워 비교 (2명 선택)</button>
+  </div>
 </div>
 
 <script>
-/* ---------------- 로컬스토리지 유틸 (공통) ---------------- */
+/* ===== 공통 유틸 ===== */
+const LIST_BOX = document.getElementById('savedPeopleList');
+const COMPARE_BTN = document.getElementById('compareBtn');
+const PEOPLE_INDEX_URL = 'data/search/people.json';
+
 function getSavedPeople() {
-  try { return JSON.parse(localStorage.getItem('savedPeople') || '{}'); }
-  catch { return {}; }
+  try { return JSON.parse(localStorage.getItem('savedPeople') || '{}'); }
+  catch { return {}; }
 }
 function setSavedPeople(obj) {
-  localStorage.setItem('savedPeople', JSON.stringify(obj));
+  localStorage.setItem('savedPeople', JSON.stringify(obj));
 }
 
-/* ---------------- 전역 변수 (기능 병합) ---------------- */
-const LIST_BOX = document.getElementById('list');
-const MSG_EL = document.getElementById('msg');
-const COMPARE_BTN = document.getElementById('compareBtn');
-// [기능 병합] '주요 출연작'을 표시하기 위해 people.json URL 추가
-const PEOPLE_INDEX_URL = 'data/search/people.json'; 
-
-/* ---------------- 렌더링 (기능 + UI 병합) ---------------- */
-async function render() {
-  const saved = getSavedPeople();
-  const savedKeys = Object.keys(saved);
-
-  LIST_BOX.innerHTML = '';
-  if (savedKeys.length === 0) {
-    MSG_EL.textContent = '저장된 배우가 없습니다.';
-    COMPARE_BTN.disabled = true;
-    return;
-  }
-  MSG_EL.textContent = '';
-
-  // [기능 병합] people.json에서 전체 배우 정보를 가져옴 (주요 출연작 표시용)
-  const res = await fetch(`${PEOPLE_INDEX_URL}?v=${Date.now()}`);
-  if (!res.ok) {
-      MSG_EL.textContent = '배우 목록을 불러오는 데 실패했습니다.';
-      return;
+/* 삭제 (버튼 onclick에서 사용) */
+function removeSaved(id) {
+  const saved = getSavedPeople();
+  if (saved[id]) {
+    delete saved[id];
+    setSavedPeople(saved);   // ← 중요: setSaved가 아니라 setSavedPeople
   }
-  const peopleIndex = await res.json();
-  const allPeople = peopleIndex.people || [];
+  render();
+}
 
-  // 저장된 키를 기반으로 전체 정보 필터링
-  const savedPeopleDetails = allPeople.filter(p => savedKeys.includes(p.personKey));
-  savedPeopleDetails.sort((a, b) => (a.peopleNm || '').localeCompare(b.peopleNm || ''));
+/* 체크박스 2개 선택 시 비교 버튼 활성화 */
+function updateCompareButtonState() {
+  const checked = document.querySelectorAll('.actor-checkbox:checked');
+  COMPARE_BTN.disabled = (checked.length !== 2);
+}
 
-  // [UI 병합] 당신이 제공한 새 UI(.item)로 렌더링
-  savedPeopleDetails.forEach(person => {
-    const li = document.createElement('li');
-    li.className = 'item';
+/* 렌더링 */
+async function render() {
+  const saved = getSavedPeople();
+  const savedKeys = Object.keys(saved);
+
+  LIST_BOX.innerHTML = '';
+  if (savedKeys.length === 0) {
+    LIST_BOX.innerHTML = '<div class="muted">저장된 배우가 없습니다.</div>';
+    document.querySelector('.compare-section').style.display = 'none';
+    return;
+  }
+  document.querySelector('.compare-section').style.display = '';
+
+  // people 인덱스 로드 (주요 출연작 표시용)
+  let allPeople = [];
+  try {
+    const res = await fetch(`${PEOPLE_INDEX_URL}?v=${Date.now()}`);
+    if (res.ok) {
+      const peopleIndex = await res.json();
+      allPeople = peopleIndex.people || [];
+    }
+  } catch(e){}
+
+  // 저장된 personKey 기준으로 상세 매칭
+  const savedPeopleDetails = allPeople.filter(p => savedKeys.includes(p.personKey));
+  // allPeople에 아직 없는(캐시 누락) 항목은 saved의 name/personKey로 보강
+  const missingKeys = savedKeys.filter(k => !savedPeopleDetails.some(p => p.personKey === k));
+  for (const k of missingKeys) {
+    savedPeopleDetails.push({ personKey: k, peopleNm: saved[k]?.name || '(이름 미상)', repRoleNm: '배우', films: [] });
+  }
+
+  // 이름순 정렬(한글 대응)
+  savedPeopleDetails.sort((a,b)=>(a.peopleNm||'').localeCompare(b.peopleNm||'','ko'));
+
+  // 카드 렌더링
+  for (const person of savedPeopleDetails) {
     const personId = person.personKey;
-    const personName = person.peopleNm || '이름 없음';
-    const personRole = person.repRoleNm || '배우';
-    // [기능 병합] '주요 출연작' 정보를 가져와서 new UI에 맞게 삽입
-    const filmsStr = (person.films || []).slice(0, 3).map(f => f.movieNm).join(', ') || '정보 없음';
+    const filmsStr = (person.films || []).slice(0,3).map(f => f.movieNm).join(', ') || '정보 없음';
 
-    li.innerHTML = `
-      <input type="checkbox" class="pick" data-key="${personId}" aria-label="${personName}" style="margin-top: 4px;">
-      <div class="meta">
-        <div><span class="name">${personName}</span> <span class="role">(${personRole})</span></div>
-        <div class="note">주요 출연작: ${filmsStr}</div>
-      </div>
-      <div class="actions">
-        <button class="btn btn-danger del" data-key="${personId}">삭제</button>
-      </div>
-    `;
-    LIST_BOX.appendChild(li);
-  });
-  
-  updateCompareState();
+    const card = document.createElement('div');
+    card.className = 'actor-card';
+    card.innerHTML = `
+      <input type="checkbox" class="actor-checkbox" value="${personId}" style="transform: scale(1.2);">
+      <div class="actor-info">
+        <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+          <a href="person.html?personKey=${encodeURIComponent(personId)}"><strong>${person.peopleNm || '이름 없음'}</strong></a>
+          <span class="muted">(${person.repRoleNm || '배우'})</span>
+          <div class="spacer"></div>
+          <button class="btn" onclick="removeSaved('${personId}')">삭제</button>
+        </div>
+        <div class="film-list">주요 출연작: ${filmsStr}</div>
+      </div>
+    `;
+    LIST_BOX.appendChild(card);
+  }
+
+  // 체크박스 이벤트 바인딩 및 초기 상태
+  document.querySelectorAll('.actor-checkbox').forEach(cb => {
+    cb.addEventListener('change', updateCompareButtonState);
+  });
+  updateCompareButtonState();
 }
 
-/* ---------------- 이벤트 핸들링 (당신이 제공한 코드 + 버그 수정) ---------------- */
-
-// 삭제 기능 (당신이 제공한 이벤트 위임 방식 사용, 로직은 이미 정상)
-LIST_BOX.addEventListener('click', (e) => {
-  const btn = e.target.closest('.del');
-  if (!btn) return;
-
-  const key = btn.getAttribute('data-key');
-  if (!key) return;
-
-  const saved = getSavedPeople();
-  if (saved[key]) {
-    delete saved[key];
-    setSavedPeople(saved); // 이미 올바른 함수명
-  }
-  render(); // 다시 렌더링
-});
-
-// 비교 버튼 상태 업데이트 (당신이 제공한 코드와 동일)
-LIST_BOX.addEventListener('change', (e) => {
-  if (e.target.classList.contains('pick')) updateCompareState();
-});
-
-function updateCompareState() {
-  const picked = [...document.querySelectorAll('.pick:checked')];
-  COMPARE_BTN.disabled = picked.length !== 2;
-}
-
-// 비교 페이지로 이동 (p1/p2 로직으로 수정)
+/* 비교 버튼: p1/p2 쿼리로 이동(기능 유지) */
 COMPARE_BTN.addEventListener('click', () => {
-  const picked = [...document.querySelectorAll('.pick:checked')].map(i => i.getAttribute('data-key'));
-  if (picked.length === 2) {
-    // [기능 수정] compare.html은 'p1'과 'p2' 파라미터를 사용합니다.
-    const p1 = encodeURIComponent(picked[0]);
-    const p2 = encodeURIComponent(picked[1]);
-    location.href = `compare.html?p1=${p1}&p2=${p2}`;
-  }
+  const checked = [...document.querySelectorAll('.actor-checkbox:checked')];
+  if (checked.length === 2) {
+    const p1 = encodeURIComponent(checked[0].value);
+    const p2 = encodeURIComponent(checked[1].value);
+    location.href = `compare.html?p1=${p1}&p2=${p2}`;
+  }
 });
 
-/* ---------------- 시작 ---------------- */
+/* 초기 렌더 */
 render();
 </script>
 </body>
