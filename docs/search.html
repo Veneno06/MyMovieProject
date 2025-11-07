@@ -4,60 +4,64 @@
 <meta charset="utf-8">
 <title>영화 검색(기간)</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<!-- assets/style.css 링크 추가 --><link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/style.css"><!-- 있어도 되고 없어도 됨(1번 스타일 유지) -->
 <style>
-/* search.html 고유 스타일 (UI 공통 스타일은 assets/style.css로 이동) */
+/* === 1번 디자인 그대로 === */
+body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple SD Gothic Neo, Noto Sans KR, 'Malgun Gothic', sans-serif; line-height:1.6; }
 .wrap { max-width:980px; margin:24px auto; padding:0 12px; }
 h1 { font-size:28px; margin:0 0 16px; }
-/* .ctrls a 스타일 제거 - assets/style.css의 .btn 사용 */
+.box { background:#f6f7f9; border:1px solid #e5e7eb; border-radius:8px; padding:12px; }
+.ctrls { display:flex; gap:8px; margin-bottom:12px; }
+.ctrls a { padding:6px 10px; border:1px solid #e5e7eb; border-radius:8px; background:#fff; text-decoration:none; color:#111827; }
 label { margin-right:10px; white-space:nowrap; }
-/* ul.list 스타일 제거 - assets/style.css의 ul.list 사용 */
-/* .badge 스타일 제거 - assets/style.css의 .badge 사용 */
+ul.list { list-style:none; padding:0; margin:16px 0; }
+ul.list li { padding:6px 0; border-bottom:1px dashed #e5e7eb; }
+.badge { font-size:12px; color:#6b7280; margin-left:6px; }
 .note { color:#6b7280; font-size:13px; margin-top:6px; }
-/* .box 스타일 제거 - assets/style.css의 .box 사용 */
 </style>
 </head>
 <body>
 <div class="wrap">
-    <div class="ctrls">
-    <a href="index.html" class="btn">홈</a>
-    <a href="search.html" class="btn">영화 검색</a>
-    <a href="people-search.html" class="btn">배우 검색</a>
-    <a href="saved.html" class="btn">저장한 배우</a>
-  </div>
+  <div class="ctrls">
+    <a href="index.html">홈</a>
+    <a href="search.html">영화 검색</a>
+    <a href="people-search.html">배우 검색</a>
+    <a href="saved.html">저장한 배우</a>
+  </div>
 
-  <h1>영화 검색(기간)</h1>
+  <h1>영화 검색(기간)</h1>
 
-  <div id="dataRange" class="note">데이터 범위: 확인 중… (인덱스 기준)</div>
+  <div id="dataRange" class="note">데이터 범위: 확인 중… (인덱스 기준)</div>
 
-  <div class="box">
-    <form id="f">
-      <div style="display:flex;flex-wrap:wrap;gap:12px;">
-        <div>시작일: <input type="date" name="from"></div>
-        <div>종료일: <input type="date" name="to"></div>
-        <div>등급:
-          <label><input type="checkbox" name="g_all" checked> 전체관람가</label>
-          <label><input type="checkbox" name="g_12" checked> 12세 이상 관람가</label>
-          <label><input type="checkbox" name="g_15" checked> 15세 이상 관람가</label>
-          <label><input type="checkbox" name="g_r" checked> 청소년 관람불가</label>
-        </div>
-        <div>국가:
-          <label><input type="radio" name="nation" value="all" checked> 모두</label>
-          <label><input type="radio" name="nation" value="K"> 국내 영화</label>
-          <label><input type="radio" name="nation" value="F"> 국외 영화</label>
-        </div>
-        <div><button type="submit">검색</button></div>
-      </div>
-    </form>
-  </div>
+  <div class="box">
+    <form id="f">
+      <div style="display:flex;flex-wrap:wrap;gap:12px;">
+        <div>시작일: <input type="date" name="from"></div>
+        <div>종료일: <input type="date" name="to"></div>
+        <div>등급:
+          <label><input type="checkbox" name="g_all" checked> 전체관람가</label>
+          <label><input type="checkbox" name="g_12" checked> 12세 이상 관람가</label>
+          <label><input type="checkbox" name="g_15" checked> 15세 이상 관람가</label>
+          <label><input type="checkbox" name="g_r" checked> 청소년 관람불가</label>
+        </div>
+        <div>국가:
+          <label><input type="radio" name="nation" value="all" checked> 모두</label>
+          <label><input type="radio" name="nation" value="K"> 국내 영화</label>
+          <label><input type="radio" name="nation" value="F"> 국외 영화</label>
+        </div>
+        <div><button type="submit">검색</button></div>
+      </div>
+    </form>
+  </div>
 
-  <ul id="out" class="list"></ul>
-  <div id="msg" class="note"></div>
+  <ul id="out" class="list"></ul>
+  <div id="msg" class="note"></div>
 </div>
 
 <script>
+/* === 2번의 “정상 로직”을 가져오되 1번 UI와 결합 === */
 const BASE = location.pathname.replace(/\/[^\/]*$/, '');
-const MOVIES_URL = `${BASE}/data/search/movies.json?v=${Date.now()}`;
+const MOVIES_URL = `${BASE}/data/search/movies.json?v=${Date.now()}`; // 캐시 무시
 
 let MOVIES = [];
 let rangeMin = '99991231', rangeMax = '00000000';
@@ -65,100 +69,109 @@ let rangeMin = '99991231', rangeMax = '00000000';
 function ymd(s) { return (s||'').replace(/-/g,''); }
 function between(d, a, b){ return (!a || d>=a) && (!b || d<=b); }
 
+/* 데이터가 YYYY-MM-DD 또는 YYYYMMDD여도 보기 좋게 통일 출력 */
+function formatDate(s){
+  if(!s) return '개봉일미상';
+  const t = s.replace(/-/g,'');
+  if (t.length === 8) return `${t.slice(0,4)}.${t.slice(4,6)}.${t.slice(6,8)}`;
+  return s.replace(/-/g,'.');
+}
+
 function setDataRange() {
-  const y1 = rangeMin.slice(0,4), y2 = rangeMax.slice(0,4);
-  const el = document.getElementById('dataRange');
-  if (MOVIES.length) {
-    el.textContent = `데이터 범위: ${y1} ~ ${y2} (인덱스 기준)`;
-  } else {
-    el.textContent = `데이터 범위: 알 수 없음 (인덱스 기준)`;
-  }
+  const y1 = rangeMin.slice(0,4), y2 = rangeMax.slice(0,4);
+  const el = document.getElementById('dataRange');
+  if (MOVIES.length) {
+    el.textContent = `데이터 범위: ${y1} ~ ${y2} (인덱스 기준)`;
+  } else {
+    el.textContent = `데이터 범위: 알 수 없음 (인덱스 기준)`;
+  }
 }
 
 async function loadIndex() {
-  try {
-    const r = await fetch(MOVIES_URL);
-    if (!r.ok) throw new Error(r.status);
-    const j = await r.json();
-    MOVIES = (j.movies || []);
-    for (const m of MOVIES) {
-      const openDtNorm = ymd(m.openDt); // m.openDt은 'YYYY-MM-DD'
-      if (openDtNorm) {
-        if (openDtNorm < rangeMin) rangeMin = openDtNorm;
-        if (openDtNorm > rangeMax) rangeMax = openDtNorm;
-      }
-    }
-    setDataRange();
-  } catch(e) {
-    MOVIES = [];
-    setDataRange();
-    document.getElementById('msg').innerHTML =
-      `문제가 있나요? <b>인덱스를 재생</b>해 주세요 (Actions → <i>Build Search Indexes (only)</i>).`;
-  }
+  try {
+    const r = await fetch(MOVIES_URL);
+    if (!r.ok) throw new Error(r.status);
+    const j = await r.json();
+    MOVIES = (j.movies || []);
+    // openDt이 'YYYY-MM-DD'이든 'YYYYMMDD'이든 정상 동작
+    for (const m of MOVIES) {
+      const openDtNorm = ymd(m.openDt);
+      if (openDtNorm) {
+        if (openDtNorm < rangeMin) rangeMin = openDtNorm;
+        if (openDtNorm > rangeMax) rangeMax = openDtNorm;
+      }
+    }
+    setDataRange();
+  } catch(e) {
+    MOVIES = [];
+    setDataRange();
+    document.getElementById('msg').innerHTML =
+      `문제가 있나요? <b>인덱스를 재생</b>해 주세요 (Actions → <i>Build Search Indexes (only)</i>).`;
+  }
 }
 
 function filter() {
-  const f = new FormData(document.getElementById('f'));
-  const from = ymd(f.get('from'));
-  const to   = ymd(f.get('to'));
-  const gAll = f.get('g_all') !== null;
-  const g12  = f.get('g_12')  !== null;
-  const g15  = f.get('g_15')  !== null;
-  const gR   = f.get('g_r')   !== null;
-  const nation = f.get('nation') || 'all';
+  const f = new FormData(document.getElementById('f'));
+  const from = ymd(f.get('from'));
+  const to   = ymd(f.get('to'));
+  const gAll = f.get('g_all') !== null;
+  const g12  = f.get('g_12')  !== null;
+  const g15  = f.get('g_15')  !== null;
+  const gR   = f.get('g_r')   !== null;
+  const nation = f.get('nation') || 'all';
 
-  // [오류 수정] allowGrade Set에 "청소년관람불가" (띄어쓰기 없음) 추가
-  const allowGrade = new Set([
-    ...(gAll ? ['전체관람가'] : []),
-    ...(g12 ? ['12세이상관람가'] : []),
-    ...(g15 ? ['15세이상관람가'] : []),
-  	...(gR ? ['청소년관람불가'] : []), // 띄어쓰기 제거
-  ]);
+  // 등급 문자열 호환(띄어쓰기 유무 모두 허용)
+  const allowGrade = new Set([
+    ...(gAll?['전체관람가']:[]),
+    ...(g12?['12세이상관람가','12세 이상 관람가']:[]),
+    ...(g15?['15세이상관람가','15세 이상 관람가']:[]),
+    ...(gR ?['청소년관람불가','청소년 관람불가']:[]),
+  ]);
 
-  let list = MOVIES.filter(m => {
-    const movieOpenDt = ymd(m.openDt); // m.openDt 'YYYY-MM-DD' -> 'YYYYMMDD'
-    if (movieOpenDt && !between(movieOpenDt, from, to)) return false;
+  let list = MOVIES.filter(m => {
+    const movieOpenDt = ymd(m.openDt);
+    if (movieOpenDt && !between(movieOpenDt, from, to)) return false;
 
-    if (allowGrade.size && !allowGrade.has(m.grade||'')) return false;
+    if (allowGrade.size && !allowGrade.has(m.grade||'')) return false;
 
-    if (nation !== 'all') {
-      if ((m.repNation||'') !== nation) return false;
-    }
-    return true;
-  });
+    if (nation !== 'all') {
+      if ((m.repNation||'') !== nation) return false;
+    }
+    return true;
+  });
 
-  list.sort((a,b) => (ymd(a.openDt)||'99999999') > (ymd(b.openDt)||'99999999') ? 1 : -1);
+  // 개봉일 정렬(오름차순)
+  list.sort((a,b) => (ymd(a.openDt)||'99999999') > (ymd(b.openDt)||'99999999') ? 1 : -1);
 
-  const ul = document.getElementById('out');
-  ul.innerHTML = '';
-  for (const m of list) {
-    const li = document.createElement('li');
-    // [오류 수정] 날짜 형식이 'YYYY-MM-DD'이므로 '-'를 '.'으로 변경
-    const date = m.openDt ? m.openDt.replace(/-/g, '.') : '개봉일미상';
-    li.innerHTML = `<a href="detail.html?movieCd=${encodeURIComponent(m.movieCd)}">${m.movieNm}</a>
-      <span class="badge">(${date})</span>
-      <span class="badge">[${m.grade||'등급미상'}]</span>`;
-    ul.appendChild(li);
-  }
+  // 출력(1번 스타일 유지)
+  const ul = document.getElementById('out');
+  ul.innerHTML = '';
+  for (const m of list) {
+    const li = document.createElement('li');
+    const dateText = formatDate(m.openDt);
+    li.innerHTML = `<a href="detail.html?movieCd=${encodeURIComponent(m.movieCd)}">${m.movieNm}</a>
+      <span class="badge">(${dateText})</span>
+      <span class="badge">[${m.grade||'등급미상'}]</span>`;
+    ul.appendChild(li);
+  }
 
-  document.getElementById('msg').textContent =
-    list.length ? `총 ${list.length}개의 영화를 찾았습니다.` :
-    `조건에 맞는 결과가 없습니다. (데이터 범위: ${MOVIES.length? (rangeMin.slice(0,4)+'~'+rangeMax.slice(0,4)):'알 수 없음'} / 인덱스 기준)`;
+  document.getElementById('msg').textContent =
+    list.length ? `총 ${list.length}개의 영화를 찾았습니다.` :
+    `조건에 맞는 결과가 없습니다. (데이터 범위: ${MOVIES.length? (rangeMin.slice(0,4)+'~'+rangeMax.slice(0,4)):'알 수 없음'} / 인덱스 기준)`;
 }
 
 (async function main(){
-  await loadIndex();
+  await loadIndex();
 
-  const f = document.getElementById('f');
-  if (rangeMax !== '00000000') {
-    // [기능 수정] 오늘 날짜를 기준으로 기본값 설정
-    const today = new Date().toISOString().slice(0, 10);
-    const thisYear = today.slice(0, 4);
-    f.from.value = `${thisYear}-01-01`;
-    f.to.value   = today;
-  }
-  f.addEventListener('submit', (e)=>{e.preventDefault(); filter();});
-  filter();
+  // 기본 검색 기간: 올해 1월 1일 ~ 오늘 (2번 로직)
+  const f = document.getElementById('f');
+  const today = new Date().toISOString().slice(0, 10);
+  const thisYear = today.slice(0, 4);
+  f.from.value = `${thisYear}-01-01`;
+  f.to.value   = today;
+
+  f.addEventListener('submit', (e)=>{e.preventDefault(); filter();});
+  filter();
 })();
 </script>
 </body>
