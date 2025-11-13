@@ -98,6 +98,7 @@ def main():
     processed_movie_cds = set() # (3) 영화 중복 처리 방지
 
     # --- 1단계: 모든 영화/인물 스캔 및 '임시' 맵 생성 ---
+    # [오류 수정] print 문을 한 줄로 수정
     print("[pass 1] 영화 정보 및 인물 데이터 스캔 중...")
     temp_people_map = {} # peopleCd가 있든 없든 모두 저장하는 임시 맵
     
@@ -163,8 +164,8 @@ def main():
     print(f"\n[pass 1] 완료. {len(movies)}개 영화, {len(temp_people_map)}명(중복 포함) 인물 발견.")
 
     # --- 2단계: "미확인 인물"을 "확정된 인물"에 병합 시도 ---
-    print("[pass 2]
-미확인 인물을 확정된 인물 프로필로 병합 중...")
+    # [오류 수정] print 문을 한 줄로 수정
+    print("[pass 2] 미확인 인물을 확정된 인물 프로필로 병합 중...")
     
     # "확정된 인물"의 전체 공동 출연자 맵 생성
     career_costars_map = defaultdict(set)
@@ -226,8 +227,8 @@ def main():
     print(f"[pass 2] 완료. {merged_film_count}개 미확인 필모그래피 병합 성공.")
 
     # --- 3단계: 병합 후 남은 "미확인 인물"들 분리 ---
-    print("[pass 3]
-병합에 실패한 나머지 동명이인 분리 중...")
+    # [오류 수정] print 문을 한 줄로 수정
+    print("[pass 3] 병합에 실패한 나머지 동명이인 분리 중...")
     
     final_people_list = []
     separated_count = 0
