@@ -5,9 +5,14 @@ import os, json, time, glob
 from pathlib import Path
 from urllib.parse import urlencode
 import requests
-# [추가] 자동 재시도를 위한 라이브러리 임포트
-from requests.adapters import HTTPAdapter
-from urllib3.util.retry import Retry
+
+# [수정] API 키 관리자 임포트
+try:
+    from kofic_api import get_session, API_KEYS
+except ImportError:
+    print("kofic_api.py가 필요합니다. 동일 디렉토리에 있는지 확인하세요.")
+    exit(1)
+
 
 # 리포 루트 자동 탐지
 def repo_root_from_here(here: Path) -> Path:
@@ -22,28 +27,8 @@ HERE = Path(__file__).resolve()
 ROOT = repo_root_from_here(HERE)
 DETAIL_DIR = ROOT / "docs" / "data" / "movies"
 
-API_KEY = os.environ.get("KOFIC_API_KEY", "")
-BASE = "https://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json"
-HEADERS = {"User-Agent": "cache-builder/1.0"} # [추가] 헤더
-
-# [추가] build_movie_details.py와 동일한 자동 재시도 세션 생성 함수
-def make_session() -> requests.Session:
-    s = requests.Session()
-    retries = Retry(
-        total=8, 
-        connect=5, 
-        read=5, 
-        backoff_factor=1.5, 
-        status_forcelist=[429, 500, 502, 503, 504]
-    )
-    adapter = HTTPAdapter(max_retries=retries)
-    s.mount("https://", adapter)
-    s.mount("http://", adapter)
-    s.headers.update(HEADERS)
-    return s
-
-# [추가] 공용 세션 생성
-S = make_session()
+# [수정] API_KEY 및 BASE 상수를 kofic_api.py가 관리하므로 제거
+MOVIE_INFO_URL = "https://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json"
 
 def load_json(p: Path):
     try:
@@ -66,7 +51,6 @@ def get_shape(raw: dict) -> tuple[str, dict]:
         return "raw", mi
     return "none", {}
 
-# [핵심 수정]
 def is_missing_cd(arr) -> bool:
     """
     배열(actors 또는 directors)을 검사하여,
@@ -82,7 +66,6 @@ def is_missing_cd(arr) -> bool:
                 return True # <-- 코드 누락 발견!
     return False # 모두 코드가 있거나, 이름이 없음
 
-# [핵심 수정]
 def need_backfill(target: dict) -> bool:
     """
     감독(directors) 배열이나 배우(actors) 배열 둘 중 하나라도
@@ -90,24 +73,18 @@ def need_backfill(target: dict) -> bool:
     """
     return is_missing_cd(target.get("directors")) or is_missing_cd(target.get("actors"))
 
-# [수정] 자동 재시도 세션(S)을 사용하고, 타임아웃을 (연결 10초, 읽기 60초)로 늘림
-def fetch_movie_info(session: requests.Session, movieCd: str, timeout=(10, 60)) -> dict:
-    qs = urlencode({"key": API_KEY, "movieCd": movieCd})
-    url = f"{BASE}?{qs}"
-    # [수정] requests.get -> session.get
+# [수정] 세션과 API 키를 인자로 받도록 변경
+def fetch_movie_info(session: requests.Session, api_key: str, movieCd: str, timeout=(10, 60)) -> dict:
+    qs = urlencode({"key": api_key, "movieCd": movieCd})
+    url = f"{MOVIE_INFO_URL}?{qs}"
     r = session.get(url, timeout=timeout)
     r.raise_for_status()
     j = r.json()
-    # KOFIC에서 fault 응답이 오면 예외 발생
     if j.get("faultInfo") or j.get("faultResult"):
         raise RuntimeError(f"KOBIS fault: {j.get('faultInfo') or j.get('faultResult')}")
     return j
 
 def backfill(budget: int, rate_sleep_ms: int) -> tuple[int,int,int]:
-    if not API_KEY:
-        print("[warn] KOFIC_API_KEY is empty. Backfill will be skipped.")
-        return (0, 0, 0)
-
     files = [Path(p) for p in glob.iglob(str(DETAIL_DIR / "**" / "*.json"), recursive=True)
              if not p.endswith(".gitkeep")]
     files.sort()
@@ -129,7 +106,6 @@ def backfill(budget: int, rate_sleep_ms: int) -> tuple[int,int,int]:
             skipped += 1
             continue
 
-        # [핵심 수정] 새로 변경된 need_backfill 로직을 사용
         if not need_backfill(trg):
             skipped += 1
             continue
@@ -139,12 +115,15 @@ def backfill(budget: int, rate_sleep_ms: int) -> tuple[int,int,int]:
             break
 
         try:
-            # [수정] 전역 세션(S)을 사용하여 API 호출
-            j = fetch_movie_info(S, movieCd)
+            # [수정] 키 로테이터에서 세션과 다음 키를 가져옴
+            session, api_key = get_session()
+            j = fetch_movie_info(session, api_key, movieCd)
+            
         except Exception as e:
-            # [수정] 자동 재시도 후에도 실패하면 경고 출력
             print(f"[warn] fetch fail {movieCd}: {e}")
             skipped += 1
+            # [수정] API 키 제한 등 심각한 오류 시 5초 대기
+            time.sleep(5)
             continue
 
         used += 1
@@ -153,7 +132,6 @@ def backfill(budget: int, rate_sleep_ms: int) -> tuple[int,int,int]:
 
         info = (j.get("movieInfoResult") or {}).get("movieInfo") or {}
 
-        # 정규화: 감독/배우 배열 만들기 (KOFIC의 최신 정보)
         directors, actors = [], []
         for it in info.get("directors", []) or []:
             directors.append({
@@ -169,7 +147,7 @@ def backfill(budget: int, rate_sleep_ms: int) -> tuple[int,int,int]:
                 "cast": (it.get("cast") or "").strip(),
             })
 
-        has_cd = False # API로 받은 데이터에 코드가 있는지 확인
+        has_cd = False 
         for arr in (directors, actors):
             for x in arr:
                 if x.get("peopleCd"):
@@ -179,8 +157,6 @@ def backfill(budget: int, rate_sleep_ms: int) -> tuple[int,int,int]:
                 break
 
         if has_cd:
-            # 원래 구조(flat/raw)에 맞춰 대상 dict의 배우/감독 목록을
-            # API로 받은 최신 정보로 *덮어쓰기*
             trg["directors"] = directors
             trg["actors"]    = actors
             save_json(p, raw)
@@ -197,6 +173,12 @@ if __name__ == "__main__":
     import argparse
     ap = argparse.ArgumentParser()
     ap.add_argument("--budget", type=int, default=600, help="오늘 사용할 최대 API 호출 수(일 한도 이하로 지정)")
-    ap.add_argument("--rate-sleep-ms", type=int, default=250, help="호출 간 대기(ms) - 200~400 권장")
+    ap.addagument("--rate-sleep-ms", type=int, default=250, help="호출 간 대기(ms) - 200~400 권장")
     args = ap.parse_args()
+    
+    # [수정] kofic_api.py가 키를 로드할 시간을 잠시 줌
+    if not API_KEYS:
+        print("[backfill_people] API 키가 로드되지 않았습니다. GitHub Secrets를 확인하세요.")
+        exit(1)
+        
     backfill(args.budget, args.rate_sleep_ms)
