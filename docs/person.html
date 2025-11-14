@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>배우 프로필</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="assets/style.css"><!-- 있어도 OK, 1번 스타일이 우선 -->
+<link rel="stylesheet" href="assets/style.css">
 <style>
 /* === 1번 디자인/UI 유지 === */
 body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple SD Gothic Neo, Noto Sans KR, 'Malgun Gothic', sans-serif; line-height:1.6; }
@@ -21,6 +21,8 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
 .chart-buttons button { padding:4px 10px; border:1px solid #ccc; border-radius:16px; background:#f0f0f0; cursor:pointer; font-size:14px; }
 .chart-buttons button.active { background:#333; color:#fff; border-color:#333; font-weight:bold; }
 .btn { padding:6px 10px; border:1px solid #e6e6e6; border-radius:6px; background:#fafafa; cursor:pointer; }
+/* [신규] 성별 표시를 위한 뱃지 */
+.sex-badge { font-size: 1rem; margin-left: 8px; }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -33,7 +35,9 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
     <a href="saved.html" class="btn">저장 목록</a>
   </div>
 
-  <h1 id="title">배우 프로필</h1>
+  <!-- [수정] 성별 뱃지가 들어갈 span 추가 -->
+  <h1 id="title" style="display:inline-block;">배우 프로필</h1><span id="sexBadge" class="sex-badge"></span>
+  
   <div class="note">출연작 (최신 개봉일 순)</div>
   <ul id="out" class="list"></ul>
   <div id="msg" class="note"></div>
@@ -59,11 +63,16 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
 
 <script>
 const BASE = location.pathname.replace(/\/[^\/]*$/, '');
-const PEOPLE_URL = `${BASE}/data/search/people.json?v=${Date.now()}`;
+const TS = Date.now();
+const PEOPLE_URL = `${BASE}/data/search/people.json?v=${TS}`;
+// [신규] 성별 정보가 담길 people_details.json 파일 경로
+const PEOPLE_DETAILS_URL = `${BASE}/data/search/people_details.json?v=${TS}`;
 
 function getParam(k){ return new URL(location.href).searchParams.get(k) || ""; }
 const fmtNum = n => (n==null || isNaN(n)) ? '' : n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 let PEOPLE = [];
+// [신규] 상세 정보(성별)을 담을 변수
+let PEOPLE_DETAILS = {};
 let myChart = null;
 let currentPerson = null;
 
@@ -94,16 +103,38 @@ saveBtn.addEventListener('click', () => {
     } else {
         saved[personId] = { name: currentPerson.peopleNm, personKey: currentPerson.personKey };
     }
-    // 2번 기능의 버그 수정 반영: setSavedPeople 사용
     setSavedPeople(saved);
     renderSaveBtn();
 });
 
-async function loadIndex(){
-  const r = await fetch(PEOPLE_URL);
-  if(!r.ok){ PEOPLE = []; return; }
-  const j = await r.json();
-  PEOPLE = j.people || [];
+async function loadData(){
+  // [수정] people.json과 people_details.json을 동시에 병렬로 로드
+  try {
+    const [peopleRes, detailsRes] = await Promise.all([
+      fetch(PEOPLE_URL),
+      fetch(PEOPLE_DETAILS_URL)
+    ]);
+    
+    if (peopleRes.ok) {
+        const j = await peopleRes.json();
+        PEOPLE = j.people || [];
+    } else {
+        console.error("Failed to load people.json");
+        PEOPLE = [];
+    }
+    
+    if (detailsRes.ok) {
+        PEOPLE_DETAILS = await detailsRes.json() || {};
+    } else {
+        // 상세 파일은 없어도 오류는 아님
+        console.warn("No people_details.json found. Gender info will be unavailable.");
+        PEOPLE_DETAILS = {};
+    }
+  } catch(e) {
+      console.error("Error loading data", e);
+      PEOPLE = [];
+      PEOPLE_DETAILS = {};
+  }
 }
 
 function render(){
@@ -113,6 +144,7 @@ function render(){
   const out = document.getElementById('out');
   const title = document.getElementById('title');
   const msg = document.getElementById('msg');
+  const sexBadge = document.getElementById('sexBadge'); // [신규] 성별 뱃지
 
   if (!item) {
     title.textContent = '배우 프로필';
@@ -124,6 +156,16 @@ function render(){
   renderSaveBtn();
 
   title.textContent = item.peopleNm;
+  
+  // [신규] 성별 표시 로직
+  // people.json의 peopleCd (있을 경우)
+  const personCd = item.peopleCd || ''; 
+  if (personCd && PEOPLE_DETAILS[personCd]) {
+      const detail = PEOPLE_DETAILS[personCd];
+      if (detail.sex === "남자") sexBadge.textContent = "♂";
+      if (detail.sex === "여자") sexBadge.textContent = "♀";
+  }
+
   out.innerHTML = '';
   const filmsWithAudi = [];
 
@@ -203,7 +245,7 @@ function drawAudiChart(films, dataType = 'totalAudi'){
     
     const movieTitles = films.map(f => f.movieNm);
 
-    const ctx = document.getElementById('audiChart').getContext('2d');
+    const ctx = document.getElementById('audiChart').getContext('d');
     myChart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -236,7 +278,6 @@ function drawAudiChart(films, dataType = 'totalAudi'){
                     callbacks: {
                         title: function(tooltipItems) { return movieTitles[tooltipItems[0].dataIndex]; },
                         label: function(context) {
-                            // 2번 기능의 툴팁 라벨 처리 로직 반영
                             let label = yAxisLabel.split(' (')[0] || '';
                             if (label) { label += ': '; }
                             if (context.parsed.y !== null) { label += context.parsed.y.toLocaleString() + '명'; }
@@ -250,7 +291,7 @@ function drawAudiChart(films, dataType = 'totalAudi'){
 }
 
 (async function main(){
-  await loadIndex();
+  await loadData(); // [수정] loadData 함수 호출
   render();
 })();
 </script>
