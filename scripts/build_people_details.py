@@ -1,13 +1,23 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import os, json, time
+#
+# build_people_details.py
+#
+# docs/data/search/people.json을 읽어, peopleCd가 있는 모든 인물에 대해
+# KOFIC '인물 상세' API를 호출하여 성별(sex) 등의 추가 정보를 가져옵니다.
+#
+import os
+import json
+import time
 from pathlib import Path
 from urllib.parse import urlencode
 
-# API 키 관리자 임포트 (중요)
+# [수정] 누락되었던 requests 라이브러리 임포트
+import requests
+
 try:
-    from kofic_api import get_session
+    from kofic_api import get_session, API_KEYS, KoficApiError
 except ImportError:
     print("kofic_api.py가 필요합니다. 동일 디렉토리에 있는지 확인하세요.")
     exit(1)
@@ -16,9 +26,8 @@ except ImportError:
 ROOT = Path(__file__).resolve().parents[1]
 SEARCH_DIR = ROOT / "docs" / "data" / "search"
 PEOPLE_INDEX_PATH = SEARCH_DIR / "people.json"
-PEOPLE_DETAILS_PATH = SEARCH_DIR / "people_details.json"
+OUTPUT_PATH = SEARCH_DIR / "people_details.json" # 최종 결과물
 
-# KOFIC API 엔드포인트
 PEOPLE_INFO_URL = "https://www.kobis.or.kr/kobisopenapi/webservice/rest/people/searchPeopleInfo.json"
 
 def load_json(p: Path, default=None):
@@ -29,87 +38,105 @@ def load_json(p: Path, default=None):
     except Exception:
         return default
 
-def save_json(p: Path, data):
+def save_json(p: Path, data: dict):
     p.parent.mkdir(parents=True, exist_ok=True)
     tmp = p.with_suffix(".json.tmp")
     tmp.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
     tmp.replace(p)
 
 def fetch_people_info(session: requests.Session, api_key: str, peopleCd: str):
-    """searchPeopleInfo API를 호출하여 성별 등의 상세 정보를 가져옵니다."""
-    params = urlencode({"key": api_key, "peopleCd": peopleCd})
-    url = f"{PEOPLE_INFO_URL}?{params}"
-    
+    """KOFIC 인물 상세 API 호출"""
+    qs = urlencode({"key": api_key, "peopleCd": peopleCd})
+    url = f"{PEOPLE_INFO_URL}?{qs}"
     r = session.get(url, timeout=(10, 60))
     r.raise_for_status()
     j = r.json()
     if j.get("faultInfo") or j.get("faultResult"):
-        raise RuntimeError(f"KOBIS fault: {j.get('faultInfo') or j.get('faultResult')}")
-    
-    return j.get("peopleInfoResult", {}).get("peopleInfo", {})
+        raise KoficApiError(f"KOBIS fault: {j.get('faultInfo') or j.get('faultResult')}")
+    return j
 
-def main():
-    print(f"[build_people_details] 인물 상세 정보(성별 등) 수집을 시작합니다.")
-    
-    # 1. 기존 people.json 인덱스 로드
+def build_details(budget: int, rate_sleep_ms: int):
+    # 1. 원본 people.json 로드
     people_index = load_json(PEOPLE_INDEX_PATH)
     if not people_index or "people" not in people_index:
-        print(f"[오류] {PEOPLE_INDEX_PATH} 파일을 찾을 수 없거나 형식이 잘못되었습니다.")
+        print(f"[error] {PEOPLE_INDEX_PATH} 파일을 찾을 수 없거나 형식이 잘못되었습니다.")
         return
+    
+    all_people = people_index.get("people", [])
+    
+    # 2. peopleCd가 있는 인물만 추출
+    target_people = [p for p in all_people if p.get("peopleCd")]
+    target_count = len(target_people)
+    print(f"[info] 총 {len(all_people)}명 중 peopleCd가 있는 {target_count}명을 대상으로 상세 정보를 수집합니다.")
 
-    all_people = people_index["people"]
+    # 3. 기존 상세 정보가 있다면 로드 (증분 업데이트용)
+    details_map = load_json(OUTPUT_PATH, {})
     
-    # 2. 이미 수집한 상세 정보가 있다면 로드 (증분 수집)
-    existing_details = load_json(PEOPLE_DETAILS_PATH, {})
-    
-    # 3. KOFIC 코드가 있는(peopleCd) 모든 인물 추출
-    # (코드가 없는 'name::' 인물은 이 API를 호출할 수 없음)
-    targets = [p for p in all_people if p.get("peopleCd")]
-    
-    print(f"총 {len(all_people)}명 인물 중, KOFIC 코드가 있는 {len(targets)}명을 대상으로 수집/업데이트합니다.")
-    
-    rate_sleep_ms = 250 # API 호출 간 대기
+    # 4. API 호출 및 정보 수집
     updated_count = 0
+    used_api = 0
     
-    for i, person in enumerate(targets):
+    for i, person in enumerate(target_people):
         peopleCd = person["peopleCd"]
         
-        # 4. 이미 수집한 정보가 있으면 건너뛰기
-        if peopleCd in existing_details:
+        # 이미 수집한 정보가 있으면 건너뛰기
+        if peopleCd in details_map:
+            continue
+
+        if used_api >= budget:
+            print(f"[info] API budget({budget})에 도달하여 중단합니다.")
+            break
+            
+        print(f"  -> ({i+1}/{target_count}) Fetching {peopleCd} ({person.get('peopleNm', 'N/A')})...", end="\r")
+
+        try:
+            session, api_key = get_session()
+            info_data = fetch_people_info(session, api_key, peopleCd)
+            used_api += 1
+
+            p_info = (info_data.get("peopleInfoResult") or {}).get("peopleInfo") or {}
+            
+            # 필요한 정보만 추출 (성별, 필모 수)
+            sex = p_info.get("sex", "")
+            filmos = p_info.get("filmos", [])
+            
+            details_map[peopleCd] = {
+                "peopleCd": peopleCd,
+                "peopleNm": p_info.get("peopleNm", person.get("peopleNm")), # 원본 이름 우선
+                "sex": "남" if sex == "남자" else ("여" if sex == "여자" else ""),
+                "filmoCount": len(filmos)
+            }
+            updated_count += 1
+            
+            if rate_sleep_ms > 0:
+                time.sleep(rate_sleep_ms / 1000.0)
+
+        except KoficApiError as e:
+            # API 키 만료 등 심각한 오류 시 중단
+            print(f"\n[error] API 오류 발생 (peopleCd: {peopleCd}): {e}. 작업을 중단합니다.")
+            break
+        except Exception as e:
+            # 타임아웃 등 일반 오류 시 건너뛰기
+            print(f"\n[warn] 건너뛰기 (peopleCd: {peopleCd}): {e}")
+            time.sleep(1) # 오류 발생 시 1초 대기
             continue
             
-        print(f"  -> ({i+1}/{len(targets)}) {peopleCd} ({person['peopleNm']}) 정보 수집 중...", end="\r")
-        
-        try:
-            # 5. API 키 로테이터에서 새 세션과 키 가져오기
-            session, api_key = get_session()
-            
-            # 6. API 호출
-            info = fetch_people_info(session, api_key, peopleCd)
-            
-            if info:
-                # 7. 필요한 정보(성별 등)만 추출하여 저장
-                detail_data = {
-                    "peopleCd": info.get("peopleCd"),
-                    "peopleNm": info.get("peopleNm"),
-                    "sex": info.get("sex"),
-                    # KOFIC은 생년월일을 제공하지 않습니다.
-                }
-                existing_details[peopleCd] = detail_data
-                updated_count += 1
-            
-            time.sleep(rate_sleep_ms / 1000.0)
-            
-        except Exception as e:
-            print(f"\n[경고] {peopleCd} ({person['peopleNm']}) 정보 수집 실패: {e}")
-            # 오류 발생 시 5초 대기 (API 키 제한 등일 수 있음)
-            time.sleep(5) 
-
-    print(f"\n[build_people_details] 총 {updated_count}명의 신규 인물 정보를 수집했습니다.")
+    print(f"\n[done] 총 {updated_count}명의 신규 인물 정보를 수집했습니다. (API {used_api}회 사용)")
     
-    # 8. 최종본 저장
-    save_json(PEOPLE_DETAILS_PATH, existing_details)
-    print(f"[build_people_details] {PEOPLE_DETAILS_PATH} 파일 저장을 완료했습니다. (총 {len(existing_details)}명)")
+    # 5. 최종 파일 저장
+    save_json(OUTPUT_PATH, details_map)
+    print(f"[save] {OUTPUT_PATH} 파일에 총 {len(details_map)}명의 상세 정보를 저장했습니다.")
+
 
 if __name__ == "__main__":
-    main()
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--budget", type=int, default=3000, help="API 호출 예산 (인물 상세는 1일 3000회)")
+    ap.add_argument("--rate-sleep-ms", type=int, default=350, help="호출 간 대기(ms) (인물 상세는 300ms 권장)")
+    args = ap.parse_args()
+
+    if not API_KEYS:
+        print("[build_people_details] API 키가 로드되지 않았습니다. GitHub Secrets를 확인하세요.")
+        exit(1)
+        
+    build_details(args.budget, args.rate_sleep_ms)
