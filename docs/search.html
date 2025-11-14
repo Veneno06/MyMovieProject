@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>영화 검색(기간)</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="assets/style.css"><!-- 있어도 되고 없어도 됨(1번 스타일 유지) -->
+<link rel="stylesheet" href="assets/style.css">
 <style>
 /* === 1번 디자인 그대로 === */
 body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple SD Gothic Neo, Noto Sans KR, 'Malgun Gothic', sans-serif; line-height:1.6; }
@@ -22,11 +22,13 @@ ul.list li { padding:6px 0; border-bottom:1px dashed #e5e7eb; }
 </head>
 <body>
 <div class="wrap">
+  <!-- [수정] 버튼 추가 -->
   <div class="ctrls">
-    <a href="index.html">홈</a>
-    <a href="search.html">영화 검색</a>
-    <a href="people-search.html">배우 검색</a>
-    <a href="saved.html">저장 목록</a>
+    <a href="index.html" class="btn">홈</a>
+    <a href="search.html" class="btn">영화 검색</a>
+    <a href="people-search.html" class="btn">배우 검색</a>
+    <a href="costar-search.html" class="btn">공동 출연 검색</a>
+    <a href="saved.html" class="btn">저장 목록</a>
   </div>
 
   <h1>영화 검색(기간)</h1>
@@ -49,7 +51,7 @@ ul.list li { padding:6px 0; border-bottom:1px dashed #e5e7eb; }
           <label><input type="radio" name="nation" value="K"> 국내 영화</label>
           <label><input type="radio" name="nation" value="F"> 국외 영화</label>
         </div>
-        <div><button type="submit">검색</button></div>
+        <div><button type="submit" class="btn">검색</button></div>
       </div>
     </form>
   </div>
@@ -60,8 +62,9 @@ ul.list li { padding:6px 0; border-bottom:1px dashed #e5e7eb; }
 
 <script>
 /* === 2번의 “정상 로직”을 가져오되 1번 UI와 결합 === */
-const BASE = location.pathname.replace(/\/[^\/]*$/, '');
-const MOVIES_URL = `${BASE}/data/search/movies.json?v=${Date.now()}`; // 캐시 무시
+// [수정] 최신 경로 로직으로 변경
+const TS = Date.now();
+const MOVIES_URL = `data/search/movies.json?v=${TS}`;
 
 let MOVIES = [];
 let rangeMin = '99991231', rangeMax = '00000000';
