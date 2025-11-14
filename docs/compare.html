@@ -18,10 +18,14 @@ h1, h2 { text-align: center; }
 </head>
 <body>
 <div class="container">
+  <!-- [수정] 버튼 추가 -->
   <div class="header">
     <h1>스타 파워 비교</h1>
     <div class="spacer"></div>
     <a href="index.html" class="btn">홈</a>
+    <a href="search.html" class="btn">영화 검색</a>
+    <a href="people-search.html" class="btn">배우 검색</a>
+    <a href="costar-search.html" class="btn">공동 출연 검색</a>
     <a href="saved.html" class="btn">저장 목록</a>
   </div>
 
@@ -52,7 +56,9 @@ h1, h2 { text-align: center; }
 </div>
 
 <script>
-const PEOPLE_URL = `data/search/people.json?v=${Date.now()}`;
+// [수정] 최신 경로 로직으로 변경
+const TS = Date.now();
+const PEOPLE_URL = `data/search/people.json?v=${TS}`;
 let PEOPLE = [];
 let person1 = null, person2 = null, person3 = null;
 let chart1 = null, chart2 = null, chart3 = null;
