@@ -13,12 +13,14 @@
 </head>
 <body>
 <div class="container">
+  <!-- [수정] 버튼 추가 -->
   <div class="header">
     <h1>영화 상세 정보</h1>
     <div class="spacer"></div>
     <a class="btn" href="index.html">홈</a>
     <a class="btn" href="search.html">영화 검색</a>
     <a class="btn" href="people-search.html">배우 검색</a>
+    <a class="btn" href="costar-search.html">공동 출연 검색</a>
     <a class="btn" href="saved.html">저장 목록</a>
   </div>
 
@@ -35,14 +37,17 @@ const movieCd = params.get('movieCd') || '';
 const box = document.getElementById('movieDetail');
 
 const fmtNum = n => (n==null || isNaN(n)) ? '' : n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-const INDEX_URL = 'data/search/movies.json';
-const YEARS_MANIFEST = 'data/years/_manifest.json';
-const PEOPLE_URL = 'data/search/people.json'; // 2번 기능(배우 personKey 매핑)
+// [수정] 최신 경로 로직으로 변경
+const TS = Date.now();
+const INDEX_URL = `data/search/movies.json?v=${TS}`;
+const YEARS_MANIFEST = `data/years/_manifest.json?v=${TS}`;
+const PEOPLE_URL = `data/search/people.json?v=${TS}`;
 
 /* 공용 JSON fetch (캐시 무시) */
 async function tryFetchJson(url){
   try{
-    const r = await fetch(url, { cache: 'no-store' });
+    // [수정] 캐시 무시 옵션 제거 (쿼리스트링으로 대체)
+    const r = await fetch(url);
     if (!r.ok) return null;
     return await r.json();
   }catch{ return null; }
@@ -85,7 +90,7 @@ function pickMovieInfo(json){
   }
 
   // 2번 기능: 전체 인물 인덱스 로드하여 personKey 매핑
-  const peopleIndex = await tryFetchJson(`${PEOPLE_URL}?v=${Date.now()}`);
+  const peopleIndex = await tryFetchJson(PEOPLE_URL);
   const ALL_PEOPLE = peopleIndex?.people || [];
 
   // 인덱스에서 영화 엔트리 찾기
@@ -97,7 +102,8 @@ function pickMovieInfo(json){
   const candidates = await guessDetailJsonPaths(movieCd, idxEntry);
   let raw = null, usedUrl = '';
   for (const u of candidates){
-    const j = await tryFetchJson(u);
+    // [수정] 캐시된 상세 파일은 TS 쿼리스트링 없이 원본 경로로 조회
+    const j = await tryFetchJson(u); 
     const info = pickMovieInfo(j);
     if (info) { raw = info; usedUrl = u; break; }
   }
@@ -138,14 +144,17 @@ function pickMovieInfo(json){
       if (person) personKey = person.personKey;
     }
     if (!personKey && actor.nm) {
-      const person = ALL_PEOPLE.find(p => p.peopleNm === actor.nm && p.repRoleNm === '배우');
+      // [수정] 동명이인 분리 후, name:: 키를 찾는 것은 부정확할 수 있으므로, peopleCd가 없는 경우의 링크를 단순화
+      // (단, 이 로직은 backfill이 완료된 후에는 거의 사용되지 않음)
+      const person = ALL_PEOPLE.find(p => p.peopleNm === actor.nm && p.repRoleNm === '배우' && !p.peopleCd);
       if (person) personKey = person.personKey;
     }
     let href = '';
     if (personKey) {
       href = `person.html?personKey=${encodeURIComponent(personKey)}`;
     } else {
-      href = `person.html?peopleNm=${encodeURIComponent(actor.nm)}&movieNm=${encodeURIComponent(title)}`;
+      // Fallback: personKey를 못찾으면 people-search.html로 넘김
+      href = `people-search.html?q=${encodeURIComponent(actor.nm)}`;
     }
     return `<a href="${href}" class="actor-link">${actor.nm}</a>`;
   };
