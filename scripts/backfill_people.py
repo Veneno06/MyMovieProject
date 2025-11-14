@@ -173,7 +173,6 @@ if __name__ == "__main__":
     import argparse
     ap = argparse.ArgumentParser()
     ap.add_argument("--budget", type=int, default=600, help="오늘 사용할 최대 API 호출 수(일 한도 이하로 지정)")
-    # [오타 수정] addagument -> add_argument
     ap.add_argument("--rate-sleep-ms", type=int, default=250, help="호출 간 대기(ms) - 200~400 권장")
     args = ap.parse_args()
     
@@ -183,12 +182,3 @@ if __name__ == "__main__":
         exit(1)
         
     backfill(args.budget, args.rate_sleep_ms)
-```eof
-
-### ➡️ 다음 단계
-
-1.  GitHub 저장소(또는 Codespace)에서 `scripts/backfill_people.py` 파일을 위 **오타가 수정된 전체 코드**로 교체합니다.
-2.  이 변경사항을 `push`하여 GitHub에 반영합니다.
-3.  **[Actions]** 탭으로 이동하여 **[Backfill People & Reindex]** 워크플로우를 **다시 실행**합니다.
-
-이번에는 오타가 없으므로 29초 만에 실패하지 않고, API를 호출하며 정상적으로 실행될 것입니다.
