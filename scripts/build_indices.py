@@ -59,10 +59,8 @@ def main():
     cd_to_key_map = {}
     name_role_to_cd_map = {} # 이 변수는 선언만 해두고, 위험한 추측 로직에는 사용하지 않음
     
-    # [수정] 영화 중복 추가를 방지하기 위한 Set
     processed_movie_cds = set()
 
-    # [수정] 1차 스캔과 2차 스캔을 하나로 통합
     for fp in files:
         d = load_json(fp)
         mi = get_movie_info_from_data(d)
@@ -71,10 +69,9 @@ def main():
         movieCd = (mi.get("movieCd") or "").strip()
         if not movieCd: continue
         
-        # [수정] 이미 처리된 movieCd인지 확인
         if movieCd in processed_movie_cds:
-            continue # 이미 추가된 영화이므로 스캔 건너뛰기
-        processed_movie_cds.add(movieCd) # 새로 처리 목록에 추가
+            continue
+        processed_movie_cds.add(movieCd)
         
         movieNm = (mi.get("movieNm") or "").strip()
         openDt  = norm_open(mi.get("openDt", ""))
@@ -93,7 +90,7 @@ def main():
             "repNation": repNation, "grade": grade, "genres": genres, "audiAcc": audiAcc,
         })
         
-        # [복원 및 수정] 누락되었던 인물 정보 추가 로직
+        # [핵심 수정] 동명이인 분리 로직
         def add_person(p, role):
             if not isinstance(p, dict): return
             
@@ -102,10 +99,9 @@ def main():
             peopleNm = (p.get("peopleNm") or "").strip()
             if not peopleNm: return
 
-            # 2. [핵심 수정] personKey를 엄격하게 결정합니다.
+            # 2. personKey를 엄격하게 결정합니다.
             #    peopleCd가 있으면, personKey는 *반드시* peopleCd입니다.
             #    peopleCd가 없으면, personKey는 *반드시* name::{이름}::{역할}입니다.
-            #    더 이상 이름으로 peopleCd를 추측하거나 할당하지 않습니다.
             
             person_key = ""
             if original_peopleCd:
