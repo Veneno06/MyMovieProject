@@ -5,7 +5,6 @@
 <title>배우 프로필</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="assets/style.css">
-<!-- [최신] person.html의 스타일 시트 (성별 뱃지 포함) -->
 <style>
 body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple SD Gothic Neo, Noto Sans KR, 'Malgun Gothic', sans-serif; line-height:1.6; }
 .wrap { max-width:980px; margin:24px auto; padding:0 12px; }
@@ -28,7 +27,6 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
 </head>
 <body>
 <div class="wrap">
-  <!-- [수정] "공동 출연 검색" 버튼 추가 -->
   <div class="ctrls">
     <a href="index.html" class="btn">홈</a>
     <a href="search.html" class="btn">영화 검색</a>
@@ -37,7 +35,6 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
     <a href="saved.html" class="btn">저장 목록</a>
   </div>
 
-  <!-- [최신] 성별 뱃지가 들어갈 span (h1과 한 줄에) -->
   <h1 id="title" style="display:inline-block;">배우 프로필</h1><span id="sexBadge" class="sex-badge"></span>
   
   <div class="note">출연작 (최신 개봉일 순)</div>
@@ -243,7 +240,8 @@ function drawAudiChart(films, dataType = 'totalAudi'){
     
     const movieTitles = films.map(f => f.movieNm);
 
-    const ctx = document.getElementById('audiChart').getContext('d');
+    // [!!! 오타 수정 !!!] 'd' -> '2d'
+    const ctx = document.getElementById('audiChart').getContext('2d');
     myChart = new Chart(ctx, {
         type: 'line',
         data: {
