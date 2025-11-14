@@ -6,8 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="assets/style.css" />
   <style>
-    .hdr { display:flex; gap:12px; align-items:center; margin-bottom:10px; flex-wrap:wrap; }
-    .hdr .sp { flex:1; }
+    /* [수정] .hdr 관련 스타일을 공통 .header 스타일로 통합 (assets/style.css) */
+    /* .hdr { display:flex; gap:12px; align-items:center; margin-bottom:10px; flex-wrap:wrap; } */
+    /* .hdr .sp { flex:1; } */
+    
     .pill { font-size:12px; color:#666; background:#f3f4f6; border:1px solid #e5e7eb; padding:4px 8px; border-radius:999px; }
     .monthbar { display:flex; align-items:center; gap:8px; margin:10px 0 8px; }
     .day-list { display:flex; flex-wrap:wrap; gap:6px; }
@@ -26,12 +28,14 @@
 </head>
 <body>
 <div class="container">
-  <div class="hdr">
+  <!-- [수정] .hdr을 .header로 변경하고, 버튼 추가 -->
+  <div class="header">
     <h1>K-Movie A Archive</h1>
-    <div class="sp"></div>
+    <div class="spacer"></div>
     <a class="btn" href="index.html">홈</a>
     <a class="btn" href="search.html">영화 검색</a>
     <a class="btn" href="people-search.html">배우 검색</a>
+    <a class="btn" href="costar-search.html">공동 출연 검색</a>
     <a class="btn" href="saved.html">저장 목록</a>
   </div>
 
@@ -182,7 +186,7 @@ async function mainTimeline(){
     // 정규화된 날짜 필드를 사용하여 최신 날짜를 찾음
     const latestDateStr = MOVIES.reduce((max, m) => (m.openDt_normalized > max ? m.openDt_normalized : max), '0');
     const year = parseInt(latestDateStr.slice(0, 4), 10);
-    const month = parseInt(latestDateStr.slice(4, 6), 10) - 1; 
+    const month = parseInt(latestDateStr.slice(4, 6), 10) - 1;  
     if (!isNaN(year) && !isNaN(month)) {
         YM = new Date(year, month);
     }
