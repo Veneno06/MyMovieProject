@@ -24,12 +24,14 @@
 </head>
 <body>
 <div class="container">
+  <!-- [수정] 버튼 추가 -->
   <div class="header">
     <h1>저장 목록</h1>
     <div class="spacer"></div>
     <a href="index.html" class="btn">홈</a>
     <a href="search.html" class="btn">영화 검색</a>
     <a href="people-search.html" class="btn">배우 검색</a>
+    <a href="costar-search.html" class="btn">공동 출연 검색</a>
   </div>
 
   <div id="savedPeopleList" class="grid"></div>
@@ -47,7 +49,9 @@ const LIST_BOX = document.getElementById('savedPeopleList');
 const COMPARE_BTN2 = document.getElementById('compareBtn2');
 const COMPARE_BTN3 = document.getElementById('compareBtn3');
 const EMPTY_MSG = document.getElementById('emptyMsg');
-const PEOPLE_INDEX_URL = 'data/search/people.json';
+// [수정] 최신 경로 로직으로 변경
+const TS = Date.now();
+const PEOPLE_INDEX_URL = `data/search/people.json?v=${TS}`;
 
 function getSavedPeople() {
   try { return JSON.parse(localStorage.getItem('savedPeople') || '{}'); }
@@ -62,7 +66,7 @@ function removeSaved(id) {
   const saved = getSavedPeople();
   if (saved[id]) {
     delete saved[id];
-    setSavedPeople(saved);   // 중요: setSavedPeople로 저장
+    setSavedPeople(saved);    // 중요: setSavedPeople로 저장
   }
   render();
 }
@@ -91,7 +95,7 @@ async function render() {
   // people 인덱스 로드 (주요 출연작 표시용)
   let allPeople = [];
   try {
-    const res = await fetch(`${PEOPLE_INDEX_URL}?v=${Date.now()}`);
+    const res = await fetch(PEOPLE_INDEX_URL);
     if (res.ok) {
       const peopleIndex = await res.json();
       allPeople = peopleIndex.people || [];
@@ -121,7 +125,7 @@ async function render() {
         <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
           <a href="person.html?personKey=${encodeURIComponent(personId)}"><strong>${person.peopleNm || '이름 없음'}</strong></a>
           <span class="muted">(${person.repRoleNm || '배우'})</span>
-          <div class="spacer"></div>
+          <div class="spacer" style="flex: 1;"></div>
           <button class="btn" onclick="removeSaved('${personId}')">삭제</button>
         </div>
         <div class="film-list">주요 출연작: ${filmsStr}</div>
