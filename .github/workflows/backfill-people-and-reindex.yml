@@ -36,11 +36,17 @@ jobs:
       - name: Install deps
         run: python -m pip install --upgrade pip requests
 
+      # [수정] 여러 개의 API 키를 환경 변수로 전달
       - name: Backfill people fields (movieInfo)
         env:
           KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
+          KOFIC_API_KEY_2: ${{ secrets.KOFIC_API_KEY_2 }}
+          KOFIC_API_KEY_3: ${{ secrets.KOFIC_API_KEY_3 }}
+          KOFIC_API_KEY_4: ${{ secrets.KOFIC_API_KEY_4 }}
+          KOFIC_API_KEY_5: ${{ secrets.KOFIC_API_KEY_5 }}
         run: |
           set -eux
+          # [수정] kofic_api.py를 먼저 실행할 필요 없이, backfill_people.py가 알아서 임포트함
           python scripts/backfill_people.py \
             --budget "${{ inputs.budget }}" \
             --rate-sleep-ms "${{ inputs.rate_sleep_ms }}"
@@ -49,6 +55,18 @@ jobs:
         run: |
           set -eux
           python scripts/build_indices.py
+
+      # [신규] '성별' 정보 수집 단계 추가
+      - name: Build people details (gender, etc)
+        env:
+          KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
+          KOFIC_API_KEY_2: ${{ secrets.KOFIC_API_KEY_2 }}
+          KOFIC_API_KEY_3: ${{ secrets.KOFIC_API_KEY_3 }}
+          KOFIC_API_KEY_4: ${{ secrets.KOFIC_API_KEY_4 }}
+          KOFIC_API_KEY_5: ${{ secrets.KOFIC_API_KEY_5 }}
+        run: |
+          set -eux
+          python scripts/build_people_details.py
 
       - name: Commit updated caches
         run: |
@@ -59,6 +77,6 @@ jobs:
             echo "No changes."
             exit 0
           fi
-          git commit -m "Backfill people & rebuild indexes"
+          git commit -m "Backfill people, rebuild indexes, and fetch people details"
           git pull --rebase origin "${{ github.ref_name }}" || true
           git push
