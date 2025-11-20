@@ -2,16 +2,12 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<!-- [수정] title에 번역 키 추가 -->
 <title data-i18n-key="costarSearchTitle">공동 출연 검색</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="assets/style.css">
-<!-- [수정] 신규 번역 스크립트 추가 -->
 <script src="assets/translator.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<!-- [수정] 스타일을 asset/style.css의 공통 클래스로 대체 -->
 <style>
-    /* person.html, search.html 등과 스타일 공유 */
     body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple SD Gothic Neo, Noto Sans KR, 'Malgun Gothic', sans-serif; line-height:1.6; }
     .wrap { max-width:980px; margin:24px auto; padding:0 12px; }
     h1 { font-size:28px; margin:0 0 16px; }
@@ -22,6 +18,9 @@
     ul.list { list-style:none; padding:0; margin:12px 0; }
     li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
     .audi { font-size: 14px; color: #333; }
+    .cast-list { font-size: 13px; color: #555; margin-left: 4px; }
+    /* [신규] 볼드체 강조 스타일 */
+    .cast-list b { color: #000; font-weight: 700; background-color: #fff3cd; padding: 0 2px; border-radius: 2px; }
     .chart-buttons { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
     .chart-buttons button { padding:4px 10px; border:1px solid #ccc; border-radius:16px; background:#f0f0f0; cursor:pointer; font-size:14px; }
     .chart-buttons button.active { background:#333; color:#fff; border-color:#333; font-weight:bold; }
@@ -30,7 +29,6 @@
 </head>
 <body>
 <div class="wrap">
-  <!-- [수정] 버튼에 번역 키 추가 -->
   <div class="ctrls">
     <a href="index.html" class="btn" data-i18n-key="home">홈</a>
     <a href="search.html" class="btn" data-i18n-key="movieSearch">영화 검색</a>
@@ -41,7 +39,6 @@
 
   <h1 data-i18n-key="costarSearchTitle">공동 출연 검색</h1>
 
-  <!-- [수정] 라벨, placeholder에 번역 키 추가 -->
   <form id="f" class="box">
     <span data-i18n-key="actorA">배우 A:</span>
     <input type="text" id="actorA" value="" data-i18n-key="actorA" data-i18n-target="placeholder" placeholder="배우 A">
@@ -54,7 +51,6 @@
   <ul id="out" class="list"></ul>
   <div id="msg" class="note" data-i18n-key="costarDefaultMsg">검색할 두 배우의 이름을 입력하세요. (예: 황정민, 유해진)</div>
 
-  <!-- [수정] 버튼에 번역 키 추가 -->
   <div id="chart-container" style="display:none;">
     <h2 data-i18n-key="audiTrend">개봉 시기별 관객수 추이</h2>
     <div class="chart-buttons">
@@ -69,9 +65,12 @@
   </div>
 </div>
 <script>
-// [최신] person.html과 동일한 번역 지원 로직 적용
-const PEOPLE_URL = `data/search/people.json?v=${Date.now()}`;
+const TS = Date.now();
+const PEOPLE_URL = `data/search/people.json?v=${TS}`;
+const MOVIES_URL = `data/search/movies.json?v=${TS}`; // [신규]
+
 let PEOPLE = [];
+let MOVIES_DB = {}; // [수정] 영화 데이터 저장용
 let myChart = null;
 const fmtNum = n => (n==null || isNaN(n)) ? '' : n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
@@ -79,35 +78,39 @@ const out = document.getElementById('out');
 const msg = document.getElementById('msg');
 const resultTitle = document.getElementById('resultTitle');
 const chartContainer = document.getElementById('chart-container');
-let currentCommonFilms = []; // [수정] 차트 재번역을 위해 검색 결과 저장
+let currentCommonFilms = []; 
 
-/**
- * 1. 로드: people.json을 로드합니다.
- */
 async function loadIndex(){
   try {
-    const r = await fetch(PEOPLE_URL);
-    if(!r.ok){ throw new Error('Failed to load people index'); }
-    const j = await r.json();
-    PEOPLE = j.people || [];
+    const [peopleRes, moviesRes] = await Promise.all([
+      fetch(PEOPLE_URL),
+      fetch(MOVIES_URL)
+    ]);
+
+    if(peopleRes.ok){ 
+        const j = await peopleRes.json();
+        PEOPLE = j.people || [];
+    }
+    if(moviesRes.ok){
+        const mData = await moviesRes.json();
+        (mData.movies || []).forEach(m => {
+            MOVIES_DB[m.movieCd] = m;
+        });
+    }
   } catch(e) {
     PEOPLE = [];
     msg.textContent = '데이터를 불러오는 데 실패했습니다.';
   }
 }
 
-/**
- * 2. 검색: 두 배우가 공동 출연한 영화 목록을 찾습니다.
- */
 function searchCoStars() {
   const nameA = document.getElementById('actorA').value.trim();
   const nameB = document.getElementById('actorB').value.trim();
 
-  // 차트와 목록 초기화
   out.innerHTML = '';
   chartContainer.style.display = 'none';
   if (myChart) myChart.destroy();
-  currentCommonFilms = []; // [수정] 결과 초기화
+  currentCommonFilms = []; 
 
   if (!nameA || !nameB) {
     msg.textContent = '두 배우의 이름을 모두 입력해야 합니다.';
@@ -136,13 +139,10 @@ function searchCoStars() {
       }
   });
 
-  currentCommonFilms = commonFilms; // [수정] 결과 저장
+  currentCommonFilms = commonFilms; 
   renderResults(commonFilms, nameA, nameB);
 }
 
-/**
- * 3. 렌더링: person.html과 동일한 형식으로 목록과 차트를 그립니다.
- */
 function renderResults(films, nameA, nameB) {
   resultTitle.textContent = `'${nameA}' & '${nameB}' 공동 출연작 (${films.length}편)`;
   resultTitle.style.display = 'block';
@@ -151,29 +151,44 @@ function renderResults(films, nameA, nameB) {
     msg.textContent = '두 배우의 공동 출연작을 찾을 수 없습니다.';
     return;
   }
-  msg.textContent = ''; // 메시지 지우기
+  msg.textContent = ''; 
   
   films.sort((a,b) => (b.openDt || '0').localeCompare(a.openDt || '0'));
 
   for (const f of films) {
     const date = f.openDt ? f.openDt.replace(/-/g, '.') : '개봉일미상';
     const audiStr = (f.audiAcc != null) ? ` / <span class="audi">누적 ${fmtNum(f.audiAcc)}명</span>` : '';
+    
+    // [수정] movies.json의 cast 사용 (순서 보장)
+    let castStr = "";
+    const movieData = MOVIES_DB[f.movieCd];
+
+    if (movieData && movieData.cast && Array.isArray(movieData.cast)) {
+        const actors = movieData.cast;
+        const displayActors = actors.slice(0, 7);
+        
+        // [핵심] 검색어(nameA, nameB)와 일치하면 볼드 처리
+        const formattedActors = displayActors.map(name => {
+            if (name === nameA || name === nameB) return `<b>${name}</b>`;
+            return name;
+        });
+
+        castStr = ` · 배우: ${formattedActors.join(', ')}${actors.length > 7 ? '...' : ''}`;
+    }
+    
     const li = document.createElement('li');
     li.innerHTML = `<a href="detail.html?movieCd=${encodeURIComponent(f.movieCd)}">${f.movieNm}</a>
-      <span class="note">(${date}${f.part? ' · '+f.part:''}${audiStr})</span>`;
+      <span class="note">(${date}${f.part? ' · '+f.part:''}${audiStr}<span class="cast-list">${castStr}</span>)</span>`;
     out.appendChild(li);
   }
 
   const filmsWithData = films.filter(f => f.openDt && f.audiAcc != null);
   if (filmsWithData.length > 1) {
     chartContainer.style.display = 'block';
-    drawAudiChart(filmsWithData, 'totalAudi'); // 기본 '관객수' 차트
+    drawAudiChart(filmsWithData, 'totalAudi'); 
   }
 }
 
-/**
- * 4. 차트 그리기 (person.html의 drawAudiChart 함수와 100% 동일)
- */
 function drawAudiChart(films, dataType = 'totalAudi'){
     if (myChart) {
         myChart.destroy();
@@ -186,9 +201,8 @@ function drawAudiChart(films, dataType = 'totalAudi'){
     const labels = films.map(f => f.openDt ? f.openDt.slice(0,7) : '미상');
     let dataPoints;
     
-    // [수정] yAxisLabel을 JS에서 직접 관리 (번역 키 사용을 위해)
     const lang = window.getCurrentLang ? window.getCurrentLang() : 'ko';
-    const s = (window.STRINGS && window.STRINGS[lang]) ? window.STRINGS[lang] : STRINGS['ko']; // fallback
+    const s = (window.STRINGS && window.STRINGS[lang]) ? window.STRINGS[lang] : STRINGS['ko']; 
     let yAxisLabel;
 
     if (dataType === 'audiPerFilmography') {
@@ -241,7 +255,7 @@ function drawAudiChart(films, dataType = 'totalAudi'){
                     },
                     title: {
                         display: true,
-                        text: yAxisLabel // [수정] 번역된 라벨 사용
+                        text: yAxisLabel 
                     }
                 }
             },
@@ -251,7 +265,6 @@ function drawAudiChart(films, dataType = 'totalAudi'){
                     callbacks: {
                         title: function(tooltipItems) { return movieTitles[tooltipItems[0].dataIndex]; },
                         label: function(context) {
-                            // [수정] 툴팁도 번역된 라벨 사용
                             let label = yAxisLabel.split(' (')[0] || '';
                             if (label) { label += ': '; }
                             if (context.parsed.y !== null) { label += context.parsed.y.toLocaleString() + (lang === 'ko' ? '명' : ''); }
@@ -263,40 +276,40 @@ function drawAudiChart(films, dataType = 'totalAudi'){
         }
     });
 }
-/**
- * 5. 이벤트 리스너 연결
- */
-(async function init(){
-  await loadIndex(); // 1. 전체 인물 데이터 로드
-  
-  // 2. 폼 제출 이벤트 연결
-  document.getElementById('f').addEventListener('submit', (e) => {
-      e.preventDefault();
-      searchCoStars(); // 3. 검색 실행
-  });
 
-  // 4. 차트 버튼 이벤트 연결
+document.addEventListener('DOMContentLoaded', async () => {
+  await loadIndex(); 
+  
+  const form = document.getElementById('f');
+  if (form) {
+      form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          searchCoStars(); 
+      });
+  }
+
   const buttons = [
       { id: 'btnTotalAudi', type: 'totalAudi' },
       { id: 'btnAudiPerActor', type: 'audiPerActor' },
       { id: 'btnAudiPerFilmography', type: 'audiPerFilmography' },
       { id: 'btnAudiPerCareer', type: 'audiPerCareer' },
-      { id: 'btnAudiBonus', type: 'audiBonus' }
+      { id: 'btnAudiPerBonus', type: 'audiBonus' } 
   ];
+
   buttons.forEach(btnInfo => {
       const button = document.getElementById(btnInfo.id);
-      button.addEventListener('click', () => {
-          // [수정] 차트만 다시 그리기 (검색 재실행 X)
-          if (currentCommonFilms.length > 0) {
-              const filmsWithData = currentCommonFilms.filter(f => f.openDt && f.audiAcc != null);
-              drawAudiChart(filmsWithData, btnInfo.type);
-          }
-          // 버튼 활성화
-          document.querySelectorAll('.chart-buttons button').forEach(b => b.classList.remove('active'));
-          button.classList.add('active');
-      });
+      if (button) {
+          button.addEventListener('click', () => {
+              if (currentCommonFilms.length > 0) {
+                  const filmsWithData = currentCommonFilms.filter(f => f.openDt && f.audiAcc != null);
+                  drawAudiChart(filmsWithData, btnInfo.type);
+              }
+              document.querySelectorAll('.chart-buttons button').forEach(b => b.classList.remove('active'));
+              button.classList.add('active');
+          });
+      }
   });
-})();
+});
 </script>
 </body>
 </html>
