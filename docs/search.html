@@ -2,9 +2,12 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title>영화 검색(기간)</title>
+<!-- [수정] title에 번역 키 추가 -->
+<title data-i18n-key="movieSearchTitle">영화 검색(기간)</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="assets/style.css">
+<!-- [수정] 신규 번역 스크립트 추가 -->
+<script src="assets/translator.js" defer></script>
 <style>
 /* === 1번 디자인 그대로 === */
 body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple SD Gothic Neo, Noto Sans KR, 'Malgun Gothic', sans-serif; line-height:1.6; }
@@ -22,36 +25,39 @@ ul.list li { padding:6px 0; border-bottom:1px dashed #e5e7eb; }
 </head>
 <body>
 <div class="wrap">
-  <!-- [수정] 버튼 추가 -->
+  <!-- [수정] 버튼에 번역 키 추가 -->
   <div class="ctrls">
-    <a href="index.html" class="btn">홈</a>
-    <a href="search.html" class="btn">영화 검색</a>
-    <a href="people-search.html" class="btn">배우 검색</a>
-    <a href="costar-search.html" class="btn">공동 출연 검색</a>
-    <a href="saved.html" class="btn">저장 목록</a>
+    <a href="index.html" class="btn" data-i18n-key="home">홈</a>
+    <a href="search.html" class="btn" data-i18n-key="movieSearch">영화 검색</a>
+    <a href="people-search.html" class="btn" data-i18n-key="peopleSearch">배우 검색</a>
+    <a href="costar-search.html" class="btn" data-i18n-key="costarSearch">공동 출연 검색</a>
+    <a href="saved.html" class="btn" data-i18n-key="savedList">저장 목록</a>
   </div>
 
-  <h1>영화 검색(기간)</h1>
+  <h1 data-i18n-key="movieSearchTitle">영화 검색(기간)</h1>
 
   <div id="dataRange" class="note">데이터 범위: 확인 중… (인덱스 기준)</div>
 
   <div class="box">
     <form id="f">
+      <!-- [수정] 라벨에 번역 키 추가 -->
       <div style="display:flex;flex-wrap:wrap;gap:12px;">
-        <div>시작일: <input type="date" name="from"></div>
-        <div>종료일: <input type="date" name="to"></div>
-        <div>등급:
-          <label><input type="checkbox" name="g_all" checked> 전체관람가</label>
-          <label><input type="checkbox" name="g_12" checked> 12세 이상 관람가</label>
-          <label><input type="checkbox" name="g_15" checked> 15세 이상 관람가</label>
-          <label><input type="checkbox" name="g_r" checked> 청소년 관람불가</label>
+        <div><span data-i18n-key="dateStart">시작일:</span> <input type="date" name="from"></div>
+        <div><span data-i18n-key="dateEnd">종료일:</span> <input type="date" name="to"></div>
+        <div>
+          <span data-i18n-key="rating">등급:</span>
+          <label><input type="checkbox" name="g_all" checked> <span data-i18n-key="ratingAll">전체관람가</span></label>
+          <label><input type="checkbox" name="g_12" checked> <span data-i18n-key="rating12">12세 이상 관람가</span></label>
+          <label><input type="checkbox" name="g_15" checked> <span data-i18n-key="rating15">15세 이상 관람가</span></label>
+          <label><input type="checkbox" name="g_r" checked> <span data-i18n-key="ratingR">청소년 관람불가</span></label>
         </div>
-        <div>국가:
-          <label><input type="radio" name="nation" value="all" checked> 모두</label>
-          <label><input type="radio" name="nation" value="K"> 국내 영화</label>
-          <label><input type="radio" name="nation" value="F"> 국외 영화</label>
+        <div>
+          <span data-i18n-key="nation">국가:</span>
+          <label><input type="radio" name="nation" value="all" checked> <span data-i18n-key="nationAll">모두</span></label>
+          <label><input type="radio" name="nation" value="K"> <span data-i18n-key="nationK">국내 영화</span></label>
+          <label><input type="radio" name="nation" value="F"> <span data-i18n-key="nationF">국외 영화</span></label>
         </div>
-        <div><button type="submit" class="btn">검색</button></div>
+        <div><button type="submit" class="btn" data-i18n-key="searchBtn">검색</button></div>
       </div>
     </form>
   </div>
@@ -62,9 +68,8 @@ ul.list li { padding:6px 0; border-bottom:1px dashed #e5e7eb; }
 
 <script>
 /* === 2번의 “정상 로직”을 가져오되 1번 UI와 결합 === */
-// [수정] 최신 경로 로직으로 변경
-const TS = Date.now();
-const MOVIES_URL = `data/search/movies.json?v=${TS}`;
+const BASE = location.pathname.replace(/\/[^\/]*$/, '');
+const MOVIES_URL = `${BASE}/data/search/movies.json?v=${Date.now()}`; // 캐시 무시
 
 let MOVIES = [];
 let rangeMin = '99991231', rangeMax = '00000000';
