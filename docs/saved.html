@@ -2,9 +2,12 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8">
-  <title>저장 목록 – K-Movie A Archive</title>
+  <!-- [수정] title에 번역 키 추가 -->
+  <title data-i18n-key="savedListTitle">저장 목록 – K-Movie A Archive</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="assets/style.css">
+  <!-- [수정] 신규 번역 스크립트 추가 -->
+  <script src="assets/translator.js" defer></script>
   <style>
     .actor-card {
       border: 1px solid #e6e6e6;
@@ -24,21 +27,22 @@
 </head>
 <body>
 <div class="container">
-  <!-- [수정] 버튼 추가 -->
+  <!-- [수정] 버튼에 번역 키 추가 -->
   <div class="header">
-    <h1>저장 목록</h1>
+    <h1 data-i18n-key="savedListTitle">저장 목록</h1>
     <div class="spacer"></div>
-    <a href="index.html" class="btn">홈</a>
-    <a href="search.html" class="btn">영화 검색</a>
-    <a href="people-search.html" class="btn">배우 검색</a>
-    <a href="costar-search.html" class="btn">공동 출연 검색</a>
+    <a href="index.html" class="btn" data-i18n-key="home">홈</a>
+    <a href="search.html" class="btn" data-i18n-key="movieSearch">영화 검색</a>
+    <a href="people-search.html" class="btn" data-i18n-key="peopleSearch">배우 검색</a>
+    <a href="costar-search.html" class="btn" data-i18n-key="costarSearch">공동 출연 검색</a>
   </div>
 
   <div id="savedPeopleList" class="grid"></div>
 
+  <!-- [수정] 버튼에 번역 키 추가 -->
   <div class="compare-section">
-    <button class="btn" id="compareBtn2" disabled>스타 파워 비교 (2명 선택)</button>
-    <button class="btn" id="compareBtn3" disabled>스타 파워 비교 (3명 선택)</button>
+    <button class="btn" id="compareBtn2" disabled data-i18n-key="compareBtn2">스타 파워 비교 (2명 선택)</button>
+    <button class="btn" id="compareBtn3" disabled data-i18n-key="compareBtn3">스타 파워 비교 (3명 선택)</button>
     <div id="emptyMsg" class="muted" style="display:none;">저장된 배우가 없습니다.</div>
   </div>
 </div>
@@ -49,9 +53,7 @@ const LIST_BOX = document.getElementById('savedPeopleList');
 const COMPARE_BTN2 = document.getElementById('compareBtn2');
 const COMPARE_BTN3 = document.getElementById('compareBtn3');
 const EMPTY_MSG = document.getElementById('emptyMsg');
-// [수정] 최신 경로 로직으로 변경
-const TS = Date.now();
-const PEOPLE_INDEX_URL = `data/search/people.json?v=${TS}`;
+const PEOPLE_INDEX_URL = 'data/search/people.json';
 
 function getSavedPeople() {
   try { return JSON.parse(localStorage.getItem('savedPeople') || '{}'); }
@@ -66,7 +68,7 @@ function removeSaved(id) {
   const saved = getSavedPeople();
   if (saved[id]) {
     delete saved[id];
-    setSavedPeople(saved);    // 중요: setSavedPeople로 저장
+    setSavedPeople(saved);
   }
   render();
 }
@@ -92,27 +94,23 @@ async function render() {
   }
   EMPTY_MSG.style.display = 'none';
 
-  // people 인덱스 로드 (주요 출연작 표시용)
   let allPeople = [];
   try {
-    const res = await fetch(PEOPLE_INDEX_URL);
+    const res = await fetch(`${PEOPLE_INDEX_URL}?v=${Date.now()}`);
     if (res.ok) {
       const peopleIndex = await res.json();
       allPeople = peopleIndex.people || [];
     }
   } catch (e) {}
 
-  // 저장된 key 기반 상세 매칭 + 누락 보강
   const details = allPeople.filter(p => savedKeys.includes(p.personKey));
   const missing = savedKeys.filter(k => !details.some(p => p.personKey === k));
   for (const k of missing) {
     details.push({ personKey: k, peopleNm: saved[k]?.name || '(이름 미상)', repRoleNm: '배우', films: [] });
   }
 
-  // 이름순 정렬(한글 대응)
   details.sort((a,b)=>(a.peopleNm||'').localeCompare(b.peopleNm||'','ko'));
 
-  // 카드 렌더링 (디자인=1번)
   for (const person of details) {
     const personId = person.personKey;
     const filmsStr = (person.films || []).slice(0,3).map(f => f.movieNm).join(', ') || '정보 없음';
@@ -125,7 +123,7 @@ async function render() {
         <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
           <a href="person.html?personKey=${encodeURIComponent(personId)}"><strong>${person.peopleNm || '이름 없음'}</strong></a>
           <span class="muted">(${person.repRoleNm || '배우'})</span>
-          <div class="spacer" style="flex: 1;"></div>
+          <div class="spacer"></div>
           <button class="btn" onclick="removeSaved('${personId}')">삭제</button>
         </div>
         <div class="film-list">주요 출연작: ${filmsStr}</div>
@@ -134,7 +132,6 @@ async function render() {
     LIST_BOX.appendChild(card);
   }
 
-  // 체크박스 이벤트 바인딩 및 초기 상태
   document.querySelectorAll('.actor-checkbox').forEach(cb => {
     cb.addEventListener('change', updateCompareButtons);
   });
