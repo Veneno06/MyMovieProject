@@ -2,16 +2,18 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title>배우 검색</title>
+<!-- [수정] title에 번역 키 추가 -->
+<title data-i18n-key="peopleSearchTitle">배우 검색</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<!-- [수정] assets/style.css 링크 추가 (일관성) -->
 <link rel="stylesheet" href="assets/style.css">
+<!-- [수정] 신규 번역 스크립트 추가 -->
+<script src="assets/translator.js" defer></script>
 <style>
 body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple SD Gothic Neo, Noto Sans KR, 'Malgun Gothic', sans-serif; line-height:1.6; }
 .wrap { max-width:980px; margin:24px auto; padding:0 12px; }
 h1 { font-size:28px; margin:0 0 16px; }
 .ctrls { display:flex; gap:8px; margin-bottom:12px; }
-/* [수정] .ctrls a 스타일 제거 (assets/style.css의 .btn 사용) */
+.ctrls a { padding:6px 10px; border:1px solid #e5e7eb; border-radius:8px; background:#fff; text-decoration:none; color:#111827; }
 .note { color:#6b7280; }
 ul.list { list-style:none; padding:0; margin:12px 0; }
 li { padding:6px 0; border-bottom:1px dashed #e5e7eb; }
@@ -21,21 +23,22 @@ label { margin-right:8px; }
 </head>
 <body>
 <div class="wrap">
-  <!-- [수정] 버튼 클래스(.btn) 적용 및 버튼 추가 -->
+  <!-- [수정] 버튼에 번역 키 추가 -->
   <div class="ctrls">
-    <a href="index.html" class="btn">홈</a>
-    <a href="search.html" class="btn">영화 검색</a>
-    <a href="people-search.html" class="btn">배우 검색</a>
-    <a href="costar-search.html" class="btn">공동 출연 검색</a>
-    <a href="saved.html" class="btn">저장 목록</a>
+    <a href="index.html" class="btn" data-i18n-key="home">홈</a>
+    <a href="search.html" class="btn" data-i18n-key="movieSearch">영화 검색</a>
+    <a href="people-search.html" class="btn" data-i18n-key="peopleSearch">배우 검색</a>
+    <a href="costar-search.html" class="btn" data-i18n-key="costarSearch">공동 출연 검색</a>
+    <a href="saved.html" class="btn" data-i18n-key="savedList">저장 목록</a>
   </div>
 
-  <h1>배우/감독 검색</h1>
+  <h1 data-i18n-key="peopleSearchTitle">배우/감독 검색</h1>
 
+  <!-- [수정] 라벨에 번역 키 추가 -->
   <form id="f" class="box">
-    이름: <input type="text" name="q" value="">
-    <label><input type="checkbox" name="actorOnly" checked> 배우만</label>
-    <button type="submit" class="btn">검색</button>
+    <span data-i18n-key="nameLabel">이름:</span> <input type="text" name="q" value="">
+    <label><input type="checkbox" name="actorOnly" checked> <span data-i18n-key="actorOnly">배우만</span></label>
+    <button type="submit" class="btn" data-i18n-key="searchBtn">검색</button>
   </form>
 
   <div id="total" class="note"></div>
@@ -43,9 +46,8 @@ label { margin-right:8px; }
 </div>
 
 <script>
-// [수정] 최신 경로 로직으로 변경
-const TS = Date.now();
-const PEOPLE_URL = `data/search/people.json?v=${TS}`;
+const BASE = location.pathname.replace(/\/[^\/]*$/, '');
+const PEOPLE_URL = `${BASE}/data/search/people.json?v=${Date.now()}`;
 let PEOPLE = [];
 
 async function loadIndex(){
