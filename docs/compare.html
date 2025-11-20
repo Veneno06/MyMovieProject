@@ -2,9 +2,12 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title>배우 비교 – K-Movie A Archive</title>
+<!-- [수정] title에 번역 키 추가 -->
+<title data-i18n-key="compareTitle">배우 비교 – K-Movie A Archive</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="assets/style.css">
+<!-- [수정] 신규 번역 스크립트 추가 -->
+<script src="assets/translator.js" defer></script>
 <style>
 .compare-container { display: flex; gap: 20px; width: 100%; }
 .actor-panel { flex: 1; min-width: 0; }
@@ -18,15 +21,15 @@ h1, h2 { text-align: center; }
 </head>
 <body>
 <div class="container">
-  <!-- [수정] 버튼 추가 -->
+  <!-- [수정] 버튼에 번역 키 추가 -->
   <div class="header">
-    <h1>스타 파워 비교</h1>
+    <h1 data-i18n-key="compareTitle">스타 파워 비교</h1>
     <div class="spacer"></div>
-    <a href="index.html" class="btn">홈</a>
-    <a href="search.html" class="btn">영화 검색</a>
-    <a href="people-search.html" class="btn">배우 검색</a>
-    <a href="costar-search.html" class="btn">공동 출연 검색</a>
-    <a href="saved.html" class="btn">저장 목록</a>
+    <a href="index.html" class="btn" data-i18n-key="home">홈</a>
+    <a href="search.html" class="btn" data-i18n-key="movieSearch">영화 검색</a>
+    <a href="people-search.html" class="btn" data-i18n-key="peopleSearch">배우 검색</a>
+    <a href="costar-search.html" class="btn" data-i18n-key="costarSearch">공동 출연 검색</a>
+    <a href="saved.html" class="btn" data-i18n-key="savedList">저장 목록</a>
   </div>
 
   <div class="compare-container">
@@ -44,21 +47,20 @@ h1, h2 { text-align: center; }
     </div>
   </div>
   
+  <!-- [수정] 버튼에 번역 키 추가 -->
   <div class="controls-container">
       <div class="chart-buttons">
-          <button id="btnTotalAudi" class="active">관객수</button>
-          <button id="btnAudiPerActor">관객수/배우 수</button>
-          <button id="btnAudiPerFilmography">관객수/출연작</button>
-          <button id="btnAudiPerCareer">관객수/연기경력</button>
-          <button id="btnAudiBonus">500만+ 가중치</button>
+          <button id="btnTotalAudi" class="active" data-i18n-key="audiCnt">관객수</button>
+          <button id="btnAudiPerActor" data-i18n-key="audiPerActor">관객수/배우 수</button>
+          <button id="btnAudiPerFilmography" data-i18n-key="audiPerFilmo">관객수/출연작</button>
+          <button id="btnAudiPerCareer" data-i18n-key="audiPerCareer">관객수/연기경력</button>
+          <button id="btnAudiBonus" data-i18n-key="audiBonus">500만+ 가중치</button>
       </div>
   </div>
 </div>
 
 <script>
-// [수정] 최신 경로 로직으로 변경
-const TS = Date.now();
-const PEOPLE_URL = `data/search/people.json?v=${TS}`;
+const PEOPLE_URL = `data/search/people.json?v=${Date.now()}`;
 let PEOPLE = [];
 let person1 = null, person2 = null, person3 = null;
 let chart1 = null, chart2 = null, chart3 = null;
@@ -79,7 +81,6 @@ async function main() {
         person2 = PEOPLE.find(p => p.personKey === p2Key);
         person3 = PEOPLE.find(p => p.personKey === p3Key);
 
-        // 이름 또는 비활성화 처리
         if (person1) document.getElementById('name1').textContent = person1.peopleNm;
         else document.getElementById('panel1').style.display = 'none';
 
@@ -132,7 +133,6 @@ function renderCharts(dataType) {
     if (person3) chart3 = drawChart('chart3', person3, dataType);
 }
 
-// === 기능: person.html의 고급 로직 반영 ===
 function drawChart(canvasId, personData, dataType) {
     const films = (personData.films || []).filter(f => f.openDt)
         .sort((a,b) => (a.openDt || '').localeCompare(b.openDt || ''));
@@ -143,16 +143,19 @@ function drawChart(canvasId, personData, dataType) {
 
     const labels = films.map(f => f.openDt ? f.openDt.slice(0,7) : '미상');
     let dataPoints;
+    
+    // [수정] yAxisLabel을 JS에서 직접 관리 (번역 키 사용을 위해)
+    const lang = window.getCurrentLang ? window.getCurrentLang() : 'ko';
+    const s = (window.STRINGS && window.STRINGS[lang]) ? window.STRINGS[lang] : STRINGS['ko']; // fallback
     let yAxisLabel;
 
     if (dataType === 'audiPerFilmography') {
-        const totalFilms = films.length;
-        dataPoints = films.map(f => (f.audiAcc && totalFilms > 0) ? Math.round(f.audiAcc / totalFilms) : 0);
-        yAxisLabel = '관객수/출연작';
+        dataPoints = films.map(f => (f.audiAcc && films.length > 0) ? Math.round(f.audiAcc / films.length) : 0);
+        yAxisLabel = s.audiPerFilmo;
     } 
     else if (dataType === 'audiPerActor') {
         dataPoints = films.map(f => (f.audiAcc && f.actorCount > 0) ? Math.round(f.audiAcc / f.actorCount) : 0);
-        yAxisLabel = '관객수/배우 수';
+        yAxisLabel = s.audiPerActor;
     } 
     else if (dataType === 'audiPerCareer') {
         dataPoints = films.map(f => {
@@ -160,18 +163,18 @@ function drawChart(canvasId, personData, dataType) {
             const careerDuration = Math.max(1, currentYear - firstYear + 1);
             return (f.audiAcc && careerDuration > 0) ? Math.round(f.audiAcc / careerDuration) : 0;
         });
-        yAxisLabel = '관객수/연기경력';
+        yAxisLabel = s.audiPerCareer;
     } 
     else if (dataType === 'audiBonus') {
         dataPoints = films.map(f => {
             const audi = f.audiAcc || 0;
             return audi > 5000000 ? audi * 2 : audi;
         });
-        yAxisLabel = '500만+ 가중치';
+        yAxisLabel = s.audiBonus;
     } 
     else {
         dataPoints = films.map(f => f.audiAcc || 0);
-        yAxisLabel = '관객수';
+        yAxisLabel = s.audiCnt;
     }
 
     const movieTitles = films.map(f => f.movieNm);
@@ -201,7 +204,8 @@ function drawChart(canvasId, personData, dataType) {
                 tooltip: {
                     callbacks: {
                         title: (tt) => movieTitles[tt[0].dataIndex],
-                        label: (ctx) => `${yAxisLabel}: ${ctx.parsed.y.toLocaleString()}명`
+                        // [수정] 툴팁도 번역된 라벨 사용
+                        label: (ctx) => `${yAxisLabel}: ${ctx.parsed.y.toLocaleString() + (lang === 'ko' ? '명' : '')}`
                     }
                 }
             }
