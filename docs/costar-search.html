@@ -2,82 +2,84 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title>공동 출연 검색 – K-Movie A Archive</title>
+<!-- [수정] title에 번역 키 추가 -->
+<title data-i18n-key="costarSearchTitle">공동 출연 검색</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="assets/style.css">
-<!-- [수정] person.html의 스타일 시트를 그대로 사용합니다. -->
-<style>
-body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple SD Gothic Neo, Noto Sans KR, 'Malgun Gothic', sans-serif; line-height:1.6; }
-.wrap { max-width:980px; margin:24px auto; padding:0 12px; }
-h1 { font-size:28px; margin:0 0 16px; }
-h2 { font-size:20px; margin:24px 0 8px; }
-.ctrls { display:flex; gap:8px; margin-bottom:12px; }
-.ctrls a { padding:6px 10px; border:1px solid #e5e7eb; border-radius:8px; background:#fff; text-decoration:none; color:#111827; }
-.note { color:#6b7280; }
-ul.list { list-style:none; padding:0; margin:12px 0; }
-li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
-.audi { font-size: 14px; color: #333; }
-.chart-buttons { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
-.chart-buttons button { padding:4px 10px; border:1px solid #ccc; border-radius:16px; background:#f0f0f0; cursor:pointer; font-size:14px; }
-.chart-buttons button.active { background:#333; color:#fff; border-color:#333; font-weight:bold; }
-.btn { padding:6px 10px; border:1px solid #e6e6e6; border-radius:6px; background:#fafafa; cursor:pointer; }
-.box { background:#f6f7f9; border:1px solid #e5e7eb; border-radius:8px; padding:12px; }
-</style>
+<!-- [수정] 신규 번역 스크립트 추가 -->
+<script src="assets/translator.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- [수정] 스타일을 asset/style.css의 공통 클래스로 대체 -->
+<style>
+    /* person.html, search.html 등과 스타일 공유 */
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple SD Gothic Neo, Noto Sans KR, 'Malgun Gothic', sans-serif; line-height:1.6; }
+    .wrap { max-width:980px; margin:24px auto; padding:0 12px; }
+    h1 { font-size:28px; margin:0 0 16px; }
+    h2 { font-size:20px; margin:24px 0 8px; }
+    .ctrls { display:flex; gap:8px; margin-bottom:12px; }
+    .ctrls a { padding:6px 10px; border:1px solid #e5e7eb; border-radius:8px; background:#fff; text-decoration:none; color:#111827; }
+    .note { color:#6b7280; }
+    ul.list { list-style:none; padding:0; margin:12px 0; }
+    li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
+    .audi { font-size: 14px; color: #333; }
+    .chart-buttons { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+    .chart-buttons button { padding:4px 10px; border:1px solid #ccc; border-radius:16px; background:#f0f0f0; cursor:pointer; font-size:14px; }
+    .chart-buttons button.active { background:#333; color:#fff; border-color:#333; font-weight:bold; }
+    .box { background:#f6f7f9; border:1px solid #e5e7eb; border-radius:8px; padding:12px; }
+</style>
 </head>
 <body>
 <div class="wrap">
-  <!-- [수정] 최신 헤더 버튼 (이름 통일) -->
+  <!-- [수정] 버튼에 번역 키 추가 -->
   <div class="ctrls">
-    <a href="index.html" class="btn">홈</a>
-    <a href="search.html" class="btn">영화 검색</a>
-    <a href="people-search.html" class="btn">배우 검색</a>
-    <a href="costar-search.html" class="btn">공동 출연 검색</a>
-    <a href="saved.html" class="btn">저장 목록</a>
+    <a href="index.html" class="btn" data-i18n-key="home">홈</a>
+    <a href="search.html" class="btn" data-i18n-key="movieSearch">영화 검색</a>
+    <a href="people-search.html" class="btn" data-i18n-key="peopleSearch">배우 검색</a>
+    <a href="costar-search.html" class="btn" data-i18n-key="costarSearch">공동 출연 검색</a>
+    <a href="saved.html" class="btn" data-i18n-key="savedList">저장 목록</a>
   </div>
 
-  <h1>공동 출연 검색</h1>
+  <h1 data-i18n-key="costarSearchTitle">공동 출연 검색</h1>
 
-  <!-- 배우 2명 검색 폼 -->
+  <!-- [수정] 라벨, placeholder에 번역 키 추가 -->
   <form id="f" class="box">
-    배우 A: <input type="text" id="actorA" value="">
-    배우 B: <input type="text" id="actorB" value="">
-    <button type="submit" class="btn">검색</button>
+    <span data-i18n-key="actorA">배우 A:</span>
+    <input type="text" id="actorA" value="" data-i18n-key="actorA" data-i18n-target="placeholder" placeholder="배우 A">
+    <span data-i18n-key="actorB">배우 B:</span>
+    <input type="text" id="actorB" value="" data-i18n-key="actorB" data-i18n-target="placeholder" placeholder="배우 B">
+    <button type="submit" class="btn" data-i18n-key="searchBtn">검색</button>
   </form>
 
-  <!-- person.html과 동일한 결과 목록 -->
   <h2 id="resultTitle" style="display:none;"></h2>
   <ul id="out" class="list"></ul>
-  <div id="msg" class="note">검색할 두 배우의 이름을 입력하세요. (예: 황정민, 유해진)</div>
+  <div id="msg" class="note" data-i18n-key="costarDefaultMsg">검색할 두 배우의 이름을 입력하세요. (예: 황정민, 유해진)</div>
 
-  <!-- person.html과 동일한 차트 영역 -->
+  <!-- [수정] 버튼에 번역 키 추가 -->
   <div id="chart-container" style="display:none;">
-    <h2>개봉 시기별 관객수 추이</h2>
+    <h2 data-i18n-key="audiTrend">개봉 시기별 관객수 추이</h2>
     <div class="chart-buttons">
-        <button id="btnTotalAudi" class="active">관객수</button>
-        <button id="btnAudiPerActor">관객수/배우 수</button>
-        <button id="btnAudiPerFilmography">관객수/출연작</button>
-        <button id="btnAudiPerCareer">관객수/연기경력</button>
-        <button id="btnAudiBonus">500만+ 가중치</button>
+        <button id="btnTotalAudi" class="active" data-i18n-key="audiCnt">관객수</button>
+        <button id="btnAudiPerActor" data-i18n-key="audiPerActor">관객수/배우 수</button>
+        <button id="btnAudiPerFilmography" data-i18n-key="audiPerFilmo">관객수/출연작</button>
+        <button id="btnAudiPerCareer" data-i18n-key="audiPerCareer">관객수/연기경력</button>
+        <button id="btnAudiBonus" data-i18n-key="audiBonus">500만+ 가중치</button>
     </div>
     <canvas id="audiChart"></canvas>
     <div class="note" style="font-size:12px; text-align: right; margin-top: 4px;">* 점에 마우스를 가까이하면 나타나는 텍스트는 영화 제목입니다.</div>
   </div>
 </div>
 <script>
-// [수정] 최신 파일 경로 로직으로 변경 (person.html과 동일)
-const TS = Date.now();
-const PEOPLE_URL = `data/search/people.json?v=${TS}`;
+// [최신] person.html과 동일한 번역 지원 로직 적용
+const PEOPLE_URL = `data/search/people.json?v=${Date.now()}`;
 let PEOPLE = [];
 let myChart = null;
-let currentCommonFilms = []; // [신규] 현재 검색된 공동 출연작 목록 저장
-
 const fmtNum = n => (n==null || isNaN(n)) ? '' : n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
 const out = document.getElementById('out');
 const msg = document.getElementById('msg');
 const resultTitle = document.getElementById('resultTitle');
 const chartContainer = document.getElementById('chart-container');
+let currentCommonFilms = []; // [수정] 차트 재번역을 위해 검색 결과 저장
 
 /**
  * 1. 로드: people.json을 로드합니다.
@@ -105,7 +107,7 @@ function searchCoStars() {
   out.innerHTML = '';
   chartContainer.style.display = 'none';
   if (myChart) myChart.destroy();
-  currentCommonFilms = []; // [신규] 결과 목록 초기화
+  currentCommonFilms = []; // [수정] 결과 초기화
 
   if (!nameA || !nameB) {
     msg.textContent = '두 배우의 이름을 모두 입력해야 합니다.';
@@ -113,8 +115,6 @@ function searchCoStars() {
     return;
   }
 
-  // 1. A 배우가 출연한 모든 영화의 Map 생성 (동명이인 포함)
-  // (key: movieCd, value: filmObject)
   const filmsMapA = new Map();
   PEOPLE.filter(p => p.peopleNm === nameA).forEach(person => {
       (person.films || []).forEach(film => {
@@ -124,13 +124,11 @@ function searchCoStars() {
       });
   });
 
-  // 2. B 배우가 출연한 모든 영화의 Set 생성 (동명이인 포함)
   const filmsSetB = new Set();
   PEOPLE.filter(p => p.peopleNm === nameB).forEach(person => {
       (person.films || []).forEach(film => filmsSetB.add(film.movieCd));
   });
 
-  // 3. A의 영화 목록(Map)을 순회하며 B의 영화 목록(Set)에도 있는지 확인 (교집합)
   const commonFilms = [];
   filmsMapA.forEach((film, movieCd) => {
       if (filmsSetB.has(movieCd)) {
@@ -138,8 +136,7 @@ function searchCoStars() {
       }
   });
 
-  // 4. 결과 렌더링
-  currentCommonFilms = commonFilms; // [신규] 차트 버튼이 사용할 수 있도록 저장
+  currentCommonFilms = commonFilms; // [수정] 결과 저장
   renderResults(commonFilms, nameA, nameB);
 }
 
@@ -156,22 +153,18 @@ function renderResults(films, nameA, nameB) {
   }
   msg.textContent = ''; // 메시지 지우기
   
-  // 개봉일 최신순으로 정렬 (person.html과 동일)
   films.sort((a,b) => (b.openDt || '0').localeCompare(a.openDt || '0'));
 
-  // 목록 생성
   for (const f of films) {
     const date = f.openDt ? f.openDt.replace(/-/g, '.') : '개봉일미상';
     const audiStr = (f.audiAcc != null) ? ` / <span class="audi">누적 ${fmtNum(f.audiAcc)}명</span>` : '';
     const li = document.createElement('li');
     li.innerHTML = `<a href="detail.html?movieCd=${encodeURIComponent(f.movieCd)}">${f.movieNm}</a>
-      <span class="note">(${date}${audiStr})</span>`;
-      // [수정] 공동 출연작 목록에서는 'part'(배역) 정보가 불명확하므로 제거
+      <span class="note">(${date}${f.part? ' · '+f.part:''}${audiStr})</span>`;
     out.appendChild(li);
   }
 
-  // 차트 생성 (개봉일 있는 영화가 2편 이상일 때)
-  const filmsWithData = films.filter(f => f.openDt);
+  const filmsWithData = films.filter(f => f.openDt && f.audiAcc != null);
   if (filmsWithData.length > 1) {
     chartContainer.style.display = 'block';
     drawAudiChart(filmsWithData, 'totalAudi'); // 기본 '관객수' 차트
@@ -192,31 +185,35 @@ function drawAudiChart(films, dataType = 'totalAudi'){
 
     const labels = films.map(f => f.openDt ? f.openDt.slice(0,7) : '미상');
     let dataPoints;
+    
+    // [수정] yAxisLabel을 JS에서 직접 관리 (번역 키 사용을 위해)
+    const lang = window.getCurrentLang ? window.getCurrentLang() : 'ko';
+    const s = (window.STRINGS && window.STRINGS[lang]) ? window.STRINGS[lang] : STRINGS['ko']; // fallback
     let yAxisLabel;
 
     if (dataType === 'audiPerFilmography') {
         const totalFilms = films.length;
         dataPoints = films.map(f => (f.audiAcc && totalFilms > 0) ? Math.round(f.audiAcc / totalFilms) : 0);
-        yAxisLabel = '관객수/출연작 수 (명)';
+        yAxisLabel = s.audiPerFilmo;
     } else if (dataType === 'audiPerActor') {
         dataPoints = films.map(f => (f.audiAcc && f.actorCount > 0) ? Math.round(f.audiAcc / f.actorCount) : 0);
-        yAxisLabel = '관객수/배우 수 (명)';
+        yAxisLabel = s.audiPerActor;
     } else if (dataType === 'audiPerCareer') {
         dataPoints = films.map(f => {
             const currentYear = f.openDt ? parseInt(f.openDt.slice(0, 4), 10) : firstYear;
             const careerDuration = Math.max(1, currentYear - firstYear + 1);
             return (f.audiAcc && careerDuration > 0) ? Math.round(f.audiAcc / careerDuration) : 0;
         });
-        yAxisLabel = '관객수/연기경력 (명)';
+        yAxisLabel = s.audiPerCareer;
     } else if (dataType === 'audiBonus') {
         dataPoints = films.map(f => {
             const audi = f.audiAcc || 0;
             return audi > 5000000 ? audi * 2 : audi;
         });
-        yAxisLabel = '500만+ 가중치 (명)';
+        yAxisLabel = s.audiBonus;
     } else {
         dataPoints = films.map(f => f.audiAcc || 0);
-        yAxisLabel = '관객수 (명)';
+        yAxisLabel = s.audiCnt;
     }
     
     const movieTitles = films.map(f => f.movieNm);
@@ -244,7 +241,7 @@ function drawAudiChart(films, dataType = 'totalAudi'){
                     },
                     title: {
                         display: true,
-                        text: yAxisLabel
+                        text: yAxisLabel // [수정] 번역된 라벨 사용
                     }
                 }
             },
@@ -254,9 +251,10 @@ function drawAudiChart(films, dataType = 'totalAudi'){
                     callbacks: {
                         title: function(tooltipItems) { return movieTitles[tooltipItems[0].dataIndex]; },
                         label: function(context) {
+                            // [수정] 툴팁도 번역된 라벨 사용
                             let label = yAxisLabel.split(' (')[0] || '';
                             if (label) { label += ': '; }
-                            if (context.parsed.y !== null) { label += context.parsed.y.toLocaleString() + '명'; }
+                            if (context.parsed.y !== null) { label += context.parsed.y.toLocaleString() + (lang === 'ko' ? '명' : ''); }
                             return label;
                         }
                     }
@@ -265,7 +263,6 @@ function drawAudiChart(films, dataType = 'totalAudi'){
         }
     });
 }
-
 /**
  * 5. 이벤트 리스너 연결
  */
@@ -278,7 +275,7 @@ function drawAudiChart(films, dataType = 'totalAudi'){
       searchCoStars(); // 3. 검색 실행
   });
 
-  // 4. 차트 버튼 이벤트 연결 (person.html과 동일)
+  // 4. 차트 버튼 이벤트 연결
   const buttons = [
       { id: 'btnTotalAudi', type: 'totalAudi' },
       { id: 'btnAudiPerActor', type: 'audiPerActor' },
@@ -289,9 +286,9 @@ function drawAudiChart(films, dataType = 'totalAudi'){
   buttons.forEach(btnInfo => {
       const button = document.getElementById(btnInfo.id);
       button.addEventListener('click', () => {
-          // [수정] 이미 검색된 결과(currentCommonFilms)가 있을 때만 차트 다시 그리기
-          const filmsWithData = currentCommonFilms.filter(f => f.openDt);
-          if (filmsWithData.length > 1) {
+          // [수정] 차트만 다시 그리기 (검색 재실행 X)
+          if (currentCommonFilms.length > 0) {
+              const filmsWithData = currentCommonFilms.filter(f => f.openDt && f.audiAcc != null);
               drawAudiChart(filmsWithData, btnInfo.type);
           }
           // 버튼 활성화
