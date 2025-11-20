@@ -2,13 +2,9 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<!-- [수정] title에 번역 키 추가 -->
-<title data-i18n-key="actorProfileTitle">배우 프로필</title>
+<title>배우 프로필</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="assets/style.css">
-<!-- [수정] 신규 번역 스크립트 추가 -->
-<script src="assets/translator.js" defer></script>
-<!-- [최신] person.html의 스타일 시트 (성별 뱃지 포함) -->
 <style>
 body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple SD Gothic Neo, Noto Sans KR, 'Malgun Gothic', sans-serif; line-height:1.6; }
 .wrap { max-width:980px; margin:24px auto; padding:0 12px; }
@@ -20,18 +16,20 @@ h2 { font-size:20px; margin:24px 0 8px; }
 ul.list { list-style:none; padding:0; margin:12px 0; }
 li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
 .audi { font-size: 14px; color: #333; }
+/* [신규] 배우 목록 스타일 */
+.cast-list { font-size: 13px; color: #555; margin-left: 4px; }
 .chart-buttons { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
 .chart-buttons button { padding:4px 10px; border:1px solid #ccc; border-radius:16px; background:#f0f0f0; cursor:pointer; font-size:14px; }
 .chart-buttons button.active { background:#333; color:#fff; border-color:#333; font-weight:bold; }
 .btn { padding:6px 10px; border:1px solid #e6e6e6; border-radius:6px; background:#fafafa; cursor:pointer; }
-/* [최신] 성별 표시를 위한 뱃지 */
 .sex-badge { font-size: 1rem; margin-left: 8px; }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- 번역 스크립트 -->
+<script src="assets/translator.js" defer></script>
 </head>
 <body>
 <div class="wrap">
-  <!-- [수정] 버튼에 번역 키 추가 -->
   <div class="ctrls">
     <a href="index.html" class="btn" data-i18n-key="home">홈</a>
     <a href="search.html" class="btn" data-i18n-key="movieSearch">영화 검색</a>
@@ -40,14 +38,12 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
     <a href="saved.html" class="btn" data-i18n-key="savedList">저장 목록</a>
   </div>
 
-  <!-- [최신] 성별 뱃지가 들어갈 span (h1과 한 줄에) -->
   <h1 id="title" style="display:inline-block;" data-i18n-key="actorProfileTitle">배우 프로필</h1><span id="sexBadge" class="sex-badge"></span>
   
   <div class="note" data-i18n-key="filmography">출연작 (최신 개봉일 순)</div>
   <ul id="out" class="list"></ul>
   <div id="msg" class="note"></div>
 
-  <!-- [수정] 버튼에 번역 키 추가 -->
   <div style="margin-top:12px; display:flex; gap:8px;">
     <button class="btn" onclick="history.back()" data-i18n-key="btnBack">🔙 뒤로</button>
     <button class="btn" id="saveBtn" style="display:none;" data-i18n-key="btnSave">☆ 배우 저장</button>
@@ -68,15 +64,16 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
 </div>
 
 <script>
-// [최신] 성별 로직이 포함된 최신 스크립트 유지
 const TS = Date.now();
 const PEOPLE_URL = `data/search/people.json?v=${TS}`;
 const PEOPLE_DETAILS_URL = `data/search/people_details.json?v=${TS}`;
+const MOVIES_URL = `data/search/movies.json?v=${TS}`; // [신규] 영화별 배우 목록을 찾기 위해 movies.json 로드
 
 function getParam(k){ return new URL(location.href).searchParams.get(k) || ""; }
 const fmtNum = n => (n==null || isNaN(n)) ? '' : n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 let PEOPLE = [];
 let PEOPLE_DETAILS = {};
+let MOVIES_MAP = {}; // [신규] movieCd -> movieData 매핑
 let myChart = null;
 let currentPerson = null;
 
@@ -95,8 +92,6 @@ function renderSaveBtn() {
     }
     saveBtn.style.display = 'inline-block';
     
-    // [수정] 번역 키를 사용하도록 saveBtn 텍스트 설정
-    // translator.js가 로드된 이후에 실행되도록 보장
     if (window.getCurrentLang) { 
         const lang = window.getCurrentLang();
         const key = isSaved(personId) ? 'btnSaved' : 'btnSave';
@@ -107,16 +102,13 @@ function renderSaveBtn() {
         }
         saveBtn.setAttribute('data-i18n-key', key);
     } else {
-        // translator.js 로드 전 fallback
         saveBtn.textContent = isSaved(personId) ? '⭐ 저장됨(해제)' : '☆ 배우 저장';
     }
 }
 
-
 saveBtn.addEventListener('click', () => {
     const personId = getPersonId(currentPerson);
     if (!personId) return;
-    
     const saved = getSavedPeople();
     if (isSaved(personId)) {
         delete saved[personId];
@@ -124,35 +116,47 @@ saveBtn.addEventListener('click', () => {
         saved[personId] = { name: currentPerson.peopleNm, personKey: currentPerson.personKey };
     }
     setSavedPeople(saved);
-    renderSaveBtn(); // [수정] 버튼 텍스트를 즉시 다시 렌더링
+    renderSaveBtn(); 
 });
 
-// [최신] people.json과 people_details.json을 함께 로드
+// [수정] movies.json도 함께 로드
 async function loadData(){
   try {
-    const [peopleRes, detailsRes] = await Promise.all([
+    const [peopleRes, detailsRes, moviesRes] = await Promise.all([
       fetch(PEOPLE_URL),
-      fetch(PEOPLE_DETAILS_URL)
+      fetch(PEOPLE_DETAILS_URL),
+      fetch(MOVIES_URL)
     ]);
     
     if (peopleRes.ok) {
         const j = await peopleRes.json();
         PEOPLE = j.people || [];
-    } else {
-        console.error(`Failed to load people.json (status: ${peopleRes.status})`);
-        PEOPLE = [];
     }
-    
     if (detailsRes.ok) {
         PEOPLE_DETAILS = await detailsRes.json() || {};
-    } else {
-        console.warn(`No people_details.json found (status: ${detailsRes.status}). Gender info will be unavailable.`);
-        PEOPLE_DETAILS = {};
     }
+    
+    // [신규] 영화 데이터 로드 및 매핑 (movieCd 기준 검색을 위해)
+    // 주의: movies.json에는 배우 목록이 들어있지 않음. 
+    // 이 요구사항을 충족하려면, 각 영화의 배우 목록을 어딘가에서 가져와야 함.
+    // 하지만 현재 인덱스 구조상, movies.json에는 배우 목록이 없음.
+    // people.json을 역으로 조회해서 영화별 배우를 모으는 방식 사용.
+    
+    if (peopleRes.ok) {
+        // [신규] 영화별 배우 목록 생성 (people.json 역참조)
+        PEOPLE.forEach(p => {
+            const pName = p.peopleNm;
+            if (!pName) return;
+            (p.films || []).forEach(f => {
+                const mCd = f.movieCd;
+                if (!MOVIES_MAP[mCd]) MOVIES_MAP[mCd] = new Set();
+                MOVIES_MAP[mCd].add(pName);
+            });
+        });
+    }
+    
   } catch(e) {
       console.error("Error loading data", e);
-      PEOPLE = [];
-      PEOPLE_DETAILS = {};
   }
 }
 
@@ -163,10 +167,9 @@ function render(){
   const out = document.getElementById('out');
   const title = document.getElementById('title');
   const msg = document.getElementById('msg');
-  const sexBadge = document.getElementById('sexBadge'); // [최신] 성별 뱃지
+  const sexBadge = document.getElementById('sexBadge'); 
 
   if (!item) {
-    // [수정] data-i18n-key가 없는 h1도 번역 스크립트를 위해 수동 설정
     title.textContent = '배우 프로필';
     if (window.translatePage) {
         const lang = window.getCurrentLang();
@@ -181,7 +184,6 @@ function render(){
 
   title.textContent = item.peopleNm;
   
-  // [최신] 성별 뱃지 표시 로직
   const personCd = item.peopleCd || ''; 
   if (personCd && PEOPLE_DETAILS[personCd]) {
       const detail = PEOPLE_DETAILS[personCd];
@@ -195,9 +197,27 @@ function render(){
   for (const f of (item.films||[])) {
     const date = f.openDt ? f.openDt.replace(/-/g, '.') : '개봉일미상';
     const audiStr = (f.audiAcc != null) ? ` / <span class="audi">누적 ${fmtNum(f.audiAcc)}명</span>` : '';
+    
+    // [신규] 이 영화에 출연한 배우 목록 가져오기 (최대 7명)
+    let castStr = "";
+    if (MOVIES_MAP[f.movieCd]) {
+        // 현재 주인공 배우는 목록 맨 앞에 오지 않도록, 전체 셋에서 리스트로 변환
+        let actors = Array.from(MOVIES_MAP[f.movieCd]);
+        // 본인 이름 제외하고, 다시 본인을 맨 앞에 추가하거나, 
+        // 그냥 리스트에서 본인을 제외하고 표시할 수도 있음.
+        // 여기서는 리스트 전체를 표시하되 최대 7명.
+        
+        // 본인을 맨 앞으로 보내기
+        actors = actors.filter(name => name !== item.peopleNm);
+        actors.unshift(item.peopleNm);
+        
+        const displayActors = actors.slice(0, 7);
+        castStr = ` · 배우: ${displayActors.join(', ')}${actors.length > 7 ? '...' : ''}`;
+    }
+
     const li = document.createElement('li');
     li.innerHTML = `<a href="detail.html?movieCd=${encodeURIComponent(f.movieCd)}">${f.movieNm}</a>
-      <span class="note">(${date}${f.part? ' · '+f.part:''}${audiStr})</span>`;
+      <span class="note">(${date}${f.part? ' · '+f.part:''}${audiStr}<span class="cast-list">${castStr}</span>)</span>`;
     out.appendChild(li);
 
     if (f.openDt) filmsWithAudi.push(f);
@@ -241,9 +261,8 @@ function drawAudiChart(films, dataType = 'totalAudi'){
     let dataPoints;
     let yAxisLabel;
     
-    // [수정] yAxisLabel을 JS에서 직접 관리 (번역 키 사용을 위해)
     const lang = window.getCurrentLang ? window.getCurrentLang() : 'ko';
-    const s = (window.STRINGS && window.STRINGS[lang]) ? window.STRINGS[lang] : STRINGS['ko']; // fallback
+    const s = (window.STRINGS && window.STRINGS[lang]) ? window.STRINGS[lang] : STRINGS['ko']; 
 
     if (dataType === 'audiPerFilmography') {
         const totalFilms = films.length;
@@ -272,7 +291,6 @@ function drawAudiChart(films, dataType = 'totalAudi'){
     
     const movieTitles = films.map(f => f.movieNm);
 
-    // [!!! 오타 수정 완료 !!!] 'd' -> '2d'
     const ctx = document.getElementById('audiChart').getContext('2d');
     myChart = new Chart(ctx, {
         type: 'line',
@@ -296,7 +314,7 @@ function drawAudiChart(films, dataType = 'totalAudi'){
                     },
                     title: {
                         display: true,
-                        text: yAxisLabel // [수정] 번역된 라벨 사용
+                        text: yAxisLabel 
                     }
                 }
             },
@@ -306,7 +324,6 @@ function drawAudiChart(films, dataType = 'totalAudi'){
                     callbacks: {
                         title: function(tooltipItems) { return movieTitles[tooltipItems[0].dataIndex]; },
                         label: function(context) {
-                            // [수정] 툴팁도 번역된 라벨 사용
                             let label = yAxisLabel.split(' (')[0] || '';
                             if (label) { label += ': '; }
                             if (context.parsed.y !== null) { label += context.parsed.y.toLocaleString() + (lang === 'ko' ? '명' : ''); }
@@ -320,7 +337,7 @@ function drawAudiChart(films, dataType = 'totalAudi'){
 }
 
 (async function main(){
-  await loadData(); // [최신] loadData 함수 호출
+  await loadData(); 
   render();
 })();
 </script>
