@@ -1,5 +1,6 @@
 /**
  * K-Movie A Archive 다국어 번역 스크립트 (i18n)
+ * Fix: 버튼 태그 번역 로직 수정
  */
 
 // 1. 번역 문자열 (KO/EN)
@@ -162,16 +163,19 @@ function translatePage(lang) {
     document.querySelectorAll('[data-i18n-key]').forEach(el => {
         const key = el.getAttribute('data-i18n-key');
         if (strings[key]) {
-            // 버튼/input(value)과 일반 텍스트(textContent)를 구분하여 처리
             const tag = el.tagName.toUpperCase();
-            if (tag === 'INPUT' || tag === 'BUTTON') {
-                if (el.type === 'submit' || el.type === 'button') {
+            
+            // [수정] BUTTON 태그는 textContent를 바꿔야 합니다 (value 아님)
+            if (tag === 'INPUT') {
+                if (el.type === 'submit' || el.type === 'button' || el.type === 'reset') {
                     el.value = strings[key]; // <input type="submit">
                 } else {
                     el.placeholder = strings[key]; // <input type="text">
                 }
+            } else if (tag === 'BUTTON') {
+                el.textContent = strings[key]; // <button>Search</button>
             } else if (el.dataset.i18nTarget === 'placeholder') {
-                 el.placeholder = strings[key]; // placeholder용 (범용)
+                 el.placeholder = strings[key]; 
             } else {
                 el.textContent = strings[key]; // <a>, <h1>, <div>, <span> 등
             }
@@ -206,14 +210,17 @@ function toggleLanguage() {
  * 5. 페이지 헤더에 언어 전환 버튼 삽입
  */
 function createLangButton() {
-    // 모든 페이지의 공통 헤더 (.header 또는 .ctrls)
     const header = document.querySelector('.header, .ctrls');
     if (!header) return;
+
+    // 이미 버튼이 있다면 생성하지 않음
+    if (document.getElementById('lang-toggle')) return;
 
     const btn = document.createElement('button');
     btn.id = 'lang-toggle';
     btn.className = 'btn';
-    btn.style.marginLeft = '4px'; // 다른 버튼과의 간격
+    btn.style.marginLeft = '4px';
+    btn.style.fontWeight = 'bold';
     btn.onclick = toggleLanguage;
 
     // 헤더의 마지막 버튼 뒤에 추가
@@ -222,7 +229,7 @@ function createLangButton() {
         const lastButton = allButtons[allButtons.length - 1];
         lastButton.insertAdjacentElement('afterend', btn);
     } else {
-        header.appendChild(btn); // 헤더에 버튼이 없는 경우
+        header.appendChild(btn); 
     }
 }
 
