@@ -93,47 +93,49 @@ def main():
 
         if not movieCd or not movieNm: continue
 
+        # [수정] 배우 목록 순서대로 추출 (최대 10명 저장)
+        # 이 순서가 바로 '영화 상세 정보'의 순서입니다.
+        cast_list = []
+        for act in (mi.get("actors") or [])[:10]:
+            nm = (act.get("peopleNm") or "").strip()
+            if nm: cast_list.append(nm)
+
+        # movies.json에 영화 추가 (cast 필드 추가)
         movies.append({
             "movieCd": movieCd, "movieNm": movieNm, "openDt": openDt, "prdtYear": prdtYear,
             "repNation": repNation, "grade": grade, "genres": genres, "audiAcc": audiAcc,
+            "cast": cast_list # [신규] 배우 목록 저장
         })
         
         # --- [핵심] 인물 정보 추출 및 분리 ---
         def add_person(p_info, role):
-            """
-            인물 정보를 people_map에 추가합니다.
-            peopleCd(고유 코드) 유무에 따라 'personKey'를 엄격하게 분리합니다.
-            """
             if not isinstance(p_info, dict): return
             
             original_peopleCd = (p_info.get("peopleCd") or "").strip()
             peopleNm = (p_info.get("peopleNm") or "").strip()
             if not peopleNm: return
 
-            # [수정] API 키가 복구되었으므로 '황정민 수동 패치' 로직을 제거합니다.
-            # 원본 데이터(backfill)가 모든 정보를 정확하게 제공할 것을 신뢰합니다.
-
-            # [최종 로직] personKey를 엄격하게 결정합니다.
+            # [최종 로직] personKey 결정
             person_key = ""
             if original_peopleCd:
-                person_key = original_peopleCd # 예: "10051139"
+                person_key = original_peopleCd
             else:
                 name_role_key = f"{peopleNm}::{role}"
-                person_key = f"name::{name_role_key}" # 예: "name::황정민::배우"
+                person_key = f"name::{name_role_key}"
 
-            # 3. 이 personKey로 인물 레코드를 찾거나 새로 생성합니다.
+            # 레코드 찾기/생성
             rec = people_map.get(person_key)
             if not rec:
                 rec = {
                     "personKey": person_key,
-                    "peopleCd": original_peopleCd, # 코드가 없으면 "" (빈 문자열)
+                    "peopleCd": original_peopleCd,
                     "peopleNm": peopleNm,
                     "repRoleNm": role,
-                    "films": [] # 이 인물의 필모그래피
+                    "films": []
                 }
                 people_map[person_key] = rec
             
-            # 4. 이 인물의 필모그래피에 현재 영화 정보를 추가합니다.
+            # 영화 중복 체크
             if any(f.get("movieCd") == movieCd for f in rec["films"]):
                 return
 
