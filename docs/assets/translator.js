@@ -103,7 +103,7 @@ const STRINGS = {
         'ratingAll': "All Audiences",
         'rating12': "12+",
         'rating15': "15+",
-        'ratingR': "Restricted",
+        'ratingR': "R-rated",
         'nation': "Nation:",
         'nationAll': "All",
         'nationK': "Domestic",
