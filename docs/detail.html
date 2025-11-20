@@ -2,31 +2,34 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
-  <title>영화 상세 – K-Movie A Archive</title>
+  <!-- [수정] title에 번역 키 추가 -->
+  <title data-i18n-key="movieDetailTitle">영화 상세 – K-Movie A Archive</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="assets/style.css" />
+  <!-- [수정] 신규 번역 스크립트 추가 -->
+  <script src="assets/translator.js" defer></script>
   <style>
-    /* === 1번 디자인/UI 유지 === */
     .actor-link { margin-right:6px; }
     .muted { color:#666; }
   </style>
 </head>
 <body>
 <div class="container">
-  <!-- [수정] 버튼 추가 -->
+  <!-- [수정] 버튼에 번역 키 추가 -->
   <div class="header">
-    <h1>영화 상세 정보</h1>
+    <h1 data-i18n-key="movieDetailTitle">영화 상세 정보</h1>
     <div class="spacer"></div>
-    <a class="btn" href="index.html">홈</a>
-    <a class="btn" href="search.html">영화 검색</a>
-    <a class="btn" href="people-search.html">배우 검색</a>
-    <a class="btn" href="costar-search.html">공동 출연 검색</a>
-    <a class="btn" href="saved.html">저장 목록</a>
+    <a class="btn" href="index.html" data-i18n-key="home">홈</a>
+    <a class="btn" href="search.html" data-i18n-key="movieSearch">영화 검색</a>
+    <a class="btn" href="people-search.html" data-i18n-key="peopleSearch">배우 검색</a>
+    <a class="btn" href="costar-search.html" data-i18n-key="costarSearch">공동 출연 검색</a>
+    <a class="btn" href="saved.html" data-i18n-key="savedList">저장 목록</a>
   </div>
 
   <div id="movieDetail" class="grid"></div>
   <div style="margin-top:12px; display:flex; gap:8px;">
-    <button class="btn" onclick="history.back()">🔙 뒤로</button>
+    <!-- [수정] 버튼에 번역 키 추가 -->
+    <button class="btn" onclick="history.back()" data-i18n-key="btnBack">🔙 뒤로</button>
   </div>
 </div>
 
@@ -37,17 +40,14 @@ const movieCd = params.get('movieCd') || '';
 const box = document.getElementById('movieDetail');
 
 const fmtNum = n => (n==null || isNaN(n)) ? '' : n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-// [수정] 최신 경로 로직으로 변경
-const TS = Date.now();
-const INDEX_URL = `data/search/movies.json?v=${TS}`;
-const YEARS_MANIFEST = `data/years/_manifest.json?v=${TS}`;
-const PEOPLE_URL = `data/search/people.json?v=${TS}`;
+const INDEX_URL = 'data/search/movies.json';
+const YEARS_MANIFEST = 'data/years/_manifest.json';
+const PEOPLE_URL = 'data/search/people.json'; 
 
 /* 공용 JSON fetch (캐시 무시) */
 async function tryFetchJson(url){
   try{
-    // [수정] 캐시 무시 옵션 제거 (쿼리스트링으로 대체)
-    const r = await fetch(url);
+    const r = await fetch(url, { cache: 'no-store' });
     if (!r.ok) return null;
     return await r.json();
   }catch{ return null; }
@@ -89,21 +89,17 @@ function pickMovieInfo(json){
     box.textContent = '영화 코드가 없습니다.'; return;
   }
 
-  // 2번 기능: 전체 인물 인덱스 로드하여 personKey 매핑
-  const peopleIndex = await tryFetchJson(PEOPLE_URL);
+  const peopleIndex = await tryFetchJson(`${PEOPLE_URL}?v=${Date.now()}`);
   const ALL_PEOPLE = peopleIndex?.people || [];
 
-  // 인덱스에서 영화 엔트리 찾기
   const index = await tryFetchJson(INDEX_URL);
   const list = index?.movies || [];
   const idxEntry = list.find(m => m.movieCd === movieCd);
 
-  // 상세 캐시 탐색
   const candidates = await guessDetailJsonPaths(movieCd, idxEntry);
   let raw = null, usedUrl = '';
   for (const u of candidates){
-    // [수정] 캐시된 상세 파일은 TS 쿼리스트링 없이 원본 경로로 조회
-    const j = await tryFetchJson(u); 
+    const j = await tryFetchJson(u);
     const info = pickMovieInfo(j);
     if (info) { raw = info; usedUrl = u; break; }
   }
@@ -120,7 +116,6 @@ function pickMovieInfo(json){
   const title = raw.movieNm || idxEntry?.movieNm || '';
   const prdtYear = raw.prdtYear || idxEntry?.prdtYear || '';
   
-  // 날짜 정규화(YYYY-MM-DD 또는 YYYYMMDD 모두 허용)
   const openDtRaw = (raw.openDt || idxEntry?.openDt || '').replace(/-/g, '');
   const openFmt = openDtRaw.length === 8
     ? `${openDtRaw.slice(0,4)}-${openDtRaw.slice(4,6)}-${openDtRaw.slice(6,8)}`
@@ -136,7 +131,6 @@ function pickMovieInfo(json){
     nm: a.peopleNm || '',
   }));
 
-  // 2번 기능: personKey 우선 링크 생성 (없으면 이름+영화명 fallback)
   const getPersonLink = (actor) => {
     let personKey = '';
     if (actor.cd) {
@@ -144,17 +138,14 @@ function pickMovieInfo(json){
       if (person) personKey = person.personKey;
     }
     if (!personKey && actor.nm) {
-      // [수정] 동명이인 분리 후, name:: 키를 찾는 것은 부정확할 수 있으므로, peopleCd가 없는 경우의 링크를 단순화
-      // (단, 이 로직은 backfill이 완료된 후에는 거의 사용되지 않음)
-      const person = ALL_PEOPLE.find(p => p.peopleNm === actor.nm && p.repRoleNm === '배우' && !p.peopleCd);
+      const person = ALL_PEOPLE.find(p => p.peopleNm === actor.nm && p.repRoleNm === '배우');
       if (person) personKey = person.personKey;
     }
     let href = '';
     if (personKey) {
       href = `person.html?personKey=${encodeURIComponent(personKey)}`;
     } else {
-      // Fallback: personKey를 못찾으면 people-search.html로 넘김
-      href = `people-search.html?q=${encodeURIComponent(actor.nm)}`;
+      href = `person.html?peopleNm=${encodeURIComponent(actor.nm)}&movieNm=${encodeURIComponent(title)}`;
     }
     return `<a href="${href}" class="actor-link">${actor.nm}</a>`;
   };
@@ -165,19 +156,22 @@ function pickMovieInfo(json){
   const audiAcc = (raw.audiAcc != null ? raw.audiAcc : idxEntry?.audiAcc);
   const audiText = (audiAcc != null) ? `${fmtNum(audiAcc)}명` : '집계 데이터 없음';
 
-  // === 1번의 정보 배치/타이포 유지 ===
+  // [수정] 라벨에 번역 키 추가
   box.innerHTML = `
-    <div><strong>제목:</strong> ${title} ${prdtYear?`<span class="muted">(${prdtYear})</span>`:''}</div>
-    <div><strong>개봉일:</strong> ${openFmt}${showTm?` · <strong>상영시간:</strong> ${showTm}`:''}</div>
-    <div><strong>장르:</strong> ${genres}</div>
-    <div><strong>감독:</strong> ${directors}</div>
-    <div><strong>제작사:</strong> ${companies}</div>
-    <div><strong>배우:</strong>
+    <div><strong data-i18n-key="titleLabel">제목:</strong> ${title} ${prdtYear?`<span class="muted">(${prdtYear})</span>`:''}</div>
+    <div>
+      <strong data-i18n-key="openDtLabel">개봉일:</strong> ${openFmt}
+      ${showTm?` · <strong data-i18n-key="showTmLabel">상영시간:</strong> ${showTm}`:''}
+    </div>
+    <div><strong data-i18n-key="genreLabel">장르:</strong> ${genres}</div>
+    <div><strong data-i18n-key="directorLabel">감독:</strong> ${directors}</div>
+    <div><strong data-i18n-key="companyLabel">제작사:</strong> ${companies}</div>
+    <div><strong data-i18n-key="actorLabel">배우:</strong>
       <span id="actorsShort">${actorLinksShort || '정보 없음'}</span>
-      ${actorArr.length>5 ? ` <a href="#" id="actorsMore">더보기</a>
+      ${actorArr.length>5 ? ` <a href="#" id="actorsMore" data-i18n-key="btnMore">더보기</a>
       <span id="actorsAll" style="display:none">${actorLinksAll}</span>` : ''}
     </div>
-    <div><strong>관객수(누적):</strong> <span id="audiAccText">${audiText}</span></div>
+    <div><strong data-i18n-key="audiAccLabel">관객수(누적):</strong> <span id="audiAccText">${audiText}</span></div>
     <div class="muted">영화코드: ${movieCd} · <span title="사용한 캐시 경로">${usedUrl || '캐시'}</span></div>
   `;
 
@@ -188,6 +182,12 @@ function pickMovieInfo(json){
       document.getElementById('actorsShort').style.display='none';
       e.target.style.display='none';
     });
+  }
+  
+  // [수정] 동적으로 생성된 콘텐츠도 번역
+  // translator.js가 로드된 후에 이 함수가 실행되도록 보장 (DOMContentLoaded)
+  if (window.translatePage && typeof window.translatePage === 'function') {
+      window.translatePage(window.getCurrentLang ? window.getCurrentLang() : 'ko');
   }
 })();
 </script>
