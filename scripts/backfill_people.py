@@ -8,7 +8,7 @@ from urllib.parse import urlencode
 import requests
 import sys
 
-# [수정] 모듈 경로를 확실하게 추가 (GitHub Actions 환경 대응)
+# [중요] 모듈 경로를 확실하게 추가 (GitHub Actions 환경 대응)
 # 현재 스크립트(backfill_people.py)가 있는 디렉토리(scripts/)를 path에 추가
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 if CURRENT_DIR not in sys.path:
@@ -18,7 +18,7 @@ try:
     from kofic_api import get_session, API_KEYS
 except ImportError:
     print(f"[오류] kofic_api.py 모듈을 찾을 수 없습니다. (검색 경로: {sys.path})")
-    # 로컬 테스트용 등 비상시를 대비해 한 번 더 시도 (상위 폴더 등)
+    # 비상시를 대비해 한 번 더 시도
     try:
         sys.path.append(os.path.join(CURRENT_DIR, 'scripts'))
         from kofic_api import get_session, API_KEYS
@@ -168,14 +168,16 @@ def backfill(budget: int, rate_sleep_ms: int) -> tuple[int,int,int]:
     return updated, skipped, used
 
 if __name__ == "__main__":
+    # [수정] argparse를 사용하여 --budget 등의 인자를 올바르게 파싱
     ap = argparse.ArgumentParser()
     ap.add_argument("--budget", type=int, default=600, help="Max API calls")
     ap.add_argument("--rate-sleep-ms", type=int, default=250, help="Sleep ms")
-    args = ap.parse_args()
     
-    # [수정] kofic_api.py가 키를 로드할 시간을 잠시 줌
+    # 알 수 없는 인자가 있어도 무시하도록 parse_known_args 사용 (선택 사항)
+    args, unknown = ap.parse_known_args()
+    
     if not API_KEYS:
-        print("[backfill_people] API 키가 로드되지 않았습니다. GitHub Secrets를 확인하세요.")
+        print("[backfill_people] API Key not found in env.")
         exit(1)
         
     backfill(args.budget, args.rate_sleep_ms)
