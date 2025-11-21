@@ -1,0 +1,92 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "19980126",
+      "movieNm": "가타카",
+      "movieNmEn": "Gattaca",
+      "movieNmOg": "",
+      "showTm": "108",
+      "prdtYear": "1997",
+      "openDt": "19980502",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "SF"
+        },
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "미스터리"
+        },
+        {
+          "genreNm": "스릴러"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "앤드류 니콜",
+          "peopleNmEn": "Andrew Niccol"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "에단 호크",
+          "peopleNmEn": "Ethan Hawke",
+          "cast": "빈센트 프리먼",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "주드 로",
+          "peopleNmEn": "Jude Law",
+          "cast": "제롬 유진 모로우",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "우마 서먼",
+          "peopleNmEn": "Uma Thurman",
+          "cast": "이렌느 캐시니",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20102771",
+          "companyNm": "콜럼비아 픽쳐스 코포레이션",
+          "companyNmEn": "Columbia Pictures Corporation",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20102771",
+          "companyNm": "콜럼비아 픽쳐스 코포레이션",
+          "companyNmEn": "Columbia Pictures Corporation",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "K98-23",
+          "watchGradeNm": "15세 미만인 자는 관람할 수 없는 등급 "
+        }
+      ],
+      "staffs": []
+    },
+    "source": "영화진흥위원회"
+  }
+}
