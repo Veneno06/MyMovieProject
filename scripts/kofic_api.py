@@ -1,78 +1,97 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
 import os
+import time
 import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 from itertools import cycle
 
-# KOFIC_API_KEY, KOFIC_API_KEY_2, KOFIC_API_KEY_3, ... KOFIC_API_KEY_10 까지 스캔
-def get_api_keys_from_env():
-    """
-    환경 변수에서 KOFIC_API_KEY, KOFIC_API_KEY_2, ... KOFIC_API_KEY_10 까지
-    모든 유효한 키를 읽어와 리스트로 반환합니다.
-    """
-    keys = []
-    base_key = os.environ.get("KOFIC_API_KEY", "").strip()
-    if base_key:
-        keys.append(base_key)
-    
-    for i in range(2, 11): # _2 부터 _10 까지
-        key = os.environ.get(f"KOFIC_API_KEY_{i}", "").strip()
-        if key:
-            keys.append(key)
-            
-    if not keys:
-        print("[kofic_api] 경고: KOFIC_API_KEY가 설정되지 않았습니다.")
+# [설정] 사용할 API 키 환경변수 이름들
+# GitHub Secrets에 KOFIC_API_KEY, KOFIC_API_KEY_2 등을 등록해야 합니다.
+KEY_NAMES = [
+    "KOFIC_API_KEY",
+    "KOFIC_API_KEY_2",
+    "KOFIC_API_KEY_3",
+    "KOFIC_API_KEY_4",
+    "KOFIC_API_KEY_5"
+]
+
+class KoficApiRotator:
+    def __init__(self):
+        self.keys = []
+        for name in KEY_NAMES:
+            val = os.environ.get(name, "").strip()
+            if val:
+                self.keys.append(val)
         
-    print(f"[kofic_api] 총 {len(keys)}개의 API 키를 로드했습니다.")
-    return keys
+        if not self.keys:
+            # 로컬 테스트 등을 위해 더미 키라도 넣음 (실행 시 경고)
+            print("[kofic_api] 경고: 환경변수에 API 키가 없습니다.")
+            self.keys = ["DUMMY_KEY"]
+            
+        self.key_cycle = cycle(self.keys)
+        self.current_key = next(self.key_cycle)
+        self.session = self._make_session()
+        print(f"[kofic_api] 로드된 API 키 개수: {len(self.keys)}개")
 
-class KeyRotator:
-    """
-    API 키 목록을 받아, API 호출(세션 생성) 시마다 키를 자동으로 교체(rotate)합니다.
-    """
-    def __init__(self, keys: list[str]):
-        if not keys:
-            raise ValueError("API 키가 최소 1개 이상 필요합니다.")
-        self.keys = keys
-        self.key_cycle = cycle(keys) # 키를 무한히 순환
-        self.headers = {"User-Agent": "cache-builder/1.1"}
-
-    def get_next_key(self) -> str:
-        """다음 API 키를 반환합니다."""
-        return next(self.key_cycle)
-
-    def get_session_with_key(self) -> tuple[requests.Session, str]:
-        """
-        다음 API 키가 포함된, 자동 재시도 기능의 requests.Session을 반환합니다.
-        (세션, 사용된 키) 튜플을 반환합니다.
-        """
+    def _make_session(self):
         s = requests.Session()
-        retries = Retry(
-            total=8, 
-            connect=5, 
-            read=5, 
-            backoff_factor=1.5, 
-            status_forcelist=[429, 500, 502, 503, 504]
-        )
+        retries = Retry(total=5, connect=3, read=3, backoff_factor=1, status_forcelist=[500, 502, 503, 504])
         adapter = HTTPAdapter(max_retries=retries)
         s.mount("https://", adapter)
         s.mount("http://", adapter)
-        s.headers.update(self.headers)
+        return s
+
+    def get_key(self):
+        return self.current_key
+
+    def rotate_key(self):
+        """다음 키로 교체"""
+        prev = self.current_key
+        self.current_key = next(self.key_cycle)
+        print(f"[kofic_api] 키 교체! ({prev[:4]}... -> {self.current_key[:4]}...)")
+        return self.current_key
+
+    def request(self, url, params=None, timeout=30):
+        """
+        API 요청을 보냅니다. 
+        429(Too Many Requests)나 일일 허용량 초과 에러 발생 시 자동으로 키를 교체하고 재시도합니다.
+        """
+        if params is None: params = {}
         
-        key = self.get_next_key()
-        return s, key
+        max_retries = len(self.keys) + 1
+        for i in range(max_retries):
+            params['key'] = self.current_key
+            try:
+                r = self.session.get(url, params=params, timeout=timeout)
+                data = r.json()
+                
+                # KOFIC 에러 체크
+                fault = data.get("faultInfo") or data.get("faultResult")
+                if fault:
+                    msg = fault.get("message", "")
+                    code = fault.get("errorCode", "")
+                    # 320010: 일일 트래픽 초과, 320011: 키 에러 등
+                    if code in ["320010", "320011"] or "limit" in msg.lower():
+                        print(f"[kofic_api] 키 소진됨 ({self.current_key[:4]}...). 교체 시도.")
+                        self.rotate_key()
+                        time.sleep(1)
+                        continue # 재시도
+                    else:
+                        # 다른 에러는 그냥 반환 (예: 데이터 없음)
+                        return data
+                
+                return data
 
-# 스크립트 로드 시점에 키 로테이터를 즉시 생성
-API_KEYS = get_api_keys_from_env()
-# API_KEYS 리스트가 비어있으면(로컬 테스트 등) KeyRotator 생성이 실패하므로,
-# 임시 키를 넣어 예외를 방지합니다.
-KEY_ROTATOR = KeyRotator(API_KEYS if API_KEYS else ["dummy_key"])
+            except Exception as e:
+                print(f"[kofic_api] 통신 오류: {e}")
+                time.sleep(2)
+        
+        raise Exception("모든 API 키를 시도했으나 실패했습니다.")
 
-def get_session() -> tuple[requests.Session, str]:
-    """공용: 다음 API 키로 세션을 가져옵니다."""
-    if not API_KEYS:
-        raise RuntimeError("KOFIC API 키가 없습니다. GitHub Secrets를 확인하세요.")
-    return KEY_ROTATOR.get_session_with_key()
+# 전역 인스턴스
+rotator = KoficApiRotator()
+
+def fetch(url, params=None):
+    return rotator.request(url, params)
