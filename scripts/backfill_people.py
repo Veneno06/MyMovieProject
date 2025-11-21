@@ -11,13 +11,19 @@ import sys
 # [수정] 모듈 경로를 확실하게 추가 (GitHub Actions 환경 대응)
 # 현재 스크립트(backfill_people.py)가 있는 디렉토리(scripts/)를 path에 추가
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(CURRENT_DIR)
+if CURRENT_DIR not in sys.path:
+    sys.path.append(CURRENT_DIR)
 
 try:
     from kofic_api import get_session, API_KEYS
 except ImportError:
     print(f"[오류] kofic_api.py 모듈을 찾을 수 없습니다. (검색 경로: {sys.path})")
-    exit(1)
+    # 로컬 테스트용 등 비상시를 대비해 한 번 더 시도 (상위 폴더 등)
+    try:
+        sys.path.append(os.path.join(CURRENT_DIR, 'scripts'))
+        from kofic_api import get_session, API_KEYS
+    except ImportError:
+        exit(1)
 
 # 리포 루트 자동 탐지
 def repo_root_from_here(here: Path) -> Path:
