@@ -19,12 +19,21 @@
     li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
     .audi { font-size: 14px; color: #333; }
     .cast-list { font-size: 13px; color: #555; margin-left: 4px; }
-    /* [신규] 볼드체 강조 스타일 */
     .cast-list b { color: #000; font-weight: 700; background-color: #fff3cd; padding: 0 2px; border-radius: 2px; }
     .chart-buttons { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
     .chart-buttons button { padding:4px 10px; border:1px solid #ccc; border-radius:16px; background:#f0f0f0; cursor:pointer; font-size:14px; }
     .chart-buttons button.active { background:#333; color:#fff; border-color:#333; font-weight:bold; }
     .box { background:#f6f7f9; border:1px solid #e5e7eb; border-radius:8px; padding:12px; }
+    
+    /* [신규] 추천 배우 목록 스타일 */
+    #recommend-box { margin-top: 10px; display: none; }
+    .recommend-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+    .rec-btn { 
+        padding: 4px 10px; border: 1px solid #ddd; border-radius: 20px; 
+        background: #fff; cursor: pointer; font-size: 13px; transition: all 0.2s;
+    }
+    .rec-btn:hover { background: #eef2ff; border-color: #aaccff; }
+    .rec-btn b { color: #2e7d32; }
 </style>
 </head>
 <body>
@@ -40,11 +49,25 @@
   <h1 data-i18n-key="costarSearchTitle">공동 출연 검색</h1>
 
   <form id="f" class="box">
-    <span data-i18n-key="actorA">배우 A:</span>
-    <input type="text" id="actorA" value="" data-i18n-key="actorA" data-i18n-target="placeholder" placeholder="배우 A">
-    <span data-i18n-key="actorB">배우 B:</span>
-    <input type="text" id="actorB" value="" data-i18n-key="actorB" data-i18n-target="placeholder" placeholder="배우 B">
-    <button type="submit" class="btn" data-i18n-key="searchBtn">검색</button>
+    <div style="margin-bottom: 8px;">
+        <span data-i18n-key="actorA">배우 A:</span>
+        <!-- [수정] onchange 이벤트 추가 (배우 A 입력 후 포커스 이동 시 추천 작동) -->
+        <input type="text" id="actorA" value="" data-i18n-key="actorA" data-i18n-target="placeholder" placeholder="배우 A" autocomplete="off">
+    </div>
+    
+    <!-- [신규] 추천 배우 목록 영역 -->
+    <div id="recommend-box">
+        <div class="note" style="font-size: 12px;">
+            <span id="rec-msg"></span> (2편 이상 공동 출연)
+        </div>
+        <div id="rec-list" class="recommend-list"></div>
+    </div>
+
+    <div style="margin-top: 8px;">
+        <span data-i18n-key="actorB">배우 B:</span>
+        <input type="text" id="actorB" value="" data-i18n-key="actorB" data-i18n-target="placeholder" placeholder="배우 B">
+        <button type="submit" class="btn" data-i18n-key="searchBtn">검색</button>
+    </div>
   </form>
 
   <h2 id="resultTitle" style="display:none;"></h2>
@@ -58,7 +81,7 @@
         <button id="btnAudiPerActor" data-i18n-key="audiPerActor">관객수/배우 수</button>
         <button id="btnAudiPerFilmography" data-i18n-key="audiPerFilmo">관객수/출연작</button>
         <button id="btnAudiPerCareer" data-i18n-key="audiPerCareer">관객수/연기경력</button>
-        <button id="btnAudiBonus" data-i18n-key="audiBonus">500만+ 가중치</button>
+        <button id="btnAudiPerBonus" data-i18n-key="audiBonus">500만+ 가중치</button>
     </div>
     <canvas id="audiChart"></canvas>
     <div class="note" style="font-size:12px; text-align: right; margin-top: 4px;">* 점에 마우스를 가까이하면 나타나는 텍스트는 영화 제목입니다.</div>
@@ -67,10 +90,10 @@
 <script>
 const TS = Date.now();
 const PEOPLE_URL = `data/search/people.json?v=${TS}`;
-const MOVIES_URL = `data/search/movies.json?v=${TS}`; // [신규]
+const MOVIES_URL = `data/search/movies.json?v=${TS}`; 
 
 let PEOPLE = [];
-let MOVIES_DB = {}; // [수정] 영화 데이터 저장용
+let MOVIES_DB = {}; 
 let myChart = null;
 const fmtNum = n => (n==null || isNaN(n)) ? '' : n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
@@ -103,6 +126,74 @@ async function loadIndex(){
   }
 }
 
+// [신규] 배우 A 입력 시 공동 출연자 추천 로직
+function suggestCoStars() {
+    const nameA = document.getElementById('actorA').value.trim();
+    const recBox = document.getElementById('recommend-box');
+    const recList = document.getElementById('rec-list');
+    const recMsg = document.getElementById('rec-msg');
+    
+    if (!nameA || PEOPLE.length === 0) {
+        recBox.style.display = 'none';
+        return;
+    }
+
+    // 1. 배우 A 찾기
+    const personA = PEOPLE.find(p => p.peopleNm === nameA);
+    if (!personA) {
+        recBox.style.display = 'none';
+        return;
+    }
+
+    // 2. 배우 A의 출연작(movieCd) 수집
+    const filmsA = (personA.films || []).map(f => f.movieCd);
+    if (filmsA.length === 0) {
+        recBox.style.display = 'none';
+        return;
+    }
+
+    // 3. 공동 출연 배우 카운트
+    const coStarCounts = {}; // { "유해진": 5, "오달수": 3 ... }
+    
+    filmsA.forEach(movieCd => {
+        const movie = MOVIES_DB[movieCd];
+        if (movie && movie.cast) {
+            movie.cast.forEach(actorName => {
+                if (actorName !== nameA) { // 본인 제외
+                    coStarCounts[actorName] = (coStarCounts[actorName] || 0) + 1;
+                }
+            });
+        }
+    });
+
+    // 4. 2회 이상 출연한 배우 필터링 및 정렬 (많이 출연한 순)
+    const sortedCoStars = Object.entries(coStarCounts)
+        .filter(([name, count]) => count >= 2)
+        .sort((a, b) => b[1] - a[1]);
+
+    // 5. UI 표시
+    if (sortedCoStars.length > 0) {
+        recMsg.textContent = `'${nameA}'님과 자주 만난 배우`;
+        recList.innerHTML = '';
+        
+        // 최대 15명까지만 표시
+        sortedCoStars.slice(0, 15).forEach(([name, count]) => {
+            const btn = document.createElement('div');
+            btn.className = 'rec-btn';
+            btn.innerHTML = `${name} <b>(${count})</b>`;
+            btn.onclick = () => {
+                // 클릭 시 배우 B 입력창에 넣고 바로 검색
+                document.getElementById('actorB').value = name;
+                searchCoStars();
+            };
+            recList.appendChild(btn);
+        });
+        recBox.style.display = 'block';
+    } else {
+        recBox.style.display = 'none';
+    }
+}
+
 function searchCoStars() {
   const nameA = document.getElementById('actorA').value.trim();
   const nameB = document.getElementById('actorB').value.trim();
@@ -117,6 +208,9 @@ function searchCoStars() {
     resultTitle.style.display = 'none';
     return;
   }
+  
+  // [신규] 검색 시 추천 목록은 숨김 (깔끔하게)
+  document.getElementById('recommend-box').style.display = 'none';
 
   const filmsMapA = new Map();
   PEOPLE.filter(p => p.peopleNm === nameA).forEach(person => {
@@ -159,21 +253,22 @@ function renderResults(films, nameA, nameB) {
     const date = f.openDt ? f.openDt.replace(/-/g, '.') : '개봉일미상';
     const audiStr = (f.audiAcc != null) ? ` / <span class="audi">누적 ${fmtNum(f.audiAcc)}명</span>` : '';
     
-    // [수정] movies.json의 cast 사용 (순서 보장)
     let castStr = "";
     const movieData = MOVIES_DB[f.movieCd];
 
-    if (movieData && movieData.cast && Array.isArray(movieData.cast)) {
+    if (movieData && movieData.cast && Array.isArray(movieData.cast) && movieData.cast.length > 0) {
         const actors = movieData.cast;
         const displayActors = actors.slice(0, 7);
         
-        // [핵심] 검색어(nameA, nameB)와 일치하면 볼드 처리
+        // 검색된 두 배우(nameA, nameB) 이름 볼드 처리
         const formattedActors = displayActors.map(name => {
             if (name === nameA || name === nameB) return `<b>${name}</b>`;
             return name;
         });
 
-        castStr = ` · 배우: ${formattedActors.join(', ')}${actors.length > 7 ? '...' : ''}`;
+        if (formattedActors.length > 0) {
+             castStr = ` · 배우: ${formattedActors.join(', ')}${actors.length > 7 ? '...' : ''}`;
+        }
     }
     
     const li = document.createElement('li');
@@ -281,6 +376,16 @@ document.addEventListener('DOMContentLoaded', async () => {
   await loadIndex(); 
   
   const form = document.getElementById('f');
+  const inputA = document.getElementById('actorA');
+
+  // [신규] 배우 A 입력창 이벤트 연결 (자동 추천)
+  if (inputA) {
+      // 입력 후 엔터키나 포커스 아웃 시 추천 실행
+      inputA.addEventListener('change', suggestCoStars); 
+      // 또는 타이핑 멈췄을 때 실시간 추천을 원하시면 'keyup' 이벤트에 디바운싱을 적용할 수도 있습니다.
+      // 여기서는 깔끔하게 입력 완료 후(change) 작동하도록 설정했습니다.
+  }
+
   if (form) {
       form.addEventListener('submit', (e) => {
           e.preventDefault();
