@@ -6,19 +6,18 @@ import argparse
 from pathlib import Path
 from urllib.parse import urlencode
 import requests
+import sys
 
-# [중요] API 키 관리자 임포트
+# [수정] 모듈 경로를 확실하게 추가 (GitHub Actions 환경 대응)
+# 현재 스크립트(backfill_people.py)가 있는 디렉토리(scripts/)를 path에 추가
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(CURRENT_DIR)
+
 try:
     from kofic_api import get_session, API_KEYS
 except ImportError:
-    # 로컬 실행 시 경로 문제 해결용
-    import sys
-    sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-    try:
-        from kofic_api import get_session, API_KEYS
-    except ImportError:
-        print("[오류] kofic_api.py가 필요합니다.")
-        exit(1)
+    print(f"[오류] kofic_api.py 모듈을 찾을 수 없습니다. (검색 경로: {sys.path})")
+    exit(1)
 
 # 리포 루트 자동 탐지
 def repo_root_from_here(here: Path) -> Path:
@@ -78,6 +77,7 @@ def fetch_movie_info(session: requests.Session, api_key: str, movieCd: str, time
     return j
 
 def backfill(budget: int, rate_sleep_ms: int) -> tuple[int,int,int]:
+    # glob 결과 정렬하여 일관성 유지
     files = sorted([Path(p) for p in glob.glob(str(DETAIL_DIR / "**" / "*.json"), recursive=True)])
     print(f"[paths] DETAIL_DIR={DETAIL_DIR}")
     print(f"[scan] detail files: {len(files)}")
@@ -167,8 +167,9 @@ if __name__ == "__main__":
     ap.add_argument("--rate-sleep-ms", type=int, default=250, help="Sleep ms")
     args = ap.parse_args()
     
+    # [수정] kofic_api.py가 키를 로드할 시간을 잠시 줌
     if not API_KEYS:
-        print("[backfill_people] API Key not found in env.")
+        print("[backfill_people] API 키가 로드되지 않았습니다. GitHub Secrets를 확인하세요.")
         exit(1)
         
     backfill(args.budget, args.rate_sleep_ms)
