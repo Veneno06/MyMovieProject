@@ -1,29 +1,30 @@
 # scripts/backfill_people.py
 # 목적: docs/data/movies/**.json 중 peopleCd가 빈 파일만 KOFIC에서 보충(최소 API) 후 다시 저장
 from __future__ import annotations
-import os, json, time, glob
+import os
+import json
+import time
+import glob
 import argparse
+import sys
 from pathlib import Path
 from urllib.parse import urlencode
 import requests
-import sys
 
-# [중요] 모듈 경로를 확실하게 추가 (GitHub Actions 환경 대응)
-# 현재 스크립트(backfill_people.py)가 있는 디렉토리(scripts/)를 path에 추가
+# [핵심 수정 1] kofic_api 모듈을 찾기 위해 현재 스크립트 위치를 sys.path에 추가
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 if CURRENT_DIR not in sys.path:
     sys.path.append(CURRENT_DIR)
 
+# [핵심 수정 2] 안전한 임포트
 try:
     from kofic_api import get_session, API_KEYS
 except ImportError:
-    print(f"[오류] kofic_api.py 모듈을 찾을 수 없습니다. (검색 경로: {sys.path})")
-    # 비상시를 대비해 한 번 더 시도
-    try:
-        sys.path.append(os.path.join(CURRENT_DIR, 'scripts'))
-        from kofic_api import get_session, API_KEYS
-    except ImportError:
-        exit(1)
+    print(f"[오류] 'kofic_api' 모듈을 찾을 수 없습니다.")
+    print(f"  - 현재 경로: {os.getcwd()}")
+    print(f"  - 스크립트 경로: {CURRENT_DIR}")
+    print(f"  - 파이썬 경로(sys.path): {sys.path}")
+    exit(1)
 
 # 리포 루트 자동 탐지
 def repo_root_from_here(here: Path) -> Path:
@@ -78,7 +79,6 @@ def fetch_movie_info(session: requests.Session, api_key: str, movieCd: str, time
     r.raise_for_status()
     j = r.json()
     if j.get("faultInfo") or j.get("faultResult"):
-        # 320010(일일 제한) 등의 에러는 상위에서 처리하도록 예외 발생
         raise RuntimeError(f"KOBIS fault: {j.get('faultInfo') or j.get('faultResult')}")
     return j
 
@@ -168,12 +168,12 @@ def backfill(budget: int, rate_sleep_ms: int) -> tuple[int,int,int]:
     return updated, skipped, used
 
 if __name__ == "__main__":
-    # [수정] argparse를 사용하여 --budget 등의 인자를 올바르게 파싱
+    # [핵심 수정] argparse를 사용하여 --budget 등의 인자를 올바르게 파싱
     ap = argparse.ArgumentParser()
     ap.add_argument("--budget", type=int, default=600, help="Max API calls")
     ap.add_argument("--rate-sleep-ms", type=int, default=250, help="Sleep ms")
     
-    # 알 수 없는 인자가 있어도 무시하도록 parse_known_args 사용 (선택 사항)
+    # 알 수 없는 인자가 있어도 무시하도록 parse_known_args 사용
     args, unknown = ap.parse_known_args()
     
     if not API_KEYS:
