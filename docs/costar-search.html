@@ -21,7 +21,7 @@
     .cast-list { font-size: 13px; color: #555; margin-left: 4px; }
     /* 볼드체 강조 스타일 */
     .cast-list b { color: #000; font-weight: 700; background-color: #fff3cd; padding: 0 2px; border-radius: 2px; }
-    /* [신규] 배우 링크 스타일 */
+    /* 배우 링크 스타일 */
     .cast-link { text-decoration: none; color: inherit; cursor: pointer; }
     .cast-link:hover { text-decoration: underline; color: #0056b3; }
 
@@ -86,7 +86,6 @@
     <div class="chart-buttons">
         <button id="btnTotalAudi" class="active" data-i18n-key="audiCnt">관객수</button>
         <button id="btnAudiPerActor" data-i18n-key="audiPerActor">관객수/배우 수</button>
-        <!-- [수정] 나머지 버튼들 제거 -->
     </div>
     <canvas id="audiChart"></canvas>
     <div class="note" style="font-size:12px; text-align: right; margin-top: 4px;">* 점에 마우스를 가까이하면 나타나는 텍스트는 영화 제목입니다.</div>
@@ -128,19 +127,12 @@ async function loadIndex(){
     }
   } catch(e) {
     PEOPLE = [];
-    msg.textContent = '데이터를 불러오는 데 실패했습니다.';
+    if(msg) msg.textContent = '데이터를 불러오는 데 실패했습니다.';
   }
 }
 
 function suggestCoStars() {
-    // (추천 로직은 기존 코드 유지, 입력창 ID 변경에 맞춰 수정)
-    // 현재는 다중 입력(쉼표 구분)으로 변경되었으므로, 
-    // 마지막 입력된 배우 이름을 기준으로 추천하는 것이 자연스러울 수 있으나,
-    // 복잡도를 피하기 위해 여기서는 첫 번째 배우 기준 추천 또는 생략할 수 있습니다.
-    // 기존 로직(actorA 기준)은 다중 입력창 구조와 맞지 않아 잠시 비활성화하거나
-    // 필요하다면 '마지막 입력값' 기준으로 수정해야 합니다.
-    // 여기서는 일단 기존 단일 입력창 기준 로직은 제거하고,
-    // 사용자가 쉼표로 입력하는 방식에 집중합니다.
+    // (추천 로직 - 현재는 비활성 상태, 필요시 구현 가능)
 }
 
 function searchCoStars() {
@@ -167,6 +159,7 @@ function searchCoStars() {
 
   for (const name of actorNames) {
       const films = new Set();
+      // 동명이인 처리를 위해 filter 사용
       const persons = PEOPLE.filter(p => p.peopleNm === name);
       
       if (persons.length === 0) {
@@ -234,15 +227,22 @@ function renderResults(films, actorNames) {
         const actors = f.cast;
         const displayActors = actors.slice(0, 10); 
         
-        // [수정] 배우 이름 클릭 시 링크 생성 및 볼드체 처리
         const formattedActors = displayActors.map(name => {
             let displayName = name;
-            // 검색어 포함 시 볼드 처리
+            // [기능 1] 검색어 포함 시 볼드 처리
             if (actorNames.includes(name)) {
                 displayName = `<b>${name}</b>`;
             }
-            // 링크 생성 (people-search.html로 이동)
-            return `<a href="people-search.html?q=${encodeURIComponent(name)}" class="cast-link">${displayName}</a>`;
+            
+            // [기능 2] 배우 이름 클릭 시 프로필 페이지로 이동 (새 탭)
+            // PEOPLE 데이터에서 해당 이름의 personKey 찾기
+            const person = PEOPLE.find(p => p.peopleNm === name);
+            if (person) {
+                 return `<a href="person.html?personKey=${encodeURIComponent(person.personKey)}" target="_blank" class="cast-link">${displayName}</a>`;
+            } else {
+                 // personKey를 못 찾으면 이름 검색으로 fallback (이럴 일은 거의 없음)
+                 return `<a href="people-search.html?q=${encodeURIComponent(name)}" target="_blank" class="cast-link">${displayName}</a>`;
+            }
         });
         
         castStr = ` · 배우: ${formattedActors.join(', ')}${actors.length > 10 ? '...' : ''}`;
@@ -277,9 +277,13 @@ function drawAudiChart(films, dataType = 'totalAudi'){
     const s = (window.STRINGS && window.STRINGS[lang]) ? window.STRINGS[lang] : STRINGS['ko']; 
     let yAxisLabel;
 
-    // [수정] 불필요한 그래프 옵션 제거
+    // [수정] 관객수/배우 수 그래프 계산 로직 수정
     if (dataType === 'audiPerActor') {
-        dataPoints = films.map(f => (f.audiAcc && f.actorCount > 0) ? Math.round(f.audiAcc / f.actorCount) : 0);
+        dataPoints = films.map(f => {
+            // actorCount가 없으면 cast 목록의 길이로 대체
+            const count = (f.cast && f.cast.length) ? f.cast.length : (f.actorCount || 0);
+            return (f.audiAcc && count > 0) ? Math.round(f.audiAcc / count) : 0;
+        });
         yAxisLabel = s.audiPerActor;
     } else { // 기본값: totalAudi
         dataPoints = films.map(f => f.audiAcc || 0);
@@ -337,8 +341,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   await loadIndex(); 
   
   const form = document.getElementById('f');
-  // 추천 기능 관련 이벤트는 다중 입력창 변경으로 인해 일단 제거하거나 보류
-  
+  const inputA = document.getElementById('actorsInput');
+
+  if (inputA) {
+      inputA.addEventListener('change', suggestCoStars); 
+  }
+
   if (form) {
       form.addEventListener('submit', (e) => {
           e.preventDefault();
@@ -346,7 +354,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       });
   }
 
-  // [수정] 버튼 목록 간소화
   const buttons = [
       { id: 'btnTotalAudi', type: 'totalAudi' },
       { id: 'btnAudiPerActor', type: 'audiPerActor' }
