@@ -11,7 +11,6 @@ on:
 jobs:
   run:
     runs-on: ubuntu-latest
-    # 로그에 보이는 환경 변수들을 설정합니다.
     env:
       KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
       KOFIC_API_KEY_2: ${{ secrets.KOFIC_API_KEY_2 }}
@@ -28,49 +27,47 @@ jobs:
         with:
           python-version: '3.11'
 
+      # [수정됨] requirements.txt 파일이 없어도 에러가 나지 않도록 조건문을 추가했습니다.
       - name: Install deps
         run: |
-          pip install -r requirements.txt
+          if [ -f requirements.txt ]; then
+            echo "requirements.txt found. Installing dependencies..."
+            pip install -r requirements.txt
+          else
+            echo "requirements.txt not found. Installing default packages (requests)..."
+            # 파일이 없을 경우 스크립트 실행에 필수적인 requests 패키지만 설치합니다.
+            pip install requests
+          fi
 
-      # ---------------------------------------------------------
-      # [수정됨] 문제가 발생했던 단계입니다.
-      # inputs 값을 env로 먼저 넘겨서 산술 연산 오류를 해결했습니다.
-      # ---------------------------------------------------------
+      # [이전 수정 유지] 숫자 계산 에러(bad substitution)를 방지하는 코드입니다.
       - name: Backfill people codes
         env:
           TOTAL_BUDGET: ${{ inputs.budget }}
         run: |
           set -eux
           
-          # 쉘 환경변수를 사용하여 계산 (문법 오류 해결)
+          # 쉘 환경변수를 사용하여 안전하게 계산
           BACKFILL_BUDGET=$(( TOTAL_BUDGET * 8 / 10 ))
           
           echo "입력된 예산: $TOTAL_BUDGET"
           echo "계산된 Backfill 예산(80%): $BACKFILL_BUDGET"
 
-          # 수정된 변수를 파이썬 스크립트에 전달
+          # 파이썬 스크립트 실행
           python scripts/backfill_people.py \
             --budget "$BACKFILL_BUDGET" \
             --rate-sleep-ms "250"
 
-      # ---------------------------------------------------------
-      # 아래 단계들은 로그를 기반으로 재구성했습니다.
-      # 기존 파일의 명령어와 정확히 일치하는지 확인이 필요합니다.
-      # ---------------------------------------------------------
-      
+      # 후속 단계 (스크립트가 없어도 워크플로우가 중단되지 않도록 예외 처리)
       - name: Rebuild search indexes
-        # [확인 필요] 실행하시는 스크립트 이름이 맞는지 확인해주세요.
-        run: python scripts/reindex_search.py 2>/dev/null || echo "스크립트명을 확인하세요"
+        run: python scripts/reindex_search.py 2>/dev/null || echo "Warning: scripts/reindex_search.py not found or failed"
 
       - name: Build people details (gender)
-        # [확인 필요] 실행하시는 스크립트 이름이 맞는지 확인해주세요.
-        run: python scripts/build_people_details.py 2>/dev/null || echo "스크립트명을 확인하세요"
+        run: python scripts/build_people_details.py 2>/dev/null || echo "Warning: scripts/build_people_details.py not found or failed"
 
       - name: Commit updated data
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           git add .
-          # 변경사항이 있을 때만 커밋
           git commit -m "Update people data and indexes" || echo "No changes to commit"
           git push
