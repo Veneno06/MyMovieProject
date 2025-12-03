@@ -1,41 +1,28 @@
 # scripts/backfill_people.py
-# 목적: docs/data/movies/**.json 중 peopleCd가 빈 파일만 KOFIC에서 보충(최소 API) 후 다시 저장
 from __future__ import annotations
-import os, json, time, glob
+import os
+import json
+import time
+import glob
 import argparse
+import sys
 from pathlib import Path
 from urllib.parse import urlencode
 import requests
-import sys
 
-# [중요] 모듈 경로를 확실하게 추가 (GitHub Actions 환경 대응)
-# 현재 스크립트(backfill_people.py)가 있는 디렉토리(scripts/)를 path에 추가
+# [중요] 모듈 경로 설정
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 if CURRENT_DIR not in sys.path:
     sys.path.append(CURRENT_DIR)
 
 try:
-    from kofic_api import get_session, API_KEYS
+    import kofic_api
 except ImportError:
-    print(f"[오류] kofic_api.py 모듈을 찾을 수 없습니다. (검색 경로: {sys.path})")
-    # 비상시를 대비해 한 번 더 시도
-    try:
-        sys.path.append(os.path.join(CURRENT_DIR, 'scripts'))
-        from kofic_api import get_session, API_KEYS
-    except ImportError:
-        exit(1)
+    print("[오류] kofic_api.py가 필요합니다.")
+    exit(1)
 
-# 리포 루트 자동 탐지
-def repo_root_from_here(here: Path) -> Path:
-    cur = here.resolve()
-    for _ in range(8):
-        if (cur / ".git").exists() or (cur / "docs").exists():
-            return cur
-        cur = cur.parent
-    return here.resolve().parents[2]
-
-HERE = Path(__file__).resolve()
-ROOT = repo_root_from_here(HERE)
+# 경로 설정
+ROOT = Path(__file__).resolve().parents[1]
 DETAIL_DIR = ROOT / "docs" / "data" / "movies"
 MOVIE_INFO_URL = "https://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json"
 
@@ -71,19 +58,7 @@ def is_missing_cd(arr) -> bool:
 def need_backfill(target: dict) -> bool:
     return is_missing_cd(target.get("directors")) or is_missing_cd(target.get("actors"))
 
-def fetch_movie_info(session: requests.Session, api_key: str, movieCd: str, timeout=(10, 60)) -> dict:
-    qs = urlencode({"key": api_key, "movieCd": movieCd})
-    url = f"{MOVIE_INFO_URL}?{qs}"
-    r = session.get(url, timeout=timeout)
-    r.raise_for_status()
-    j = r.json()
-    if j.get("faultInfo") or j.get("faultResult"):
-        # 320010(일일 제한) 등의 에러는 상위에서 처리하도록 예외 발생
-        raise RuntimeError(f"KOBIS fault: {j.get('faultInfo') or j.get('faultResult')}")
-    return j
-
 def backfill(budget: int, rate_sleep_ms: int) -> tuple[int,int,int]:
-    # glob 결과 정렬하여 일관성 유지
     files = sorted([Path(p) for p in glob.glob(str(DETAIL_DIR / "**" / "*.json"), recursive=True)])
     print(f"[paths] DETAIL_DIR={DETAIL_DIR}")
     print(f"[scan] detail files: {len(files)}")
@@ -111,13 +86,27 @@ def backfill(budget: int, rate_sleep_ms: int) -> tuple[int,int,int]:
             break
 
         try:
-            # 키 관리자로부터 세션과 키 획득
-            session, api_key = get_session()
-            j = fetch_movie_info(session, api_key, movieCd)
+            # kofic_api 모듈을 사용하여 API 호출 (키 자동 관리)
+            j = kofic_api.fetch(MOVIE_INFO_URL, {"movieCd": movieCd})
             
+            # 결과 검증
+            new_info = (j.get("movieInfoResult") or {}).get("movieInfo")
+            if not new_info:
+                print(f"[warn] API data empty for {movieCd}")
+                skipped += 1
+                continue
+
+            # 데이터 갱신 (기존 구조 유지)
+            # API에서 받은 데이터에는 peopleCd가 포함되어 있음
+            trg["directors"] = new_info.get("directors", [])
+            trg["actors"]    = new_info.get("actors", [])
+            
+            save_json(p, raw)
+            updated += 1
+            print(f"[ok] {movieCd} -> updated")
+
         except Exception as e:
             print(f"[warn] fetch fail {movieCd}: {e}")
-            # API 키 제한 에러 등이면 잠시 대기
             time.sleep(1)
             skipped += 1
             continue
@@ -126,58 +115,14 @@ def backfill(budget: int, rate_sleep_ms: int) -> tuple[int,int,int]:
         if rate_sleep_ms > 0:
             time.sleep(rate_sleep_ms / 1000.0)
 
-        info = (j.get("movieInfoResult") or {}).get("movieInfo") or {}
-        if not info:
-            skipped += 1
-            continue
-
-        # 데이터 정규화 및 덮어쓰기
-        directors, actors = [], []
-        for it in info.get("directors", []) or []:
-            directors.append({
-                "peopleCd": (it.get("peopleCd") or "").strip(),
-                "peopleNm": (it.get("peopleNm") or "").strip(),
-                "repRoleNm": "감독",
-            })
-        for it in info.get("actors", []) or []:
-            actors.append({
-                "peopleCd": (it.get("peopleCd") or "").strip(),
-                "peopleNm": (it.get("peopleNm") or "").strip(),
-                "repRoleNm": "배우",
-                "cast": (it.get("cast") or "").strip(),
-            })
-
-        # 새로 받은 데이터에 코드가 있는지 확인
-        has_cd = False 
-        for arr in (directors, actors):
-            for x in arr:
-                if x.get("peopleCd"):
-                    has_cd = True; break
-            if has_cd: break
-
-        if has_cd:
-            trg["directors"] = directors
-            trg["actors"]    = actors
-            save_json(p, raw)
-            updated += 1
-            print(f"[ok] {movieCd} -> updated (dir:{len(directors)}, act:{len(actors)})")
-        else:
-            skipped += 1
-
     print(f"[done] updated={updated}, skipped={skipped}, used_api={used}")
     return updated, skipped, used
 
 if __name__ == "__main__":
-    # [핵심 수정] argparse를 사용하여 --budget 등의 인자를 올바르게 파싱
     ap = argparse.ArgumentParser()
     ap.add_argument("--budget", type=int, default=600, help="Max API calls")
     ap.add_argument("--rate-sleep-ms", type=int, default=250, help="Sleep ms")
     
-    # 알 수 없는 인자가 있어도 무시하도록 parse_known_args 사용
     args, unknown = ap.parse_known_args()
     
-    if not API_KEYS:
-        print("[backfill_people] API Key not found in env.")
-        exit(1)
-        
     backfill(args.budget, args.rate_sleep_ms)
