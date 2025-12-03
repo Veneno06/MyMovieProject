@@ -7,8 +7,7 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 from itertools import cycle
 
-# [설정] 사용할 API 키 환경변수 이름들
-# GitHub Secrets에 KOFIC_API_KEY, KOFIC_API_KEY_2 등을 등록해야 합니다.
+# 사용할 API 키 환경변수 이름들
 KEY_NAMES = [
     "KOFIC_API_KEY",
     "KOFIC_API_KEY_2",
@@ -27,7 +26,6 @@ class KoficApiRotator:
         
         if not self.keys:
             # 로컬 테스트 등을 위해 더미 키라도 넣음 (실행 시 경고)
-            print("[kofic_api] 경고: 환경변수에 API 키가 없습니다.")
             self.keys = ["DUMMY_KEY"]
             
         self.key_cycle = cycle(self.keys)
@@ -93,5 +91,13 @@ class KoficApiRotator:
 # 전역 인스턴스
 rotator = KoficApiRotator()
 
+# 외부에서 사용할 함수들
+def get_session():
+    # 호환성을 위해 (session, key) 튜플 반환
+    return rotator.session, rotator.current_key
+
 def fetch(url, params=None):
     return rotator.request(url, params)
+
+# 상수 호환성
+API_KEYS = rotator.keys
