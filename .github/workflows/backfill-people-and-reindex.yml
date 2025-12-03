@@ -4,11 +4,11 @@ on:
   workflow_dispatch:
     inputs:
       budget:
-        description: "이번 실행의 최대 API 호출 수 (권장 600)"
+        description: "이번 실행의 최대 API 호출 수 (총합)"
         required: false
-        default: "600"
+        default: "5000"
       rate_sleep_ms:
-        description: "호출 간 대기(ms) (권장 250)"
+        description: "호출 간 대기(ms)"
         required: false
         default: "250"
 
@@ -36,39 +36,41 @@ jobs:
       - name: Install deps
         run: python -m pip install --upgrade pip requests
 
-      # [수정] 여러 개의 API 키를 환경 변수로 전달
-      - name: Backfill people fields (movieInfo)
+      # [1단계] 영화인 코드 보강 (Backfill)
+      - name: Backfill people codes
         env:
           KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
           KOFIC_API_KEY_2: ${{ secrets.KOFIC_API_KEY_2 }}
           KOFIC_API_KEY_3: ${{ secrets.KOFIC_API_KEY_3 }}
-          KOFIC_API_KEY_4: ${{ secrets.KOFIC_API_KEY_4 }}
-          KOFIC_API_KEY_5: ${{ secrets.KOFIC_API_KEY_5 }}
         run: |
           set -eux
-          # [수정] kofic_api.py를 먼저 실행할 필요 없이, backfill_people.py가 알아서 임포트함
+          # budget의 80%를 backfill에 할당 (예: 4000회)
+          BACKFILL_BUDGET=$((${inputs.budget} * 8 / 10))
           python scripts/backfill_people.py \
-            --budget "${{ inputs.budget }}" \
+            --budget "$BACKFILL_BUDGET" \
             --rate-sleep-ms "${{ inputs.rate_sleep_ms }}"
 
+      # [2단계] 인덱스 재빌드 (people.json 생성)
       - name: Rebuild search indexes
         run: |
           set -eux
           python scripts/build_indices.py
 
-      # [신규] '성별' 정보 수집 단계 추가
-      - name: Build people details (gender, etc)
+      # [3단계] 성별 정보 수집
+      - name: Build people details (gender)
         env:
           KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
           KOFIC_API_KEY_2: ${{ secrets.KOFIC_API_KEY_2 }}
           KOFIC_API_KEY_3: ${{ secrets.KOFIC_API_KEY_3 }}
-          KOFIC_API_KEY_4: ${{ secrets.KOFIC_API_KEY_4 }}
-          KOFIC_API_KEY_5: ${{ secrets.KOFIC_API_KEY_5 }}
         run: |
           set -eux
-          python scripts/build_people_details.py
+          # 남은 예산을 사용 (예: 1000회)
+          DETAIL_BUDGET=$((${inputs.budget} * 2 / 10))
+          python scripts/build_people_details.py \
+            --budget "$DETAIL_BUDGET" \
+            --rate-sleep-ms "${{ inputs.rate_sleep_ms }}"
 
-      - name: Commit updated caches
+      - name: Commit updated data
         run: |
           git config user.name  "actions-user"
           git config user.email "actions@github.com"
@@ -77,6 +79,6 @@ jobs:
             echo "No changes."
             exit 0
           fi
-          git commit -m "Backfill people, rebuild indexes, and fetch people details"
+          git commit -m "Data Update: Backfill people codes & gender info"
           git pull --rebase origin "${{ github.ref_name }}" || true
           git push
