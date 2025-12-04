@@ -1,333 +1,102 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="utf-8">
-<title>배우 프로필</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="assets/style.css">
-<style>
-body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple SD Gothic Neo, Noto Sans KR, 'Malgun Gothic', sans-serif; line-height:1.6; }
-.wrap { max-width:980px; margin:24px auto; padding:0 12px; }
-h1 { font-size:28px; margin:0 0 16px; }
-h2 { font-size:20px; margin:24px 0 8px; }
-.ctrls { display:flex; gap:8px; margin-bottom:12px; }
-.ctrls a { padding:6px 10px; border:1px solid #e5e7eb; border-radius:8px; background:#fff; text-decoration:none; color:#111827; }
-.note { color:#6b7280; }
-ul.list { list-style:none; padding:0; margin:12px 0; }
-li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
-.audi { font-size: 14px; color: #333; }
-.cast-list { font-size: 13px; color: #555; margin-left: 4px; }
-/* [신규] 볼드체 강조 스타일 */
-.cast-list b { color: #000; font-weight: 700; background-color: #fff3cd; padding: 0 2px; border-radius: 2px; }
-.chart-buttons { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
-.chart-buttons button { padding:4px 10px; border:1px solid #ccc; border-radius:16px; background:#f0f0f0; cursor:pointer; font-size:14px; }
-.chart-buttons button.active { background:#333; color:#fff; border-color:#333; font-weight:bold; }
-.btn { padding:6px 10px; border:1px solid #e6e6e6; border-radius:6px; background:#fafafa; cursor:pointer; }
-.sex-badge { font-size: 1rem; margin-left: 8px; }
-</style>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="assets/translator.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인물 상세 정보 - MyMovieProject</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-<div class="wrap">
-  <div class="ctrls">
-    <a href="index.html" class="btn" data-i18n-key="home">홈</a>
-    <a href="search.html" class="btn" data-i18n-key="movieSearch">영화 검색</a>
-    <a href="people-search.html" class="btn" data-i18n-key="peopleSearch">배우 검색</a>
-    <a href="costar-search.html" class="btn" data-i18n-key="costarSearch">공동 출연 검색</a>
-    <a href="saved.html" class="btn" data-i18n-key="savedList">저장 목록</a>
-  </div>
+<body class="bg-gray-50 text-gray-800">
 
-  <h1 id="title" style="display:inline-block;" data-i18n-key="actorProfileTitle">배우 프로필</h1><span id="sexBadge" class="sex-badge"></span>
-  
-  <div class="note" data-i18n-key="filmography">출연작 (최신 개봉일 순)</div>
-  <ul id="out" class="list"></ul>
-  <div id="msg" class="note"></div>
+    <nav class="bg-white shadow-sm border-b border-gray-200">
+        <div class="max-w-5xl mx-auto px-4 py-4">
+            <a href="index.html" class="font-bold text-xl text-blue-600 mr-6">MyMovieProject</a>
+            <a href="people-search.html" class="text-sm font-medium text-gray-500 hover:text-gray-900">← 다시 검색하기</a>
+        </div>
+    </nav>
 
-  <div style="margin-top:12px; display:flex; gap:8px;">
-    <button class="btn" onclick="history.back()" data-i18n-key="btnBack">🔙 뒤로</button>
-    <button class="btn" id="saveBtn" style="display:none;" data-i18n-key="btnSave">☆ 배우 저장</button>
-  </div>
+    <main class="max-w-4xl mx-auto px-4 py-10">
+        <!-- 인물 헤더 -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-8">
+            <h1 id="personName" class="text-3xl font-bold mb-2">로딩 중...</h1>
+            <p id="personCode" class="text-sm text-gray-400 mb-4"></p>
+            <div class="flex gap-2 text-sm text-gray-600">
+                <span id="roleBadge" class="bg-gray-100 px-3 py-1 rounded-full">영화인</span>
+            </div>
+        </div>
 
-  <div id="chart-container" style="display:none;">
-    <h2 data-i18n-key="audiTrend">개봉 시기별 관객수 추이</h2>
-    <div class="chart-buttons">
-        <button id="btnTotalAudi" class="active" data-i18n-key="audiCnt">관객수</button>
-        <button id="btnAudiPerActor" data-i18n-key="audiPerActor">관객수/배우 수</button>
-        <button id="btnAudiPerFilmography" data-i18n-key="audiPerFilmo">관객수/출연작</button>
-        <button id="btnAudiPerCareer" data-i18n-key="audiPerCareer">관객수/연기경력</button>
-        <button id="btnAudiBonus" data-i18n-key="audiBonus">500만+ 가중치</button>
-    </div>
-    <canvas id="audiChart"></canvas>
-    <div class="note" style="font-size:12px; text-align: right; margin-top: 4px;">* 점에 마우스를 가까이하면 나타나는 텍스트는 영화 제목입니다.</div>
-  </div>
-</div>
+        <!-- 필모그래피 리스트 -->
+        <h2 class="text-xl font-bold mb-4 px-2 border-l-4 border-blue-500">필모그래피 (참여 작품)</h2>
+        <div id="movieList" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <!-- 영화 목록이 여기에 표시됨 -->
+        </div>
+    </main>
 
-<script>
-const TS = Date.now();
-const PEOPLE_URL = `data/search/people.json?v=${TS}`;
-const PEOPLE_DETAILS_URL = `data/search/people_details.json?v=${TS}`;
-const MOVIES_URL = `data/search/movies.json?v=${TS}`;
+    <script>
+        // URL에서 파라미터 추출
+        const params = new URLSearchParams(window.location.search);
+        const targetId = params.get('id'); // 영화인 코드 (핵심)
+        const targetName = params.get('name') || "이름 없음";
 
-function getParam(k){ return new URL(location.href).searchParams.get(k) || ""; }
-const fmtNum = n => (n==null || isNaN(n)) ? '' : n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-let PEOPLE = [];
-let PEOPLE_DETAILS = {};
-let MOVIES_DB = {}; // [수정] Map이 아닌 Object로 사용하여 직접 접근
-let myChart = null;
-let currentPerson = null;
-
-const saveBtn = document.getElementById('saveBtn');
-
-function getPersonId(person) { return person?.personKey || null; }
-function getSavedPeople() { return JSON.parse(localStorage.getItem('savedPeople') || '{}'); }
-function setSavedPeople(obj) { localStorage.setItem('savedPeople', JSON.stringify(obj)); }
-function isSaved(id) { return !!getSavedPeople()[id]; }
-
-function renderSaveBtn() {
-    const personId = getPersonId(currentPerson);
-    if (!personId) {
-        saveBtn.style.display = 'none';
-        return;
-    }
-    saveBtn.style.display = 'inline-block';
-    
-    if (window.getCurrentLang) { 
-        const lang = window.getCurrentLang();
-        const key = isSaved(personId) ? 'btnSaved' : 'btnSave';
-        if (window.STRINGS && window.STRINGS[lang] && window.STRINGS[lang][key]) {
-            saveBtn.textContent = window.STRINGS[lang][key];
-        } else {
-            saveBtn.textContent = isSaved(personId) ? '⭐ 저장됨(해제)' : '☆ 배우 저장';
+        document.getElementById('personName').textContent = targetName;
+        if (targetId && !targetId.startsWith('unknown')) {
+            document.getElementById('personCode').textContent = `KOFIC Code: ${targetId}`;
         }
-        saveBtn.setAttribute('data-i18n-key', key);
-    } else {
-        saveBtn.textContent = isSaved(personId) ? '⭐ 저장됨(해제)' : '☆ 배우 저장';
-    }
-}
 
-saveBtn.addEventListener('click', () => {
-    const personId = getPersonId(currentPerson);
-    if (!personId) return;
-    const saved = getSavedPeople();
-    if (isSaved(personId)) {
-        delete saved[personId];
-    } else {
-        saved[personId] = { name: currentPerson.peopleNm, personKey: currentPerson.personKey };
-    }
-    setSavedPeople(saved);
-    renderSaveBtn(); 
-});
+        // 데이터 로드 및 필터링
+        fetch('docs/data/search_index.json')
+            .then(r => r.json())
+            .then(movies => {
+                // [핵심] ID가 일치하는 영화만 골라내기
+                const myMovies = movies.filter(movie => {
+                    // 배우로서 참여했는지 확인
+                    const isActor = movie.actors && movie.actors.some(a => a.id === targetId);
+                    // 감독으로서 참여했는지 확인
+                    const isDirector = movie.directors && movie.directors.some(d => d.id === targetId);
+                    
+                    return isActor || isDirector;
+                });
 
-async function loadData(){
-  try {
-    const [peopleRes, detailsRes, moviesRes] = await Promise.all([
-      fetch(PEOPLE_URL),
-      fetch(PEOPLE_DETAILS_URL),
-      fetch(MOVIES_URL)
-    ]);
-    
-    if (peopleRes.ok) {
-        const j = await peopleRes.json();
-        PEOPLE = j.people || [];
-    }
-    if (detailsRes.ok) {
-        PEOPLE_DETAILS = await detailsRes.json() || {};
-    }
-    
-    if (moviesRes.ok) {
-        const mData = await moviesRes.json();
-        // [수정] movies.json의 cast 정보를 활용하기 위해 DB 생성
-        (mData.movies || []).forEach(m => {
-            MOVIES_DB[m.movieCd] = m;
-        });
-    }
-    
-  } catch(e) {
-      console.error("Error loading data", e);
-  }
-}
+                // 최신순 정렬
+                myMovies.sort((a, b) => (b.year || 0) - (a.year || 0));
 
-function render(){
-  const key = getParam('personKey') || '';
-  const item = PEOPLE.find(p => p.personKey === key);
+                renderMovies(myMovies);
+            })
+            .catch(err => {
+                console.error(err);
+                document.getElementById('movieList').innerHTML = "데이터를 불러오는 중 오류가 발생했습니다.";
+            });
 
-  const out = document.getElementById('out');
-  const title = document.getElementById('title');
-  const msg = document.getElementById('msg');
-  const sexBadge = document.getElementById('sexBadge'); 
+        function renderMovies(movies) {
+            const container = document.getElementById('movieList');
+            container.innerHTML = '';
 
-  if (!item) {
-    title.textContent = '배우 프로필';
-    if (window.translatePage) {
-        const lang = window.getCurrentLang();
-        title.textContent = window.STRINGS[lang]['actorProfileTitle'] || '배우 프로필';
-    }
-    msg.textContent = '배우를 찾을 수 없어요. (캐시 인덱스 확인)';
-    return;
-  }
-  
-  currentPerson = item;
-  renderSaveBtn();
-
-  title.textContent = item.peopleNm;
-  
-  const personCd = item.peopleCd || ''; 
-  if (personCd && PEOPLE_DETAILS[personCd]) {
-      const detail = PEOPLE_DETAILS[personCd];
-      if (detail.sex === "남") sexBadge.textContent = "♂";
-      if (detail.sex === "여") sexBadge.textContent = "♀";
-  }
-
-  out.innerHTML = '';
-  const filmsWithAudi = [];
-
-  for (const f of (item.films||[])) {
-    const date = f.openDt ? f.openDt.replace(/-/g, '.') : '개봉일미상';
-    const audiStr = (f.audiAcc != null) ? ` / <span class="audi">누적 ${fmtNum(f.audiAcc)}명</span>` : '';
-    
-    // [수정] movies.json에 저장된 '순서가 올바른 cast' 목록 사용
-    let castStr = "";
-    const movieData = MOVIES_DB[f.movieCd];
-    
-    if (movieData && movieData.cast && Array.isArray(movieData.cast)) {
-        const actors = movieData.cast; // 이미 올바른 순서로 저장되어 있음
-        const displayActors = actors.slice(0, 7);
-        
-        // [핵심] 현재 배우 이름(item.peopleNm)과 일치하면 볼드 처리
-        const formattedActors = displayActors.map(name => {
-            if (name === item.peopleNm) return `<b>${name}</b>`;
-            return name;
-        });
-
-        castStr = ` · 배우: ${formattedActors.join(', ')}${actors.length > 7 ? '...' : ''}`;
-    }
-
-    const li = document.createElement('li');
-    li.innerHTML = `<a href="detail.html?movieCd=${encodeURIComponent(f.movieCd)}">${f.movieNm}</a>
-      <span class="note">(${date}${f.part? ' · '+f.part:''}${audiStr}<span class="cast-list">${castStr}</span>)</span>`;
-    out.appendChild(li);
-
-    if (f.openDt) filmsWithAudi.push(f);
-  }
-
-  if (filmsWithAudi.length > 1) {
-    document.getElementById('chart-container').style.display = 'block';
-    
-    const buttons = [
-        { id: 'btnTotalAudi', type: 'totalAudi' },
-        { id: 'btnAudiPerActor', type: 'audiPerActor' },
-        { id: 'btnAudiPerFilmography', type: 'audiPerFilmography' },
-        { id: 'btnAudiPerCareer', type: 'audiPerCareer' },
-        { id: 'btnAudiBonus', type: 'audiBonus' }
-    ];
-
-    buttons.forEach(btnInfo => {
-        const button = document.getElementById(btnInfo.id);
-        if (!button) return;
-        button.addEventListener('click', () => {
-            drawAudiChart(filmsWithAudi, btnInfo.type);
-            document.querySelectorAll('.chart-buttons button').forEach(b => b.classList.remove('active'));
-            button.classList.add('active');
-        });
-    });
-
-    drawAudiChart(filmsWithAudi, 'totalAudi');
-  }
-}
-
-function drawAudiChart(films, dataType = 'totalAudi'){
-    if (myChart) {
-        myChart.destroy();
-    }
-
-    films.sort((a,b) => (a.openDt || '').localeCompare(b.openDt || ''));
-
-    const firstYear = (films.length > 0 && films[0].openDt) ? parseInt(films[0].openDt.slice(0, 4), 10) : new Date().getFullYear();
-
-    const labels = films.map(f => f.openDt ? f.openDt.slice(0,7) : '미상');
-    let dataPoints;
-    let yAxisLabel;
-    
-    const lang = window.getCurrentLang ? window.getCurrentLang() : 'ko';
-    const s = (window.STRINGS && window.STRINGS[lang]) ? window.STRINGS[lang] : STRINGS['ko']; 
-
-    if (dataType === 'audiPerFilmography') {
-        const totalFilms = films.length;
-        dataPoints = films.map(f => (f.audiAcc && totalFilms > 0) ? Math.round(f.audiAcc / totalFilms) : 0);
-        yAxisLabel = s.audiPerFilmo;
-    } else if (dataType === 'audiPerActor') {
-        dataPoints = films.map(f => (f.audiAcc && f.actorCount > 0) ? Math.round(f.audiAcc / f.actorCount) : 0);
-        yAxisLabel = s.audiPerActor;
-    } else if (dataType === 'audiPerCareer') {
-        dataPoints = films.map(f => {
-            const currentYear = f.openDt ? parseInt(f.openDt.slice(0, 4), 10) : firstYear;
-            const careerDuration = Math.max(1, currentYear - firstYear + 1);
-            return (f.audiAcc && careerDuration > 0) ? Math.round(f.audiAcc / careerDuration) : 0;
-        });
-        yAxisLabel = s.audiPerCareer;
-    } else if (dataType === 'audiBonus') {
-        dataPoints = films.map(f => {
-            const audi = f.audiAcc || 0;
-            return audi > 5000000 ? audi * 2 : audi;
-        });
-        yAxisLabel = s.audiBonus;
-    } else {
-        dataPoints = films.map(f => f.audiAcc || 0);
-        yAxisLabel = s.audiCnt;
-    }
-    
-    const movieTitles = films.map(f => f.movieNm);
-
-    const ctx = document.getElementById('audiChart').getContext('2d');
-    myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: '값',
-                data: dataPoints,
-                borderColor: 'rgba(75, 192, 192, 1)',
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                fill: true,
-                tension: 0.1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        callback: function(value) { return value.toLocaleString(); }
-                    },
-                    title: {
-                        display: true,
-                        text: yAxisLabel 
-                    }
-                }
-            },
-            plugins: {
-                legend: { display: false },
-                tooltip: {
-                    callbacks: {
-                        title: function(tooltipItems) { return movieTitles[tooltipItems[0].dataIndex]; },
-                        label: function(context) {
-                            let label = yAxisLabel.split(' (')[0] || '';
-                            if (label) { label += ': '; }
-                            if (context.parsed.y !== null) { label += context.parsed.y.toLocaleString() + (lang === 'ko' ? '명' : ''); }
-                            return label;
-                        }
-                    }
-                }
+            if (movies.length === 0) {
+                container.innerHTML = '<p class="text-gray-500 col-span-full">등록된 출연작이 없습니다. (데이터 수집 중일 수 있습니다)</p>';
+                return;
             }
-        }
-    });
-}
 
-(async function main(){
-  await loadData(); 
-  render();
-})();
-</script>
+            movies.forEach(m => {
+                // 배역 이름 찾기
+                let role = "";
+                const actorInfo = m.actors ? m.actors.find(a => a.id === targetId) : null;
+                if (actorInfo && actorInfo.cast) role = `배역: ${actorInfo.cast}`;
+                else if (m.directors && m.directors.some(d => d.id === targetId)) role = "감독";
+
+                const html = `
+                    <div class="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-lg truncate" title="${m.title}">${m.title}</h3>
+                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">${m.year || '미정'}</span>
+                        </div>
+                        <p class="text-sm text-gray-500 mb-1">${m.titleEn || ''}</p>
+                        <p class="text-sm text-blue-600 font-medium">${role}</p>
+                        <p class="text-xs text-gray-400 mt-2">${m.nation || ''}</p>
+                    </div>
+                `;
+                container.innerHTML += html;
+            });
+        }
+    </script>
 </body>
 </html>
