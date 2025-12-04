@@ -1,5 +1,6 @@
 # scripts/backfill_people.py
-# 목적: 한국 영화 중 배우 이름이 특정 자음 범위(ㅈ~ㅎ)인 경우 우선적으로 코드 수집
+# 목적: 한국 영화 중 배우 이름이 특정 자음 범위(ㅌ~ㅎ)인 경우 우선적으로 코드 수집
+# 타겟: 황정민(ㅎ)을 포함한 ㅌ, ㅍ, ㅎ 자음 배우들 집중 공략
 from __future__ import annotations
 import os
 import json
@@ -57,31 +58,28 @@ def is_korean_movie(target: dict) -> bool:
             return True
     return False
 
-# [핵심] 한글 이름의 초성이 범위 내에 있는지 확인하는 함수
+# [핵심 수정] 타겟 자음 범위 변경 (ㅌ ~ ㅎ)
 def is_name_in_range(name: str) -> bool:
     """
-    이름의 첫 글자가 'ㅈ'(지읒) ~ 'ㅎ'(히읗) 사이인지 확인.
+    이름의 첫 글자가 'ㅌ'(티읕) ~ 'ㅎ'(히읗) 사이인지 확인.
     황정민(ㅎ)은 여기에 포함됨.
     """
     if not name: return False
     first_char = name[0]
     
-    # 한글 유니코드 범위: 가(0xAC00) ~ 힣(0xD7A3)
-    # 초성: (유니코드 - 0xAC00) // 588
-    # ㅈ(9) ~ ㅎ(18) 범위
-    # 0:ㄱ, 1:ㄲ, 2:ㄴ, 3:ㄷ, 4:ㄸ, 5:ㄹ, 6:ㅁ, 7:ㅂ, 8:ㅃ, 
-    # 9:ㅅ, 10:ㅆ, 11:ㅇ, 12:ㅈ, 13:ㅉ, 14:ㅊ, 15:ㅋ, 16:ㅌ, 17:ㅍ, 18:ㅎ
+    # 한글 유니코드 계산
+    # ㅌ(16) ~ ㅎ(18) 범위 (ㅌ, ㅍ, ㅎ)
+    # 0:ㄱ ... 16:ㅌ, 17:ㅍ, 18:ㅎ
     
     if '가' <= first_char <= '힣':
         chosung_idx = (ord(first_char) - 0xAC00) // 588
-        # ㅈ(12)부터 ㅎ(18)까지 (ㅈ, ㅉ, ㅊ, ㅋ, ㅌ, ㅍ, ㅎ)
-        return 12 <= chosung_idx <= 18
+        return 16 <= chosung_idx <= 18
     return False
 
 def need_backfill(target: dict) -> bool:
     """
     1. 코드가 없는 배우가 있어야 함
-    2. 그 배우의 이름이 타겟 범위(ㅈ~ㅎ)에 속해야 함
+    2. 그 배우의 이름이 타겟 범위(ㅌ~ㅎ)에 속해야 함
     """
     actors = target.get("actors") or []
     if not isinstance(actors, list): return False
@@ -90,7 +88,7 @@ def need_backfill(target: dict) -> bool:
         nm = (actor.get("peopleNm") or "").strip()
         cd = (actor.get("peopleCd") or "").strip()
         
-        # 코드가 없고(빈칸) + 이름이 범위 내(ㅈ~ㅎ)인 경우
+        # 코드가 없고(빈칸) + 이름이 범위 내(ㅌ~ㅎ)인 경우
         if nm and not cd:
             if is_name_in_range(nm):
                 return True
@@ -107,13 +105,12 @@ def fetch_movie_info(session, api_key, movieCd):
     return j
 
 def backfill(budget: int, rate_sleep_ms: int):
-    # 최신 영화부터 처리하기 위해 역순 정렬 (reverse=True)
-    # 황정민 같은 주연급 배우는 최신작에 많을 확률이 높음
+    # 최신 영화부터 역순 정렬
     files = sorted([Path(p) for p in glob.glob(str(DETAIL_DIR / "**" / "*.json"), recursive=True)], reverse=True)
     
     print(f"[paths] DETAIL_DIR={DETAIL_DIR}")
     print(f"[scan] detail files: {len(files)} (Reverse Order)")
-    print(f"[filter] Target: Korean Movies + Actor Name starts with 'ㅈ'~'ㅎ'")
+    print(f"[filter] Target: Korean Movies + Actor Name starts with 'ㅌ'~'ㅎ'")
 
     updated = skipped = used = 0
 
@@ -132,7 +129,7 @@ def backfill(budget: int, rate_sleep_ms: int):
             skipped += 1
             continue
 
-        # 2. 타겟 배우(ㅈ~ㅎ, 코드 없음)가 포함된 영화인지 확인
+        # 2. 타겟 배우(ㅌ~ㅎ, 코드 없음)가 포함된 영화인지 확인
         if not need_backfill(trg):
             skipped += 1
             continue
