@@ -4,22 +4,23 @@ on:
   workflow_dispatch:
     inputs:
       budget:
-        description: 'Budget amount (Safe limit for 5 keys: 10000)'
+        description: 'Budget amount (Safe limit for 6 keys: 12000)'
         required: true
-        # 키가 5개(총 15,000회)이므로 5,000~10,000 정도는 충분히 소화 가능합니다.
-        default: '5000'
+        # 키 6개(총 18,000회)를 확보했으므로 6,000회 정도는 안전하게 처리가능합니다.
+        default: '6000'
 
 jobs:
   run:
     runs-on: ubuntu-latest
     env:
-      # 5개의 API 키를 모두 환경 변수로 등록합니다.
+      # [중요] 6개의 API 키를 모두 환경 변수로 등록합니다.
       # GitHub Settings > Secrets에 해당 키들이 모두 등록되어 있어야 합니다.
       KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
       KOFIC_API_KEY_2: ${{ secrets.KOFIC_API_KEY_2 }}
       KOFIC_API_KEY_3: ${{ secrets.KOFIC_API_KEY_3 }}
       KOFIC_API_KEY_4: ${{ secrets.KOFIC_API_KEY_4 }}
       KOFIC_API_KEY_5: ${{ secrets.KOFIC_API_KEY_5 }}
+      KOFIC_API_KEY_6: ${{ secrets.KOFIC_API_KEY_6 }}
       
     steps:
       - name: Checkout (full)
@@ -44,7 +45,7 @@ jobs:
         # 에러가 발생해도(한도 초과 등) 멈추지 않고 저장 단계로 넘어갑니다.
         continue-on-error: true
         run: |
-          # 입력받은 budget만큼 (현재 ㅈ~ㅎ 필터 적용된) 코드를 실행합니다.
+          # 입력받은 budget만큼 (현재 ㅌ~ㅎ 필터 적용된) 코드를 실행합니다.
           python scripts/backfill_people.py \
             --budget "${{ inputs.budget }}" \
             --rate-sleep-ms "250"
@@ -62,5 +63,5 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           git add .
-          git commit -m "Update people data (5 Keys & Filtered)" || echo "No changes to commit"
+          git commit -m "Update people data (6 Keys & Filtered)" || echo "No changes to commit"
           git push
