@@ -1,5 +1,6 @@
 # scripts/backfill_people.py
 # 목적: docs/data/movies/**.json 중 peopleCd가 빈 파일만 KOFIC에서 보충(최소 API) 후 다시 저장
+# [수정됨] "한국" 영화인 경우에만 API를 호출하도록 필터링 기능 추가
 from __future__ import annotations
 import os
 import json
@@ -12,7 +13,6 @@ from urllib.parse import urlencode
 import requests
 
 # [중요] 모듈 경로를 확실하게 추가 (GitHub Actions 환경 대응)
-# 현재 스크립트(backfill_people.py)가 있는 디렉토리(scripts/)를 path에 추가하여 kofic_api.py를 찾게 함
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 if CURRENT_DIR not in sys.path:
     sys.path.append(CURRENT_DIR)
@@ -74,6 +74,21 @@ def need_backfill(target: dict) -> bool:
     """감독이나 배우 중 코드가 누락된 사람이 있으면 True"""
     return is_missing_cd(target.get("directors")) or is_missing_cd(target.get("actors"))
 
+# [신규 추가] 한국 영화인지 확인하는 함수
+def is_korean_movie(target: dict) -> bool:
+    """
+    영화 데이터 내 'nations' 정보를 확인하여 '한국'이 포함되어 있는지 확인합니다.
+    """
+    nations = target.get("nations") or []
+    # 데이터 구조가 리스트가 아니거나 비어있으면 판단 불가 (일단 False 처리하여 API 절약)
+    if not isinstance(nations, list):
+        return False
+    
+    for n in nations:
+        if isinstance(n, dict) and n.get("nationNm") == "한국":
+            return True
+    return False
+
 def fetch_movie_info(session: requests.Session, api_key: str, movieCd: str, timeout=(10, 60)) -> dict:
     qs = urlencode({"key": api_key, "movieCd": movieCd})
     url = f"{MOVIE_INFO_URL}?{qs}"
@@ -81,12 +96,10 @@ def fetch_movie_info(session: requests.Session, api_key: str, movieCd: str, time
     r.raise_for_status()
     j = r.json()
     if j.get("faultInfo") or j.get("faultResult"):
-        # API 제한 등의 에러는 상위에서 처리하도록 예외 발생
         raise RuntimeError(f"KOBIS fault: {j.get('faultInfo') or j.get('faultResult')}")
     return j
 
 def backfill(budget: int, rate_sleep_ms: int) -> tuple[int,int,int]:
-    # glob 결과 정렬하여 실행 순서 일관성 유지
     files = sorted([Path(p) for p in glob.glob(str(DETAIL_DIR / "**" / "*.json"), recursive=True)])
     print(f"[paths] DETAIL_DIR={DETAIL_DIR}")
     print(f"[scan] detail files: {len(files)}")
@@ -105,7 +118,12 @@ def backfill(budget: int, rate_sleep_ms: int) -> tuple[int,int,int]:
         if not movieCd:
             continue
 
-        # 이미 코드가 다 채워져 있으면 API 아끼기 위해 건너뜀
+        # [핵심 수정] 한국 영화가 아니면 건너뜀 (API 절약 & 국내 배우 우선)
+        if not is_korean_movie(trg):
+            skipped += 1
+            continue
+
+        # 이미 코드가 다 채워져 있으면 건너뜀
         if not need_backfill(trg):
             skipped += 1
             continue
@@ -116,13 +134,12 @@ def backfill(budget: int, rate_sleep_ms: int) -> tuple[int,int,int]:
             break
 
         try:
-            # 키 관리자로부터 세션과 키 획득 (자동 로테이션)
             session, api_key = get_session()
             j = fetch_movie_info(session, api_key, movieCd)
             
         except Exception as e:
             print(f"[warn] fetch fail {movieCd}: {e}")
-            time.sleep(1) # 에러 발생 시 잠시 대기
+            time.sleep(1)
             skipped += 1
             continue
 
@@ -135,8 +152,7 @@ def backfill(budget: int, rate_sleep_ms: int) -> tuple[int,int,int]:
             skipped += 1
             continue
 
-        # --- 데이터 정규화 및 덮어쓰기 ---
-        # API에서 받아온 최신 정보(peopleCd 포함)로 감독/배우 정보를 갱신
+        # --- 데이터 갱신 ---
         directors, actors = [], []
         for it in info.get("directors", []) or []:
             directors.append({
@@ -152,7 +168,6 @@ def backfill(budget: int, rate_sleep_ms: int) -> tuple[int,int,int]:
                 "cast": (it.get("cast") or "").strip(),
             })
 
-        # 새로 받은 데이터에 코드가 실제로 있는지 확인
         has_cd = False 
         for arr in (directors, actors):
             for x in arr:
@@ -165,7 +180,7 @@ def backfill(budget: int, rate_sleep_ms: int) -> tuple[int,int,int]:
             trg["actors"]    = actors
             save_json(p, raw)
             updated += 1
-            print(f"[ok] {movieCd} -> updated (dir:{len(directors)}, act:{len(actors)})")
+            print(f"[ok] {movieCd} (한국영화) -> updated")
         else:
             skipped += 1
 
@@ -173,12 +188,10 @@ def backfill(budget: int, rate_sleep_ms: int) -> tuple[int,int,int]:
     return updated, skipped, used
 
 if __name__ == "__main__":
-    # [수정] argparse를 사용하여 --budget 등의 인자를 올바르게 해석하도록 변경
     ap = argparse.ArgumentParser()
     ap.add_argument("--budget", type=int, default=600, help="Max API calls")
     ap.add_argument("--rate-sleep-ms", type=int, default=250, help="Sleep ms")
     
-    # 알 수 없는 인자가 있어도 무시하고 진행 (parse_known_args)
     args, unknown = ap.parse_known_args()
     
     if not API_KEYS:
