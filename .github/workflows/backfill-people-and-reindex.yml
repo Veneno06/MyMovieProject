@@ -4,17 +4,21 @@ on:
   workflow_dispatch:
     inputs:
       budget:
-        description: 'Budget amount to process'
+        description: 'Budget amount to process (Max 6000 for 2 keys)'
         required: true
-        default: '5000'
+        default: '5500'
 
 jobs:
   run:
     runs-on: ubuntu-latest
     env:
+      # 기존 키 (오늘은 한도 초과 상태지만 설정 유지)
       KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
       KOFIC_API_KEY_2: ${{ secrets.KOFIC_API_KEY_2 }}
       KOFIC_API_KEY_3: ${{ secrets.KOFIC_API_KEY_3 }}
+      # [새로 추가] 오늘 사용할 새로운 키 2개
+      KOFIC_API_KEY_4: ${{ secrets.KOFIC_API_KEY_4 }}
+      KOFIC_API_KEY_5: ${{ secrets.KOFIC_API_KEY_5 }}
 
     steps:
       - name: Checkout (full)
@@ -36,8 +40,7 @@ jobs:
           fi
 
       - name: Backfill people codes
-        # [중요] 에러가 발생해도(API 한도 초과 등) 멈추지 않고 다음 단계로 진행하여
-        # 수집된 데이터라도 저장하도록 설정했습니다.
+        # 에러가 발생해도(API 한도 초과 등) 멈추지 않고 데이터를 저장합니다.
         continue-on-error: true
         run: |
           python scripts/backfill_people.py \
@@ -55,6 +58,5 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           git add .
-          # 변경사항이 없으면 에러가 나지 않도록 처리
-          git commit -m "Update people data and indexes" || echo "No changes to commit"
+          git commit -m "Update people data and indexes (New Keys Applied)" || echo "No changes to commit"
           git push
