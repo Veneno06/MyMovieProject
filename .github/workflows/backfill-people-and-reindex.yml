@@ -12,14 +12,12 @@ jobs:
   run:
     runs-on: ubuntu-latest
     env:
-      # 기존 키 (오늘은 한도 초과 상태지만 설정 유지)
-      KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
-      KOFIC_API_KEY_2: ${{ secrets.KOFIC_API_KEY_2 }}
-      KOFIC_API_KEY_3: ${{ secrets.KOFIC_API_KEY_3 }}
-      # [새로 추가] 오늘 사용할 새로운 키 2개
-      KOFIC_API_KEY_4: ${{ secrets.KOFIC_API_KEY_4 }}
-      KOFIC_API_KEY_5: ${{ secrets.KOFIC_API_KEY_5 }}
-
+      # [긴급 수정] 죽은 키는 제거하고, 새 키(4, 5번)를 메인 변수(Key 1, 2)에 강제로 할당합니다.
+      # 이렇게 하면 스크립트는 처음부터 새 키를 사용하게 됩니다.
+      KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY_4 }}
+      KOFIC_API_KEY_2: ${{ secrets.KOFIC_API_KEY_5 }}
+      # 3번 변수는 비워두거나 제거하여 스크립트가 2개만 인식하도록 합니다.
+      
     steps:
       - name: Checkout (full)
         uses: actions/checkout@v4
@@ -40,7 +38,7 @@ jobs:
           fi
 
       - name: Backfill people codes
-        # 에러가 발생해도(API 한도 초과 등) 멈추지 않고 데이터를 저장합니다.
+        # 만약 새 키도 문제가 생기더라도, 수집된 데이터는 건지기 위해 설정 유지
         continue-on-error: true
         run: |
           python scripts/backfill_people.py \
@@ -58,5 +56,5 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           git add .
-          git commit -m "Update people data and indexes (New Keys Applied)" || echo "No changes to commit"
+          git commit -m "Update people data and indexes (New Keys Forced)" || echo "No changes to commit"
           git push
