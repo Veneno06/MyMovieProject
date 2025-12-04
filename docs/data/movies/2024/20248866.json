@@ -22,28 +22,29 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "김성환",
-          "peopleNmEn": "KIM Sunghwan"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "박정학",
-          "peopleNmEn": "PARK Jeong-hak",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
         },
         {
+          "peopleCd": "",
           "peopleNm": "최나린",
-          "peopleNmEn": "",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
         },
         {
+          "peopleCd": "",
           "peopleNm": "서대원",
-          "peopleNmEn": "SEODAEWON",
-          "cast": "편의점 손님",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "편의점 손님"
         }
       ],
       "showTypes": [

@@ -22,22 +22,23 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "강승원",
-          "peopleNmEn": "KANG Seung-won"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "오정훈",
-          "peopleNmEn": "",
-          "cast": "세진",
-          "castEn": "Se-Jin"
+          "repRoleNm": "배우",
+          "cast": "세진"
         },
         {
+          "peopleCd": "",
           "peopleNm": "주인영",
-          "peopleNmEn": "JOO In-young",
-          "cast": "은영",
-          "castEn": "Eun-Young"
+          "repRoleNm": "배우",
+          "cast": "은영"
         }
       ],
       "showTypes": [

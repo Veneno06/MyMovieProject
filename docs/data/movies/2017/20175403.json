@@ -22,22 +22,23 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "최우성",
-          "peopleNmEn": ""
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "장인혁",
-          "peopleNmEn": "",
-          "cast": "주용철",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "주용철"
         },
         {
+          "peopleCd": "",
           "peopleNm": "이정연",
-          "peopleNmEn": "",
-          "cast": "이대리",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "이대리"
         }
       ],
       "showTypes": [

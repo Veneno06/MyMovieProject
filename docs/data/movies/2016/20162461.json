@@ -25,28 +25,29 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "이동희",
-          "peopleNmEn": "LEE Dong-hui"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "정준하",
-          "peopleNmEn": "JUNG Jun-ha",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
         },
         {
+          "peopleCd": "",
           "peopleNm": "하동훈",
-          "peopleNmEn": "HA Dong-hoon",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
         },
         {
+          "peopleCd": "",
           "peopleNm": "송지우",
-          "peopleNmEn": "SONG Ji-woo",
-          "cast": "남자아이 목소리",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "남자아이 목소리"
         }
       ],
       "showTypes": [

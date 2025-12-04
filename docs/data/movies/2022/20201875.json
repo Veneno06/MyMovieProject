@@ -22,22 +22,23 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "이성일",
-          "peopleNmEn": "LEE Sung-il"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "이성욱",
-          "peopleNmEn": "LEE Sung-wook",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
         },
         {
+          "peopleCd": "",
           "peopleNm": "주시현",
-          "peopleNmEn": "",
-          "cast": "곽순경",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "곽순경"
         }
       ],
       "showTypes": [

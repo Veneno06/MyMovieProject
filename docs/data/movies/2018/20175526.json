@@ -25,22 +25,23 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "오인천",
-          "peopleNmEn": "OH In-chun"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "주민하",
-          "peopleNmEn": "JU Min-ha",
-          "cast": "권민",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "권민"
         },
         {
+          "peopleCd": "",
           "peopleNm": "김준섭",
-          "peopleNmEn": "",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
         }
       ],
       "showTypes": [

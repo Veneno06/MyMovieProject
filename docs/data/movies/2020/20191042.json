@@ -25,28 +25,29 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "정가영",
-          "peopleNmEn": "JEONG Gayoung"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "정가영",
-          "peopleNmEn": "JEONG Gayoung",
-          "cast": "가영",
-          "castEn": "Ga-young"
+          "repRoleNm": "배우",
+          "cast": "가영"
         },
         {
+          "peopleCd": "",
           "peopleNm": "이석형",
-          "peopleNmEn": "LEE Suk-hyeong",
-          "cast": "성범",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "성범"
         },
         {
+          "peopleCd": "",
           "peopleNm": "최태환",
-          "peopleNmEn": "CHOI Tae-hwan",
-          "cast": "제섭",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "제섭"
         }
       ],
       "showTypes": [

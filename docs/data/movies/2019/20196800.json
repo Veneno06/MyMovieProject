@@ -22,34 +22,35 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "박한진",
-          "peopleNmEn": "PARK Han-jin"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "박지연",
-          "peopleNmEn": "PARK Ji-yeon",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
         },
         {
+          "peopleCd": "",
           "peopleNm": "최영열",
-          "peopleNmEn": "Young Che",
-          "cast": "마술사",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "마술사"
         },
         {
+          "peopleCd": "",
           "peopleNm": "김영준",
-          "peopleNmEn": "",
-          "cast": "극장촬영감독2",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "극장촬영감독2"
         },
         {
+          "peopleCd": "",
           "peopleNm": "김영준",
-          "peopleNmEn": "",
-          "cast": "스튜디오촬영감독",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "스튜디오촬영감독"
         }
       ],
       "showTypes": [

@@ -22,22 +22,23 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "조태호",
-          "peopleNmEn": ""
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "희우",
-          "peopleNmEn": "",
-          "cast": "선화",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "선화"
         },
         {
+          "peopleCd": "",
           "peopleNm": "김지연",
-          "peopleNmEn": "",
-          "cast": "지영",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "지영"
         }
       ],
       "showTypes": [

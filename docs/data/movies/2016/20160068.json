@@ -22,28 +22,29 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "박은호",
-          "peopleNmEn": ""
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "박주빈",
-          "peopleNmEn": "",
-          "cast": "미연",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "미연"
         },
         {
+          "peopleCd": "",
           "peopleNm": "주예빈",
-          "peopleNmEn": "",
-          "cast": "시연",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "시연"
         },
         {
+          "peopleCd": "",
           "peopleNm": "위지웅",
-          "peopleNmEn": "WI Ji-woong",
-          "cast": "태민",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "태민"
         }
       ],
       "showTypes": [

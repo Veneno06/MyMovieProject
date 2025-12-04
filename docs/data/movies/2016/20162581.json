@@ -28,28 +28,29 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "김태균",
-          "peopleNmEn": "KIM Tae-kyun"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "지진희",
-          "peopleNmEn": "JI Jin-hee",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
         },
         {
+          "peopleCd": "",
           "peopleNm": "진의함",
-          "peopleNmEn": "Chen Yi-Han",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
         },
         {
+          "peopleCd": "",
           "peopleNm": "우혜림",
-          "peopleNmEn": "WOO Hye-rim",
-          "cast": "박재희",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "박재희"
         }
       ],
       "showTypes": [

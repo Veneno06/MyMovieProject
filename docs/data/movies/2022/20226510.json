@@ -22,28 +22,29 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "강대희",
-          "peopleNmEn": "KANG Dae-hee"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "박서진",
-          "peopleNmEn": "",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
         },
         {
+          "peopleCd": "",
           "peopleNm": "조재윤",
-          "peopleNmEn": "JO Jae-yun",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
         },
         {
+          "peopleCd": "",
           "peopleNm": "김준범",
-          "peopleNmEn": "KIM JOON BUM",
-          "cast": "서프독손님역",
-          "castEn": "SURFDOG GUEST"
+          "repRoleNm": "배우",
+          "cast": "서프독손님역"
         }
       ],
       "showTypes": [

@@ -22,38 +22,40 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "김태영",
-          "peopleNmEn": "KIM Tae-yeong"
+          "repRoleNm": "감독"
         },
         {
+          "peopleCd": "",
           "peopleNm": "최규석",
-          "peopleNmEn": "Choi Gyu-seog"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "하토야마 유키오",
-          "peopleNmEn": "Hatoyama Yukio",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
         },
         {
+          "peopleCd": "",
           "peopleNm": "스기오 히데야",
-          "peopleNmEn": "Sugio Hideya",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
         },
         {
+          "peopleCd": "",
           "peopleNm": "정성길",
-          "peopleNmEn": "Jung Sung-gil",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
         },
         {
+          "peopleCd": "",
           "peopleNm": "김의성",
-          "peopleNmEn": "KIM Eui-sung",
-          "cast": "내레이션",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "내레이션"
         }
       ],
       "showTypes": [

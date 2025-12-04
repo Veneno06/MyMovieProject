@@ -22,28 +22,29 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "김대환",
-          "peopleNmEn": "KIM Dae-hwan"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "김새벽",
-          "peopleNmEn": "KIM Sae-byuk",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
         },
         {
+          "peopleCd": "",
           "peopleNm": "조현철",
-          "peopleNmEn": "CHO Hyun-chul",
-          "cast": "수현 ",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "수현"
         },
         {
+          "peopleCd": "",
           "peopleNm": "류제승",
-          "peopleNmEn": "RYU Je-seung",
-          "cast": "동욱",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "동욱"
         }
       ],
       "showTypes": [

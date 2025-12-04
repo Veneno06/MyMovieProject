@@ -25,34 +25,35 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "박재인",
-          "peopleNmEn": "PARK Jae-in"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "오태경",
-          "peopleNmEn": "OH Tae-kyung",
-          "cast": "스티븐",
-          "castEn": "Steven"
+          "repRoleNm": "배우",
+          "cast": "스티븐"
         },
         {
+          "peopleCd": "",
           "peopleNm": "유일한",
-          "peopleNmEn": "",
-          "cast": "김덕정",
-          "castEn": "Kim duck-jung"
+          "repRoleNm": "배우",
+          "cast": "김덕정"
         },
         {
+          "peopleCd": "",
           "peopleNm": "기주봉",
-          "peopleNmEn": "KI Joo-bong",
-          "cast": "박정철",
-          "castEn": "PARK jung-chul"
+          "repRoleNm": "배우",
+          "cast": "박정철"
         },
         {
+          "peopleCd": "",
           "peopleNm": "정인기",
-          "peopleNmEn": "JUNG In-gi",
-          "cast": "인민군 역",
-          "castEn": "DPRK Soldier"
+          "repRoleNm": "배우",
+          "cast": "인민군 역"
         }
       ],
       "showTypes": [

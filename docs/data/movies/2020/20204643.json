@@ -28,22 +28,23 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "심찬양",
-          "peopleNmEn": "SHIM Chanyang"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "홍이삭",
-          "peopleNmEn": "HONG Isaac",
-          "cast": "태일",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "태일"
         },
         {
+          "peopleCd": "",
           "peopleNm": "장하은",
-          "peopleNmEn": "JANG Haeun",
-          "cast": "지원",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "지원"
         }
       ],
       "showTypes": [

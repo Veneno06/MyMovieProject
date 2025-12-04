@@ -22,22 +22,23 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "유진주",
-          "peopleNmEn": ""
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "하정우",
-          "peopleNmEn": "HA Jung-woo",
-          "cast": "내레이션",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "내레이션"
         },
         {
+          "peopleCd": "",
           "peopleNm": "김중희",
-          "peopleNmEn": "",
-          "cast": "오다 나라지",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "오다 나라지"
         }
       ],
       "showTypes": [

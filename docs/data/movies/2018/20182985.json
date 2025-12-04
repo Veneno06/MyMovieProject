@@ -18,22 +18,23 @@
       "genres": [],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "신성진",
-          "peopleNmEn": ""
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "이유미",
-          "peopleNmEn": "",
-          "cast": "선미",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "선미"
         },
         {
+          "peopleCd": "",
           "peopleNm": "최수락",
-          "peopleNmEn": "",
-          "cast": "괴남자",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "괴남자"
         }
       ],
       "showTypes": [

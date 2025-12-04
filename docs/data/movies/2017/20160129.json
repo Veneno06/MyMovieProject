@@ -25,28 +25,29 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "정대만",
-          "peopleNmEn": "JUNG Dae-man"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "유지원",
-          "peopleNmEn": "",
-          "cast": "선경",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "선경"
         },
         {
+          "peopleCd": "",
           "peopleNm": "현상태",
-          "peopleNmEn": "",
-          "cast": "선배1",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "선배1"
         },
         {
+          "peopleCd": "",
           "peopleNm": "문지환",
-          "peopleNmEn": "",
-          "cast": "선배2",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "선배2"
         }
       ],
       "showTypes": [

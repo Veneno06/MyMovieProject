@@ -25,22 +25,35 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "조영준",
-          "peopleNmEn": "CHO Young-jun"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "조여정",
-          "peopleNmEn": "CHO Yeo-jeong",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
         },
         {
+          "peopleCd": "",
           "peopleNm": "정성일",
-          "peopleNmEn": "JUNG Sung-il",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
+        },
+        {
+          "peopleCd": "",
+          "peopleNm": "황지아",
+          "repRoleNm": "배우",
+          "cast": "예린"
+        },
+        {
+          "peopleCd": "",
+          "peopleNm": "변창열",
+          "repRoleNm": "배우",
+          "cast": "동영상 피해자2"
         }
       ],
       "showTypes": [

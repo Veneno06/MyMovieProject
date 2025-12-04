@@ -25,22 +25,23 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "이한",
-          "peopleNmEn": ""
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "보리",
-          "peopleNmEn": "",
-          "cast": "희수/은수",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "희수/은수"
         },
         {
+          "peopleCd": "",
           "peopleNm": "주희",
-          "peopleNmEn": "",
-          "cast": "채빈",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "채빈"
         }
       ],
       "showTypes": [

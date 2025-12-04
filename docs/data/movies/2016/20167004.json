@@ -22,28 +22,29 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "최원석",
-          "peopleNmEn": ""
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "지주연",
-          "peopleNmEn": "",
-          "cast": "양지운",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "양지운"
         },
         {
+          "peopleCd": "",
           "peopleNm": "임대지",
-          "peopleNmEn": "",
-          "cast": "행인",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "행인"
         },
         {
+          "peopleCd": "",
           "peopleNm": "이경철",
-          "peopleNmEn": "",
-          "cast": "이사집센터직원",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "이사집센터직원"
         }
       ],
       "showTypes": [

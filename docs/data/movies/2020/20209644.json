@@ -28,28 +28,29 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "드레이크 도리머스",
-          "peopleNmEn": "Drake Doremus"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "쉐일린 우들리",
-          "peopleNmEn": "Shailene Woodley",
-          "cast": "다프네",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "다프네"
         },
         {
+          "peopleCd": "",
           "peopleNm": "제이미 도넌",
-          "peopleNmEn": "Jamie Dornan",
-          "cast": "잭",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "잭"
         },
         {
+          "peopleCd": "",
           "peopleNm": "세바스찬 스탠",
-          "peopleNmEn": "Sebastian Stan",
-          "cast": "프랭크",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "프랭크"
         }
       ],
       "showTypes": [

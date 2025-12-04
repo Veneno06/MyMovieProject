@@ -25,22 +25,23 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "이리단",
-          "peopleNmEn": ""
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "한가희",
-          "peopleNmEn": "",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
         },
         {
+          "peopleCd": "",
           "peopleNm": "전보라",
-          "peopleNmEn": "",
-          "cast": "한지혜",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "한지혜"
         }
       ],
       "showTypes": [

@@ -22,28 +22,29 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "김태훈",
-          "peopleNmEn": "KIM Tae-hoon"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "김영성",
-          "peopleNmEn": "KIM Young-sung",
-          "cast": "기영",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "기영"
         },
         {
+          "peopleCd": "",
           "peopleNm": "최준우",
-          "peopleNmEn": "",
-          "cast": "길호",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "길호"
         },
         {
+          "peopleCd": "",
           "peopleNm": "임재혁",
-          "peopleNmEn": "limjaehyeok",
-          "cast": "가출청소년",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "가출청소년"
         }
       ],
       "showTypes": [

@@ -25,28 +25,29 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "조성규",
-          "peopleNmEn": "CHO Sung-kyu"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "카이",
-          "peopleNmEn": "KAI",
-          "cast": "현수",
-          "castEn": "현수"
+          "repRoleNm": "배우",
+          "cast": "현수"
         },
         {
+          "peopleCd": "",
           "peopleNm": "선민",
-          "peopleNmEn": "",
-          "cast": "선민",
-          "castEn": "Sun-min"
+          "repRoleNm": "배우",
+          "cast": "선민"
         },
         {
+          "peopleCd": "",
           "peopleNm": "정연주",
-          "peopleNmEn": "JEONG Yeon-ju",
-          "cast": "연주",
-          "castEn": "Yeon-ju"
+          "repRoleNm": "배우",
+          "cast": "연주"
         }
       ],
       "showTypes": [

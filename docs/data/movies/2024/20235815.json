@@ -28,22 +28,23 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "유승원",
-          "peopleNmEn": "RYU Seung-won"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "유승원",
-          "peopleNmEn": "RYU Seung-won",
-          "cast": "정승원",
-          "castEn": "JUNG Seung-won"
+          "repRoleNm": "배우",
+          "cast": "정승원"
         },
         {
+          "peopleCd": "",
           "peopleNm": "정가현",
-          "peopleNmEn": "JUNG Ga-hyun",
-          "cast": "유가현",
-          "castEn": "RYU Ga-hyun"
+          "repRoleNm": "배우",
+          "cast": "유가현"
         }
       ],
       "showTypes": [

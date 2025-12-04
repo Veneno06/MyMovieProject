@@ -25,22 +25,23 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "김규현",
-          "peopleNmEn": ""
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "권유리",
-          "peopleNmEn": "GWON Yu-ri",
-          "cast": "박가람",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "박가람"
         },
         {
+          "peopleCd": "",
           "peopleNm": "현우",
-          "peopleNmEn": "HYUN Woo",
-          "cast": "김선재",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "김선재"
         }
       ],
       "showTypes": [

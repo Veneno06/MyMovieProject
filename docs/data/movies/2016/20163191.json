@@ -22,22 +22,23 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "최석원",
-          "peopleNmEn": ""
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "민준",
-          "peopleNmEn": "",
-          "cast": "주대리",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "주대리"
         },
         {
+          "peopleCd": "",
           "peopleNm": "정민",
-          "peopleNmEn": "",
-          "cast": "김과장",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "김과장"
         }
       ],
       "showTypes": [

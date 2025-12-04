@@ -22,28 +22,29 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "오정미",
-          "peopleNmEn": "OH Jung-mi"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "이유영",
-          "peopleNmEn": "LEE Yoo-young",
-          "cast": "인애",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "인애"
         },
         {
+          "peopleCd": "",
           "peopleNm": "장원형",
-          "peopleNmEn": "ZANG Won-hyoung",
-          "cast": "민구",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "민구"
         },
         {
+          "peopleCd": "",
           "peopleNm": "민복기",
-          "peopleNmEn": "MIN Bok-gi",
-          "cast": "김사장",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "김사장"
         }
       ],
       "showTypes": [

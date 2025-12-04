@@ -25,40 +25,47 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "허 슈밍",
-          "peopleNmEn": "HE SHUMING"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "홍휘팡",
-          "peopleNmEn": "Huifang Hong",
-          "cast": "림메이화",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "림메이화"
         },
         {
+          "peopleCd": "",
           "peopleNm": "강형석",
-          "peopleNmEn": "KANG Hyeong-seok",
-          "cast": "권우",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "권우"
         },
         {
+          "peopleCd": "",
           "peopleNm": "정동환",
-          "peopleNmEn": "CHUNG Dong-hwan",
-          "cast": "정수",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "정수"
         },
         {
+          "peopleCd": "",
           "peopleNm": "여진구",
-          "peopleNmEn": "YEO Jin-gu",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
         },
         {
+          "peopleCd": "",
+          "peopleNm": "이송아",
+          "repRoleNm": "배우",
+          "cast": "관광객"
+        },
+        {
+          "peopleCd": "",
           "peopleNm": "변승채",
-          "peopleNmEn": "Byun Seung Chae",
-          "cast": "HOTEL EMPLOYEE",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "HOTEL EMPLOYEE"
         }
       ],
       "showTypes": [

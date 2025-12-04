@@ -22,26 +22,28 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "백수호",
-          "peopleNmEn": ""
+          "repRoleNm": "감독"
         },
         {
+          "peopleCd": "",
           "peopleNm": "홍수동",
-          "peopleNmEn": "HONG SOO DONG"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "이은미",
-          "peopleNmEn": "LEE Eun-mi",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
         },
         {
+          "peopleCd": "",
           "peopleNm": "장현우",
-          "peopleNmEn": "",
-          "cast": "최석훈",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "최석훈"
         }
       ],
       "showTypes": [

@@ -22,28 +22,29 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "이동우",
-          "peopleNmEn": "LEE Dong-woo"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "정진용",
-          "peopleNmEn": "",
-          "cast": "출연",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "출연"
         },
         {
+          "peopleCd": "",
           "peopleNm": "이동우",
-          "peopleNmEn": "LEE Dong-woo",
-          "cast": "SCUMRAID",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "SCUMRAID"
         },
         {
+          "peopleCd": "",
           "peopleNm": "이주영",
-          "peopleNmEn": "",
-          "cast": "SCUMRAID",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "SCUMRAID"
         }
       ],
       "showTypes": [

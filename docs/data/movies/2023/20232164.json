@@ -25,28 +25,29 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "오성수",
-          "peopleNmEn": ""
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "한기찬",
-          "peopleNmEn": "",
-          "cast": "청명",
-          "castEn": "Chung Myung"
+          "repRoleNm": "배우",
+          "cast": "청명"
         },
         {
+          "peopleCd": "",
           "peopleNm": "박수빈",
-          "peopleNmEn": "",
-          "cast": "새롬",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "새롬"
         },
         {
+          "peopleCd": "",
           "peopleNm": "이연정",
-          "peopleNmEn": "",
-          "cast": "당근거래인",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "당근거래인"
         }
       ],
       "showTypes": [

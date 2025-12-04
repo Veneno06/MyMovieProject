@@ -28,28 +28,29 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "지오바니 푸무",
-          "peopleNmEn": "Giovanni FUMU"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "장성범",
-          "peopleNmEn": "JANG Sung-bum",
-          "cast": "태민",
-          "castEn": "Taemin"
+          "repRoleNm": "배우",
+          "cast": "태민"
         },
         {
+          "peopleCd": "",
           "peopleNm": "임영주",
-          "peopleNmEn": "",
-          "cast": "민지",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "민지"
         },
         {
+          "peopleCd": "",
           "peopleNm": "토니 덴만",
-          "peopleNmEn": "Tony Denman",
-          "cast": "데니",
-          "castEn": "Denny"
+          "repRoleNm": "배우",
+          "cast": "데니"
         }
       ],
       "showTypes": [

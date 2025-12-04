@@ -22,28 +22,29 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "김주만",
-          "peopleNmEn": "KIM Joo-man"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "이수정",
-          "peopleNmEn": "LEE Soo-jeong",
-          "cast": "은미",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "은미"
         },
         {
+          "peopleCd": "",
           "peopleNm": "채민서",
-          "peopleNmEn": "CHAE Min-seo",
-          "cast": "선영",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "선영"
         },
         {
+          "peopleCd": "",
           "peopleNm": "김희상",
-          "peopleNmEn": "",
-          "cast": "태호",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "태호"
         }
       ],
       "showTypes": [

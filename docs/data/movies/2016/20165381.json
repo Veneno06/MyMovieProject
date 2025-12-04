@@ -25,28 +25,29 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "이동현",
-          "peopleNmEn": ""
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "강현중",
-          "peopleNmEn": "KANG Hyun-joong",
-          "cast": "강현중",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "강현중"
         },
         {
+          "peopleCd": "",
           "peopleNm": "조영택",
-          "peopleNmEn": "",
-          "cast": "장준석",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "장준석"
         },
         {
+          "peopleCd": "",
           "peopleNm": "주연서",
-          "peopleNmEn": "",
-          "cast": "이소연",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "이소연"
         }
       ],
       "showTypes": [

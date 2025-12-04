@@ -18,22 +18,23 @@
       "genres": [],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "최석원",
-          "peopleNmEn": ""
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "백슬비",
-          "peopleNmEn": "",
-          "cast": "윤서",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "윤서"
         },
         {
+          "peopleCd": "",
           "peopleNm": "채린",
-          "peopleNmEn": "",
-          "cast": "주나",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "주나"
         }
       ],
       "showTypes": [

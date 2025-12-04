@@ -22,22 +22,23 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "기모태",
-          "peopleNmEn": "Ki Mo-tae"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "장현준",
-          "peopleNmEn": "",
-          "cast": "기동",
-          "castEn": "Ki-dong"
+          "repRoleNm": "배우",
+          "cast": "기동"
         },
         {
+          "peopleCd": "",
           "peopleNm": "기모태",
-          "peopleNmEn": "Ki Mo-tae",
-          "cast": "엑스",
-          "castEn": "x"
+          "repRoleNm": "배우",
+          "cast": "엑스"
         }
       ],
       "showTypes": [

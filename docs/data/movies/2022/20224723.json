@@ -25,28 +25,29 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "박혁지",
-          "peopleNmEn": "PARK Hyuckjee"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "권수진",
-          "peopleNmEn": "",
-          "cast": "권수진",
-          "castEn": "Kwon Su-jin"
+          "repRoleNm": "배우",
+          "cast": "권수진"
         },
         {
+          "peopleCd": "",
           "peopleNm": "이경원",
-          "peopleNmEn": "",
-          "cast": "이경원",
-          "castEn": "Lee Kyung-won"
+          "repRoleNm": "배우",
+          "cast": "이경원"
         },
         {
+          "peopleCd": "",
           "peopleNm": "조경아",
-          "peopleNmEn": "",
-          "cast": "성우",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "성우"
         }
       ],
       "showTypes": [

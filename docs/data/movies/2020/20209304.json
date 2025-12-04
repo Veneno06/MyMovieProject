@@ -22,28 +22,29 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "홍원찬",
-          "peopleNmEn": "HONG Won-chan"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "황정민",
-          "peopleNmEn": "HWANG Jung-min",
-          "cast": "인남",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "인남"
         },
         {
+          "peopleCd": "",
           "peopleNm": "이정재",
-          "peopleNmEn": "LEE Jung-jae",
-          "cast": "레이",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "레이"
         },
         {
+          "peopleCd": "",
           "peopleNm": "박정민",
-          "peopleNmEn": "Park Jeongmin",
-          "cast": "유이",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "유이"
         }
       ],
       "showTypes": [

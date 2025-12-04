@@ -22,28 +22,29 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "정가영",
-          "peopleNmEn": "JEONG Gayoung"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "정가영",
-          "peopleNmEn": "JEONG Gayoung",
-          "cast": "여자",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "여자"
         },
         {
+          "peopleCd": "",
           "peopleNm": "김최용준",
-          "peopleNmEn": "KIM Choe-yong-jun",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
         },
         {
+          "peopleCd": "",
           "peopleNm": "이하윤",
-          "peopleNmEn": "",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
         }
       ],
       "showTypes": [

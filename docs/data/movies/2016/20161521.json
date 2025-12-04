@@ -22,22 +22,23 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "강백호",
-          "peopleNmEn": "KANG Beak-ho"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "도모세",
-          "peopleNmEn": "",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
         },
         {
+          "peopleCd": "",
           "peopleNm": "혜정",
-          "peopleNmEn": "",
-          "cast": "수지",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "수지"
         }
       ],
       "showTypes": [

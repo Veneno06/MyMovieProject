@@ -22,28 +22,29 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "윤가은",
-          "peopleNmEn": "YOON Ga-eun"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "서수빈",
-          "peopleNmEn": "SEO SU BIN",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
         },
         {
+          "peopleCd": "",
           "peopleNm": "장혜진",
-          "peopleNmEn": "CHANG Hyae-jin",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
         },
         {
+          "peopleCd": "",
           "peopleNm": "최강현",
-          "peopleNmEn": "Choi ganghyun",
-          "cast": "방송반남선배",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "방송반남선배"
         }
       ],
       "showTypes": [

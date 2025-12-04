@@ -22,22 +22,23 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "김무원",
-          "peopleNmEn": ""
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "주예빈",
-          "peopleNmEn": "",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
         },
         {
+          "peopleCd": "",
           "peopleNm": "이수민",
-          "peopleNmEn": "",
-          "cast": "한수",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "한수"
         }
       ],
       "showTypes": [

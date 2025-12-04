@@ -18,22 +18,23 @@
       "genres": [],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "이슬",
-          "peopleNmEn": ""
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "정태호",
-          "peopleNmEn": "",
-          "cast": "택배원",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "택배원"
         },
         {
+          "peopleCd": "",
           "peopleNm": "이슬",
-          "peopleNmEn": "",
-          "cast": "봉고차 남자",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "봉고차 남자"
         }
       ],
       "showTypes": [

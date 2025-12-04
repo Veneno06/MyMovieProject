@@ -22,28 +22,29 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "정성일",
-          "peopleNmEn": "JUNG Sung-il"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "임권택",
-          "peopleNmEn": "IM Kwontaek",
-          "cast": "임권택",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "임권택"
         },
         {
+          "peopleCd": "",
           "peopleNm": "채령",
-          "peopleNmEn": "Chae Ryeong",
-          "cast": "채령",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "채령"
         },
         {
+          "peopleCd": "",
           "peopleNm": "권현상",
-          "peopleNmEn": "KWON Hyun-sang",
-          "cast": "권현상",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "권현상"
         }
       ],
       "showTypes": [

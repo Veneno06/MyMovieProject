@@ -22,22 +22,23 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "이동현",
-          "peopleNmEn": "LEE Dong-hyun"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "최재경",
-          "peopleNmEn": "",
-          "cast": "소개남",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "소개남"
         },
         {
+          "peopleCd": "",
           "peopleNm": "이민욱",
-          "peopleNmEn": "",
-          "cast": "모델남",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "모델남"
         }
       ],
       "showTypes": [
