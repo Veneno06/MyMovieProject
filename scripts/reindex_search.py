@@ -11,14 +11,15 @@ OUTPUT_FILE = ROOT / "docs" / "data" / "search_index.json"
 
 def reindex():
     print(f"[reindex] Scanning {DATA_DIR}...")
-    files = sorted(glob.glob(str(DATA_DIR / "**" / "*.json"), recursive=True))
+    # [수정] glob 결과를 Path 객체 리스트로 변환 (p.name 사용을 위해)
+    files = sorted([Path(p) for p in glob.glob(str(DATA_DIR / "**" / "*.json"), recursive=True)])
     
     index_list = []
     
     for p in files:
         try:
-            # 파일 읽기
-            txt = Path(p).read_text(encoding="utf-8")
+            # 파일 읽기 (p는 이제 Path 객체이므로 바로 read_text 사용 가능)
+            txt = p.read_text(encoding="utf-8")
             if not txt.strip(): continue # 빈 파일 건너뜀
             
             data = json.loads(txt)
@@ -29,9 +30,7 @@ def reindex():
             if not info.get("movieCd"):
                 continue
 
-            # [핵심 수정] 감독 및 배우 정보를 이름과 코드(ID)가 포함된 리스트로 변환
-            # 기존에는 이름만 가져왔으나, 이제는 ID도 함께 가져와 동명이인 구분을 대비함
-            
+            # 감독 및 배우 정보를 이름과 코드(ID)가 포함된 리스트로 변환
             directors = []
             for d in (info.get("directors") or []):
                 nm = d.get("peopleNm", "").strip()
@@ -58,12 +57,12 @@ def reindex():
                 "titleEn": info.get("movieNmEn"),
                 "year": info.get("prdtYear"),
                 "nation": (info.get("nations") or [{}])[0].get("nationNm") if info.get("nations") else "",
-                "directors": directors, # 감독 리스트 (이름+ID)
-                "actors": actors        # 배우 리스트 (이름+ID)
+                "directors": directors,
+                "actors": actors
             })
             
         except Exception as e:
-            # 깨진 파일은 경고 출력 후 건너뜀
+            # [수정] p가 Path 객체이므로 p.name 접근이 가능해짐 -> 에러 없이 경고 출력
             print(f"[warn] Failed to parse {p.name}: {e}")
             continue
 
