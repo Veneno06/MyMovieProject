@@ -1,96 +1,116 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
 import os
 import json
 import time
+import glob
 import sys
 from pathlib import Path
+from urllib.parse import urlencode
+import requests
 
-# 모듈 경로 설정
+# 모듈 경로 추가
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 if CURRENT_DIR not in sys.path:
     sys.path.append(CURRENT_DIR)
 
 try:
-    import kofic_api
+    from kofic_api import get_session, API_KEYS
 except ImportError:
-    print("[오류] kofic_api.py가 필요합니다.")
-    exit(1)
+    # 모듈이 없을 경우 더미 처리 (에러 방지)
+    API_KEYS = []
+    def get_session(): return None, None
 
-ROOT = Path(__file__).resolve().parents[1]
-SEARCH_DIR = ROOT / "docs" / "data" / "search"
-PEOPLE_INDEX_PATH = SEARCH_DIR / "people.json"
-PEOPLE_DETAILS_PATH = SEARCH_DIR / "people_details.json"
+HERE = Path(__file__).resolve()
+ROOT = HERE.parents[1]
+MOVIE_DIR = ROOT / "docs" / "data" / "movies"
+PEOPLE_DIR = ROOT / "docs" / "data" / "people"
+PEOPLE_INFO_URL = "https://www.kobis.or.kr/kobisopenapi/webservice/rest/people/searchPeopleInfo.json"
 
-SEARCH_PEOPLE_INFO_URL = "https://www.kobis.or.kr/kobisopenapi/webservice/rest/people/searchPeopleInfo.json"
-
-def load_json(p):
-    if not p.exists(): return {}
+def load_json(p: Path):
     try:
-        with open(p, "r", encoding="utf-8") as f: return json.load(f)
-    except: return {}
+        return json.loads(p.read_text(encoding="utf-8"))
+    except:
+        return None
 
-def save_json(p, data):
-    with open(p, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
+def save_json(p: Path, data: dict):
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
 
-def run_details(budget=3000, rate_sleep_ms=250):
-    print(">>> 배우 상세정보(성별) 수집 시작...")
-    
-    # 1. 인덱스 로드
-    people_data = load_json(PEOPLE_INDEX_PATH)
-    people_list = people_data.get("people", [])
-    
-    # 2. 기존 상세정보 로드
-    details_db = load_json(PEOPLE_DETAILS_PATH)
-    
-    used = 0
-    updated = 0
-    
-    # peopleCd가 있는 배우만 대상
-    targets = [p for p in people_list if p.get("peopleCd")]
-    
-    for p in targets:
-        code = p.get("peopleCd")
-        name = p.get("peopleNm")
+def is_korean_movie(data: dict) -> bool:
+    # 영화 데이터에서 한국 영화인지 판별
+    info = data if data.get("movieCd") else ((data.get("movieInfoResult") or {}).get("movieInfo") or {})
+    nations = info.get("nations") or []
+    for n in nations:
+        if n.get("nationNm") == "한국":
+            return True
+    return False
+
+def fetch_people_info(session, api_key, peopleCd):
+    qs = urlencode({"key": api_key, "peopleCd": peopleCd})
+    url = f"{PEOPLE_INFO_URL}?{qs}"
+    r = session.get(url, timeout=10)
+    r.raise_for_status()
+    return r.json()
+
+def build_details():
+    if not API_KEYS:
+        print("[build_people] No API Keys. Skipping.")
+        return
+
+    # 1. 영화 파일에서 '한국 영화'의 배우 코드 수집
+    files = sorted(glob.glob(str(MOVIE_DIR / "**" / "*.json"), recursive=True))
+    target_people = set()
+
+    print(f"[scan] Scanning {len(files)} movies for Korean actors...")
+    for p in files:
+        data = load_json(Path(p))
+        if not data: continue
         
-        if code in details_db:
-            continue # 이미 있음
-            
-        if used >= budget:
-            print(f"[info] Budget reached ({used}). Stopping.")
+        # 한국 영화만 대상
+        if not is_korean_movie(data):
+            continue
+
+        info = data if data.get("movieCd") else ((data.get("movieInfoResult") or {}).get("movieInfo") or {})
+        
+        # 감독 & 배우 코드 수집
+        for key in ["directors", "actors"]:
+            for person in (info.get(key) or []):
+                code = person.get("peopleCd")
+                if code:
+                    target_people.add(code)
+
+    print(f"[info] Found {len(target_people)} people codes from Korean movies.")
+
+    # 2. 각 배우별 상세 정보(성별 등) 수집
+    count = 0
+    limit = 2000 # 안전장치: 최대 2000명까지만 조회
+    
+    for code in sorted(list(target_people)):
+        if count >= limit:
+            print("[info] Limit reached. Stop.")
             break
-            
+
+        person_file = PEOPLE_DIR / f"{code}.json"
+        if person_file.exists():
+            continue # 이미 있으면 패스
+
         try:
-            print(f"  Fetching {name} ({code})...")
-            res = kofic_api.fetch(SEARCH_PEOPLE_INFO_URL, {"peopleCd": code})
-            info = res.get("peopleInfoResult", {}).get("peopleInfo")
+            session, api_key = get_session()
+            data = fetch_people_info(session, api_key, code)
             
-            if info:
-                details_db[code] = {
-                    "sex": info.get("sex"),
-                    "repRoleNm": info.get("repRoleNm"),
-                    "updateAt": int(time.time())
-                }
-                updated += 1
-            
-            used += 1
-            time.sleep(rate_sleep_ms / 1000.0)
-            
+            p_info = (data.get("peopleInfoResult") or {}).get("peopleInfo")
+            if p_info:
+                save_json(person_file, p_info)
+                print(f"[ok] Saved {p_info.get('peopleNm')} ({p_info.get('sex')})")
+                count += 1
+                time.sleep(0.1) # 100ms 대기
+            else:
+                print(f"[skip] No info for {code}")
+                
         except Exception as e:
-            print(f"    -> Error: {e}")
+            print(f"[error] {code}: {e}")
             time.sleep(1)
 
-    # 저장
-    save_json(PEOPLE_DETAILS_PATH, details_db)
-    print(f">>> 저장 완료. 신규 수집: {updated}명, API 사용: {used}회")
+    print(f"[done] Processed {count} new people details.")
 
 if __name__ == "__main__":
-    import argparse
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--budget", type=int, default=3000)
-    ap.add_argument("--rate-sleep-ms", type=int, default=250)
-    args, _ = ap.parse_known_args()
-    
-    run_details(args.budget, args.rate_sleep_ms)
+    build_details()
