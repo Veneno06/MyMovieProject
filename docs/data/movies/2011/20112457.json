@@ -22,22 +22,23 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "이정호",
-          "peopleNmEn": "LEE Jung-ho"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "원주고등학교 야구부",
-          "peopleNmEn": "",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
         },
         {
+          "peopleCd": "",
           "peopleNm": "하미연",
-          "peopleNmEn": "",
-          "cast": "대웅 어머니",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "대웅 어머니"
         }
       ],
       "showTypes": [

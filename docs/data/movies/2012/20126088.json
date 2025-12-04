@@ -25,28 +25,29 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "백상열",
-          "peopleNmEn": "BAEK Sang-yeol"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "이동규",
-          "peopleNmEn": "LEE Dong-kyu",
-          "cast": "정호",
-          "castEn": "Jung-ho"
+          "repRoleNm": "배우",
+          "cast": "정호"
         },
         {
+          "peopleCd": "",
           "peopleNm": "김진선",
-          "peopleNmEn": "KIM Jin-sun",
-          "cast": "지수",
-          "castEn": "Ji-soo"
+          "repRoleNm": "배우",
+          "cast": "지수"
         },
         {
+          "peopleCd": "",
           "peopleNm": "한하유",
-          "peopleNmEn": "HAN Ha-yoo",
-          "cast": "혜인",
-          "castEn": "Hye-in"
+          "repRoleNm": "배우",
+          "cast": "혜인"
         }
       ],
       "showTypes": [

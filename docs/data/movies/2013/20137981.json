@@ -22,28 +22,29 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "박갑종",
-          "peopleNmEn": "PARK Kap-jong"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "허지혜",
-          "peopleNmEn": "HEO Ji-hye",
-          "cast": "지원",
-          "castEn": "ji-won"
+          "repRoleNm": "배우",
+          "cast": "지원"
         },
         {
+          "peopleCd": "",
           "peopleNm": "백학기",
-          "peopleNmEn": "BAEK Hak-gi",
-          "cast": "권유",
-          "castEn": "kwon-you"
+          "repRoleNm": "배우",
+          "cast": "권유"
         },
         {
+          "peopleCd": "",
           "peopleNm": "조상민",
-          "peopleNmEn": "",
-          "cast": "준상",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "준상"
         }
       ],
       "showTypes": [

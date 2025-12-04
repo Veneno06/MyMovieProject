@@ -28,34 +28,35 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "김영남",
-          "peopleNmEn": "KIM Young-nam"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "하정우",
-          "peopleNmEn": "HA Jung-woo",
-          "cast": "형구",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "형구"
         },
         {
+          "peopleCd": "",
           "peopleNm": "츠마부키 사토시",
-          "peopleNmEn": "Satoshi Tsumabuki",
-          "cast": "토오루",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "토오루"
         },
         {
+          "peopleCd": "",
           "peopleNm": "이대연",
-          "peopleNmEn": "LEE Dae-yon",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
         },
         {
+          "peopleCd": "",
           "peopleNm": "정인기",
-          "peopleNmEn": "JUNG In-gi",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
         }
       ],
       "showTypes": [

@@ -31,34 +31,35 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "앤드류 C. 에린",
-          "peopleNmEn": "Andrew C. Erin"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "페이 매터슨",
-          "peopleNmEn": "Fay Masterson",
-          "cast": "샘 ",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "샘"
         },
         {
+          "peopleCd": "",
           "peopleNm": "샌드린 홀트",
-          "peopleNmEn": "Sandrine Holt",
-          "cast": "케이트 ",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "케이트"
         },
         {
+          "peopleCd": "",
           "peopleNm": "윌리엄 그레고리 리",
-          "peopleNmEn": "William Gregory Lee",
-          "cast": "제시 ",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "제시"
         },
         {
+          "peopleCd": "",
           "peopleNm": "스티븐 비숍",
-          "peopleNmEn": "Stephen Bishop",
-          "cast": "프랑클린 ",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "프랑클린"
         }
       ],
       "showTypes": [

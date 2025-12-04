@@ -25,20 +25,22 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "조은경",
-          "peopleNmEn": "JO Eun-kyung"
+          "repRoleNm": "감독"
         },
         {
+          "peopleCd": "",
           "peopleNm": "여명준",
-          "peopleNmEn": "Joachim YEO"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "홍상우",
-          "peopleNmEn": "",
-          "cast": "점집손님",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "점집손님"
         }
       ],
       "showTypes": [],

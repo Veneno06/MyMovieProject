@@ -28,28 +28,29 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "김태용",
-          "peopleNmEn": "KIM Tae-yong"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "현빈",
-          "peopleNmEn": "HYUN Bin",
-          "cast": "훈",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "훈"
         },
         {
+          "peopleCd": "",
           "peopleNm": "탕웨이",
-          "peopleNmEn": "Tang Wei",
-          "cast": "애나",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "애나"
         },
         {
+          "peopleCd": "",
           "peopleNm": "김서라",
-          "peopleNmEn": "KIM Seo-ra",
-          "cast": "옥자",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "옥자"
         }
       ],
       "showTypes": [

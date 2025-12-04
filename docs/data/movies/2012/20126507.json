@@ -22,22 +22,23 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "이송희일",
-          "peopleNmEn": "LEESONG Hee-il"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "김영재",
-          "peopleNmEn": "KIM Young-jae",
-          "cast": "경훈",
-          "castEn": "Kyung-Hoon"
+          "repRoleNm": "배우",
+          "cast": "경훈"
         },
         {
+          "peopleCd": "",
           "peopleNm": "한주완",
-          "peopleNmEn": "HAN Ju-wan",
-          "cast": "상우",
-          "castEn": "Sang-Woo"
+          "repRoleNm": "배우",
+          "cast": "상우"
         }
       ],
       "showTypes": [

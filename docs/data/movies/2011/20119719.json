@@ -22,20 +22,22 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "한학수",
-          "peopleNmEn": "HAN Hak-su"
+          "repRoleNm": "감독"
         },
         {
+          "peopleCd": "",
           "peopleNm": "장형원",
-          "peopleNmEn": "JANG Hyung-won"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "현빈",
-          "peopleNmEn": "HYUN Bin",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
         }
       ],
       "showTypes": [

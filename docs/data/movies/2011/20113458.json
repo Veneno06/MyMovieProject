@@ -25,22 +25,23 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "이상화",
-          "peopleNmEn": "LEE Sang-hwa"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "황선환",
-          "peopleNmEn": "HWANG Sun-hwan",
-          "cast": "사내",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "사내"
         },
         {
+          "peopleCd": "",
           "peopleNm": "신이",
-          "peopleNmEn": "SHIN Yi",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
         }
       ],
       "showTypes": [
