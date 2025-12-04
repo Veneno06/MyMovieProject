@@ -4,19 +4,19 @@ on:
   workflow_dispatch:
     inputs:
       budget:
-        description: 'Budget amount to process (Max 6000 for 2 keys)'
+        description: 'Budget amount (Recommended: 2500)'
         required: true
-        default: '5500'
+        # [전략] 키 2개 = 총 6000회 가능
+        # 한국 영화만 골라내므로 API 효율이 좋지만, 안전을 위해 절반 이하인 2500으로 설정
+        default: '2500'
 
 jobs:
   run:
     runs-on: ubuntu-latest
     env:
-      # [긴급 수정] 죽은 키는 제거하고, 새 키(4, 5번)를 메인 변수(Key 1, 2)에 강제로 할당합니다.
-      # 이렇게 하면 스크립트는 처음부터 새 키를 사용하게 됩니다.
-      KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY_4 }}
-      KOFIC_API_KEY_2: ${{ secrets.KOFIC_API_KEY_5 }}
-      # 3번 변수는 비워두거나 제거하여 스크립트가 2개만 인식하도록 합니다.
+      # 방금 등록한 새 키 2개를 사용합니다.
+      KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
+      KOFIC_API_KEY_2: ${{ secrets.KOFIC_API_KEY_2 }}
       
     steps:
       - name: Checkout (full)
@@ -37,18 +37,23 @@ jobs:
             pip install requests
           fi
 
-      - name: Backfill people codes
-        # 만약 새 키도 문제가 생기더라도, 수집된 데이터는 건지기 위해 설정 유지
+      - name: Backfill people codes (Korean Movies Only)
+        # 만약 API 한도가 차더라도 중단하지 않고 다음 단계(저장)로 넘어갑니다.
         continue-on-error: true
         run: |
+          # 입력받은 budget만큼 한국 영화 배우 코드를 수집합니다.
           python scripts/backfill_people.py \
             --budget "${{ inputs.budget }}" \
             --rate-sleep-ms "250"
 
       - name: Rebuild search indexes
+        # 수집된 데이터를 검색 엔진에 반영합니다.
         run: python scripts/reindex_search.py
 
-      - name: Build people details (gender)
+      - name: Build people details (Gender)
+        # 수집된 코드를 바탕으로 성별 정보를 추가합니다.
+        # (이 단계도 API를 사용하므로, 남은 키 한도를 여기서 씁니다)
+        continue-on-error: true
         run: python scripts/build_people_details.py
 
       - name: Commit updated data
@@ -56,5 +61,5 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           git add .
-          git commit -m "Update people data and indexes (New Keys Forced)" || echo "No changes to commit"
+          git commit -m "Update Korean people data (New Keys)" || echo "No changes to commit"
           git push
