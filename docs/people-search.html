@@ -1,183 +1,106 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>영화인 검색 - MyMovieProject</title>
-    <!-- Tailwind CSS (스타일링) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- 폰트어썸 (아이콘) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8f9fa; }
-        .movie-badge { font-size: 0.75rem; background-color: #e2e8f0; color: #475569; padding: 2px 6px; border-radius: 4px; margin-right: 4px; }
-    </style>
+<meta charset="utf-8">
+<!-- [수정] title에 번역 키 추가 -->
+<title data-i18n-key="peopleSearchTitle">배우 검색</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="assets/style.css">
+<!-- [수정] 신규 번역 스크립트 추가 -->
+<script src="assets/translator.js" defer></script>
+<style>
+body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple SD Gothic Neo, Noto Sans KR, 'Malgun Gothic', sans-serif; line-height:1.6; }
+.wrap { max-width:980px; margin:24px auto; padding:0 12px; }
+h1 { font-size:28px; margin:0 0 16px; }
+.ctrls { display:flex; gap:8px; margin-bottom:12px; }
+.ctrls a { padding:6px 10px; border:1px solid #e5e7eb; border-radius:8px; background:#fff; text-decoration:none; color:#111827; }
+.note { color:#6b7280; }
+ul.list { list-style:none; padding:0; margin:12px 0; }
+li { padding:6px 0; border-bottom:1px dashed #e5e7eb; }
+label { margin-right:8px; }
+.box { background:#f6f7f9; border:1px solid #e5e7eb; border-radius:8px; padding:12px; }
+</style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body>
+<div class="wrap">
+  <!-- [수정] 버튼에 번역 키 추가 -->
+  <div class="ctrls">
+    <a href="index.html" class="btn" data-i18n-key="home">홈</a>
+    <a href="search.html" class="btn" data-i18n-key="movieSearch">영화 검색</a>
+    <a href="people-search.html" class="btn" data-i18n-key="peopleSearch">배우 검색</a>
+    <a href="costar-search.html" class="btn" data-i18n-key="costarSearch">공동 출연 검색</a>
+    <a href="saved.html" class="btn" data-i18n-key="savedList">저장 목록</a>
+  </div>
 
-    <!-- 상단 네비게이션 -->
-    <nav class="bg-white shadow-sm border-b border-gray-200">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex">
-                    <a href="index.html" class="flex-shrink-0 flex items-center font-bold text-xl text-blue-600">
-                        MyMovieProject
-                    </a>
-                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-                        <a href="index.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">홈</a>
-                        <a href="people-search.html" class="border-blue-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">배우 검색</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
+  <h1 data-i18n-key="peopleSearchTitle">배우/감독 검색</h1>
 
-    <!-- 메인 컨텐츠 -->
-    <main class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <div class="text-center mb-10">
-            <h1 class="text-3xl font-bold text-gray-900 mb-2">배우/감독 검색</h1>
-            <p class="text-gray-500">동명이인도 영화인 코드를 통해 정확하게 구분합니다.</p>
-        </div>
+  <!-- [수정] 라벨에 번역 키 추가 -->
+  <form id="f" class="box">
+    <span data-i18n-key="nameLabel">이름:</span> <input type="text" name="q" value="">
+    <label><input type="checkbox" name="actorOnly" checked> <span data-i18n-key="actorOnly">배우만</span></label>
+    <button type="submit" class="btn" data-i18n-key="searchBtn">검색</button>
+  </form>
 
-        <!-- 검색창 -->
-        <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mb-8">
-            <div class="flex gap-2">
-                <input type="text" id="searchInput" placeholder="배우 또는 감독 이름 (예: 황정민)" 
-                       class="flex-1 appearance-none border border-gray-300 rounded-md py-2 px-4 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                       onkeypress="if(event.key === 'Enter') searchPeople()">
-                <button onclick="searchPeople()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-md transition duration-150 ease-in-out">
-                    검색
-                </button>
-            </div>
-        </div>
+  <div id="total" class="note"></div>
+  <ul id="out" class="list"></ul>
+</div>
 
-        <!-- 검색 결과 리스트 -->
-        <div id="resultList" class="space-y-4">
-            <!-- 검색 결과가 여기에 표시됩니다 -->
-        </div>
-    </main>
+<script>
+const BASE = location.pathname.replace(/\/[^\/]*$/, '');
+const PEOPLE_URL = `${BASE}/data/search/people.json?v=${Date.now()}`;
+let PEOPLE = [];
 
-    <script>
-        let movieData = [];
+async function loadIndex(){
+  try {
+    const r = await fetch(PEOPLE_URL);
+    if(!r.ok){ throw new Error('Failed to load people index'); }
+    const j = await r.json();
+    PEOPLE = j.people || [];
+  } catch(e) {
+    PEOPLE = [];
+    document.getElementById('total').textContent = '데이터를 불러오는 데 실패했습니다.';
+  }
+}
 
-        // 1. 데이터 로드 (영화 인덱스 파일)
-        fetch('docs/data/search_index.json')
-            .then(response => response.json())
-            .then(data => {
-                movieData = data;
-                console.log("데이터 로드 완료:", movieData.length + "개");
-            })
-            .catch(error => console.error('데이터 로드 실패:', error));
+function search(){
+  const f = new FormData(document.getElementById('f'));
+  const q = (f.get('q')||'').trim().toLowerCase();
+  const actorOnly = f.get('actorOnly') !== null;
 
-        // 2. 검색 실행 함수
-        function searchPeople() {
-            const query = document.getElementById('searchInput').value.trim();
-            if (!query) {
-                alert("검색어를 입력해주세요.");
-                return;
-            }
+  let list = PEOPLE;
+  if (q) {
+    list = list.filter(p => (p.peopleNm||'').toLowerCase().includes(q));
+  }
+  if (actorOnly) {
+    list = list.filter(p => (p.repRoleNm||'') === '배우');
+  }
 
-            const resultList = document.getElementById('resultList');
-            resultList.innerHTML = '<div class="text-center text-gray-500 py-4"><i class="fas fa-spinner fa-spin"></i> 검색 중...</div>';
+  if (!q) list = [];
+  list = list.slice(0, 200);
 
-            // [핵심] 영화인 코드(ID)를 기준으로 사람 모으기
-            // key: ID, value: { name, roles: Set, movies: [] }
-            const peopleMap = new Map();
+  document.getElementById('total').textContent = q ? `총 ${list.length}명 검색됨 (캐시)` : '검색어를 입력하세요.';
+  const ul = document.getElementById('out');
+  ul.innerHTML = '';
+  
+  for (const p of list) {
+    const href = `person.html?personKey=${encodeURIComponent(p.personKey)}`;
+    const li = document.createElement('li');
+    li.innerHTML = `<a href="${href}">${p.peopleNm}</a> <span class="note">${p.repRoleNm||''}</span>`;
+    ul.appendChild(li);
+  }
+}
 
-            movieData.forEach(movie => {
-                // 배우 처리
-                if (movie.actors) {
-                    movie.actors.forEach(actor => {
-                        if (actor.name.includes(query)) {
-                            // ID가 없으면 'unknown' 처리 (구 데이터 호환)
-                            const id = actor.id || 'unknown_' + actor.name;
-                            
-                            if (!peopleMap.has(id)) {
-                                peopleMap.set(id, { 
-                                    id: id, 
-                                    name: actor.name, 
-                                    roles: new Set(['배우']), 
-                                    movies: [],
-                                    score: 0 // 정렬용 점수
-                                });
-                            }
-                            // 대표작 5개만 저장
-                            const p = peopleMap.get(id);
-                            if (p.movies.length < 5) p.movies.push(movie.title);
-                            p.score += 1; // 출연작 많을수록 상위 노출
-                        }
-                    });
-                }
+(async function main(){
+  await loadIndex();
+  const f = document.getElementById('f');
+  f.addEventListener('submit', (e)=>{ e.preventDefault(); search(); });
 
-                // 감독 처리
-                if (movie.directors) {
-                    movie.directors.forEach(director => {
-                        if (director.name.includes(query)) {
-                            const id = director.id || 'unknown_' + director.name;
-                            
-                            if (!peopleMap.has(id)) {
-                                peopleMap.set(id, { 
-                                    id: id, 
-                                    name: director.name, 
-                                    roles: new Set(['감독']), 
-                                    movies: [],
-                                    score: 0
-                                });
-                            } else {
-                                peopleMap.get(id).roles.add('감독');
-                            }
-                            const p = peopleMap.get(id);
-                            if (p.movies.length < 5) p.movies.push(movie.title);
-                            p.score += 1;
-                        }
-                    });
-                }
-            });
-
-            // 결과 렌더링
-            renderResults(Array.from(peopleMap.values()));
-        }
-
-        function renderResults(people) {
-            const resultList = document.getElementById('resultList');
-            resultList.innerHTML = '';
-
-            if (people.length === 0) {
-                resultList.innerHTML = '<div class="text-center text-gray-500 py-8">검색 결과가 없습니다.</div>';
-                return;
-            }
-
-            // 출연작 많은 순으로 정렬
-            people.sort((a, b) => b.score - a.score);
-
-            people.forEach(p => {
-                const roleStr = Array.from(p.roles).join(' / ');
-                const movieListStr = p.movies.join(', ');
-                // [중요] 링크에 id를 파라미터로 넘김
-                const link = `person.html?id=${p.id}&name=${encodeURIComponent(p.name)}`;
-
-                const html = `
-                    <a href="${link}" class="block bg-white hover:bg-blue-50 border border-gray-200 rounded-lg p-4 transition duration-150">
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <div class="flex items-center gap-2">
-                                    <h2 class="text-lg font-bold text-gray-900">${p.name}</h2>
-                                    <span class="text-xs bg-blue-100 text-blue-800 px-2 py-0.5 rounded">${roleStr}</span>
-                                    ${p.id.startsWith('unknown') ? '' : `<span class="text-xs text-gray-400">Code: ${p.id}</span>`}
-                                </div>
-                                <div class="mt-1 text-sm text-gray-600">
-                                    <span class="font-medium text-gray-700">출연/연출:</span> ${movieListStr}...
-                                </div>
-                            </div>
-                            <div class="text-gray-400">
-                                <i class="fas fa-chevron-right"></i>
-                            </div>
-                        </div>
-                    </a>
-                `;
-                resultList.innerHTML += html;
-            });
-        }
-    </script>
+  const initialQuery = new URLSearchParams(location.search).get('q');
+  if (initialQuery) {
+    f.q.value = initialQuery;
+  }
+  search();
+})();
+</script>
 </body>
 </html>
