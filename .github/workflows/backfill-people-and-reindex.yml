@@ -29,7 +29,11 @@ jobs:
 
       - name: Install deps
         run: |
-          pip install -r requirements.txt
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          else
+            pip install requests
+          fi
 
       - name: Backfill people codes
         run: |
