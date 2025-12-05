@@ -34,13 +34,10 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
   <h1 data-i18n-key="costarSearchTitle">공동 출연 검색</h1>
 
   <form id="f" class="box">
-    <div style="display:flex; gap:8px; flex-wrap:wrap;">
-        <div>
-            <span data-i18n-key="actor1">배우 1:</span> <input type="text" name="q1" placeholder="예: 황정민">
-        </div>
-        <div>
-            <span data-i18n-key="actor2">배우 2:</span> <input type="text" name="q2" placeholder="예: 정우성">
-        </div>
+    <!-- [수정] 여러 명을 입력할 수 있는 단일 입력창으로 복구 -->
+    <div style="display:flex; gap:8px; align-items:center;">
+        <span data-i18n-key="actorNames">배우 이름들:</span>
+        <input type="text" name="q" placeholder="예: 황정민, 정우성 (쉼표로 구분)" style="flex:1;">
         <button type="submit" class="btn" data-i18n-key="searchBtn">검색</button>
     </div>
   </form>
@@ -50,17 +47,14 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
 </div>
 
 <script>
-// [수정] 새 데이터 파일 연결
 const BASE = location.pathname.replace(/\/[^\/]*$/, '');
 const INDEX_URL = `docs/data/search_index.json?v=${Date.now()}`;
 let MOVIES = [];
 
-// 숫자 포맷팅
 const fmtNum = n => (n==null || isNaN(n)) ? '' : n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
 async function loadIndex(){
   try {
-    // 경로 찾기 시도
     let r = await fetch(INDEX_URL);
     if(!r.ok) {
         r = await fetch(`data/search_index.json?v=${Date.now()}`); // fallback
@@ -68,7 +62,7 @@ async function loadIndex(){
     if(!r.ok) throw new Error('Failed to load index');
     
     MOVIES = await r.json();
-    document.getElementById('total').textContent = '데이터 로드 완료. 두 배우의 이름을 입력하세요.';
+    document.getElementById('total').textContent = '데이터 로드 완료. 배우 이름들을 입력하세요.';
   } catch(e) {
     console.error(e);
     document.getElementById('total').textContent = '데이터를 불러오는 데 실패했습니다.';
@@ -77,25 +71,28 @@ async function loadIndex(){
 
 function search(){
   const f = new FormData(document.getElementById('f'));
-  const q1 = (f.get('q1')||'').trim().toLowerCase();
-  const q2 = (f.get('q2')||'').trim().toLowerCase();
+  const qStr = (f.get('q')||'').trim();
 
-  if (!q1 || !q2) {
+  if (!qStr) {
       document.getElementById('out').innerHTML = '';
-      document.getElementById('total').textContent = '두 배우의 이름을 모두 입력해주세요.';
+      document.getElementById('total').textContent = '배우 이름을 입력해주세요.';
       return;
   }
 
-  // [로직] 두 배우가 모두 포함된 영화 찾기
-  // 배우 이름 부분 일치 검색
+  // [로직] 쉼표(,)로 구분하여 여러 배우 이름 추출
+  const queries = qStr.split(',').map(s => s.trim().toLowerCase()).filter(s => s.length > 0);
+
+  if (queries.length === 0) return;
+
+  // 모든 쿼리(배우 이름)가 포함된 영화 찾기 (AND 조건)
   const results = MOVIES.filter(m => {
       const actors = m.actors || [];
-      const hasActor1 = actors.some(a => a.name.toLowerCase().includes(q1));
-      const hasActor2 = actors.some(a => a.name.toLowerCase().includes(q2));
-      return hasActor1 && hasActor2;
+      // 모든 검색어가 해당 영화의 배우 목록에 하나라도 걸리는지 확인
+      return queries.every(query => {
+          return actors.some(a => a.name.toLowerCase().includes(query));
+      });
   });
 
-  // 최신순 정렬
   results.sort((a,b) => (b.openDt || '').localeCompare(a.openDt || ''));
 
   document.getElementById('total').textContent = `총 ${results.length}편의 공동 출연작이 검색되었습니다.`;
@@ -111,14 +108,14 @@ function search(){
     const date = m.openDt ? m.openDt.replace(/-/g, '.') : '개봉일미상';
     const audiStr = (m.audiAcc != null) ? ` / <span class="audi">누적 ${fmtNum(m.audiAcc)}명</span>` : '';
     
-    // 출연진 목록 생성 (링크 포함)
     let castHtml = "";
     if (m.actors && Array.isArray(m.actors)) {
-        // [핵심] 링크 생성 시 ID가 있으면 ID를, 없으면 'name:이름'을 사용
+        // [수정] 검색된 배우들 하이라이트 처리 및 링크 생성
         const actorLinks = m.actors.slice(0, 10).map(a => {
-            const isMatch = a.name.toLowerCase().includes(q1) || a.name.toLowerCase().includes(q2);
+            // 현재 배우가 검색어 중 하나라도 포함하는지 확인
+            const isMatch = queries.some(q => a.name.toLowerCase().includes(q));
             
-            // ID 처리: ID가 있으면 그대로 쓰고, 없으면 name: 접두사 붙임
+            // ID 처리: ID가 있으면 그대로, 없으면 name: 접두사
             const idParam = (a.id && a.id.trim()) ? a.id : `name:${a.name}`;
             const href = `person.html?id=${encodeURIComponent(idParam)}&name=${encodeURIComponent(a.name)}`;
             
