@@ -94,13 +94,26 @@ function search(){
   const queries = qStr.split(',').map(s => s.trim().toLowerCase()).filter(s => s.length > 0);
   if (queries.length === 0) return;
 
-  const results = MOVIES.filter(m => {
+  // 1차 필터링: 배우 이름이 모두 포함된 영화 찾기
+  const rawResults = MOVIES.filter(m => {
       const actors = m.actors || [];
       return queries.every(query => {
           return actors.some(a => a.name.toLowerCase().includes(query));
       });
   });
 
+  // [수정] 중복 제거 로직 추가 (movieCd 기준)
+  const results = [];
+  const seenMovieCds = new Set();
+
+  for (const m of rawResults) {
+      if (!seenMovieCds.has(m.movieCd)) {
+          seenMovieCds.add(m.movieCd);
+          results.push(m);
+      }
+  }
+
+  // 최신순 정렬
   results.sort((a,b) => (b.openDt || '').localeCompare(a.openDt || ''));
 
   document.getElementById('total').textContent = `총 ${results.length}편의 공동 출연작이 검색되었습니다.`;
@@ -151,7 +164,7 @@ function search(){
     }
   }
 
-  // [추가] 차트 그리기
+  // 차트 그리기
   if (filmsWithAudi.length > 0) {
       document.getElementById('chart-container').style.display = 'block';
       drawAudiChart(filmsWithAudi);
@@ -160,7 +173,7 @@ function search(){
   }
 }
 
-// [추가] 차트 그리기 함수
+// 차트 그리기 함수
 function drawAudiChart(films){
     if (myChart) {
         myChart.destroy();
