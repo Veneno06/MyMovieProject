@@ -65,14 +65,14 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
 
 <script>
 const TS = Date.now();
-// [수정] search_index.json 하나만 사용하여 모든 정보를 처리합니다.
+// [수정] 원본 데이터인 search_index.json과 상세 정보 people_details.json만 로드
 const INDEX_URL = `data/search_index.json?v=${TS}`;
-const PEOPLE_DETAILS_URL = `data/search/people_details.json?v=${TS}`; // 성별 정보용
+const PEOPLE_DETAILS_URL = `data/search/people_details.json?v=${TS}`;
 
 function getParam(k){ return new URL(location.href).searchParams.get(k) || ""; }
 const fmtNum = n => (n==null || isNaN(n)) ? '' : n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-let MOVIES = [];
+let MOVIES_RAW = [];
 let PEOPLE_DETAILS = {};
 let myChart = null;
 let currentId = null;
@@ -98,7 +98,7 @@ saveBtn.addEventListener('click', () => {
     if (savedMap[currentId]) {
         delete savedMap[currentId];
     } else {
-        savedMap[currentId] = { name: currentName, personKey: currentId }; // 호환성을 위해 personKey 키 사용
+        savedMap[currentId] = { name: currentName, personKey: currentId };
     }
     localStorage.setItem('savedPeople', JSON.stringify(savedMap));
     renderSaveBtn();
@@ -112,7 +112,7 @@ async function loadData(){
     ]);
     
     if (indexRes.ok) {
-        MOVIES = await indexRes.json();
+        MOVIES_RAW = await indexRes.json();
     }
     if (detailsRes.ok) {
         PEOPLE_DETAILS = await detailsRes.json() || {};
@@ -123,12 +123,11 @@ async function loadData(){
 }
 
 function render(){
-  const idParam = getParam('id'); // URL 파라미터 'id' 사용
+  // [중요] ID를 파라미터로 받음
+  const idParam = getParam('id'); 
   const nameParam = getParam('name');
   
-  // 구버전 링크 호환 (personKey 파라미터가 있을 경우)
-  const legacyKey = getParam('personKey');
-  currentId = idParam || legacyKey;
+  currentId = idParam;
   currentName = nameParam || "이름 없음";
 
   const out = document.getElementById('out');
@@ -144,33 +143,45 @@ function render(){
   title.textContent = currentName;
   renderSaveBtn();
 
-  // 성별 표시
-  // ID가 숫자형태(KOFIC 코드)인 경우에만 details 조회
+  // 성별 표시 (ID가 KOFIC 코드 형식인 경우만)
   if (currentId && !currentId.startsWith('unknown') && PEOPLE_DETAILS[currentId]) {
       const detail = PEOPLE_DETAILS[currentId];
       if (detail.sex === "남") sexBadge.textContent = "♂";
       if (detail.sex === "여") sexBadge.textContent = "♀";
   }
 
-  // [핵심] ID로 영화 필터링
-  const myMovies = MOVIES.filter(m => {
-      // 배우 목록에서 ID 일치 확인
+  // [핵심] ID로 영화 필터링 & 중복 제거
+  const seenMovieCds = new Set();
+  const myMovies = [];
+
+  MOVIES_RAW.forEach(m => {
+      // 1. 중복 제거: 이미 처리한 영화 코드는 건너뜀
+      if (seenMovieCds.has(m.movieCd)) return;
+
+      // 2. 배우/감독 목록에서 ID 일치 확인
       const isActor = m.actors && m.actors.some(a => a.id === currentId);
-      // 감독 목록에서 ID 일치 확인
       const isDirector = m.directors && m.directors.some(d => d.id === currentId);
       
-      // ID가 없는 경우 이름으로 매칭 (구 데이터 호환용 fallback)
-      if (currentId.startsWith('name:')) {
-          const rawName = currentId.replace('name:', '');
-          const nameMatchActor = m.actors && m.actors.some(a => a.name === rawName);
-          const nameMatchDirector = m.directors && m.directors.some(d => d.name === rawName);
-          return nameMatchActor || nameMatchDirector;
+      let isMatch = isActor || isDirector;
+
+      // ID가 없는 구버전 데이터(이름만 있는 경우) 호환
+      if (!isMatch && currentId.startsWith('unknown_')) {
+          // unknown_actor_황정민 -> 황정민
+          const rawName = currentId.replace(/^unknown_(actor|director)_/, '');
+          if (rawName === currentName) {
+             const nameMatchActor = m.actors && m.actors.some(a => a.name === rawName);
+             const nameMatchDirector = m.directors && m.directors.some(d => d.name === rawName);
+             isMatch = nameMatchActor || nameMatchDirector;
+          }
       }
 
-      return isActor || isDirector;
+      if (isMatch) {
+          myMovies.push(m);
+          seenMovieCds.add(m.movieCd); // 중복 방지 등록
+      }
   });
 
-  // 최신순 정렬
+  // 최신순 정렬 (개봉일 기준 내림차순)
   myMovies.sort((a,b) => (b.openDt || '').localeCompare(a.openDt || ''));
 
   out.innerHTML = '';
@@ -188,7 +199,7 @@ function render(){
     
     let castStr = "";
     if (f.actors && Array.isArray(f.actors)) {
-        const displayActors = f.actors.slice(0, 7);
+        const displayActors = f.actors.slice(0, 7); // 최대 7명 표시
         const formattedActors = displayActors.map(a => {
             // 현재 보고 있는 배우 이름과 같으면 볼드 처리
             if (a.name === currentName) return `<b>${a.name}</b>`;
@@ -198,7 +209,7 @@ function render(){
     }
 
     const li = document.createElement('li');
-    // detail.html 링크는 movieCd 사용
+    // detail.html 링크
     li.innerHTML = `<a href="detail.html?movieCd=${encodeURIComponent(f.movieCd)}">${f.movieNm}</a>
       <span class="note">(${date}${audiStr}<span class="cast-list">${castStr}</span>)</span>`;
     out.appendChild(li);
@@ -206,11 +217,11 @@ function render(){
     if (f.openDt) filmsWithAudi.push(f);
   }
 
-  // 차트 그리기 (기존 로직 유지)
+  // 차트 그리기
   if (filmsWithAudi.length > 1) {
     document.getElementById('chart-container').style.display = 'block';
     
-    // 차트 버튼 이벤트 연결
+    // 차트 버튼 이벤트 연결 (기존 로직 유지)
     const buttons = [
         { id: 'btnTotalAudi', type: 'totalAudi' },
         { id: 'btnAudiPerActor', type: 'audiPerActor' },
@@ -238,14 +249,14 @@ function drawAudiChart(films, dataType = 'totalAudi'){
         myChart.destroy();
     }
 
-    // 개봉일 오름차순 정렬 (과거 -> 현재)
+    // 개봉일 오름차순 정렬 (차트는 과거 -> 현재 순)
     films.sort((a,b) => (a.openDt || '').localeCompare(b.openDt || ''));
 
     const firstYear = (films.length > 0 && films[0].openDt) ? parseInt(films[0].openDt.slice(0, 4), 10) : new Date().getFullYear();
     const labels = films.map(f => f.openDt ? f.openDt.slice(0,7) : '미상');
     
     let dataPoints;
-    let yAxisLabel = "관객수"; // 기본값
+    let yAxisLabel = "관객수"; 
 
     // 데이터 계산 로직
     if (dataType === 'audiPerFilmography') {
@@ -253,7 +264,6 @@ function drawAudiChart(films, dataType = 'totalAudi'){
         dataPoints = films.map(f => (f.audiAcc && totalFilms > 0) ? Math.round(f.audiAcc / totalFilms) : 0);
         yAxisLabel = "관객수/출연작";
     } else if (dataType === 'audiPerActor') {
-        // actorCount 정보가 없으므로 actors 배열 길이 사용
         dataPoints = films.map(f => {
             const actorCount = f.actors ? f.actors.length : 1;
             return (f.audiAcc) ? Math.round(f.audiAcc / actorCount) : 0;
