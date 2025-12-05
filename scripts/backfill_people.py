@@ -1,6 +1,5 @@
 # scripts/backfill_people.py
-# 목적: 한국 영화 중 배우 이름이 'ㅎ'으로 시작하는 경우만 집중적으로 코드 수집
-# 타겟: 황정민을 비롯한 'ㅎ'씨 배우들의 데이터를 최우선으로 확보
+# 목적: 기존 영화 JSON 파일을 열어서, 배우 코드(peopleCd)가 없으면 채워 넣고 저장함 (데이터 보강)
 from __future__ import annotations
 import os
 import json
@@ -38,44 +37,19 @@ def load_json(p: Path):
 def save_json(p: Path, data: dict):
     p.parent.mkdir(parents=True, exist_ok=True)
     tmp = p.with_suffix(".json.tmp")
-    # [수정] ensure_ascii=False로 한글 깨짐 방지 및 강제 쓰기
+    # [중요] ensure_ascii=False : 한글 깨짐 방지
+    # [중요] indent=2 : 사람이 보기 좋게 포맷팅 유지
     tmp.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
     tmp.replace(p)
 
-def get_shape(raw: dict) -> tuple[str, dict]:
-    if isinstance(raw, dict) and raw.get("movieCd"):
-        return "flat", raw
-    mi = ((raw or {}).get("movieInfoResult") or {}).get("movieInfo") or {}
-    if mi.get("movieCd"):
-        return "raw", mi
-    return "none", {}
-
-def is_korean_movie(target: dict) -> bool:
-    nations = target.get("nations") or []
-    if not isinstance(nations, list): return False
-    for n in nations:
-        if isinstance(n, dict) and n.get("nationNm") == "한국":
-            return True
-    return False
-
-# [핵심] 'ㅎ'씨 배우 타겟 (황정민 포함)
-def is_name_in_range(name: str) -> bool:
+# 'ㅎ'씨 배우 타겟 (황정민 포함)
+def is_target_name(name: str) -> bool:
     if not name: return False
     first_char = name[0]
+    # 'ㅎ' 유니코드 범위 확인
     if '가' <= first_char <= '힣':
-        chosung_idx = (ord(first_char) - 0xAC00) // 588
-        return chosung_idx == 18 # ㅎ
-    return False
-
-def need_backfill(target: dict) -> bool:
-    actors = target.get("actors") or []
-    if not isinstance(actors, list): return False
-    for actor in actors:
-        nm = (actor.get("peopleNm") or "").strip()
-        cd = (actor.get("peopleCd") or "").strip()
-        if nm and not cd:
-            if is_name_in_range(nm):
-                return True
+        chosung = (ord(first_char) - 0xAC00) // 588
+        return chosung == 18 # 18번이 'ㅎ'
     return False
 
 def fetch_movie_info(session, api_key, movieCd):
@@ -92,38 +66,52 @@ def backfill(budget: int, rate_sleep_ms: int):
     # 최신 영화부터 역순 정렬
     files = sorted([Path(p) for p in glob.glob(str(DETAIL_DIR / "**" / "*.json"), recursive=True)], reverse=True)
     
-    print(f"[paths] DETAIL_DIR={DETAIL_DIR}")
-    print(f"[scan] detail files: {len(files)} (Reverse Order)")
-    print(f"[filter] Target: Korean Movies + Actor Name starts with 'ㅎ'")
+    print(f"[paths] 데이터 폴더: {DETAIL_DIR}")
+    print(f"[scan] 총 파일 수: {len(files)}개 (최신순 탐색)")
+    print(f"[filter] 타겟: 한국 영화 + 배우 이름이 'ㅎ'으로 시작")
 
-    updated = skipped = used = 0
+    updated = 0
+    skipped = 0
+    used = 0
 
     for p in files:
+        # 1. 기존 데이터 읽기 (Load)
         raw = load_json(p)
         if not raw: continue
         
-        shape, trg = get_shape(raw)
-        if shape == "none": continue
-
-        movieCd = (trg.get("movieCd") or "").strip()
+        # 데이터 구조 확인 (flat vs raw)
+        data = raw if raw.get("movieCd") else ((raw.get("movieInfoResult") or {}).get("movieInfo") or {})
+        movieCd = data.get("movieCd")
         if not movieCd: continue
 
-        # [디버그] 서울의 봄(20231122) 강제 확인
-        is_target_debug = (movieCd == "20231122")
-
-        if not is_korean_movie(trg):
+        # 2. 필터링 (API 절약)
+        # 한국 영화가 아니면 패스
+        nations = data.get("nations") or []
+        is_korea = any(n.get("nationNm") == "한국" for n in nations)
+        if not is_korea:
             skipped += 1
             continue
 
-        # 이미 코드가 있어도 서울의 봄은 강제로 다시 받아봄 (확인용)
-        if not need_backfill(trg) and not is_target_debug:
+        # 'ㅎ'씨 배우가 있고, 코드가 비어있는지 확인
+        actors = data.get("actors") or []
+        needs_update = False
+        for a in actors:
+            nm = a.get("peopleNm", "").strip()
+            cd = a.get("peopleCd", "").strip()
+            if nm and not cd and is_target_name(nm):
+                needs_update = True
+                break
+        
+        if not needs_update:
             skipped += 1
             continue
 
+        # 예산 체크
         if used >= budget:
-            print(f"[info] Budget reached ({used}). Stop.")
+            print(f"[info] 예산 소진 ({used}회). 중단합니다.")
             break
 
+        # 3. API 호출 (Fetch)
         try:
             session, api_key = get_session()
             j = fetch_movie_info(session, api_key, movieCd)
@@ -137,7 +125,11 @@ def backfill(budget: int, rate_sleep_ms: int):
                 skipped += 1
                 continue
 
-            # 데이터 업데이트
+            # 4. 데이터 병합 (Merge)
+            # 기존 데이터(raw)에 API에서 받아온 새 정보(info)를 덮어씌움
+            # 이때 movieNm, openDt 등 기존 정보는 유지되거나 최신화됨
+            
+            # 감독 정보 업데이트
             new_directors = []
             for d in info.get("directors", []) or []:
                 new_directors.append({
@@ -146,34 +138,38 @@ def backfill(budget: int, rate_sleep_ms: int):
                     "repRoleNm": "감독"
                 })
 
+            # 배우 정보 업데이트 (가장 중요)
             new_actors = []
             for a in info.get("actors", []) or []:
-                code = a.get("peopleCd", "").strip()
-                name = a.get("peopleNm", "").strip()
                 new_actors.append({
-                    "peopleCd": code,
-                    "peopleNm": name,
+                    "peopleCd": a.get("peopleCd", "").strip(),
+                    "peopleNm": a.get("peopleNm", "").strip(),
                     "repRoleNm": "배우",
                     "cast": a.get("cast", "").strip()
                 })
-                # [디버그] 황정민 코드 확인
-                if is_target_debug and name == "황정민":
-                    print(f"★ [DEBUG] 서울의 봄 황정민 코드 발견: '{code}'")
 
-            # 무조건 저장 (강제 업데이트)
-            trg["directors"] = new_directors
-            trg["actors"] = new_actors
-            
+            # 원본 데이터 객체 업데이트
+            if raw.get("movieCd"):
+                raw["directors"] = new_directors
+                raw["actors"] = new_actors
+            else:
+                # raw 구조가 복잡한 경우 (movieInfoResult 감싸져 있는 경우)
+                if "movieInfoResult" not in raw: raw["movieInfoResult"] = {}
+                if "movieInfo" not in raw["movieInfoResult"]: raw["movieInfoResult"]["movieInfo"] = {}
+                raw["movieInfoResult"]["movieInfo"]["directors"] = new_directors
+                raw["movieInfoResult"]["movieInfo"]["actors"] = new_actors
+
+            # 5. 파일 저장 (Save)
             save_json(p, raw)
             updated += 1
-            print(f"[ok] {movieCd} ({trg.get('movieNm')}) updated")
+            print(f"[성공] {movieCd} ({data.get('movieNm')}) -> 배우 코드 업데이트 완료")
 
         except Exception as e:
-            print(f"[warn] {movieCd}: {e}")
+            print(f"[실패] {movieCd}: {e}")
             time.sleep(1)
             skipped += 1
 
-    print(f"[done] updated={updated}, skipped={skipped}, used_api={used}")
+    print(f"=== 완료: {updated}개 업데이트, {skipped}개 건너뜀, API {used}회 사용 ===")
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
@@ -182,7 +178,7 @@ if __name__ == "__main__":
     args, unknown = ap.parse_known_args()
     
     if not API_KEYS:
-        print("[error] No API Keys env found.")
+        print("[error] API 키가 없습니다.")
         exit(1)
         
     backfill(args.budget, args.rate_sleep_ms)
