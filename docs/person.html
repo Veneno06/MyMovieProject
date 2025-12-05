@@ -65,7 +65,7 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
 
 <script>
 const TS = Date.now();
-// [핵심 수정] search_index.json (영화 정보)와 people_details.json (성별 정보) 로드
+// [핵심 수정] 새 데이터 파일 사용 (search_index.json, people_details.json)
 const INDEX_URL = `data/search_index.json?v=${TS}`;
 const PEOPLE_DETAILS_URL = `data/search/people_details.json?v=${TS}`;
 
@@ -138,7 +138,6 @@ function render(){
   const idParam = getParam('id'); 
   const nameParam = getParam('name');
   
-  // 구버전 링크(personKey) 호환 처리
   const legacyKey = getParam('personKey');
   currentId = idParam || legacyKey;
   currentName = nameParam || "이름 없음";
@@ -156,34 +155,33 @@ function render(){
   title.textContent = currentName;
   renderSaveBtn();
 
-  // 성별 표시
-  if (currentId && !currentId.startsWith('unknown') && PEOPLE_DETAILS[currentId]) {
+  // 성별 표시 (ID가 코드 형식인 경우만)
+  if (currentId && !currentId.startsWith('name:') && PEOPLE_DETAILS[currentId]) {
       const detail = PEOPLE_DETAILS[currentId];
       if (detail.sex === "남") sexBadge.textContent = "♂";
       if (detail.sex === "여") sexBadge.textContent = "♀";
   }
 
   // [핵심 로직] ID 일치하는 영화 찾기 + 엄격한 분리
-  const seenMovies = new Set(); // 중복 체크용 (movieCd 기준)
+  const seenMovies = new Set();
   const myMovies = [];
 
   MOVIES_RAW.forEach(m => {
-      // 1. 중복 제거
-      if (seenMovies.has(m.movieCd)) return;
+      if (seenMovies.has(m.movieCd)) return; // 중복 제거
 
       let isMatch = false;
 
-      // 2. ID가 명확한 경우 (예: 10090290) - ID가 일치해야만 가져옴
-      if (currentId && !currentId.startsWith('unknown_')) {
+      // 1. ID가 명확한 코드인 경우 (예: 10090290) - ID가 정확히 일치해야 함
+      if (currentId && !currentId.startsWith('name:')) {
           const actorMatch = m.actors && m.actors.some(a => a.id === currentId);
           const directorMatch = m.directors && m.directors.some(d => d.id === currentId);
           isMatch = actorMatch || directorMatch;
       } 
-      // 3. ID가 없는 경우 (unknown_actor_이름) - 이름은 같지만 ID가 없어야만 가져옴
-      else if (currentId.startsWith('unknown_')) {
-          const targetName = currentId.replace(/^unknown_(actor|director)_/, '');
+      // 2. ID가 없는 이름 전용인 경우 (name:황정민) - 이름은 같은데 ID가 없는 영화만 가져옴
+      else if (currentId.startsWith('name:')) {
+          const targetName = currentId.replace('name:', '');
           
-          // 배우 체크: 이름은 같지만 ID가 있는 배우(진짜 황정민)는 여기서 제외됨!
+          // 배우 체크: 이름은 같지만 ID가 '없는' 경우만 매칭 (ID 있으면 다른 사람임)
           const actorMatch = m.actors && m.actors.some(a => 
               a.name === targetName && (!a.id || a.id.trim() === "")
           );
@@ -197,7 +195,7 @@ function render(){
 
       if (isMatch) {
           myMovies.push(m);
-          seenMovies.add(m.movieCd); // 처리된 영화로 등록
+          seenMovies.add(m.movieCd);
       }
   });
 
