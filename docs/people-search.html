@@ -46,64 +46,63 @@ label { margin-right:8px; }
 </div>
 
 <script>
-// [수정] 데이터 소스를 새로 만든 search_index.json으로 변경
+// [핵심 수정] 데이터 소스를 새로 수집한 search_index.json으로 변경
 const PEOPLE_URL = `data/search_index.json?v=${Date.now()}`;
-let PEOPLE = []; // 여기에는 고유한 사람(ID 기준) 목록이 저장됨
+let PEOPLE_DB = []; // 가공된 사람 목록
 
 async function loadIndex(){
   try {
     const r = await fetch(PEOPLE_URL);
-    if(!r.ok){ throw new Error('Failed to load search index'); }
+    if(!r.ok){ throw new Error('Failed to load index'); }
     const movies = await r.json();
     
-    // [핵심 로직] 영화 데이터를 순회하며 사람별로 데이터를 묶음 (ID 기준)
+    // [데이터 가공] 영화 데이터를 사람 중심으로 재정렬 (ID 기준 분리)
     const peopleMap = new Map();
 
     movies.forEach(m => {
         // 배우 처리
         if (m.actors) {
             m.actors.forEach(a => {
-                const id = a.id || 'unknown_' + a.name; // ID 없으면 이름으로 임시 ID
+                // ID가 있으면 ID 사용, 없으면 이름+직업으로 임시 키 생성
+                const id = a.id ? a.id : `unknown_actor_${a.name}`;
+                
                 if (!peopleMap.has(id)) {
                     peopleMap.set(id, {
+                        personKey: id, // ID를 키로 사용
                         peopleNm: a.name,
-                        peopleCd: a.id,
                         repRoleNm: '배우',
-                        filmos: [] // 대표작 표시용
+                        filmos: [] // 대표작 목록
                     });
                 }
                 const p = peopleMap.get(id);
-                // 대표작 3개까지만 저장 (검색 결과 보여주기용)
+                // 검색 결과에 보여줄 대표작 3개만 저장
                 if (p.filmos.length < 3) p.filmos.push(m.movieNm);
             });
         }
         // 감독 처리
         if (m.directors) {
             m.directors.forEach(d => {
-                const id = d.id || 'unknown_' + d.name;
+                const id = d.id ? d.id : `unknown_director_${d.name}`;
+                
                 if (!peopleMap.has(id)) {
                     peopleMap.set(id, {
+                        personKey: id,
                         peopleNm: d.name,
-                        peopleCd: d.id,
                         repRoleNm: '감독',
                         filmos: []
                     });
-                } else {
-                    // 이미 배우로 등록된 경우 역할 추가 표시는 생략하거나 로직 추가 가능
-                    // 여기서는 배우 우선
                 }
-                const p = peopleMap.get(id);
-                if (p.filmos.length < 3 && p.repRoleNm === '감독') p.filmos.push(m.movieNm);
+                // 이미 배우로 등록된 사람은 감독 역할도 추가 가능하나, 여기선 덮어쓰지 않음
             });
         }
     });
 
-    PEOPLE = Array.from(peopleMap.values());
+    PEOPLE_DB = Array.from(peopleMap.values());
     document.getElementById('total').textContent = '데이터 로드 완료. 검색어를 입력하세요.';
 
   } catch(e) {
     console.error(e);
-    PEOPLE = [];
+    PEOPLE_DB = [];
     document.getElementById('total').textContent = '데이터를 불러오는 데 실패했습니다.';
   }
 }
@@ -113,37 +112,36 @@ function search(){
   const q = (f.get('q')||'').trim().toLowerCase();
   const actorOnly = f.get('actorOnly') !== null;
 
+  // 검색어가 없으면 목록 비움
   if (!q) {
       document.getElementById('out').innerHTML = '';
       document.getElementById('total').textContent = '검색어를 입력하세요.';
       return;
   }
 
-  // 검색 로직
-  let list = PEOPLE.filter(p => (p.peopleNm||'').toLowerCase().includes(q));
+  let list = PEOPLE_DB.filter(p => (p.peopleNm||'').toLowerCase().includes(q));
   
   if (actorOnly) {
     list = list.filter(p => (p.repRoleNm||'') === '배우');
   }
 
-  list = list.slice(0, 100); // 최대 100명 표시
+  list = list.slice(0, 200);
 
   document.getElementById('total').textContent = `총 ${list.length}명 검색됨`;
   const ul = document.getElementById('out');
   ul.innerHTML = '';
   
   for (const p of list) {
-    // [중요] 링크 생성 시 id를 파라미터로 넘김 (기존 personKey 대신 id 사용)
-    const idParam = p.peopleCd || ('name:' + p.peopleNm); // ID 없으면 이름으로 fallback
-    const href = `person.html?id=${encodeURIComponent(idParam)}&name=${encodeURIComponent(p.peopleNm)}`;
+    // [핵심] ID를 파라미터로 넘김
+    const href = `person.html?id=${encodeURIComponent(p.personKey)}&name=${encodeURIComponent(p.peopleNm)}`;
     
+    // 대표작 표시
+    const filmoStr = p.filmos.length > 0 ? `(${p.filmos.join(', ')} 등)` : '';
+    const codeStr = (p.personKey.startsWith('unknown')) ? '' : `<span style="font-size:0.8em; color:#999; margin-left:4px;">(코드: ${p.personKey})</span>`;
+
     const li = document.createElement('li');
-    // 대표작 표시 추가
-    const filmos = p.filmos.length > 0 ? `(${p.filmos.join(', ')} 등)` : '';
-    
     li.innerHTML = `<a href="${href}"><strong>${p.peopleNm}</strong></a> 
-                    <span class="note">${p.repRoleNm||''} ${filmos}</span>
-                    ${p.peopleCd ? `<span class="note" style="font-size:0.8em; margin-left:4px;">(코드: ${p.peopleCd})</span>` : ''}`;
+                    <span class="note">${p.repRoleNm} ${filmoStr}</span> ${codeStr}`;
     ul.appendChild(li);
   }
 }
@@ -156,7 +154,8 @@ function search(){
   const initialQuery = new URLSearchParams(location.search).get('q');
   if (initialQuery) {
     document.querySelector('input[name="q"]').value = initialQuery;
-    search(); // 데이터 로드 후 검색 실행을 위해 기다릴 수도 있음
+    // 데이터 로드가 비동기이므로 약간 대기 후 검색 시도 (혹은 loadIndex 내에서 호출도 가능)
+    setTimeout(search, 500); 
   }
 })();
 </script>
