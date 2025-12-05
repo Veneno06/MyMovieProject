@@ -65,155 +65,152 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
 
 <script>
 const TS = Date.now();
-const PEOPLE_URL = `data/search/people.json?v=${TS}`;
-const PEOPLE_DETAILS_URL = `data/search/people_details.json?v=${TS}`;
-const MOVIES_URL = `data/search/movies.json?v=${TS}`;
+// [수정] search_index.json 하나만 사용하여 모든 정보를 처리합니다.
+const INDEX_URL = `data/search_index.json?v=${TS}`;
+const PEOPLE_DETAILS_URL = `data/search/people_details.json?v=${TS}`; // 성별 정보용
 
 function getParam(k){ return new URL(location.href).searchParams.get(k) || ""; }
 const fmtNum = n => (n==null || isNaN(n)) ? '' : n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-let PEOPLE = [];
+
+let MOVIES = [];
 let PEOPLE_DETAILS = {};
-let MOVIES_DB = {}; // [수정] Map이 아닌 Object로 사용하여 직접 접근
 let myChart = null;
-let currentPerson = null;
+let currentId = null;
+let currentName = null;
 
 const saveBtn = document.getElementById('saveBtn');
 
-function getPersonId(person) { return person?.personKey || null; }
-function getSavedPeople() { return JSON.parse(localStorage.getItem('savedPeople') || '{}'); }
-function setSavedPeople(obj) { localStorage.setItem('savedPeople', JSON.stringify(obj)); }
-function isSaved(id) { return !!getSavedPeople()[id]; }
+function isSaved(id) { 
+    const saved = JSON.parse(localStorage.getItem('savedPeople') || '{}');
+    return !!saved[id]; 
+}
 
 function renderSaveBtn() {
-    const personId = getPersonId(currentPerson);
-    if (!personId) {
-        saveBtn.style.display = 'none';
-        return;
-    }
+    if (!currentId) return;
     saveBtn.style.display = 'inline-block';
-    
-    if (window.getCurrentLang) { 
-        const lang = window.getCurrentLang();
-        const key = isSaved(personId) ? 'btnSaved' : 'btnSave';
-        if (window.STRINGS && window.STRINGS[lang] && window.STRINGS[lang][key]) {
-            saveBtn.textContent = window.STRINGS[lang][key];
-        } else {
-            saveBtn.textContent = isSaved(personId) ? '⭐ 저장됨(해제)' : '☆ 배우 저장';
-        }
-        saveBtn.setAttribute('data-i18n-key', key);
-    } else {
-        saveBtn.textContent = isSaved(personId) ? '⭐ 저장됨(해제)' : '☆ 배우 저장';
-    }
+    const saved = isSaved(currentId);
+    saveBtn.textContent = saved ? '⭐ 저장됨(해제)' : '☆ 배우 저장';
 }
 
 saveBtn.addEventListener('click', () => {
-    const personId = getPersonId(currentPerson);
-    if (!personId) return;
-    const saved = getSavedPeople();
-    if (isSaved(personId)) {
-        delete saved[personId];
+    if (!currentId) return;
+    const savedMap = JSON.parse(localStorage.getItem('savedPeople') || '{}');
+    if (savedMap[currentId]) {
+        delete savedMap[currentId];
     } else {
-        saved[personId] = { name: currentPerson.peopleNm, personKey: currentPerson.personKey };
+        savedMap[currentId] = { name: currentName, personKey: currentId }; // 호환성을 위해 personKey 키 사용
     }
-    setSavedPeople(saved);
-    renderSaveBtn(); 
+    localStorage.setItem('savedPeople', JSON.stringify(savedMap));
+    renderSaveBtn();
 });
 
 async function loadData(){
   try {
-    const [peopleRes, detailsRes, moviesRes] = await Promise.all([
-      fetch(PEOPLE_URL),
-      fetch(PEOPLE_DETAILS_URL),
-      fetch(MOVIES_URL)
+    const [indexRes, detailsRes] = await Promise.all([
+      fetch(INDEX_URL),
+      fetch(PEOPLE_DETAILS_URL)
     ]);
     
-    if (peopleRes.ok) {
-        const j = await peopleRes.json();
-        PEOPLE = j.people || [];
+    if (indexRes.ok) {
+        MOVIES = await indexRes.json();
     }
     if (detailsRes.ok) {
         PEOPLE_DETAILS = await detailsRes.json() || {};
     }
-    
-    if (moviesRes.ok) {
-        const mData = await moviesRes.json();
-        // [수정] movies.json의 cast 정보를 활용하기 위해 DB 생성
-        (mData.movies || []).forEach(m => {
-            MOVIES_DB[m.movieCd] = m;
-        });
-    }
-    
   } catch(e) {
       console.error("Error loading data", e);
   }
 }
 
 function render(){
-  const key = getParam('personKey') || '';
-  const item = PEOPLE.find(p => p.personKey === key);
+  const idParam = getParam('id'); // URL 파라미터 'id' 사용
+  const nameParam = getParam('name');
+  
+  // 구버전 링크 호환 (personKey 파라미터가 있을 경우)
+  const legacyKey = getParam('personKey');
+  currentId = idParam || legacyKey;
+  currentName = nameParam || "이름 없음";
 
   const out = document.getElementById('out');
   const title = document.getElementById('title');
   const msg = document.getElementById('msg');
   const sexBadge = document.getElementById('sexBadge'); 
 
-  if (!item) {
-    title.textContent = '배우 프로필';
-    if (window.translatePage) {
-        const lang = window.getCurrentLang();
-        title.textContent = window.STRINGS[lang]['actorProfileTitle'] || '배우 프로필';
-    }
-    msg.textContent = '배우를 찾을 수 없어요. (캐시 인덱스 확인)';
+  if (!currentId) {
+    msg.textContent = '잘못된 접근입니다.';
     return;
   }
   
-  currentPerson = item;
+  title.textContent = currentName;
   renderSaveBtn();
 
-  title.textContent = item.peopleNm;
-  
-  const personCd = item.peopleCd || ''; 
-  if (personCd && PEOPLE_DETAILS[personCd]) {
-      const detail = PEOPLE_DETAILS[personCd];
+  // 성별 표시
+  // ID가 숫자형태(KOFIC 코드)인 경우에만 details 조회
+  if (currentId && !currentId.startsWith('unknown') && PEOPLE_DETAILS[currentId]) {
+      const detail = PEOPLE_DETAILS[currentId];
       if (detail.sex === "남") sexBadge.textContent = "♂";
       if (detail.sex === "여") sexBadge.textContent = "♀";
   }
 
+  // [핵심] ID로 영화 필터링
+  const myMovies = MOVIES.filter(m => {
+      // 배우 목록에서 ID 일치 확인
+      const isActor = m.actors && m.actors.some(a => a.id === currentId);
+      // 감독 목록에서 ID 일치 확인
+      const isDirector = m.directors && m.directors.some(d => d.id === currentId);
+      
+      // ID가 없는 경우 이름으로 매칭 (구 데이터 호환용 fallback)
+      if (currentId.startsWith('name:')) {
+          const rawName = currentId.replace('name:', '');
+          const nameMatchActor = m.actors && m.actors.some(a => a.name === rawName);
+          const nameMatchDirector = m.directors && m.directors.some(d => d.name === rawName);
+          return nameMatchActor || nameMatchDirector;
+      }
+
+      return isActor || isDirector;
+  });
+
+  // 최신순 정렬
+  myMovies.sort((a,b) => (b.openDt || '').localeCompare(a.openDt || ''));
+
   out.innerHTML = '';
   const filmsWithAudi = [];
 
-  for (const f of (item.films||[])) {
+  if (myMovies.length === 0) {
+      msg.textContent = "등록된 출연작이 없습니다.";
+      return;
+  }
+
+  for (const f of myMovies) {
     const date = f.openDt ? f.openDt.replace(/-/g, '.') : '개봉일미상';
+    // audiAcc가 있으면 표시
     const audiStr = (f.audiAcc != null) ? ` / <span class="audi">누적 ${fmtNum(f.audiAcc)}명</span>` : '';
     
-    // [수정] movies.json에 저장된 '순서가 올바른 cast' 목록 사용
     let castStr = "";
-    const movieData = MOVIES_DB[f.movieCd];
-    
-    if (movieData && movieData.cast && Array.isArray(movieData.cast)) {
-        const actors = movieData.cast; // 이미 올바른 순서로 저장되어 있음
-        const displayActors = actors.slice(0, 7);
-        
-        // [핵심] 현재 배우 이름(item.peopleNm)과 일치하면 볼드 처리
-        const formattedActors = displayActors.map(name => {
-            if (name === item.peopleNm) return `<b>${name}</b>`;
-            return name;
+    if (f.actors && Array.isArray(f.actors)) {
+        const displayActors = f.actors.slice(0, 7);
+        const formattedActors = displayActors.map(a => {
+            // 현재 보고 있는 배우 이름과 같으면 볼드 처리
+            if (a.name === currentName) return `<b>${a.name}</b>`;
+            return a.name;
         });
-
-        castStr = ` · 배우: ${formattedActors.join(', ')}${actors.length > 7 ? '...' : ''}`;
+        castStr = ` · 배우: ${formattedActors.join(', ')}${f.actors.length > 7 ? '...' : ''}`;
     }
 
     const li = document.createElement('li');
+    // detail.html 링크는 movieCd 사용
     li.innerHTML = `<a href="detail.html?movieCd=${encodeURIComponent(f.movieCd)}">${f.movieNm}</a>
-      <span class="note">(${date}${f.part? ' · '+f.part:''}${audiStr}<span class="cast-list">${castStr}</span>)</span>`;
+      <span class="note">(${date}${audiStr}<span class="cast-list">${castStr}</span>)</span>`;
     out.appendChild(li);
 
     if (f.openDt) filmsWithAudi.push(f);
   }
 
+  // 차트 그리기 (기존 로직 유지)
   if (filmsWithAudi.length > 1) {
     document.getElementById('chart-container').style.display = 'block';
     
+    // 차트 버튼 이벤트 연결
     const buttons = [
         { id: 'btnTotalAudi', type: 'totalAudi' },
         { id: 'btnAudiPerActor', type: 'audiPerActor' },
@@ -241,40 +238,43 @@ function drawAudiChart(films, dataType = 'totalAudi'){
         myChart.destroy();
     }
 
+    // 개봉일 오름차순 정렬 (과거 -> 현재)
     films.sort((a,b) => (a.openDt || '').localeCompare(b.openDt || ''));
 
     const firstYear = (films.length > 0 && films[0].openDt) ? parseInt(films[0].openDt.slice(0, 4), 10) : new Date().getFullYear();
-
     const labels = films.map(f => f.openDt ? f.openDt.slice(0,7) : '미상');
-    let dataPoints;
-    let yAxisLabel;
     
-    const lang = window.getCurrentLang ? window.getCurrentLang() : 'ko';
-    const s = (window.STRINGS && window.STRINGS[lang]) ? window.STRINGS[lang] : STRINGS['ko']; 
+    let dataPoints;
+    let yAxisLabel = "관객수"; // 기본값
 
+    // 데이터 계산 로직
     if (dataType === 'audiPerFilmography') {
         const totalFilms = films.length;
         dataPoints = films.map(f => (f.audiAcc && totalFilms > 0) ? Math.round(f.audiAcc / totalFilms) : 0);
-        yAxisLabel = s.audiPerFilmo;
+        yAxisLabel = "관객수/출연작";
     } else if (dataType === 'audiPerActor') {
-        dataPoints = films.map(f => (f.audiAcc && f.actorCount > 0) ? Math.round(f.audiAcc / f.actorCount) : 0);
-        yAxisLabel = s.audiPerActor;
+        // actorCount 정보가 없으므로 actors 배열 길이 사용
+        dataPoints = films.map(f => {
+            const actorCount = f.actors ? f.actors.length : 1;
+            return (f.audiAcc) ? Math.round(f.audiAcc / actorCount) : 0;
+        });
+        yAxisLabel = "관객수/배우 수";
     } else if (dataType === 'audiPerCareer') {
         dataPoints = films.map(f => {
             const currentYear = f.openDt ? parseInt(f.openDt.slice(0, 4), 10) : firstYear;
             const careerDuration = Math.max(1, currentYear - firstYear + 1);
-            return (f.audiAcc && careerDuration > 0) ? Math.round(f.audiAcc / careerDuration) : 0;
+            return (f.audiAcc) ? Math.round(f.audiAcc / careerDuration) : 0;
         });
-        yAxisLabel = s.audiPerCareer;
+        yAxisLabel = "관객수/연기경력";
     } else if (dataType === 'audiBonus') {
         dataPoints = films.map(f => {
             const audi = f.audiAcc || 0;
             return audi > 5000000 ? audi * 2 : audi;
         });
-        yAxisLabel = s.audiBonus;
+        yAxisLabel = "500만+ 가중치";
     } else {
         dataPoints = films.map(f => f.audiAcc || 0);
-        yAxisLabel = s.audiCnt;
+        yAxisLabel = "관객수";
     }
     
     const movieTitles = films.map(f => f.movieNm);
@@ -297,13 +297,8 @@ function drawAudiChart(films, dataType = 'totalAudi'){
             scales: {
                 y: {
                     beginAtZero: true,
-                    ticks: {
-                        callback: function(value) { return value.toLocaleString(); }
-                    },
-                    title: {
-                        display: true,
-                        text: yAxisLabel 
-                    }
+                    ticks: { callback: function(value) { return value.toLocaleString(); } },
+                    title: { display: true, text: yAxisLabel }
                 }
             },
             plugins: {
@@ -312,10 +307,7 @@ function drawAudiChart(films, dataType = 'totalAudi'){
                     callbacks: {
                         title: function(tooltipItems) { return movieTitles[tooltipItems[0].dataIndex]; },
                         label: function(context) {
-                            let label = yAxisLabel.split(' (')[0] || '';
-                            if (label) { label += ': '; }
-                            if (context.parsed.y !== null) { label += context.parsed.y.toLocaleString() + (lang === 'ko' ? '명' : ''); }
-                            return label;
+                            return yAxisLabel + ': ' + (context.parsed.y !== null ? context.parsed.y.toLocaleString() + '명' : '');
                         }
                     }
                 }
