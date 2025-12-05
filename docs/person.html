@@ -17,7 +17,6 @@ ul.list { list-style:none; padding:0; margin:12px 0; }
 li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
 .audi { font-size: 14px; color: #333; }
 .cast-list { font-size: 13px; color: #555; margin-left: 4px; }
-/* [신규] 볼드체 강조 스타일 */
 .cast-list b { color: #000; font-weight: 700; background-color: #fff3cd; padding: 0 2px; border-radius: 2px; }
 .chart-buttons { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
 .chart-buttons button { padding:4px 10px; border:1px solid #ccc; border-radius:16px; background:#f0f0f0; cursor:pointer; font-size:14px; }
@@ -65,7 +64,6 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
 
 <script>
 const TS = Date.now();
-// [핵심 수정] 새 데이터 파일 사용 (search_index.json, people_details.json)
 const INDEX_URL = `data/search_index.json?v=${TS}`;
 const PEOPLE_DETAILS_URL = `data/search/people_details.json?v=${TS}`;
 
@@ -134,10 +132,10 @@ async function loadData(){
 }
 
 function render(){
-  // [중요] ID를 파라미터로 받음
   const idParam = getParam('id'); 
   const nameParam = getParam('name');
   
+  // 구버전 링크 호환
   const legacyKey = getParam('personKey');
   currentId = idParam || legacyKey;
   currentName = nameParam || "이름 없음";
@@ -155,33 +153,35 @@ function render(){
   title.textContent = currentName;
   renderSaveBtn();
 
-  // 성별 표시 (ID가 코드 형식인 경우만)
-  if (currentId && !currentId.startsWith('name:') && PEOPLE_DETAILS[currentId]) {
+  // 성별 표시 (ID가 KOFIC 코드 숫자 형식인 경우만)
+  if (currentId && !currentId.startsWith('name:') && !currentId.startsWith('unknown') && PEOPLE_DETAILS[currentId]) {
       const detail = PEOPLE_DETAILS[currentId];
       if (detail.sex === "남") sexBadge.textContent = "♂";
       if (detail.sex === "여") sexBadge.textContent = "♀";
   }
 
-  // [핵심 로직] ID 일치하는 영화 찾기 + 엄격한 분리
+  // [핵심 필터링 로직]
   const seenMovies = new Set();
   const myMovies = [];
 
   MOVIES_RAW.forEach(m => {
-      if (seenMovies.has(m.movieCd)) return; // 중복 제거
+      if (seenMovies.has(m.movieCd)) return;
 
       let isMatch = false;
 
-      // 1. ID가 명확한 코드인 경우 (예: 10090290) - ID가 정확히 일치해야 함
+      // 1. URL ID가 명확한 코드인 경우 (예: 10090290)
+      // -> 영화 데이터의 ID가 정확히 일치하는 것만 가져옴
       if (currentId && !currentId.startsWith('name:')) {
           const actorMatch = m.actors && m.actors.some(a => a.id === currentId);
           const directorMatch = m.directors && m.directors.some(d => d.id === currentId);
           isMatch = actorMatch || directorMatch;
       } 
-      // 2. ID가 없는 이름 전용인 경우 (name:황정민) - 이름은 같은데 ID가 없는 영화만 가져옴
+      // 2. URL ID가 'name:황정민' 인 경우 (코드가 없는 황정민)
+      // -> 영화 데이터에서 이름은 '황정민'인데 ID가 '없는(빈칸)' 경우만 가져옴
+      // -> 이렇게 하면 ID가 있는 진짜 황정민의 영화는 여기서 걸러집니다! (이게 핵심)
       else if (currentId.startsWith('name:')) {
           const targetName = currentId.replace('name:', '');
           
-          // 배우 체크: 이름은 같지만 ID가 '없는' 경우만 매칭 (ID 있으면 다른 사람임)
           const actorMatch = m.actors && m.actors.some(a => 
               a.name === targetName && (!a.id || a.id.trim() === "")
           );
@@ -199,7 +199,6 @@ function render(){
       }
   });
 
-  // 최신 개봉일 순 정렬
   myMovies.sort((a,b) => (b.openDt || '').localeCompare(a.openDt || ''));
 
   out.innerHTML = '';
@@ -232,7 +231,6 @@ function render(){
     if (f.openDt) filmsWithAudi.push(f);
   }
 
-  // 차트 그리기
   if (filmsWithAudi.length > 1) {
     document.getElementById('chart-container').style.display = 'block';
     
