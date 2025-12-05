@@ -24,6 +24,7 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
 .btn { padding:6px 10px; border:1px solid #e6e6e6; border-radius:6px; background:#fafafa; cursor:pointer; }
 .sex-badge { font-size: 1rem; margin-left: 8px; }
 </style>
+<!-- [필수] 차트 라이브러리 로드 -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="assets/translator.js" defer></script>
 </head>
@@ -48,16 +49,19 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
     <button class="btn" id="saveBtn" style="display:none;" data-i18n-key="btnSave">☆ 배우 저장</button>
   </div>
 
-  <div id="chart-container" style="display:none;">
+  <div id="chart-container" style="display:none; margin-top: 40px;">
     <h2 data-i18n-key="audiTrend">개봉 시기별 관객수 추이</h2>
-    <div class="chart-buttons">
+    <div class="chart-buttons" style="margin-bottom: 12px;">
         <button id="btnTotalAudi" class="active" data-i18n-key="audiCnt">관객수</button>
         <button id="btnAudiPerActor" data-i18n-key="audiPerActor">관객수/배우 수</button>
         <button id="btnAudiPerFilmography" data-i18n-key="audiPerFilmo">관객수/출연작</button>
         <button id="btnAudiPerCareer" data-i18n-key="audiPerCareer">관객수/연기경력</button>
         <button id="btnAudiBonus" data-i18n-key="audiBonus">500만+ 가중치</button>
     </div>
-    <canvas id="audiChart"></canvas>
+    <!-- 캔버스 높이 지정 -->
+    <div style="position: relative; height:300px; width:100%">
+        <canvas id="audiChart"></canvas>
+    </div>
     <div class="note" style="font-size:12px; text-align: right; margin-top: 4px;">* 점에 마우스를 가까이하면 나타나는 텍스트는 영화 제목입니다.</div>
   </div>
 </div>
@@ -115,17 +119,27 @@ saveBtn.addEventListener('click', () => {
 
 async function loadData(){
   try {
-    const [indexRes, detailsRes] = await Promise.all([
-      fetch(INDEX_URL),
-      fetch(PEOPLE_DETAILS_URL)
-    ]);
-    
-    if (indexRes.ok) {
-        MOVIES_RAW = await indexRes.json();
+    // 2가지 경로 시도 (docs/data 혹은 data)
+    const tryFetch = async (path) => {
+        const res = await fetch(path);
+        if (res.ok) return res.json();
+        throw new Error('Not found');
+    };
+
+    try {
+        MOVIES_RAW = await tryFetch(`docs/data/search_index.json?v=${TS}`);
+    } catch {
+        MOVIES_RAW = await tryFetch(`data/search_index.json?v=${TS}`);
     }
-    if (detailsRes.ok) {
-        PEOPLE_DETAILS = await detailsRes.json() || {};
+
+    try {
+        PEOPLE_DETAILS = await tryFetch(`docs/data/people_details.json?v=${TS}`);
+    } catch {
+        try {
+            PEOPLE_DETAILS = await tryFetch(`data/search/people_details.json?v=${TS}`);
+        } catch {}
     }
+
   } catch(e) {
       console.error("Error loading data", e);
   }
@@ -134,8 +148,6 @@ async function loadData(){
 function render(){
   const idParam = getParam('id'); 
   const nameParam = getParam('name');
-  
-  // 구버전 링크 호환
   const legacyKey = getParam('personKey');
   currentId = idParam || legacyKey;
   currentName = nameParam || "이름 없음";
@@ -153,14 +165,12 @@ function render(){
   title.textContent = currentName;
   renderSaveBtn();
 
-  // 성별 표시 (ID가 KOFIC 코드 숫자 형식인 경우만)
   if (currentId && !currentId.startsWith('name:') && !currentId.startsWith('unknown') && PEOPLE_DETAILS[currentId]) {
       const detail = PEOPLE_DETAILS[currentId];
       if (detail.sex === "남") sexBadge.textContent = "♂";
       if (detail.sex === "여") sexBadge.textContent = "♀";
   }
 
-  // [핵심 필터링 로직]
   const seenMovies = new Set();
   const myMovies = [];
 
@@ -168,28 +178,14 @@ function render(){
       if (seenMovies.has(m.movieCd)) return;
 
       let isMatch = false;
-
-      // 1. URL ID가 명확한 코드인 경우 (예: 10090290)
-      // -> 영화 데이터의 ID가 정확히 일치하는 것만 가져옴
       if (currentId && !currentId.startsWith('name:')) {
           const actorMatch = m.actors && m.actors.some(a => a.id === currentId);
           const directorMatch = m.directors && m.directors.some(d => d.id === currentId);
           isMatch = actorMatch || directorMatch;
-      } 
-      // 2. URL ID가 'name:황정민' 인 경우 (코드가 없는 황정민)
-      // -> 영화 데이터에서 이름은 '황정민'인데 ID가 '없는(빈칸)' 경우만 가져옴
-      // -> 이렇게 하면 ID가 있는 진짜 황정민의 영화는 여기서 걸러집니다! (이게 핵심)
-      else if (currentId.startsWith('name:')) {
+      } else if (currentId.startsWith('name:')) {
           const targetName = currentId.replace('name:', '');
-          
-          const actorMatch = m.actors && m.actors.some(a => 
-              a.name === targetName && (!a.id || a.id.trim() === "")
-          );
-          
-          const directorMatch = m.directors && m.directors.some(d => 
-              d.name === targetName && (!d.id || d.id.trim() === "")
-          );
-          
+          const actorMatch = m.actors && m.actors.some(a => a.name === targetName && (!a.id || a.id.trim() === ""));
+          const directorMatch = m.directors && m.directors.some(d => d.name === targetName && (!d.id || d.id.trim() === ""));
           isMatch = actorMatch || directorMatch;
       }
 
@@ -211,7 +207,12 @@ function render(){
 
   for (const f of myMovies) {
     const date = f.openDt ? f.openDt.replace(/-/g, '.') : '개봉일미상';
-    const audiStr = (f.audiAcc != null) ? ` / <span class="audi">누적 ${fmtNum(f.audiAcc)}명</span>` : '';
+    // [중요] 관객수 숫자 변환 (차트용 데이터 확보)
+    let audiNum = 0;
+    if (f.audiAcc) {
+        audiNum = typeof f.audiAcc === 'number' ? f.audiAcc : parseInt(f.audiAcc.toString().replace(/,/g, ''), 10);
+    }
+    const audiStr = (audiNum > 0) ? ` / <span class="audi">누적 ${fmtNum(audiNum)}명</span>` : '';
     
     let castStr = "";
     if (f.actors && Array.isArray(f.actors)) {
@@ -228,10 +229,15 @@ function render(){
       <span class="note">(${date}${audiStr}<span class="cast-list">${castStr}</span>)</span>`;
     out.appendChild(li);
 
-    if (f.openDt) filmsWithAudi.push(f);
+    // 차트용 데이터 수집: 개봉일이 있고 관객수가 있는 경우
+    if (f.openDt && audiNum > 0) {
+        // 원본 객체 복사 후 정제된 관객수 주입
+        filmsWithAudi.push({ ...f, audiAcc: audiNum }); 
+    }
   }
 
-  if (filmsWithAudi.length > 1) {
+  // 차트 그리기 로직 (데이터가 있을 때만)
+  if (filmsWithAudi.length > 0) {
     document.getElementById('chart-container').style.display = 'block';
     
     const buttons = [
@@ -252,7 +258,10 @@ function render(){
         });
     });
 
+    // 초기 차트 그리기
     drawAudiChart(filmsWithAudi, 'totalAudi');
+  } else {
+      document.getElementById('chart-container').style.display = 'none';
   }
 }
 
@@ -261,6 +270,7 @@ function drawAudiChart(films, dataType = 'totalAudi'){
         myChart.destroy();
     }
 
+    // 개봉일 오름차순 정렬 (과거 -> 현재)
     films.sort((a,b) => (a.openDt || '').localeCompare(b.openDt || ''));
 
     const firstYear = (films.length > 0 && films[0].openDt) ? parseInt(films[0].openDt.slice(0, 4), 10) : new Date().getFullYear();
@@ -271,8 +281,8 @@ function drawAudiChart(films, dataType = 'totalAudi'){
     
     if (window.translatePage && window.getCurrentLang) {
        const lang = window.getCurrentLang();
-       const s = window.STRINGS[lang];
-       if (dataType === 'totalAudi') yAxisLabel = s.audiCnt;
+       const s = window.STRINGS ? window.STRINGS[lang] : null;
+       if (s && dataType === 'totalAudi') yAxisLabel = s.audiCnt || "관객수";
     }
 
     if (dataType === 'audiPerFilmography') {
@@ -320,6 +330,7 @@ function drawAudiChart(films, dataType = 'totalAudi'){
             }]
         },
         options: {
+            maintainAspectRatio: false, // 캔버스 크기 조절 허용
             scales: {
                 y: {
                     beginAtZero: true,
