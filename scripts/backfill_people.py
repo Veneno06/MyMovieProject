@@ -1,6 +1,6 @@
 # scripts/backfill_people.py
-# 목적: 한국 영화 중 배우 이름이 특정 자음 범위(ㅍ~ㅎ)인 경우 우선적으로 코드 수집
-# 타겟: 'ㅎ'으로 시작하는 황정민 배우를 가장 빠르게 찾기 위해 범위를 ㅍ, ㅎ으로 한정
+# 목적: 한국 영화 중 배우 이름이 'ㅎ'으로 시작하는 경우만 집중적으로 코드 수집
+# 타겟: 황정민을 비롯한 'ㅎ'씨 배우들의 데이터를 최우선으로 확보
 from __future__ import annotations
 import os
 import json
@@ -58,28 +58,26 @@ def is_korean_movie(target: dict) -> bool:
             return True
     return False
 
-# [핵심 수정] 타겟 자음 범위 변경 (ㅍ ~ ㅎ)
+# [핵심 수정] 타겟 자음 범위: 오직 'ㅎ' (황정민 타겟)
 def is_name_in_range(name: str) -> bool:
     """
-    이름의 첫 글자가 'ㅍ'(피읖) ~ 'ㅎ'(히읗) 사이인지 확인.
-    황정민(ㅎ)은 여기에 포함됨.
+    이름의 첫 글자가 'ㅎ'(히읗)인지 확인.
     """
     if not name: return False
     first_char = name[0]
     
     # 한글 유니코드 계산
-    # 0:ㄱ ... 16:ㅌ, 17:ㅍ, 18:ㅎ
+    # 초성 인덱스 18이 'ㅎ'입니다.
     
     if '가' <= first_char <= '힣':
         chosung_idx = (ord(first_char) - 0xAC00) // 588
-        # 17(ㅍ) ~ 18(ㅎ) 범위만 허용
-        return 17 <= chosung_idx <= 18
+        return chosung_idx == 18
     return False
 
 def need_backfill(target: dict) -> bool:
     """
     1. 코드가 없는 배우가 있어야 함
-    2. 그 배우의 이름이 타겟 범위(ㅍ~ㅎ)에 속해야 함
+    2. 그 배우의 이름이 'ㅎ'으로 시작해야 함
     """
     actors = target.get("actors") or []
     if not isinstance(actors, list): return False
@@ -88,7 +86,7 @@ def need_backfill(target: dict) -> bool:
         nm = (actor.get("peopleNm") or "").strip()
         cd = (actor.get("peopleCd") or "").strip()
         
-        # 코드가 없고(빈칸) + 이름이 범위 내(ㅍ~ㅎ)인 경우
+        # 코드가 없고(빈칸) + 이름이 'ㅎ'인 경우
         if nm and not cd:
             if is_name_in_range(nm):
                 return True
@@ -105,12 +103,12 @@ def fetch_movie_info(session, api_key, movieCd):
     return j
 
 def backfill(budget: int, rate_sleep_ms: int):
-    # 최신 영화부터 역순 정렬 (황정민 주연작이 최신에 많음)
+    # 최신 영화부터 역순 정렬
     files = sorted([Path(p) for p in glob.glob(str(DETAIL_DIR / "**" / "*.json"), recursive=True)], reverse=True)
     
     print(f"[paths] DETAIL_DIR={DETAIL_DIR}")
     print(f"[scan] detail files: {len(files)} (Reverse Order)")
-    print(f"[filter] Target: Korean Movies + Actor Name starts with 'ㅍ'~'ㅎ'")
+    print(f"[filter] Target: Korean Movies + Actor Name starts with 'ㅎ'")
 
     updated = skipped = used = 0
 
@@ -129,7 +127,7 @@ def backfill(budget: int, rate_sleep_ms: int):
             skipped += 1
             continue
 
-        # 2. 타겟 배우(ㅍ~ㅎ, 코드 없음)가 포함된 영화인지 확인
+        # 2. 타겟 배우('ㅎ', 코드 없음)가 포함된 영화인지 확인
         if not need_backfill(trg):
             skipped += 1
             continue
