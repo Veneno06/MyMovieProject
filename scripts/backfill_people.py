@@ -38,6 +38,7 @@ def load_json(p: Path):
 def save_json(p: Path, data: dict):
     p.parent.mkdir(parents=True, exist_ok=True)
     tmp = p.with_suffix(".json.tmp")
+    # [수정] ensure_ascii=False로 한글 깨짐 방지 및 강제 쓰기
     tmp.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
     tmp.replace(p)
 
@@ -50,7 +51,6 @@ def get_shape(raw: dict) -> tuple[str, dict]:
     return "none", {}
 
 def is_korean_movie(target: dict) -> bool:
-    """한국 영화인지 확인"""
     nations = target.get("nations") or []
     if not isinstance(nations, list): return False
     for n in nations:
@@ -58,35 +58,21 @@ def is_korean_movie(target: dict) -> bool:
             return True
     return False
 
-# [핵심 수정] 타겟 자음 범위: 오직 'ㅎ' (황정민 타겟)
+# [핵심] 'ㅎ'씨 배우 타겟 (황정민 포함)
 def is_name_in_range(name: str) -> bool:
-    """
-    이름의 첫 글자가 'ㅎ'(히읗)인지 확인.
-    """
     if not name: return False
     first_char = name[0]
-    
-    # 한글 유니코드 계산
-    # 초성 인덱스 18이 'ㅎ'입니다.
-    
     if '가' <= first_char <= '힣':
         chosung_idx = (ord(first_char) - 0xAC00) // 588
-        return chosung_idx == 18
+        return chosung_idx == 18 # ㅎ
     return False
 
 def need_backfill(target: dict) -> bool:
-    """
-    1. 코드가 없는 배우가 있어야 함
-    2. 그 배우의 이름이 'ㅎ'으로 시작해야 함
-    """
     actors = target.get("actors") or []
     if not isinstance(actors, list): return False
-
     for actor in actors:
         nm = (actor.get("peopleNm") or "").strip()
         cd = (actor.get("peopleCd") or "").strip()
-        
-        # 코드가 없고(빈칸) + 이름이 'ㅎ'인 경우
         if nm and not cd:
             if is_name_in_range(nm):
                 return True
@@ -122,13 +108,15 @@ def backfill(budget: int, rate_sleep_ms: int):
         movieCd = (trg.get("movieCd") or "").strip()
         if not movieCd: continue
 
-        # 1. 한국 영화 필터
+        # [디버그] 서울의 봄(20231122) 강제 확인
+        is_target_debug = (movieCd == "20231122")
+
         if not is_korean_movie(trg):
             skipped += 1
             continue
 
-        # 2. 타겟 배우('ㅎ', 코드 없음)가 포함된 영화인지 확인
-        if not need_backfill(trg):
+        # 이미 코드가 있어도 서울의 봄은 강제로 다시 받아봄 (확인용)
+        if not need_backfill(trg) and not is_target_debug:
             skipped += 1
             continue
 
@@ -160,14 +148,19 @@ def backfill(budget: int, rate_sleep_ms: int):
 
             new_actors = []
             for a in info.get("actors", []) or []:
+                code = a.get("peopleCd", "").strip()
+                name = a.get("peopleNm", "").strip()
                 new_actors.append({
-                    "peopleCd": a.get("peopleCd", "").strip(),
-                    "peopleNm": a.get("peopleNm", "").strip(),
+                    "peopleCd": code,
+                    "peopleNm": name,
                     "repRoleNm": "배우",
                     "cast": a.get("cast", "").strip()
                 })
+                # [디버그] 황정민 코드 확인
+                if is_target_debug and name == "황정민":
+                    print(f"★ [DEBUG] 서울의 봄 황정민 코드 발견: '{code}'")
 
-            # 실제로 코드가 채워졌는지 확인 (하나라도 채워졌으면 저장)
+            # 무조건 저장 (강제 업데이트)
             trg["directors"] = new_directors
             trg["actors"] = new_actors
             
