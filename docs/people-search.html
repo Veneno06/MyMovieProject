@@ -28,17 +28,21 @@ label { margin-right:8px; }
     <a href="costar-search.html" class="btn" data-i18n-key="costarSearch">공동 출연 검색</a>
     <a href="saved.html" class="btn" data-i18n-key="savedList">저장 목록</a>
   </div>
+
   <h1 data-i18n-key="peopleSearchTitle">배우/감독 검색</h1>
+
   <form id="f" class="box">
     <span data-i18n-key="nameLabel">이름:</span> <input type="text" name="q" value="">
     <label><input type="checkbox" name="actorOnly" checked> <span data-i18n-key="actorOnly">배우만</span></label>
     <button type="submit" class="btn" data-i18n-key="searchBtn">검색</button>
   </form>
+
   <div id="total" class="note"></div>
   <ul id="out" class="list"></ul>
 </div>
+
 <script>
-// [경로 수정]
+// [중요] 최신 데이터 파일 연결 (캐시 방지 v=Date.now())
 const PEOPLE_URL = `docs/data/search_index.json?v=${Date.now()}`;
 let PEOPLE_DB = [];
 
@@ -46,9 +50,10 @@ async function loadIndex(){
   try {
     const r = await fetch(PEOPLE_URL);
     if(!r.ok){ 
-        const r2 = await fetch(`data/search_index.json?v=${Date.now()}`); // fallback
+        // 경로 호환성을 위해 fallback
+        const r2 = await fetch(`data/search_index.json?v=${Date.now()}`);
         if(r2.ok) return processData(await r2.json());
-        throw new Error('Failed');
+        throw new Error('Failed to load index');
     }
     processData(await r.json());
   } catch(e) {
@@ -61,7 +66,7 @@ function processData(movies) {
     movies.forEach(m => {
         if (m.actors) {
             m.actors.forEach(a => {
-                // ID가 있으면 ID 사용, 없으면 name:이름 사용 -> 동명이인 분리
+                // [핵심] ID가 있으면 ID를, 없으면 name:이름을 키로 사용 (동명이인 분리)
                 const id = (a.id && a.id.trim()) ? a.id : `name:${a.name}`;
                 if (!peopleMap.has(id)) {
                     peopleMap.set(id, { personKey: id, peopleNm: a.name, repRoleNm: '배우', filmos: [] });
@@ -82,16 +87,21 @@ function search(){
   let list = PEOPLE_DB.filter(p => (p.peopleNm||'').toLowerCase().includes(q));
   if (f.get('actorOnly')) list = list.filter(p => p.repRoleNm === '배우');
   
+  // 출연작 많은 순 정렬
+  list.sort((a, b) => b.filmos.length - a.filmos.length);
   list = list.slice(0, 200);
+
   document.getElementById('total').textContent = `총 ${list.length}명 검색됨`;
   const ul = document.getElementById('out');
   ul.innerHTML = '';
   
   for (const p of list) {
+    // [중요] 링크 생성 시 id 전달
     const href = `person.html?id=${encodeURIComponent(p.personKey)}&name=${encodeURIComponent(p.peopleNm)}`;
     const filmoStr = p.filmos.length > 0 ? `(${p.filmos.join(', ')} 등)` : '';
-    // 코드 유무 표시
+    // 코드가 있는 진짜 배우는 (코드:...) 표시
     const codeInfo = (!p.personKey.startsWith('name:')) ? `<span style="font-size:0.8em;color:#aaa;">(코드:${p.personKey})</span>` : '';
+    
     const li = document.createElement('li');
     li.innerHTML = `<a href="${href}"><strong>${p.peopleNm}</strong></a> <span class="note">${p.repRoleNm} ${filmoStr}</span> ${codeInfo}`;
     ul.appendChild(li);
