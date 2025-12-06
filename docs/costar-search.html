@@ -46,188 +46,96 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
   <div id="total" class="note" style="margin-top:8px;"></div>
   <ul id="out" class="list"></ul>
 
-  <!-- [추가] 차트 영역 복구 -->
+  <!-- 차트 영역 -->
   <div id="chart-container" style="display:none; margin-top: 40px;">
     <h2 data-i18n-key="audiTrend">개봉 시기별 관객수 추이</h2>
     <div style="position: relative; height:300px; width:100%">
         <canvas id="audiChart"></canvas>
     </div>
-    <div class="note" style="font-size:12px; text-align: right; margin-top: 4px;">* 점에 마우스를 가까이하면 나타나는 텍스트는 영화 제목입니다.</div>
   </div>
 </div>
 
 <script>
-const BASE = location.pathname.replace(/\/[^\/]*$/, '');
-const INDEX_URL = `docs/data/search_index.json?v=${Date.now()}`;
-let MOVIES = [];
-let myChart = null;
-
+const PATHS_INDEX = [`docs/data/search_index.json?v=${Date.now()}`, `data/search_index.json?v=${Date.now()}`];
+let MOVIES = [], myChart = null;
 const fmtNum = n => (n==null || isNaN(n)) ? '' : n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
 async function loadIndex(){
-  try {
-    let r = await fetch(INDEX_URL);
-    if(!r.ok) {
-        r = await fetch(`data/search_index.json?v=${Date.now()}`); 
-    }
-    if(!r.ok) throw new Error('Failed to load index');
-    
-    MOVIES = await r.json();
-    document.getElementById('total').textContent = '데이터 로드 완료. 배우 이름들을 입력하세요.';
-  } catch(e) {
-    console.error(e);
-    document.getElementById('total').textContent = '데이터를 불러오는 데 실패했습니다.';
+  for (const p of PATHS_INDEX) {
+      try { const r = await fetch(p); if (r.ok) { MOVIES = await r.json(); return; } } catch(e) {}
   }
 }
 
 function search(){
   const f = new FormData(document.getElementById('f'));
   const qStr = (f.get('q')||'').trim();
+  if (!qStr) { document.getElementById('out').innerHTML=''; return; }
 
-  if (!qStr) {
-      document.getElementById('out').innerHTML = '';
-      document.getElementById('total').textContent = '배우 이름을 입력해주세요.';
-      document.getElementById('chart-container').style.display = 'none';
-      return;
-  }
+  const queries = qStr.split(',').map(s => s.trim().toLowerCase()).filter(s => s.length);
+  if (!queries.length) return;
 
-  const queries = qStr.split(',').map(s => s.trim().toLowerCase()).filter(s => s.length > 0);
-  if (queries.length === 0) return;
-
-  // 1차 필터링: 배우 이름이 모두 포함된 영화 찾기
-  const rawResults = MOVIES.filter(m => {
+  const results = MOVIES.filter(m => {
       const actors = m.actors || [];
-      return queries.every(query => {
-          return actors.some(a => a.name.toLowerCase().includes(query));
-      });
+      return queries.every(q => actors.some(a => a.name.toLowerCase().includes(q)));
   });
 
-  // [수정] 중복 제거 로직 추가 (movieCd 기준)
-  const results = [];
-  const seenMovieCds = new Set();
+  // 중복 제거
+  const unique = [];
+  const seen = new Set();
+  results.forEach(m => { if(!seen.has(m.movieCd)) { seen.add(m.movieCd); unique.push(m); } });
+  unique.sort((a,b) => (b.openDt||'').localeCompare(a.openDt||''));
 
-  for (const m of rawResults) {
-      if (!seenMovieCds.has(m.movieCd)) {
-          seenMovieCds.add(m.movieCd);
-          results.push(m);
-      }
-  }
-
-  // 최신순 정렬
-  results.sort((a,b) => (b.openDt || '').localeCompare(a.openDt || ''));
-
-  document.getElementById('total').textContent = `총 ${results.length}편의 공동 출연작이 검색되었습니다.`;
+  document.getElementById('total').textContent = `총 ${unique.length}편 검색됨`;
   const ul = document.getElementById('out');
   ul.innerHTML = '';
-  
-  if (results.length === 0) {
-      ul.innerHTML = '<li style="text-align:center; color:#888;">검색 결과가 없습니다.</li>';
-      document.getElementById('chart-container').style.display = 'none';
-      return;
-  }
-
   const filmsWithAudi = [];
 
-  for (const m of results) {
-    const date = m.openDt ? m.openDt.replace(/-/g, '.') : '개봉일미상';
-    
-    // 관객수 숫자 변환 (안전장치)
+  for (const m of unique) {
     let audiNum = 0;
-    if (m.audiAcc) {
-        audiNum = typeof m.audiAcc === 'number' ? m.audiAcc : parseInt(m.audiAcc.toString().replace(/,/g, ''), 10);
-    }
-    const audiStr = (audiNum > 0) ? ` / <span class="audi">누적 ${fmtNum(audiNum)}명</span>` : '';
+    if (m.audiAcc) audiNum = typeof m.audiAcc === 'number' ? m.audiAcc : parseInt(String(m.audiAcc).replace(/,/g, ''), 10);
+    const audiStr = audiNum ? ` / <span class="audi">누적 ${fmtNum(audiNum)}명</span>` : '';
     
     let castHtml = "";
-    if (m.actors && Array.isArray(m.actors)) {
-        const actorLinks = m.actors.slice(0, 10).map(a => {
+    if (m.actors) {
+        const links = m.actors.slice(0, 10).map(a => {
             const isMatch = queries.some(q => a.name.toLowerCase().includes(q));
-            
-            const idParam = (a.id && a.id.trim()) ? a.id : `name:${a.name}`;
-            const href = `person.html?id=${encodeURIComponent(idParam)}&name=${encodeURIComponent(a.name)}`;
-            
+            const id = (a.id && a.id.trim()) ? a.id : `name:${a.name}`;
+            const href = `person.html?id=${encodeURIComponent(id)}&name=${encodeURIComponent(a.name)}`;
             const nameHtml = isMatch ? `<span class="highlight">${a.name}</span>` : a.name;
-            return `<a href="${href}" style="text-decoration:none; color:#555; hover:text-decoration:underline;">${nameHtml}</a>`;
+            return `<a href="${href}" style="text-decoration:none;color:#555;">${nameHtml}</a>`;
         });
-        
-        castHtml = ` · 배우: ${actorLinks.join(', ')}${m.actors.length > 10 ? '...' : ''}`;
+        castHtml = ` · 배우: ${links.join(', ')}`;
     }
 
     const li = document.createElement('li');
-    li.innerHTML = `<a href="detail.html?movieCd=${encodeURIComponent(m.movieCd)}" style="font-weight:bold; color:#000;">${m.movieNm}</a>
-      <span class="note">(${date}${audiStr})</span><div class="cast-list" style="margin-top:4px;">${castHtml}</div>`;
+    li.innerHTML = `<a href="detail.html?movieCd=${encodeURIComponent(m.movieCd)}" style="font-weight:bold;color:#000;">${m.movieNm}</a>
+      <span class="note">(${m.openDt||'미상'}${audiStr})</span><div class="cast-list" style="margin-top:4px;">${castHtml}</div>`;
     ul.appendChild(li);
-
-    // 차트용 데이터 수집
-    if (m.openDt && audiNum > 0) {
-        filmsWithAudi.push({ ...m, audiAcc: audiNum });
-    }
+    if (m.openDt && audiNum > 0) filmsWithAudi.push({ ...m, audiAcc: audiNum });
   }
 
-  // 차트 그리기
   if (filmsWithAudi.length > 0) {
       document.getElementById('chart-container').style.display = 'block';
-      drawAudiChart(filmsWithAudi);
-  } else {
-      document.getElementById('chart-container').style.display = 'none';
+      drawChart(filmsWithAudi);
   }
 }
 
-// 차트 그리기 함수
-function drawAudiChart(films){
-    if (myChart) {
-        myChart.destroy();
-    }
-
-    // 개봉일 오름차순
-    films.sort((a,b) => (a.openDt || '').localeCompare(b.openDt || ''));
-
-    const labels = films.map(f => f.openDt ? f.openDt.slice(0,7) : '미상');
-    const dataPoints = films.map(f => f.audiAcc || 0);
-    const movieTitles = films.map(f => f.movieNm);
-
-    const ctx = document.getElementById('audiChart').getContext('2d');
-    myChart = new Chart(ctx, {
+function drawChart(films){
+    if (myChart) myChart.destroy();
+    films.sort((a,b) => (a.openDt||'').localeCompare(b.openDt||''));
+    new Chart(document.getElementById('audiChart'), {
         type: 'line',
         data: {
-            labels: labels,
-            datasets: [{
-                label: '관객수',
-                data: dataPoints,
-                borderColor: 'rgba(75, 192, 192, 1)',
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                fill: true,
-                tension: 0.1
-            }]
+            labels: films.map(f => f.openDt.slice(0,7)),
+            datasets: [{ label: '관객수', data: films.map(f => f.audiAcc), borderColor: 'rgba(75, 192, 192, 1)', fill: true }]
         },
-        options: {
-            maintainAspectRatio: false,
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: { callback: function(value) { return value.toLocaleString(); } },
-                    title: { display: true, text: '관객수' }
-                }
-            },
-            plugins: {
-                legend: { display: false },
-                tooltip: {
-                    callbacks: {
-                        title: function(tooltipItems) { return movieTitles[tooltipItems[0].dataIndex]; },
-                        label: function(context) {
-                            return '관객수: ' + (context.parsed.y !== null ? context.parsed.y.toLocaleString() + '명' : '');
-                        }
-                    }
-                }
-            }
-        }
+        options: { maintainAspectRatio: false }
     });
 }
 
 (async function main(){
   await loadIndex();
-  const f = document.getElementById('f');
-  f.addEventListener('submit', (e)=>{ e.preventDefault(); search(); });
+  document.getElementById('f').addEventListener('submit', (e)=>{ e.preventDefault(); search(); });
 })();
 </script>
 </body>
