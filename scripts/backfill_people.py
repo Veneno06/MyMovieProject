@@ -41,15 +41,6 @@ def save_json(p: Path, data: dict):
     tmp.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
     tmp.replace(p)
 
-# 'ㅎ'씨 배우 타겟 (황정민 포함)
-def is_target_name(name: str) -> bool:
-    if not name: return False
-    first_char = name[0]
-    if '가' <= first_char <= '힣':
-        chosung = (ord(first_char) - 0xAC00) // 588
-        return chosung == 18 # 'ㅎ'
-    return False
-
 def fetch_movie_info(session, api_key, movieCd):
     qs = urlencode({"key": api_key, "movieCd": movieCd})
     url = f"{MOVIE_INFO_URL}?{qs}"
@@ -66,7 +57,7 @@ def backfill(budget: int, rate_sleep_ms: int):
     
     print(f"[paths] 데이터 폴더: {DETAIL_DIR}")
     print(f"[scan] 총 파일 수: {len(files)}개")
-    print(f"[filter] 타겟: 한국 영화 + 배우 이름이 'ㅎ'으로 시작 + 코드 없음")
+    print(f"[filter] 타겟: 한국 영화 + 황정민 포함 시 무조건 확인")
 
     updated = 0
     skipped = 0
@@ -76,29 +67,37 @@ def backfill(budget: int, rate_sleep_ms: int):
         raw = load_json(p)
         if not raw: continue
         
-        # 데이터 구조 확인
         data = raw if raw.get("movieCd") else ((raw.get("movieInfoResult") or {}).get("movieInfo") or {})
         movieCd = data.get("movieCd")
         if not movieCd: continue
 
-        # 한국 영화 필터
+        # 한국 영화만 (API 절약)
         nations = data.get("nations") or []
         is_korea = any(n.get("nationNm") == "한국" for n in nations)
         if not is_korea:
             skipped += 1
             continue
 
-        # 타겟 배우 확인 (코드 비어있는 경우만)
+        # [핵심] 업데이트 필요 여부 판단
         actors = data.get("actors") or []
         needs_update = False
+        
+        # 1. 황정민이 포함되어 있는가? (있으면 무조건 업데이트 대상)
+        has_target_actor = any(a.get("peopleNm", "").strip() == "황정민" for a in actors)
+        
+        # 2. 코드가 비어있는 'ㅎ'씨 배우가 있는가?
+        has_missing_code = False
         for a in actors:
             nm = a.get("peopleNm", "").strip()
             cd = a.get("peopleCd", "").strip()
-            if nm and not cd and is_target_name(nm):
-                needs_update = True
+            # ㅎ씨 배우인데 코드가 없으면
+            if nm and not cd and ('가' <= nm[0] <= '힣' and (ord(nm[0]) - 0xAC00) // 588 == 18):
+                has_missing_code = True
                 break
         
-        if not needs_update:
+        if has_target_actor or has_missing_code:
+            needs_update = True
+        else:
             skipped += 1
             continue
 
@@ -106,7 +105,6 @@ def backfill(budget: int, rate_sleep_ms: int):
             print(f"[info] 예산 소진 ({used}회). 중단.")
             break
 
-        # API 호출
         try:
             session, api_key = get_session()
             j = fetch_movie_info(session, api_key, movieCd)
@@ -120,7 +118,7 @@ def backfill(budget: int, rate_sleep_ms: int):
                 skipped += 1
                 continue
 
-            # 데이터 업데이트
+            # 배우 정보 업데이트
             new_actors = []
             for a in info.get("actors", []) or []:
                 new_actors.append({
