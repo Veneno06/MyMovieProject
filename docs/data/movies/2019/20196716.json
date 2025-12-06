@@ -22,28 +22,29 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "김지영",
-          "peopleNmEn": "KIM Ji-young"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "박호산",
-          "peopleNmEn": "PARK Ho-san",
-          "cast": "내레이션",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "내레이션"
         },
         {
+          "peopleCd": "",
           "peopleNm": "김지영",
-          "peopleNmEn": "kim-chi-young",
-          "cast": "인터뷰이",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "인터뷰이"
         },
         {
+          "peopleCd": "",
           "peopleNm": "심우성",
-          "peopleNmEn": "",
-          "cast": "인터뷰이",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "인터뷰이"
         }
       ],
       "showTypes": [

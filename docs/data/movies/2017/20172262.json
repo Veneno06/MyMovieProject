@@ -25,22 +25,23 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "이동현",
-          "peopleNmEn": "LEE Dong-hyun"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "박혜진",
-          "peopleNmEn": "",
-          "cast": "시연",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "시연"
         },
         {
+          "peopleCd": "",
           "peopleNm": "이현지",
-          "peopleNmEn": "",
-          "cast": "박피디",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "박피디"
         }
       ],
       "showTypes": [

@@ -22,28 +22,29 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "조현철",
-          "peopleNmEn": "CHO Hyun-chul"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "박혜수",
-          "peopleNmEn": "PARK Hye-su",
-          "cast": "세미",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "세미"
         },
         {
+          "peopleCd": "",
           "peopleNm": "김시은",
-          "peopleNmEn": "Kim Sieun",
-          "cast": "하은",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "하은"
         },
         {
+          "peopleCd": "",
           "peopleNm": "박서경",
-          "peopleNmEn": "Seo Kyoung Park",
-          "cast": "예진",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "예진"
         }
       ],
       "showTypes": [

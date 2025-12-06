@@ -22,40 +22,53 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "송창수",
-          "peopleNmEn": "SONG Chang-soo"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "이병준",
-          "peopleNmEn": "LEE Byeong-jun",
-          "cast": "현수",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "현수"
         },
         {
+          "peopleCd": "",
           "peopleNm": "강현수",
-          "peopleNmEn": "",
-          "cast": "수호",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "수호"
         },
         {
+          "peopleCd": "",
           "peopleNm": "강동하",
-          "peopleNmEn": "KANGDONGHA",
-          "cast": "담임",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "담임"
         },
         {
+          "peopleCd": "",
           "peopleNm": "유건우",
-          "peopleNmEn": "",
-          "cast": "검사",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "검사"
         },
         {
+          "peopleCd": "",
           "peopleNm": "기정수",
-          "peopleNmEn": "GI Jeong-su",
-          "cast": "교장",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "교장"
+        },
+        {
+          "peopleCd": "",
+          "peopleNm": "안혜원",
+          "repRoleNm": "배우",
+          "cast": "연우엄마"
+        },
+        {
+          "peopleCd": "",
+          "peopleNm": "안혜원",
+          "repRoleNm": "배우",
+          "cast": "현수처(목소리)"
         }
       ],
       "showTypes": [

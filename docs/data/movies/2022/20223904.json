@@ -22,22 +22,23 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "홍태선",
-          "peopleNmEn": ""
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "이근이",
-          "peopleNmEn": "",
-          "cast": "미인1",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "미인1"
         },
         {
+          "peopleCd": "",
           "peopleNm": "남호현",
-          "peopleNmEn": "",
-          "cast": "미인2",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "미인2"
         }
       ],
       "showTypes": [

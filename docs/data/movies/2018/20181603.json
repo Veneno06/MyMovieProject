@@ -22,22 +22,23 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "박대원",
-          "peopleNmEn": ""
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "김명수",
-          "peopleNmEn": "",
-          "cast": "내레이션",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "내레이션"
         },
         {
+          "peopleCd": "",
           "peopleNm": "김정숙",
-          "peopleNmEn": "",
-          "cast": "출연",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "출연"
         }
       ],
       "showTypes": [

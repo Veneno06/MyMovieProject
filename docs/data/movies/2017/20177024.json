@@ -25,22 +25,23 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "도봉산",
-          "peopleNmEn": "DO Bong-san"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "이채담",
-          "peopleNmEn": "",
-          "cast": "유선",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "유선"
         },
         {
+          "peopleCd": "",
           "peopleNm": "도모세",
-          "peopleNmEn": "",
-          "cast": "민석",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "민석"
         }
       ],
       "showTypes": [

@@ -22,22 +22,23 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "라야",
-          "peopleNmEn": "Raya"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "김기수",
-          "peopleNmEn": "",
-          "cast": "인터뷰이",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "인터뷰이"
         },
         {
+          "peopleCd": "",
           "peopleNm": "이인규",
-          "peopleNmEn": "",
-          "cast": "인터뷰이",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "인터뷰이"
         }
       ],
       "showTypes": [

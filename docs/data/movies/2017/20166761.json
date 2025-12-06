@@ -22,22 +22,23 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "김현철",
-          "peopleNmEn": ""
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "오수현",
-          "peopleNmEn": "",
-          "cast": "디자이너2",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "디자이너2"
         },
         {
+          "peopleCd": "",
           "peopleNm": "이재호",
-          "peopleNmEn": "",
-          "cast": "약사",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "약사"
         }
       ],
       "showTypes": [

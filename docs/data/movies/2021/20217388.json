@@ -22,16 +22,17 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "이황",
-          "peopleNmEn": "LEE Hwang"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "소이",
-          "peopleNmEn": "So-yi",
-          "cast": "나타",
-          "castEn": "Natta"
+          "repRoleNm": "배우",
+          "cast": "나타"
         }
       ],
       "showTypes": [

@@ -22,20 +22,22 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "지원",
-          "peopleNmEn": "Ji Won"
+          "repRoleNm": "감독"
         },
         {
+          "peopleCd": "",
           "peopleNm": "강민현",
-          "peopleNmEn": "KANG Minhyun"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "남기형",
-          "peopleNmEn": "",
-          "cast": "내레이션",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "내레이션"
         }
       ],
       "showTypes": [

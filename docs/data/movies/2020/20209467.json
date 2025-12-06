@@ -22,22 +22,29 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "배효민",
-          "peopleNmEn": "BAE Hyo-min"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "김대한",
-          "peopleNmEn": "KIM Dae-han",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
         },
         {
+          "peopleCd": "",
           "peopleNm": "이세호",
-          "peopleNmEn": "",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
+        },
+        {
+          "peopleCd": "",
+          "peopleNm": "이유한",
+          "repRoleNm": "배우",
+          "cast": "용섭"
         }
       ],
       "showTypes": [

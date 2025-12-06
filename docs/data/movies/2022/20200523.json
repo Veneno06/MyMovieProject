@@ -22,20 +22,22 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "브리짓 부이요",
-          "peopleNmEn": ""
+          "repRoleNm": "감독"
         },
         {
+          "peopleCd": "",
           "peopleNm": "김오안",
-          "peopleNmEn": "Oan KIM"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "김창열",
-          "peopleNmEn": "Kim Tschang-Yeul",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
         }
       ],
       "showTypes": [

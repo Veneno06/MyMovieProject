@@ -22,22 +22,23 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "김상패",
-          "peopleNmEn": "KIM Sang-pai"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "도금연",
-          "peopleNmEn": "",
-          "cast": "금연할매",
-          "castEn": "Nana Geum-yeon"
+          "repRoleNm": "배우",
+          "cast": "금연할매"
         },
         {
+          "peopleCd": "",
           "peopleNm": "임순분",
-          "peopleNmEn": "",
-          "cast": "순분",
-          "castEn": "Soon-boon"
+          "repRoleNm": "배우",
+          "cast": "순분"
         }
       ],
       "showTypes": [

@@ -25,16 +25,17 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "모홍진",
-          "peopleNmEn": "MO Hong-jin"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "배연우",
-          "peopleNmEn": "Yeon Woo Bae",
-          "cast": "어린 지환",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "어린 지환"
         }
       ],
       "showTypes": [

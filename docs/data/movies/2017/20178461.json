@@ -22,34 +22,35 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "김동원",
-          "peopleNmEn": "KIM Dong-won"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "김동원",
-          "peopleNmEn": "KIM Dong-won",
-          "cast": "나레이션",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "나레이션"
         },
         {
+          "peopleCd": "",
           "peopleNm": "박문수",
-          "peopleNmEn": "",
-          "cast": "출연",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "출연"
         },
         {
+          "peopleCd": "",
           "peopleNm": "박준",
-          "peopleNmEn": "",
-          "cast": "출연",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "출연"
         },
         {
+          "peopleCd": "",
           "peopleNm": "이재희",
-          "peopleNmEn": "",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
         }
       ],
       "showTypes": [

@@ -25,26 +25,28 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "박마의",
-          "peopleNmEn": "PARK Maeui"
+          "repRoleNm": "감독"
         },
         {
+          "peopleCd": "",
           "peopleNm": "박수남",
-          "peopleNmEn": "PARK Soo-nam"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "박수남",
-          "peopleNmEn": "PARK Soo-nam",
-          "cast": "박수남",
-          "castEn": "PARK Soo-nam"
+          "repRoleNm": "배우",
+          "cast": "박수남"
         },
         {
+          "peopleCd": "",
           "peopleNm": "박마의",
-          "peopleNmEn": "PARK Maeui",
-          "cast": "박마의",
-          "castEn": "PARK Maeui"
+          "repRoleNm": "배우",
+          "cast": "박마의"
         }
       ],
       "showTypes": [

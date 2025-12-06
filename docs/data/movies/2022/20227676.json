@@ -22,22 +22,23 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "김보람",
-          "peopleNmEn": "KIM Boram"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "박채영",
-          "peopleNmEn": "Park Chaeyoung",
-          "cast": "박채영",
-          "castEn": "PARK Chae-young"
+          "repRoleNm": "배우",
+          "cast": "박채영"
         },
         {
+          "peopleCd": "",
           "peopleNm": "박상옥",
-          "peopleNmEn": "Park Sangoak",
-          "cast": "박상옥",
-          "castEn": "PARK Sang-ok"
+          "repRoleNm": "배우",
+          "cast": "박상옥"
         }
       ],
       "showTypes": [

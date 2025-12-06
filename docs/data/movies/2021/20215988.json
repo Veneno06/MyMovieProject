@@ -25,22 +25,23 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "한동호",
-          "peopleNmEn": ""
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "아베노 미쿠",
-          "peopleNmEn": "Miku Abeno",
-          "cast": "미쿠",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "미쿠"
         },
         {
+          "peopleCd": "",
           "peopleNm": "니노미야 와카",
-          "peopleNmEn": "Waka Ninomiya",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
         }
       ],
       "showTypes": [

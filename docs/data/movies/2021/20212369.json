@@ -22,22 +22,23 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "양주연",
-          "peopleNmEn": "YANG Ju-yeon"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "양주연",
-          "peopleNmEn": "YANG Ju-yeon",
-          "cast": "본인",
-          "castEn": "self"
+          "repRoleNm": "배우",
+          "cast": "본인"
         },
         {
+          "peopleCd": "",
           "peopleNm": "양철원",
-          "peopleNmEn": "Yang Chulwon",
-          "cast": "본인",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "본인"
         }
       ],
       "showTypes": [

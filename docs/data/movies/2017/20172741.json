@@ -25,22 +25,23 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "이두희",
-          "peopleNmEn": ""
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "백세리",
-          "peopleNmEn": "",
-          "cast": "채영",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "채영"
         },
         {
+          "peopleCd": "",
           "peopleNm": "이유찬",
-          "peopleNmEn": "",
-          "cast": "준범",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "준범"
         }
       ],
       "showTypes": [

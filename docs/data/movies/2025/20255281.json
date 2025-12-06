@@ -22,28 +22,35 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "노홍진",
-          "peopleNmEn": "ROH Hong-jin"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "스테파니 리",
-          "peopleNmEn": "Stephanie Lee",
-          "cast": "탈리아",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "탈리아"
         },
         {
+          "peopleCd": "",
           "peopleNm": "이신성",
-          "peopleNmEn": "LEE Shin-seong",
-          "cast": "오형사",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "오형사"
         },
         {
+          "peopleCd": "",
           "peopleNm": "김태연",
-          "peopleNmEn": "",
-          "cast": "투이 딸",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "투이 딸"
+        },
+        {
+          "peopleCd": "",
+          "peopleNm": "김미숙",
+          "repRoleNm": "배우",
+          "cast": "차오"
         }
       ],
       "showTypes": [

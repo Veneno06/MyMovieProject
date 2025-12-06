@@ -28,22 +28,23 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "손현우",
-          "peopleNmEn": "SON Hyun-woo"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "신민호",
-          "peopleNmEn": "",
-          "cast": "박정희 대통령",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "박정희 대통령"
         },
         {
+          "peopleCd": "",
           "peopleNm": "김효선",
-          "peopleNmEn": "KIM Hyo-seon",
-          "cast": "육영수 여사",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "육영수 여사"
         }
       ],
       "showTypes": [

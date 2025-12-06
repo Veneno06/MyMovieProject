@@ -28,22 +28,23 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "홍지영",
-          "peopleNmEn": "HONG Ji-yeong"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "윤해신",
-          "peopleNmEn": "",
-          "cast": "윤정",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "윤정"
         },
         {
+          "peopleCd": "",
           "peopleNm": "권기하",
-          "peopleNmEn": "KWON Ki-ha",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
         }
       ],
       "showTypes": [

@@ -25,28 +25,29 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "김선국",
-          "peopleNmEn": "KIM Seon-kuk"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "이현우",
-          "peopleNmEn": "LEE Hyun-woo",
-          "cast": "주현",
-          "castEn": "Joo-hyun"
+          "repRoleNm": "배우",
+          "cast": "주현"
         },
         {
+          "peopleCd": "",
           "peopleNm": "문정희",
-          "peopleNmEn": "MOON Jung-hee",
-          "cast": "신혜",
-          "castEn": "Shin-hye"
+          "repRoleNm": "배우",
+          "cast": "신혜"
         },
         {
+          "peopleCd": "",
           "peopleNm": "방민아",
-          "peopleNmEn": "BANG Min-ah",
-          "cast": "유진",
-          "castEn": "Yoo-jin"
+          "repRoleNm": "배우",
+          "cast": "유진"
         }
       ],
       "showTypes": [

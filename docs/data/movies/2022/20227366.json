@@ -22,22 +22,23 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "엄준영",
-          "peopleNmEn": ""
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "엄상현",
-          "peopleNmEn": "UM Sang-hyun",
-          "cast": "폴리",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "폴리"
         },
         {
+          "peopleCd": "",
           "peopleNm": "박선영",
-          "peopleNmEn": "",
-          "cast": "엠버",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "엠버"
         }
       ],
       "showTypes": [

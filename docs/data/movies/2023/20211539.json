@@ -22,22 +22,23 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "오재형",
-          "peopleNmEn": "OH Jaehyeong"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "오재형",
-          "peopleNmEn": "OH Jaehyeong",
-          "cast": "오재형",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "오재형"
         },
         {
+          "peopleCd": "",
           "peopleNm": "김찬민",
-          "peopleNmEn": "KIM CHAN MIN",
-          "cast": "스튜디오 합창",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "스튜디오 합창"
         }
       ],
       "showTypes": [

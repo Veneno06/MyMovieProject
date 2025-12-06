@@ -22,22 +22,23 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "박은수",
-          "peopleNmEn": ""
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "김기수",
-          "peopleNmEn": "",
-          "cast": "병헌",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "병헌"
         },
         {
+          "peopleCd": "",
           "peopleNm": "김윤주",
-          "peopleNmEn": "",
-          "cast": "숙이",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "숙이"
         }
       ],
       "showTypes": [

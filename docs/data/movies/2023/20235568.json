@@ -25,28 +25,29 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "사부",
-          "peopleNmEn": "SABU"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "이지훈",
-          "peopleNmEn": "LEE Ji-hoon",
-          "cast": "지훈",
-          "castEn": "Ji-hoon"
+          "repRoleNm": "배우",
+          "cast": "지훈"
         },
         {
+          "peopleCd": "",
           "peopleNm": "이윤우",
-          "peopleNmEn": "",
-          "cast": "예은",
-          "castEn": "Ye-eun"
+          "repRoleNm": "배우",
+          "cast": "예은"
         },
         {
+          "peopleCd": "",
           "peopleNm": "신수항",
-          "peopleNmEn": "",
-          "cast": "형",
-          "castEn": "Hyung-oh"
+          "repRoleNm": "배우",
+          "cast": "형"
         }
       ],
       "showTypes": [

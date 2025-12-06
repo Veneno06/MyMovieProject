@@ -22,16 +22,17 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "변성빈",
-          "peopleNmEn": "BYUN Sungbin"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "김우겸",
-          "peopleNmEn": "KIM Woo-kyum",
-          "cast": "우기",
-          "castEn": "Woogi"
+          "repRoleNm": "배우",
+          "cast": "우기"
         }
       ],
       "showTypes": [

@@ -22,20 +22,22 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "김하민",
-          "peopleNmEn": ""
+          "repRoleNm": "감독"
         },
         {
+          "peopleCd": "",
           "peopleNm": "오윤동",
-          "peopleNmEn": "Yoon-Dong OH"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "백현",
-          "peopleNmEn": "Baek-hyun",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
         }
       ],
       "showTypes": [

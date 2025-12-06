@@ -25,22 +25,23 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "양경희",
-          "peopleNmEn": "YANG Kyeong-hui"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "원태민",
-          "peopleNmEn": "",
-          "cast": "고호태",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "고호태"
         },
         {
+          "peopleCd": "",
           "peopleNm": "도우",
-          "peopleNmEn": "DOWOO",
-          "cast": "김동희",
-          "castEn": "KIM DONG HEE"
+          "repRoleNm": "배우",
+          "cast": "김동희"
         }
       ],
       "showTypes": [

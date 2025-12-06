@@ -25,28 +25,29 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "양경희",
-          "peopleNmEn": "YANG Kyeong-hui"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "박정우",
-          "peopleNmEn": "",
-          "cast": "설동백",
-          "castEn": "Seol Dongbaek"
+          "repRoleNm": "배우",
+          "cast": "설동백"
         },
         {
+          "peopleCd": "",
           "peopleNm": "유성",
-          "peopleNmEn": "",
-          "cast": "데니스",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "데니스"
         },
         {
+          "peopleCd": "",
           "peopleNm": "박영운",
-          "peopleNmEn": "",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
         }
       ],
       "showTypes": [

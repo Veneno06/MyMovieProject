@@ -22,28 +22,29 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "최재영",
-          "peopleNmEn": "CHOI Jae-young"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "강길우",
-          "peopleNmEn": "KANG Gil-woo",
-          "cast": "치성",
-          "castEn": "Chi-sung"
+          "repRoleNm": "배우",
+          "cast": "치성"
         },
         {
+          "peopleCd": "",
           "peopleNm": "양흥주",
-          "peopleNmEn": "YANG Heung-joo",
-          "cast": "동석",
-          "castEn": "Dong-suk"
+          "repRoleNm": "배우",
+          "cast": "동석"
         },
         {
+          "peopleCd": "",
           "peopleNm": "이찬유",
-          "peopleNmEn": "",
-          "cast": "영재",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "영재"
         }
       ],
       "showTypes": [

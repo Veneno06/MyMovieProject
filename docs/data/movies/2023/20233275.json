@@ -25,28 +25,29 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "이원회",
-          "peopleNmEn": "LEE Wonhoi"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "신주협",
-          "peopleNmEn": "",
-          "cast": "올리버",
-          "castEn": "Oliver"
+          "repRoleNm": "배우",
+          "cast": "올리버"
         },
         {
+          "peopleCd": "",
           "peopleNm": "강혜인",
-          "peopleNmEn": "Kang Hye-in",
-          "cast": "클레어",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "클레어"
         },
         {
+          "peopleCd": "",
           "peopleNm": "유준상",
-          "peopleNmEn": "YU Jun-sang",
-          "cast": "제임스",
-          "castEn": "James"
+          "repRoleNm": "배우",
+          "cast": "제임스"
         }
       ],
       "showTypes": [

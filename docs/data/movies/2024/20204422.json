@@ -22,22 +22,29 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "이은정",
-          "peopleNmEn": "LEE Eun-jung"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "방민아",
-          "peopleNmEn": "BANG Min-ah",
-          "cast": "연경",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "연경"
         },
         {
+          "peopleCd": "",
           "peopleNm": "이가섭",
-          "peopleNmEn": "LEE Ga-sub",
-          "cast": "현수",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "현수"
+        },
+        {
+          "peopleCd": "",
+          "peopleNm": "정설아",
+          "repRoleNm": "배우",
+          "cast": "이서준"
         }
       ],
       "showTypes": [

@@ -22,20 +22,22 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "최동호",
-          "peopleNmEn": ""
+          "repRoleNm": "감독"
         },
         {
+          "peopleCd": "",
           "peopleNm": "장이레",
-          "peopleNmEn": ""
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "이덕화",
-          "peopleNmEn": "LEE Duk-Hwa",
-          "cast": "내레이션",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "내레이션"
         }
       ],
       "showTypes": [

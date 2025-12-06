@@ -22,16 +22,17 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "백마",
-          "peopleNmEn": ""
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "백마",
-          "peopleNmEn": "",
-          "cast": "출연",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "출연"
         }
       ],
       "showTypes": [

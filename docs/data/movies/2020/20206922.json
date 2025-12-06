@@ -25,22 +25,23 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "노현진",
-          "peopleNmEn": ""
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "안소희",
-          "peopleNmEn": "",
-          "cast": "메리",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "메리"
         },
         {
+          "peopleCd": "",
           "peopleNm": "민도윤",
-          "peopleNmEn": "",
-          "cast": "수혁",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "수혁"
         }
       ],
       "showTypes": [

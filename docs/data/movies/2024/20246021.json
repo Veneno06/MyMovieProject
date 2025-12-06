@@ -22,16 +22,17 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "정인성",
-          "peopleNmEn": ""
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "남진",
-          "peopleNmEn": "NAM Jin",
-          "cast": "남진(본인)",
-          "castEn": "Namjin(본인)"
+          "repRoleNm": "배우",
+          "cast": "남진(본인)"
         }
       ],
       "showTypes": [

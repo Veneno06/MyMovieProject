@@ -28,16 +28,17 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "이동현",
-          "peopleNmEn": "LEE Dong-hyun"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "강현중",
-          "peopleNmEn": "KANG Hyun-joong",
-          "cast": "강현중",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "강현중"
         }
       ],
       "showTypes": [

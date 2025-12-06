@@ -22,38 +22,40 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "데이빗 레드먼",
-          "peopleNmEn": "David Redman"
+          "repRoleNm": "감독"
         },
         {
+          "peopleCd": "",
           "peopleNm": "우광훈",
-          "peopleNmEn": "Woo, Kwang Hoon"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "김민웅",
-          "peopleNmEn": "",
-          "cast": "",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": ""
         },
         {
+          "peopleCd": "",
           "peopleNm": "데이빗 레드먼",
-          "peopleNmEn": "David Redman",
-          "cast": "데이빗",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "데이빗"
         },
         {
+          "peopleCd": "",
           "peopleNm": "명사랑 아네스",
-          "peopleNmEn": "",
-          "cast": "사랑",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "사랑"
         },
         {
+          "peopleCd": "",
           "peopleNm": "성염",
-          "peopleNmEn": "",
-          "cast": "Interviewees",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "Interviewees"
         }
       ],
       "showTypes": [

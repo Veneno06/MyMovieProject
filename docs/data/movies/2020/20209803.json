@@ -25,28 +25,29 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "김동원",
-          "peopleNmEn": "KIM Dong-won"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "신소율",
-          "peopleNmEn": "SHIN So-yul",
-          "cast": "다운",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "다운"
         },
         {
+          "peopleCd": "",
           "peopleNm": "오태경",
-          "peopleNmEn": "OH Tae-kyung",
-          "cast": "경태",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "경태"
         },
         {
+          "peopleCd": "",
           "peopleNm": "신동미",
-          "peopleNmEn": "SHIN Dong-mi",
-          "cast": "웹툰 팀장",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "웹툰 팀장"
         }
       ],
       "showTypes": [

@@ -28,26 +28,28 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "전원창",
-          "peopleNmEn": "jeon weon chang"
+          "repRoleNm": "감독"
         },
         {
+          "peopleCd": "",
           "peopleNm": "민준기",
-          "peopleNmEn": "MIN Joon-ki"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "윤지숙",
-          "peopleNmEn": "",
-          "cast": "까페 여사장",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "까페 여사장"
         },
         {
+          "peopleCd": "",
           "peopleNm": "오연희",
-          "peopleNmEn": "oh yeon hee",
-          "cast": "그룹 '야야야'",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "그룹 '야야야'"
         }
       ],
       "showTypes": [

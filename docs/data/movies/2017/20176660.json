@@ -28,22 +28,23 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "김순수",
-          "peopleNmEn": ""
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "이은미",
-          "peopleNmEn": "LEE Eun-mi",
-          "cast": "지윤",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "지윤"
         },
         {
+          "peopleCd": "",
           "peopleNm": "박소영",
-          "peopleNmEn": "",
-          "cast": "친구2",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "친구2"
         }
       ],
       "showTypes": [

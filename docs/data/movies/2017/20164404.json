@@ -25,28 +25,29 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "송창수",
-          "peopleNmEn": "SONG Chang-soo"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "김세인",
-          "peopleNmEn": "KIM Se-in",
-          "cast": "잎새",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "잎새"
         },
         {
+          "peopleCd": "",
           "peopleNm": "이재욱",
-          "peopleNmEn": "",
-          "cast": "봉철",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "봉철"
         },
         {
+          "peopleCd": "",
           "peopleNm": "박선우",
-          "peopleNmEn": "PARK Sun-woo",
-          "cast": "관수",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "관수"
         }
       ],
       "showTypes": [

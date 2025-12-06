@@ -22,16 +22,17 @@
       ],
       "directors": [
         {
+          "peopleCd": "",
           "peopleNm": "송원근",
-          "peopleNmEn": "SONG Won-geun"
+          "repRoleNm": "감독"
         }
       ],
       "actors": [
         {
+          "peopleCd": "",
           "peopleNm": "박해일",
-          "peopleNmEn": "PARK Hae-il",
-          "cast": "내레이션",
-          "castEn": ""
+          "repRoleNm": "배우",
+          "cast": "내레이션"
         }
       ],
       "showTypes": [
