@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       budget:
-        description: 'Budget (Default: 5000)'
+        description: 'Budget (Recommended: 3000)'
         required: true
-        default: '5000'
+        default: '3000'
 
 jobs:
   run:
@@ -37,6 +37,7 @@ jobs:
       - name: Backfill people codes
         continue-on-error: true
         run: |
+          # 황정민 데이터를 확실하게 잡기 위해 3000회 실행
           python scripts/backfill_people.py \
             --budget "${{ inputs.budget }}" \
             --rate-sleep-ms "200"
@@ -53,9 +54,12 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          git add .
-          git commit -m "Update data (Final Run)" || echo "No changes"
           
-          # [핵심] 충돌 방지: 최신 코드 받아와서 합치고 저장
+          # [핵심] 영화 데이터 폴더를 강제로 스테이징에 추가 (무시 방지)
+          git add --force docs/data/movies/
+          git add .
+          
+          git commit -m "Update movie data & indexes (Force Add)" || echo "No changes"
+          
           git pull --rebase origin main
           git push
