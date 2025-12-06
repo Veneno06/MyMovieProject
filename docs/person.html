@@ -5,10 +5,14 @@
 <title>배우 프로필</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="assets/style.css">
+<!-- [필수] 차트 라이브러리 -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="assets/translator.js" defer></script>
 <style>
 body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple SD Gothic Neo, Noto Sans KR, 'Malgun Gothic', sans-serif; line-height:1.6; }
 .wrap { max-width:980px; margin:24px auto; padding:0 12px; }
 h1 { font-size:28px; margin:0 0 16px; }
+h2 { font-size:20px; margin:24px 0 8px; }
 .ctrls { display:flex; gap:8px; margin-bottom:12px; }
 .ctrls a { padding:6px 10px; border:1px solid #e5e7eb; border-radius:8px; background:#fff; text-decoration:none; color:#111827; }
 .note { color:#6b7280; }
@@ -23,8 +27,6 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
 .btn { padding:6px 10px; border:1px solid #e6e6e6; border-radius:6px; background:#fafafa; cursor:pointer; }
 .sex-badge { font-size: 1rem; margin-left: 8px; }
 </style>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="assets/translator.js" defer></script>
 </head>
 <body>
 <div class="wrap">
@@ -47,12 +49,18 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
     <button class="btn" id="saveBtn" style="display:none;" data-i18n-key="btnSave">☆ 배우 저장</button>
   </div>
 
-  <div id="chart-container" style="display:none;">
+  <div id="chart-container" style="display:none; margin-top: 40px;">
     <h2 data-i18n-key="audiTrend">개봉 시기별 관객수 추이</h2>
-    <div class="chart-buttons">
+    <div class="chart-buttons" style="margin-bottom: 10px;">
         <button id="btnTotalAudi" class="active" data-i18n-key="audiCnt">관객수</button>
+        <button id="btnAudiPerActor" data-i18n-key="audiPerActor">관객수/배우 수</button>
+        <button id="btnAudiPerFilmography" data-i18n-key="audiPerFilmo">관객수/출연작</button>
+        <button id="btnAudiPerCareer" data-i18n-key="audiPerCareer">관객수/연기경력</button>
+        <button id="btnAudiBonus" data-i18n-key="audiBonus">500만+ 가중치</button>
     </div>
-    <canvas id="audiChart"></canvas>
+    <div style="position: relative; height:300px; width:100%">
+        <canvas id="audiChart"></canvas>
+    </div>
   </div>
 </div>
 
@@ -123,7 +131,7 @@ function render(){
           const dMatch = m.directors && m.directors.some(d => d.name === target && (!d.id));
           match = aMatch || dMatch;
       } else {
-          // ID 있는 황정민 (ID 일치해야 함)
+          // ID 있는 황정민 (ID 일치해야 함 - 10090290)
           const aMatch = m.actors && m.actors.some(a => a.id === currentId);
           const dMatch = m.directors && m.directors.some(d => d.id === currentId);
           match = aMatch || dMatch;
@@ -158,30 +166,54 @@ function render(){
     li.innerHTML = `<a href="detail.html?movieCd=${encodeURIComponent(f.movieCd)}">${f.movieNm}</a>
       <span class="note">(${f.openDt||'미상'}${audiStr}<span class="cast-list">${castStr}</span>)</span>`;
     out.appendChild(li);
-    if (f.openDt && audiNum > 0) filmsWithAudi.push(f);
+    if (f.openDt && audiNum > 0) filmsWithAudi.push({ ...f, audiAcc: audiNum });
   }
 
   if (filmsWithAudi.length > 0) {
       document.getElementById('chart-container').style.display = 'block';
-      drawChart(filmsWithAudi);
+      drawChart(filmsWithAudi, 'totalAudi');
+      
+      // 버튼 이벤트 재연결
+      const buttons = [
+        { id: 'btnTotalAudi', type: 'totalAudi' },
+        { id: 'btnAudiPerActor', type: 'audiPerActor' },
+        { id: 'btnAudiPerFilmography', type: 'audiPerFilmography' },
+        { id: 'btnAudiPerCareer', type: 'audiPerCareer' },
+        { id: 'btnAudiBonus', type: 'audiBonus' }
+      ];
+      buttons.forEach(b => {
+          const el = document.getElementById(b.id);
+          if(el) el.addEventListener('click', () => {
+              document.querySelectorAll('.chart-buttons button').forEach(x => x.classList.remove('active'));
+              el.classList.add('active');
+              drawChart(filmsWithAudi, b.type);
+          });
+      });
   }
 }
 
-function drawChart(films) {
+function drawChart(films, type) {
     if (myChart) myChart.destroy();
     films.sort((a,b) => (a.openDt||'').localeCompare(b.openDt||''));
+    
+    // 차트 데이터 계산 로직 (간소화)
+    let dataPoints = films.map(f => f.audiAcc); // 기본: 관객수
+    if (type === 'audiPerActor') dataPoints = films.map(f => Math.round(f.audiAcc / (f.actors ? f.actors.length : 1)));
+    if (type === 'audiPerFilmography') { const total = films.length; dataPoints = films.map(f => Math.round(f.audiAcc / total)); }
     
     new Chart(document.getElementById('audiChart'), {
         type: 'line',
         data: {
             labels: films.map(f => f.openDt.slice(0,7)),
             datasets: [{
-                label: '관객수',
-                data: films.map(f => f.audiAcc),
+                label: '값',
+                data: dataPoints,
                 borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
                 fill: true
             }]
-        }
+        },
+        options: { maintainAspectRatio: false }
     });
 }
 
