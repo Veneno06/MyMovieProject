@@ -28,109 +28,70 @@ label { margin-right:8px; }
     <a href="costar-search.html" class="btn" data-i18n-key="costarSearch">공동 출연 검색</a>
     <a href="saved.html" class="btn" data-i18n-key="savedList">저장 목록</a>
   </div>
-
   <h1 data-i18n-key="peopleSearchTitle">배우/감독 검색</h1>
-
   <form id="f" class="box">
     <span data-i18n-key="nameLabel">이름:</span> <input type="text" name="q" value="">
     <label><input type="checkbox" name="actorOnly" checked> <span data-i18n-key="actorOnly">배우만</span></label>
     <button type="submit" class="btn" data-i18n-key="searchBtn">검색</button>
   </form>
-
   <div id="total" class="note"></div>
   <ul id="out" class="list"></ul>
 </div>
-
 <script>
-// [핵심] 우리가 만든 새 데이터 파일(search_index.json) 연결
-const BASE = location.pathname.replace(/\/[^\/]*$/, '');
-const PEOPLE_URL = `data/search_index.json?v=${Date.now()}`;
+// [경로 수정]
+const PEOPLE_URL = `docs/data/search_index.json?v=${Date.now()}`;
 let PEOPLE_DB = [];
 
 async function loadIndex(){
   try {
     const r = await fetch(PEOPLE_URL);
-    if(!r.ok){ throw new Error('Failed to load index'); }
-    const movies = await r.json();
-    
-    // [로직] 영화 데이터를 사람 단위로 묶기
-    const peopleMap = new Map();
+    if(!r.ok){ 
+        const r2 = await fetch(`data/search_index.json?v=${Date.now()}`); // fallback
+        if(r2.ok) return processData(await r2.json());
+        throw new Error('Failed');
+    }
+    processData(await r.json());
+  } catch(e) {
+    document.getElementById('total').textContent = '데이터 로드 실패.';
+  }
+}
 
+function processData(movies) {
+    const peopleMap = new Map();
     movies.forEach(m => {
-        // 배우 처리
         if (m.actors) {
             m.actors.forEach(a => {
-                // ID가 있으면 ID를, 없으면 'name:이름'을 키로 사용
-                // 이렇게 해야 '코드 있는 황정민'과 '코드 없는 황정민'이 다른 사람으로 저장됨
+                // ID가 있으면 ID 사용, 없으면 name:이름 사용 -> 동명이인 분리
                 const id = (a.id && a.id.trim()) ? a.id : `name:${a.name}`;
-                
                 if (!peopleMap.has(id)) {
-                    peopleMap.set(id, {
-                        personKey: id, 
-                        peopleNm: a.name,
-                        repRoleNm: '배우',
-                        filmos: []
-                    });
+                    peopleMap.set(id, { personKey: id, peopleNm: a.name, repRoleNm: '배우', filmos: [] });
                 }
                 const p = peopleMap.get(id);
                 if (p.filmos.length < 3) p.filmos.push(m.movieNm);
             });
         }
-        // 감독 처리
-        if (m.directors) {
-            m.directors.forEach(d => {
-                const id = (d.id && d.id.trim()) ? d.id : `name:${d.name}`;
-                if (!peopleMap.has(id)) {
-                    peopleMap.set(id, {
-                        personKey: id,
-                        peopleNm: d.name,
-                        repRoleNm: '감독',
-                        filmos: []
-                    });
-                }
-            });
-        }
     });
-
     PEOPLE_DB = Array.from(peopleMap.values());
-    // document.getElementById('total').textContent = '데이터 준비 완료';
-  } catch(e) {
-    console.error(e);
-    document.getElementById('total').textContent = '데이터를 불러오는 데 실패했습니다.';
-  }
 }
 
 function search(){
   const f = new FormData(document.getElementById('f'));
   const q = (f.get('q')||'').trim().toLowerCase();
-  const actorOnly = f.get('actorOnly') !== null;
-
-  if (!q) {
-      document.getElementById('out').innerHTML = '';
-      document.getElementById('total').textContent = '검색어를 입력하세요.';
-      return;
-  }
+  if (!q) { document.getElementById('out').innerHTML=''; return; }
 
   let list = PEOPLE_DB.filter(p => (p.peopleNm||'').toLowerCase().includes(q));
+  if (f.get('actorOnly')) list = list.filter(p => p.repRoleNm === '배우');
   
-  if (actorOnly) {
-    list = list.filter(p => (p.repRoleNm||'') === '배우');
-  }
-
   list = list.slice(0, 200);
-
   document.getElementById('total').textContent = `총 ${list.length}명 검색됨`;
   const ul = document.getElementById('out');
   ul.innerHTML = '';
   
   for (const p of list) {
-    // [중요] 상세 페이지로 갈 때 'id'를 넘겨줌
     const href = `person.html?id=${encodeURIComponent(p.personKey)}&name=${encodeURIComponent(p.peopleNm)}`;
-    
     const filmoStr = p.filmos.length > 0 ? `(${p.filmos.join(', ')} 등)` : '';
-    // 코드가 있는지 표시 (구분용)
+    // 코드 유무 표시
     const codeInfo = (!p.personKey.startsWith('name:')) ? `<span style="font-size:0.8em;color:#aaa;">(코드:${p.personKey})</span>` : '';
-
     const li = document.createElement('li');
     li.innerHTML = `<a href="${href}"><strong>${p.peopleNm}</strong></a> <span class="note">${p.repRoleNm} ${filmoStr}</span> ${codeInfo}`;
     ul.appendChild(li);
@@ -139,14 +100,7 @@ function search(){
 
 (async function main(){
   await loadIndex();
-  const f = document.getElementById('f');
-  f.addEventListener('submit', (e)=>{ e.preventDefault(); search(); });
-
-  const initialQuery = new URLSearchParams(location.search).get('q');
-  if (initialQuery) {
-    document.querySelector('input[name="q"]').value = initialQuery;
-    setTimeout(search, 200);
-  }
+  document.getElementById('f').addEventListener('submit', (e)=>{ e.preventDefault(); search(); });
 })();
 </script>
 </body>
