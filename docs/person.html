@@ -49,6 +49,7 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
     <button class="btn" id="saveBtn" style="display:none;" data-i18n-key="btnSave">☆ 배우 저장</button>
   </div>
 
+  <!-- 차트 영역 복구 -->
   <div id="chart-container" style="display:none; margin-top: 40px;">
     <h2 data-i18n-key="audiTrend">개봉 시기별 관객수 추이</h2>
     <div class="chart-buttons" style="margin-bottom: 10px;">
@@ -66,8 +67,9 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
 
 <script>
 const TS = Date.now();
-const INDEX_URL = `docs/data/search_index.json?v=${TS}`;
-const DETAILS_URL = `docs/data/people_details.json?v=${TS}`;
+// 경로 자동 탐지
+const PATHS_INDEX = [`docs/data/search_index.json?v=${TS}`, `data/search_index.json?v=${TS}`];
+const PATHS_DETAILS = [`docs/data/people_details.json?v=${TS}`, `data/search/people_details.json?v=${TS}`];
 
 function getParam(k){ return new URL(location.href).searchParams.get(k) || ""; }
 const fmtNum = n => (n==null || isNaN(n)) ? '' : n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -90,23 +92,26 @@ saveBtn.addEventListener('click', () => {
     renderSaveBtn();
 });
 
+async function fetchAny(paths) {
+    for (const p of paths) {
+        try {
+            const r = await fetch(p);
+            if (r.ok) return await r.json();
+        } catch(e) {}
+    }
+    return null;
+}
+
 async function loadData(){
-  try {
-    const fetchTry = async (p) => { 
-        let r = await fetch(p); 
-        if(!r.ok) r = await fetch(p.replace('docs/','')); 
-        return r.ok ? r.json() : null; 
-    };
-    MOVIES_RAW = await fetchTry(INDEX_URL) || [];
-    PEOPLE_DETAILS = await fetchTry(DETAILS_URL) || {};
-  } catch(e) {}
+    MOVIES_RAW = await fetchAny(PATHS_INDEX) || [];
+    PEOPLE_DETAILS = await fetchAny(PATHS_DETAILS) || {};
 }
 
 function render(){
   currentId = getParam('id') || getParam('personKey');
   currentName = getParam('name') || "이름 없음";
   
-  if (!currentId) return;
+  if (!currentId) { document.getElementById('msg').textContent = '잘못된 접근'; return; }
   
   document.getElementById('title').textContent = currentName;
   renderSaveBtn();
@@ -125,13 +130,13 @@ function render(){
       let match = false;
 
       if (currentId.startsWith('name:')) {
-          // ID 없는 황정민 (이름은 같은데 ID가 비어있어야 함)
+          // ID 없는 동명이인
           const target = currentId.replace('name:', '');
           const aMatch = m.actors && m.actors.some(a => a.name === target && (!a.id));
           const dMatch = m.directors && m.directors.some(d => d.name === target && (!d.id));
           match = aMatch || dMatch;
       } else {
-          // ID 있는 황정민 (ID 일치해야 함 - 10090290)
+          // ID 있는 진짜 배우
           const aMatch = m.actors && m.actors.some(a => a.id === currentId);
           const dMatch = m.directors && m.directors.some(d => d.id === currentId);
           match = aMatch || dMatch;
@@ -155,7 +160,10 @@ function render(){
   }
 
   for (const f of myMovies) {
-    const audiNum = typeof f.audiAcc === 'number' ? f.audiAcc : 0;
+    // 관객수 숫자 변환 (차트용)
+    let audiNum = 0;
+    if (f.audiAcc) audiNum = typeof f.audiAcc === 'number' ? f.audiAcc : parseInt(String(f.audiAcc).replace(/,/g, ''), 10);
+    
     const audiStr = audiNum ? ` / <span class="audi">누적 ${fmtNum(audiNum)}명</span>` : '';
     let castStr = "";
     if (f.actors) {
@@ -173,7 +181,6 @@ function render(){
       document.getElementById('chart-container').style.display = 'block';
       drawChart(filmsWithAudi, 'totalAudi');
       
-      // 버튼 이벤트 재연결
       const buttons = [
         { id: 'btnTotalAudi', type: 'totalAudi' },
         { id: 'btnAudiPerActor', type: 'audiPerActor' },
@@ -196,11 +203,16 @@ function drawChart(films, type) {
     if (myChart) myChart.destroy();
     films.sort((a,b) => (a.openDt||'').localeCompare(b.openDt||''));
     
-    // 차트 데이터 계산 로직 (간소화)
-    let dataPoints = films.map(f => f.audiAcc); // 기본: 관객수
+    let dataPoints = films.map(f => f.audiAcc);
+    // 그래프 타입별 계산 로직 복구
     if (type === 'audiPerActor') dataPoints = films.map(f => Math.round(f.audiAcc / (f.actors ? f.actors.length : 1)));
-    if (type === 'audiPerFilmography') { const total = films.length; dataPoints = films.map(f => Math.round(f.audiAcc / total)); }
-    
+    if (type === 'audiPerFilmography') { const t = films.length; dataPoints = films.map(f => Math.round(f.audiAcc / t)); }
+    if (type === 'audiPerCareer') {
+        const first = parseInt(films[0].openDt.slice(0,4));
+        dataPoints = films.map(f => Math.round(f.audiAcc / Math.max(1, parseInt(f.openDt.slice(0,4)) - first + 1)));
+    }
+    if (type === 'audiBonus') dataPoints = films.map(f => f.audiAcc > 5000000 ? f.audiAcc * 2 : f.audiAcc);
+
     new Chart(document.getElementById('audiChart'), {
         type: 'line',
         data: {
