@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       budget:
-        description: 'Budget (Recommended: 3000)'
+        description: 'Budget (Default: 3000)'
         required: true
         default: '3000'
 
@@ -12,6 +12,7 @@ jobs:
   run:
     runs-on: ubuntu-latest
     env:
+      # 6개 키 모두 사용
       KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
       KOFIC_API_KEY_2: ${{ secrets.KOFIC_API_KEY_2 }}
       KOFIC_API_KEY_3: ${{ secrets.KOFIC_API_KEY_3 }}
@@ -37,7 +38,7 @@ jobs:
       - name: Backfill people codes
         continue-on-error: true
         run: |
-          # 황정민 데이터를 확실하게 잡기 위해 3000회 실행
+          # 3000개 예산으로 충분히 돌립니다.
           python scripts/backfill_people.py \
             --budget "${{ inputs.budget }}" \
             --rate-sleep-ms "200"
@@ -55,11 +56,13 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           
-          # [핵심] 영화 데이터 폴더를 강제로 스테이징에 추가 (무시 방지)
+          # [핵심 수정] 영화 데이터 폴더를 강제로 스테이징에 추가 (무시 방지)
+          # 이 명령어가 있어야 2000개 넘는 파일이 실제로 저장됩니다.
           git add --force docs/data/movies/
           git add .
           
           git commit -m "Update movie data & indexes (Force Add)" || echo "No changes"
           
+          # 충돌 방지
           git pull --rebase origin main
           git push
