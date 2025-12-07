@@ -38,31 +38,36 @@ jobs:
       - name: Backfill people codes
         continue-on-error: true
         run: |
-          # 3000개 예산으로 충분히 돌립니다.
+          # 1. 영화 데이터에 배우 ID 채워넣기
           python scripts/backfill_people.py \
             --budget "${{ inputs.budget }}" \
             --rate-sleep-ms "200"
 
-      - name: Rebuild search indexes
-        continue-on-error: true
-        run: python scripts/reindex_search.py
-
       - name: Build people details (Gender)
         continue-on-error: true
-        run: python scripts/build_people_details.py
+        run: |
+          # 2. [순서 변경] 확보된 ID를 바탕으로 성별/세부정보 먼저 다운로드
+          # 이 단계가 끝나야 reindex할 때 성별을 읽을 수 있음
+          python scripts/build_people_details.py
+
+      - name: Rebuild search indexes
+        continue-on-error: true
+        run: |
+          # 3. 모든 데이터(영화 + 배우성별)가 준비된 후 인덱싱 시작
+          python scripts/reindex_search.py
 
       - name: Commit updated data
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           
-          # [핵심 수정] 영화 데이터 폴더를 강제로 스테이징에 추가 (무시 방지)
-          # 이 명령어가 있어야 2000개 넘는 파일이 실제로 저장됩니다.
+          # 데이터 누락 방지를 위한 Force Add 유지
           git add --force docs/data/movies/
+          git add docs/data/people/
+          git add docs/data/search_index.json
           git add .
           
-          git commit -m "Update movie data & indexes (Force Add)" || echo "No changes"
+          git commit -m "Update movie data & indexes (Correct Order)" || echo "No changes"
           
-          # 충돌 방지
           git pull --rebase origin main
           git push
