@@ -5,7 +5,6 @@
 <title data-i18n-key="costarSearchTitle">공동 출연 검색</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="assets/style.css">
-<!-- [필수] 차트 라이브러리 추가 -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="assets/translator.js" defer></script>
 <style>
@@ -46,7 +45,6 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
   <div id="total" class="note" style="margin-top:8px;"></div>
   <ul id="out" class="list"></ul>
 
-  <!-- 차트 영역 -->
   <div id="chart-container" style="display:none; margin-top: 40px;">
     <h2 data-i18n-key="audiTrend">개봉 시기별 관객수 추이</h2>
     <div style="position: relative; height:300px; width:100%">
@@ -58,7 +56,14 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
 <script>
 const PATHS_INDEX = [`docs/data/search_index.json?v=${Date.now()}`, `data/search_index.json?v=${Date.now()}`];
 let MOVIES = [], myChart = null;
-const fmtNum = n => (n==null || isNaN(n)) ? '' : n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+const safeParseInt = (v) => {
+    if (v === null || v === undefined) return 0;
+    if (typeof v === 'number') return v;
+    const n = parseInt(String(v).replace(/,/g, '').trim(), 10);
+    return isNaN(n) ? 0 : n;
+};
+const fmtNum = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
 async function loadIndex(){
   for (const p of PATHS_INDEX) {
@@ -76,13 +81,20 @@ function search(){
 
   const results = MOVIES.filter(m => {
       const actors = m.actors || [];
+      // 모든 검색어가 출연진 목록에 있어야 함 (AND 조건)
       return queries.every(q => actors.some(a => a.name.toLowerCase().includes(q)));
   });
 
-  // 중복 제거
+  // [중복 제거 확실하게]
   const unique = [];
   const seen = new Set();
-  results.forEach(m => { if(!seen.has(m.movieCd)) { seen.add(m.movieCd); unique.push(m); } });
+  results.forEach(m => { 
+      if(!seen.has(m.movieCd)) { 
+          seen.add(m.movieCd); 
+          unique.push(m); 
+      } 
+  });
+  
   unique.sort((a,b) => (b.openDt||'').localeCompare(a.openDt||''));
 
   document.getElementById('total').textContent = `총 ${unique.length}편 검색됨`;
@@ -91,16 +103,18 @@ function search(){
   const filmsWithAudi = [];
 
   for (const m of unique) {
-    let audiNum = 0;
-    if (m.audiAcc) audiNum = typeof m.audiAcc === 'number' ? m.audiAcc : parseInt(String(m.audiAcc).replace(/,/g, ''), 10);
+    const audiNum = safeParseInt(m.audiAcc);
     const audiStr = audiNum ? ` / <span class="audi">누적 ${fmtNum(audiNum)}명</span>` : '';
     
     let castHtml = "";
     if (m.actors) {
         const links = m.actors.slice(0, 10).map(a => {
             const isMatch = queries.some(q => a.name.toLowerCase().includes(q));
+            
+            // 링크 생성 로직 (ID 있으면 사용, 없으면 name: 사용)
             const id = (a.id && a.id.trim()) ? a.id : `name:${a.name}`;
             const href = `person.html?id=${encodeURIComponent(id)}&name=${encodeURIComponent(a.name)}`;
+            
             const nameHtml = isMatch ? `<span class="highlight">${a.name}</span>` : a.name;
             return `<a href="${href}" style="text-decoration:none;color:#555;">${nameHtml}</a>`;
         });
@@ -111,25 +125,51 @@ function search(){
     li.innerHTML = `<a href="detail.html?movieCd=${encodeURIComponent(m.movieCd)}" style="font-weight:bold;color:#000;">${m.movieNm}</a>
       <span class="note">(${m.openDt||'미상'}${audiStr})</span><div class="cast-list" style="margin-top:4px;">${castHtml}</div>`;
     ul.appendChild(li);
+    
     if (m.openDt && audiNum > 0) filmsWithAudi.push({ ...m, audiAcc: audiNum });
   }
 
+  // 차트 렌더링
+  const container = document.getElementById('chart-container');
   if (filmsWithAudi.length > 0) {
-      document.getElementById('chart-container').style.display = 'block';
-      drawChart(filmsWithAudi);
+      container.style.display = 'block';
+      // 차트용 정렬 (과거->최신)
+      const chartData = [...filmsWithAudi].sort((a,b) => (a.openDt||'').localeCompare(b.openDt||''));
+      drawChart(chartData);
+  } else {
+      container.style.display = 'none';
   }
 }
 
 function drawChart(films){
+    const ctx = document.getElementById('audiChart');
+    if (!ctx) return;
+
     if (myChart) myChart.destroy();
-    films.sort((a,b) => (a.openDt||'').localeCompare(b.openDt||''));
-    new Chart(document.getElementById('audiChart'), {
+    
+    myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: films.map(f => f.openDt.slice(0,7)),
-            datasets: [{ label: '관객수', data: films.map(f => f.audiAcc), borderColor: 'rgba(75, 192, 192, 1)', fill: true }]
+            labels: films.map(f => f.openDt.slice(0,7)), // YYYY-MM
+            datasets: [{ 
+                label: '관객수', 
+                data: films.map(f => f.audiAcc), 
+                borderColor: 'rgba(75, 192, 192, 1)', 
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                fill: true,
+                tension: 0.1
+            }]
         },
-        options: { maintainAspectRatio: false }
+        options: { 
+            maintainAspectRatio: false,
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function(ctx) { return ` ${fmtNum(ctx.raw)}명`; }
+                    }
+                }
+            }
+        }
     });
 }
 
