@@ -42,11 +42,9 @@ label { margin-right:8px; }
 </div>
 
 <script>
-// [핵심] 데이터 경로 2가지 모두 시도 (경로 문제 해결)
-const PATHS = [
-    `docs/data/search_index.json?v=${Date.now()}`,
-    `data/search_index.json?v=${Date.now()}`
-];
+// [핵심] 데이터 경로 캐싱 방지
+const TS = Date.now();
+const PATHS = [`docs/data/search_index.json?v=${TS}`, `data/search_index.json?v=${TS}`];
 let PEOPLE_DB = [];
 
 async function loadIndex(){
@@ -56,25 +54,48 @@ async function loadIndex(){
           if (r.ok) {
               const data = await r.json();
               processData(data);
-              return; // 성공하면 종료
+              return;
           }
       } catch(e) {}
   }
-  document.getElementById('total').textContent = '데이터를 불러올 수 없습니다. (경로 확인 필요)';
+  document.getElementById('total').textContent = '데이터를 불러올 수 없습니다.';
 }
 
 function processData(movies) {
     const peopleMap = new Map();
+    
     movies.forEach(m => {
+        // 배우 처리
         if (m.actors) {
             m.actors.forEach(a => {
-                // ID가 있으면 ID, 없으면 name:이름 사용
+                // ID가 있으면 ID, 없으면 name:이름
                 const id = (a.id && a.id.trim()) ? a.id : `name:${a.name}`;
+                
                 if (!peopleMap.has(id)) {
-                    peopleMap.set(id, { personKey: id, peopleNm: a.name, repRoleNm: '배우', filmos: [] });
+                    peopleMap.set(id, { 
+                        personKey: id, 
+                        peopleNm: a.name, 
+                        repRoleNm: '배우', 
+                        filmos: [],
+                        sex: a.gender || '' // 성별 정보 수집
+                    });
                 }
                 const p = peopleMap.get(id);
-                if (p.filmos.length < 3) p.filmos.push(m.movieNm);
+                // 중복 영화명 방지
+                if (!p.filmos.includes(m.movieNm)) {
+                     if (p.filmos.length < 4) p.filmos.push(m.movieNm); // 4개까지만 저장
+                }
+            });
+        }
+        // 감독 처리
+        if (m.directors) {
+            m.directors.forEach(d => {
+                const id = (d.id && d.id.trim()) ? d.id : `name:${d.name}`;
+                if (!peopleMap.has(id)) {
+                     peopleMap.set(id, { personKey: id, peopleNm: d.name, repRoleNm: '감독', filmos: [], sex: '' });
+                }
+                const p = peopleMap.get(id);
+                if (!p.filmos.includes(m.movieNm) && p.filmos.length < 4) p.filmos.push(m.movieNm);
             });
         }
     });
@@ -98,14 +119,20 @@ function search(){
   ul.innerHTML = '';
   
   for (const p of list) {
-    // [중요] 링크 생성 시 id 전달
     const href = `person.html?id=${encodeURIComponent(p.personKey)}&name=${encodeURIComponent(p.peopleNm)}`;
     const filmoStr = p.filmos.length > 0 ? `(${p.filmos.join(', ')} 등)` : '';
-    // 코드 유무 표시 (디버깅용)
-    const codeInfo = (!p.personKey.startsWith('name:')) ? `<span style="font-size:0.8em;color:#aaa;">(코드:${p.personKey})</span>` : '';
+    
+    // [UI 개선] 성별 표시
+    let genderBadge = '';
+    if (p.sex === '남자' || p.sex === '남') genderBadge = ' <span style="color:blue;font-size:0.8em;">(남)</span>';
+    else if (p.sex === '여자' || p.sex === '여') genderBadge = ' <span style="color:red;font-size:0.8em;">(여)</span>';
+
+    // 코드 유무 표시 (디버깅 및 구분용)
+    const hasCode = !p.personKey.startsWith('name:');
+    const codeInfo = hasCode ? '' : ' <span style="font-size:0.8em;color:#999;">(상세정보 없음)</span>';
     
     const li = document.createElement('li');
-    li.innerHTML = `<a href="${href}"><strong>${p.peopleNm}</strong></a> <span class="note">${p.repRoleNm} ${filmoStr}</span> ${codeInfo}`;
+    li.innerHTML = `<a href="${href}"><strong>${p.peopleNm}</strong></a>${genderBadge} <span class="note">${p.repRoleNm} ${filmoStr}</span> ${codeInfo}`;
     ul.appendChild(li);
   }
 }
@@ -117,7 +144,6 @@ function search(){
   const q = new URLSearchParams(location.search).get('q');
   if(q) {
       document.querySelector('input[name=q]').value = q;
-      // 데이터 로드 대기 후 검색
       const check = setInterval(() => {
           if(PEOPLE_DB.length > 0) { clearInterval(check); search(); }
       }, 100);
