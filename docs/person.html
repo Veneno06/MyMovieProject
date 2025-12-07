@@ -5,7 +5,6 @@
 <title>배우 프로필</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="assets/style.css">
-<!-- [필수] 차트 라이브러리 -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="assets/translator.js" defer></script>
 <style>
@@ -25,7 +24,7 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
 .chart-buttons button { padding:4px 10px; border:1px solid #ccc; border-radius:16px; background:#f0f0f0; cursor:pointer; font-size:14px; }
 .chart-buttons button.active { background:#333; color:#fff; border-color:#333; font-weight:bold; }
 .btn { padding:6px 10px; border:1px solid #e6e6e6; border-radius:6px; background:#fafafa; cursor:pointer; }
-.sex-badge { font-size: 1rem; margin-left: 8px; }
+.sex-badge { font-size: 1rem; margin-left: 8px; font-weight:bold; }
 </style>
 </head>
 <body>
@@ -49,7 +48,6 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
     <button class="btn" id="saveBtn" style="display:none;" data-i18n-key="btnSave">☆ 배우 저장</button>
   </div>
 
-  <!-- 차트 영역 복구 -->
   <div id="chart-container" style="display:none; margin-top: 40px;">
     <h2 data-i18n-key="audiTrend">개봉 시기별 관객수 추이</h2>
     <div class="chart-buttons" style="margin-bottom: 10px;">
@@ -67,14 +65,20 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
 
 <script>
 const TS = Date.now();
-// 경로 자동 탐지
 const PATHS_INDEX = [`docs/data/search_index.json?v=${TS}`, `data/search_index.json?v=${TS}`];
-const PATHS_DETAILS = [`docs/data/people_details.json?v=${TS}`, `data/search/people_details.json?v=${TS}`];
+const PATHS_DETAILS = [`docs/data/people/`, `data/people/`]; // 폴더 경로 prefix
 
 function getParam(k){ return new URL(location.href).searchParams.get(k) || ""; }
-const fmtNum = n => (n==null || isNaN(n)) ? '' : n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+// 안전한 숫자 파싱 함수
+const safeParseInt = (v) => {
+    if (v === null || v === undefined) return 0;
+    if (typeof v === 'number') return v;
+    const n = parseInt(String(v).replace(/,/g, '').trim(), 10);
+    return isNaN(n) ? 0 : n;
+};
+const fmtNum = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-let MOVIES_RAW = [], PEOPLE_DETAILS = {}, myChart = null;
+let MOVIES_RAW = [], myChart = null;
 let currentId = null, currentName = null;
 const saveBtn = document.getElementById('saveBtn');
 
@@ -92,22 +96,28 @@ saveBtn.addEventListener('click', () => {
     renderSaveBtn();
 });
 
-async function fetchAny(paths) {
-    for (const p of paths) {
-        try {
-            const r = await fetch(p);
-            if (r.ok) return await r.json();
-        } catch(e) {}
+async function fetchIndex() {
+    for (const p of PATHS_INDEX) {
+        try { const r = await fetch(p); if(r.ok) return await r.json(); } catch(e){}
+    }
+    return [];
+}
+
+// 개별 배우 상세 정보(성별 등) 가져오기
+async function fetchPersonDetail(id) {
+    if(!id || id.startsWith('name:')) return null;
+    const fname = `${id}.json?v=${TS}`;
+    for (const prefix of PATHS_DETAILS) {
+        try { const r = await fetch(prefix + fname); if(r.ok) return await r.json(); } catch(e){}
     }
     return null;
 }
 
 async function loadData(){
-    MOVIES_RAW = await fetchAny(PATHS_INDEX) || [];
-    PEOPLE_DETAILS = await fetchAny(PATHS_DETAILS) || {};
+    MOVIES_RAW = await fetchIndex() || [];
 }
 
-function render(){
+async function render(){
   currentId = getParam('id') || getParam('personKey');
   currentName = getParam('name') || "이름 없음";
   
@@ -116,29 +126,45 @@ function render(){
   document.getElementById('title').textContent = currentName;
   renderSaveBtn();
 
-  if (PEOPLE_DETAILS[currentId]) {
-      const s = PEOPLE_DETAILS[currentId].sex;
-      if (s === "남") document.getElementById('sexBadge').textContent = "♂";
-      if (s === "여") document.getElementById('sexBadge').textContent = "♀";
+  // 1. 상세 정보(성별) 표시
+  const details = await fetchPersonDetail(currentId);
+  if (details) {
+      // API 구조에 따라 peopleInfoResult.peopleInfo 또는 바로 peopleInfo 확인
+      const info = (details.peopleInfoResult && details.peopleInfoResult.peopleInfo) 
+                   ? details.peopleInfoResult.peopleInfo 
+                   : details;
+                   
+      if (info && info.sex) {
+           const s = info.sex.trim();
+           const badge = document.getElementById('sexBadge');
+           if (s === "남자" || s === "남") { badge.textContent = "♂"; badge.style.color = "blue"; }
+           else if (s === "여자" || s === "여") { badge.textContent = "♀"; badge.style.color = "red"; }
+      }
   }
 
+  // 2. 영화 필터링 (동명이인 엄격 구분)
   const seen = new Set();
   const myMovies = [];
 
   MOVIES_RAW.forEach(m => {
       if (seen.has(m.movieCd)) return;
+      
       let match = false;
+      const actors = m.actors || [];
+      const directors = m.directors || [];
 
       if (currentId.startsWith('name:')) {
-          // ID 없는 동명이인
-          const target = currentId.replace('name:', '');
-          const aMatch = m.actors && m.actors.some(a => a.name === target && (!a.id));
-          const dMatch = m.directors && m.directors.some(d => d.name === target && (!d.id));
+          // [중요] ID가 없는 배우: 이름은 같아야 하고, ID는 비어 있어야 함
+          // 만약 ID가 있는 동명이인이 있다면 그 영화는 제외해야 함
+          const targetName = currentId.replace('name:', '');
+          
+          const aMatch = actors.some(a => a.name === targetName && (!a.id)); 
+          const dMatch = directors.some(d => d.name === targetName && (!d.id));
           match = aMatch || dMatch;
       } else {
-          // ID 있는 진짜 배우
-          const aMatch = m.actors && m.actors.some(a => a.id === currentId);
-          const dMatch = m.directors && m.directors.some(d => d.id === currentId);
+          // [중요] ID가 있는 배우: ID가 정확히 일치해야 함
+          const aMatch = actors.some(a => a.id === currentId);
+          const dMatch = directors.some(d => d.id === currentId);
           match = aMatch || dMatch;
       }
 
@@ -160,26 +186,30 @@ function render(){
   }
 
   for (const f of myMovies) {
-    // 관객수 숫자 변환 (차트용)
-    let audiNum = 0;
-    if (f.audiAcc) audiNum = typeof f.audiAcc === 'number' ? f.audiAcc : parseInt(String(f.audiAcc).replace(/,/g, ''), 10);
-    
+    const audiNum = safeParseInt(f.audiAcc);
     const audiStr = audiNum ? ` / <span class="audi">누적 ${fmtNum(audiNum)}명</span>` : '';
+    
     let castStr = "";
     if (f.actors) {
+        // 본인 이름 강조
         const d = f.actors.slice(0, 7).map(a => a.name === currentName ? `<b>${a.name}</b>` : a.name);
         castStr = ` · 배우: ${d.join(', ')}`;
     }
+    
     const li = document.createElement('li');
     li.innerHTML = `<a href="detail.html?movieCd=${encodeURIComponent(f.movieCd)}">${f.movieNm}</a>
       <span class="note">(${f.openDt||'미상'}${audiStr}<span class="cast-list">${castStr}</span>)</span>`;
     out.appendChild(li);
+    
     if (f.openDt && audiNum > 0) filmsWithAudi.push({ ...f, audiAcc: audiNum });
   }
 
+  // 3. 차트 그리기
   if (filmsWithAudi.length > 0) {
       document.getElementById('chart-container').style.display = 'block';
-      drawChart(filmsWithAudi, 'totalAudi');
+      // 차트 데이터 정렬 (오래된 순)
+      const chartData = [...filmsWithAudi].sort((a,b) => (a.openDt||'').localeCompare(b.openDt||''));
+      drawChart(chartData, 'totalAudi');
       
       const buttons = [
         { id: 'btnTotalAudi', type: 'totalAudi' },
@@ -190,42 +220,74 @@ function render(){
       ];
       buttons.forEach(b => {
           const el = document.getElementById(b.id);
-          if(el) el.addEventListener('click', () => {
-              document.querySelectorAll('.chart-buttons button').forEach(x => x.classList.remove('active'));
-              el.classList.add('active');
-              drawChart(filmsWithAudi, b.type);
-          });
+          if(el) {
+              // 이벤트 리스너 중복 방지 (필요시)
+              el.onclick = () => {
+                  document.querySelectorAll('.chart-buttons button').forEach(x => x.classList.remove('active'));
+                  el.classList.add('active');
+                  drawChart(chartData, b.type);
+              };
+          }
       });
   }
 }
 
 function drawChart(films, type) {
+    const ctx = document.getElementById('audiChart');
+    if (!ctx) return;
+    
     if (myChart) myChart.destroy();
-    films.sort((a,b) => (a.openDt||'').localeCompare(b.openDt||''));
     
     let dataPoints = films.map(f => f.audiAcc);
-    // 그래프 타입별 계산 로직 복구
-    if (type === 'audiPerActor') dataPoints = films.map(f => Math.round(f.audiAcc / (f.actors ? f.actors.length : 1)));
-    if (type === 'audiPerFilmography') { const t = films.length; dataPoints = films.map(f => Math.round(f.audiAcc / t)); }
-    if (type === 'audiPerCareer') {
-        const first = parseInt(films[0].openDt.slice(0,4));
-        dataPoints = films.map(f => Math.round(f.audiAcc / Math.max(1, parseInt(f.openDt.slice(0,4)) - first + 1)));
+    
+    if (type === 'audiPerActor') {
+        dataPoints = films.map(f => Math.round(f.audiAcc / (f.actors && f.actors.length > 0 ? f.actors.length : 1)));
     }
-    if (type === 'audiBonus') dataPoints = films.map(f => f.audiAcc > 5000000 ? f.audiAcc * 2 : f.audiAcc);
+    if (type === 'audiPerFilmography') { 
+        const t = films.length; 
+        dataPoints = films.map(f => Math.round(f.audiAcc / t)); 
+    }
+    if (type === 'audiPerCareer') {
+        if (films.length > 0) {
+            const firstYear = parseInt(films[0].openDt.slice(0,4));
+            dataPoints = films.map(f => {
+                const curYear = parseInt(f.openDt.slice(0,4));
+                const yearDiff = Math.max(1, curYear - firstYear + 1);
+                return Math.round(f.audiAcc / yearDiff);
+            });
+        }
+    }
+    if (type === 'audiBonus') {
+        dataPoints = films.map(f => f.audiAcc > 5000000 ? f.audiAcc * 1.5 : f.audiAcc);
+    }
 
-    new Chart(document.getElementById('audiChart'), {
+    myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: films.map(f => f.openDt.slice(0,7)),
+            labels: films.map(f => `${f.movieNm.slice(0,6)}..(${f.openDt.slice(2,4)})`),
             datasets: [{
-                label: '값',
+                label: '관객수 지표',
                 data: dataPoints,
                 borderColor: 'rgba(75, 192, 192, 1)',
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                fill: true
+                borderWidth: 2,
+                fill: true,
+                tension: 0.3
             }]
         },
-        options: { maintainAspectRatio: false }
+        options: { 
+            maintainAspectRatio: false,
+            responsive: true,
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return ` ${fmtNum(context.raw)}명`;
+                        }
+                    }
+                }
+            }
+        }
     });
 }
 
