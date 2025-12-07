@@ -15,12 +15,12 @@ if CURRENT_DIR not in sys.path:
 try:
     from kofic_api import get_session, API_KEYS
 except ImportError:
-    # 모듈이 없을 경우 더미 처리 (에러 방지)
+    # 모듈이 없을 경우 더미 처리
     API_KEYS = []
     def get_session(): return None, None
 
 HERE = Path(__file__).resolve()
-ROOT = HERE.parents[1]
+ROOT = HERE.parents[1] if HERE.parents[1].name == "MyMovieProject" else HERE.parents[2]
 MOVIE_DIR = ROOT / "docs" / "data" / "movies"
 PEOPLE_DIR = ROOT / "docs" / "data" / "people"
 PEOPLE_INFO_URL = "https://www.kobis.or.kr/kobisopenapi/webservice/rest/people/searchPeopleInfo.json"
@@ -36,7 +36,6 @@ def save_json(p: Path, data: dict):
     p.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
 
 def is_korean_movie(data: dict) -> bool:
-    # 영화 데이터에서 한국 영화인지 판별
     info = data if data.get("movieCd") else ((data.get("movieInfoResult") or {}).get("movieInfo") or {})
     nations = info.get("nations") or []
     for n in nations:
@@ -65,13 +64,11 @@ def build_details():
         data = load_json(Path(p))
         if not data: continue
         
-        # 한국 영화만 대상
         if not is_korean_movie(data):
             continue
 
         info = data if data.get("movieCd") else ((data.get("movieInfoResult") or {}).get("movieInfo") or {})
         
-        # 감독 & 배우 코드 수집
         for key in ["directors", "actors"]:
             for person in (info.get(key) or []):
                 code = person.get("peopleCd")
@@ -82,27 +79,34 @@ def build_details():
 
     # 2. 각 배우별 상세 정보(성별 등) 수집
     count = 0
-    limit = 2000 # 안전장치: 최대 2000명까지만 조회
+    # [수정 1] 하드코딩된 limit 제거 (전체 스캔)
     
-    for code in sorted(list(target_people)):
-        if count >= limit:
-            print("[info] Limit reached. Stop.")
-            break
-
+    sorted_people = sorted(list(target_people))
+    
+    for i, code in enumerate(sorted_people):
         person_file = PEOPLE_DIR / f"{code}.json"
+        
+        # 이미 파일이 있고, 내용이 유효하면 건너뜀
         if person_file.exists():
-            continue # 이미 있으면 패스
+            # 빈 파일인지 체크
+            if person_file.stat().st_size > 10:
+                continue
 
         try:
             session, api_key = get_session()
             data = fetch_people_info(session, api_key, code)
             
-            p_info = (data.get("peopleInfoResult") or {}).get("peopleInfo")
+            # 유효성 검사
+            p_result = data.get("peopleInfoResult")
+            p_info = p_result.get("peopleInfo") if p_result else None
+            
             if p_info:
-                save_json(person_file, p_info)
-                print(f"[ok] Saved {p_info.get('peopleNm')} ({p_info.get('sex')})")
+                # [수정 2] data 전체(Wrapper 포함)를 저장하여 reindex_search.py와 구조 일치시킴
+                save_json(person_file, data)
+                sex = p_info.get('sex') or 'Unknown'
+                print(f"[{i+1}/{len(sorted_people)}] Saved {p_info.get('peopleNm')} ({sex})")
                 count += 1
-                time.sleep(0.1) # 100ms 대기
+                time.sleep(0.1) 
             else:
                 print(f"[skip] No info for {code}")
                 
