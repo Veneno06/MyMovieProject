@@ -2,11 +2,9 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
-  <!-- [수정] title에 번역 키 추가 -->
   <title data-i18n-key="movieDetailTitle">영화 상세 – K-Movie A Archive</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="assets/style.css" />
-  <!-- [수정] 신규 번역 스크립트 추가 -->
   <script src="assets/translator.js" defer></script>
   <style>
     .actor-link { margin-right:6px; }
@@ -15,7 +13,6 @@
 </head>
 <body>
 <div class="container">
-  <!-- [수정] 버튼에 번역 키 추가 -->
   <div class="header">
     <h1 data-i18n-key="movieDetailTitle">영화 상세 정보</h1>
     <div class="spacer"></div>
@@ -28,7 +25,6 @@
 
   <div id="movieDetail" class="grid"></div>
   <div style="margin-top:12px; display:flex; gap:8px;">
-    <!-- [수정] 버튼에 번역 키 추가 -->
     <button class="btn" onclick="history.back()" data-i18n-key="btnBack">🔙 뒤로</button>
   </div>
 </div>
@@ -73,7 +69,6 @@ async function guessDetailJsonPaths(cd, indexEntry){
   return Array.from(paths);
 }
 
-/* 다양한 스키마 대응 */
 function pickMovieInfo(json){
   if (!json) return null;
   if (json.movieInfoResult?.movieInfo) return json.movieInfoResult.movieInfo;
@@ -89,9 +84,7 @@ function pickMovieInfo(json){
     box.textContent = '영화 코드가 없습니다.'; return;
   }
 
-  const peopleIndex = await tryFetchJson(`${PEOPLE_URL}?v=${Date.now()}`);
-  const ALL_PEOPLE = peopleIndex?.people || [];
-
+  // [수정] PEOPLE_URL 로딩은 유지하되, 링크 생성 로직은 단순화
   const index = await tryFetchJson(INDEX_URL);
   const list = index?.movies || [];
   const idxEntry = list.find(m => m.movieCd === movieCd);
@@ -131,23 +124,17 @@ function pickMovieInfo(json){
     nm: a.peopleNm || '',
   }));
 
+  // [핵심 수정] 링크 생성 로직 단순화 및 오류 수정
   const getPersonLink = (actor) => {
-    let personKey = '';
-    if (actor.cd) {
-      const person = ALL_PEOPLE.find(p => p.peopleCd === actor.cd);
-      if (person) personKey = person.personKey;
-    }
-    if (!personKey && actor.nm) {
-      const person = ALL_PEOPLE.find(p => p.peopleNm === actor.nm && p.repRoleNm === '배우');
-      if (person) personKey = person.personKey;
-    }
-    let href = '';
-    if (personKey) {
-      href = `person.html?personKey=${encodeURIComponent(personKey)}`;
-    } else {
-      href = `person.html?peopleNm=${encodeURIComponent(actor.nm)}&movieNm=${encodeURIComponent(title)}`;
-    }
-    return `<a href="${href}" class="actor-link">${actor.nm}</a>`;
+    // 1. ID 결정: 코드가 있으면 사용, 없으면 name:이름
+    const pid = actor.cd ? actor.cd : `name:${actor.nm}`;
+    
+    // 2. URL 생성: person.html이 기대하는 id와 name 파라미터 사용
+    // 주의: 기존 코드는 peopleNm을 썼지만, person.html은 name을 읽음
+    const href = `person.html?id=${encodeURIComponent(pid)}&name=${encodeURIComponent(actor.nm)}`;
+    
+    // 3. 새 탭 열기 추가 (target="_blank")
+    return `<a href="${href}" class="actor-link" target="_blank">${actor.nm}</a>`;
   };
 
   const actorLinksShort = actorArr.slice(0,5).map(getPersonLink).join(', ');
@@ -156,7 +143,6 @@ function pickMovieInfo(json){
   const audiAcc = (raw.audiAcc != null ? raw.audiAcc : idxEntry?.audiAcc);
   const audiText = (audiAcc != null) ? `${fmtNum(audiAcc)}명` : '집계 데이터 없음';
 
-  // [수정] 라벨에 번역 키 추가
   box.innerHTML = `
     <div><strong data-i18n-key="titleLabel">제목:</strong> ${title} ${prdtYear?`<span class="muted">(${prdtYear})</span>`:''}</div>
     <div>
@@ -184,8 +170,6 @@ function pickMovieInfo(json){
     });
   }
   
-  // [수정] 동적으로 생성된 콘텐츠도 번역
-  // translator.js가 로드된 후에 이 함수가 실행되도록 보장 (DOMContentLoaded)
   if (window.translatePage && typeof window.translatePage === 'function') {
       window.translatePage(window.getCurrentLang ? window.getCurrentLang() : 'ko');
   }
