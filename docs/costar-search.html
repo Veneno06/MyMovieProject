@@ -54,16 +54,11 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
 </div>
 
 <script>
-const PATHS_INDEX = [`docs/data/search_index.json?v=${Date.now()}`, `data/search_index.json?v=${Date.now()}`];
+// 캐싱 방지용 타임스탬프 추가
+const TS = Date.now();
+const PATHS_INDEX = [`docs/data/search_index.json?v=${TS}`, `data/search_index.json?v=${TS}`];
 let MOVIES = [], myChart = null;
-
-const safeParseInt = (v) => {
-    if (v === null || v === undefined) return 0;
-    if (typeof v === 'number') return v;
-    const n = parseInt(String(v).replace(/,/g, '').trim(), 10);
-    return isNaN(n) ? 0 : n;
-};
-const fmtNum = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+const fmtNum = n => (n==null || isNaN(n)) ? '' : n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
 async function loadIndex(){
   for (const p of PATHS_INDEX) {
@@ -76,25 +71,20 @@ function search(){
   const qStr = (f.get('q')||'').trim();
   if (!qStr) { document.getElementById('out').innerHTML=''; return; }
 
+  // 검색어 분리
   const queries = qStr.split(',').map(s => s.trim().toLowerCase()).filter(s => s.length);
   if (!queries.length) return;
 
+  // 필터링: 모든 검색어가 포함된 영화만 찾기 (AND 조건)
   const results = MOVIES.filter(m => {
       const actors = m.actors || [];
-      // 모든 검색어가 출연진 목록에 있어야 함 (AND 조건)
       return queries.every(q => actors.some(a => a.name.toLowerCase().includes(q)));
   });
 
-  // [중복 제거 확실하게]
+  // 중복 제거 및 정렬
   const unique = [];
   const seen = new Set();
-  results.forEach(m => { 
-      if(!seen.has(m.movieCd)) { 
-          seen.add(m.movieCd); 
-          unique.push(m); 
-      } 
-  });
-  
+  results.forEach(m => { if(!seen.has(m.movieCd)) { seen.add(m.movieCd); unique.push(m); } });
   unique.sort((a,b) => (b.openDt||'').localeCompare(a.openDt||''));
 
   document.getElementById('total').textContent = `총 ${unique.length}편 검색됨`;
@@ -103,7 +93,8 @@ function search(){
   const filmsWithAudi = [];
 
   for (const m of unique) {
-    const audiNum = safeParseInt(m.audiAcc);
+    let audiNum = 0;
+    if (m.audiAcc) audiNum = typeof m.audiAcc === 'number' ? m.audiAcc : parseInt(String(m.audiAcc).replace(/,/g, ''), 10);
     const audiStr = audiNum ? ` / <span class="audi">누적 ${fmtNum(audiNum)}명</span>` : '';
     
     let castHtml = "";
@@ -111,11 +102,20 @@ function search(){
         const links = m.actors.slice(0, 10).map(a => {
             const isMatch = queries.some(q => a.name.toLowerCase().includes(q));
             
-            // 링크 생성 로직 (ID 있으면 사용, 없으면 name: 사용)
+            // [핵심 수정] ID가 있으면 ID 사용, 없으면 name: 사용
             const id = (a.id && a.id.trim()) ? a.id : `name:${a.name}`;
-            const href = `person.html?id=${encodeURIComponent(id)}&name=${encodeURIComponent(a.name)}`;
             
-            const nameHtml = isMatch ? `<span class="highlight">${a.name}</span>` : a.name;
+            // [핵심 수정] 성별 데이터가 있다면 표시 (예: 남, 여)
+            let genderMark = '';
+            if (a.gender) {
+                genderMark = (a.gender === '남자' || a.gender === '남') ? 
+                             ' <span style="color:blue;font-size:0.8em;">(남)</span>' : 
+                             ' <span style="color:red;font-size:0.8em;">(여)</span>';
+            }
+
+            const href = `person.html?id=${encodeURIComponent(id)}&name=${encodeURIComponent(a.name)}`;
+            const nameHtml = isMatch ? `<span class="highlight">${a.name}</span>${genderMark}` : `${a.name}${genderMark}`;
+            
             return `<a href="${href}" style="text-decoration:none;color:#555;">${nameHtml}</a>`;
         });
         castHtml = ` · 배우: ${links.join(', ')}`;
@@ -125,43 +125,43 @@ function search(){
     li.innerHTML = `<a href="detail.html?movieCd=${encodeURIComponent(m.movieCd)}" style="font-weight:bold;color:#000;">${m.movieNm}</a>
       <span class="note">(${m.openDt||'미상'}${audiStr})</span><div class="cast-list" style="margin-top:4px;">${castHtml}</div>`;
     ul.appendChild(li);
-    
     if (m.openDt && audiNum > 0) filmsWithAudi.push({ ...m, audiAcc: audiNum });
   }
 
-  // 차트 렌더링
-  const container = document.getElementById('chart-container');
+  // 차트 그리기
+  const chartContainer = document.getElementById('chart-container');
   if (filmsWithAudi.length > 0) {
-      container.style.display = 'block';
-      // 차트용 정렬 (과거->최신)
-      const chartData = [...filmsWithAudi].sort((a,b) => (a.openDt||'').localeCompare(b.openDt||''));
-      drawChart(chartData);
+      chartContainer.style.display = 'block';
+      drawChart(filmsWithAudi);
   } else {
-      container.style.display = 'none';
+      chartContainer.style.display = 'none';
   }
 }
 
 function drawChart(films){
     const ctx = document.getElementById('audiChart');
-    if (!ctx) return;
+    if (!ctx) return; // 캔버스 보호
 
     if (myChart) myChart.destroy();
+    
+    films.sort((a,b) => (a.openDt||'').localeCompare(b.openDt||''));
     
     myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: films.map(f => f.openDt.slice(0,7)), // YYYY-MM
+            labels: films.map(f => f.openDt.slice(0,7)),
             datasets: [{ 
                 label: '관객수', 
                 data: films.map(f => f.audiAcc), 
-                borderColor: 'rgba(75, 192, 192, 1)', 
+                borderColor: 'rgba(75, 192, 192, 1)',
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
                 fill: true,
-                tension: 0.1
+                tension: 0.1 
             }]
         },
         options: { 
             maintainAspectRatio: false,
+            responsive: true,
             plugins: {
                 tooltip: {
                     callbacks: {
