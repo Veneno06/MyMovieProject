@@ -66,10 +66,9 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
 <script>
 const TS = Date.now();
 const PATHS_INDEX = [`docs/data/search_index.json?v=${TS}`, `data/search_index.json?v=${TS}`];
-const PATHS_DETAILS = [`docs/data/people/`, `data/people/`]; // 폴더 경로 prefix
+const PATHS_DETAILS = [`docs/data/people/`, `data/people/`]; 
 
 function getParam(k){ return new URL(location.href).searchParams.get(k) || ""; }
-// 안전한 숫자 파싱 함수
 const safeParseInt = (v) => {
     if (v === null || v === undefined) return 0;
     if (typeof v === 'number') return v;
@@ -78,7 +77,7 @@ const safeParseInt = (v) => {
 };
 const fmtNum = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-let MOVIES_RAW = [], myChart = null;
+let MOVIES_RAW = [], PEOPLE_DETAILS = {}, myChart = null;
 let currentId = null, currentName = null;
 const saveBtn = document.getElementById('saveBtn');
 
@@ -103,7 +102,6 @@ async function fetchIndex() {
     return [];
 }
 
-// 개별 배우 상세 정보(성별 등) 가져오기
 async function fetchPersonDetail(id) {
     if(!id || id.startsWith('name:')) return null;
     const fname = `${id}.json?v=${TS}`;
@@ -126,14 +124,11 @@ async function render(){
   document.getElementById('title').textContent = currentName;
   renderSaveBtn();
 
-  // 1. 상세 정보(성별) 표시
   const details = await fetchPersonDetail(currentId);
   if (details) {
-      // API 구조에 따라 peopleInfoResult.peopleInfo 또는 바로 peopleInfo 확인
       const info = (details.peopleInfoResult && details.peopleInfoResult.peopleInfo) 
                    ? details.peopleInfoResult.peopleInfo 
                    : details;
-                   
       if (info && info.sex) {
            const s = info.sex.trim();
            const badge = document.getElementById('sexBadge');
@@ -142,7 +137,6 @@ async function render(){
       }
   }
 
-  // 2. 영화 필터링 (동명이인 엄격 구분)
   const seen = new Set();
   const myMovies = [];
 
@@ -154,15 +148,11 @@ async function render(){
       const directors = m.directors || [];
 
       if (currentId.startsWith('name:')) {
-          // [중요] ID가 없는 배우: 이름은 같아야 하고, ID는 비어 있어야 함
-          // 만약 ID가 있는 동명이인이 있다면 그 영화는 제외해야 함
           const targetName = currentId.replace('name:', '');
-          
           const aMatch = actors.some(a => a.name === targetName && (!a.id)); 
           const dMatch = directors.some(d => d.name === targetName && (!d.id));
           match = aMatch || dMatch;
       } else {
-          // [중요] ID가 있는 배우: ID가 정확히 일치해야 함
           const aMatch = actors.some(a => a.id === currentId);
           const dMatch = directors.some(d => d.id === currentId);
           match = aMatch || dMatch;
@@ -191,7 +181,6 @@ async function render(){
     
     let castStr = "";
     if (f.actors) {
-        // 본인 이름 강조
         const d = f.actors.slice(0, 7).map(a => a.name === currentName ? `<b>${a.name}</b>` : a.name);
         castStr = ` · 배우: ${d.join(', ')}`;
     }
@@ -204,10 +193,9 @@ async function render(){
     if (f.openDt && audiNum > 0) filmsWithAudi.push({ ...f, audiAcc: audiNum });
   }
 
-  // 3. 차트 그리기
   if (filmsWithAudi.length > 0) {
       document.getElementById('chart-container').style.display = 'block';
-      // 차트 데이터 정렬 (오래된 순)
+      
       const chartData = [...filmsWithAudi].sort((a,b) => (a.openDt||'').localeCompare(b.openDt||''));
       drawChart(chartData, 'totalAudi');
       
@@ -221,7 +209,6 @@ async function render(){
       buttons.forEach(b => {
           const el = document.getElementById(b.id);
           if(el) {
-              // 이벤트 리스너 중복 방지 (필요시)
               el.onclick = () => {
                   document.querySelectorAll('.chart-buttons button').forEach(x => x.classList.remove('active'));
                   el.classList.add('active');
@@ -238,19 +225,21 @@ function drawChart(films, type) {
     
     if (myChart) myChart.destroy();
     
-    let dataPoints = films.map(f => f.audiAcc);
+    // 1. 계산할 원본 데이터 준비
+    let rawData = films.map(f => f.audiAcc);
     
+    // 그래프 타입별 계산 (기존 로직 유지)
     if (type === 'audiPerActor') {
-        dataPoints = films.map(f => Math.round(f.audiAcc / (f.actors && f.actors.length > 0 ? f.actors.length : 1)));
+        rawData = films.map(f => Math.round(f.audiAcc / (f.actors && f.actors.length > 0 ? f.actors.length : 1)));
     }
     if (type === 'audiPerFilmography') { 
         const t = films.length; 
-        dataPoints = films.map(f => Math.round(f.audiAcc / t)); 
+        rawData = films.map(f => Math.round(f.audiAcc / t)); 
     }
     if (type === 'audiPerCareer') {
         if (films.length > 0) {
             const firstYear = parseInt(films[0].openDt.slice(0,4));
-            dataPoints = films.map(f => {
+            rawData = films.map(f => {
                 const curYear = parseInt(f.openDt.slice(0,4));
                 const yearDiff = Math.max(1, curYear - firstYear + 1);
                 return Math.round(f.audiAcc / yearDiff);
@@ -258,15 +247,28 @@ function drawChart(films, type) {
         }
     }
     if (type === 'audiBonus') {
-        dataPoints = films.map(f => f.audiAcc > 5000000 ? f.audiAcc * 1.5 : f.audiAcc);
+        rawData = films.map(f => f.audiAcc > 5000000 ? f.audiAcc * 1.5 : f.audiAcc);
     }
+
+    // [요청 사항 1] Y축 데이터: 1,000 단위로 변환 (예: 10,000,000 -> 10,000)
+    const dataPoints = rawData.map(v => Math.round(v / 1000));
+
+    // [요청 사항 2] X축 라벨: YYYY.MM 형식 (예: 2022.06)
+    const labels = films.map(f => {
+        // YYYYMMDD 형식을 가정하고, 혹시 모를 대시(-) 제거
+        const d = f.openDt.replace(/-/g, '');
+        if (d.length >= 6) {
+            return `${d.slice(0,4)}.${d.slice(4,6)}`;
+        }
+        return d;
+    });
 
     myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: films.map(f => `${f.movieNm.slice(0,6)}..(${f.openDt.slice(2,4)})`),
+            labels: labels,
             datasets: [{
-                label: '관객수 지표',
+                label: '관객수 (단위: 천명)',
                 data: dataPoints,
                 borderColor: 'rgba(75, 192, 192, 1)',
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
@@ -278,11 +280,27 @@ function drawChart(films, type) {
         options: { 
             maintainAspectRatio: false,
             responsive: true,
+            scales: {
+                y: {
+                    // [요청 사항 3] Y축 간격: 1,000 단위 (실제 100만 명) 고정
+                    ticks: {
+                        stepSize: 1000,
+                        callback: function(value) {
+                            return value.toLocaleString();
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: '단위: 천명'
+                    }
+                }
+            },
             plugins: {
                 tooltip: {
                     callbacks: {
                         label: function(context) {
-                            return ` ${fmtNum(context.raw)}명`;
+                            // 툴팁은 헷갈리지 않게 실제 숫자(x1000)로 보여줌
+                            return ` ${fmtNum(context.raw * 1000)}명`;
                         }
                     }
                 }
