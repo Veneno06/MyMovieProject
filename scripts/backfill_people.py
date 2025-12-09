@@ -1,6 +1,4 @@
 # scripts/backfill_people.py
-# 목적: 한국 영화 데이터 중 배우 코드가 누락된 경우 API로 조회하여 채워 넣음
-# 대상: 특정 자음이나 이름에 국한되지 않고, '모든 한국 영화'를 대상으로 함
 from __future__ import annotations
 import os
 import json
@@ -29,6 +27,9 @@ ROOT = HERE.parents[1] if HERE.parents[1].name == "MyMovieProject" else HERE.par
 DETAIL_DIR = ROOT / "docs" / "data" / "movies"
 MOVIE_INFO_URL = "https://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json"
 
+# 전역 변수: 현재 사용할 API 키 인덱스
+CURRENT_KEY_INDEX = 0
+
 def load_json(p: Path):
     try:
         return json.loads(p.read_text(encoding="utf-8"))
@@ -41,15 +42,66 @@ def save_json(p: Path, data: dict):
     tmp.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
     tmp.replace(p)
 
-def fetch_movie_info(session, api_key, movieCd):
-    qs = urlencode({"key": api_key, "movieCd": movieCd})
-    url = f"{MOVIE_INFO_URL}?{qs}"
-    r = session.get(url, timeout=10)
-    r.raise_for_status()
-    j = r.json()
-    if j.get("faultInfo") or j.get("faultResult"):
-        raise RuntimeError(f"KOBIS fault: {j.get('faultInfo') or j.get('faultResult')}")
-    return j
+def get_next_key_session():
+    """키 한도가 초과되면 다음 키로 세션을 변경"""
+    global CURRENT_KEY_INDEX
+    if not API_KEYS:
+        return None, None
+    
+    # 다음 키로 인덱스 이동
+    CURRENT_KEY_INDEX = (CURRENT_KEY_INDEX + 1) % len(API_KEYS)
+    api_key = API_KEYS[CURRENT_KEY_INDEX]
+    session = requests.Session()
+    session.headers.update({"User-Agent": "Mozilla/5.0"})
+    print(f"[system] 🔄 API Key switched to index {CURRENT_KEY_INDEX} (Key ending in ...{api_key[-4:]})")
+    return session, api_key
+
+def fetch_movie_info_smart(movieCd):
+    """320011 에러 발생 시 자동으로 키를 교체하며 재시도하는 스마트 함수"""
+    global CURRENT_KEY_INDEX
+    
+    if not API_KEYS: 
+        raise RuntimeError("No API Keys available.")
+    
+    api_key = API_KEYS[CURRENT_KEY_INDEX]
+    session = requests.Session()
+    
+    # 키 개수만큼 재시도 기회를 줌 (모든 키를 순회할 때까지)
+    max_retries = len(API_KEYS)
+    
+    for attempt in range(max_retries + 1):
+        try:
+            qs = urlencode({"key": api_key, "movieCd": movieCd})
+            url = f"{MOVIE_INFO_URL}?{qs}"
+            r = session.get(url, timeout=10)
+            r.raise_for_status()
+            j = r.json()
+            
+            # API 에러 응답 체크
+            fault = j.get("faultInfo") or j.get("faultResult")
+            if fault:
+                err_code = fault.get("errorCode")
+                err_msg = fault.get("message")
+                
+                # 320011: 키 한도 초과 -> 키 교체 후 재시도
+                if err_code == '320011':
+                    print(f"[warning] Key exhausted ({api_key[-4:]}). Switching...")
+                    session, api_key = get_next_key_session()
+                    continue # for 루프의 다음 시도로 넘어감 (새 키로 요청)
+                else:
+                    # 다른 에러는 즉시 중단 (예: 서버 오류 등)
+                    raise RuntimeError(f"KOBIS fault: {err_msg}")
+            
+            return j # 성공 시 데이터 반환
+            
+        except Exception as e:
+            # 네트워크 에러나 알 수 없는 에러인 경우 잠시 대기 후 재시도할 수도 있으나,
+            # 여기서는 키 문제인 경우 위에서 처리했으므로 로깅 후 루프 진행
+            if attempt == max_retries:
+                raise e # 모든 키를 다 써봤는데도 안되면 에러 발생
+            time.sleep(1)
+            
+    raise RuntimeError("All API keys exhausted.")
 
 def backfill(budget: int, rate_sleep_ms: int):
     # 최신 영화부터 역순 정렬
@@ -72,7 +124,7 @@ def backfill(budget: int, rate_sleep_ms: int):
         movieCd = data.get("movieCd")
         if not movieCd: continue
 
-        # 1. 한국 영화 필터 (해외 영화는 건너뜀)
+        # 1. 한국 영화 필터
         nations = data.get("nations") or []
         is_korea = any(n.get("nationNm") == "한국" for n in nations)
         if not is_korea:
@@ -80,7 +132,6 @@ def backfill(budget: int, rate_sleep_ms: int):
             continue
 
         # 2. 업데이트 필요 여부 판단
-        # 배우 목록을 훑어서 '코드가 비어있는 사람'이 있는지 확인
         actors = data.get("actors") or []
         needs_update = False
         for a in actors:
@@ -90,20 +141,17 @@ def backfill(budget: int, rate_sleep_ms: int):
                 needs_update = True
                 break
         
-        # 모든 배우가 이미 코드를 가지고 있다면 API 호출 안 함 (건너뜀)
         if not needs_update:
             skipped += 1
             continue
 
-        # 예산 체크
         if used >= budget:
-            print(f"[info] 예산 소진 ({used}회). 중단.")
+            print(f"[info] 예산 소진 ({used}회). 안전하게 중단합니다.")
             break
 
-        # 3. API 호출
+        # 3. API 호출 (스마트 로직 적용)
         try:
-            session, api_key = get_session()
-            j = fetch_movie_info(session, api_key, movieCd)
+            j = fetch_movie_info_smart(movieCd)
             used += 1
             
             if rate_sleep_ms > 0:
@@ -124,7 +172,6 @@ def backfill(budget: int, rate_sleep_ms: int):
                     "cast": a.get("cast", "").strip()
                 })
             
-            # 감독 정보도 업데이트 (선택 사항이지만 데이터 일관성을 위해 추천)
             new_directors = []
             for d in info.get("directors", []) or []:
                 new_directors.append({
@@ -145,6 +192,12 @@ def backfill(budget: int, rate_sleep_ms: int):
             updated += 1
             print(f"[성공] {movieCd} ({data.get('movieNm')}) 업데이트 완료")
 
+        except RuntimeError as re:
+            if "All API keys exhausted" in str(re):
+                print("[STOP] 모든 API 키가 소진되었습니다. 현재까지의 작업을 저장하고 종료합니다.")
+                break
+            print(f"[실패] {movieCd}: {re}")
+            skipped += 1
         except Exception as e:
             print(f"[실패] {movieCd}: {e}")
             time.sleep(1)
@@ -154,7 +207,7 @@ def backfill(budget: int, rate_sleep_ms: int):
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("--budget", type=int, default=1000)
+    ap.add_argument("--budget", type=int, default=3000)
     ap.add_argument("--rate-sleep-ms", type=int, default=250)
     args, unknown = ap.parse_known_args()
     
