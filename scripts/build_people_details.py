@@ -1,3 +1,4 @@
+# scripts/build_people_details.py
 import os
 import json
 import time
@@ -15,7 +16,6 @@ if CURRENT_DIR not in sys.path:
 try:
     from kofic_api import get_session, API_KEYS
 except ImportError:
-    # 모듈이 없을 경우 더미 처리
     API_KEYS = []
     def get_session(): return None, None
 
@@ -24,6 +24,9 @@ ROOT = HERE.parents[1] if HERE.parents[1].name == "MyMovieProject" else HERE.par
 MOVIE_DIR = ROOT / "docs" / "data" / "movies"
 PEOPLE_DIR = ROOT / "docs" / "data" / "people"
 PEOPLE_INFO_URL = "https://www.kobis.or.kr/kobisopenapi/webservice/rest/people/searchPeopleInfo.json"
+
+# 전역 변수
+CURRENT_KEY_INDEX = 0
 
 def load_json(p: Path):
     try:
@@ -43,26 +46,62 @@ def is_korean_movie(data: dict) -> bool:
             return True
     return False
 
-# [신규 기능] 이름의 첫 글자가 'ㅎ' (히읗) 자음으로 시작하는지 확인
 def is_h_name(name: str) -> bool:
     if not name: return False
     # 유니코드 범위: '하'(U+D558) ~ '힣'(U+D7A3)
     first_char = name[0]
     return '\ud558' <= first_char <= '\ud7a3'
 
-def fetch_people_info(session, api_key, peopleCd):
-    qs = urlencode({"key": api_key, "peopleCd": peopleCd})
-    url = f"{PEOPLE_INFO_URL}?{qs}"
-    r = session.get(url, timeout=10)
-    r.raise_for_status()
-    return r.json()
+def get_next_key_session():
+    """키 교체 로직"""
+    global CURRENT_KEY_INDEX
+    if not API_KEYS: return None, None
+    CURRENT_KEY_INDEX = (CURRENT_KEY_INDEX + 1) % len(API_KEYS)
+    api_key = API_KEYS[CURRENT_KEY_INDEX]
+    session = requests.Session()
+    print(f"[system] 🔄 API Key switched to index {CURRENT_KEY_INDEX}")
+    return session, api_key
+
+def fetch_people_info_smart(peopleCd):
+    """키 교체 및 재시도 로직이 포함된 스마트 조회"""
+    global CURRENT_KEY_INDEX
+    if not API_KEYS: raise RuntimeError("No API Keys")
+    
+    api_key = API_KEYS[CURRENT_KEY_INDEX]
+    session = requests.Session()
+    max_retries = len(API_KEYS)
+    
+    for attempt in range(max_retries + 1):
+        try:
+            qs = urlencode({"key": api_key, "peopleCd": peopleCd})
+            url = f"{PEOPLE_INFO_URL}?{qs}"
+            r = session.get(url, timeout=10)
+            r.raise_for_status()
+            j = r.json()
+            
+            fault = j.get("faultInfo") or j.get("faultResult")
+            if fault:
+                err_code = fault.get("errorCode")
+                if err_code == '320011':
+                    print(f"[warning] Key exhausted. Switching...")
+                    session, api_key = get_next_key_session()
+                    continue
+                else:
+                    raise RuntimeError(f"KOBIS fault: {fault.get('message')}")
+            return j
+            
+        except Exception as e:
+            if attempt == max_retries: raise e
+            time.sleep(1)
+            
+    raise RuntimeError("All API keys exhausted.")
 
 def build_details():
     if not API_KEYS:
         print("[build_people] No API Keys. Skipping.")
         return
 
-    # 1. 영화 파일에서 '한국 영화'의 배우 코드 수집
+    # 1. 'ㅎ'씨 배우 코드 수집 (backfill에서 채워진 코드들 수집)
     files = sorted(glob.glob(str(MOVIE_DIR / "**" / "*.json"), recursive=True))
     target_people = set()
 
@@ -75,7 +114,7 @@ def build_details():
         data = load_json(Path(p))
         if not data: continue
         
-        # [기존 로직 유지] 한국 영화만 대상
+        # 한국 영화만 대상
         if not is_korean_movie(data):
             continue
 
@@ -87,40 +126,35 @@ def build_details():
                 code = person.get("peopleCd", "").strip()
                 name = person.get("peopleNm", "").strip()
                 
-                # [수정된 로직] 코드가 있고 + 이름이 'ㅎ'으로 시작하는 경우만 수집
+                # 코드가 있고 + 이름이 'ㅎ'으로 시작하는 경우 수집
                 if code and name and is_h_name(name):
                     target_people.add(code)
 
     print(f"[info] 한국 영화 {korean_movie_cnt}편에서 'ㅎ'씨 배우 {len(target_people)}명 코드 수집 완료.")
 
-    # 2. 각 배우별 상세 정보(성별 등) 수집
+    # 2. 상세 정보(성별) 수집
     count = 0
     sorted_people = sorted(list(target_people))
     
-    # 디버깅용 로그
+    # 디버깅용
     print(f"[debug] 수집 대상(상위 5명): {sorted_people[:5]} ...")
 
     for i, code in enumerate(sorted_people):
         person_file = PEOPLE_DIR / f"{code}.json"
         
-        # [기존 로직 유지] 이미 파일이 있고, 내용이 유효하면 건너뜀 (API 절약 핵심)
+        # 파일이 이미 있고 내용이 있으면 건너뜀 (중복 호출 방지)
         if person_file.exists():
-            if person_file.stat().st_size > 50: # 빈 파일이 아니면 패스
+            if person_file.stat().st_size > 50:
                 continue
 
         try:
-            session, api_key = get_session()
-            if not session:
-                print("[stop] API 키 소진 또는 세션 오류.")
-                break
-
-            data = fetch_people_info(session, api_key, code)
+            # 스마트 호출 사용
+            data = fetch_people_info_smart(code)
             
             p_result = data.get("peopleInfoResult")
             p_info = p_result.get("peopleInfo") if p_result else None
             
             if p_info:
-                # [중요] 원본 데이터 전체 저장 (reindex_search.py 호환성 유지)
                 save_json(person_file, data)
                 
                 sex = p_info.get('sex') or 'Unknown'
@@ -132,6 +166,11 @@ def build_details():
             else:
                 print(f"[skip] No info for {code}")
                 
+        except RuntimeError as re:
+            if "All API keys exhausted" in str(re):
+                print("[STOP] 모든 API 키가 소진되었습니다. 저장을 완료합니다.")
+                break
+            print(f"[error] {code}: {re}")
         except Exception as e:
             print(f"[error] {code}: {e}")
             time.sleep(1)
