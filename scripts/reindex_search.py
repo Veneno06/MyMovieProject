@@ -1,3 +1,4 @@
+# scripts/reindex_search.py
 import os
 import json
 import glob
@@ -13,7 +14,6 @@ OUTPUT_FILE = ROOT / "docs" / "data" / "search_index.json"
 def get_person_gender(people_cd):
     """
     배우 ID(peopleCd)를 이용해 people 폴더의 JSON 파일을 읽어 성별을 반환합니다.
-    파일이 없거나 읽을 수 없으면 빈 문자열을 반환합니다.
     """
     if not people_cd:
         return ""
@@ -24,8 +24,7 @@ def get_person_gender(people_cd):
     
     try:
         data = json.loads(person_file.read_text(encoding="utf-8"))
-        # 성별 필드 찾기 (API 응답 구조에 따라 'sex' 또는 'gender'일 수 있음)
-        # 보통 KOFIC 상세 데이터에는 'sex'로 저장되는 경우가 많음
+        # 성별 필드 찾기
         info = data.get("peopleInfoResult", {}).get("peopleInfo", {})
         return info.get("sex", "").strip()
     except Exception:
@@ -33,7 +32,7 @@ def get_person_gender(people_cd):
 
 def reindex():
     print(f"[reindex] Scanning {DATA_DIR}...")
-    # 최신순 정렬 (파일명이나 폴더 구조에 따라 다를 수 있으나 glob 순서 보장 노력)
+    # 최신순 정렬
     files = sorted([Path(p) for p in glob.glob(str(DATA_DIR / "**" / "*.json"), recursive=True)])
     
     index_list = []
@@ -45,13 +44,12 @@ def reindex():
             if not txt.strip(): continue
             
             data = json.loads(txt)
-            # 데이터 구조 유연하게 처리
             info = data if data.get("movieCd") else ((data.get("movieInfoResult") or {}).get("movieInfo") or {})
             
             movie_cd = info.get("movieCd")
             if not movie_cd: continue
 
-            # [중복 방지] 이미 처리한 영화 코드는 건너뜀
+            # [중복 방지]
             if movie_cd in seen_movies:
                 continue
             seen_movies.add(movie_cd)
@@ -83,7 +81,7 @@ def reindex():
                         "id": d.get("peopleCd", "").strip() 
                     })
 
-            # 관객수 처리 (안전하게 정수 변환)
+            # 관객수 처리
             audi_acc_raw = data.get("audiAcc") or info.get("audiAcc") or 0
             try:
                 audi_acc = int(str(audi_acc_raw).replace(",", "").strip())
