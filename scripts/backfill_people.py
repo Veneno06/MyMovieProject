@@ -43,10 +43,10 @@ def save_json(p: Path, data: dict):
     tmp.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
     tmp.replace(p)
 
-# [중요] 한글 정규화 (자소 분리 방지) 및 'ㅎ' 체크
+# [중요] 'ㅎ'씨 성 필터링 (유니코드 한글 자모 범위 확인)
 def is_h_name(name: str) -> bool:
     if not name: return False
-    # NFC 정규화: 'ㅎ'+'ㅘ'+'ㅇ' -> '황'으로 합침
+    # NFC 정규화: 자소 분리 방지
     norm_name = unicodedata.normalize('NFC', name)
     first_char = norm_name[0]
     # '하'(U+D558) ~ '힣'(U+D7A3) 범위 확인
@@ -97,18 +97,22 @@ def fetch_movie_info_smart(movieCd):
     raise RuntimeError("All API keys exhausted.")
 
 def backfill(budget: int, rate_sleep_ms: int):
-    # 최신 영화부터 역순 정렬
+    # 최신 영화부터 역순 정렬 (최신작일수록 데이터 가치가 높으므로)
     files = sorted([Path(p) for p in glob.glob(str(DETAIL_DIR / "**" / "*.json"), recursive=True)], reverse=True)
     
     print(f"[paths] 데이터 폴더: {DETAIL_DIR}")
     print(f"[scan] 총 파일 수: {len(files)}개")
-    print(f"[filter] 타겟: 한국 영화 + 'ㅎ'씨 배우인데 코드가 없는 경우 (우선순위)")
+    print(f"[filter] 타겟: 한국 영화 + 'ㅎ'씨 배우인데 코드가 없는 경우")
 
     updated = 0
     skipped = 0
     used = 0
 
     for p in files:
+        if used >= budget:
+            print(f"[info] 설정된 예산({budget}회)에 도달하여 작업을 중단합니다.")
+            break
+
         raw = load_json(p)
         if not raw: continue
         
@@ -120,13 +124,13 @@ def backfill(budget: int, rate_sleep_ms: int):
         nations = data.get("nations") or []
         is_korea = any(n.get("nationNm") == "한국" for n in nations)
         if not is_korea:
-            skipped += 1
             continue
 
         # 2. 'ㅎ'씨 배우 타겟팅 (API 절약의 핵심)
         actors = data.get("actors") or []
         needs_update = False
         
+        # 배우 목록을 순회하며 'ㅎ'씨인데 코드가 없는 경우를 찾음
         for a in actors:
             cd = a.get("peopleCd", "").strip()
             nm = a.get("peopleNm", "").strip()
@@ -134,18 +138,16 @@ def backfill(budget: int, rate_sleep_ms: int):
             # [핵심 조건] 코드가 비어있고 AND 이름이 'ㅎ'으로 시작하는가?
             if (not cd) and is_h_name(nm):
                 needs_update = True
+                # 하나라도 찾으면 이 영화는 다시 긁어야 함
                 break
         
         if not needs_update:
             skipped += 1
             continue
 
-        if used >= budget:
-            print(f"[info] 예산 소진 ({used}회). 안전하게 작업을 중단하고 저장 단계로 넘어갑니다.")
-            break
-
         # 3. API 호출
         try:
+            print(f"[API 호출] {movieCd} - {data.get('movieNm')} (갱신 필요)")
             j = fetch_movie_info_smart(movieCd)
             used += 1
             
@@ -157,7 +159,7 @@ def backfill(budget: int, rate_sleep_ms: int):
                 skipped += 1
                 continue
 
-            # 4. 데이터 업데이트
+            # 4. 데이터 업데이트 (배우/감독 정보 덮어쓰기)
             new_actors = []
             for a in info.get("actors", []) or []:
                 new_actors.append({
@@ -175,6 +177,7 @@ def backfill(budget: int, rate_sleep_ms: int):
                     "repRoleNm": "감독"
                 })
 
+            # 원본 데이터 구조 유지하며 업데이트
             if raw.get("movieCd"):
                 raw["actors"] = new_actors
                 raw["directors"] = new_directors
@@ -184,7 +187,7 @@ def backfill(budget: int, rate_sleep_ms: int):
 
             save_json(p, raw)
             updated += 1
-            print(f"[성공] {movieCd} ({data.get('movieNm')}) - 'ㅎ'씨 배우 코드 업데이트 완료")
+            # print(f"[성공] {movieCd} ({data.get('movieNm')}) 업데이트 완료")
 
         except RuntimeError as re:
             if "All API keys exhausted" in str(re):
@@ -197,7 +200,7 @@ def backfill(budget: int, rate_sleep_ms: int):
             time.sleep(1)
             skipped += 1
 
-    print(f"=== 완료: {updated}개 업데이트, {skipped}개 건너뜀, API {used}회 사용 ===")
+    print(f"=== 작업 완료: {updated}개 파일 업데이트, API {used}회 사용 ===")
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
