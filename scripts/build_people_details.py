@@ -1,9 +1,9 @@
-# scripts/build_people_details.py
 import os
 import json
 import time
 import glob
 import sys
+import unicodedata
 from pathlib import Path
 from urllib.parse import urlencode
 import requests
@@ -25,7 +25,7 @@ MOVIE_DIR = ROOT / "docs" / "data" / "movies"
 PEOPLE_DIR = ROOT / "docs" / "data" / "people"
 PEOPLE_INFO_URL = "https://www.kobis.or.kr/kobisopenapi/webservice/rest/people/searchPeopleInfo.json"
 
-# 전역 변수
+# 전역 변수: 현재 키 인덱스
 CURRENT_KEY_INDEX = 0
 
 def load_json(p: Path):
@@ -46,14 +46,16 @@ def is_korean_movie(data: dict) -> bool:
             return True
     return False
 
+# [핵심 수정] 한글 자모 분리 현상 방지 (NFC 정규화)
 def is_h_name(name: str) -> bool:
     if not name: return False
-    # 유니코드 범위: '하'(U+D558) ~ '힣'(U+D7A3)
-    first_char = name[0]
+    # 운영체제별 자소 분리 방지를 위해 NFC로 통일
+    norm_name = unicodedata.normalize('NFC', name)
+    first_char = norm_name[0]
+    # '하'(U+D558) ~ '힣'(U+D7A3) 범위 확인
     return '\ud558' <= first_char <= '\ud7a3'
 
 def get_next_key_session():
-    """키 교체 로직"""
     global CURRENT_KEY_INDEX
     if not API_KEYS: return None, None
     CURRENT_KEY_INDEX = (CURRENT_KEY_INDEX + 1) % len(API_KEYS)
@@ -63,7 +65,7 @@ def get_next_key_session():
     return session, api_key
 
 def fetch_people_info_smart(peopleCd):
-    """키 교체 및 재시도 로직이 포함된 스마트 조회"""
+    """키 한도 초과 시 자동으로 키를 교체하며 재시도"""
     global CURRENT_KEY_INDEX
     if not API_KEYS: raise RuntimeError("No API Keys")
     
@@ -82,6 +84,7 @@ def fetch_people_info_smart(peopleCd):
             fault = j.get("faultInfo") or j.get("faultResult")
             if fault:
                 err_code = fault.get("errorCode")
+                # 320011: 키 한도 초과
                 if err_code == '320011':
                     print(f"[warning] Key exhausted. Switching...")
                     session, api_key = get_next_key_session()
@@ -101,20 +104,17 @@ def build_details():
         print("[build_people] No API Keys. Skipping.")
         return
 
-    # 1. 'ㅎ'씨 배우 코드 수집 (backfill에서 채워진 코드들 수집)
+    # 1. 영화 파일 스캔 (배우 코드 수집)
     files = sorted(glob.glob(str(MOVIE_DIR / "**" / "*.json"), recursive=True))
     target_people = set()
 
     print(f"[scan] Scanning {len(files)} movies for actors...")
-    print(f"[filter] 적용된 필터: 한국 영화 + 이름이 'ㅎ'으로 시작하는 배우")
-
+    
     korean_movie_cnt = 0
-
     for p in files:
         data = load_json(Path(p))
         if not data: continue
         
-        # 한국 영화만 대상
         if not is_korean_movie(data):
             continue
 
@@ -126,29 +126,27 @@ def build_details():
                 code = person.get("peopleCd", "").strip()
                 name = person.get("peopleNm", "").strip()
                 
-                # 코드가 있고 + 이름이 'ㅎ'으로 시작하는 경우 수집
+                # 코드가 있고 + 'ㅎ'으로 시작하면 수집
                 if code and name and is_h_name(name):
                     target_people.add(code)
 
     print(f"[info] 한국 영화 {korean_movie_cnt}편에서 'ㅎ'씨 배우 {len(target_people)}명 코드 수집 완료.")
 
-    # 2. 상세 정보(성별) 수집
+    # 2. API 호출
     count = 0
     sorted_people = sorted(list(target_people))
     
-    # 디버깅용
-    print(f"[debug] 수집 대상(상위 5명): {sorted_people[:5]} ...")
+    # 디버깅: 수집 대상 일부 출력
+    print(f"[debug] Target IDs (sample): {sorted_people[:5]}")
 
     for i, code in enumerate(sorted_people):
         person_file = PEOPLE_DIR / f"{code}.json"
         
-        # 파일이 이미 있고 내용이 있으면 건너뜀 (중복 호출 방지)
         if person_file.exists():
             if person_file.stat().st_size > 50:
                 continue
 
         try:
-            # 스마트 호출 사용
             data = fetch_people_info_smart(code)
             
             p_result = data.get("peopleInfoResult")
@@ -156,11 +154,9 @@ def build_details():
             
             if p_info:
                 save_json(person_file, data)
-                
                 sex = p_info.get('sex') or 'Unknown'
                 name = p_info.get('peopleNm')
-                print(f"[{i+1}/{len(sorted_people)}] Saved {name} ({sex})")
-                
+                print(f"[{i+1}/{len(sorted_people)}] Saved {name} ({sex}) - {code}")
                 count += 1
                 time.sleep(0.1) 
             else:
@@ -168,7 +164,7 @@ def build_details():
                 
         except RuntimeError as re:
             if "All API keys exhausted" in str(re):
-                print("[STOP] 모든 API 키가 소진되었습니다. 저장을 완료합니다.")
+                print("[STOP] 모든 키 소진. 저장을 진행합니다.")
                 break
             print(f"[error] {code}: {re}")
         except Exception as e:
