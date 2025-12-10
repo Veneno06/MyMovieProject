@@ -18,7 +18,10 @@ def get_person_gender(people_cd):
     try:
         data = json.loads(person_file.read_text(encoding="utf-8"))
         info = data.get("peopleInfoResult", {}).get("peopleInfo", {})
-        return info.get("sex", "").strip()
+        sex = info.get("sex", "").strip()
+        # API 데이터는 '남자', '여자'로 오므로 UI에 맞춰 '남', '여'로 변환 가능하나
+        # 여기선 원본 데이터를 그대로 넘기고 UI(JS)에서 처리하도록 함.
+        return sex
     except Exception:
         return ""
 
@@ -48,13 +51,16 @@ def reindex():
                 nm = a.get("peopleNm", "").strip()
                 pid = a.get("peopleCd", "").strip()
                 
+                # 성별 데이터 조회
+                gender = ""
+                if pid:
+                    gender = get_person_gender(pid)
+                
                 if nm:
-                    # 'ㅎ' 배우는 이제 성별 데이터가 있을 확률이 높음
-                    gender = get_person_gender(pid) if pid else ""
                     actors.append({
                         "name": nm,
-                        "id": pid,
-                        "gender": gender,
+                        "id": pid,         # 코드가 있으면 ID로 들어감 (분리의 핵심)
+                        "gender": gender,  # 성별 정보 추가
                         "cast": a.get("cast", "").strip()
                     })
 
@@ -91,7 +97,7 @@ def reindex():
 
     OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT_FILE.write_text(json.dumps(index_list, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"[done] Indexed {len(index_list)} movies (Unique).")
+    print(f"[done] Indexed {len(index_list)} movies.")
 
 if __name__ == "__main__":
     reindex()
