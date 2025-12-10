@@ -45,7 +45,7 @@ def is_korean_movie(data: dict) -> bool:
             return True
     return False
 
-# [중요] 한글 정규화 (NFC)
+# 'ㅎ'씨 성 필터링
 def is_h_name(name: str) -> bool:
     if not name: return False
     norm_name = unicodedata.normalize('NFC', name)
@@ -102,7 +102,7 @@ def build_details():
     files = sorted(glob.glob(str(MOVIE_DIR / "**" / "*.json"), recursive=True))
     target_people = set()
 
-    print(f"[scan] Scanning {len(files)} movies for actors...")
+    print(f"[scan] 'ㅎ'씨 배우 상세정보 수집 대상을 찾습니다...")
     
     korean_movie_cnt = 0
     for p in files:
@@ -115,29 +115,33 @@ def build_details():
         korean_movie_cnt += 1
         info = data if data.get("movieCd") else ((data.get("movieInfoResult") or {}).get("movieInfo") or {})
         
+        # 배우와 감독 모두 스캔
         for key in ["directors", "actors"]:
             for person in (info.get(key) or []):
                 code = person.get("peopleCd", "").strip()
                 name = person.get("peopleNm", "").strip()
                 
-                # 코드가 존재하고 + 이름이 'ㅎ'으로 시작하는 경우만
+                # [핵심] 코드가 존재하고 + 이름이 'ㅎ'으로 시작하는 경우만 타겟팅
                 if code and name and is_h_name(name):
                     target_people.add(code)
 
-    print(f"[info] 한국 영화 {korean_movie_cnt}편에서 'ㅎ'씨 배우 {len(target_people)}명 코드 수집 완료.")
+    print(f"[info] 한국 영화 {korean_movie_cnt}편 분석 결과: 'ㅎ'씨 배우/감독 {len(target_people)}명 코드 발견.")
 
     count = 0
     sorted_people = sorted(list(target_people))
     
-    print(f"[debug] Target IDs (sample): {sorted_people[:5]}")
+    # 이미 파일이 있으면 건너뛰기
+    needed_people = []
+    for code in sorted_people:
+        person_file = PEOPLE_DIR / f"{code}.json"
+        if not (person_file.exists() and person_file.stat().st_size > 50):
+            needed_people.append(code)
 
-    for i, code in enumerate(sorted_people):
+    print(f"[info] 신규 수집 필요 인원: {len(needed_people)}명")
+
+    for i, code in enumerate(needed_people):
         person_file = PEOPLE_DIR / f"{code}.json"
         
-        if person_file.exists():
-            if person_file.stat().st_size > 50:
-                continue
-
         try:
             data = fetch_people_info_smart(code)
             
@@ -148,7 +152,7 @@ def build_details():
                 save_json(person_file, data)
                 sex = p_info.get('sex') or 'Unknown'
                 name = p_info.get('peopleNm')
-                print(f"[{i+1}/{len(sorted_people)}] Saved {name} ({sex}) - {code}")
+                print(f"[{i+1}/{len(needed_people)}] Saved {name} ({sex}) - {code}")
                 count += 1
                 time.sleep(0.1) 
             else:
