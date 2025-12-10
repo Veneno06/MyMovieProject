@@ -12,7 +12,7 @@ jobs:
   run:
     runs-on: ubuntu-latest
     env:
-      # 6개 키 모두 사용
+      # 6개 키 모두 로드
       KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
       KOFIC_API_KEY_2: ${{ secrets.KOFIC_API_KEY_2 }}
       KOFIC_API_KEY_3: ${{ secrets.KOFIC_API_KEY_3 }}
@@ -35,39 +35,37 @@ jobs:
         run: |
           if [ -f requirements.txt ]; then pip install -r requirements.txt; else pip install requests; fi
 
+      # 1단계: 영화 데이터에 배우 ID 채워넣기 (키 자동 교체 적용)
       - name: Backfill people codes
-        continue-on-error: true
         run: |
-          # 1. 영화 데이터에 배우 ID 채워넣기
           python scripts/backfill_people.py \
             --budget "${{ inputs.budget }}" \
-            --rate-sleep-ms "200"
+            --rate-sleep-ms "100"
 
+      # 2단계: 확보된 ID를 바탕으로 성별/세부정보 다운로드 ('ㅎ'씨 필터 + 키 자동 교체)
       - name: Build people details (Gender)
-        continue-on-error: true
         run: |
-          # 2. [순서 변경] 확보된 ID를 바탕으로 성별/세부정보 먼저 다운로드
-          # 이 단계가 끝나야 reindex할 때 성별을 읽을 수 있음
           python scripts/build_people_details.py
 
+      # 3단계: 검색 인덱스 재구축
       - name: Rebuild search indexes
-        continue-on-error: true
         run: |
-          # 3. 모든 데이터(영화 + 배우성별)가 준비된 후 인덱싱 시작
           python scripts/reindex_search.py
 
+      # 4단계: 데이터 저장 (가장 중요)
       - name: Commit updated data
+        if: always() # 스크립트가 중간에 멈춰도 저장은 무조건 시도
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           
-          # 데이터 누락 방지를 위한 Force Add 유지
+          # 데이터 폴더 강제 추가
           git add --force docs/data/movies/
           git add docs/data/people/
           git add docs/data/search_index.json
           git add .
           
-          git commit -m "Update movie data & indexes (Correct Order)" || echo "No changes"
+          git commit -m "Update movie data & indexes (Smart Rotation)" || echo "No changes to commit"
           
           git pull --rebase origin main
           git push
