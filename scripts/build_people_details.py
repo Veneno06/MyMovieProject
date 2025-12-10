@@ -1,3 +1,4 @@
+# scripts/build_people_details.py
 import os
 import json
 import time
@@ -8,7 +9,6 @@ from pathlib import Path
 from urllib.parse import urlencode
 import requests
 
-# 모듈 경로 추가
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 if CURRENT_DIR not in sys.path:
     sys.path.append(CURRENT_DIR)
@@ -25,7 +25,6 @@ MOVIE_DIR = ROOT / "docs" / "data" / "movies"
 PEOPLE_DIR = ROOT / "docs" / "data" / "people"
 PEOPLE_INFO_URL = "https://www.kobis.or.kr/kobisopenapi/webservice/rest/people/searchPeopleInfo.json"
 
-# 전역 변수: 현재 키 인덱스
 CURRENT_KEY_INDEX = 0
 
 def load_json(p: Path):
@@ -46,13 +45,11 @@ def is_korean_movie(data: dict) -> bool:
             return True
     return False
 
-# [핵심 수정] 한글 자모 분리 현상 방지 (NFC 정규화)
+# [중요] 한글 정규화 (NFC)
 def is_h_name(name: str) -> bool:
     if not name: return False
-    # 운영체제별 자소 분리 방지를 위해 NFC로 통일
     norm_name = unicodedata.normalize('NFC', name)
     first_char = norm_name[0]
-    # '하'(U+D558) ~ '힣'(U+D7A3) 범위 확인
     return '\ud558' <= first_char <= '\ud7a3'
 
 def get_next_key_session():
@@ -65,7 +62,6 @@ def get_next_key_session():
     return session, api_key
 
 def fetch_people_info_smart(peopleCd):
-    """키 한도 초과 시 자동으로 키를 교체하며 재시도"""
     global CURRENT_KEY_INDEX
     if not API_KEYS: raise RuntimeError("No API Keys")
     
@@ -84,7 +80,6 @@ def fetch_people_info_smart(peopleCd):
             fault = j.get("faultInfo") or j.get("faultResult")
             if fault:
                 err_code = fault.get("errorCode")
-                # 320011: 키 한도 초과
                 if err_code == '320011':
                     print(f"[warning] Key exhausted. Switching...")
                     session, api_key = get_next_key_session()
@@ -104,7 +99,6 @@ def build_details():
         print("[build_people] No API Keys. Skipping.")
         return
 
-    # 1. 영화 파일 스캔 (배우 코드 수집)
     files = sorted(glob.glob(str(MOVIE_DIR / "**" / "*.json"), recursive=True))
     target_people = set()
 
@@ -126,17 +120,15 @@ def build_details():
                 code = person.get("peopleCd", "").strip()
                 name = person.get("peopleNm", "").strip()
                 
-                # 코드가 있고 + 'ㅎ'으로 시작하면 수집
+                # 코드가 존재하고 + 이름이 'ㅎ'으로 시작하는 경우만
                 if code and name and is_h_name(name):
                     target_people.add(code)
 
     print(f"[info] 한국 영화 {korean_movie_cnt}편에서 'ㅎ'씨 배우 {len(target_people)}명 코드 수집 완료.")
 
-    # 2. API 호출
     count = 0
     sorted_people = sorted(list(target_people))
     
-    # 디버깅: 수집 대상 일부 출력
     print(f"[debug] Target IDs (sample): {sorted_people[:5]}")
 
     for i, code in enumerate(sorted_people):
