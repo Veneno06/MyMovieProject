@@ -22,41 +22,40 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "신선",
-          "repRoleNm": "감독"
+          "peopleNmEn": "SHIN Sun"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이택근",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하성국",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HA Seong-guk",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "백수희",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "BAIK Soo-hee",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황미영",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HWANG Mi-yeong",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김민성",
-          "repRoleNm": "배우",
-          "cast": "민성"
+          "peopleNmEn": "",
+          "cast": "민성",
+          "castEn": "MIN SEONG"
         }
       ],
       "showTypes": [
@@ -95,6 +94,7 @@
           "staffRoleNm": "제작팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

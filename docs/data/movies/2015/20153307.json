@@ -22,53 +22,52 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "조성규",
-          "repRoleNm": "감독"
+          "peopleNmEn": "CHO Sung-kyu"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김동완",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Dong-wan",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최필립",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "CHOI Phil-lip",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "후지이 미나",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Mina Fujii",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김동완",
-          "repRoleNm": "배우",
-          "cast": "동완"
+          "peopleNmEn": "KIM Dong-wan",
+          "cast": "동완",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조연희",
-          "repRoleNm": "배우",
-          "cast": "한나"
+          "peopleNmEn": "",
+          "cast": "한나",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김도연",
-          "repRoleNm": "배우",
-          "cast": "오렌지렌지 매니저"
+          "peopleNmEn": "KIM Do-yeon",
+          "cast": "오렌지렌지 매니저",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김용",
-          "repRoleNm": "배우",
-          "cast": "남자아르바이트생"
+          "peopleNmEn": "",
+          "cast": "남자아르바이트생",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -336,6 +335,7 @@
           "staffRoleNm": "DI팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

@@ -22,65 +22,64 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "정지환",
-          "repRoleNm": "감독"
+          "peopleNmEn": "JUNG Ji-hwan"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "엄상현",
-          "repRoleNm": "배우",
-          "cast": "브레드"
+          "peopleNmEn": "UM Sang-hyun",
+          "cast": "브레드",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박윤희",
-          "repRoleNm": "배우",
-          "cast": "윌크"
+          "peopleNmEn": "",
+          "cast": "윌크",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "강시현",
-          "repRoleNm": "배우",
-          "cast": "초코"
+          "peopleNmEn": "",
+          "cast": "초코",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍범기",
-          "repRoleNm": "배우",
-          "cast": "감자칩"
+          "peopleNmEn": "HONG Beom-gi",
+          "cast": "감자칩",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김현욱",
-          "repRoleNm": "배우",
-          "cast": "버터"
+          "peopleNmEn": "",
+          "cast": "버터",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "윤아영",
-          "repRoleNm": "배우",
-          "cast": "마카롱"
+          "peopleNmEn": "",
+          "cast": "마카롱",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김보나",
-          "repRoleNm": "배우",
-          "cast": "모델꽈배기"
+          "peopleNmEn": "",
+          "cast": "모델꽈배기",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "안영미",
-          "repRoleNm": "배우",
-          "cast": "아이스크림"
+          "peopleNmEn": "AN Young-mi",
+          "cast": "아이스크림",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정의진",
-          "repRoleNm": "배우",
-          "cast": "랩맘모스"
+          "peopleNmEn": "",
+          "cast": "랩맘모스",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -92,7 +91,7 @@
       "companys": [
         {
           "companyCd": "20241781",
-          "companyNm": "㈜브레드이발소",
+          "companyNm": "주식회사 브레드이발소",
           "companyNmEn": "",
           "companyPartNm": "제작사"
         },
@@ -532,7 +531,7 @@
         },
         {
           "peopleNm": "이명훈",
-          "peopleNmEn": "",
+          "peopleNmEn": "LEE MYUNG-HOON",
           "staffRoleNm": "DI팀"
         },
         {
@@ -660,8 +659,7 @@
           "peopleNmEn": "",
           "staffRoleNm": "배급진행"
         }
-      ],
-      "audiAcc": 236739
+      ]
     },
     "source": "영화진흥위원회"
   }

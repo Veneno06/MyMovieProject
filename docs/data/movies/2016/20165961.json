@@ -22,76 +22,74 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이원재",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이경호",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Kyung-ho"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "변현우",
-          "repRoleNm": "배우",
-          "cast": "샘 목소리"
+          "peopleNmEn": "",
+          "cast": "샘 목소리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김지혜",
-          "repRoleNm": "배우",
-          "cast": "수 목소리"
+          "peopleNmEn": "",
+          "cast": "수 목소리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박조호",
-          "repRoleNm": "배우",
-          "cast": "빅터 목소리"
+          "peopleNmEn": "",
+          "cast": "빅터 목소리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서지연",
-          "repRoleNm": "배우",
-          "cast": "캐서린 목소리"
+          "peopleNmEn": "",
+          "cast": "캐서린 목소리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "남도형",
-          "repRoleNm": "배우",
-          "cast": "손오공 목소리"
+          "peopleNmEn": "NAM Do-hyung",
+          "cast": "손오공 목소리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍진욱",
-          "repRoleNm": "배우",
-          "cast": "저팔계 목소리"
+          "peopleNmEn": "HONG Jin-wook",
+          "cast": "저팔계 목소리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김승태",
-          "repRoleNm": "배우",
-          "cast": "사오정 목소리"
+          "peopleNmEn": "",
+          "cast": "사오정 목소리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "오인성",
-          "repRoleNm": "배우",
-          "cast": "오스카 목소리"
+          "peopleNmEn": "",
+          "cast": "오스카 목소리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유지현",
-          "repRoleNm": "배우",
-          "cast": "미니타"
+          "peopleNmEn": "",
+          "cast": "미니타",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이세은",
-          "repRoleNm": "배우",
-          "cast": "미니타"
+          "peopleNmEn": "",
+          "cast": "미니타",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -192,6 +190,11 @@
           "staffRoleNm": "시나리오(각본)"
         },
         {
+          "peopleNm": "선지연",
+          "peopleNmEn": "SUN Jee Yeon",
+          "staffRoleNm": "윤색"
+        },
+        {
           "peopleNm": "이진영",
           "peopleNmEn": "Jayde Lee",
           "staffRoleNm": "조감독"
@@ -235,6 +238,11 @@
           "peopleNm": "최태영",
           "peopleNmEn": "Ralph Tae-young CHOI",
           "staffRoleNm": "사운드믹싱"
+        },
+        {
+          "peopleNm": "선지연",
+          "peopleNmEn": "SUN Jee Yeon",
+          "staffRoleNm": "대사"
         },
         {
           "peopleNm": "박은영",
@@ -982,11 +990,6 @@
           "staffRoleNm": "애니메이션팀"
         },
         {
-          "peopleNm": "선지연",
-          "peopleNmEn": "",
-          "staffRoleNm": "애니메이션팀"
-        },
-        {
           "peopleNm": "서완진",
           "peopleNmEn": "SEO Wan-jin",
           "staffRoleNm": "애니메이션팀"
@@ -1307,11 +1310,6 @@
           "staffRoleNm": "광고디자인"
         },
         {
-          "peopleNm": "박현지",
-          "peopleNmEn": "",
-          "staffRoleNm": "광고디자인"
-        },
-        {
           "peopleNm": "권진영",
           "peopleNmEn": "",
           "staffRoleNm": "예고편"
@@ -1347,6 +1345,11 @@
           "staffRoleNm": "캐스팅"
         },
         {
+          "peopleNm": "선지연",
+          "peopleNmEn": "SUN Jee Yeon",
+          "staffRoleNm": "기타"
+        },
+        {
           "peopleNm": "김윤희",
           "peopleNmEn": "",
           "staffRoleNm": "기타"
@@ -1361,8 +1364,8 @@
           "peopleNmEn": "",
           "staffRoleNm": "기타"
         }
-      ],
-      "audiAcc": 56102
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

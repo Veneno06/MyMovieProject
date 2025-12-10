@@ -28,53 +28,52 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "지길웅",
-          "repRoleNm": "감독"
+          "peopleNmEn": "JEE KIL WOONG"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "배정현",
-          "repRoleNm": "배우",
-          "cast": "준석"
+          "peopleNmEn": "",
+          "cast": "준석",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이자은",
-          "repRoleNm": "배우",
-          "cast": "지연"
+          "peopleNmEn": "",
+          "cast": "지연",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박정환",
-          "repRoleNm": "배우",
-          "cast": "저택현악3"
+          "peopleNmEn": "",
+          "cast": "저택현악3",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "양상민",
-          "repRoleNm": "배우",
-          "cast": "꽃바구니 배달원"
+          "peopleNmEn": "",
+          "cast": "꽃바구니 배달원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최운정",
-          "repRoleNm": "배우",
-          "cast": "지연 사무실직원1"
+          "peopleNmEn": "",
+          "cast": "지연 사무실직원1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이보미",
-          "repRoleNm": "배우",
-          "cast": "간호사"
+          "peopleNmEn": "",
+          "cast": "간호사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한진수",
-          "repRoleNm": "배우",
-          "cast": "경찰1"
+          "peopleNmEn": "",
+          "cast": "경찰1",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -320,6 +319,7 @@
           "staffRoleNm": "DI팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

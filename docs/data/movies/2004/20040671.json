@@ -25,53 +25,52 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "변혁",
-          "repRoleNm": "감독"
+          "peopleNmEn": "BYUN Daniel H."
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "성현아",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "SUNG Hyun-ah",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한석규",
-          "repRoleNm": "배우",
-          "cast": "이기훈"
+          "peopleNmEn": "HAN Suk-kyu",
+          "cast": "이기훈",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이은주",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Eun-ju",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "엄지원",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "UHM Ji-won",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정인기",
-          "repRoleNm": "배우",
-          "cast": "안형사"
+          "peopleNmEn": "JUNG In-gi",
+          "cast": "안형사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김중기",
-          "repRoleNm": "배우",
-          "cast": "신부"
+          "peopleNmEn": "KIM Jung-ki",
+          "cast": "신부",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "변혁",
-          "repRoleNm": "배우",
-          "cast": "오케스트라 지휘"
+          "peopleNmEn": "BYUN Daniel H.",
+          "cast": "오케스트라 지휘 ",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -908,8 +907,8 @@
           "peopleNmEn": "CHOI Joung-moon",
           "staffRoleNm": "VFX 아티스트"
         }
-      ],
-      "audiAcc": 1017527
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

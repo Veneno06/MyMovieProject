@@ -25,89 +25,88 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김관철",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Gwan-cheol"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김동현",
-          "repRoleNm": "배우",
-          "cast": "동수"
+          "peopleNmEn": "KIM Dong-hyun",
+          "cast": "동수",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유호린",
-          "repRoleNm": "배우",
-          "cast": "예리"
+          "peopleNmEn": "YOO Ho-rin",
+          "cast": "예리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "신철진",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "SHIN Chul-jin",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이상호",
-          "repRoleNm": "배우",
-          "cast": "의사"
+          "peopleNmEn": "Lee Sang-ho",
+          "cast": "의사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "강병주",
-          "repRoleNm": "배우",
-          "cast": "도장 수련생"
+          "peopleNmEn": "Kang Byung-ju",
+          "cast": "도장 수련생",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김현우",
-          "repRoleNm": "배우",
-          "cast": "문방구 아이2"
+          "peopleNmEn": "",
+          "cast": "문방구 아이2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한미경",
-          "repRoleNm": "배우",
-          "cast": "골목길 여자"
+          "peopleNmEn": "Han Mi-kyoung",
+          "cast": "골목길 여자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "좌경우",
-          "repRoleNm": "배우",
-          "cast": "트럭아저씨"
+          "peopleNmEn": "Jwa Kyung-wu",
+          "cast": "트럭아저씨 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김병오",
-          "repRoleNm": "배우",
-          "cast": "골목길남자"
+          "peopleNmEn": "KIM Byung-oh",
+          "cast": "골목길남자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이희헌",
-          "repRoleNm": "배우",
-          "cast": "문방구아저씨"
+          "peopleNmEn": "",
+          "cast": "문방구아저씨",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "윤의석",
-          "repRoleNm": "배우",
-          "cast": "태경"
+          "peopleNmEn": "",
+          "cast": "태경 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박수희",
-          "repRoleNm": "배우",
-          "cast": "동수엄마"
+          "peopleNmEn": "Park Su-hee",
+          "cast": "동수엄마 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정태원",
-          "repRoleNm": "배우",
-          "cast": "문방구 아이1"
+          "peopleNmEn": "Jeoung Tae-won",
+          "cast": "문방구 아이1",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -469,6 +468,7 @@
           "staffRoleNm": "VFX 아티스트"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

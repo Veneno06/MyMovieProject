@@ -34,35 +34,34 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "장성",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "여민정",
-          "repRoleNm": "배우",
-          "cast": "레이디버그"
+          "peopleNmEn": "",
+          "cast": "레이디버그",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "남도형",
-          "repRoleNm": "배우",
-          "cast": "블랙캣"
+          "peopleNmEn": "NAM Do-hyung",
+          "cast": "블랙캣",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍시호",
-          "repRoleNm": "배우",
-          "cast": "호크모스"
+          "peopleNmEn": "",
+          "cast": "호크모스",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이민규",
-          "repRoleNm": "배우",
-          "cast": "다모클레스"
+          "peopleNmEn": "",
+          "cast": "다모클레스",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -473,6 +472,7 @@
           "staffRoleNm": "애니메이션촬영팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

@@ -22,47 +22,46 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "강의석",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "강의석",
-          "repRoleNm": "배우",
-          "cast": "출연"
+          "peopleNmEn": "",
+          "cast": "출연",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이정희",
-          "repRoleNm": "배우",
-          "cast": "출연"
+          "peopleNmEn": "",
+          "cast": "출연",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정태호",
-          "repRoleNm": "배우",
-          "cast": "출연"
+          "peopleNmEn": "",
+          "cast": "출연",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한명숙",
-          "repRoleNm": "배우",
-          "cast": "출연"
+          "peopleNmEn": "",
+          "cast": "출연",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한승훈",
-          "repRoleNm": "배우",
-          "cast": "출연"
+          "peopleNmEn": "",
+          "cast": "출연",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이보람",
-          "repRoleNm": "배우",
-          "cast": "피디"
+          "peopleNmEn": "",
+          "cast": "피디",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -113,6 +112,7 @@
           "staffRoleNm": "미술/프로덕션 디자인"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

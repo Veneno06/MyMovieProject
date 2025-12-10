@@ -22,17 +22,16 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "홍형숙",
-          "repRoleNm": "감독"
+          "peopleNmEn": "HONG Hyung-sook"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "홍형숙",
-          "repRoleNm": "배우",
-          "cast": "narration"
+          "peopleNmEn": "HONG Hyung-sook",
+          "cast": "narration",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -146,7 +145,7 @@
         },
         {
           "peopleNm": "이연정",
-          "peopleNmEn": "Yunjeong Lee",
+          "peopleNmEn": "LEE Yeon-jeong",
           "staffRoleNm": "조감독"
         },
         {
@@ -230,6 +229,7 @@
           "staffRoleNm": "홍보/마케팅 진행"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

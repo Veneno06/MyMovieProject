@@ -22,71 +22,70 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김양희",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Yanghee"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "양익준",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "YANG Ik-june",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "전혜진",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "JEON Hye-jin",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정가람",
-          "repRoleNm": "배우",
-          "cast": "소년"
+          "peopleNmEn": "JUNG Ga-ram",
+          "cast": "소년",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "백지원",
-          "repRoleNm": "배우",
-          "cast": "턱주가리"
+          "peopleNmEn": "BAEK Ji-won",
+          "cast": "턱주가리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이은주",
-          "repRoleNm": "배우",
-          "cast": "동인회원들"
+          "peopleNmEn": "",
+          "cast": "동인회원들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "허건우",
-          "repRoleNm": "배우",
-          "cast": "런닝맨게임 고등학생들"
+          "peopleNmEn": "",
+          "cast": "런닝맨게임 고등학생들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이지은",
-          "repRoleNm": "배우",
-          "cast": "알바생"
+          "peopleNmEn": "",
+          "cast": "알바생",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이한나",
-          "repRoleNm": "배우",
-          "cast": "런닝맨게임 고등학생들"
+          "peopleNmEn": "",
+          "cast": "런닝맨게임 고등학생들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍연이",
-          "repRoleNm": "배우",
-          "cast": "소년일행"
+          "peopleNmEn": "HONG Yeoni",
+          "cast": "소년일행",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "강지혜",
-          "repRoleNm": "배우",
-          "cast": "잔칫집 신부"
+          "peopleNmEn": "",
+          "cast": "잔칫집 신부",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -685,7 +684,7 @@
         },
         {
           "peopleNm": "노병욱",
-          "peopleNmEn": "NOH Byung-wook",
+          "peopleNmEn": "NOH Byoung-wook",
           "staffRoleNm": "DI팀"
         },
         {
@@ -940,7 +939,7 @@
         },
         {
           "peopleNm": "황정현",
-          "peopleNmEn": "HWANG Jung-hyun",
+          "peopleNmEn": "HWANG JUNG HYUN",
           "staffRoleNm": "예고편"
         },
         {
@@ -984,6 +983,7 @@
           "staffRoleNm": "기타"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

@@ -25,41 +25,40 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김정환",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "한세아",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "류성현",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "RYU Seong-hyeon",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이소라",
-          "repRoleNm": "배우",
-          "cast": "간호사"
+          "peopleNmEn": "",
+          "cast": "간호사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이현지",
-          "repRoleNm": "배우",
-          "cast": "커피숍알바"
+          "peopleNmEn": "",
+          "cast": "커피숍알바",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김수웅",
-          "repRoleNm": "배우",
-          "cast": "웨이터"
+          "peopleNmEn": "",
+          "cast": "웨이터",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -250,6 +249,7 @@
           "staffRoleNm": "캐스팅"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

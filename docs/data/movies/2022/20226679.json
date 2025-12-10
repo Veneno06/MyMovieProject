@@ -22,71 +22,70 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김호락",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Ho-rak"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "소연",
-          "repRoleNm": "배우",
-          "cast": "공찬"
+          "peopleNmEn": "",
+          "cast": "공찬",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "엄상현",
-          "repRoleNm": "배우",
-          "cast": "쥬키오/가이아"
+          "peopleNmEn": "UM Sang-hyun",
+          "cast": "쥬키오/가이아",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김현욱",
-          "repRoleNm": "배우",
-          "cast": "쥬테라/부리"
+          "peopleNmEn": "",
+          "cast": "쥬테라/부리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "강은애",
-          "repRoleNm": "배우",
-          "cast": "반장/미니 티라노"
+          "peopleNmEn": "",
+          "cast": "반장/미니 티라노",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍범기",
-          "repRoleNm": "배우",
-          "cast": "쥬테고/딘"
+          "peopleNmEn": "HONG Beom-gi",
+          "cast": "쥬테고/딘",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황창영",
-          "repRoleNm": "배우",
-          "cast": "쥬렉스/티라노"
+          "peopleNmEn": "Hwang changyung",
+          "cast": "쥬렉스/티라노",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이현",
-          "repRoleNm": "배우",
-          "cast": "쥬톱스/바리"
+          "peopleNmEn": "LEE Hyun",
+          "cast": "쥬톱스/바리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박리나",
-          "repRoleNm": "배우",
-          "cast": "사라/미니 브라키오"
+          "peopleNmEn": "PARK Ri-na",
+          "cast": "사라/미니 브라키오",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이인성",
-          "repRoleNm": "배우",
-          "cast": "쥬박사"
+          "peopleNmEn": "LEE In-seong",
+          "cast": "쥬박사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김영선",
-          "repRoleNm": "배우",
-          "cast": "쥬라킹"
+          "peopleNmEn": "KIM Young-sun",
+          "cast": "쥬라킹",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -499,6 +498,7 @@
           "staffRoleNm": "기타"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

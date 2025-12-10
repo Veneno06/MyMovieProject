@@ -25,47 +25,46 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김진성",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "한재범",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HAN Jae-beom",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김화연",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박초현",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이민식",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Min-sik",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이승호",
-          "repRoleNm": "배우",
-          "cast": "동은"
+          "peopleNmEn": "",
+          "cast": "동은",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황인보",
-          "repRoleNm": "배우",
-          "cast": "낚시꾼2"
+          "peopleNmEn": "",
+          "cast": "낚시꾼2",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -331,6 +330,7 @@
           "staffRoleNm": "기획"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

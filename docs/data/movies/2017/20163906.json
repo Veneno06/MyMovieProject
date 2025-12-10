@@ -25,59 +25,58 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "최낙권",
-          "repRoleNm": "감독"
+          "peopleNmEn": "CHOI Nak-kwon"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김은주",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Eun-ju",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서성광",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "SEO Seong-kwang",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이로운",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Ro-un",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황미숙",
-          "repRoleNm": "배우",
-          "cast": "무용단장"
+          "peopleNmEn": "Hwang Mi-sook",
+          "cast": "무용단장",
+          "castEn": "Choreography & Theatre Directing "
         },
         {
-          "peopleCd": "",
           "peopleNm": "하민우",
-          "repRoleNm": "배우",
-          "cast": "유치원선생"
+          "peopleNmEn": "Ha Minwoo",
+          "cast": "유치원선생",
+          "castEn": "kindergarten teacher"
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍진아",
-          "repRoleNm": "배우",
-          "cast": "어린보현"
+          "peopleNmEn": "",
+          "cast": "어린보현",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "곽나연",
-          "repRoleNm": "배우",
-          "cast": "여의사"
+          "peopleNmEn": "",
+          "cast": "여의사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이승호",
-          "repRoleNm": "배우",
-          "cast": "준우"
+          "peopleNmEn": "",
+          "cast": "준우",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -139,6 +138,11 @@
           "peopleNm": "강선영",
           "peopleNmEn": "",
           "staffRoleNm": "투자"
+        },
+        {
+          "peopleNm": "최낙권",
+          "peopleNmEn": "CHOI Nak-kwon",
+          "staffRoleNm": "제작"
         },
         {
           "peopleNm": "윤동실",
@@ -556,6 +560,7 @@
           "staffRoleNm": "VFX 슈퍼바이저"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

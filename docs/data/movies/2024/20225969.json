@@ -25,41 +25,40 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "구태진",
-          "repRoleNm": "감독"
+          "peopleNmEn": "Ku Tae-jin"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "조윤희",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "CHO Youn-hee",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김주령",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Joo-ryoung",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이지오",
-          "repRoleNm": "배우",
-          "cast": "피어싱"
+          "peopleNmEn": "Lee JiO",
+          "cast": "피어싱",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "허동원",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HEO Dong-won",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정인겸",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "JUNG In-kyeom",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -163,8 +162,7 @@
           "peopleNmEn": "",
           "staffRoleNm": "배급진행"
         }
-      ],
-      "audiAcc": 330122
+      ]
     },
     "source": "영화진흥위원회"
   }

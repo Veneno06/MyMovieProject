@@ -22,29 +22,28 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "정미나",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "한석봉",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "옥길동",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "채승하",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -74,6 +73,7 @@
         }
       ],
       "staffs": []
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

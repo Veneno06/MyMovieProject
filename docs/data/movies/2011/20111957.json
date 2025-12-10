@@ -22,77 +22,76 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "문시현",
-          "repRoleNm": "감독"
+          "peopleNmEn": "MOON Si-hyun"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김영훈",
-          "repRoleNm": "배우",
-          "cast": "태수"
+          "peopleNmEn": "KIM Young-hoon",
+          "cast": "태수",
+          "castEn": "Tae Su"
         },
         {
-          "peopleCd": "",
           "peopleNm": "유애경",
-          "repRoleNm": "배우",
-          "cast": "세라"
+          "peopleNmEn": "YOU Ae-kyung ",
+          "cast": "세라",
+          "castEn": "Se Ra"
         },
         {
-          "peopleCd": "",
           "peopleNm": "이광수",
-          "repRoleNm": "배우",
-          "cast": "신욱"
+          "peopleNmEn": "LEE Kwang-su",
+          "cast": "신욱",
+          "castEn": "Shin Uk"
         },
         {
-          "peopleCd": "",
           "peopleNm": "김종수",
-          "repRoleNm": "배우",
-          "cast": "마 선생"
+          "peopleNmEn": "KIM Jong-soo",
+          "cast": "마 선생",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임성권",
-          "repRoleNm": "배우",
-          "cast": "경찰서형사들"
+          "peopleNmEn": "",
+          "cast": "경찰서형사들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정해영",
-          "repRoleNm": "배우",
-          "cast": "보험사 직원/꽃 배달원"
+          "peopleNmEn": "",
+          "cast": "보험사 직원/꽃 배달원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정희섭",
-          "repRoleNm": "배우",
-          "cast": "경찰서형사들"
+          "peopleNmEn": "JUNG Hee-Sub",
+          "cast": "경찰서형사들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조영직",
-          "repRoleNm": "배우",
-          "cast": "고시원 남자"
+          "peopleNmEn": "",
+          "cast": "고시원 남자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "허진호",
-          "repRoleNm": "배우",
-          "cast": "태수 고향친구"
+          "peopleNmEn": "",
+          "cast": "태수 고향친구",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이미란",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "오진우",
-          "repRoleNm": "배우",
-          "cast": "동네주민커플"
+          "peopleNmEn": "",
+          "cast": "동네주민커플",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -282,6 +281,7 @@
           "staffRoleNm": "예고편"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

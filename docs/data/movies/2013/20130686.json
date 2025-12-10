@@ -25,53 +25,52 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "구모",
-          "repRoleNm": "감독"
+          "peopleNmEn": "GOO Mo"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "박그리나",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "PARK Greena",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김태헌",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하은설",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조현석",
-          "repRoleNm": "배우",
-          "cast": "북한군"
+          "peopleNmEn": "",
+          "cast": "북한군",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김세문",
-          "repRoleNm": "배우",
-          "cast": "대마농사꾼"
+          "peopleNmEn": "",
+          "cast": "대마농사꾼",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박형석",
-          "repRoleNm": "배우",
-          "cast": "박소위"
+          "peopleNmEn": "",
+          "cast": "박소위",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이원재",
-          "repRoleNm": "배우",
-          "cast": "중대장"
+          "peopleNmEn": "",
+          "cast": "중대장",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -336,6 +335,7 @@
           "staffRoleNm": "기획"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

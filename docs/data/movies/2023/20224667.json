@@ -22,71 +22,70 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "유재선",
-          "repRoleNm": "감독"
+          "peopleNmEn": "Jason YU"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "정유미",
-          "repRoleNm": "배우",
-          "cast": "수진"
+          "peopleNmEn": "JUNG Yu-mi",
+          "cast": "수진",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이선균",
-          "repRoleNm": "배우",
-          "cast": "현수"
+          "peopleNmEn": "LEE Sun-kyun",
+          "cast": "현수",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김금순",
-          "repRoleNm": "배우",
-          "cast": "해궁할매"
+          "peopleNmEn": "KIM Geum-soon",
+          "cast": "해궁할매",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이동찬",
-          "repRoleNm": "배우",
-          "cast": "박춘기 할아버지"
+          "peopleNmEn": "Lee Dong chan",
+          "cast": "박춘기 할아버지",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김국희",
-          "repRoleNm": "배우",
-          "cast": "민정"
+          "peopleNmEn": "KIM Guk-hee",
+          "cast": "민정",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이경진",
-          "repRoleNm": "배우",
-          "cast": "수진모"
+          "peopleNmEn": "",
+          "cast": "수진모",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "윤경호",
-          "repRoleNm": "배우",
-          "cast": "의사"
+          "peopleNmEn": "YUN Gyeong-ho",
+          "cast": "의사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박현정",
-          "repRoleNm": "배우",
-          "cast": "수면클리닉 간호사"
+          "peopleNmEn": "PARK Hyun-jeong",
+          "cast": "수면클리닉 간호사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "오윤수",
-          "repRoleNm": "배우",
-          "cast": "드라마 오너 딸"
+          "peopleNmEn": "oh yoon soo",
+          "cast": "드라마 오너 딸",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍하나임",
-          "repRoleNm": "배우",
-          "cast": "정신의 안내데스크 후배 직원"
+          "peopleNmEn": "HONG Ha-naim",
+          "cast": "정신의 안내데스크 후배 직원",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -153,11 +152,6 @@
       ],
       "staffs": [
         {
-          "peopleNm": "박신영",
-          "peopleNmEn": "",
-          "staffRoleNm": "투자"
-        },
-        {
           "peopleNm": "김민수",
           "peopleNmEn": "",
           "staffRoleNm": "투자"
@@ -179,21 +173,6 @@
         },
         {
           "peopleNm": "임종욱",
-          "peopleNmEn": "",
-          "staffRoleNm": "투자"
-        },
-        {
-          "peopleNm": "남지윤",
-          "peopleNmEn": "",
-          "staffRoleNm": "투자"
-        },
-        {
-          "peopleNm": "신유나",
-          "peopleNmEn": "",
-          "staffRoleNm": "투자"
-        },
-        {
-          "peopleNm": "황보미애",
           "peopleNmEn": "",
           "staffRoleNm": "투자"
         },
@@ -793,6 +772,11 @@
           "staffRoleNm": "폴리"
         },
         {
+          "peopleNm": "김동민",
+          "peopleNmEn": "kimdongmin",
+          "staffRoleNm": "온라인마케팅"
+        },
+        {
           "peopleNm": "권나연",
           "peopleNmEn": "KWON NA YEON",
           "staffRoleNm": "온라인마케팅"
@@ -934,7 +918,7 @@
         },
         {
           "peopleNm": "황정현",
-          "peopleNmEn": "HWANG Jung-hyun",
+          "peopleNmEn": "HWANG JUNG HYUN",
           "staffRoleNm": "예고편"
         },
         {
@@ -1048,6 +1032,11 @@
           "staffRoleNm": "캐스팅디렉터"
         },
         {
+          "peopleNm": "김주현",
+          "peopleNmEn": "",
+          "staffRoleNm": "매니지먼트"
+        },
+        {
           "peopleNm": "조태희",
           "peopleNmEn": "Tae Jo",
           "staffRoleNm": "기타"
@@ -1076,6 +1065,26 @@
           "peopleNm": "안성현",
           "peopleNmEn": "Ahn Seonghyeon",
           "staffRoleNm": "기타"
+        },
+        {
+          "peopleNm": "남지윤",
+          "peopleNmEn": "",
+          "staffRoleNm": "기타"
+        },
+        {
+          "peopleNm": "신유나",
+          "peopleNmEn": "",
+          "staffRoleNm": "기타"
+        },
+        {
+          "peopleNm": "황보미애",
+          "peopleNmEn": "",
+          "staffRoleNm": "기타"
+        },
+        {
+          "peopleNm": "박신영",
+          "peopleNmEn": "",
+          "staffRoleNm": "기획"
         },
         {
           "peopleNm": "김차이",
@@ -1391,14 +1400,8 @@
           "peopleNm": "황주연",
           "peopleNmEn": "HWANG JOO YEON",
           "staffRoleNm": "온라인마케팅"
-        },
-        {
-          "peopleNm": "김동민",
-          "peopleNmEn": "kimdongmin",
-          "staffRoleNm": "온라인마케팅"
         }
-      ],
-      "audiAcc": 1463111
+      ]
     },
     "source": "영화진흥위원회"
   }

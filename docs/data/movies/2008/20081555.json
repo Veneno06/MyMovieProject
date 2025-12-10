@@ -22,35 +22,34 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "박정범",
-          "repRoleNm": "감독"
+          "peopleNmEn": "PARK Jung-bum"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김석균",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Seok-kyun ",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황병국",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HWANG Byeong-gug",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박정범",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "PARK Jung-bum",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박영덕",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "PARK Young-duk",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -129,6 +128,7 @@
           "staffRoleNm": "조명"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

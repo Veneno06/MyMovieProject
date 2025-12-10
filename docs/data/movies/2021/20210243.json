@@ -25,110 +25,106 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "민병채",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박동기",
-          "repRoleNm": "감독"
+          "peopleNmEn": "PARK Dong-gi"
         },
         {
-          "peopleCd": "",
           "peopleNm": "이건욱",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이현지",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Hyun-ji"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이건욱",
-          "repRoleNm": "배우",
-          "cast": "<이별영화> 건욱"
+          "peopleNmEn": "",
+          "cast": "<이별영화> 건욱",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김현진",
-          "repRoleNm": "배우",
-          "cast": "<이별영화> 현진"
+          "peopleNmEn": "",
+          "cast": "<이별영화> 현진",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김혜원",
-          "repRoleNm": "배우",
-          "cast": "<연애의 숲>  연우, <연애의 길> 선아"
+          "peopleNmEn": "",
+          "cast": "<연애의 숲>  연우, <연애의 길> 선아",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한예주",
-          "repRoleNm": "배우",
-          "cast": "<연애의 숲> 미오"
+          "peopleNmEn": "",
+          "cast": "<연애의 숲> 미오",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박동기",
-          "repRoleNm": "배우",
-          "cast": "<연애의 길> 동익"
+          "peopleNmEn": "PARK Dongki",
+          "cast": "<연애의 길> 동익",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "진혁",
-          "repRoleNm": "배우",
-          "cast": "<연애의 길> 혁이"
+          "peopleNmEn": "",
+          "cast": "<연애의 길> 혁이",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장이슬",
-          "repRoleNm": "배우",
-          "cast": "<연애의 길> 이슬"
+          "peopleNmEn": "",
+          "cast": "<연애의 길> 이슬",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "지세현",
-          "repRoleNm": "배우",
-          "cast": "<헬로하와유> 동훈"
+          "peopleNmEn": "",
+          "cast": "<헬로하와유> 동훈",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이청미",
-          "repRoleNm": "배우",
-          "cast": "<헬로하와유> 지안"
+          "peopleNmEn": "",
+          "cast": "<헬로하와유> 지안",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김진구",
-          "repRoleNm": "배우",
-          "cast": "<헬로하와유> 지안 부"
+          "peopleNmEn": "",
+          "cast": "<헬로하와유> 지안 부",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이동훈",
-          "repRoleNm": "배우",
-          "cast": "<헬로하와유> 주완"
+          "peopleNmEn": "",
+          "cast": "<헬로하와유> 주완",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김태리",
-          "repRoleNm": "배우",
-          "cast": "<헬로하와유> 지현"
+          "peopleNmEn": "",
+          "cast": "<헬로하와유> 지현",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "신민재",
-          "repRoleNm": "배우",
-          "cast": "<연애의 숲> 병대"
+          "peopleNmEn": "SHIN Min-jae",
+          "cast": "<연애의 숲> 병대",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "손우현",
-          "repRoleNm": "배우",
-          "cast": "<연애의 숲> 해랑"
+          "peopleNmEn": "",
+          "cast": "<연애의 숲> 해랑",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -324,6 +320,7 @@
           "staffRoleNm": "포스터사진"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

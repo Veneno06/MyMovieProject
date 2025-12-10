@@ -25,53 +25,52 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김경수",
-          "repRoleNm": "감독"
+          "peopleNmEn": "kim kyoung soo"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이문식",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Moon-sik",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "연이안",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "YEON IAN",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하종우",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Jong Woo Ha",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서나영",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "SEO Na-young",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "문진성",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "MOON Jin-seong",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "지대한",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "JI Dae-han",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박상면",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "PARK Sang-myun",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -92,6 +91,12 @@
           "companyNm": "델로스",
           "companyNmEn": "",
           "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20253341",
+          "companyNm": "주식회사 케이티스튜디오지니",
+          "companyNmEn": "KT StudioGenie",
+          "companyPartNm": "해외세일즈사"
         }
       ],
       "audits": [

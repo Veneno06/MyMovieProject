@@ -22,89 +22,88 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "박준범",
-          "repRoleNm": "감독"
+          "peopleNmEn": "PARK Joon-bum"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "박정표",
-          "repRoleNm": "배우",
-          "cast": "해강"
+          "peopleNmEn": "",
+          "cast": "해강",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한송희",
-          "repRoleNm": "배우",
-          "cast": "지민"
+          "peopleNmEn": "",
+          "cast": "지민",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김하영",
-          "repRoleNm": "배우",
-          "cast": "주한"
+          "peopleNmEn": "",
+          "cast": "주한",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장기훈",
-          "repRoleNm": "배우",
-          "cast": "수인"
+          "peopleNmEn": "",
+          "cast": "수인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이동훈",
-          "repRoleNm": "배우",
-          "cast": "제동"
+          "peopleNmEn": "Lee Dong Hoon",
+          "cast": "제동",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "강동석",
-          "repRoleNm": "배우",
-          "cast": "영찬"
+          "peopleNmEn": "",
+          "cast": "영찬",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김미승",
-          "repRoleNm": "배우",
-          "cast": "여원"
+          "peopleNmEn": "",
+          "cast": "여원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김종진",
-          "repRoleNm": "배우",
-          "cast": "기후"
+          "peopleNmEn": "",
+          "cast": "기후",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박근태",
-          "repRoleNm": "배우",
-          "cast": "김현수 대리"
+          "peopleNmEn": "",
+          "cast": "김현수 대리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "손기현",
-          "repRoleNm": "배우",
-          "cast": "모더레이터"
+          "peopleNmEn": "SON Gi-hyeon",
+          "cast": "모더레이터",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장원경",
-          "repRoleNm": "배우",
-          "cast": "지언"
+          "peopleNmEn": "",
+          "cast": "지언",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조병석",
-          "repRoleNm": "배우",
-          "cast": "주한 아버지"
+          "peopleNmEn": "",
+          "cast": "주한 아버지",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최원욱",
-          "repRoleNm": "배우",
-          "cast": "시네마테크 직원"
+          "peopleNmEn": "",
+          "cast": "시네마테크 직원",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -391,6 +390,7 @@
           "staffRoleNm": "VFX 슈퍼바이저"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

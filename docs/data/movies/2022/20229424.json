@@ -28,65 +28,64 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "서동헌",
-          "repRoleNm": "감독"
+          "peopleNmEn": "Seo Dong-heon"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "정가은",
-          "repRoleNm": "배우",
-          "cast": "이선"
+          "peopleNmEn": "",
+          "cast": "이선",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "노진원",
-          "repRoleNm": "배우",
-          "cast": "미스터창"
+          "peopleNmEn": "NO Jin-won",
+          "cast": "미스터창",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "나미희",
-          "repRoleNm": "배우",
-          "cast": "이선엄마"
+          "peopleNmEn": "",
+          "cast": "이선엄마",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "전유성",
-          "repRoleNm": "배우",
-          "cast": "할아버지"
+          "peopleNmEn": "",
+          "cast": "할아버지",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김늘메",
-          "repRoleNm": "배우",
-          "cast": "햄릿아빠"
+          "peopleNmEn": "",
+          "cast": "햄릿아빠",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박선우",
-          "repRoleNm": "배우",
-          "cast": "성형아빠"
+          "peopleNmEn": "",
+          "cast": "성형아빠",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "강수빈",
-          "repRoleNm": "배우",
-          "cast": "예은"
+          "peopleNmEn": "",
+          "cast": "예은",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍종현",
-          "repRoleNm": "배우",
-          "cast": "교통경찰"
+          "peopleNmEn": "홍세현",
+          "cast": "교통경찰",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이보림",
-          "repRoleNm": "배우",
-          "cast": "진상손님"
+          "peopleNmEn": "",
+          "cast": "진상손님",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -203,6 +202,7 @@
           "staffRoleNm": "제작팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

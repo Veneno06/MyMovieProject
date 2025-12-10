@@ -34,77 +34,76 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "최종학",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "지대한",
-          "repRoleNm": "배우",
-          "cast": "최종구"
+          "peopleNmEn": "JI Dae-han",
+          "cast": "최종구",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "설지윤",
-          "repRoleNm": "배우",
-          "cast": "수진"
+          "peopleNmEn": "",
+          "cast": "수진",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김승현",
-          "repRoleNm": "배우",
-          "cast": "이영태"
+          "peopleNmEn": "KIM Seunghyun",
+          "cast": "이영태",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이예림",
-          "repRoleNm": "배우",
-          "cast": "미스박"
+          "peopleNmEn": "",
+          "cast": "미스박",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "권태원",
-          "repRoleNm": "배우",
-          "cast": "약사"
+          "peopleNmEn": "KWON Tae-won",
+          "cast": "약사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김경룡",
-          "repRoleNm": "배우",
-          "cast": "미용사"
+          "peopleNmEn": "KIM Gyeong-ryong",
+          "cast": "미용사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍승일",
-          "repRoleNm": "배우",
-          "cast": "정육점"
+          "peopleNmEn": "HONG Seung-il",
+          "cast": "정육점",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정우일",
-          "repRoleNm": "배우",
-          "cast": "강동태"
+          "peopleNmEn": "",
+          "cast": "강동태",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김정섭",
-          "repRoleNm": "배우",
-          "cast": "오형사"
+          "peopleNmEn": "",
+          "cast": "오형사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서윤하",
-          "repRoleNm": "배우",
-          "cast": "아줌마3"
+          "peopleNmEn": "",
+          "cast": "아줌마3",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이재순",
-          "repRoleNm": "배우",
-          "cast": "유민할머니"
+          "peopleNmEn": "",
+          "cast": "유민할머니",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -250,6 +249,7 @@
           "staffRoleNm": "배급진행"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

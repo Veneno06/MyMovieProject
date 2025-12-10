@@ -25,89 +25,88 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김광빈",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Kwang-bin"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "하정우",
-          "repRoleNm": "배우",
-          "cast": "상원"
+          "peopleNmEn": "HA Jung-woo",
+          "cast": "상원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김남길",
-          "repRoleNm": "배우",
-          "cast": "경훈"
+          "peopleNmEn": "KIM Nam-gil",
+          "cast": "경훈",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "허율",
-          "repRoleNm": "배우",
-          "cast": "이나"
+          "peopleNmEn": "HEO Yul",
+          "cast": "이나",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김시아",
-          "repRoleNm": "배우",
-          "cast": "명진"
+          "peopleNmEn": "KIM Si-a",
+          "cast": "명진",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "신현빈",
-          "repRoleNm": "배우",
-          "cast": "승희"
+          "peopleNmEn": "SHIN Hyun-been",
+          "cast": "승희",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김수진",
-          "repRoleNm": "배우",
-          "cast": "명진 모"
+          "peopleNmEn": "KIM Su-jin",
+          "cast": "명진 모",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박지아",
-          "repRoleNm": "배우",
-          "cast": "무당"
+          "peopleNmEn": "PARK Zi-a",
+          "cast": "무당",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임현성",
-          "repRoleNm": "배우",
-          "cast": "후배"
+          "peopleNmEn": "LIM Hyun-sung",
+          "cast": "후배",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "강신철",
-          "repRoleNm": "배우",
-          "cast": "도현"
+          "peopleNmEn": "GANG Sin-cheol",
+          "cast": "도현",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박성웅",
-          "repRoleNm": "배우",
-          "cast": "명진 부"
+          "peopleNmEn": "PARK Sung-woong",
+          "cast": "명진 부",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "천황성",
-          "repRoleNm": "배우",
-          "cast": "현장임원"
+          "peopleNmEn": "cheon hwangsung",
+          "cast": "현장임원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이도국",
-          "repRoleNm": "배우",
-          "cast": "형사"
+          "peopleNmEn": "LEE Do-guk",
+          "cast": "형사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이양희",
-          "repRoleNm": "배우",
-          "cast": "부검의"
+          "peopleNmEn": "LEE Yang-hee",
+          "cast": "부검의",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -1022,12 +1021,12 @@
           "staffRoleNm": "소품"
         },
         {
-          "peopleNm": "김성규",
+          "peopleNm": "장로운",
           "peopleNmEn": "",
           "staffRoleNm": "소품팀"
         },
         {
-          "peopleNm": "장로운",
+          "peopleNm": "김성규",
           "peopleNmEn": "",
           "staffRoleNm": "소품팀"
         },
@@ -2213,17 +2212,17 @@
         },
         {
           "peopleNm": "노병욱",
-          "peopleNmEn": "NOH Byung-wook",
+          "peopleNmEn": "NOH Byoung-wook",
           "staffRoleNm": "DI팀"
         },
         {
           "peopleNm": "노병욱",
-          "peopleNmEn": "NOH Byung-wook",
+          "peopleNmEn": "NOH Byoung-wook",
           "staffRoleNm": "DI팀"
         },
         {
           "peopleNm": "노병욱",
-          "peopleNmEn": "NOH Byung-wook",
+          "peopleNmEn": "NOH Byoung-wook",
           "staffRoleNm": "DI팀"
         },
         {
@@ -3012,6 +3011,7 @@
           "staffRoleNm": "VFX 아티스트"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

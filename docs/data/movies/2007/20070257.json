@@ -25,47 +25,46 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김태경",
-          "repRoleNm": "감독"
+          "peopleNmEn": "Kim Tae-kyoung"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "차예련",
-          "repRoleNm": "배우",
-          "cast": "서연"
+          "peopleNmEn": "CHA Ye-ryun",
+          "cast": "서연",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조안",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "JO An",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이인",
-          "repRoleNm": "배우",
-          "cast": "지훈"
+          "peopleNmEn": "LEE In",
+          "cast": "지훈",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍소희",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HONG So-hee",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정아영",
-          "repRoleNm": "배우",
-          "cast": "므이대역"
+          "peopleNmEn": "JUNG Ah-yung",
+          "cast": "므이대역",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이동국",
-          "repRoleNm": "배우",
-          "cast": "지훈친구3"
+          "peopleNmEn": "",
+          "cast": "지훈친구3",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -1094,6 +1093,7 @@
           "staffRoleNm": "온라인마케팅"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

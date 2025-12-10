@@ -28,41 +28,40 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "신정균",
-          "repRoleNm": "감독"
+          "peopleNmEn": "SHEEN Jeong-kyun"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "한수아",
-          "repRoleNm": "배우",
-          "cast": "연우"
+          "peopleNmEn": "HAN Su-a",
+          "cast": "연우",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "백익남",
-          "repRoleNm": "배우",
-          "cast": "상구"
+          "peopleNmEn": "",
+          "cast": "상구",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김강일",
-          "repRoleNm": "배우",
-          "cast": "세탁소 주인"
+          "peopleNmEn": "KIM Kang-il",
+          "cast": "세탁소 주인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김솔",
-          "repRoleNm": "배우",
-          "cast": "카페여자종업원"
+          "peopleNmEn": "",
+          "cast": "카페여자종업원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김영민",
-          "repRoleNm": "배우",
-          "cast": "모텔남자목소리"
+          "peopleNmEn": "",
+          "cast": "모텔남자목소리",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -399,6 +398,7 @@
           "staffRoleNm": "캐스팅"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

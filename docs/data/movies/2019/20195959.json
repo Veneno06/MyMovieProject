@@ -22,40 +22,38 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "박소현",
-          "repRoleNm": "감독"
+          "peopleNmEn": "PARK So-hyun"
         },
         {
-          "peopleCd": "",
           "peopleNm": "송영윤",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "황지은",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Hwang Jieun",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "고수경",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Ko Sugyeong",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김지아",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Kim Jia",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박승규",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Park Seunggyu",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -256,6 +254,7 @@
           "staffRoleNm": "온라인마케팅"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

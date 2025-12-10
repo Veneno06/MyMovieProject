@@ -25,71 +25,70 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김범삼",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Beom-sam"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "홍완표",
-          "repRoleNm": "배우",
-          "cast": "지하"
+          "peopleNmEn": "HONG Wan-pyo",
+          "cast": "지하",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "현리",
-          "repRoleNm": "배우",
-          "cast": "하영"
+          "peopleNmEn": "Hyunri",
+          "cast": "하영",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "오창경",
-          "repRoleNm": "배우",
-          "cast": "동현"
+          "peopleNmEn": "OH Chang-kyung",
+          "cast": "동현",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이재원",
-          "repRoleNm": "배우",
-          "cast": "쭈니"
+          "peopleNmEn": "",
+          "cast": "쭈니",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유우키 타카시",
-          "repRoleNm": "배우",
-          "cast": "신야"
+          "peopleNmEn": "Yuki Takashi",
+          "cast": "신야",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "히로사와 소우",
-          "repRoleNm": "배우",
-          "cast": "미호"
+          "peopleNmEn": "",
+          "cast": "미호",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최일순",
-          "repRoleNm": "배우",
-          "cast": "일순"
+          "peopleNmEn": "",
+          "cast": "일순",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조성희",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조하영",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "손준영",
-          "repRoleNm": "배우",
-          "cast": "카오산로드 인터뷰이"
+          "peopleNmEn": "",
+          "cast": "카오산로드 인터뷰이",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -159,6 +158,7 @@
           "staffRoleNm": "홍보/마케팅 진행"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

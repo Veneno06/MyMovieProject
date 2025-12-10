@@ -22,65 +22,64 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김호준",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Ho-jun"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "최성국",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "CHOI Sung-kook",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "송은채",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "SONG Eun-chae",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하나경",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HA Na-kyoung",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박효빈",
-          "repRoleNm": "배우",
-          "cast": "커피 학생"
+          "peopleNmEn": "",
+          "cast": "커피 학생",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "신선영",
-          "repRoleNm": "배우",
-          "cast": "학교 조교들"
+          "peopleNmEn": "SHIN Sun-young",
+          "cast": "학교 조교들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이한준",
-          "repRoleNm": "배우",
-          "cast": "열쇠공"
+          "peopleNmEn": "",
+          "cast": "열쇠공",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임주한",
-          "repRoleNm": "배우",
-          "cast": "학교 조교들"
+          "peopleNmEn": "",
+          "cast": "학교 조교들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최용재",
-          "repRoleNm": "배우",
-          "cast": "골프남"
+          "peopleNmEn": "",
+          "cast": "골프남",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김용훈",
-          "repRoleNm": "배우",
-          "cast": "학교 조교들"
+          "peopleNmEn": "KIM Yong-hun",
+          "cast": "학교 조교들",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -512,6 +511,7 @@
           "staffRoleNm": "VFX 슈퍼바이저"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

@@ -22,83 +22,82 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김종재",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Jong-jae"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김예은",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Ye-eun",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "곽민규",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KWAK Mingyu",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한해인",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HAN Hae-in",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "오규철",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "신기환",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "백성철",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "강숙",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서유성",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김정수",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM JEONGSOO",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김채원",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Hye-young",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이택근",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "원민우",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -374,6 +373,7 @@
           "staffRoleNm": "DI팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

@@ -25,53 +25,52 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "류연수",
-          "repRoleNm": "감독"
+          "peopleNmEn": "RYU Yeon-su"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "효우",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이민재",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이예원",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Ye-won",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "양희원",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "YANG Hee-won",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김지원",
-          "repRoleNm": "배우",
-          "cast": "15세 가영"
+          "peopleNmEn": "Kim Jiwon",
+          "cast": "15세 가영",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김율호",
-          "repRoleNm": "배우",
-          "cast": "한코치"
+          "peopleNmEn": "KIM Yool-ho",
+          "cast": "한코치",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "손빛나",
-          "repRoleNm": "배우",
-          "cast": "시내 거리 행인들"
+          "peopleNmEn": "",
+          "cast": "시내 거리 행인들",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -117,6 +116,11 @@
           "staffRoleNm": "제작"
         },
         {
+          "peopleNm": "손빛나",
+          "peopleNmEn": "",
+          "staffRoleNm": "프로듀서"
+        },
+        {
           "peopleNm": "이기남",
           "peopleNmEn": "",
           "staffRoleNm": "프로듀서"
@@ -137,6 +141,7 @@
           "staffRoleNm": "시나리오(각본)"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

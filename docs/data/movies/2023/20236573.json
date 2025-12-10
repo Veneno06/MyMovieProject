@@ -25,112 +25,110 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이정찬",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김여정",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Yeo-jeong"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "곽선영",
-          "repRoleNm": "배우",
-          "cast": "영은"
+          "peopleNmEn": "KWAK Sun-young",
+          "cast": "영은",
+          "castEn": "LEE Young-eun"
         },
         {
-          "peopleCd": "",
           "peopleNm": "권유리",
-          "repRoleNm": "배우",
-          "cast": "김민"
+          "peopleNmEn": "GWON Yu-ri",
+          "cast": "김민",
+          "castEn": "KIM Min"
         },
         {
-          "peopleCd": "",
           "peopleNm": "이설",
-          "repRoleNm": "배우",
-          "cast": "박해영"
+          "peopleNmEn": "LEE Sul",
+          "cast": "박해영",
+          "castEn": "PARK Hae-young"
         },
         {
-          "peopleCd": "",
           "peopleNm": "기소유",
-          "repRoleNm": "배우",
-          "cast": "소현"
+          "peopleNmEn": "",
+          "cast": "소현",
+          "castEn": "KIM So-hyun"
         },
         {
-          "peopleCd": "",
           "peopleNm": "신동미",
-          "repRoleNm": "배우",
-          "cast": "최현경"
+          "peopleNmEn": "SHIN Dong-mi",
+          "cast": "최현경",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "허정도",
-          "repRoleNm": "배우",
-          "cast": "한팀장"
+          "peopleNmEn": "HEO Jeong-do",
+          "cast": "한팀장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "길해연",
-          "repRoleNm": "배우",
-          "cast": "정숙"
+          "peopleNmEn": "GIL Hae-yeon",
+          "cast": "정숙",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유정후",
-          "repRoleNm": "배우",
-          "cast": "이준섭"
+          "peopleNmEn": "",
+          "cast": "이준섭",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "허지원",
-          "repRoleNm": "배우",
-          "cast": "김민수"
+          "peopleNmEn": "HEO Ji-won",
+          "cast": "김민수",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김승희",
-          "repRoleNm": "배우",
-          "cast": "박미경"
+          "peopleNmEn": "",
+          "cast": "박미경",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "염지영",
-          "repRoleNm": "배우",
-          "cast": "지혜모"
+          "peopleNmEn": "",
+          "cast": "지혜모",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "윤기창",
-          "repRoleNm": "배우",
-          "cast": "지혜부"
+          "peopleNmEn": "YUN KI CHANG",
+          "cast": "지혜부",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이철우",
-          "repRoleNm": "배우",
-          "cast": "지하철 거래남"
+          "peopleNmEn": "",
+          "cast": "지하철 거래남",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한예주",
-          "repRoleNm": "배우",
-          "cast": "민의 엄마"
+          "peopleNmEn": "",
+          "cast": "민의 엄마",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서예나",
-          "repRoleNm": "배우",
-          "cast": "어린 소현"
+          "peopleNmEn": "",
+          "cast": "어린 소현",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "안혜원",
-          "repRoleNm": "배우",
-          "cast": "아동정신과 의사"
+          "peopleNmEn": "",
+          "cast": "아동정신과 의사",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -909,7 +907,7 @@
         },
         {
           "peopleNm": "유현일",
-          "peopleNmEn": "",
+          "peopleNmEn": "YOO HYUN-IL",
           "staffRoleNm": "배급진행"
         },
         {
@@ -1242,8 +1240,8 @@
           "peopleNmEn": "",
           "staffRoleNm": "배급진행"
         }
-      ],
-      "audiAcc": 79338
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

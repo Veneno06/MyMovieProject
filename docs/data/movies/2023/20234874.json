@@ -28,89 +28,88 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "앙리",
-          "repRoleNm": "감독"
+          "peopleNmEn": "Anglee"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김무건",
-          "repRoleNm": "배우",
-          "cast": "살인마"
+          "peopleNmEn": "KIM MU GEON",
+          "cast": "살인마",
+          "castEn": "KILLER"
         },
         {
-          "peopleCd": "",
           "peopleNm": "수현",
-          "repRoleNm": "배우",
-          "cast": "수미"
+          "peopleNmEn": "SU HYEON",
+          "cast": "수미",
+          "castEn": "SUMI"
         },
         {
-          "peopleCd": "",
           "peopleNm": "김 환",
-          "repRoleNm": "배우",
-          "cast": "스윙어"
+          "peopleNmEn": "",
+          "cast": "스윙어",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김민",
-          "repRoleNm": "배우",
-          "cast": "워저"
+          "peopleNmEn": "",
+          "cast": "워저",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "천희주",
-          "repRoleNm": "배우",
-          "cast": "지나"
+          "peopleNmEn": "",
+          "cast": "지나",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "차보성",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "지연주",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박하율",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Hayul Park",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김예은",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "kimyeeun",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍지석",
-          "repRoleNm": "배우",
-          "cast": "용남"
+          "peopleNmEn": "HONG Ji-seok",
+          "cast": "용남",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이주미",
-          "repRoleNm": "배우",
-          "cast": "마이 사장"
+          "peopleNmEn": "LEE Jumi",
+          "cast": "마이 사장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최우성",
-          "repRoleNm": "배우",
-          "cast": "고봉식"
+          "peopleNmEn": "CHOI Woo Sung",
+          "cast": "고봉식",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김지윤",
-          "repRoleNm": "배우",
-          "cast": "애지"
+          "peopleNmEn": "KIM Ji-yoon",
+          "cast": "애지",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -241,6 +240,7 @@
           "staffRoleNm": "타이틀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

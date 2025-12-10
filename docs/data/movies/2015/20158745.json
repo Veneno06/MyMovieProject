@@ -22,41 +22,40 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "최인규",
-          "repRoleNm": "감독"
+          "peopleNmEn": "CHOE In-gyu"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "배성우",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "BAE Sung-woo",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정성일",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박리디아",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "PARK Lydia",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한제인",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HAN Je-in",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "양인화",
-          "repRoleNm": "배우",
-          "cast": "나래친구1"
+          "peopleNmEn": "",
+          "cast": "나래친구1",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -368,6 +367,7 @@
           "staffRoleNm": "기타"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

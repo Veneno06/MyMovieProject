@@ -25,107 +25,106 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "서세원",
-          "repRoleNm": "감독"
+          "peopleNmEn": "SUH Se-won"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "하연주",
-          "repRoleNm": "배우",
-          "cast": "지숙"
+          "peopleNmEn": "HA Yeon-ju",
+          "cast": "지숙",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박무영",
-          "repRoleNm": "배우",
-          "cast": "영춘"
+          "peopleNmEn": "",
+          "cast": "영춘",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김현기",
-          "repRoleNm": "배우",
-          "cast": "담임"
+          "peopleNmEn": "",
+          "cast": "담임",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이수근",
-          "repRoleNm": "배우",
-          "cast": "대학생"
+          "peopleNmEn": "LEE Su-geun",
+          "cast": "대학생",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "함은우",
-          "repRoleNm": "배우",
-          "cast": "요숙"
+          "peopleNmEn": "HAM EUNWOO",
+          "cast": "요숙",
+          "castEn": "yosuk"
         },
         {
-          "peopleCd": "",
           "peopleNm": "이현준",
-          "repRoleNm": "배우",
-          "cast": "춘식"
+          "peopleNmEn": "Lee Hyun-jun",
+          "cast": "춘식 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "신창주",
-          "repRoleNm": "배우",
-          "cast": "소매치기 창주"
+          "peopleNmEn": "SIN Chang-ju",
+          "cast": "소매치기 창주 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황재환",
-          "repRoleNm": "배우",
-          "cast": "예비군1"
+          "peopleNmEn": "",
+          "cast": "예비군1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박해진",
-          "repRoleNm": "배우",
-          "cast": "지철"
+          "peopleNmEn": "PARK Hae-jin",
+          "cast": "지철 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "문용찬",
-          "repRoleNm": "배우",
-          "cast": "다방 DJ"
+          "peopleNmEn": "",
+          "cast": "다방 DJ ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김대욱",
-          "repRoleNm": "배우",
-          "cast": "뽑기장수"
+          "peopleNmEn": "",
+          "cast": "뽑기장수",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최민지",
-          "repRoleNm": "배우",
-          "cast": "경숙"
+          "peopleNmEn": "",
+          "cast": "경숙 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정선희",
-          "repRoleNm": "배우",
-          "cast": "다방누나"
+          "peopleNmEn": "",
+          "cast": "다방누나",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정세진",
-          "repRoleNm": "배우",
-          "cast": "써니"
+          "peopleNmEn": "",
+          "cast": "써니",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "권병일",
-          "repRoleNm": "배우",
-          "cast": "춘자 부"
+          "peopleNmEn": "KWON Byung-il",
+          "cast": "춘자 부",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이태경",
-          "repRoleNm": "배우",
-          "cast": "춘자"
+          "peopleNmEn": "",
+          "cast": "춘자 ",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -576,7 +575,7 @@
         },
         {
           "peopleNm": "노병욱",
-          "peopleNmEn": "NOH Byung-wook",
+          "peopleNmEn": "NOH Byoung-wook",
           "staffRoleNm": "DI팀"
         },
         {
@@ -640,6 +639,7 @@
           "staffRoleNm": "시각효과"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

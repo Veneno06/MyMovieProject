@@ -25,17 +25,16 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "정태령",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "허예창",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -65,6 +64,7 @@
         }
       ],
       "staffs": []
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

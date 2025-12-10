@@ -22,125 +22,124 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "박남원",
-          "repRoleNm": "감독"
+          "peopleNmEn": "PARK Nam-won"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "오정연",
-          "repRoleNm": "배우",
-          "cast": "고수"
+          "peopleNmEn": "",
+          "cast": "고수",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최윤슬",
-          "repRoleNm": "배우",
-          "cast": "홍선재"
+          "peopleNmEn": "CHOI Yoon-seul",
+          "cast": "홍선재",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최문경",
-          "repRoleNm": "배우",
-          "cast": "미연"
+          "peopleNmEn": "",
+          "cast": "미연",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "안아영",
-          "repRoleNm": "배우",
-          "cast": "인애"
+          "peopleNmEn": "",
+          "cast": "인애",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "허윤제",
-          "repRoleNm": "배우",
-          "cast": "운전기사"
+          "peopleNmEn": "",
+          "cast": "운전기사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "윤기원",
-          "repRoleNm": "배우",
-          "cast": "킬러"
+          "peopleNmEn": "YOON Ki-won",
+          "cast": "킬러",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "진현광",
-          "repRoleNm": "배우",
-          "cast": "김사장"
+          "peopleNmEn": "JIN Hyun-kwang",
+          "cast": "김사장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김도건",
-          "repRoleNm": "배우",
-          "cast": "정우"
+          "peopleNmEn": "",
+          "cast": "정우",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김필",
-          "repRoleNm": "배우",
-          "cast": "추심원1"
+          "peopleNmEn": "",
+          "cast": "추심원1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이재규",
-          "repRoleNm": "배우",
-          "cast": "추심원2"
+          "peopleNmEn": "",
+          "cast": "추심원2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박웅선",
-          "repRoleNm": "배우",
-          "cast": "응급실 의사"
+          "peopleNmEn": "",
+          "cast": "응급실 의사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서승원",
-          "repRoleNm": "배우",
-          "cast": "노래방 손님"
+          "peopleNmEn": "SEO Seung-won",
+          "cast": "노래방 손님",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이성경",
-          "repRoleNm": "배우",
-          "cast": "치킨집 주인"
+          "peopleNmEn": "",
+          "cast": "치킨집 주인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박남원",
-          "repRoleNm": "배우",
-          "cast": "병원 아줌마"
+          "peopleNmEn": "PARK Nam-won",
+          "cast": "병원 아줌마",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "강단우",
-          "repRoleNm": "배우",
-          "cast": "기자"
+          "peopleNmEn": "Kang Danwoo",
+          "cast": "기자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "연운경",
-          "repRoleNm": "배우",
-          "cast": "시어머니"
+          "peopleNmEn": "",
+          "cast": "시어머니",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "신태양",
-          "repRoleNm": "배우",
-          "cast": "웅이"
+          "peopleNmEn": "",
+          "cast": "웅이",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "민준호",
-          "repRoleNm": "배우",
-          "cast": "봉철"
+          "peopleNmEn": "MIN Jun-ho",
+          "cast": "봉철",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "허윤제",
-          "repRoleNm": "배우",
-          "cast": "강연장손님"
+          "peopleNmEn": "",
+          "cast": "강연장손님",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -272,10 +271,11 @@
         },
         {
           "peopleNm": "이명훈",
-          "peopleNmEn": "",
+          "peopleNmEn": "LEE MYUNG-HOON",
           "staffRoleNm": "DI팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

@@ -25,47 +25,46 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "최효원",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "천이슬",
-          "repRoleNm": "배우",
-          "cast": "유라"
+          "peopleNmEn": "",
+          "cast": "유라",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이윤수",
-          "repRoleNm": "배우",
-          "cast": "미옥"
+          "peopleNmEn": "",
+          "cast": "미옥",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서도현",
-          "repRoleNm": "배우",
-          "cast": "인석"
+          "peopleNmEn": "",
+          "cast": "인석",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황명환",
-          "repRoleNm": "배우",
-          "cast": "진태"
+          "peopleNmEn": "",
+          "cast": "진태",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "안상은",
-          "repRoleNm": "배우",
-          "cast": "혜진"
+          "peopleNmEn": "",
+          "cast": "혜진",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "윤대희",
-          "repRoleNm": "배우",
-          "cast": "성호"
+          "peopleNmEn": "",
+          "cast": "성호",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -361,6 +360,7 @@
           "staffRoleNm": "매니지먼트"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

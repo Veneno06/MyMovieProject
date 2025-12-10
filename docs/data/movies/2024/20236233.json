@@ -28,29 +28,28 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이상학",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Sang-hak"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "한기장",
-          "repRoleNm": "배우",
-          "cast": "도지욱"
+          "peopleNmEn": "",
+          "cast": "도지욱",
+          "castEn": "DOH Ji-wook"
         },
         {
-          "peopleCd": "",
           "peopleNm": "남기애",
-          "repRoleNm": "배우",
-          "cast": "주경희"
+          "peopleNmEn": "Nam Kee Ae",
+          "cast": "주경희",
+          "castEn": "JOO Kyung-hee"
         },
         {
-          "peopleCd": "",
           "peopleNm": "유성주",
-          "repRoleNm": "배우",
-          "cast": "도중명"
+          "peopleNmEn": "You Seong Joo",
+          "cast": "도중명",
+          "castEn": "DOH Joong-myung"
         }
       ],
       "showTypes": [
@@ -129,6 +128,11 @@
           "staffRoleNm": "시나리오(각본)"
         },
         {
+          "peopleNm": "최승현",
+          "peopleNmEn": "CHOI Seunghyun",
+          "staffRoleNm": "연출팀"
+        },
+        {
           "peopleNm": "김지룡",
           "peopleNmEn": "",
           "staffRoleNm": "촬영"
@@ -141,6 +145,11 @@
         {
           "peopleNm": "추다영",
           "peopleNmEn": "Choo Dayoung",
+          "staffRoleNm": "미술팀"
+        },
+        {
+          "peopleNm": "최승현",
+          "peopleNmEn": "CHOI Seunghyun",
           "staffRoleNm": "미술팀"
         },
         {

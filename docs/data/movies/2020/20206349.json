@@ -25,29 +25,28 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "한동호",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "한가인",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이채담",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "민도윤",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -77,6 +76,7 @@
         }
       ],
       "staffs": []
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

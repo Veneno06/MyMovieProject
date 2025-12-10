@@ -25,83 +25,82 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김건",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Geon"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김연수",
-          "repRoleNm": "배우",
-          "cast": "윤희"
+          "peopleNmEn": "KIM Yeon-soo  ",
+          "cast": "윤희",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "노준호",
-          "repRoleNm": "배우",
-          "cast": "찬영"
+          "peopleNmEn": "NO Jun-ho",
+          "cast": "찬영",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김현숙",
-          "repRoleNm": "배우",
-          "cast": "선영"
+          "peopleNmEn": "KIM Hyeon-sook",
+          "cast": "선영",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정아름",
-          "repRoleNm": "배우",
-          "cast": "희주"
+          "peopleNmEn": "JEONG A-reum",
+          "cast": "희주",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍석찬",
-          "repRoleNm": "배우",
-          "cast": "홍감독"
+          "peopleNmEn": "",
+          "cast": "홍감독 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍영주",
-          "repRoleNm": "배우",
-          "cast": "영민"
+          "peopleNmEn": "HONG Young-ju",
+          "cast": "영민",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서연수",
-          "repRoleNm": "배우",
-          "cast": "혜진"
+          "peopleNmEn": "",
+          "cast": "혜진 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "신영숙",
-          "repRoleNm": "배우",
-          "cast": "찬영모"
+          "peopleNmEn": "",
+          "cast": "찬영모",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박춘화",
-          "repRoleNm": "배우",
-          "cast": "도림"
+          "peopleNmEn": "",
+          "cast": "도림 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "배수만",
-          "repRoleNm": "배우",
-          "cast": "유대리"
+          "peopleNmEn": "",
+          "cast": "유대리 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유순희",
-          "repRoleNm": "배우",
-          "cast": "동준모"
+          "peopleNmEn": "YOO Sun-hee",
+          "cast": "동준모 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김필민",
-          "repRoleNm": "배우",
-          "cast": "대리운전기사"
+          "peopleNmEn": "",
+          "cast": "대리운전기사",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -540,6 +539,7 @@
           "staffRoleNm": "DI팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

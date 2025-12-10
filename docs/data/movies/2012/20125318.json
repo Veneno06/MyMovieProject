@@ -22,65 +22,64 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "정창현",
-          "repRoleNm": "감독"
+          "peopleNmEn": "Chang-Hyun Jung"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "유상재",
-          "repRoleNm": "배우",
-          "cast": "영식"
+          "peopleNmEn": "YOO Sang-jae",
+          "cast": "영식",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이양희",
-          "repRoleNm": "배우",
-          "cast": "김형사"
+          "peopleNmEn": "LEE Yang-hee",
+          "cast": "김형사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김주후",
-          "repRoleNm": "배우",
-          "cast": "이형사"
+          "peopleNmEn": "KIM Ju-hu",
+          "cast": "이형사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정찬성",
-          "repRoleNm": "배우",
-          "cast": "민수"
+          "peopleNmEn": "JEONG Chang-sung",
+          "cast": "민수",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임형태",
-          "repRoleNm": "배우",
-          "cast": "정신과 의사"
+          "peopleNmEn": "IM Hyung-tea",
+          "cast": "정신과 의사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김경미",
-          "repRoleNm": "배우",
-          "cast": "세진"
+          "peopleNmEn": "KIM Kyoung-mi",
+          "cast": "세진",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김준희",
-          "repRoleNm": "배우",
-          "cast": "따까리"
+          "peopleNmEn": "Kim Joon Hee",
+          "cast": "따까리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황석하",
-          "repRoleNm": "배우",
-          "cast": "심부름직원1"
+          "peopleNmEn": "HWANG Seok-Ha",
+          "cast": "심부름직원1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박제하",
-          "repRoleNm": "배우",
-          "cast": "거래처 남자"
+          "peopleNmEn": "",
+          "cast": "거래처 남자",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -290,6 +289,7 @@
           "staffRoleNm": "기타"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

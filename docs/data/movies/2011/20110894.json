@@ -22,83 +22,82 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "한지원",
-          "repRoleNm": "감독"
+          "peopleNmEn": "HAN Ji-won"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김영선",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Young-sun",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한지원",
-          "repRoleNm": "배우",
-          "cast": "재민"
+          "peopleNmEn": "HAN Ji-won",
+          "cast": "재민",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "문대성",
-          "repRoleNm": "배우",
-          "cast": "근로자 2"
+          "peopleNmEn": "MOON Dae-sung",
+          "cast": "근로자 2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김선국",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Sun-gook",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하광민",
-          "repRoleNm": "배우",
-          "cast": "광민"
+          "peopleNmEn": "",
+          "cast": "광민",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이환기",
-          "repRoleNm": "배우",
-          "cast": "도사"
+          "peopleNmEn": "",
+          "cast": "도사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정현구",
-          "repRoleNm": "배우",
-          "cast": "단편영화감독"
+          "peopleNmEn": "JEONG Heon-gu",
+          "cast": "단편영화감독",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이승연",
-          "repRoleNm": "배우",
-          "cast": "노숙자 형만"
+          "peopleNmEn": "",
+          "cast": "노숙자 형만",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "송원용",
-          "repRoleNm": "배우",
-          "cast": "근로자1"
+          "peopleNmEn": "",
+          "cast": "근로자1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "오세진",
-          "repRoleNm": "배우",
-          "cast": "고등학생2"
+          "peopleNmEn": "",
+          "cast": "고등학생2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김영용",
-          "repRoleNm": "배우",
-          "cast": "대니"
+          "peopleNmEn": "KIM Young-yong",
+          "cast": "대니",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김규남",
-          "repRoleNm": "배우",
-          "cast": "노숙자역 배우"
+          "peopleNmEn": "KIM Gyu-nam",
+          "cast": "노숙자역 배우",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -268,6 +267,7 @@
           "staffRoleNm": "스틸"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

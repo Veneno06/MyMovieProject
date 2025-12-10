@@ -22,88 +22,86 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김성민",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Seong-min"
         },
         {
-          "peopleCd": "",
           "peopleNm": "윤제완",
-          "repRoleNm": "감독"
+          "peopleNmEn": "Jae Wan Yun"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이선",
-          "repRoleNm": "배우",
-          "cast": "뽀로로"
+          "peopleNmEn": "LEE Sun",
+          "cast": "뽀로로",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이미자",
-          "repRoleNm": "배우",
-          "cast": "크롱"
+          "peopleNmEn": "LEE Mi-ja",
+          "cast": "크롱",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "함수정",
-          "repRoleNm": "배우",
-          "cast": "에디"
+          "peopleNmEn": "HAM Su-jung",
+          "cast": "에디",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍소영",
-          "repRoleNm": "배우",
-          "cast": "루피"
+          "peopleNmEn": "HONG So-yeong",
+          "cast": "루피",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정미숙",
-          "repRoleNm": "배우",
-          "cast": "패티"
+          "peopleNmEn": "JUNG Mi-suk",
+          "cast": "패티",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김서영",
-          "repRoleNm": "배우",
-          "cast": "해리"
+          "peopleNmEn": "KIM Seo-young",
+          "cast": "해리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김환진",
-          "repRoleNm": "배우",
-          "cast": "포비"
+          "peopleNmEn": "KIM Hwan-chin",
+          "cast": "포비",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "사문영",
-          "repRoleNm": "배우",
-          "cast": "스캣, 아이원"
+          "peopleNmEn": "SA Mun-yeong",
+          "cast": "스캣, 아이원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한신",
-          "repRoleNm": "배우",
-          "cast": "빅벤"
+          "peopleNmEn": "HAN Shin",
+          "cast": "빅벤",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "심규혁",
-          "repRoleNm": "배우",
-          "cast": "오키"
+          "peopleNmEn": "",
+          "cast": "오키",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김율",
-          "repRoleNm": "배우",
-          "cast": "도키"
+          "peopleNmEn": "",
+          "cast": "도키",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황창영",
-          "repRoleNm": "배우",
-          "cast": "사장"
+          "peopleNmEn": "Hwang changyung",
+          "cast": "사장",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -232,7 +230,7 @@
         },
         {
           "peopleNm": "김창원",
-          "peopleNmEn": "",
+          "peopleNmEn": "김창원",
           "staffRoleNm": "시나리오(각본)"
         },
         {
@@ -1315,8 +1313,7 @@
           "peopleNmEn": "",
           "staffRoleNm": "기타"
         }
-      ],
-      "audiAcc": 357851
+      ]
     },
     "source": "영화진흥위원회"
   }

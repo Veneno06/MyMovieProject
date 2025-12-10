@@ -25,101 +25,100 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이용주",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Yong-ju"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "엄태웅",
-          "repRoleNm": "배우",
-          "cast": "현재 승민"
+          "peopleNmEn": "UHM Tae-woong",
+          "cast": "현재 승민 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한가인",
-          "repRoleNm": "배우",
-          "cast": "현재 서연"
+          "peopleNmEn": "HAN Ga-in",
+          "cast": "현재 서연 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이제훈",
-          "repRoleNm": "배우",
-          "cast": "과거 승민"
+          "peopleNmEn": "LEE Je-hoon",
+          "cast": "과거 승민",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "배수지",
-          "repRoleNm": "배우",
-          "cast": "과거 서연"
+          "peopleNmEn": "BAE Suzy",
+          "cast": "과거 서연",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "고준희",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "GO Joon-Hee",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조정석",
-          "repRoleNm": "배우",
-          "cast": "납득이"
+          "peopleNmEn": "CHO Jung-Seok",
+          "cast": "납득이",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "신예진",
-          "repRoleNm": "배우",
-          "cast": "싱숭이"
+          "peopleNmEn": "",
+          "cast": "싱숭이",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유연석",
-          "repRoleNm": "배우",
-          "cast": "재욱"
+          "peopleNmEn": "YOO Yeon-seok",
+          "cast": "재욱",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조현철",
-          "repRoleNm": "배우",
-          "cast": "동구"
+          "peopleNmEn": "CHO Hyun-chul",
+          "cast": "동구 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김의성",
-          "repRoleNm": "배우",
-          "cast": "강 교수"
+          "peopleNmEn": "KIM Eui-sung",
+          "cast": "강 교수",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이승호",
-          "repRoleNm": "배우",
-          "cast": "서연 부"
+          "peopleNmEn": "LEE Seung-ho",
+          "cast": "서연 부",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박수영",
-          "repRoleNm": "배우",
-          "cast": "구소장"
+          "peopleNmEn": "PARK Su-young",
+          "cast": "구소장 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "신민영",
-          "repRoleNm": "배우",
-          "cast": "도아아키텍처직원"
+          "peopleNmEn": "",
+          "cast": "도아아키텍처직원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박진우",
-          "repRoleNm": "배우",
-          "cast": "택시기사"
+          "peopleNmEn": "PARK Jin-woo",
+          "cast": "택시기사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박지은",
-          "repRoleNm": "배우",
-          "cast": "넥탕매장점원"
+          "peopleNmEn": "",
+          "cast": "넥탕매장점원",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -377,7 +376,7 @@
         },
         {
           "peopleNm": "변지수",
-          "peopleNmEn": "BYUN Ji-soo",
+          "peopleNmEn": "Byeon Ji su",
           "staffRoleNm": "촬영팀"
         },
         {
@@ -1260,8 +1259,8 @@
           "peopleNmEn": "KIM Jeong-woon",
           "staffRoleNm": "온라인마케팅"
         }
-      ],
-      "audiAcc": 3319349
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

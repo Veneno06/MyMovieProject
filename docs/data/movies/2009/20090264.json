@@ -22,95 +22,94 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "최지영",
-          "repRoleNm": "감독"
+          "peopleNmEn": "CHE Ji-young"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "박지영",
-          "repRoleNm": "배우",
-          "cast": "연희"
+          "peopleNmEn": "PARK Ji-young",
+          "cast": "연희",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김영재",
-          "repRoleNm": "배우",
-          "cast": "선재"
+          "peopleNmEn": "KIM Young-jae",
+          "cast": "선재",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서봉순",
-          "repRoleNm": "배우",
-          "cast": "서 여사"
+          "peopleNmEn": "SEO Bong-soon ",
+          "cast": "서 여사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍종현",
-          "repRoleNm": "배우",
-          "cast": "준서"
+          "peopleNmEn": "HONG Jong-hyun",
+          "cast": "준서",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한예리",
-          "repRoleNm": "배우",
-          "cast": "원우"
+          "peopleNmEn": "HAN Ye-ri",
+          "cast": "원우",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이은정",
-          "repRoleNm": "배우",
-          "cast": "문화센터 수강생"
+          "peopleNmEn": "",
+          "cast": "문화센터 수강생 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김철",
-          "repRoleNm": "배우",
-          "cast": "국사선생님"
+          "peopleNmEn": "",
+          "cast": "국사선생님",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정인기",
-          "repRoleNm": "배우",
-          "cast": "정아 남편"
+          "peopleNmEn": "JUNG In-gi",
+          "cast": "정아 남편",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "송태근",
-          "repRoleNm": "배우",
-          "cast": "계단 남자"
+          "peopleNmEn": "",
+          "cast": "계단 남자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "안슬기",
-          "repRoleNm": "배우",
-          "cast": "담임선생님(우정출연)"
+          "peopleNmEn": "AHN Seul-ki",
+          "cast": "담임선생님(우정출연)",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "배상희",
-          "repRoleNm": "배우",
-          "cast": "문화센터 수강생"
+          "peopleNmEn": "BAE Sang-hee",
+          "cast": "문화센터 수강생 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한영규",
-          "repRoleNm": "배우",
-          "cast": "카페손님"
+          "peopleNmEn": "HAN Young-kyu",
+          "cast": "카페손님",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "안지혜",
-          "repRoleNm": "배우",
-          "cast": "문화센터 수강생역"
+          "peopleNmEn": "Ahn Jihye",
+          "cast": "문화센터 수강생역",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "함혜경",
-          "repRoleNm": "배우",
-          "cast": "문화센터 수강생역"
+          "peopleNmEn": "HAM Hyekyung",
+          "cast": "문화센터 수강생역",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -546,6 +545,7 @@
           "staffRoleNm": "DI팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

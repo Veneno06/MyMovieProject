@@ -22,71 +22,70 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김진성",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Jin-sung"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김혜수",
-          "repRoleNm": "배우",
-          "cast": "여자"
+          "peopleNmEn": "KIM Hye-soo",
+          "cast": "여자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김영찬",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Young-chan ",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "류승룡",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "RYU Seung-ryong",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김지영",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Ji-young",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "노민우",
-          "repRoleNm": "배우",
-          "cast": "준민"
+          "peopleNmEn": "No Min-woo",
+          "cast": "준민",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최두영",
-          "repRoleNm": "배우",
-          "cast": "가게주인"
+          "peopleNmEn": "CHOI Doo-young",
+          "cast": "가게주인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "신동호",
-          "repRoleNm": "배우",
-          "cast": "아이2"
+          "peopleNmEn": "SHIN Dong-ho",
+          "cast": "아이2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김동현",
-          "repRoleNm": "배우",
-          "cast": "30대 불량배"
+          "peopleNmEn": "KIM Dong-hyun",
+          "cast": "30대 불량배",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍기준",
-          "repRoleNm": "배우",
-          "cast": "사진사"
+          "peopleNmEn": "HONG Ki-joon",
+          "cast": "사진사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "오일용",
-          "repRoleNm": "배우",
-          "cast": "순경1"
+          "peopleNmEn": "",
+          "cast": "순경1",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -1028,8 +1027,8 @@
           "peopleNmEn": "",
           "staffRoleNm": "스틸"
         }
-      ],
-      "audiAcc": 336652
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

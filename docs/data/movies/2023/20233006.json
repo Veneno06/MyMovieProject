@@ -25,59 +25,58 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "최원섭",
-          "repRoleNm": "감독"
+          "peopleNmEn": "CHOI Won-sub"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "권상우",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KWON Sang-woo",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정준호",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "JUNG Joon-ho",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이이경",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "YI Yi-kyung",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황우슬혜",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HWANGWOO Seul-hye",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김성오",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Sung-oh",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이지원",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Ji-won",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "송윤하",
-          "repRoleNm": "배우",
-          "cast": "기모노녀"
+          "peopleNmEn": "Yoon Ha Song",
+          "cast": "기모노녀",
+          "castEn": "Kimono "
         },
         {
-          "peopleCd": "",
           "peopleNm": "오충근",
-          "repRoleNm": "배우",
-          "cast": "북한 간부2"
+          "peopleNmEn": "Oh Choong Geun",
+          "cast": "북한 간부2",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -184,6 +183,11 @@
           "peopleNm": "허웅",
           "peopleNmEn": "",
           "staffRoleNm": "프로듀서"
+        },
+        {
+          "peopleNm": "최현빈",
+          "peopleNmEn": "CHOI HYUN BIN",
+          "staffRoleNm": "제작팀"
         },
         {
           "peopleNm": "최유정",
@@ -550,8 +554,8 @@
           "peopleNmEn": "",
           "staffRoleNm": "기획진행"
         }
-      ],
-      "audiAcc": 2527206
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

@@ -22,41 +22,40 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김미영",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Miyoung"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "허지원",
-          "repRoleNm": "배우",
-          "cast": "진호"
+          "peopleNmEn": "HEO Ji-won",
+          "cast": "진호",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "전수지",
-          "repRoleNm": "배우",
-          "cast": "소라"
+          "peopleNmEn": "JEON Su-ji",
+          "cast": "소라",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임형국",
-          "repRoleNm": "배우",
-          "cast": "현석"
+          "peopleNmEn": "LIM Hyung-kook",
+          "cast": "현석",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "윤금선아",
-          "repRoleNm": "배우",
-          "cast": "미나"
+          "peopleNmEn": "YOONKEUM Sun-ah",
+          "cast": "미나",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "전광진",
-          "repRoleNm": "배우",
-          "cast": "진우"
+          "peopleNmEn": "JEON Gwang-jin",
+          "cast": "진우",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -307,6 +306,7 @@
           "staffRoleNm": "광고디자인"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

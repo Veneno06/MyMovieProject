@@ -25,112 +25,110 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "스티브 리",
-          "repRoleNm": "감독"
+          "peopleNmEn": "Steve LEE"
         },
         {
-          "peopleCd": "",
           "peopleNm": "빅 포니",
-          "repRoleNm": "감독"
+          "peopleNmEn": "Big Phony"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "빅 포니",
-          "repRoleNm": "배우",
-          "cast": "바비"
+          "peopleNmEn": "Big Phony",
+          "cast": "바비",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임화영",
-          "repRoleNm": "배우",
-          "cast": "이나"
+          "peopleNmEn": "IM Hwa-yeong",
+          "cast": "이나",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황현성",
-          "repRoleNm": "배우",
-          "cast": "달리"
+          "peopleNmEn": "",
+          "cast": "달리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최원",
-          "repRoleNm": "배우",
-          "cast": "택시기사"
+          "peopleNmEn": "Choi One",
+          "cast": "택시기사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조현보",
-          "repRoleNm": "배우",
-          "cast": "조보"
+          "peopleNmEn": "",
+          "cast": "조보",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이성우",
-          "repRoleNm": "배우",
-          "cast": "불대갈"
+          "peopleNmEn": "",
+          "cast": "불대갈",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정우용",
-          "repRoleNm": "배우",
-          "cast": "뽀글"
+          "peopleNmEn": "",
+          "cast": "뽀글",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "육중완",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김한나",
-          "repRoleNm": "배우",
-          "cast": "부동산 직원"
+          "peopleNmEn": "KIM Han-na",
+          "cast": "부동산 직원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "스티브 리",
-          "repRoleNm": "배우",
-          "cast": "찜질방 남자 1"
+          "peopleNmEn": "Steve LEE",
+          "cast": "찜질방 남자 1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "강길헌",
-          "repRoleNm": "배우",
-          "cast": "찜질방 남자 2"
+          "peopleNmEn": "",
+          "cast": "찜질방 남자 2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "강성하",
-          "repRoleNm": "배우",
-          "cast": "클럽 빵 매니저"
+          "peopleNmEn": "",
+          "cast": "클럽 빵 매니저",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이재은",
-          "repRoleNm": "배우",
-          "cast": "욕쟁이 이모"
+          "peopleNmEn": "",
+          "cast": "욕쟁이 이모",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김희윤",
-          "repRoleNm": "배우",
-          "cast": "이나 어머니"
+          "peopleNmEn": "",
+          "cast": "이나 어머니",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임용순",
-          "repRoleNm": "배우",
-          "cast": "이나 아버지"
+          "peopleNmEn": "LIM Yong-soon",
+          "cast": "이나 아버지",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조윤희",
-          "repRoleNm": "배우",
-          "cast": "미세스 고메즈(옆집 이웃)"
+          "peopleNmEn": "Cho Yunhee",
+          "cast": "미세스 고메즈(옆집 이웃)",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -472,6 +470,7 @@
           "staffRoleNm": "DI팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

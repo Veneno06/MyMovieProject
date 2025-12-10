@@ -22,125 +22,124 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김휘",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Hwi"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김윤진",
-          "repRoleNm": "배우",
-          "cast": "송경희"
+          "peopleNmEn": "KIM Yun-jin",
+          "cast": "송경희",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "마동석",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Don LEE",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "천호진",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "CHUN Ho-jin",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김성균",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Sung-kyun",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김새론",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Sae-ron",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임하룡",
-          "repRoleNm": "배우",
-          "cast": "김상영"
+          "peopleNmEn": "IM Ha-ryong",
+          "cast": "김상영",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장영남",
-          "repRoleNm": "배우",
-          "cast": "하태선"
+          "peopleNmEn": "JANG Yeong-nam",
+          "cast": "하태선",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "도지한",
-          "repRoleNm": "배우",
-          "cast": "안상윤"
+          "peopleNmEn": "DO Ji-han",
+          "cast": "안상윤",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "차현우",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "CHA Hyun-woo",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한수현",
-          "repRoleNm": "배우",
-          "cast": "강형사"
+          "peopleNmEn": "HAN Su-hyun",
+          "cast": "강형사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김미경",
-          "repRoleNm": "배우",
-          "cast": "상영부인"
+          "peopleNmEn": "KIM Mi-kyung",
+          "cast": "상영부인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김기천",
-          "repRoleNm": "배우",
-          "cast": "황재연"
+          "peopleNmEn": "KIM Ki-chun",
+          "cast": "황재연",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이상희",
-          "repRoleNm": "배우",
-          "cast": "조반장"
+          "peopleNmEn": "LEE Jang-yoo",
+          "cast": "조반장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정인기",
-          "repRoleNm": "배우",
-          "cast": "김홍중"
+          "peopleNmEn": "JUNG In-gi",
+          "cast": "김홍중",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김동현",
-          "repRoleNm": "배우",
-          "cast": "현장검증 카메라기자"
+          "peopleNmEn": "Kim Dong-hyun",
+          "cast": "현장검증 카메라기자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한재훈",
-          "repRoleNm": "배우",
-          "cast": "승용차운전남"
+          "peopleNmEn": "HAN Jae-hoon",
+          "cast": "승용차운전남",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박인규",
-          "repRoleNm": "배우",
-          "cast": "이삿짐 남"
+          "peopleNmEn": "",
+          "cast": "이삿짐 남",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유재현",
-          "repRoleNm": "배우",
-          "cast": "윗집남"
+          "peopleNmEn": "",
+          "cast": "윗집남",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이언수",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -871,7 +870,7 @@
         },
         {
           "peopleNm": "황정현",
-          "peopleNmEn": "HWANG Jung-hyun",
+          "peopleNmEn": "HWANG JUNG HYUN",
           "staffRoleNm": "예고편"
         },
         {
@@ -1229,8 +1228,8 @@
           "peopleNmEn": "",
           "staffRoleNm": "예고편"
         }
-      ],
-      "audiAcc": 2416123
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

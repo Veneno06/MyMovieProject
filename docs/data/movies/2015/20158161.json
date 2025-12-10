@@ -22,41 +22,40 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김수빈",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Soo-vin"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "서지은",
-          "repRoleNm": "배우",
-          "cast": "출연"
+          "peopleNmEn": "",
+          "cast": "출연",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정혜림",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "안수빈",
-          "repRoleNm": "배우",
-          "cast": "출연"
+          "peopleNmEn": "",
+          "cast": "출연",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하강웅",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김수빈",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Soo-vin",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -173,6 +172,7 @@
           "staffRoleNm": "애니메이션팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

@@ -22,58 +22,56 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "고달우",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KO Dal-u"
         },
         {
-          "peopleCd": "",
           "peopleNm": "김모모",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "황수정",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박수지",
-          "repRoleNm": "배우",
-          "cast": "본인"
+          "peopleNmEn": "",
+          "cast": "본인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "안복진",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "AN Bok-jin",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김광회",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "손현",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박지영",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유혜선",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -239,6 +237,7 @@
           "staffRoleNm": "포스터사진"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

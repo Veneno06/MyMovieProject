@@ -25,131 +25,124 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "박용제",
-          "repRoleNm": "감독"
+          "peopleNmEn": "PARK Yong-jae"
         },
         {
-          "peopleCd": "",
           "peopleNm": "정민영",
-          "repRoleNm": "감독"
+          "peopleNmEn": "JUNG Min-young"
         },
         {
-          "peopleCd": "",
           "peopleNm": "권미정",
-          "repRoleNm": "감독"
+          "peopleNmEn": "GWON Mi-jeong"
         },
         {
-          "peopleCd": "",
           "peopleNm": "이홍민",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Hong-min"
         },
         {
-          "peopleCd": "",
           "peopleNm": "이홍수",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Hong-soo"
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍덕표",
-          "repRoleNm": "감독"
+          "peopleNmEn": "HONG Deok-pyo"
         },
         {
-          "peopleCd": "",
           "peopleNm": "안동희",
-          "repRoleNm": "감독"
+          "peopleNmEn": "ANN Dong-hee"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "홍윤희",
-          "repRoleNm": "배우",
-          "cast": "seg1요정목소리"
+          "peopleNmEn": "Hong Yun-hui ",
+          "cast": "seg1요정목소리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최도영",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "CHOE Do-yeong",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정형근",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최준혁",
-          "repRoleNm": "배우",
-          "cast": "seg1공익장사꾼목소리역"
+          "peopleNmEn": "Choe Jun-hyeok",
+          "cast": "seg1공익장사꾼목소리역 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박명신",
-          "repRoleNm": "배우",
-          "cast": "seg.3 - 시어머니 목소리"
+          "peopleNmEn": "PARK Myungshin",
+          "cast": "seg.3 - 시어머니 목소리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최진희",
-          "repRoleNm": "배우",
-          "cast": "seg6그외인물들목소리"
+          "peopleNmEn": "Choe Jin-hui",
+          "cast": "seg6그외인물들목소리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조하나",
-          "repRoleNm": "배우",
-          "cast": "G양"
+          "peopleNmEn": "",
+          "cast": "G양 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "지찬",
-          "repRoleNm": "배우",
-          "cast": "seg.6 - K군 목소리"
+          "peopleNmEn": "JI Chan",
+          "cast": "seg.6 - K군 목소리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정해연",
-          "repRoleNm": "배우",
-          "cast": "생선가게 아저씨"
+          "peopleNmEn": "JEONG Hea-yon",
+          "cast": "생선가게 아저씨",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김미경",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Mi-kyeong",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김율희",
-          "repRoleNm": "배우",
-          "cast": "그 외 인물들"
+          "peopleNmEn": "",
+          "cast": "그 외 인물들 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조은진",
-          "repRoleNm": "배우",
-          "cast": "동네아이1"
+          "peopleNmEn": "",
+          "cast": "동네아이1 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "안민희",
-          "repRoleNm": "배우",
-          "cast": "그 외 인물들"
+          "peopleNmEn": "Min Hee An",
+          "cast": "그 외 인물들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박해성",
-          "repRoleNm": "배우",
-          "cast": "회사동료(남)/구급대원2"
+          "peopleNmEn": "",
+          "cast": "회사동료(남)/구급대원2 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이홍수",
-          "repRoleNm": "배우",
-          "cast": "시장1/구급대원1"
+          "peopleNmEn": "LEE Hong-soo",
+          "cast": "시장1/구급대원1",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -853,6 +846,7 @@
           "staffRoleNm": "배급진행"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

@@ -22,41 +22,40 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이도시",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이민욱",
-          "repRoleNm": "배우",
-          "cast": "성현"
+          "peopleNmEn": "",
+          "cast": "성현",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김동규",
-          "repRoleNm": "배우",
-          "cast": "경한"
+          "peopleNmEn": "",
+          "cast": "경한",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김현진",
-          "repRoleNm": "배우",
-          "cast": "불륜남"
+          "peopleNmEn": "",
+          "cast": "불륜남",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이수연",
-          "repRoleNm": "배우",
-          "cast": "핸드폰녀"
+          "peopleNmEn": "",
+          "cast": "핸드폰녀",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한상호",
-          "repRoleNm": "배우",
-          "cast": "택시기사"
+          "peopleNmEn": "",
+          "cast": "택시기사",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -197,6 +196,7 @@
           "staffRoleNm": "기획"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

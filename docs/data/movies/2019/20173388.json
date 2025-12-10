@@ -28,71 +28,70 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이수성",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Soo-sung"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이선구",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한주영",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HAN Joo-young",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한주영",
-          "repRoleNm": "배우",
-          "cast": "정연"
+          "peopleNmEn": "HAN Joo-young",
+          "cast": "정연",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김도연",
-          "repRoleNm": "배우",
-          "cast": "지수"
+          "peopleNmEn": "",
+          "cast": "지수",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "안민영",
-          "repRoleNm": "배우",
-          "cast": "선희"
+          "peopleNmEn": "AN Min-young",
+          "cast": "선희",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김민혁",
-          "repRoleNm": "배우",
-          "cast": "진영"
+          "peopleNmEn": "",
+          "cast": "진영",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이승룡",
-          "repRoleNm": "배우",
-          "cast": "태경 역"
+          "peopleNmEn": "",
+          "cast": "태경 역",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김도연",
-          "repRoleNm": "배우",
-          "cast": "지수"
+          "peopleNmEn": "KIM Do-yeon",
+          "cast": "지수",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "고원",
-          "repRoleNm": "배우",
-          "cast": "은지"
+          "peopleNmEn": "KO One",
+          "cast": "은지",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍가",
-          "repRoleNm": "배우",
-          "cast": "직원2"
+          "peopleNmEn": "",
+          "cast": "직원2",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -268,6 +267,7 @@
           "staffRoleNm": "매니지먼트"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

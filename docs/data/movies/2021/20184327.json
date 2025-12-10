@@ -1,49 +1,4 @@
 {
-<<<<<<< HEAD
-  "movieCd": "20184327",
-  "movieNm": "태양을 덮다",
-  "openDt": "20210311",
-  "showTm": "90",
-  "audits": [
-    {
-      "auditNo": "2019-MF01565",
-      "watchGradeNm": "전체관람가"
-    }
-  ],
-  "genres": [
-    {
-      "genreNm": "드라마"
-    }
-  ],
-  "directors": [
-    {
-      "peopleNm": "사토 후토시",
-      "peopleNmEn": "Futoshi Sato"
-    }
-  ],
-  "actors": [
-    {
-      "peopleNm": "키타무라 유키야",
-      "peopleNmEn": "Yukiya Kitamura",
-      "cast": "",
-      "castEn": ""
-    },
-    {
-      "peopleNm": "하카마다 요시히코",
-      "peopleNmEn": "Yoshihiko Hakamada",
-      "cast": "",
-      "castEn": ""
-    }
-  ],
-  "companys": [
-    {
-      "companyCd": "20188741",
-      "companyNm": "(주)트리플픽쳐스",
-      "companyNmEn": "Triple Pictures Inc.",
-      "companyPartNm": "배급사"
-    }
-  ]
-=======
   "movieInfoResult": {
     "movieInfo": {
       "movieCd": "20184327",
@@ -106,7 +61,7 @@
         }
       ],
       "staffs": []
-    }
+    },
+    "source": "영화진흥위원회"
   }
->>>>>>> 65004f58d8aff8a75bda4eb18b6fd36a20edc205
 }

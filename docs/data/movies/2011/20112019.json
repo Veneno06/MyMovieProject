@@ -22,59 +22,58 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "최용석",
-          "repRoleNm": "감독"
+          "peopleNmEn": "CHOI Yong-suk"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "한수연",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HAN Soo-yeon",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "여현수",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "YEO Hyeon-soo",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김중기",
-          "repRoleNm": "배우",
-          "cast": "성진"
+          "peopleNmEn": "KIM Jung-ki",
+          "cast": "성진",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장기훈",
-          "repRoleNm": "배우",
-          "cast": "정환"
+          "peopleNmEn": "",
+          "cast": "정환",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최진선",
-          "repRoleNm": "배우",
-          "cast": "은임"
+          "peopleNmEn": "",
+          "cast": "은임",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이영미",
-          "repRoleNm": "배우",
-          "cast": "체육관 아줌마들"
+          "peopleNmEn": "",
+          "cast": "체육관 아줌마들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이영윤",
-          "repRoleNm": "배우",
-          "cast": "체육관 아줌마들"
+          "peopleNmEn": "",
+          "cast": "체육관 아줌마들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "양명숙",
-          "repRoleNm": "배우",
-          "cast": "체육관 아줌마들"
+          "peopleNmEn": "",
+          "cast": "체육관 아줌마들",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -330,7 +329,7 @@
         },
         {
           "peopleNm": "노병욱",
-          "peopleNmEn": "NOH Byung-wook",
+          "peopleNmEn": "NOH Byoung-wook",
           "staffRoleNm": "DI팀"
         },
         {
@@ -379,6 +378,7 @@
           "staffRoleNm": "기획"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

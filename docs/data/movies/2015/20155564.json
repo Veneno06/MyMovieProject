@@ -25,23 +25,22 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "고광현",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "최선미",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황호상",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HWANG Ho-sang",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -71,6 +70,7 @@
         }
       ],
       "staffs": []
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

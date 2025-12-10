@@ -22,29 +22,28 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "박성훈",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "함형래",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HAM Hyoung-rae",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박종환",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "PARK Jong-hwan",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정준영",
-          "repRoleNm": "배우",
-          "cast": "정현"
+          "peopleNmEn": "JUNG Jun-young",
+          "cast": "정현",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -68,6 +67,7 @@
         }
       ],
       "staffs": []
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

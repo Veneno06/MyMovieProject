@@ -28,86 +28,82 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "오영두",
-          "repRoleNm": "감독"
+          "peopleNmEn": "OH Young-doo"
         },
         {
-          "peopleCd": "",
           "peopleNm": "류훈",
-          "repRoleNm": "감독"
+          "peopleNmEn": "RYU Hoon"
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍서백",
-          "repRoleNm": "감독"
+          "peopleNmEn": "HONG Seo-back"
         },
         {
-          "peopleCd": "",
           "peopleNm": "장윤정",
-          "repRoleNm": "감독"
+          "peopleNmEn": "JANG Yoon-jung"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "배용근",
-          "repRoleNm": "배우",
-          "cast": "seg.2 - 남자／4 - 좀비 2／5 - 배용근"
+          "peopleNmEn": "BAE Yong-geun",
+          "cast": "seg.2 - 남자／4 - 좀비 2／5 - 배용근",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하은정",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HA Eun-jung ",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서윤아",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "SUH Yoon-a",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이한솔",
-          "repRoleNm": "배우",
-          "cast": "seg.4 - 클리너"
+          "peopleNmEn": "LEE Han-sol",
+          "cast": "seg.4 - 클리너",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이예선",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하성광",
-          "repRoleNm": "배우",
-          "cast": "도둑"
+          "peopleNmEn": "HA Sung-kwang",
+          "cast": "도둑",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박윤호",
-          "repRoleNm": "배우",
-          "cast": "seg.4 - 수사관/ 좀비1"
+          "peopleNmEn": "PARK Yoon-ho",
+          "cast": "seg.4 - 수사관/ 좀비1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박영서",
-          "repRoleNm": "배우",
-          "cast": "seg.2 - 친구목소리／4 - 마스크"
+          "peopleNmEn": "PARK Young-seo",
+          "cast": "seg.2 - 친구목소리／4 - 마스크",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임정선",
-          "repRoleNm": "배우",
-          "cast": "딸"
+          "peopleNmEn": "IM Jung-sun",
+          "cast": "딸",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장윤정",
-          "repRoleNm": "배우",
-          "cast": "여자"
+          "peopleNmEn": "JANG Yoon-jung",
+          "cast": "여자",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -258,6 +254,7 @@
           "staffRoleNm": "DI팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

@@ -22,41 +22,40 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "임흥순",
-          "repRoleNm": "감독"
+          "peopleNmEn": "IM Heungsoon"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "강상희",
-          "repRoleNm": "배우",
-          "cast": "본인"
+          "peopleNmEn": "",
+          "cast": "본인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한신화",
-          "repRoleNm": "배우",
-          "cast": "본인"
+          "peopleNmEn": "",
+          "cast": "본인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "강상문",
-          "repRoleNm": "배우",
-          "cast": "본인"
+          "peopleNmEn": "",
+          "cast": "본인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "오국만",
-          "repRoleNm": "배우",
-          "cast": "본인"
+          "peopleNmEn": "",
+          "cast": "본인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김민경",
-          "repRoleNm": "배우",
-          "cast": "나온 사람들"
+          "peopleNmEn": "KIM Min-kyung",
+          "cast": "나온 사람들",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -243,6 +242,7 @@
           "staffRoleNm": "DI팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

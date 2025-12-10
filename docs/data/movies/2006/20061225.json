@@ -22,59 +22,58 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "노경태",
-          "repRoleNm": "감독"
+          "peopleNmEn": "ROH Gyeong-tae"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "홍석연",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HONG Seok-youn",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "오흥기",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "OH Heoung-ki",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황복순",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HWANG Bok-sun",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김도연",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Do-yeon",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김정호",
-          "repRoleNm": "배우",
-          "cast": "조연및단역"
+          "peopleNmEn": "",
+          "cast": "조연및단역",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "백현주",
-          "repRoleNm": "배우",
-          "cast": "어머니"
+          "peopleNmEn": "BAEK Hyun-joo",
+          "cast": "어머니",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황인무",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유지혜",
-          "repRoleNm": "배우",
-          "cast": "조연 및 단역"
+          "peopleNmEn": "",
+          "cast": "조연 및 단역 ",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -352,6 +351,7 @@
           "staffRoleNm": "DI팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

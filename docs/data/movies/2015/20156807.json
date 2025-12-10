@@ -22,65 +22,64 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "박영균",
-          "repRoleNm": "감독"
+          "peopleNmEn": "PARK Young-kyun"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이선",
-          "repRoleNm": "배우",
-          "cast": "뽀로로"
+          "peopleNmEn": "LEE Sun",
+          "cast": "뽀로로",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이미자",
-          "repRoleNm": "배우",
-          "cast": "크롱"
+          "peopleNmEn": "LEE Mi-ja",
+          "cast": "크롱",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "함수정",
-          "repRoleNm": "배우",
-          "cast": "에디"
+          "peopleNmEn": "HAM Su-jung",
+          "cast": "에디",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍소영",
-          "repRoleNm": "배우",
-          "cast": "루피"
+          "peopleNmEn": "HONG So-yeong",
+          "cast": "루피",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정미숙",
-          "repRoleNm": "배우",
-          "cast": "패티"
+          "peopleNmEn": "JUNG Mi-suk",
+          "cast": "패티",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김서영",
-          "repRoleNm": "배우",
-          "cast": "해리"
+          "peopleNmEn": "KIM Seo-young",
+          "cast": "해리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김환진",
-          "repRoleNm": "배우",
-          "cast": "포비"
+          "peopleNmEn": "KIM Hwan-chin",
+          "cast": "포비",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "엄상현",
-          "repRoleNm": "배우",
-          "cast": "치치"
+          "peopleNmEn": "UM Sang-hyun",
+          "cast": "치치",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍범기",
-          "repRoleNm": "배우",
-          "cast": "거미미왕"
+          "peopleNmEn": "HONG Beom-gi",
+          "cast": "거미미왕",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -1118,8 +1117,8 @@
           "peopleNmEn": "",
           "staffRoleNm": "기타"
         }
-      ],
-      "audiAcc": 357364
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

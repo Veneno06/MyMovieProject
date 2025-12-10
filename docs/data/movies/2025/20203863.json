@@ -22,89 +22,88 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김형주",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Hyung-ju"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이병헌",
-          "repRoleNm": "배우",
-          "cast": "조훈현"
+          "peopleNmEn": "LEE Byung-hun",
+          "cast": "조훈현",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유아인",
-          "repRoleNm": "배우",
-          "cast": "이창호"
+          "peopleNmEn": "YOO Ahin",
+          "cast": "이창호",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "고창석",
-          "repRoleNm": "배우",
-          "cast": "천승필"
+          "peopleNmEn": "GO Chang-seok",
+          "cast": "천승필",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "현봉식",
-          "repRoleNm": "배우",
-          "cast": "이용각"
+          "peopleNmEn": "HYUN Bong-sik",
+          "cast": "이용각",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "문정희",
-          "repRoleNm": "배우",
-          "cast": "미화"
+          "peopleNmEn": "MOON Jung-hee",
+          "cast": "미화",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김강훈",
-          "repRoleNm": "배우",
-          "cast": "어린 창호"
+          "peopleNmEn": "KIM Kang-hoon",
+          "cast": "어린 창호",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "남문철",
-          "repRoleNm": "배우",
-          "cast": "백사범"
+          "peopleNmEn": "NAM Mun-cheol",
+          "cast": "백사범",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "주진모",
-          "repRoleNm": "배우",
-          "cast": "조규상"
+          "peopleNmEn": "JOO Jin-mo",
+          "cast": "조규상",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "전무송",
-          "repRoleNm": "배우",
-          "cast": "이화춘"
+          "peopleNmEn": "CHON Moo-song",
+          "cast": "이화춘",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정석용",
-          "repRoleNm": "배우",
-          "cast": "이재룡"
+          "peopleNmEn": "JUNG Suk-yong",
+          "cast": "이재룡",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조우진",
-          "repRoleNm": "배우",
-          "cast": "남기철"
+          "peopleNmEn": "JO Woo-jin",
+          "cast": "남기철",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "손종학",
-          "repRoleNm": "배우",
-          "cast": "윤회장"
+          "peopleNmEn": "SON Jong-hak",
+          "cast": "윤회장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김이산",
-          "repRoleNm": "배우",
-          "cast": "응창기배 기자"
+          "peopleNmEn": "kim i san",
+          "cast": "응창기배 기자",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -257,6 +256,11 @@
           "staffRoleNm": "제작팀"
         },
         {
+          "peopleNm": "김상혁",
+          "peopleNmEn": "",
+          "staffRoleNm": "제작팀"
+        },
+        {
           "peopleNm": "김태원",
           "peopleNmEn": "KIM Tae-won",
           "staffRoleNm": "프로듀서"
@@ -295,11 +299,6 @@
           "peopleNm": "김선호",
           "peopleNmEn": "",
           "staffRoleNm": "기타"
-        },
-        {
-          "peopleNm": "박수야",
-          "peopleNmEn": "",
-          "staffRoleNm": "인쇄"
         },
         {
           "peopleNm": "서기웅",
@@ -437,12 +436,16 @@
           "staffRoleNm": "인쇄"
         },
         {
+          "peopleNm": "박수야",
+          "peopleNmEn": "",
+          "staffRoleNm": "인쇄"
+        },
+        {
           "peopleNm": "안대호",
           "peopleNmEn": "Dae-ho Ahn",
           "staffRoleNm": "광고디자인"
         }
-      ],
-      "audiAcc": 2133815
+      ]
     },
     "source": "영화진흥위원회"
   }

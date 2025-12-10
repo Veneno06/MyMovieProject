@@ -25,23 +25,22 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "전후석",
-          "repRoleNm": "감독"
+          "peopleNmEn": "Joseph JUHN"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "헤로니모",
-          "repRoleNm": "배우",
-          "cast": "헤로니모"
+          "peopleNmEn": "Jeronimo",
+          "cast": "헤로니모",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "전후석",
-          "repRoleNm": "배우",
-          "cast": "전후석"
+          "peopleNmEn": "Joseph JUHN",
+          "cast": "전후석",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -277,6 +276,7 @@
           "staffRoleNm": "홍보/마케팅 진행"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

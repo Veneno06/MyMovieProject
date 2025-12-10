@@ -25,59 +25,58 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "엄하늘",
-          "repRoleNm": "감독"
+          "peopleNmEn": "UHM Ha-neul"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "심현서",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Sim Hyun-seo",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "현우석",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "공민정",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "GONG Min-jeong",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이동휘",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Dong-hwi",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "백이온",
-          "repRoleNm": "배우",
-          "cast": "박솔"
+          "peopleNmEn": "Baek Lee On",
+          "cast": "박솔",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조선홍",
-          "repRoleNm": "배우",
-          "cast": "도겸"
+          "peopleNmEn": "",
+          "cast": "도겸",
+          "castEn": "Do Gyeom"
         },
         {
-          "peopleCd": "",
           "peopleNm": "이민주",
-          "repRoleNm": "배우",
-          "cast": "미라"
+          "peopleNmEn": "LEE MIN JU",
+          "cast": "미라",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김성경",
-          "repRoleNm": "배우",
-          "cast": "송지서"
+          "peopleNmEn": "KIM soung kyoung",
+          "cast": "송지서",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -138,6 +137,7 @@
           "staffRoleNm": "편집"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

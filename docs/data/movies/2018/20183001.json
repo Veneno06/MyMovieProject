@@ -25,124 +25,122 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "차인표",
-          "repRoleNm": "감독"
+          "peopleNmEn": "CHA In-pyo"
         },
         {
-          "peopleCd": "",
           "peopleNm": "전혜림",
-          "repRoleNm": "감독"
+          "peopleNmEn": "JEON Hae-lim"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "조수원",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "채경선",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "CHAE Gyeong-sun",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조준우",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최기섭",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하박",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이경섭",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최진영",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "타일러 대쉬 화이트",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Tyler Dash White",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조은주",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "차인표",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "CHA In-pyo",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조은별",
-          "repRoleNm": "배우",
-          "cast": "본인역"
+          "peopleNmEn": "",
+          "cast": "본인역",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한소연",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "백정임",
-          "repRoleNm": "배우",
-          "cast": "본인 역"
+          "peopleNmEn": "",
+          "cast": "본인 역",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김영",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Young",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김명순",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김희희",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정점분",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍연진",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -169,12 +167,6 @@
           "companyNm": "(주)리틀빅픽쳐스",
           "companyNmEn": "Little Big Pictures",
           "companyPartNm": "제공"
-        },
-        {
-          "companyCd": "20139617",
-          "companyNm": "(주)리틀빅픽쳐스",
-          "companyNmEn": "Little Big Pictures",
-          "companyPartNm": "해외세일즈사"
         },
         {
           "companyCd": "20253341",
@@ -431,6 +423,7 @@
           "staffRoleNm": "스틸"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

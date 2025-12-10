@@ -28,35 +28,34 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김영남",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Young-nam"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "하정우",
-          "repRoleNm": "배우",
-          "cast": "형구"
+          "peopleNmEn": "HA Jung-woo",
+          "cast": "형구",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "츠마부키 사토시",
-          "repRoleNm": "배우",
-          "cast": "토오루"
+          "peopleNmEn": "Satoshi Tsumabuki",
+          "cast": "토오루",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이대연",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Dae-yon",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정인기",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "JUNG In-gi",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -639,6 +638,7 @@
           "staffRoleNm": "VFX 슈퍼바이저"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

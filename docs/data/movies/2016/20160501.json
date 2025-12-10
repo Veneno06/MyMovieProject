@@ -22,47 +22,46 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김의곤",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM EUIGON"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이광현",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박가영",
-          "repRoleNm": "배우",
-          "cast": "정희"
+          "peopleNmEn": "Park Ga-young",
+          "cast": "정희",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김재우",
-          "repRoleNm": "배우",
-          "cast": "젊은남"
+          "peopleNmEn": "",
+          "cast": "젊은남",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "송현석",
-          "repRoleNm": "배우",
-          "cast": "현호 면접관B"
+          "peopleNmEn": "",
+          "cast": "현호 면접관B",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이윤화",
-          "repRoleNm": "배우",
-          "cast": "자전거 거래남"
+          "peopleNmEn": "",
+          "cast": "자전거 거래남",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황다훈",
-          "repRoleNm": "배우",
-          "cast": "현호 면접관A"
+          "peopleNmEn": "",
+          "cast": "현호 면접관A",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -184,6 +183,7 @@
           "staffRoleNm": "기타"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

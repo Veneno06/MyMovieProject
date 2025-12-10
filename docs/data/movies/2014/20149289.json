@@ -28,29 +28,28 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "전태윤",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "허동원",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HEO Dong-won",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이자은",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이정훈",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Lee Jung-hoon",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -121,6 +120,7 @@
           "staffRoleNm": "캐스팅"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

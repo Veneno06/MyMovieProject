@@ -28,83 +28,82 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김정훈",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Joung-hoon"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "강하늘",
-          "repRoleNm": "배우",
-          "cast": "무치"
+          "peopleNmEn": "KANG Ha-neul",
+          "cast": "무치",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한효주",
-          "repRoleNm": "배우",
-          "cast": "해랑"
+          "peopleNmEn": "HAN Hyo-joo",
+          "cast": "해랑",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이광수",
-          "repRoleNm": "배우",
-          "cast": "막이"
+          "peopleNmEn": "LEE Kwang-soo",
+          "cast": "막이",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "권상우",
-          "repRoleNm": "배우",
-          "cast": "부흥수"
+          "peopleNmEn": "KWON Sang-woo",
+          "cast": "부흥수",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "채수빈",
-          "repRoleNm": "배우",
-          "cast": "해금"
+          "peopleNmEn": "CHAE Soo-bin",
+          "cast": "해금",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "오세훈",
-          "repRoleNm": "배우",
-          "cast": "한궁"
+          "peopleNmEn": "",
+          "cast": "한궁",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김성오",
-          "repRoleNm": "배우",
-          "cast": "강섭"
+          "peopleNmEn": "KIM Sung-oh",
+          "cast": "강섭",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박지환",
-          "repRoleNm": "배우",
-          "cast": "아귀"
+          "peopleNmEn": "PARK Ji-hwan",
+          "cast": "아귀",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김은준",
-          "repRoleNm": "배우",
-          "cast": "왜구 부두목"
+          "peopleNmEn": "Kim EunJune",
+          "cast": "왜구 부두목",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조정우",
-          "repRoleNm": "배우",
-          "cast": "병사3"
+          "peopleNmEn": "Cho Jeong-Woo",
+          "cast": "병사3",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "윤상돈",
-          "repRoleNm": "배우",
-          "cast": "전복"
+          "peopleNmEn": "yun sang don",
+          "cast": "전복",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임세찬",
-          "repRoleNm": "배우",
-          "cast": "사병"
+          "peopleNmEn": "",
+          "cast": "사병",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -580,6 +579,11 @@
           "staffRoleNm": "소품"
         },
         {
+          "peopleNm": "장로운",
+          "peopleNmEn": "",
+          "staffRoleNm": "소품팀"
+        },
+        {
           "peopleNm": "김준호",
           "peopleNmEn": "",
           "staffRoleNm": "소품팀"
@@ -601,11 +605,6 @@
         },
         {
           "peopleNm": "정동수",
-          "peopleNmEn": "",
-          "staffRoleNm": "소품팀"
-        },
-        {
-          "peopleNm": "장로운",
           "peopleNmEn": "",
           "staffRoleNm": "소품팀"
         },
@@ -3079,8 +3078,8 @@
           "peopleNmEn": "",
           "staffRoleNm": "기타"
         }
-      ],
-      "audiAcc": 1314815
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

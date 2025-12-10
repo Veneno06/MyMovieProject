@@ -22,65 +22,64 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이란희",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Ran-hee"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이봉하",
-          "repRoleNm": "배우",
-          "cast": "재복"
+          "peopleNmEn": "",
+          "cast": "재복",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김아석",
-          "repRoleNm": "배우",
-          "cast": "준영"
+          "peopleNmEn": "",
+          "cast": "준영",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "신운섭",
-          "repRoleNm": "배우",
-          "cast": "우진"
+          "peopleNmEn": "SIN Un-seop",
+          "cast": "우진",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김정연",
-          "repRoleNm": "배우",
-          "cast": "현희"
+          "peopleNmEn": "",
+          "cast": "현희",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서광택",
-          "repRoleNm": "배우",
-          "cast": "영석"
+          "peopleNmEn": "",
+          "cast": "영석",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황정용",
-          "repRoleNm": "배우",
-          "cast": "만용"
+          "peopleNmEn": "",
+          "cast": "만용",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이승원",
-          "repRoleNm": "배우",
-          "cast": "상필"
+          "peopleNmEn": "",
+          "cast": "상필",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박재형",
-          "repRoleNm": "배우",
-          "cast": "민제"
+          "peopleNmEn": "",
+          "cast": "민제",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "복운석",
-          "repRoleNm": "배우",
-          "cast": "인력소개소 직원"
+          "peopleNmEn": "BOK Woon-suk",
+          "cast": "인력소개소 직원",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -122,7 +121,7 @@
       "staffs": [
         {
           "peopleNm": "안용해",
-          "peopleNmEn": "",
+          "peopleNmEn": "AHN Yong-hae",
           "staffRoleNm": "조감독"
         },
         {
@@ -401,6 +400,7 @@
           "staffRoleNm": "DI팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

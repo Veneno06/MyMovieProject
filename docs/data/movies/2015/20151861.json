@@ -22,35 +22,34 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "장성수",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "최리호",
-          "repRoleNm": "배우",
-          "cast": "M"
+          "peopleNmEn": "",
+          "cast": "M",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한지은",
-          "repRoleNm": "배우",
-          "cast": "진희"
+          "peopleNmEn": "",
+          "cast": "진희 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김영근",
-          "repRoleNm": "배우",
-          "cast": "영수"
+          "peopleNmEn": "",
+          "cast": "영수",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서갑숙",
-          "repRoleNm": "배우",
-          "cast": "나레이션"
+          "peopleNmEn": "SEO Gap-suk",
+          "cast": "나레이션",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -446,6 +445,7 @@
           "staffRoleNm": "시각효과"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

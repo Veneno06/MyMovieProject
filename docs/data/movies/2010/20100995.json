@@ -22,17 +22,16 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "정성복",
-          "repRoleNm": "감독"
+          "peopleNmEn": "Jung ‘Myron’ Sung-bok"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "휘성",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Whee-sung",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -92,6 +91,7 @@
           "staffRoleNm": "시나리오(각본)"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

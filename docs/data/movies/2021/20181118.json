@@ -1,106 +1,4 @@
 {
-<<<<<<< HEAD
-  "movieCd": "20181118",
-  "movieNm": "무녀도",
-  "openDt": "20211124",
-  "showTm": "85",
-  "audits": [
-    {
-      "auditNo": "2021-MF02633 ",
-      "watchGradeNm": "12세이상관람가"
-    }
-  ],
-  "genres": [
-    {
-      "genreNm": "뮤지컬"
-    },
-    {
-      "genreNm": "애니메이션"
-    }
-  ],
-  "directors": [
-    {
-      "peopleNm": "안재훈",
-      "peopleNmEn": "AHN Jae-huun"
-    }
-  ],
-  "actors": [
-    {
-      "peopleNm": "소냐",
-      "peopleNmEn": "",
-      "cast": "모화",
-      "castEn": ""
-    },
-    {
-      "peopleNm": "김다현",
-      "peopleNmEn": "KIM Da-Hyun",
-      "cast": "욱이",
-      "castEn": ""
-    },
-    {
-      "peopleNm": "장원영",
-      "peopleNmEn": "JANG Won-young",
-      "cast": "화자",
-      "castEn": ""
-    },
-    {
-      "peopleNm": "안정아",
-      "peopleNmEn": "",
-      "cast": "낭이",
-      "castEn": ""
-    },
-    {
-      "peopleNm": "권오중",
-      "peopleNmEn": "KWON Oh-jung",
-      "cast": "양조사/박수무당",
-      "castEn": ""
-    },
-    {
-      "peopleNm": "달시 파켓",
-      "peopleNmEn": "Darcy Paquet",
-      "cast": "현목사",
-      "castEn": ""
-    },
-    {
-      "peopleNm": "공상아",
-      "peopleNmEn": "GONG Sang-ah",
-      "cast": "양조사 부인",
-      "castEn": ""
-    },
-    {
-      "peopleNm": "전혜영",
-      "peopleNmEn": "",
-      "cast": "새끼무당",
-      "castEn": ""
-    },
-    {
-      "peopleNm": "조영철",
-      "peopleNmEn": "",
-      "cast": "굿패, 화자네 손님들",
-      "castEn": ""
-    }
-  ],
-  "companys": [
-    {
-      "companyCd": "20030116",
-      "companyNm": "(주)연필로명상하기",
-      "companyNmEn": "Meditation With a Pencil",
-      "companyPartNm": "제작사"
-    },
-    {
-      "companyCd": "20205801",
-      "companyNm": "(주)씨네필운",
-      "companyNmEn": "cinepirun",
-      "companyPartNm": "배급사"
-    },
-    {
-      "companyCd": "20103809",
-      "companyNm": "(주)미로비젼",
-      "companyNmEn": "Mirovision Inc. ",
-      "companyPartNm": "해외세일즈사"
-    }
-  ]
-=======
   "movieInfoResult": {
     "movieInfo": {
       "movieCd": "20181118",
@@ -436,7 +334,7 @@
           "staffRoleNm": "애니메이션팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
->>>>>>> 65004f58d8aff8a75bda4eb18b6fd36a20edc205
 }

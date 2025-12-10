@@ -22,83 +22,82 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "여인광",
-          "repRoleNm": "감독"
+          "peopleNmEn": "YEO In-gwang"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "신애라",
-          "repRoleNm": "배우",
-          "cast": "영래 엄마"
+          "peopleNmEn": "SHIN Ae-ra",
+          "cast": "영래 엄마",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박지빈",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "PARK Ji-bin",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이재룡",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Jae-ryong ",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김선영",
-          "repRoleNm": "배우",
-          "cast": "춘자"
+          "peopleNmEn": "KIM Sunyoung",
+          "cast": "춘자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "진구",
-          "repRoleNm": "배우",
-          "cast": "아이스케키 공장 주임 인백"
+          "peopleNmEn": "JIN Goo",
+          "cast": "아이스케키 공장 주임 인백",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김효선",
-          "repRoleNm": "배우",
-          "cast": "케키아이2"
+          "peopleNmEn": "",
+          "cast": "케키아이2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김대훈",
-          "repRoleNm": "배우",
-          "cast": "케키아이5"
+          "peopleNmEn": "",
+          "cast": "케키아이5",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임광수",
-          "repRoleNm": "배우",
-          "cast": "케키아이3"
+          "peopleNmEn": "",
+          "cast": "케키아이3",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "함은정",
-          "repRoleNm": "배우",
-          "cast": "미숙"
+          "peopleNmEn": "Eun-jung",
+          "cast": "미숙",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "권병길",
-          "repRoleNm": "배우",
-          "cast": "선생님"
+          "peopleNmEn": "KWON Byung-gil",
+          "cast": "선생님",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김자영",
-          "repRoleNm": "배우",
-          "cast": "석순 모"
+          "peopleNmEn": "KIM Ja-young",
+          "cast": "석순 모",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "윤희철",
-          "repRoleNm": "배우",
-          "cast": "사장"
+          "peopleNmEn": "",
+          "cast": "사장",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -119,12 +118,6 @@
           "companyNm": "(주)엠케이픽처스 ",
           "companyNmEn": "MK PICTURES",
           "companyPartNm": "배급사"
-        },
-        {
-          "companyCd": "20139617",
-          "companyNm": "(주)리틀빅픽쳐스",
-          "companyNmEn": "Little Big Pictures",
-          "companyPartNm": "해외세일즈사"
         },
         {
           "companyCd": "20253341",
@@ -1126,8 +1119,8 @@
           "peopleNmEn": "",
           "staffRoleNm": "메이킹필름"
         }
-      ],
-      "audiAcc": 357088
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

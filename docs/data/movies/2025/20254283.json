@@ -25,59 +25,58 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김홍익",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Hong-ik"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "박수빈",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "허진우",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Heo Jin Woo",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이찬우",
-          "repRoleNm": "배우",
-          "cast": "준호"
+          "peopleNmEn": "",
+          "cast": "준호",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "노현희",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "ROH Hyun-hee",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍석연",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HONG Seok-youn",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "여우린",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서지안",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "류필기",
-          "repRoleNm": "배우",
-          "cast": "어르신"
+          "peopleNmEn": "",
+          "cast": "어르신",
+          "castEn": "Elderly"
         }
       ],
       "showTypes": [
@@ -245,6 +244,7 @@
           "staffRoleNm": "캐스팅디렉터"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

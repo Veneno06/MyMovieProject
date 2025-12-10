@@ -28,89 +28,88 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "강진아",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KANG Jin-a"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이희준",
-          "repRoleNm": "배우",
-          "cast": "김혁근"
+          "peopleNmEn": "LEE Hee-jun",
+          "cast": "김혁근",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이영진",
-          "repRoleNm": "배우",
-          "cast": "원기옥"
+          "peopleNmEn": "RIE Young-zin",
+          "cast": "원기옥",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한예리",
-          "repRoleNm": "배우",
-          "cast": "성차경"
+          "peopleNmEn": "HAN Ye-ri",
+          "cast": "성차경",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "기주봉",
-          "repRoleNm": "배우",
-          "cast": "치료사"
+          "peopleNmEn": "KI Joo-bong",
+          "cast": "치료사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "배제기",
-          "repRoleNm": "배우",
-          "cast": "조승연"
+          "peopleNmEn": "BAE Jae-ki",
+          "cast": "조승연",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박미현",
-          "repRoleNm": "배우",
-          "cast": "수간호사"
+          "peopleNmEn": "PARK Mi-hyen",
+          "cast": "수간호사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "오대환",
-          "repRoleNm": "배우",
-          "cast": "기옥 선배"
+          "peopleNmEn": "OH Dae-hwan",
+          "cast": "기옥 선배",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박명신",
-          "repRoleNm": "배우",
-          "cast": "박명신"
+          "peopleNmEn": "PARK Myungshin",
+          "cast": "박명신",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "전수연",
-          "repRoleNm": "배우",
-          "cast": "혁근 동네 여고생"
+          "peopleNmEn": "",
+          "cast": "혁근 동네 여고생",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최창엽",
-          "repRoleNm": "배우",
-          "cast": "꼼장어 집 손님"
+          "peopleNmEn": "",
+          "cast": "꼼장어 집 손님",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최효신",
-          "repRoleNm": "배우",
-          "cast": "혁근 동네 여고생"
+          "peopleNmEn": "",
+          "cast": "혁근 동네 여고생",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황지수",
-          "repRoleNm": "배우",
-          "cast": "혁근 동네 커플"
+          "peopleNmEn": "",
+          "cast": "혁근 동네 커플",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김용삼",
-          "repRoleNm": "배우",
-          "cast": "혁근 동네 커플"
+          "peopleNmEn": "",
+          "cast": "혁근 동네 커플",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -797,6 +796,7 @@
           "staffRoleNm": "VFX 슈퍼바이저"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

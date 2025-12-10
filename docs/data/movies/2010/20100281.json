@@ -25,107 +25,106 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "장철수",
-          "repRoleNm": "감독"
+          "peopleNmEn": "JANG Cheol-soo"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "서영희",
-          "repRoleNm": "배우",
-          "cast": "복남"
+          "peopleNmEn": "SEO Young-hee",
+          "cast": "복남",
+          "castEn": "Bok-nam"
         },
         {
-          "peopleCd": "",
           "peopleNm": "백수련",
-          "repRoleNm": "배우",
-          "cast": "동호할매"
+          "peopleNmEn": "BAEK Su-ryun",
+          "cast": "동호할매",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박정학",
-          "repRoleNm": "배우",
-          "cast": "만종"
+          "peopleNmEn": "PARK Jeong-hak",
+          "cast": "만종",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이강희",
-          "repRoleNm": "배우",
-          "cast": "다방레지"
+          "peopleNmEn": "LEE Gang-hee",
+          "cast": "다방레지",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "지성원",
-          "repRoleNm": "배우",
-          "cast": "해원"
+          "peopleNmEn": "JI Sung-won",
+          "cast": "해원",
+          "castEn": "Hae-won"
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍승진",
-          "repRoleNm": "배우",
-          "cast": "양키즈"
+          "peopleNmEn": "",
+          "cast": "양키즈",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김경애",
-          "repRoleNm": "배우",
-          "cast": "파주할매"
+          "peopleNmEn": "KIM Kyung-ae",
+          "cast": "파주할매",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "배성우",
-          "repRoleNm": "배우",
-          "cast": "철종"
+          "peopleNmEn": "BAE Sung-woo",
+          "cast": "철종",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유순철",
-          "repRoleNm": "배우",
-          "cast": "치매 할배"
+          "peopleNmEn": "YOO Soon-chul",
+          "cast": "치매 할배",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "아인",
-          "repRoleNm": "배우",
-          "cast": "복남의 딸, 연희"
+          "peopleNmEn": "",
+          "cast": "복남의 딸, 연희",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한동학",
-          "repRoleNm": "배우",
-          "cast": "아파트 관리인"
+          "peopleNmEn": "HAN Dong-hak",
+          "cast": "아파트 관리인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "안수연",
-          "repRoleNm": "배우",
-          "cast": "레스토랑직원"
+          "peopleNmEn": "An su-youn",
+          "cast": "레스토랑직원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유승오",
-          "repRoleNm": "배우",
-          "cast": "서울경찰2"
+          "peopleNmEn": "",
+          "cast": "서울경찰2 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김우근",
-          "repRoleNm": "배우",
-          "cast": "쿠폰남"
+          "peopleNmEn": "",
+          "cast": "쿠폰남",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조덕제",
-          "repRoleNm": "배우",
-          "cast": "서 경사"
+          "peopleNmEn": "JO Duk-je",
+          "cast": "서 경사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "천인서",
-          "repRoleNm": "배우",
-          "cast": "해원 아역"
+          "peopleNmEn": "CHEON In-seo",
+          "cast": "해원 아역",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -275,13 +274,13 @@
           "staffRoleNm": "라인프로듀서"
         },
         {
-          "peopleNm": "이우현",
-          "peopleNmEn": "LEE Woo-hyun",
+          "peopleNm": "김정복",
+          "peopleNmEn": "KIM Jeong-bok",
           "staffRoleNm": "제작팀"
         },
         {
-          "peopleNm": "김정복",
-          "peopleNmEn": "",
+          "peopleNm": "이우현",
+          "peopleNmEn": "LEE Woo-hyun",
           "staffRoleNm": "제작팀"
         },
         {
@@ -959,8 +958,8 @@
           "peopleNmEn": "CHOI Gwan-young",
           "staffRoleNm": "기획"
         }
-      ],
-      "audiAcc": 123892
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

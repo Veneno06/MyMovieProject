@@ -22,53 +22,52 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "현진식",
-          "repRoleNm": "감독"
+          "peopleNmEn": "HYUN Jin-sik"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김지희",
-          "repRoleNm": "배우",
-          "cast": "김지희"
+          "peopleNmEn": "",
+          "cast": "김지희",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이순도",
-          "repRoleNm": "배우",
-          "cast": "이순도"
+          "peopleNmEn": "",
+          "cast": "이순도",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김태식",
-          "repRoleNm": "배우",
-          "cast": "김태식"
+          "peopleNmEn": "",
+          "cast": "김태식",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김지민",
-          "repRoleNm": "배우",
-          "cast": "김지민"
+          "peopleNmEn": "",
+          "cast": "김지민",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김은성",
-          "repRoleNm": "배우",
-          "cast": "김은성"
+          "peopleNmEn": "",
+          "cast": "김은성",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하주현",
-          "repRoleNm": "배우",
-          "cast": "하주현"
+          "peopleNmEn": "",
+          "cast": "하주현",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "송정연",
-          "repRoleNm": "배우",
-          "cast": "송정연"
+          "peopleNmEn": "",
+          "cast": "송정연",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -418,6 +417,7 @@
           "staffRoleNm": "기획진행"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

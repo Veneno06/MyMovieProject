@@ -25,41 +25,40 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이세종",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "고원",
-          "repRoleNm": "배우",
-          "cast": "수연"
+          "peopleNmEn": "KO One",
+          "cast": "수연",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "곽한구",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "GWAK Han-goo",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "허민영",
-          "repRoleNm": "배우",
-          "cast": "직장동료2"
+          "peopleNmEn": "",
+          "cast": "직장동료2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "원성진",
-          "repRoleNm": "배우",
-          "cast": "매장손님"
+          "peopleNmEn": "",
+          "cast": "매장손님",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "노진수",
-          "repRoleNm": "배우",
-          "cast": "란제리 주인"
+          "peopleNmEn": "NO Zin-soo",
+          "cast": "란제리 주인",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -280,6 +279,7 @@
           "staffRoleNm": "식당차"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

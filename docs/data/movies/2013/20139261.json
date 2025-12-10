@@ -25,47 +25,46 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "장권호",
-          "repRoleNm": "감독"
+          "peopleNmEn": "JANG Gun-ho"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "황보라",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HWANG Bo-ra",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "탁트인",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "TAK Teu-in",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "고준",
-          "repRoleNm": "배우",
-          "cast": "철규"
+          "peopleNmEn": "GO Jun",
+          "cast": "철규",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이동원",
-          "repRoleNm": "배우",
-          "cast": "사고현장 경찰"
+          "peopleNmEn": "",
+          "cast": "사고현장 경찰",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김준한",
-          "repRoleNm": "배우",
-          "cast": "엔딩 남"
+          "peopleNmEn": "KIM Jun-han",
+          "cast": "엔딩 남",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김그림",
-          "repRoleNm": "배우",
-          "cast": "엔딩 여"
+          "peopleNmEn": "KIM Geu-rim",
+          "cast": "엔딩 여",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -383,6 +382,7 @@
           "staffRoleNm": "스틸"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

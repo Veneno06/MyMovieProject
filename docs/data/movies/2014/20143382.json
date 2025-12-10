@@ -22,35 +22,34 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김정욱",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Jeong-wook"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "추민주",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍성희",
-          "repRoleNm": "배우",
-          "cast": "시민참여자 배우팀"
+          "peopleNmEn": "",
+          "cast": "시민참여자 배우팀",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김민지",
-          "repRoleNm": "배우",
-          "cast": "시민참여자 배우팀"
+          "peopleNmEn": "",
+          "cast": "시민참여자 배우팀",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박소희",
-          "repRoleNm": "배우",
-          "cast": "시민참여자 배우팀"
+          "peopleNmEn": "",
+          "cast": "시민참여자 배우팀",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -175,6 +174,7 @@
           "staffRoleNm": "기획"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

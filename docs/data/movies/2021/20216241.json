@@ -22,71 +22,70 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "홍상수",
-          "repRoleNm": "감독"
+          "peopleNmEn": "HONG Sang-soo"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "신석호",
-          "repRoleNm": "배우",
-          "cast": "영호"
+          "peopleNmEn": "Shin Seok-ho",
+          "cast": "영호",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박미소",
-          "repRoleNm": "배우",
-          "cast": "주원"
+          "peopleNmEn": "Park Miso",
+          "cast": "주원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김영호",
-          "repRoleNm": "배우",
-          "cast": "영호아빠"
+          "peopleNmEn": "",
+          "cast": "영호아빠",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "기주봉",
-          "repRoleNm": "배우",
-          "cast": "배우"
+          "peopleNmEn": "KI Joo-bong",
+          "cast": "배우",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "예지원",
-          "repRoleNm": "배우",
-          "cast": "간호사"
+          "peopleNmEn": "YEA Ji-won",
+          "cast": "간호사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조소연",
-          "repRoleNm": "배우",
-          "cast": "젊은환자"
+          "peopleNmEn": "",
+          "cast": "젊은환자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서영화",
-          "repRoleNm": "배우",
-          "cast": "주원엄마"
+          "peopleNmEn": "SEO Young-hwa",
+          "cast": "주원엄마",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김민희",
-          "repRoleNm": "배우",
-          "cast": "화가"
+          "peopleNmEn": "KIM Min-hee",
+          "cast": "화가",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조윤희",
-          "repRoleNm": "배우",
-          "cast": "영호엄마"
+          "peopleNmEn": "Cho Yunhee",
+          "cast": "영호엄마",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하성국",
-          "repRoleNm": "배우",
-          "cast": "영호친구"
+          "peopleNmEn": "HA Seong-guk",
+          "cast": "영호친구",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -215,6 +214,7 @@
           "staffRoleNm": "기타"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

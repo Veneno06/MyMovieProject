@@ -28,89 +28,88 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "전계수",
-          "repRoleNm": "감독"
+          "peopleNmEn": "JEON Kye-soo"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김꽃비",
-          "repRoleNm": "배우",
-          "cast": "소단"
+          "peopleNmEn": "KIM Kkot-bi",
+          "cast": "소단",
+          "castEn": "So-dan"
         },
         {
-          "peopleCd": "",
           "peopleNm": "천호진",
-          "repRoleNm": "배우",
-          "cast": "우기남 사장"
+          "peopleNmEn": "CHUN Ho-jin",
+          "cast": "우기남 사장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한애리",
-          "repRoleNm": "배우",
-          "cast": "완다/경리/완월"
+          "peopleNmEn": "HAN Ae-ri",
+          "cast": "완다/경리/완월 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박준면",
-          "repRoleNm": "배우",
-          "cast": "에리사/매점/하쉬바"
+          "peopleNmEn": "PARK Jun-myeon",
+          "cast": "에리사/매점/하쉬바 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조희봉",
-          "repRoleNm": "배우",
-          "cast": "영사기사/일본 중위 히로시/데츠오"
+          "peopleNmEn": "CHO Hee-bong",
+          "cast": "영사기사/일본 중위 히로시/데츠오",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황강록",
-          "repRoleNm": "배우",
-          "cast": "삼거리밴드2"
+          "peopleNmEn": "HWANG Gang-rok",
+          "cast": "삼거리밴드2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김동기",
-          "repRoleNm": "배우",
-          "cast": "삼거리밴드1"
+          "peopleNmEn": "KIM Dong-gi",
+          "cast": "삼거리밴드1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "백경인",
-          "repRoleNm": "배우",
-          "cast": "일본군장교"
+          "peopleNmEn": "BAEK Kyung-in",
+          "cast": "일본군장교 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "윤오성",
-          "repRoleNm": "배우",
-          "cast": "삼거리밴드3"
+          "peopleNmEn": "",
+          "cast": "삼거리밴드3 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최우혁",
-          "repRoleNm": "배우",
-          "cast": "회"
+          "peopleNmEn": "",
+          "cast": "회 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이덕재",
-          "repRoleNm": "배우",
-          "cast": "경운기 아저씨"
+          "peopleNmEn": "",
+          "cast": "경운기 아저씨",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박영수",
-          "repRoleNm": "배우",
-          "cast": "모스키토/청소부 송씨/표세동 박사"
+          "peopleNmEn": "PARK Yeong-soo",
+          "cast": "모스키토/청소부 송씨/표세동 박사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "문순주",
-          "repRoleNm": "배우",
-          "cast": "고등학생 1"
+          "peopleNmEn": "MOON Soon-joo",
+          "cast": "고등학생 1",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -1135,6 +1134,7 @@
           "staffRoleNm": "홍보/마케팅 진행"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

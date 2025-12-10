@@ -22,41 +22,40 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "임진승",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LIM Jin-seung"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "황선화",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이은미",
-          "repRoleNm": "배우",
-          "cast": "현미"
+          "peopleNmEn": "LEE Eun-mi",
+          "cast": "현미",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이승원",
-          "repRoleNm": "배우",
-          "cast": "재일"
+          "peopleNmEn": "",
+          "cast": "재일",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이경주",
-          "repRoleNm": "배우",
-          "cast": "에로영화의상팀"
+          "peopleNmEn": "",
+          "cast": "에로영화의상팀",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이성재",
-          "repRoleNm": "배우",
-          "cast": "성형외과의사"
+          "peopleNmEn": "",
+          "cast": "성형외과의사",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -326,6 +325,7 @@
           "staffRoleNm": "캐스팅디렉터"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

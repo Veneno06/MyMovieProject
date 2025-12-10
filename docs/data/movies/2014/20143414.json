@@ -25,65 +25,64 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김한준",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "정인슬",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "성인석",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박정아",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "권기수",
-          "repRoleNm": "배우",
-          "cast": "짜장면 배달부"
+          "peopleNmEn": "KWON Ki-su",
+          "cast": "짜장면 배달부",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김대현",
-          "repRoleNm": "배우",
-          "cast": "고수부지 커플남"
+          "peopleNmEn": "",
+          "cast": "고수부지 커플남",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박시현",
-          "repRoleNm": "배우",
-          "cast": "이승진대리"
+          "peopleNmEn": "PARK Si-Hyeun",
+          "cast": "이승진대리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이채린",
-          "repRoleNm": "배우",
-          "cast": "회원3"
+          "peopleNmEn": "",
+          "cast": "회원3",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황의범",
-          "repRoleNm": "배우",
-          "cast": "팬션주인"
+          "peopleNmEn": "",
+          "cast": "팬션주인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "우혜진",
-          "repRoleNm": "배우",
-          "cast": "여관 주인집 딸"
+          "peopleNmEn": "WOO Hye-jin",
+          "cast": "여관 주인집 딸",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -255,6 +254,7 @@
           "staffRoleNm": "메이킹필름"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

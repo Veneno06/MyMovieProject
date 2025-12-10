@@ -22,41 +22,40 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "서명수",
-          "repRoleNm": "감독"
+          "peopleNmEn": "SUH Myung-soo"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "판영진",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "PAN Young-jin ",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박진국",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "PARK Jin-kuk ",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "허정인",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김하람",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Ha-ram",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "문성준",
-          "repRoleNm": "배우",
-          "cast": "수사관"
+          "peopleNmEn": "",
+          "cast": "수사관 ",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -168,6 +167,7 @@
           "staffRoleNm": "광고디자인"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

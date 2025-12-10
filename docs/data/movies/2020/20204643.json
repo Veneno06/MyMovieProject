@@ -28,23 +28,22 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "심찬양",
-          "repRoleNm": "감독"
+          "peopleNmEn": "SHIM Chanyang"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "홍이삭",
-          "repRoleNm": "배우",
-          "cast": "태일"
+          "peopleNmEn": "HONG Isaac",
+          "cast": "태일",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장하은",
-          "repRoleNm": "배우",
-          "cast": "지원"
+          "peopleNmEn": "JANG Haeun",
+          "cast": "지원",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -660,6 +659,7 @@
           "staffRoleNm": "VFX 아티스트"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

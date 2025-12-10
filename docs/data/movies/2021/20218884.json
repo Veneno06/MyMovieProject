@@ -25,53 +25,52 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김문옥",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Moon-ok"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "천택근",
-          "repRoleNm": "배우",
-          "cast": "일본"
+          "peopleNmEn": "",
+          "cast": "일본",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박효근",
-          "repRoleNm": "배우",
-          "cast": "이조"
+          "peopleNmEn": "PARK Hyo-keun",
+          "cast": "이조",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한미래",
-          "repRoleNm": "배우",
-          "cast": "파출부"
+          "peopleNmEn": "",
+          "cast": "파출부",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김미승",
-          "repRoleNm": "배우",
-          "cast": "춘희"
+          "peopleNmEn": "",
+          "cast": "춘희",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임연비",
-          "repRoleNm": "배우",
-          "cast": "이화"
+          "peopleNmEn": "",
+          "cast": "이화",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박태현",
-          "repRoleNm": "배우",
-          "cast": "산쵸"
+          "peopleNmEn": "",
+          "cast": "산쵸",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박노철",
-          "repRoleNm": "배우",
-          "cast": "서부"
+          "peopleNmEn": "",
+          "cast": "서부",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -207,6 +206,7 @@
           "staffRoleNm": "기타"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

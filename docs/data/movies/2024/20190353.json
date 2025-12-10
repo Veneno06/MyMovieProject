@@ -25,59 +25,58 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "현문섭",
-          "repRoleNm": "감독"
+          "peopleNmEn": "HYUN Moon-sub"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "박신양",
-          "repRoleNm": "배우",
-          "cast": "차승도"
+          "peopleNmEn": "PARK Shin-yang",
+          "cast": "차승도",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이민기",
-          "repRoleNm": "배우",
-          "cast": "반신부"
+          "peopleNmEn": "LEE Min-ki",
+          "cast": "반신부",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이레",
-          "repRoleNm": "배우",
-          "cast": "차소미"
+          "peopleNmEn": "LEE Re",
+          "cast": "차소미",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장윤석",
-          "repRoleNm": "배우",
-          "cast": "병실의사"
+          "peopleNmEn": "",
+          "cast": "병실의사",
+          "castEn": "DOCTOR"
         },
         {
-          "peopleCd": "",
           "peopleNm": "김세정",
-          "repRoleNm": "배우",
-          "cast": "보안요원3"
+          "peopleNmEn": "KIM SE JUNG",
+          "cast": "보안요원3",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최미라",
-          "repRoleNm": "배우",
-          "cast": "소미 담임"
+          "peopleNmEn": "CHOI Mi-ra",
+          "cast": "소미 담임",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김근영",
-          "repRoleNm": "배우",
-          "cast": "승도 이모"
+          "peopleNmEn": "KIM Geun-yeong",
+          "cast": "승도 이모",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하윤희",
-          "repRoleNm": "배우",
-          "cast": "승도 사촌 부인"
+          "peopleNmEn": "",
+          "cast": "승도 사촌 부인",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -147,19 +146,14 @@
           "staffRoleNm": "제작팀"
         },
         {
+          "peopleNm": "유가연",
+          "peopleNmEn": "YOO GA YEON",
+          "staffRoleNm": "제작관리"
+        },
+        {
           "peopleNm": "강다희",
           "peopleNmEn": "",
           "staffRoleNm": "각색"
-        },
-        {
-          "peopleNm": "채건우",
-          "peopleNmEn": "",
-          "staffRoleNm": "연출팀"
-        },
-        {
-          "peopleNm": "이한",
-          "peopleNmEn": "LEE Han",
-          "staffRoleNm": "연출팀"
         },
         {
           "peopleNm": "이재환",
@@ -167,12 +161,26 @@
           "staffRoleNm": "그립"
         },
         {
+          "peopleNm": "이한",
+          "peopleNmEn": "",
+          "staffRoleNm": "연출팀"
+        },
+        {
+          "peopleNm": "채건우",
+          "peopleNmEn": "",
+          "staffRoleNm": "연출팀"
+        },
+        {
           "peopleNm": "이한빈",
           "peopleNmEn": "LEE HANVIN",
           "staffRoleNm": "배급진행"
+        },
+        {
+          "peopleNm": "안미희",
+          "peopleNmEn": "An, Mi-Hee",
+          "staffRoleNm": "기획진행"
         }
-      ],
-      "audiAcc": 194728
+      ]
     },
     "source": "영화진흥위원회"
   }

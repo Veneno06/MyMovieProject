@@ -22,41 +22,40 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김형주",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM, Hyoung ju"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "송호준",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "송호준",
-          "repRoleNm": "배우",
-          "cast": "출연"
+          "peopleNmEn": "",
+          "cast": "출연",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조성윤",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유지선",
-          "repRoleNm": "배우",
-          "cast": "촬영 B 인터뷰"
+          "peopleNmEn": "",
+          "cast": "촬영 B 인터뷰",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍성훈",
-          "repRoleNm": "배우",
-          "cast": "촬영 B 인터뷰"
+          "peopleNmEn": "",
+          "cast": "촬영 B 인터뷰",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -456,6 +455,7 @@
           "staffRoleNm": "기타"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

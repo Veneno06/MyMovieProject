@@ -25,71 +25,70 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "신동엽",
-          "repRoleNm": "감독"
+          "peopleNmEn": "SHIN Dong-yeob"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김민준",
-          "repRoleNm": "배우",
-          "cast": "기석"
+          "peopleNmEn": "KIM Min-jun",
+          "cast": "기석",
+          "castEn": "Ki-suk"
         },
         {
-          "peopleCd": "",
           "peopleNm": "곽지민",
-          "repRoleNm": "배우",
-          "cast": "정은"
+          "peopleNmEn": "KWAK Ji-Min",
+          "cast": "정은",
+          "castEn": "Jeong-eun"
         },
         {
-          "peopleCd": "",
           "peopleNm": "이세랑",
-          "repRoleNm": "배우",
-          "cast": "숙자"
+          "peopleNmEn": "LEE Se-rang",
+          "cast": "숙자",
+          "castEn": "Suk-ja"
         },
         {
-          "peopleCd": "",
           "peopleNm": "이수호",
-          "repRoleNm": "배우",
-          "cast": "병수"
+          "peopleNmEn": "",
+          "cast": "병수",
+          "castEn": "Byung-su"
         },
         {
-          "peopleCd": "",
           "peopleNm": "차승우",
-          "repRoleNm": "배우",
-          "cast": "재덕"
+          "peopleNmEn": "",
+          "cast": "재덕",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "차민정",
-          "repRoleNm": "배우",
-          "cast": "모텔주인"
+          "peopleNmEn": "",
+          "cast": "모텔주인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김환일",
-          "repRoleNm": "배우",
-          "cast": "경찰"
+          "peopleNmEn": "",
+          "cast": "경찰",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박소라",
-          "repRoleNm": "배우",
-          "cast": "월미도 여고생"
+          "peopleNmEn": "",
+          "cast": "월미도 여고생",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "송민석",
-          "repRoleNm": "배우",
-          "cast": "모텔주인"
+          "peopleNmEn": "",
+          "cast": "모텔주인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한이진",
-          "repRoleNm": "배우",
-          "cast": "출입국관리소 직원2"
+          "peopleNmEn": "HAN Iee-jin",
+          "cast": "출입국관리소 직원2",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -485,6 +484,7 @@
           "staffRoleNm": "기획"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

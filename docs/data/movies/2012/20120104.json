@@ -22,65 +22,64 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이돈구",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Donku"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "남연우",
-          "repRoleNm": "배우",
-          "cast": "성공"
+          "peopleNmEn": "NAM Yeon-woo",
+          "cast": "성공",
+          "castEn": "Sung-gong"
         },
         {
-          "peopleCd": "",
           "peopleNm": "양조아",
-          "repRoleNm": "배우",
-          "cast": "장미"
+          "peopleNmEn": "YANG Jo-a",
+          "cast": "장미",
+          "castEn": "Jang-mi"
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍정호",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HONG Jeong-ho",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "강기둥",
-          "repRoleNm": "배우",
-          "cast": "세운"
+          "peopleNmEn": "KANG Ki-doong",
+          "cast": "세운 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김희성",
-          "repRoleNm": "배우",
-          "cast": "형우(성공친구)"
+          "peopleNmEn": "",
+          "cast": "형우(성공친구)",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임성균",
-          "repRoleNm": "배우",
-          "cast": "기석(청년부원)"
+          "peopleNmEn": "",
+          "cast": "기석(청년부원)",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정재영",
-          "repRoleNm": "배우",
-          "cast": "두환(건달)"
+          "peopleNmEn": "",
+          "cast": "두환(건달)",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김미란",
-          "repRoleNm": "배우",
-          "cast": "소영(공장직원)"
+          "peopleNmEn": "KIM Mi-ran",
+          "cast": "소영(공장직원)",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한명수",
-          "repRoleNm": "배우",
-          "cast": "이담(형우회사직원"
+          "peopleNmEn": "",
+          "cast": "이담(형우회사직원",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -201,6 +200,7 @@
           "staffRoleNm": "광고디자인"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

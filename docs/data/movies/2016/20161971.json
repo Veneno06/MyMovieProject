@@ -22,41 +22,40 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "채길병",
-          "repRoleNm": "감독"
+          "peopleNmEn": "CHAE GIL BYOUNG"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "박초현",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김성환",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "주인철",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "소윤",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍두리",
-          "repRoleNm": "배우",
-          "cast": "스타킹 녀"
+          "peopleNmEn": "",
+          "cast": "스타킹 녀",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -202,7 +201,7 @@
           "staffRoleNm": "DI팀"
         },
         {
-          "peopleNm": "유연수",
+          "peopleNm": "류현수",
           "peopleNmEn": "",
           "staffRoleNm": "DI팀"
         },
@@ -227,6 +226,7 @@
           "staffRoleNm": "DI팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

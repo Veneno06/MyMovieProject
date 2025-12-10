@@ -22,53 +22,52 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "조연수",
-          "repRoleNm": "감독"
+          "peopleNmEn": "CHO Youn-soo"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "한태일",
-          "repRoleNm": "배우",
-          "cast": "대곤"
+          "peopleNmEn": "HAN Tae-il",
+          "cast": "대곤",
+          "castEn": "Dae-gon"
         },
         {
-          "peopleCd": "",
           "peopleNm": "오수현",
-          "repRoleNm": "배우",
-          "cast": "지원"
+          "peopleNmEn": "O Su-hyeon",
+          "cast": "지원",
+          "castEn": "Ji-won"
         },
         {
-          "peopleCd": "",
           "peopleNm": "임호영",
-          "repRoleNm": "배우",
-          "cast": "화분"
+          "peopleNmEn": "IM Ho-young",
+          "cast": "화분",
+          "castEn": "Flowerpot"
         },
         {
-          "peopleCd": "",
           "peopleNm": "문성복",
-          "repRoleNm": "배우",
-          "cast": "대원"
+          "peopleNmEn": "MUN Seong-bok",
+          "cast": "대원",
+          "castEn": "Dae-won"
         },
         {
-          "peopleCd": "",
           "peopleNm": "박지혜",
-          "repRoleNm": "배우",
-          "cast": "간호사"
+          "peopleNmEn": "Park Ji-hye",
+          "cast": "간호사",
+          "castEn": "Nurse "
         },
         {
-          "peopleCd": "",
           "peopleNm": "성정선",
-          "repRoleNm": "배우",
-          "cast": "여관 주인"
+          "peopleNmEn": "Sung Jung-sun ",
+          "cast": "여관 주인",
+          "castEn": "Inn master "
         },
         {
-          "peopleCd": "",
           "peopleNm": "김도은",
-          "repRoleNm": "배우",
-          "cast": "국밥집 주인"
+          "peopleNmEn": "KIM Do-eun ",
+          "cast": "국밥집 주인",
+          "castEn": "Eating house master "
         }
       ],
       "showTypes": [
@@ -240,6 +239,7 @@
           "staffRoleNm": "운송"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

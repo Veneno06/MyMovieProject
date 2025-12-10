@@ -22,65 +22,64 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김창만",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Chang-man"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김민수",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Min-su",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이연재",
-          "repRoleNm": "배우",
-          "cast": "수정"
+          "peopleNmEn": "",
+          "cast": "수정",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임현성",
-          "repRoleNm": "배우",
-          "cast": "준기"
+          "peopleNmEn": "LIM Hyun-sung",
+          "cast": "준기",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이은",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Eun",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "동하",
-          "repRoleNm": "배우",
-          "cast": "경태"
+          "peopleNmEn": "DONG Ha",
+          "cast": "경태",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한호현",
-          "repRoleNm": "배우",
-          "cast": "도예원 스승님"
+          "peopleNmEn": "",
+          "cast": "도예원 스승님",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "권희준",
-          "repRoleNm": "배우",
-          "cast": "연구소직원"
+          "peopleNmEn": "",
+          "cast": "연구소직원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임현섭",
-          "repRoleNm": "배우",
-          "cast": "준기"
+          "peopleNmEn": "",
+          "cast": "준기",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이준석",
-          "repRoleNm": "배우",
-          "cast": "연구소직원"
+          "peopleNmEn": "",
+          "cast": "연구소직원 ",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -325,6 +324,7 @@
           "staffRoleNm": "기타"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

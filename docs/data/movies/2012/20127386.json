@@ -25,125 +25,124 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "오영두",
-          "repRoleNm": "감독"
+          "peopleNmEn": "OH Young-doo"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "홍서백",
-          "repRoleNm": "배우",
-          "cast": "영근"
+          "peopleNmEn": "HONG Seo-back",
+          "cast": "영근",
+          "castEn": "Young-geun"
         },
         {
-          "peopleCd": "",
           "peopleNm": "최송현",
-          "repRoleNm": "배우",
-          "cast": "송현"
+          "peopleNmEn": "",
+          "cast": "송현",
+          "castEn": "Song-hyun"
         },
         {
-          "peopleCd": "",
           "peopleNm": "하은정",
-          "repRoleNm": "배우",
-          "cast": "하사장"
+          "peopleNmEn": "HA Eun-jung ",
+          "cast": "하사장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "배용근",
-          "repRoleNm": "배우",
-          "cast": "틱택토"
+          "peopleNmEn": "BAE Yong-geun",
+          "cast": "틱택토",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조승연",
-          "repRoleNm": "배우",
-          "cast": "김박사"
+          "peopleNmEn": "CHO Seung-yeon",
+          "cast": "김박사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이희종",
-          "repRoleNm": "배우",
-          "cast": "납치범 A2"
+          "peopleNmEn": "",
+          "cast": "납치범 A2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "구춘모",
-          "repRoleNm": "배우",
-          "cast": "앤틱샵 손님2"
+          "peopleNmEn": "",
+          "cast": "앤틱샵 손님2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "구춘모",
-          "repRoleNm": "배우",
-          "cast": "안마사"
+          "peopleNmEn": "",
+          "cast": "안마사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장윤정",
-          "repRoleNm": "배우",
-          "cast": "앤틱샵 손님3"
+          "peopleNmEn": "JANG Yoon-jung",
+          "cast": "앤틱샵 손님3",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조한",
-          "repRoleNm": "배우",
-          "cast": "미행남"
+          "peopleNmEn": "",
+          "cast": "미행남",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조현열",
-          "repRoleNm": "배우",
-          "cast": "운전수"
+          "peopleNmEn": "CHO Hyun-yul",
+          "cast": "운전수",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김신웅",
-          "repRoleNm": "배우",
-          "cast": "자전거남"
+          "peopleNmEn": "KIM Sin-ung",
+          "cast": "자전거남",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김신웅",
-          "repRoleNm": "배우",
-          "cast": "납치범 B2"
+          "peopleNmEn": "KIM Sin-ung",
+          "cast": "납치범 B2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하성광",
-          "repRoleNm": "배우",
-          "cast": "브로커 김씨"
+          "peopleNmEn": "HA Sung-kwang",
+          "cast": "브로커 김씨",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "형슬우",
-          "repRoleNm": "배우",
-          "cast": "미소남/앤틱샵 손님1"
+          "peopleNmEn": "HYUNG Seulwoo",
+          "cast": "미소남/앤틱샵 손님1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김윤창",
-          "repRoleNm": "배우",
-          "cast": "임은택 박사"
+          "peopleNmEn": "KIM Yun-chang",
+          "cast": "임은택 박사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김희창",
-          "repRoleNm": "배우",
-          "cast": "닥터창"
+          "peopleNmEn": "",
+          "cast": "닥터창",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서병철",
-          "repRoleNm": "배우",
-          "cast": "킬러"
+          "peopleNmEn": "",
+          "cast": "킬러",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "오세영",
-          "repRoleNm": "배우",
-          "cast": "납치범 B1"
+          "peopleNmEn": "O se-young",
+          "cast": "납치범 B1",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -515,6 +514,7 @@
           "staffRoleNm": "VFX 슈퍼바이저"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

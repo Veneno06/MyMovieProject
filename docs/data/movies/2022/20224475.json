@@ -28,53 +28,52 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이완민",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Wanmin"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "옥자연",
-          "repRoleNm": "배우",
-          "cast": "강영실"
+          "peopleNmEn": "OK Ja-yeon",
+          "cast": "강영실",
+          "castEn": "Youngsil"
         },
         {
-          "peopleCd": "",
           "peopleNm": "기윤",
-          "repRoleNm": "배우",
-          "cast": "여인식"
+          "peopleNmEn": "Gi-yun",
+          "cast": "여인식",
+          "castEn": "Inseek"
         },
         {
-          "peopleCd": "",
           "peopleNm": "이동찬",
-          "repRoleNm": "배우",
-          "cast": "찬구(영실부)"
+          "peopleNmEn": "Lee Dong chan",
+          "cast": "찬구(영실부)",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한지완",
-          "repRoleNm": "배우",
-          "cast": "(가)고등학교 학생"
+          "peopleNmEn": "",
+          "cast": "(가)고등학교 학생",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이창현",
-          "repRoleNm": "배우",
-          "cast": "진로특강담당교사"
+          "peopleNmEn": "",
+          "cast": "진로특강담당교사",
+          "castEn": "Career class managing teacher"
         },
         {
-          "peopleCd": "",
           "peopleNm": "하민호",
-          "repRoleNm": "배우",
-          "cast": "(가)고등학교 선생님"
+          "peopleNmEn": "",
+          "cast": "(가)고등학교 선생님",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이세리",
-          "repRoleNm": "배우",
-          "cast": "조교"
+          "peopleNmEn": "LEE Se-ri",
+          "cast": "조교",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -203,6 +202,7 @@
           "staffRoleNm": "프로듀서"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

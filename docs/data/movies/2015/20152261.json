@@ -25,41 +25,40 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "한철수",
-          "repRoleNm": "감독"
+          "peopleNmEn": "HAN Cheol-soo"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "정경호",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "CHUNG Kyung-ho",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정윤선",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "JUNG Yoon-Sun",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "후지이 미나",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Mina Fujii",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유승목",
-          "repRoleNm": "배우",
-          "cast": "수목원 관리인"
+          "peopleNmEn": "YOO Seung-mok",
+          "cast": "수목원 관리인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김선웅",
-          "repRoleNm": "배우",
-          "cast": "동물원 대리"
+          "peopleNmEn": "",
+          "cast": "동물원 대리",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -247,6 +246,7 @@
           "staffRoleNm": "DI팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

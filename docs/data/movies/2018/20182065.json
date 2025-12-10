@@ -22,34 +22,32 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이희섭",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Hee-seop"
         },
         {
-          "peopleCd": "",
           "peopleNm": "백재호",
-          "repRoleNm": "감독"
+          "peopleNmEn": "BAEK Jae-ho"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "강두",
-          "repRoleNm": "배우",
-          "cast": "우주"
+          "peopleNmEn": "KANG Doo",
+          "cast": "우주",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "호리 하루나",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Haruna Hori",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "지대한",
-          "repRoleNm": "배우",
-          "cast": "대정"
+          "peopleNmEn": "JI Dae-han",
+          "cast": "대정",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -335,6 +333,7 @@
           "staffRoleNm": "배급진행"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

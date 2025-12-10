@@ -22,17 +22,16 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "강백호",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KANG Beak-ho"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "하경",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -73,6 +72,7 @@
           "staffRoleNm": "조감독"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

@@ -22,83 +22,82 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "박종균",
-          "repRoleNm": "감독"
+          "peopleNmEn": "gyunss"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "유지애",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "함연지",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "온유",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "ONEW",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이성열",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Sung-yeol",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김소원",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임나영",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이수민",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Soo-min",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "권현빈",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장영남",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "JANG Yeong-nam",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조지승",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "류성현",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "RYU Seong-hyeon",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김아현",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM A-hyun",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -135,24 +134,9 @@
       ],
       "staffs": [
         {
-          "peopleNm": "송윤재",
-          "peopleNmEn": "SONG Yoon-jae",
-          "staffRoleNm": "사운드디자이너"
-        },
-        {
-          "peopleNm": "한명환",
-          "peopleNmEn": "HAN Myung-hwan",
-          "staffRoleNm": "사운드믹싱"
-        },
-        {
-          "peopleNm": "정지영",
-          "peopleNmEn": "JEONG Ji-young",
-          "staffRoleNm": "대사"
-        },
-        {
-          "peopleNm": "남지은",
-          "peopleNmEn": "NAM Ji-eun",
-          "staffRoleNm": "사운드효과"
+          "peopleNm": "이재훈",
+          "peopleNmEn": "",
+          "staffRoleNm": "투자"
         },
         {
           "peopleNm": "김용국",
@@ -160,42 +144,7 @@
           "staffRoleNm": "폴리"
         },
         {
-          "peopleNm": "이찬",
-          "peopleNmEn": "",
-          "staffRoleNm": "투자"
-        },
-        {
-          "peopleNm": "조성철",
-          "peopleNmEn": "",
-          "staffRoleNm": "투자"
-        },
-        {
-          "peopleNm": "이재훈",
-          "peopleNmEn": "",
-          "staffRoleNm": "투자"
-        },
-        {
-          "peopleNm": "장민호",
-          "peopleNmEn": "",
-          "staffRoleNm": "투자"
-        },
-        {
           "peopleNm": "임종욱",
-          "peopleNmEn": "",
-          "staffRoleNm": "투자"
-        },
-        {
-          "peopleNm": "남지윤",
-          "peopleNmEn": "",
-          "staffRoleNm": "투자"
-        },
-        {
-          "peopleNm": "신유나",
-          "peopleNmEn": "",
-          "staffRoleNm": "투자"
-        },
-        {
-          "peopleNm": "황보미애",
           "peopleNmEn": "",
           "staffRoleNm": "투자"
         },
@@ -473,6 +422,31 @@
           "peopleNm": "한명환",
           "peopleNmEn": "HAN Myung-hwan",
           "staffRoleNm": "사운드"
+        },
+        {
+          "peopleNm": "송윤재",
+          "peopleNmEn": "SONG Yoon-jae",
+          "staffRoleNm": "사운드디자이너"
+        },
+        {
+          "peopleNm": "한명환",
+          "peopleNmEn": "HAN Myung-hwan",
+          "staffRoleNm": "사운드믹싱"
+        },
+        {
+          "peopleNm": "정지영",
+          "peopleNmEn": "JEONG Ji-young",
+          "staffRoleNm": "대사"
+        },
+        {
+          "peopleNm": "남지은",
+          "peopleNmEn": "NAM Ji-eun",
+          "staffRoleNm": "사운드효과"
+        },
+        {
+          "peopleNm": "장민호",
+          "peopleNmEn": "",
+          "staffRoleNm": "투자"
         },
         {
           "peopleNm": "박선진",
@@ -1185,8 +1159,33 @@
           "staffRoleNm": "기타"
         },
         {
+          "peopleNm": "이찬",
+          "peopleNmEn": "",
+          "staffRoleNm": "기타"
+        },
+        {
+          "peopleNm": "조성철",
+          "peopleNmEn": "",
+          "staffRoleNm": "기타"
+        },
+        {
           "peopleNm": "안성현",
           "peopleNmEn": "Ahn Seonghyeon",
+          "staffRoleNm": "기타"
+        },
+        {
+          "peopleNm": "남지윤",
+          "peopleNmEn": "",
+          "staffRoleNm": "기타"
+        },
+        {
+          "peopleNm": "신유나",
+          "peopleNmEn": "",
+          "staffRoleNm": "기타"
+        },
+        {
+          "peopleNm": "황보미애",
+          "peopleNmEn": "",
           "staffRoleNm": "기타"
         }
       ]

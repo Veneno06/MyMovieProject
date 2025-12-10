@@ -25,113 +25,112 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "신동일",
-          "repRoleNm": "감독"
+          "peopleNmEn": "SHIN Dong-il"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "장현성",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "JANG Hyun-sung",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박희순",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "PARK Hee-soon",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍소희",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HONG So-hee",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조용준",
-          "repRoleNm": "배우",
-          "cast": "동주"
+          "peopleNmEn": "JO Yong-jun",
+          "cast": "동주 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "주희",
-          "repRoleNm": "배우",
-          "cast": "엄마"
+          "peopleNmEn": "",
+          "cast": "엄마 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조성하",
-          "repRoleNm": "배우",
-          "cast": "부장"
+          "peopleNmEn": "CHO Seong-ha",
+          "cast": "부장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박제욱",
-          "repRoleNm": "배우",
-          "cast": "검사"
+          "peopleNmEn": "PARK Je-wook",
+          "cast": "검사 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "표철환",
-          "repRoleNm": "배우",
-          "cast": "인부"
+          "peopleNmEn": "PHO Chul-hwan",
+          "cast": "인부",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "배정민",
-          "repRoleNm": "배우",
-          "cast": "동료B"
+          "peopleNmEn": "BAE Jeong-min",
+          "cast": "동료B ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김경진",
-          "repRoleNm": "배우",
-          "cast": "미용사"
+          "peopleNmEn": "",
+          "cast": "미용사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "채연정",
-          "repRoleNm": "배우",
-          "cast": "빼간호사"
+          "peopleNmEn": "",
+          "cast": "빼간호사 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유대현",
-          "repRoleNm": "배우",
-          "cast": "민혁"
+          "peopleNmEn": "Yu Dae-hyeon",
+          "cast": "민혁 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김태훈",
-          "repRoleNm": "배우",
-          "cast": "사내"
+          "peopleNmEn": "",
+          "cast": "사내",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김종환",
-          "repRoleNm": "배우",
-          "cast": "일행남"
+          "peopleNmEn": "",
+          "cast": "일행남 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "우기홍",
-          "repRoleNm": "배우",
-          "cast": "딜러 A"
+          "peopleNmEn": "WOO Ki-hong",
+          "cast": "딜러 A",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "오창경",
-          "repRoleNm": "배우",
-          "cast": "이웃남"
+          "peopleNmEn": "OH Chang-kyung",
+          "cast": "이웃남",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이정민",
-          "repRoleNm": "배우",
-          "cast": "딜러 B"
+          "peopleNmEn": "LEE Jung-min",
+          "cast": "딜러 B",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -293,13 +292,13 @@
           "staffRoleNm": "연출팀"
         },
         {
-          "peopleNm": "박지운",
-          "peopleNmEn": "PARK Ji-un",
+          "peopleNm": "김현석",
+          "peopleNmEn": "",
           "staffRoleNm": "스토리보드"
         },
         {
-          "peopleNm": "김현석",
-          "peopleNmEn": "",
+          "peopleNm": "박지운",
+          "peopleNmEn": "PARK Ji-un",
           "staffRoleNm": "스토리보드"
         },
         {
@@ -1003,6 +1002,7 @@
           "staffRoleNm": "VFX 아티스트"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

@@ -25,95 +25,94 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "노덕",
-          "repRoleNm": "감독"
+          "peopleNmEn": "ROH Deok"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이민기",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Min-ki",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김민희",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Min-hee",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최무성",
-          "repRoleNm": "배우",
-          "cast": "김과장"
+          "peopleNmEn": "CHOI Moo-sung",
+          "cast": "김과장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "라미란",
-          "repRoleNm": "배우",
-          "cast": "손차장"
+          "peopleNmEn": "RA Mi-ran",
+          "cast": "손차장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박병은",
-          "repRoleNm": "배우",
-          "cast": "민차장"
+          "peopleNmEn": "PARK Byung-eun",
+          "cast": "민차장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하연수",
-          "repRoleNm": "배우",
-          "cast": "효선"
+          "peopleNmEn": "HA Yeon-soo",
+          "cast": "효선",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김강현",
-          "repRoleNm": "배우",
-          "cast": "박계장"
+          "peopleNmEn": "KIM Kang-hyun",
+          "cast": "박계장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장영준",
-          "repRoleNm": "배우",
-          "cast": "퀵맨"
+          "peopleNmEn": "",
+          "cast": "퀵맨",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정여진",
-          "repRoleNm": "배우",
-          "cast": "여자 은행원1"
+          "peopleNmEn": "",
+          "cast": "여자 은행원1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조치언",
-          "repRoleNm": "배우",
-          "cast": "짜장면 배달부"
+          "peopleNmEn": "JO Chi-un",
+          "cast": "짜장면 배달부",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박명규",
-          "repRoleNm": "배우",
-          "cast": "택배아저씨"
+          "peopleNmEn": "PARK Myeong-gyu",
+          "cast": "택배아저씨",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "권유진",
-          "repRoleNm": "배우",
-          "cast": "여자 은행원3"
+          "peopleNmEn": "",
+          "cast": "여자 은행원3",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김자영",
-          "repRoleNm": "배우",
-          "cast": "손차장 모"
+          "peopleNmEn": "KIM Ja-young",
+          "cast": "손차장 모",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정종열",
-          "repRoleNm": "배우",
-          "cast": "고객 아저씨"
+          "peopleNmEn": "JUNG Jong-yul",
+          "cast": "고객 아저씨",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -351,7 +350,7 @@
         },
         {
           "peopleNm": "변지수",
-          "peopleNmEn": "BYUN Ji-soo",
+          "peopleNmEn": "Byeon Ji su",
           "staffRoleNm": "촬영팀"
         },
         {
@@ -750,6 +749,11 @@
           "staffRoleNm": "매니지먼트"
         },
         {
+          "peopleNm": "이윤걸",
+          "peopleNmEn": "",
+          "staffRoleNm": "매니지먼트"
+        },
+        {
           "peopleNm": "김성필",
           "peopleNmEn": "",
           "staffRoleNm": "운송"
@@ -1074,8 +1078,8 @@
           "peopleNmEn": "",
           "staffRoleNm": "광고대행"
         }
-      ],
-      "audiAcc": 1847774
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

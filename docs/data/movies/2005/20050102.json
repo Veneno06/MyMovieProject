@@ -22,35 +22,34 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김기덕",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Ki-duk"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "서지석",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Seo Ji-seok",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한여름",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HAN Yeo-reum",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "전성환",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "JEON Sung-hwan",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "전국환",
-          "repRoleNm": "배우",
-          "cast": "대학생 아버지"
+          "peopleNmEn": "JEON Guk-hwan",
+          "cast": "대학생 아버지",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -397,6 +396,7 @@
           "staffRoleNm": "시각효과"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

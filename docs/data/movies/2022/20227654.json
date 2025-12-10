@@ -22,17 +22,16 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "황윤",
-          "repRoleNm": "감독"
+          "peopleNmEn": "Hwang Yun"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "황윤",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Hwang Yun",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -170,8 +169,8 @@
           "peopleNmEn": "",
           "staffRoleNm": "온라인마케팅"
         }
-      ],
-      "audiAcc": 19222
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

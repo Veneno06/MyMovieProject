@@ -22,53 +22,52 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김태경",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Tae-kyung"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "손여은",
-          "repRoleNm": "배우",
-          "cast": "연"
+          "peopleNmEn": "SON Yeo-eun",
+          "cast": "연",
+          "castEn": "Yeon"
         },
         {
-          "peopleCd": "",
           "peopleNm": "이영훈",
-          "repRoleNm": "배우",
-          "cast": "상필"
+          "peopleNmEn": "LEE Yeong-hoon",
+          "cast": "상필",
+          "castEn": "Sang-pil"
         },
         {
-          "peopleCd": "",
           "peopleNm": "편보승",
-          "repRoleNm": "배우",
-          "cast": "성인건호(곰인형)"
+          "peopleNmEn": "PYOUN Bo-seung",
+          "cast": "성인건호(곰인형) ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "손희순",
-          "repRoleNm": "배우",
-          "cast": "상주 할머니"
+          "peopleNmEn": "SON Hui-soon",
+          "cast": "상주 할머니",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한지은",
-          "repRoleNm": "배우",
-          "cast": "헬스장여자2"
+          "peopleNmEn": "HAN Ji-eun",
+          "cast": "헬스장여자2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서호철",
-          "repRoleNm": "배우",
-          "cast": "문방3"
+          "peopleNmEn": "SEO Ho-cheol",
+          "cast": "문방3",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김동현",
-          "repRoleNm": "배우",
-          "cast": "문방2"
+          "peopleNmEn": "KIM Dong-hyun",
+          "cast": "문방2",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -241,7 +240,7 @@
         },
         {
           "peopleNm": "변지수",
-          "peopleNmEn": "BYUN Ji-soo",
+          "peopleNmEn": "Byeon Ji su",
           "staffRoleNm": "촬영팀"
         },
         {
@@ -595,6 +594,7 @@
           "staffRoleNm": "VFX 매니지먼트"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

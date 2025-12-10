@@ -31,81 +31,78 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김태식",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Tai-sik"
         },
         {
-          "peopleCd": "",
           "peopleNm": "제나르 마에사 아유",
-          "repRoleNm": "감독"
+          "peopleNmEn": "Djenar Maesa Ayu"
         },
         {
-          "peopleCd": "",
           "peopleNm": "호 유항",
-          "repRoleNm": "감독"
+          "peopleNmEn": "Yuhang Ho"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "홍완표",
-          "repRoleNm": "배우",
-          "cast": "기남"
+          "peopleNmEn": "HONG Wan-pyo",
+          "cast": "기남",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이태경",
-          "repRoleNm": "배우",
-          "cast": "루루"
+          "peopleNmEn": "LEE Tae-kyoung",
+          "cast": "루루",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조선묵",
-          "repRoleNm": "배우",
-          "cast": "태묵"
+          "peopleNmEn": "CHO SEONMOOK",
+          "cast": "태묵",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "채민서",
-          "repRoleNm": "배우",
-          "cast": "주영"
+          "peopleNmEn": "CHAE Min-seo",
+          "cast": "주영",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이진주",
-          "repRoleNm": "배우",
-          "cast": "진주"
+          "peopleNmEn": "",
+          "cast": "진주",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박종근",
-          "repRoleNm": "배우",
-          "cast": "소장"
+          "peopleNmEn": "PARK Jong-geun",
+          "cast": "소장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임장환",
-          "repRoleNm": "배우",
-          "cast": "구철"
+          "peopleNmEn": "",
+          "cast": "구철",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이도윤",
-          "repRoleNm": "배우",
-          "cast": "기통"
+          "peopleNmEn": "",
+          "cast": "기통",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이슬기",
-          "repRoleNm": "배우",
-          "cast": "슬기"
+          "peopleNmEn": "",
+          "cast": "슬기",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "권민경",
-          "repRoleNm": "배우",
-          "cast": "노부인"
+          "peopleNmEn": "",
+          "cast": "노부인",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -461,6 +458,7 @@
           "staffRoleNm": "VFX 아티스트"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

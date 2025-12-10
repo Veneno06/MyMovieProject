@@ -22,53 +22,52 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "장용우",
-          "repRoleNm": "감독"
+          "peopleNmEn": "Chang Yong-woo"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "차인표",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "CHA In-pyo",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김효진",
-          "repRoleNm": "배우",
-          "cast": "이하나"
+          "peopleNmEn": "KIM Hyo-jin",
+          "cast": "이하나 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍수민",
-          "repRoleNm": "배우",
-          "cast": "배혜수"
+          "peopleNmEn": "",
+          "cast": "배혜수",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박정근",
-          "repRoleNm": "배우",
-          "cast": "주방"
+          "peopleNmEn": "",
+          "cast": "주방 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "심태윤",
-          "repRoleNm": "배우",
-          "cast": "심실장"
+          "peopleNmEn": "",
+          "cast": "심실장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이정용",
-          "repRoleNm": "배우",
-          "cast": "문형사"
+          "peopleNmEn": "",
+          "cast": "문형사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "손병욱",
-          "repRoleNm": "배우",
-          "cast": "마우송"
+          "peopleNmEn": "SON Byung-wook",
+          "cast": "마우송",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -795,6 +794,7 @@
           "staffRoleNm": "시각효과"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

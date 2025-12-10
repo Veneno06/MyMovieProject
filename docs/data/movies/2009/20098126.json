@@ -22,35 +22,34 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "명중오",
-          "repRoleNm": "감독"
+          "peopleNmEn": "MYEONG Jung-o"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "연제욱",
-          "repRoleNm": "배우",
-          "cast": "장생수"
+          "peopleNmEn": "YEON Je-wook",
+          "cast": "장생수",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이나라",
-          "repRoleNm": "배우",
-          "cast": "최은영"
+          "peopleNmEn": "LEE Na-ra",
+          "cast": "최은영 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍기준",
-          "repRoleNm": "배우",
-          "cast": "최철권"
+          "peopleNmEn": "HONG Ki-joon",
+          "cast": "최철권 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이용녀",
-          "repRoleNm": "배우",
-          "cast": "슈퍼 주인"
+          "peopleNmEn": "LEE Yong-nyeo",
+          "cast": "슈퍼 주인",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -86,6 +85,7 @@
           "staffRoleNm": "프로듀서"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

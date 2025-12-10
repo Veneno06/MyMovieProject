@@ -22,29 +22,28 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김기덕",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Ki-duk"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "나카에 츠바사",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Tsubasa Nakae",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "호리 나츠카",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Natsuko Hori",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "알렌 아이",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Allen Ai",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -105,6 +104,7 @@
           "staffRoleNm": "DI팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

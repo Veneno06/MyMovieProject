@@ -18,59 +18,58 @@
       "genres": [],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김헌",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Hun"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "조주경",
-          "repRoleNm": "배우",
-          "cast": "엄마"
+          "peopleNmEn": "",
+          "cast": "엄마",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "남태우",
-          "repRoleNm": "배우",
-          "cast": "아빠"
+          "peopleNmEn": "",
+          "cast": "아빠",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한승우",
-          "repRoleNm": "배우",
-          "cast": "삼촌"
+          "peopleNmEn": "",
+          "cast": "삼촌",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김모범",
-          "repRoleNm": "배우",
-          "cast": "아들"
+          "peopleNmEn": "",
+          "cast": "아들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "고연아",
-          "repRoleNm": "배우",
-          "cast": "딸"
+          "peopleNmEn": "",
+          "cast": "딸",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이송이",
-          "repRoleNm": "배우",
-          "cast": "이모"
+          "peopleNmEn": "",
+          "cast": "이모",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최재성",
-          "repRoleNm": "배우",
-          "cast": "병장"
+          "peopleNmEn": "",
+          "cast": "병장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "민재경",
-          "repRoleNm": "배우",
-          "cast": "목사"
+          "peopleNmEn": "",
+          "cast": "목사",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -212,6 +211,7 @@
           "staffRoleNm": "기타"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

@@ -25,71 +25,70 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "장률",
-          "repRoleNm": "감독"
+          "peopleNmEn": "ZHANG Lu"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "류연희",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Liu lianji",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김박",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "JIN Bo",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "주광현",
-          "repRoleNm": "배우",
-          "cast": "김씨"
+          "peopleNmEn": "",
+          "cast": "김씨 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "류경지",
-          "repRoleNm": "배우",
-          "cast": "우정출연"
+          "peopleNmEn": "",
+          "cast": "우정출연 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "류서화",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "주항",
-          "repRoleNm": "배우",
-          "cast": "우정출연"
+          "peopleNmEn": "Zhu hang",
+          "cast": "우정출연 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한옥생",
-          "repRoleNm": "배우",
-          "cast": "우정출연"
+          "peopleNmEn": "Han yusheng",
+          "cast": "우정출연",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "진영",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "왕설암",
-          "repRoleNm": "배우",
-          "cast": "우정출연"
+          "peopleNmEn": "",
+          "cast": "우정출연 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "왕해명",
-          "repRoleNm": "배우",
-          "cast": "우정출연"
+          "peopleNmEn": "",
+          "cast": "우정출연 ",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -399,6 +398,7 @@
           "staffRoleNm": "VFX 슈퍼바이저"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

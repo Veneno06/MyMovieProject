@@ -28,65 +28,64 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "조성규",
-          "repRoleNm": "감독"
+          "peopleNmEn": "CHO Sung-kyu"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김재욱",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Jae-uck",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김지유",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Ji-yoo",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "진아름",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "백재호",
-          "repRoleNm": "배우",
-          "cast": "사업가"
+          "peopleNmEn": "BAEK Jae-ho",
+          "cast": "사업가",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "안지혜",
-          "repRoleNm": "배우",
-          "cast": "헤어디자이너1"
+          "peopleNmEn": "AHN Jee-hye",
+          "cast": "헤어디자이너1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "현지윤",
-          "repRoleNm": "배우",
-          "cast": "보조미용사"
+          "peopleNmEn": "",
+          "cast": "보조미용사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이새별",
-          "repRoleNm": "배우",
-          "cast": "극장직원"
+          "peopleNmEn": "LEE Sae-byeol",
+          "cast": "극장직원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김상석",
-          "repRoleNm": "배우",
-          "cast": "지식인"
+          "peopleNmEn": "KIM Sang-seok",
+          "cast": "지식인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "차영남",
-          "repRoleNm": "배우",
-          "cast": "남자관람객"
+          "peopleNmEn": "CHA YOUNG NAM",
+          "cast": "남자관람객",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -369,6 +368,7 @@
           "staffRoleNm": "VFX 아티스트"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

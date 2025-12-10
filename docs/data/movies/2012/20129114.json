@@ -25,53 +25,52 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김용균",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Yong-gyun"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이시영",
-          "repRoleNm": "배우",
-          "cast": "지윤"
+          "peopleNmEn": "LEE Si-young",
+          "cast": "지윤 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "엄기준",
-          "repRoleNm": "배우",
-          "cast": "이기철"
+          "peopleNmEn": "UM Ki-joon",
+          "cast": "이기철 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "문가영",
-          "repRoleNm": "배우",
-          "cast": "조서현"
+          "peopleNmEn": "MOON Ga-young",
+          "cast": "조서현",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "권해효",
-          "repRoleNm": "배우",
-          "cast": "조선기"
+          "peopleNmEn": "KWON Hae-hyo",
+          "cast": "조선기",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김도영",
-          "repRoleNm": "배우",
-          "cast": "서미숙"
+          "peopleNmEn": "KIM Doyoung",
+          "cast": "서미숙",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "현우",
-          "repRoleNm": "배우",
-          "cast": "김영수"
+          "peopleNmEn": "HYUN Woo",
+          "cast": "김영수",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정현태",
-          "repRoleNm": "배우",
-          "cast": "남학생1"
+          "peopleNmEn": "",
+          "cast": "남학생1",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -1333,8 +1332,8 @@
           "peopleNmEn": "",
           "staffRoleNm": "메이킹필름"
         }
-      ],
-      "audiAcc": 1194450
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

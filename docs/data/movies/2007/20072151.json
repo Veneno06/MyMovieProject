@@ -22,89 +22,88 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김정권",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Jung-kwon"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "차태현",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "CHA Tae-hyun",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하지원",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HA Ji-won",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박희순",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "PARK Hee-soon",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박그리나",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "PARK Greena",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "신동수",
-          "repRoleNm": "배우",
-          "cast": "삼인방2"
+          "peopleNmEn": "",
+          "cast": "삼인방2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유윤상",
-          "repRoleNm": "배우",
-          "cast": "초딩(과거)4"
+          "peopleNmEn": "",
+          "cast": "초딩(과거)4 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조덕현",
-          "repRoleNm": "배우",
-          "cast": "김 사장"
+          "peopleNmEn": "CHO Duk-hyun",
+          "cast": "김 사장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정경순",
-          "repRoleNm": "배우",
-          "cast": "지호 고모"
+          "peopleNmEn": "CHUNG Kyung-soon",
+          "cast": "지호 고모",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이기영",
-          "repRoleNm": "배우",
-          "cast": "재진"
+          "peopleNmEn": "LEE Ki-young",
+          "cast": "재진",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "전미선",
-          "repRoleNm": "배우",
-          "cast": "승룡 모"
+          "peopleNmEn": "JEON Mi-sun",
+          "cast": "승룡 모",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임형국",
-          "repRoleNm": "배우",
-          "cast": "승룡 부"
+          "peopleNmEn": "LIM Hyung-kook",
+          "cast": "승룡 부",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "송영학",
-          "repRoleNm": "배우",
-          "cast": "교회 교사"
+          "peopleNmEn": "SONG Young-hak",
+          "cast": "교회 교사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이상훈",
-          "repRoleNm": "배우",
-          "cast": "고물상"
+          "peopleNmEn": "LEE Sang-hun",
+          "cast": "고물상",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -494,8 +493,8 @@
           "staffRoleNm": "아트디렉터"
         },
         {
-          "peopleNm": "김세화",
-          "peopleNmEn": "KIM Se-hwa",
+          "peopleNm": "김지아",
+          "peopleNmEn": "KIM Ji-a",
           "staffRoleNm": "미술팀"
         },
         {
@@ -959,6 +958,7 @@
           "staffRoleNm": "VFX 슈퍼바이저"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

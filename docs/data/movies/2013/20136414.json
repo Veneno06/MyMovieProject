@@ -25,53 +25,52 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "최경진",
-          "repRoleNm": "감독"
+          "peopleNmEn": "CHOI Kyung-jin"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이수완",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "히로사와 소우",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "신유주",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "SHIN Yu-ju",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임태상",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이규형",
-          "repRoleNm": "배우",
-          "cast": "민혁"
+          "peopleNmEn": "LEE Kyu-hyung",
+          "cast": "민혁",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "심휘",
-          "repRoleNm": "배우",
-          "cast": "중년녀"
+          "peopleNmEn": "Shim Whee",
+          "cast": "중년녀",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "백재호",
-          "repRoleNm": "배우",
-          "cast": "시황"
+          "peopleNmEn": "BAEK Jae-ho",
+          "cast": "시황",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -218,6 +217,7 @@
           "staffRoleNm": "스틸"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

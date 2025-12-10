@@ -22,53 +22,52 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "오성윤",
-          "repRoleNm": "감독"
+          "peopleNmEn": "OH Sungyun"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "문소리",
-          "repRoleNm": "배우",
-          "cast": "잎싹"
+          "peopleNmEn": "MOON So-ri",
+          "cast": "잎싹",
+          "castEn": "Leafie"
         },
         {
-          "peopleCd": "",
           "peopleNm": "박철민",
-          "repRoleNm": "배우",
-          "cast": "달수"
+          "peopleNmEn": "PARK Cheol-min",
+          "cast": "달수",
+          "castEn": "Dal-soo"
         },
         {
-          "peopleCd": "",
           "peopleNm": "최민식",
-          "repRoleNm": "배우",
-          "cast": "나그네"
+          "peopleNmEn": "CHOI Min-shik",
+          "cast": "나그네",
+          "castEn": "Wanderer"
         },
         {
-          "peopleCd": "",
           "peopleNm": "유승호",
-          "repRoleNm": "배우",
-          "cast": "초록이"
+          "peopleNmEn": "YOO Seung-ho",
+          "cast": "초록이",
+          "castEn": "Greenie"
         },
         {
-          "peopleCd": "",
           "peopleNm": "김상현",
-          "repRoleNm": "배우",
-          "cast": "애꾸눈 족제비"
+          "peopleNmEn": "KIM Sang-hyun",
+          "cast": "애꾸눈 족제비",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김한솔",
-          "repRoleNm": "배우",
-          "cast": "Voice FX Actor"
+          "peopleNmEn": "",
+          "cast": "Voice FX Actor",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍윤정",
-          "repRoleNm": "배우",
-          "cast": "군중오리/암탉들"
+          "peopleNmEn": "HONG Yoon-jeong",
+          "cast": "군중오리/암탉들",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -1813,8 +1812,8 @@
           "peopleNmEn": "",
           "staffRoleNm": "기타"
         }
-      ],
-      "audiAcc": 1929387
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

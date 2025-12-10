@@ -22,23 +22,22 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "명석환",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "주예빈",
-          "repRoleNm": "배우",
-          "cast": "희수"
+          "peopleNmEn": "",
+          "cast": "희수",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황아름",
-          "repRoleNm": "배우",
-          "cast": "에필로그 녀"
+          "peopleNmEn": "",
+          "cast": "에필로그 녀",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -255,6 +254,7 @@
           "staffRoleNm": "DI팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

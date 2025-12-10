@@ -25,35 +25,34 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "신정균",
-          "repRoleNm": "감독"
+          "peopleNmEn": "SHEEN Jeong-kyun"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "한수연",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HAN Soo-yeon",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유석환",
-          "repRoleNm": "배우",
-          "cast": "동석"
+          "peopleNmEn": "",
+          "cast": "동석",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김지연",
-          "repRoleNm": "배우",
-          "cast": "커플1"
+          "peopleNmEn": "",
+          "cast": "커플1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박지연",
-          "repRoleNm": "배우",
-          "cast": "종업원"
+          "peopleNmEn": "PARK Ji-yeon",
+          "cast": "종업원",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -209,6 +208,7 @@
           "staffRoleNm": "캐스팅"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

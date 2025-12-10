@@ -22,41 +22,40 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이건우",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Gun-woo"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "한해인",
-          "repRoleNm": "배우",
-          "cast": "윤나린"
+          "peopleNmEn": "HAN Hae-in",
+          "cast": "윤나린",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김정훈",
-          "repRoleNm": "배우",
-          "cast": "김수한"
+          "peopleNmEn": "",
+          "cast": "김수한",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박인하",
-          "repRoleNm": "배우",
-          "cast": "차은찬"
+          "peopleNmEn": "",
+          "cast": "차은찬",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김보늬",
-          "repRoleNm": "배우",
-          "cast": "최작가"
+          "peopleNmEn": "",
+          "cast": "최작가",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이다림",
-          "repRoleNm": "배우",
-          "cast": "정혜주"
+          "peopleNmEn": "",
+          "cast": "정혜주",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -178,6 +177,7 @@
           "staffRoleNm": "DI팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

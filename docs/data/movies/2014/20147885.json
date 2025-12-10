@@ -25,59 +25,58 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "한동호",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "한규리",
-          "repRoleNm": "배우",
-          "cast": "미스고"
+          "peopleNmEn": "",
+          "cast": "미스고",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유선영",
-          "repRoleNm": "배우",
-          "cast": "미스최"
+          "peopleNmEn": "",
+          "cast": "미스최",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "민송아",
-          "repRoleNm": "배우",
-          "cast": "미스신"
+          "peopleNmEn": "",
+          "cast": "미스신",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "손지완",
-          "repRoleNm": "배우",
-          "cast": "한승훈"
+          "peopleNmEn": "",
+          "cast": "한승훈",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "주성용",
-          "repRoleNm": "배우",
-          "cast": "택시기사"
+          "peopleNmEn": "",
+          "cast": "택시기사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이승우",
-          "repRoleNm": "배우",
-          "cast": "왕마담보디가드"
+          "peopleNmEn": "",
+          "cast": "왕마담보디가드",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김민혁",
-          "repRoleNm": "배우",
-          "cast": "경찰관"
+          "peopleNmEn": "",
+          "cast": "경찰관",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김용덕",
-          "repRoleNm": "배우",
-          "cast": "룸싸롱사내1"
+          "peopleNmEn": "",
+          "cast": "룸싸롱사내1",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -252,6 +251,7 @@
           "staffRoleNm": "메이킹필름"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

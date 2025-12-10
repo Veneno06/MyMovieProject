@@ -25,22 +25,20 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "조은경",
-          "repRoleNm": "감독"
+          "peopleNmEn": "JO Eun-kyung"
         },
         {
-          "peopleCd": "",
           "peopleNm": "여명준",
-          "repRoleNm": "감독"
+          "peopleNmEn": "Joachim YEO"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "홍상우",
-          "repRoleNm": "배우",
-          "cast": "점집손님"
+          "peopleNmEn": "",
+          "cast": "점집손님",
+          "castEn": ""
         }
       ],
       "showTypes": [],
@@ -298,6 +296,7 @@
           "staffRoleNm": "식당차"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

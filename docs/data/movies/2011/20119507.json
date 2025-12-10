@@ -22,41 +22,40 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이윤기",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Yoon-ki"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "현빈",
-          "repRoleNm": "배우",
-          "cast": "지석"
+          "peopleNmEn": "HYUN Bin",
+          "cast": "지석",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임수정",
-          "repRoleNm": "배우",
-          "cast": "영신"
+          "peopleNmEn": "LIM Soo-jung",
+          "cast": "영신 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김중기",
-          "repRoleNm": "배우",
-          "cast": "이웃집 그"
+          "peopleNmEn": "KIM Jung-ki",
+          "cast": "이웃집 그",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김혜옥",
-          "repRoleNm": "배우",
-          "cast": "엄마"
+          "peopleNmEn": "KIM Hye-ok",
+          "cast": "엄마",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유진영",
-          "repRoleNm": "배우",
-          "cast": "아나운서"
+          "peopleNmEn": "",
+          "cast": "아나운서  ",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -767,7 +766,7 @@
         },
         {
           "peopleNm": "황정현",
-          "peopleNmEn": "HWANG Jung-hyun",
+          "peopleNmEn": "HWANG JUNG HYUN",
           "staffRoleNm": "예고편"
         },
         {
@@ -776,6 +775,7 @@
           "staffRoleNm": "VFX 아티스트"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

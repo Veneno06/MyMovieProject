@@ -28,71 +28,70 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "임진승",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LIM Jin-seung"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "조덕제",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "JO Duk-je",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍서백",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HONG Seo-back",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "연송하",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "YEON Song-ha",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이유미",
-          "repRoleNm": "배우",
-          "cast": "마리"
+          "peopleNmEn": "LEE Yumi",
+          "cast": "마리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이새별",
-          "repRoleNm": "배우",
-          "cast": "채령"
+          "peopleNmEn": "LEE Sae-byeol",
+          "cast": "채령",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김서원",
-          "repRoleNm": "배우",
-          "cast": "의뢰인"
+          "peopleNmEn": "KIM Seo-won",
+          "cast": "의뢰인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "양도현",
-          "repRoleNm": "배우",
-          "cast": "존슨"
+          "peopleNmEn": "YANG Dohyun",
+          "cast": "존슨",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "지대한",
-          "repRoleNm": "배우",
-          "cast": "MR.HWANG"
+          "peopleNmEn": "JI Dae-han",
+          "cast": "MR.HWANG",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "지대한",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "JI Dae-han",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임지석",
-          "repRoleNm": "배우",
-          "cast": "매니저"
+          "peopleNmEn": "",
+          "cast": "매니저",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -408,6 +407,7 @@
           "staffRoleNm": "스틸"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

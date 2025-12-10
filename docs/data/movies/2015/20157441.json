@@ -25,95 +25,94 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김용운",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Yong-Woon"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "홍수아",
-          "repRoleNm": "배우",
-          "cast": "최가인"
+          "peopleNmEn": "HONG Soo-ah",
+          "cast": "최가인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임성언",
-          "repRoleNm": "배우",
-          "cast": "박은정"
+          "peopleNmEn": "LIM Seong-eon",
+          "cast": "박은정",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "양명헌",
-          "repRoleNm": "배우",
-          "cast": "송우진"
+          "peopleNmEn": "YANG Myoung-hoen",
+          "cast": "송우진",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김하유",
-          "repRoleNm": "배우",
-          "cast": "송서아"
+          "peopleNmEn": "KIM Ha-yoo",
+          "cast": "송서아",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "양도현",
-          "repRoleNm": "배우",
-          "cast": "송우진"
+          "peopleNmEn": "YANG Dohyun",
+          "cast": "송우진",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최초우",
-          "repRoleNm": "배우",
-          "cast": "돌봄선생님"
+          "peopleNmEn": "",
+          "cast": "돌봄선생님",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "현봉식",
-          "repRoleNm": "배우",
-          "cast": "봉식"
+          "peopleNmEn": "HYUN Bong-sik",
+          "cast": "봉식",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조한선",
-          "repRoleNm": "배우",
-          "cast": "김 사장"
+          "peopleNmEn": "JO Han-sun",
+          "cast": "김 사장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조덕제",
-          "repRoleNm": "배우",
-          "cast": "최진호(특별출연)"
+          "peopleNmEn": "JO Duk-je",
+          "cast": "최진호(특별출연)",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "여호민",
-          "repRoleNm": "배우",
-          "cast": "박 형사(특별출연)"
+          "peopleNmEn": "YEO Ho-min",
+          "cast": "박 형사(특별출연)",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이창해",
-          "repRoleNm": "배우",
-          "cast": "후배형사"
+          "peopleNmEn": "",
+          "cast": "후배형사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정다호",
-          "repRoleNm": "배우",
-          "cast": "커피숍직원"
+          "peopleNmEn": "",
+          "cast": "커피숍직원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정부자",
-          "repRoleNm": "배우",
-          "cast": "40대 목소리"
+          "peopleNmEn": "",
+          "cast": "40대 목소리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이윤선",
-          "repRoleNm": "배우",
-          "cast": "명품관 매니저"
+          "peopleNmEn": "",
+          "cast": "명품관 매니저",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -581,6 +580,7 @@
           "staffRoleNm": "기획"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

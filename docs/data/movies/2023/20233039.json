@@ -25,35 +25,34 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "조영준",
-          "repRoleNm": "감독"
+          "peopleNmEn": "CHO Young-jun"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "조여정",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "CHO Yeo-jeong",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정성일",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "JUNG Sung-il",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황지아",
-          "repRoleNm": "배우",
-          "cast": "예린"
+          "peopleNmEn": "Zia Hwang",
+          "cast": "예린",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "변창열",
-          "repRoleNm": "배우",
-          "cast": "동영상 피해자2"
+          "peopleNmEn": "BYEON Chang-yeol",
+          "cast": "동영상 피해자2",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -122,9 +121,19 @@
           "peopleNm": "송혜민",
           "peopleNmEn": "",
           "staffRoleNm": "연출팀"
+        },
+        {
+          "peopleNm": "윤효진",
+          "peopleNmEn": "HYO JIN YOON",
+          "staffRoleNm": "온라인마케팅"
+        },
+        {
+          "peopleNm": "이동훈",
+          "peopleNmEn": "",
+          "staffRoleNm": "광고대행"
         }
-      ],
-      "audiAcc": 364379
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

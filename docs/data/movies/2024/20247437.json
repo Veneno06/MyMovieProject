@@ -22,71 +22,70 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "정지환",
-          "repRoleNm": "감독"
+          "peopleNmEn": "JUNG Ji-hwan"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "엄상현",
-          "repRoleNm": "배우",
-          "cast": "브레드"
+          "peopleNmEn": "UM Sang-hyun",
+          "cast": "브레드",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박윤희",
-          "repRoleNm": "배우",
-          "cast": "윌크"
+          "peopleNmEn": "",
+          "cast": "윌크",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "강시현",
-          "repRoleNm": "배우",
-          "cast": "초코"
+          "peopleNmEn": "",
+          "cast": "초코",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍범기",
-          "repRoleNm": "배우",
-          "cast": "감자칩"
+          "peopleNmEn": "HONG Beom-gi",
+          "cast": "감자칩",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김현욱",
-          "repRoleNm": "배우",
-          "cast": "MC크로와상"
+          "peopleNmEn": "",
+          "cast": "MC크로와상",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "송하림",
-          "repRoleNm": "배우",
-          "cast": "치즈"
+          "peopleNmEn": "SONG Ha-lim",
+          "cast": "치즈",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조경이",
-          "repRoleNm": "배우",
-          "cast": "오렌지캔디"
+          "peopleNmEn": "",
+          "cast": "오렌지캔디",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정주원",
-          "repRoleNm": "배우",
-          "cast": "마라, 로제손님"
+          "peopleNmEn": "",
+          "cast": "마라, 로제손님",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "윤아영",
-          "repRoleNm": "배우",
-          "cast": "마카롱"
+          "peopleNmEn": "",
+          "cast": "마카롱",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김신우",
-          "repRoleNm": "배우",
-          "cast": "롤보이"
+          "peopleNmEn": "",
+          "cast": "롤보이",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -102,7 +101,7 @@
       "companys": [
         {
           "companyCd": "20241781",
-          "companyNm": "㈜브레드이발소",
+          "companyNm": "주식회사 브레드이발소",
           "companyNmEn": "",
           "companyPartNm": "제작사"
         },
@@ -133,7 +132,7 @@
       ],
       "staffs": [
         {
-          "peopleNm": "남지윤",
+          "peopleNm": "이재훈",
           "peopleNmEn": "",
           "staffRoleNm": "투자"
         },
@@ -141,21 +140,6 @@
           "peopleNm": "이학준",
           "peopleNmEn": "",
           "staffRoleNm": "사운드믹싱"
-        },
-        {
-          "peopleNm": "황보미애",
-          "peopleNmEn": "",
-          "staffRoleNm": "투자"
-        },
-        {
-          "peopleNm": "이재훈",
-          "peopleNmEn": "",
-          "staffRoleNm": "투자"
-        },
-        {
-          "peopleNm": "이진석",
-          "peopleNmEn": "",
-          "staffRoleNm": "프로듀서"
         },
         {
           "peopleNm": "이동준",
@@ -298,9 +282,9 @@
           "staffRoleNm": "사운드디자이너"
         },
         {
-          "peopleNm": "신유나",
+          "peopleNm": "이진석",
           "peopleNmEn": "",
-          "staffRoleNm": "투자"
+          "staffRoleNm": "프로듀서"
         },
         {
           "peopleNm": "정지환",
@@ -484,7 +468,7 @@
         },
         {
           "peopleNm": "이명훈",
-          "peopleNmEn": "",
+          "peopleNmEn": "LEE MYUNG-HOON",
           "staffRoleNm": "DI팀"
         },
         {
@@ -586,9 +570,23 @@
           "peopleNm": "김현철",
           "peopleNmEn": "",
           "staffRoleNm": "배급진행"
+        },
+        {
+          "peopleNm": "남지윤",
+          "peopleNmEn": "",
+          "staffRoleNm": "기타"
+        },
+        {
+          "peopleNm": "신유나",
+          "peopleNmEn": "",
+          "staffRoleNm": "기타"
+        },
+        {
+          "peopleNm": "황보미애",
+          "peopleNmEn": "",
+          "staffRoleNm": "기타"
         }
-      ],
-      "audiAcc": 185323
+      ]
     },
     "source": "영화진흥위원회"
   }

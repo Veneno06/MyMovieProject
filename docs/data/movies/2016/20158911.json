@@ -25,29 +25,28 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "정태령",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "허예창",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이윤희",
-          "repRoleNm": "배우",
-          "cast": "밀실여"
+          "peopleNmEn": "",
+          "cast": "밀실여",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이언수",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -258,6 +257,7 @@
           "staffRoleNm": "스틸"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

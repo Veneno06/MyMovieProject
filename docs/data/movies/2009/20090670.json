@@ -22,83 +22,82 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "오달균",
-          "repRoleNm": "감독"
+          "peopleNmEn": "OH Dal-kyun"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "장나라",
-          "repRoleNm": "배우",
-          "cast": "하늘"
+          "peopleNmEn": "CHANG Na-ra",
+          "cast": "하늘",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "민송아",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유아인",
-          "repRoleNm": "배우",
-          "cast": "진구"
+          "peopleNmEn": "YOO Ahin",
+          "cast": "진구",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "쥬니",
-          "repRoleNm": "배우",
-          "cast": "바다"
+          "peopleNmEn": "Juni",
+          "cast": "바다",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정연준",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한지후",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HAN Ji-Hoo",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최정우",
-          "repRoleNm": "배우",
-          "cast": "정환"
+          "peopleNmEn": "CHOE Jeong-u",
+          "cast": "정환",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정혜원",
-          "repRoleNm": "배우",
-          "cast": "미미"
+          "peopleNmEn": "JUNG Hye-won",
+          "cast": "미미",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김현숙",
-          "repRoleNm": "배우",
-          "cast": "바다 친모"
+          "peopleNmEn": "",
+          "cast": "바다 친모",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김대우",
-          "repRoleNm": "배우",
-          "cast": "특별출연"
+          "peopleNmEn": "",
+          "cast": "특별출연",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박미영",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "윤송아",
-          "repRoleNm": "배우",
-          "cast": "시영 친구 1"
+          "peopleNmEn": "YUN Song-a",
+          "cast": "시영 친구 1",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -867,6 +866,7 @@
           "staffRoleNm": "기획진행"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

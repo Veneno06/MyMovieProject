@@ -22,53 +22,52 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김대환",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Dae-hwan"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "문창길",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "MUN Chang-gil",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이영란",
-          "repRoleNm": "배우",
-          "cast": "어머니"
+          "peopleNmEn": "LEE Young-ran",
+          "cast": "어머니",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김민혁",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "허재원",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이상희",
-          "repRoleNm": "배우",
-          "cast": "강혜정(며느리)"
+          "peopleNmEn": "LEE Sang-hee",
+          "cast": "강혜정(며느리)",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박찬윤",
-          "repRoleNm": "배우",
-          "cast": "사진사"
+          "peopleNmEn": "PARK Chan-yun",
+          "cast": "사진사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "양흥주",
-          "repRoleNm": "배우",
-          "cast": "중국집사장"
+          "peopleNmEn": "YANG Heung-joo",
+          "cast": "중국집사장",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -336,6 +335,7 @@
           "staffRoleNm": "온라인마케팅"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

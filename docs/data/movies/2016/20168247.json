@@ -22,71 +22,70 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "권중목",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KWON Joong-mok"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "박상훈",
-          "repRoleNm": "배우",
-          "cast": "이경훈"
+          "peopleNmEn": "PARK Sang-hoon",
+          "cast": "이경훈",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "손하경",
-          "repRoleNm": "배우",
-          "cast": "양성경"
+          "peopleNmEn": "SON Ha-kyung",
+          "cast": "양성경",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김찬형",
-          "repRoleNm": "배우",
-          "cast": "김희원"
+          "peopleNmEn": "KIM Chan-hyung",
+          "cast": "김희원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김찬형",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박상아",
-          "repRoleNm": "배우",
-          "cast": "최지윤"
+          "peopleNmEn": "",
+          "cast": "최지윤",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서영주",
-          "repRoleNm": "배우",
-          "cast": "서희진"
+          "peopleNmEn": "",
+          "cast": "서희진",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "전지수",
-          "repRoleNm": "배우",
-          "cast": "계약자"
+          "peopleNmEn": "",
+          "cast": "계약자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김부영",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "주원규",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한태경",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -212,6 +211,7 @@
           "staffRoleNm": "DI팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

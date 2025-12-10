@@ -22,35 +22,34 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이소현",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE So-hyun"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "박삼순",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이소현",
-          "repRoleNm": "배우",
-          "cast": "손녀"
+          "peopleNmEn": "LEE So-hyun",
+          "cast": "손녀",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장춘옥",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍순영",
-          "repRoleNm": "배우",
-          "cast": "손주들"
+          "peopleNmEn": "",
+          "cast": "손주들",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -326,6 +325,7 @@
           "staffRoleNm": "기타"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

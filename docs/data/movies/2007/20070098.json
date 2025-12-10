@@ -22,65 +22,64 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김기덕",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Ki-duk"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "박지아",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "PARK Zi-a",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하정우",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HA Jung-woo",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장첸",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Chen Chang",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "송명철",
-          "repRoleNm": "배우",
-          "cast": "택시 운전사3"
+          "peopleNmEn": "SONG Myung-chul",
+          "cast": "택시 운전사3",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황인준",
-          "repRoleNm": "배우",
-          "cast": "택시 운전사2"
+          "peopleNmEn": "HWANG In-jun",
+          "cast": "택시 운전사2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김기덕",
-          "repRoleNm": "배우",
-          "cast": "보안과장"
+          "peopleNmEn": "KIM Ki-duk",
+          "cast": "보안과장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "문혜경",
-          "repRoleNm": "배우",
-          "cast": "간호사"
+          "peopleNmEn": "MOON Hye-gyeong",
+          "cast": "간호사 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박귀복",
-          "repRoleNm": "배우",
-          "cast": "주방아줌마"
+          "peopleNmEn": "",
+          "cast": "주방아줌마 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박기순",
-          "repRoleNm": "배우",
-          "cast": "여자생활인2"
+          "peopleNmEn": "",
+          "cast": "여자생활인2 ",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -452,6 +451,7 @@
           "staffRoleNm": "DI팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

@@ -25,101 +25,100 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "손태웅",
-          "repRoleNm": "감독"
+          "peopleNmEn": "SON Derek"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "한지민",
-          "repRoleNm": "배우",
-          "cast": "선화"
+          "peopleNmEn": "HAN Ji-min",
+          "cast": "선화",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "오태경",
-          "repRoleNm": "배우",
-          "cast": "기범"
+          "peopleNmEn": "OH Tae-kyung",
+          "cast": "기범",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "온주완",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "ON Ju-wan",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍희자",
-          "repRoleNm": "배우",
-          "cast": "할머니 카데바"
+          "peopleNmEn": "HONG Hee-ja",
+          "cast": "할머니 카데바",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "예학영",
-          "repRoleNm": "배우",
-          "cast": "찬용"
+          "peopleNmEn": "YE Hak-young",
+          "cast": "찬용",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조민기",
-          "repRoleNm": "배우",
-          "cast": "지우"
+          "peopleNmEn": "CHO Min-ki",
+          "cast": "지우",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "성창연",
-          "repRoleNm": "배우",
-          "cast": "조교"
+          "peopleNmEn": "",
+          "cast": "조교",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박정현",
-          "repRoleNm": "배우",
-          "cast": "어린선화"
+          "peopleNmEn": "",
+          "cast": "어린선화 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "우지현",
-          "repRoleNm": "배우",
-          "cast": "의대생"
+          "peopleNmEn": "",
+          "cast": "의대생 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유선진",
-          "repRoleNm": "배우",
-          "cast": "의대생"
+          "peopleNmEn": "",
+          "cast": "의대생 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "전호성",
-          "repRoleNm": "배우",
-          "cast": "조교2"
+          "peopleNmEn": "",
+          "cast": "조교2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정수현",
-          "repRoleNm": "배우",
-          "cast": "카데바"
+          "peopleNmEn": "",
+          "cast": "카데바",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "양석원",
-          "repRoleNm": "배우",
-          "cast": "의대생"
+          "peopleNmEn": "",
+          "cast": "의대생 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서영화",
-          "repRoleNm": "배우",
-          "cast": "선화 모"
+          "peopleNmEn": "SEO Young-hwa",
+          "cast": "선화 모",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김경룡",
-          "repRoleNm": "배우",
-          "cast": "화물트럭 기사"
+          "peopleNmEn": "KIM Gyeong-ryong",
+          "cast": "화물트럭 기사",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -1286,6 +1285,7 @@
           "staffRoleNm": "포스터사진"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

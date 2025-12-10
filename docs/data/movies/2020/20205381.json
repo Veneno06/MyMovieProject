@@ -22,83 +22,82 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "박윤진",
-          "repRoleNm": "감독"
+          "peopleNmEn": "PARK Yunjin"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "박윤진",
-          "repRoleNm": "배우",
-          "cast": "내언니전지현"
+          "peopleNmEn": "PARK Yunjin",
+          "cast": "내언니전지현",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최아현",
-          "repRoleNm": "배우",
-          "cast": "레렐"
+          "peopleNmEn": "",
+          "cast": "레렐",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이준호",
-          "repRoleNm": "배우",
-          "cast": "공아지"
+          "peopleNmEn": "",
+          "cast": "공아지",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이주현",
-          "repRoleNm": "배우",
-          "cast": "딸람보"
+          "peopleNmEn": "",
+          "cast": "딸람보",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박관우",
-          "repRoleNm": "배우",
-          "cast": "예려"
+          "peopleNmEn": "",
+          "cast": "예려",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정세연",
-          "repRoleNm": "배우",
-          "cast": "쿠이쭈"
+          "peopleNmEn": "",
+          "cast": "쿠이쭈",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김율",
-          "repRoleNm": "배우",
-          "cast": "하루히로"
+          "peopleNmEn": "",
+          "cast": "하루히로",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이도현",
-          "repRoleNm": "배우",
-          "cast": "에픽하"
+          "peopleNmEn": "",
+          "cast": "에픽하",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박정인",
-          "repRoleNm": "배우",
-          "cast": "짬돌잉"
+          "peopleNmEn": "",
+          "cast": "짬돌잉",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "배수찬",
-          "repRoleNm": "배우",
-          "cast": "배수찬"
+          "peopleNmEn": "",
+          "cast": "배수찬",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정상원",
-          "repRoleNm": "배우",
-          "cast": "정상원"
+          "peopleNmEn": "",
+          "cast": "정상원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황인철",
-          "repRoleNm": "배우",
-          "cast": "아레수"
+          "peopleNmEn": "",
+          "cast": "아레수",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -258,6 +257,7 @@
           "staffRoleNm": "온라인마케팅"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

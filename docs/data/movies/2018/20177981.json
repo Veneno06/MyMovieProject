@@ -22,35 +22,34 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "정가영",
-          "repRoleNm": "감독"
+          "peopleNmEn": "JEONG Gayoung"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "박종환",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "PARK Jong-hwan",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "형슬우",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HYUNG Seulwoo",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정가영",
-          "repRoleNm": "배우",
-          "cast": "여자"
+          "peopleNmEn": "JEONG Gayoung",
+          "cast": "여자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김은선",
-          "repRoleNm": "배우",
-          "cast": "커플2"
+          "peopleNmEn": "",
+          "cast": "커플2",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -357,6 +356,7 @@
           "staffRoleNm": "DI팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

@@ -22,35 +22,34 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "박선욱",
-          "repRoleNm": "감독"
+          "peopleNmEn": "PARK Seon-uk"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "홍새희",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하빈",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "민도윤",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정향",
-          "repRoleNm": "배우",
-          "cast": "분장직원"
+          "peopleNmEn": "",
+          "cast": "분장직원",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -216,6 +215,7 @@
           "staffRoleNm": "캐스팅"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

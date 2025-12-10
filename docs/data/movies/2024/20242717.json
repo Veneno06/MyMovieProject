@@ -25,77 +25,76 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "신재민",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김현수",
-          "repRoleNm": "배우",
-          "cast": "강단경"
+          "peopleNmEn": "KIM Hyeon-soo",
+          "cast": "강단경",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김용지",
-          "repRoleNm": "배우",
-          "cast": "강주경"
+          "peopleNmEn": "",
+          "cast": "강주경",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김진우",
-          "repRoleNm": "배우",
-          "cast": "한냐군"
+          "peopleNmEn": "Kim Jinwoo",
+          "cast": "한냐군",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정재오",
-          "repRoleNm": "배우",
-          "cast": "박응태"
+          "peopleNmEn": "Jung Jae Oh",
+          "cast": "박응태",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "남명렬",
-          "repRoleNm": "배우",
-          "cast": "목진필"
+          "peopleNmEn": "NAM Myeong-ryeol",
+          "cast": "목진필",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "주석태",
-          "repRoleNm": "배우",
-          "cast": "성해건"
+          "peopleNmEn": "JOO Suk-tae",
+          "cast": "성해건",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "연이안",
-          "repRoleNm": "배우",
-          "cast": "김세은"
+          "peopleNmEn": "YEON IAN",
+          "cast": "김세은",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서동수",
-          "repRoleNm": "배우",
-          "cast": "미술학원 원장"
+          "peopleNmEn": "SEO Dong-soo",
+          "cast": "미술학원 원장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "원호섭",
-          "repRoleNm": "배우",
-          "cast": "사회자"
+          "peopleNmEn": "WON Ho-seob",
+          "cast": "사회자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정지철",
-          "repRoleNm": "배우",
-          "cast": "네오툰 팀장"
+          "peopleNmEn": "",
+          "cast": "네오툰 팀장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한상조",
-          "repRoleNm": "배우",
-          "cast": "서어시"
+          "peopleNmEn": "",
+          "cast": "서어시",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -192,6 +191,26 @@
           "peopleNm": "박영준",
           "peopleNmEn": "",
           "staffRoleNm": "라인프로듀서"
+        },
+        {
+          "peopleNm": "최문주",
+          "peopleNmEn": "CHOI MOONJU",
+          "staffRoleNm": "제작팀"
+        },
+        {
+          "peopleNm": "김민선",
+          "peopleNmEn": "",
+          "staffRoleNm": "제작팀"
+        },
+        {
+          "peopleNm": "최재원",
+          "peopleNmEn": "Choi jae won",
+          "staffRoleNm": "제작팀"
+        },
+        {
+          "peopleNm": "윤범식",
+          "peopleNmEn": "YOON, BUM SIK",
+          "staffRoleNm": "제작팀"
         },
         {
           "peopleNm": "민병철",
@@ -339,12 +358,17 @@
           "staffRoleNm": "미술/프로덕션 디자인"
         },
         {
-          "peopleNm": "윤건웅",
+          "peopleNm": "표원경",
           "peopleNmEn": "",
           "staffRoleNm": "미술팀"
         },
         {
-          "peopleNm": "표원경",
+          "peopleNm": "박소연",
+          "peopleNmEn": "",
+          "staffRoleNm": "미술팀"
+        },
+        {
+          "peopleNm": "윤건웅",
           "peopleNmEn": "",
           "staffRoleNm": "미술팀"
         },
@@ -524,6 +548,11 @@
           "staffRoleNm": "VFX 아티스트"
         },
         {
+          "peopleNm": "김세희",
+          "peopleNmEn": "",
+          "staffRoleNm": "VFX 아티스트"
+        },
+        {
           "peopleNm": "윤성민",
           "peopleNmEn": "Sung-min Alvin Yun",
           "staffRoleNm": "VFX 매니지먼트"
@@ -674,6 +703,7 @@
           "staffRoleNm": "기획진행"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

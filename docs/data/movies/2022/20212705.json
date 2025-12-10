@@ -22,89 +22,88 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "투케이",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "장소영",
-          "repRoleNm": "배우",
-          "cast": "지원"
+          "peopleNmEn": "",
+          "cast": "지원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김경진",
-          "repRoleNm": "배우",
-          "cast": "경진"
+          "peopleNmEn": "",
+          "cast": "경진",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김동찬",
-          "repRoleNm": "배우",
-          "cast": "동찬"
+          "peopleNmEn": "",
+          "cast": "동찬",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김솔비",
-          "repRoleNm": "배우",
-          "cast": "지은"
+          "peopleNmEn": "",
+          "cast": "지은",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장영",
-          "repRoleNm": "배우",
-          "cast": "매니저"
+          "peopleNmEn": "",
+          "cast": "매니저",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김대윤",
-          "repRoleNm": "배우",
-          "cast": "점쟁이"
+          "peopleNmEn": "",
+          "cast": "점쟁이",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이서현",
-          "repRoleNm": "배우",
-          "cast": "연희"
+          "peopleNmEn": "",
+          "cast": "연희",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김대범",
-          "repRoleNm": "배우",
-          "cast": "술집 사장"
+          "peopleNmEn": "",
+          "cast": "술집 사장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최유정",
-          "repRoleNm": "배우",
-          "cast": "알바"
+          "peopleNmEn": "",
+          "cast": "알바",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이유신",
-          "repRoleNm": "배우",
-          "cast": "거래처 대표"
+          "peopleNmEn": "",
+          "cast": "거래처 대표",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김유리",
-          "repRoleNm": "배우",
-          "cast": "미스터리X"
+          "peopleNmEn": "",
+          "cast": "미스터리X",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박수연",
-          "repRoleNm": "배우",
-          "cast": "찐팬1"
+          "peopleNmEn": "",
+          "cast": "찐팬1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한여름",
-          "repRoleNm": "배우",
-          "cast": "찐팬2"
+          "peopleNmEn": "",
+          "cast": "찐팬2",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -311,6 +310,7 @@
           "staffRoleNm": "온라인마케팅"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

@@ -25,29 +25,28 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "강동인",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KANG Dong-in"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이수혁",
-          "repRoleNm": "배우",
-          "cast": "태화"
+          "peopleNmEn": "LEE Soo-hyuk",
+          "cast": "태화",
+          "castEn": "Tae-hwa"
         },
         {
-          "peopleCd": "",
           "peopleNm": "하윤경",
-          "repRoleNm": "배우",
-          "cast": "미지"
+          "peopleNmEn": "HA Yun-kyung",
+          "cast": "미지",
+          "castEn": "Mi-ji"
         },
         {
-          "peopleCd": "",
           "peopleNm": "권다함",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KWON DA HAM",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -101,6 +100,11 @@
           "staffRoleNm": "프로듀서"
         },
         {
+          "peopleNm": "서지혜",
+          "peopleNmEn": "seo ji hye",
+          "staffRoleNm": "데이타매니저"
+        },
+        {
           "peopleNm": "강동인",
           "peopleNmEn": "KANG Dong-in",
           "staffRoleNm": "시나리오(각본)"
@@ -131,6 +135,7 @@
           "staffRoleNm": "배급진행"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

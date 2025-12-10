@@ -22,35 +22,34 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "조성규",
-          "repRoleNm": "감독"
+          "peopleNmEn": "CHO Sung-kyu"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "남보라",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "NAM Bo-ra",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한상혁",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HAN Sang-hyuk",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "윤재",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "강주희",
-          "repRoleNm": "배우",
-          "cast": "주희"
+          "peopleNmEn": "KANG JUHEE",
+          "cast": "주희",
+          "castEn": "JUHEE"
         }
       ],
       "showTypes": [
@@ -167,6 +166,7 @@
           "staffRoleNm": "배급진행"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

@@ -22,59 +22,58 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "정인봉",
-          "repRoleNm": "감독"
+          "peopleNmEn": "JUNG In-bong"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김혜자",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Hye-ja",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "송재호",
-          "repRoleNm": "배우",
-          "cast": "상범"
+          "peopleNmEn": "SONG Jae-ho",
+          "cast": "상범",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "허진",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HEO Jin",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "온주완",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "ON Ju-wan",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조윤서",
-          "repRoleNm": "배우",
-          "cast": "상범 손녀딸"
+          "peopleNmEn": "JO Yun-seo",
+          "cast": "상범 손녀딸",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최인희",
-          "repRoleNm": "배우",
-          "cast": "카페친구들"
+          "peopleNmEn": "",
+          "cast": "카페친구들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이민아",
-          "repRoleNm": "배우",
-          "cast": "젊은 수미"
+          "peopleNmEn": "",
+          "cast": "젊은 수미",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이재영",
-          "repRoleNm": "배우",
-          "cast": "사진관남"
+          "peopleNmEn": "",
+          "cast": "사진관남",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -335,6 +334,7 @@
           "staffRoleNm": "DI팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

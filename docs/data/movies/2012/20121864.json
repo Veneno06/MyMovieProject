@@ -22,41 +22,40 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이학준",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Hark-joon"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "나인뮤지스",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "현주",
-          "repRoleNm": "배우",
-          "cast": "9 Muses members"
+          "peopleNmEn": "",
+          "cast": "9 Muses members",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "봉명필",
-          "repRoleNm": "배우",
-          "cast": "The Star Empire Manager CHIEF MANAGER"
+          "peopleNmEn": "Myung-Pil Bong",
+          "cast": "The Star Empire Manager CHIEF MANAGER",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "오준성",
-          "repRoleNm": "배우",
-          "cast": "COMPOSER"
+          "peopleNmEn": "",
+          "cast": "COMPOSER",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이우석",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Woo-suk Lee",
+          "cast": "",
+          "castEn": "US PRODUCER"
         }
       ],
       "showTypes": [
@@ -210,6 +209,7 @@
           "staffRoleNm": "기타"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

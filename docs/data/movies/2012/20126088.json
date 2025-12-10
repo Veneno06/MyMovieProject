@@ -25,29 +25,28 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "백상열",
-          "repRoleNm": "감독"
+          "peopleNmEn": "BAEK Sang-yeol"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이동규",
-          "repRoleNm": "배우",
-          "cast": "정호"
+          "peopleNmEn": "LEE Dong-kyu",
+          "cast": "정호",
+          "castEn": "Jung-ho"
         },
         {
-          "peopleCd": "",
           "peopleNm": "김진선",
-          "repRoleNm": "배우",
-          "cast": "지수"
+          "peopleNmEn": "KIM Jin-sun",
+          "cast": "지수",
+          "castEn": "Ji-soo"
         },
         {
-          "peopleCd": "",
           "peopleNm": "한하유",
-          "repRoleNm": "배우",
-          "cast": "혜인"
+          "peopleNmEn": "HAN Ha-yoo",
+          "cast": "혜인",
+          "castEn": "Hye-in"
         }
       ],
       "showTypes": [
@@ -409,6 +408,7 @@
           "staffRoleNm": "광고디자인"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

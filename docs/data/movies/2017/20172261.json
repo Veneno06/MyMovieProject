@@ -28,23 +28,22 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이동현",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Dong-hyun"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "강현중",
-          "repRoleNm": "배우",
-          "cast": "강현중"
+          "peopleNmEn": "KANG Hyun-joong",
+          "cast": "강현중",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한그림",
-          "repRoleNm": "배우",
-          "cast": "한미소"
+          "peopleNmEn": "",
+          "cast": "한미소 ",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -74,6 +73,7 @@
         }
       ],
       "staffs": []
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

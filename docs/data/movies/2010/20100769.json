@@ -22,53 +22,52 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이철하",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Cheol-ha"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "신경선",
-          "repRoleNm": "배우",
-          "cast": "완수"
+          "peopleNmEn": "SHIN Kyung-sun",
+          "cast": "완수",
+          "castEn": "Wan-su"
         },
         {
-          "peopleCd": "",
           "peopleNm": "윤이나",
-          "repRoleNm": "배우",
-          "cast": "미진"
+          "peopleNmEn": "YOON Yi-na",
+          "cast": "미진",
+          "castEn": "Mi-jin"
         },
         {
-          "peopleCd": "",
           "peopleNm": "전인걸",
-          "repRoleNm": "배우",
-          "cast": "우람"
+          "peopleNmEn": "JEON In-gul",
+          "cast": "우람",
+          "castEn": "Woo-ram"
         },
         {
-          "peopleCd": "",
           "peopleNm": "현태호",
-          "repRoleNm": "배우",
-          "cast": "규석"
+          "peopleNmEn": "HYUN Tae-ho",
+          "cast": "규석",
+          "castEn": "Kyu-seok"
         },
         {
-          "peopleCd": "",
           "peopleNm": "신소율",
-          "repRoleNm": "배우",
-          "cast": "지영"
+          "peopleNmEn": "SHIN So-yul",
+          "cast": "지영",
+          "castEn": "Ji-young"
         },
         {
-          "peopleCd": "",
           "peopleNm": "이화정",
-          "repRoleNm": "배우",
-          "cast": "영주"
+          "peopleNmEn": "LEE Hwa-jung",
+          "cast": "영주",
+          "castEn": "Young-ju"
         },
         {
-          "peopleCd": "",
           "peopleNm": "박진원",
-          "repRoleNm": "배우",
-          "cast": "중계인"
+          "peopleNmEn": "",
+          "cast": "중계인 ",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -293,7 +292,7 @@
         },
         {
           "peopleNm": "박종근",
-          "peopleNmEn": "PARK Jong-geun",
+          "peopleNmEn": "Park Jong Kun",
           "staffRoleNm": "동시녹음"
         },
         {
@@ -586,8 +585,8 @@
           "peopleNmEn": "HAN TAE JUNG",
           "staffRoleNm": "시각효과"
         }
-      ],
-      "audiAcc": 212872
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

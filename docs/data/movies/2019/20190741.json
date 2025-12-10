@@ -22,17 +22,16 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "송원근",
-          "repRoleNm": "감독"
+          "peopleNmEn": "SONG Won-geun"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "한지민",
-          "repRoleNm": "배우",
-          "cast": "내레이션"
+          "peopleNmEn": "HAN Ji-min",
+          "cast": "내레이션",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -292,8 +291,8 @@
           "peopleNmEn": "",
           "staffRoleNm": "배급진행"
         }
-      ],
-      "audiAcc": 29397
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

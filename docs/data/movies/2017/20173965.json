@@ -22,75 +22,72 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "박재영",
-          "repRoleNm": "감독"
+          "peopleNmEn": "PARK Jae-young"
         },
         {
-          "peopleCd": "",
           "peopleNm": "이인의",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE In-eui"
         },
         {
-          "peopleCd": "",
           "peopleNm": "장호준",
-          "repRoleNm": "감독"
+          "peopleNmEn": "CHANG Ho-jun"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "서준영",
-          "repRoleNm": "배우",
-          "cast": "전상범"
+          "peopleNmEn": "SEO Jun-young",
+          "cast": "전상범",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "안이서",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황상경",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박지연",
-          "repRoleNm": "배우",
-          "cast": "지연"
+          "peopleNmEn": "PARK Ji-yeon",
+          "cast": "지연",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "고은민",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정인기",
-          "repRoleNm": "배우",
-          "cast": "최영철"
+          "peopleNmEn": "JUNG In-gi",
+          "cast": "최영철",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장준휘",
-          "repRoleNm": "배우",
-          "cast": "관계의 가나다에 있는 우리는- 도서관 사서"
+          "peopleNmEn": "JANG Jun-whee",
+          "cast": "관계의 가나다에 있는 우리는- 도서관 사서",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박혜진",
-          "repRoleNm": "배우",
-          "cast": "관계의 가나다에 있는 우리는 - 앵두"
+          "peopleNmEn": "PARK Hye-jin",
+          "cast": "관계의 가나다에 있는 우리는 - 앵두",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이상훈",
-          "repRoleNm": "배우",
-          "cast": "림동미_하나원주무관"
+          "peopleNmEn": "",
+          "cast": "림동미_하나원주무관",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -170,6 +167,7 @@
           "staffRoleNm": "광고디자인"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

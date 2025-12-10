@@ -22,88 +22,86 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "윤제완",
-          "repRoleNm": "감독"
+          "peopleNmEn": "Jae Wan Yun"
         },
         {
-          "peopleCd": "",
           "peopleNm": "강승훈",
-          "repRoleNm": "감독"
+          "peopleNmEn": "SEUNG HUN KANG"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이선",
-          "repRoleNm": "배우",
-          "cast": "뽀로로"
+          "peopleNmEn": "LEE Sun",
+          "cast": "뽀로로",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이미자",
-          "repRoleNm": "배우",
-          "cast": "크롱"
+          "peopleNmEn": "LEE Mi-ja",
+          "cast": "크롱",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김현지",
-          "repRoleNm": "배우",
-          "cast": "에디"
+          "peopleNmEn": "KIM Hyun-ji",
+          "cast": "에디",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍소영",
-          "repRoleNm": "배우",
-          "cast": "루피"
+          "peopleNmEn": "HONG So-yeong",
+          "cast": "루피",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정미숙",
-          "repRoleNm": "배우",
-          "cast": "패티"
+          "peopleNmEn": "JUNG Mi-suk",
+          "cast": "패티",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김서영",
-          "repRoleNm": "배우",
-          "cast": "해리"
+          "peopleNmEn": "KIM Seo-young",
+          "cast": "해리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김환진",
-          "repRoleNm": "배우",
-          "cast": "포비"
+          "peopleNmEn": "KIM Hwan-chin",
+          "cast": "포비",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "소연",
-          "repRoleNm": "배우",
-          "cast": "꼬마아서, 나레이션"
+          "peopleNmEn": "",
+          "cast": "꼬마아서, 나레이션",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김혜성",
-          "repRoleNm": "배우",
-          "cast": "게드"
+          "peopleNmEn": "",
+          "cast": "게드",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이장원",
-          "repRoleNm": "배우",
-          "cast": "볼트"
+          "peopleNmEn": "LEE Jang-won",
+          "cast": "볼트",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "사문영",
-          "repRoleNm": "배우",
-          "cast": "캡틴"
+          "peopleNmEn": "SA Mun-yeong",
+          "cast": "캡틴",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "엄상현",
-          "repRoleNm": "배우",
-          "cast": "아서 드래곤"
+          "peopleNmEn": "UM Sang-hyun",
+          "cast": "아서 드래곤",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -206,7 +204,7 @@
         },
         {
           "peopleNm": "김창원",
-          "peopleNmEn": "",
+          "peopleNmEn": "김창원",
           "staffRoleNm": "시나리오(각본)"
         },
         {
@@ -824,8 +822,8 @@
           "peopleNmEn": "",
           "staffRoleNm": "기타"
         }
-      ],
-      "audiAcc": 433372
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

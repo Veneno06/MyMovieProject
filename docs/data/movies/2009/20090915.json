@@ -25,68 +25,64 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "홍성훈",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김영근",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Young-geun"
         },
         {
-          "peopleCd": "",
           "peopleNm": "조성희",
-          "repRoleNm": "감독"
+          "peopleNmEn": "JO Sung-hee"
         },
         {
-          "peopleCd": "",
           "peopleNm": "이정욱",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Jung-wook"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "고창환",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조영진",
-          "repRoleNm": "배우",
-          "cast": "seg.아들의 여자 - 남자"
+          "peopleNmEn": "JO Young-jin",
+          "cast": "seg.아들의 여자 - 남자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "나혜령",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박세종",
-          "repRoleNm": "배우",
-          "cast": "철수"
+          "peopleNmEn": "PARK Se-jong",
+          "cast": "철수",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황영광",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "동현배",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "DONG Hyun-bae",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이지영",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -264,6 +260,7 @@
           "staffRoleNm": "기타"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

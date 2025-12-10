@@ -22,77 +22,76 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "박재식",
-          "repRoleNm": "감독"
+          "peopleNmEn": "PARK Jae-sik"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김성수",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Sung-su",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한고은",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HAN Go-eun",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "배그린",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "신정선",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이철민",
-          "repRoleNm": "배우",
-          "cast": "원무과장"
+          "peopleNmEn": "LEE Cheol-min",
+          "cast": "원무과장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "차은재",
-          "repRoleNm": "배우",
-          "cast": "김 간호사"
+          "peopleNmEn": "CHA Eun-jae",
+          "cast": "김 간호사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유하복",
-          "repRoleNm": "배우",
-          "cast": "경찰 서장"
+          "peopleNmEn": "YOO Ha-bok",
+          "cast": "경찰 서장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "전현숙",
-          "repRoleNm": "배우",
-          "cast": "고여사"
+          "peopleNmEn": "",
+          "cast": "고여사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서범석",
-          "repRoleNm": "배우",
-          "cast": "김박사"
+          "peopleNmEn": "SEO Boem-suk",
+          "cast": "김박사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한성아",
-          "repRoleNm": "배우",
-          "cast": "남기자"
+          "peopleNmEn": "",
+          "cast": "남기자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이언수",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -673,6 +672,7 @@
           "staffRoleNm": "VFX 슈퍼바이저"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

@@ -28,53 +28,52 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이성한",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Seong-han"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "박성웅",
-          "repRoleNm": "배우",
-          "cast": "철수"
+          "peopleNmEn": "PARK Sung-woong",
+          "cast": "철수",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한재석",
-          "repRoleNm": "배우",
-          "cast": "바지"
+          "peopleNmEn": "HAN Jae-seok",
+          "cast": "바지",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정성화",
-          "repRoleNm": "배우",
-          "cast": "제임스"
+          "peopleNmEn": "CHUNG Sung-hwa",
+          "cast": "제임스",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "송영창",
-          "repRoleNm": "배우",
-          "cast": "장사장"
+          "peopleNmEn": "SONG Young-chang",
+          "cast": "장사장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이하늬",
-          "repRoleNm": "배우",
-          "cast": "선녀"
+          "peopleNmEn": "LEE Ha-nee",
+          "cast": "선녀",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "마르코",
-          "repRoleNm": "배우",
-          "cast": "순남"
+          "peopleNmEn": "Marcos",
+          "cast": "순남",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "윤택",
-          "repRoleNm": "배우",
-          "cast": "용식"
+          "peopleNmEn": "Yoon-taek",
+          "cast": "용식",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -139,8 +138,8 @@
           "peopleNmEn": "Kim Jae Min",
           "staffRoleNm": "배급진행"
         }
-      ],
-      "audiAcc": 94426
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

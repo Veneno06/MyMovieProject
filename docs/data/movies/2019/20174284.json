@@ -22,41 +22,40 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김소영",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Soyoung"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김소영",
-          "repRoleNm": "배우",
-          "cast": "내레이션"
+          "peopleNmEn": "KIM Soyoung",
+          "cast": "내레이션",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김종훈",
-          "repRoleNm": "배우",
-          "cast": "본인"
+          "peopleNmEn": "",
+          "cast": "본인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한지마",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최국인",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김태훈",
-          "repRoleNm": "배우",
-          "cast": "한진"
+          "peopleNmEn": "",
+          "cast": "한진",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -203,6 +202,7 @@
           "staffRoleNm": "광고디자인"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

@@ -31,59 +31,58 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "안효일",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "변동욱",
-          "repRoleNm": "배우",
-          "cast": "병구"
+          "peopleNmEn": "",
+          "cast": "병구",
+          "castEn": "Byung Gu"
         },
         {
-          "peopleCd": "",
           "peopleNm": "조혜진",
-          "repRoleNm": "배우",
-          "cast": "신부"
+          "peopleNmEn": "Jo hyejin",
+          "cast": "신부",
+          "castEn": "priest"
         },
         {
-          "peopleCd": "",
           "peopleNm": "전지학",
-          "repRoleNm": "배우",
-          "cast": "황사장"
+          "peopleNmEn": "",
+          "cast": "황사장",
+          "castEn": "Hwang"
         },
         {
-          "peopleCd": "",
           "peopleNm": "최우정",
-          "repRoleNm": "배우",
-          "cast": "미정"
+          "peopleNmEn": "",
+          "cast": "미정",
+          "castEn": "Mi Jung"
         },
         {
-          "peopleCd": "",
           "peopleNm": "박영복",
-          "repRoleNm": "배우",
-          "cast": "양씨"
+          "peopleNmEn": "PARK Young-bok",
+          "cast": "양씨",
+          "castEn": "Yang"
         },
         {
-          "peopleCd": "",
           "peopleNm": "안예림",
-          "repRoleNm": "배우",
-          "cast": "양씨 딸"
+          "peopleNmEn": "",
+          "cast": "양씨 딸",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박찬우",
-          "repRoleNm": "배우",
-          "cast": "중태"
+          "peopleNmEn": "",
+          "cast": "중태",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "함건수",
-          "repRoleNm": "배우",
-          "cast": "닭집사장"
+          "peopleNmEn": "",
+          "cast": "닭집사장",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -159,6 +158,7 @@
           "staffRoleNm": "배급진행"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

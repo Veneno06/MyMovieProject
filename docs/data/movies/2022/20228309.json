@@ -22,59 +22,58 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김수경",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "조경이",
-          "repRoleNm": "배우",
-          "cast": "핑크퐁"
+          "peopleNmEn": "",
+          "cast": "핑크퐁",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이소은",
-          "repRoleNm": "배우",
-          "cast": "호기"
+          "peopleNmEn": "",
+          "cast": "호기",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김새해",
-          "repRoleNm": "배우",
-          "cast": "제니"
+          "peopleNmEn": "",
+          "cast": "제니",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "송하림",
-          "repRoleNm": "배우",
-          "cast": "포키"
+          "peopleNmEn": "SONG Ha-lim",
+          "cast": "포키",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김채하",
-          "repRoleNm": "배우",
-          "cast": "빌리"
+          "peopleNmEn": "",
+          "cast": "빌리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정혜원",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "여민정",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황창영",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Hwang changyung",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -419,8 +418,8 @@
           "peopleNmEn": "",
           "staffRoleNm": "애니메이션팀"
         }
-      ],
-      "audiAcc": 26490
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

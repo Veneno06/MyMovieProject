@@ -22,23 +22,22 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "지풍승",
-          "repRoleNm": "감독"
+          "peopleNmEn": "Wind earth"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "한지호",
-          "repRoleNm": "배우",
-          "cast": "석구"
+          "peopleNmEn": "",
+          "cast": "석구",
+          "castEn": "Sukku"
         },
         {
-          "peopleCd": "",
           "peopleNm": "이예지",
-          "repRoleNm": "배우",
-          "cast": "은숙"
+          "peopleNmEn": "",
+          "cast": "은숙",
+          "castEn": "eunsuk"
         }
       ],
       "showTypes": [
@@ -68,6 +67,7 @@
         }
       ],
       "staffs": []
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

@@ -25,107 +25,106 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "정희성",
-          "repRoleNm": "감독"
+          "peopleNmEn": "CHUNG Hee-sung"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "최태준",
-          "repRoleNm": "배우",
-          "cast": "세준"
+          "peopleNmEn": "CHOI Tae-Joon",
+          "cast": "세준",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김시후",
-          "repRoleNm": "배우",
-          "cast": "윤재"
+          "peopleNmEn": "KIM Si-hoo",
+          "cast": "윤재",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "문가영",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "MOON Ga-young",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이승연",
-          "repRoleNm": "배우",
-          "cast": "윤재모"
+          "peopleNmEn": "",
+          "cast": "윤재모",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이승연",
-          "repRoleNm": "배우",
-          "cast": "윤재모"
+          "peopleNmEn": "LEE Seung-yeon",
+          "cast": "윤재모",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "편보승",
-          "repRoleNm": "배우",
-          "cast": "양복 중년"
+          "peopleNmEn": "PYOUN Bo-seung",
+          "cast": "양복 중년",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박진수",
-          "repRoleNm": "배우",
-          "cast": "형사1"
+          "peopleNmEn": "",
+          "cast": "형사1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조장현",
-          "repRoleNm": "배우",
-          "cast": "정태친구1"
+          "peopleNmEn": "",
+          "cast": "정태친구1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이승환",
-          "repRoleNm": "배우",
-          "cast": "세준후배2"
+          "peopleNmEn": "",
+          "cast": "세준후배2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한정화",
-          "repRoleNm": "배우",
-          "cast": "여자5"
+          "peopleNmEn": "HAN Jeong-hwa",
+          "cast": "여자5",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황유진",
-          "repRoleNm": "배우",
-          "cast": "여환자"
+          "peopleNmEn": "",
+          "cast": "여환자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "도유승",
-          "repRoleNm": "배우",
-          "cast": "남환자"
+          "peopleNmEn": "DO Yu-seung",
+          "cast": "남환자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "문창준",
-          "repRoleNm": "배우",
-          "cast": "형사2"
+          "peopleNmEn": "",
+          "cast": "형사2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정종열",
-          "repRoleNm": "배우",
-          "cast": "중년 남성"
+          "peopleNmEn": "JUNG Jong-yul",
+          "cast": "중년 남성",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김수환",
-          "repRoleNm": "배우",
-          "cast": "정태친구3"
+          "peopleNmEn": "",
+          "cast": "정태친구3",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임새라",
-          "repRoleNm": "배우",
-          "cast": "여자4"
+          "peopleNmEn": "LIM Sae-ra",
+          "cast": "여자4",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -738,7 +737,7 @@
         },
         {
           "peopleNm": "엄현숙",
-          "peopleNmEn": "Um Hyeon Suk",
+          "peopleNmEn": "EOM Hyun-sook",
           "staffRoleNm": "캐스팅디렉터"
         },
         {
@@ -747,6 +746,7 @@
           "staffRoleNm": "VFX 슈퍼바이저"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

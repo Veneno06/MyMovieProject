@@ -25,29 +25,28 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "민규동",
-          "repRoleNm": "감독"
+          "peopleNmEn": "MIN Kyu-dong"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "엄정화",
-          "repRoleNm": "배우",
-          "cast": "정하"
+          "peopleNmEn": "UHM Jeong-hwa",
+          "cast": "정하",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황정민",
-          "repRoleNm": "배우",
-          "cast": "재인"
+          "peopleNmEn": "HWANG Jung-min",
+          "cast": "재인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김효진",
-          "repRoleNm": "배우",
-          "cast": "나루"
+          "peopleNmEn": "KIM Hyo-jin",
+          "cast": "나루",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -829,6 +828,7 @@
           "staffRoleNm": "스틸"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

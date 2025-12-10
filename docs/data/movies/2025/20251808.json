@@ -22,23 +22,22 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "조성규",
-          "repRoleNm": "감독"
+          "peopleNmEn": "CHO Sung-kyu"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김동완",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Dong-wan",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황승언",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HWANG Seung-eon",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -79,6 +78,7 @@
           "staffRoleNm": "기타"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

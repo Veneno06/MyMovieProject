@@ -22,77 +22,76 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "정미화",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "전태열",
-          "repRoleNm": "배우",
-          "cast": "뽀잉 목소리"
+          "peopleNmEn": "",
+          "cast": "뽀잉 목소리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "엄상현",
-          "repRoleNm": "배우",
-          "cast": "하이에나 박사 목소리"
+          "peopleNmEn": "UM Sang-hyun",
+          "cast": "하이에나 박사 목소리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍소영",
-          "repRoleNm": "배우",
-          "cast": "몽바 목소리"
+          "peopleNmEn": "HONG So-yeong",
+          "cast": "몽바 목소리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정영웅",
-          "repRoleNm": "배우",
-          "cast": "빙빙이 목소리"
+          "peopleNmEn": "",
+          "cast": "빙빙이 목소리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김은아",
-          "repRoleNm": "배우",
-          "cast": "엘루"
+          "peopleNmEn": "",
+          "cast": "엘루",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박선영",
-          "repRoleNm": "배우",
-          "cast": "토리 목소리"
+          "peopleNmEn": "",
+          "cast": "토리 목소리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김은아",
-          "repRoleNm": "배우",
-          "cast": "엘루 목소리"
+          "peopleNmEn": "",
+          "cast": "엘루 목소리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍진욱",
-          "repRoleNm": "배우",
-          "cast": "불리 할아버지 목소리"
+          "peopleNmEn": "HONG Jin-wook",
+          "cast": "불리 할아버지 목소리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "천지선",
-          "repRoleNm": "배우",
-          "cast": "병아리남 목소리"
+          "peopleNmEn": "",
+          "cast": "병아리남 목소리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이민규",
-          "repRoleNm": "배우",
-          "cast": "마을주민 목소리"
+          "peopleNmEn": "",
+          "cast": "마을주민 목소리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이민규",
-          "repRoleNm": "배우",
-          "cast": "삼두용, 개구리"
+          "peopleNmEn": "",
+          "cast": "삼두용, 개구리",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -823,8 +822,8 @@
           "peopleNmEn": "",
           "staffRoleNm": "배급진행"
         }
-      ],
-      "audiAcc": 35688
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

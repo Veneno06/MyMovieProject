@@ -25,65 +25,64 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "임왕태",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LIM Wang-tae"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "보아",
-          "repRoleNm": "배우",
-          "cast": "임수련"
+          "peopleNmEn": "BoA",
+          "cast": "임수련",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이학주",
-          "repRoleNm": "배우",
-          "cast": "임준"
+          "peopleNmEn": "LEE Hak-joo",
+          "cast": "임준",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임현식",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LYM Hyeon-sik",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "오광록",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "OH Gwang-rok",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "송옥숙",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "SONG Ok-sook",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조희봉",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "CHO Hee-bong",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박현수",
-          "repRoleNm": "배우",
-          "cast": "버스승객8"
+          "peopleNmEn": "",
+          "cast": "버스승객8",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이수정",
-          "repRoleNm": "배우",
-          "cast": "수련목소리"
+          "peopleNmEn": "",
+          "cast": "수련목소리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황석하",
-          "repRoleNm": "배우",
-          "cast": "한우축사직원"
+          "peopleNmEn": "HWANG Seok-Ha",
+          "cast": "한우축사직원",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -683,6 +682,7 @@
           "staffRoleNm": "기획"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

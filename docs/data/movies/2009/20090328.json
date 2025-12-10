@@ -25,125 +25,124 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "우니 르콩트",
-          "repRoleNm": "감독"
+          "peopleNmEn": "Ounie LECOMTE"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김새론",
-          "repRoleNm": "배우",
-          "cast": "진희"
+          "peopleNmEn": "KIM Sae-ron",
+          "cast": "진희",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박도연",
-          "repRoleNm": "배우",
-          "cast": "숙희"
+          "peopleNmEn": "Park Do-yeon",
+          "cast": "숙희",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "고아성",
-          "repRoleNm": "배우",
-          "cast": "예신"
+          "peopleNmEn": "KO Asung",
+          "cast": "예신",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "설경구",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "SUL Kyung-gu",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박명신",
-          "repRoleNm": "배우",
-          "cast": "보모"
+          "peopleNmEn": "PARK Myungshin",
+          "cast": "보모",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정혜원",
-          "repRoleNm": "배우",
-          "cast": "원아들"
+          "peopleNmEn": "",
+          "cast": "원아들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "오만석",
-          "repRoleNm": "배우",
-          "cast": "구 원장"
+          "peopleNmEn": "OH Man-seok",
+          "cast": "구 원장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "백현주",
-          "repRoleNm": "배우",
-          "cast": "임 수녀"
+          "peopleNmEn": "BAEK Hyun-joo",
+          "cast": "임 수녀",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "신재영",
-          "repRoleNm": "배우",
-          "cast": "예신 양모"
+          "peopleNmEn": "Sin Jae-young",
+          "cast": "예신 양모",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박한별",
-          "repRoleNm": "배우",
-          "cast": "원아들"
+          "peopleNmEn": "",
+          "cast": "원아들 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박현진",
-          "repRoleNm": "배우",
-          "cast": "원아들"
+          "peopleNmEn": "",
+          "cast": "원아들 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박혜민",
-          "repRoleNm": "배우",
-          "cast": "원아들"
+          "peopleNmEn": "",
+          "cast": "원아들 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황혜영",
-          "repRoleNm": "배우",
-          "cast": "간호사1"
+          "peopleNmEn": "",
+          "cast": "간호사1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "백지선",
-          "repRoleNm": "배우",
-          "cast": "원아들"
+          "peopleNmEn": "",
+          "cast": "원아들 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "주지원",
-          "repRoleNm": "배우",
-          "cast": "원아들"
+          "peopleNmEn": "",
+          "cast": "원아들 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박경애",
-          "repRoleNm": "배우",
-          "cast": "옷가게 주인"
+          "peopleNmEn": "",
+          "cast": "옷가게 주인 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이희연",
-          "repRoleNm": "배우",
-          "cast": "원아들"
+          "peopleNmEn": "",
+          "cast": "원아들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "권선주",
-          "repRoleNm": "배우",
-          "cast": "원아들"
+          "peopleNmEn": "",
+          "cast": "원아들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이태림",
-          "repRoleNm": "배우",
-          "cast": "원아들"
+          "peopleNmEn": "",
+          "cast": "원아들 ",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -274,7 +273,7 @@
         },
         {
           "peopleNm": "민정은",
-          "peopleNmEn": "",
+          "peopleNmEn": "Jungeun MIN",
           "staffRoleNm": "제작팀"
         },
         {
@@ -309,7 +308,7 @@
         },
         {
           "peopleNm": "민정은",
-          "peopleNmEn": "",
+          "peopleNmEn": "Jungeun MIN",
           "staffRoleNm": "제작회계"
         },
         {
@@ -963,6 +962,7 @@
           "staffRoleNm": "VFX 슈퍼바이저"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

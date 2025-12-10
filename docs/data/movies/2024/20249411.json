@@ -22,41 +22,40 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "남궁선",
-          "repRoleNm": "감독"
+          "peopleNmEn": "NAMKOONG Sun"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "최성은",
-          "repRoleNm": "배우",
-          "cast": "수민"
+          "peopleNmEn": "CHOI Sung-eun",
+          "cast": "수민",
+          "castEn": "Sumin"
         },
         {
-          "peopleCd": "",
           "peopleNm": "현우석",
-          "repRoleNm": "배우",
-          "cast": "태희"
+          "peopleNmEn": "",
+          "cast": "태희",
+          "castEn": "Taehee"
         },
         {
-          "peopleCd": "",
           "peopleNm": "하서윤",
-          "repRoleNm": "배우",
-          "cast": "사랑"
+          "peopleNmEn": "HA Seo-yoon",
+          "cast": "사랑",
+          "castEn": "Sarang"
         },
         {
-          "peopleCd": "",
           "peopleNm": "강채윤",
-          "repRoleNm": "배우",
-          "cast": "소윤"
+          "peopleNmEn": "KANG Chae-yun",
+          "cast": "소윤",
+          "castEn": "Soyoon"
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍상표",
-          "repRoleNm": "배우",
-          "cast": "상표"
+          "peopleNmEn": "HONG Sang-pyo",
+          "cast": "상표",
+          "castEn": "Sangpyo"
         }
       ],
       "showTypes": [
@@ -114,14 +113,19 @@
           "staffRoleNm": "제작팀"
         },
         {
+          "peopleNm": "남궁선",
+          "peopleNmEn": "NAMKOONG Sun",
+          "staffRoleNm": "시나리오(각본)"
+        },
+        {
           "peopleNm": "최경윤",
           "peopleNmEn": "CHOI Kyoung-yoon",
           "staffRoleNm": "편집"
         },
         {
-          "peopleNm": "남궁선",
-          "peopleNmEn": "NAMKOONG Sun",
-          "staffRoleNm": "시나리오(각본)"
+          "peopleNm": "오수빈",
+          "peopleNmEn": "",
+          "staffRoleNm": "홍보/마케팅 진행"
         }
       ]
     },

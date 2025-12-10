@@ -31,65 +31,64 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김성수",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Sung-soo"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "니시지마 히데토시",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Hidetoshi Nishijima",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김효진",
-          "repRoleNm": "배우",
-          "cast": "강지원"
+          "peopleNmEn": "KIM Hyo-jin",
+          "cast": "강지원 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이경영",
-          "repRoleNm": "배우",
-          "cast": "Yu Gangjin"
+          "peopleNmEn": "LEE Gyoung-young",
+          "cast": "Yu Gangjin",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박동하",
-          "repRoleNm": "배우",
-          "cast": "Yang Gitaek"
+          "peopleNmEn": "PAK Ton-ha",
+          "cast": "Yang Gitaek",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "주영민",
-          "repRoleNm": "배우",
-          "cast": "Gitaek's Undering #4"
+          "peopleNmEn": "JU Yeong-min",
+          "cast": "Gitaek's Undering #4",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이경태",
-          "repRoleNm": "배우",
-          "cast": "Gitaek's Undering #2"
+          "peopleNmEn": "",
+          "cast": "Gitaek's Undering #2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이동민",
-          "repRoleNm": "배우",
-          "cast": "Gitaek's Undering #3"
+          "peopleNmEn": "",
+          "cast": "Gitaek's Undering #3",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하승남",
-          "repRoleNm": "배우",
-          "cast": "Man at the Parking Place"
+          "peopleNmEn": "HA Seung-nam",
+          "cast": "Man at the Parking Place ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박병렬",
-          "repRoleNm": "배우",
-          "cast": "Gitaek's Undering #1"
+          "peopleNmEn": "PARK Byeong-ryeol",
+          "cast": "Gitaek's Undering #1",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -1142,7 +1141,7 @@
         },
         {
           "peopleNm": "노병욱",
-          "peopleNmEn": "NOH Byung-wook",
+          "peopleNmEn": "NOH Byoung-wook",
           "staffRoleNm": "DI팀"
         },
         {
@@ -1246,6 +1245,7 @@
           "staffRoleNm": "온라인마케팅"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

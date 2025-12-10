@@ -22,29 +22,28 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김일란",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Il-ran"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "고종우",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KO Joung-woo",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한무지",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HAN Mu-ji ",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김명진",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Myung-jin",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -156,6 +155,7 @@
           "staffRoleNm": "타이틀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

@@ -22,65 +22,64 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "임승현",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LIM Seung-hyeun"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김자영",
-          "repRoleNm": "배우",
-          "cast": "예분"
+          "peopleNmEn": "KIM Ja-young",
+          "cast": "예분",
+          "castEn": "Ye-bun"
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍예서",
-          "repRoleNm": "배우",
-          "cast": "지윤"
+          "peopleNmEn": "",
+          "cast": "지윤",
+          "castEn": "Ji-yoon"
         },
         {
-          "peopleCd": "",
           "peopleNm": "정애화",
-          "repRoleNm": "배우",
-          "cast": "옥임"
+          "peopleNmEn": "JUNG Ae-hwa",
+          "cast": "옥임",
+          "castEn": "Ok-im"
         },
         {
-          "peopleCd": "",
           "peopleNm": "설시연",
-          "repRoleNm": "배우",
-          "cast": "수정"
+          "peopleNmEn": "",
+          "cast": "수정",
+          "castEn": "Su-jeong"
         },
         {
-          "peopleCd": "",
           "peopleNm": "김현정",
-          "repRoleNm": "배우",
-          "cast": "현경"
+          "peopleNmEn": "",
+          "cast": "현경",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장준휘",
-          "repRoleNm": "배우",
-          "cast": "종철"
+          "peopleNmEn": "JANG Jun-whee",
+          "cast": "종철",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최원용",
-          "repRoleNm": "배우",
-          "cast": "진섭"
+          "peopleNmEn": "CHOI Won-yong",
+          "cast": "진섭",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하준호",
-          "repRoleNm": "배우",
-          "cast": "하소장"
+          "peopleNmEn": "HA Jun-ho",
+          "cast": "하소장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하이안",
-          "repRoleNm": "배우",
-          "cast": "박경민"
+          "peopleNmEn": "Iaan Ha",
+          "cast": "박경민",
+          "castEn": "Gyeongmin Park"
         }
       ],
       "showTypes": [
@@ -132,11 +131,16 @@
         {
           "peopleNm": "임승현",
           "peopleNmEn": "LIM Seung-hyeun",
-          "staffRoleNm": "편집"
+          "staffRoleNm": "시나리오(각본)"
         },
         {
           "peopleNm": "임승현",
           "peopleNmEn": "LIM Seung-hyeun",
+          "staffRoleNm": "편집"
+        },
+        {
+          "peopleNm": "김승현",
+          "peopleNmEn": "",
           "staffRoleNm": "시나리오(각본)"
         },
         {

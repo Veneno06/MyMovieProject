@@ -22,95 +22,94 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이준익",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Joonik"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김상호",
-          "repRoleNm": "배우",
-          "cast": "혁수"
+          "peopleNmEn": "KIM Sang-ho",
+          "cast": "혁수",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김윤석",
-          "repRoleNm": "배우",
-          "cast": "성욱"
+          "peopleNmEn": "KIM Yun-seok",
+          "cast": "성욱",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "주진모",
-          "repRoleNm": "배우",
-          "cast": "기영선배"
+          "peopleNmEn": "JOO Jin-mo",
+          "cast": "기영선배",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장근석",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "JANG Keun-suk",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정진영",
-          "repRoleNm": "배우",
-          "cast": "기영"
+          "peopleNmEn": "JUNG Jinyoung",
+          "cast": "기영",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김호정",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Hojung",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조성구",
-          "repRoleNm": "배우",
-          "cast": "홍대클럽직원"
+          "peopleNmEn": "",
+          "cast": "홍대클럽직원 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍인기",
-          "repRoleNm": "배우",
-          "cast": "민석"
+          "peopleNmEn": "",
+          "cast": "민석",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "노브레인",
-          "repRoleNm": "배우",
-          "cast": "홍대밴드"
+          "peopleNmEn": "Nobrain",
+          "cast": "홍대밴드",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정성미",
-          "repRoleNm": "배우",
-          "cast": "수아(여자친구1)"
+          "peopleNmEn": "",
+          "cast": "수아(여자친구1)",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이정연",
-          "repRoleNm": "배우",
-          "cast": "인경(여자친구2)"
+          "peopleNmEn": "",
+          "cast": "인경(여자친구2) ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정민성",
-          "repRoleNm": "배우",
-          "cast": "기영 후배"
+          "peopleNmEn": "JUNG Min-sung",
+          "cast": "기영 후배",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "신정근",
-          "repRoleNm": "배우",
-          "cast": "업소 사장"
+          "peopleNmEn": "SHIN Jung-geun",
+          "cast": "업소 사장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "송재완",
-          "repRoleNm": "배우",
-          "cast": "대리차주인"
+          "peopleNmEn": "SONG Jae-wan",
+          "cast": "대리차주인",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -1218,6 +1217,7 @@
           "staffRoleNm": "현상팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

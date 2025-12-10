@@ -25,71 +25,70 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이근우",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Keun-woo"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "하정우",
-          "repRoleNm": "배우",
-          "cast": "하정우"
+          "peopleNmEn": "HA Jung-woo",
+          "cast": "하정우",
+          "castEn": "HA Jung-woo"
         },
         {
-          "peopleCd": "",
           "peopleNm": "공효진",
-          "repRoleNm": "배우",
-          "cast": "공효진"
+          "peopleNmEn": "KONG Hyo-jin",
+          "cast": "공효진",
+          "castEn": "KONG Hyo-jin"
         },
         {
-          "peopleCd": "",
           "peopleNm": "김성균",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Sung-kyun",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이승하",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Seung-ha",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "차현우",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "CHA Hyun-woo",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이지훈",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Ji-hoon",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최희서",
-          "repRoleNm": "배우",
-          "cast": "본인"
+          "peopleNmEn": "CHOI Hee-seo",
+          "cast": "본인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "강신철",
-          "repRoleNm": "배우",
-          "cast": "본인"
+          "peopleNmEn": "GANG Sin-cheol",
+          "cast": "본인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한수현",
-          "repRoleNm": "배우",
-          "cast": "본인"
+          "peopleNmEn": "HAN Su-hyun",
+          "cast": "본인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이수인",
-          "repRoleNm": "배우",
-          "cast": "본인"
+          "peopleNmEn": "LEE Su-in",
+          "cast": "본인",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -833,8 +832,8 @@
           "peopleNmEn": "",
           "staffRoleNm": "광고대행"
         }
-      ],
-      "audiAcc": 90377
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

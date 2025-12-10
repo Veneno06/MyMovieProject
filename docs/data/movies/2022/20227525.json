@@ -22,35 +22,34 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김민주",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Min-ju"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "한선화",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HAN Sun-hwa",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "차미경",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한채아",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HAN Chae-a",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "송지현",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -733,6 +732,7 @@
           "staffRoleNm": "VFX 슈퍼바이저"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

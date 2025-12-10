@@ -22,86 +22,82 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이장호",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Jang-ho"
         },
         {
-          "peopleCd": "",
           "peopleNm": "정지영",
-          "repRoleNm": "감독"
+          "peopleNmEn": "CHUNG Ji-young"
         },
         {
-          "peopleCd": "",
           "peopleNm": "박철수",
-          "repRoleNm": "감독"
+          "peopleNmEn": "PARK Chul-soo"
         },
         {
-          "peopleCd": "",
           "peopleNm": "이두용",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Dooyong"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김현",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Hyeon",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임백천",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이경영",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Gyoung-young",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "동방우",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "DONG Bang-woo",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이호동",
-          "repRoleNm": "배우",
-          "cast": "조연출"
+          "peopleNmEn": "",
+          "cast": "조연출",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임요한",
-          "repRoleNm": "배우",
-          "cast": "안내인"
+          "peopleNmEn": "Im Yohan",
+          "cast": "안내인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한현근",
-          "repRoleNm": "배우",
-          "cast": "경비원"
+          "peopleNmEn": "HAN Hyun-geun",
+          "cast": "경비원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박성호",
-          "repRoleNm": "배우",
-          "cast": "술집지인3"
+          "peopleNmEn": "",
+          "cast": "술집지인3",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박승옥",
-          "repRoleNm": "배우",
-          "cast": "승옥"
+          "peopleNmEn": "Park Seung-ok",
+          "cast": "승옥",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박성현",
-          "repRoleNm": "배우",
-          "cast": "질문자3"
+          "peopleNmEn": "Park Sung-hyun",
+          "cast": "질문자3",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -721,6 +717,7 @@
           "staffRoleNm": "시각효과"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

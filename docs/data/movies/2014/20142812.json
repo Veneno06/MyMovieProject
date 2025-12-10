@@ -22,23 +22,22 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이민환",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "윤설희",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍석연",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HONG Seok-youn",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -170,6 +169,7 @@
           "staffRoleNm": "제작팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

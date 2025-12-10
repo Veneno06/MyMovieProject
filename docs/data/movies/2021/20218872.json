@@ -22,77 +22,76 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이주예",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "박서영",
-          "repRoleNm": "배우",
-          "cast": "서영"
+          "peopleNmEn": "",
+          "cast": "서영",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박은영",
-          "repRoleNm": "배우",
-          "cast": "서영언니"
+          "peopleNmEn": "",
+          "cast": "서영언니",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍석우",
-          "repRoleNm": "배우",
-          "cast": "뮤지컬강사"
+          "peopleNmEn": "",
+          "cast": "뮤지컬강사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "강보라",
-          "repRoleNm": "배우",
-          "cast": "은영친구1"
+          "peopleNmEn": "",
+          "cast": "은영친구1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김수진",
-          "repRoleNm": "배우",
-          "cast": "서영엄마"
+          "peopleNmEn": "",
+          "cast": "서영엄마",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박종헌",
-          "repRoleNm": "배우",
-          "cast": "서영아빠"
+          "peopleNmEn": "",
+          "cast": "서영아빠",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "허민경",
-          "repRoleNm": "배우",
-          "cast": "서영친구들"
+          "peopleNmEn": "",
+          "cast": "서영친구들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "심다윤",
-          "repRoleNm": "배우",
-          "cast": "서영친구들"
+          "peopleNmEn": "",
+          "cast": "서영친구들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박지민",
-          "repRoleNm": "배우",
-          "cast": "서영친구들"
+          "peopleNmEn": "",
+          "cast": "서영친구들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "양성하",
-          "repRoleNm": "배우",
-          "cast": "은영친구2"
+          "peopleNmEn": "",
+          "cast": "은영친구2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이주예",
-          "repRoleNm": "배우",
-          "cast": "다큐감독 목소리"
+          "peopleNmEn": "",
+          "cast": "다큐감독 목소리",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -163,6 +162,7 @@
           "staffRoleNm": "배급진행"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

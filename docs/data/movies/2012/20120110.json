@@ -25,101 +25,100 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "신수원",
-          "repRoleNm": "감독"
+          "peopleNmEn": "SHIN Suwon"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이다윗",
-          "repRoleNm": "배우",
-          "cast": "김준"
+          "peopleNmEn": "LEE Da-wit",
+          "cast": "김준",
+          "castEn": "KIM June"
         },
         {
-          "peopleCd": "",
           "peopleNm": "성준",
-          "repRoleNm": "배우",
-          "cast": "유진 테일러"
+          "peopleNmEn": "SUNG June",
+          "cast": "유진 테일러",
+          "castEn": "Yujin Tayler"
         },
         {
-          "peopleCd": "",
           "peopleNm": "김꽃비",
-          "repRoleNm": "배우",
-          "cast": "정수진"
+          "peopleNmEn": "KIM Kkot-bi",
+          "cast": "정수진",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김권",
-          "repRoleNm": "배우",
-          "cast": "한명호"
+          "peopleNmEn": "KIM Kwon",
+          "cast": "한명호",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "류경수",
-          "repRoleNm": "배우",
-          "cast": "박정재"
+          "peopleNmEn": "RYU Gyeong-su",
+          "cast": "박정재",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "선주아",
-          "repRoleNm": "배우",
-          "cast": "강미라"
+          "peopleNmEn": "SUN Chu-a",
+          "cast": "강미라",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "남태부",
-          "repRoleNm": "배우",
-          "cast": "최보람"
+          "peopleNmEn": "NAM Tae-boo",
+          "cast": "최보람",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "길해연",
-          "repRoleNm": "배우",
-          "cast": "준의 모"
+          "peopleNmEn": "GIL Hae-yeon",
+          "cast": "준의 모",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황정민",
-          "repRoleNm": "배우",
-          "cast": "명호 모"
+          "peopleNmEn": "HWANG Jung-min",
+          "cast": "명호 모",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박현영",
-          "repRoleNm": "배우",
-          "cast": "김 선생"
+          "peopleNmEn": "PARK Hyun-young",
+          "cast": "김 선생",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박해준",
-          "repRoleNm": "배우",
-          "cast": "최형사"
+          "peopleNmEn": "PARK Hae-joon",
+          "cast": "최형사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조성하",
-          "repRoleNm": "배우",
-          "cast": "박 반장"
+          "peopleNmEn": "CHO Seong-ha",
+          "cast": "박 반장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한솔",
-          "repRoleNm": "배우",
-          "cast": "그 외의 출연진들"
+          "peopleNmEn": "",
+          "cast": "그 외의 출연진들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한창훈",
-          "repRoleNm": "배우",
-          "cast": "그 외의 출연진들"
+          "peopleNmEn": "",
+          "cast": "그 외의 출연진들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황성규",
-          "repRoleNm": "배우",
-          "cast": "예비 1순위"
+          "peopleNmEn": "",
+          "cast": "예비 1순위",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -722,6 +721,7 @@
           "staffRoleNm": "VFX 아티스트"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

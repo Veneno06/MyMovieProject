@@ -22,53 +22,52 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "박범훈",
-          "repRoleNm": "감독"
+          "peopleNmEn": "PARK Bum-hun"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이서희",
-          "repRoleNm": "배우",
-          "cast": "서경"
+          "peopleNmEn": "",
+          "cast": "서경",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍완택",
-          "repRoleNm": "배우",
-          "cast": "형사"
+          "peopleNmEn": "",
+          "cast": "형사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "배정우",
-          "repRoleNm": "배우",
-          "cast": "사고현장주민"
+          "peopleNmEn": "",
+          "cast": "사고현장주민 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서동진",
-          "repRoleNm": "배우",
-          "cast": "사고현장경찰"
+          "peopleNmEn": "",
+          "cast": "사고현장경찰 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이효",
-          "repRoleNm": "배우",
-          "cast": "사고현장주민"
+          "peopleNmEn": "",
+          "cast": "사고현장주민",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "오태균",
-          "repRoleNm": "배우",
-          "cast": "술집손님"
+          "peopleNmEn": "",
+          "cast": "술집손님 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이태윤",
-          "repRoleNm": "배우",
-          "cast": "지나가는가족"
+          "peopleNmEn": "",
+          "cast": "지나가는가족 ",
+          "castEn": ""
         }
       ],
       "showTypes": [],
@@ -226,6 +225,7 @@
           "staffRoleNm": "메이킹필름"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

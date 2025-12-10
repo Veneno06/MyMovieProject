@@ -25,59 +25,58 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김수진",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Soo-jin"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이선빈",
-          "repRoleNm": "배우",
-          "cast": "주영"
+          "peopleNmEn": "LEE Sun-bin",
+          "cast": "주영",
+          "castEn": "Ju-young"
         },
         {
-          "peopleCd": "",
           "peopleNm": "김민석",
-          "repRoleNm": "배우",
-          "cast": "기훈"
+          "peopleNmEn": "KIM Min-suk",
+          "cast": "기훈",
+          "castEn": "Ki-hoon"
         },
         {
-          "peopleCd": "",
           "peopleNm": "한수아",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HAN Su-a",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "류경수",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "RYU Gyeong-su",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "전익령",
-          "repRoleNm": "배우",
-          "cast": "정인"
+          "peopleNmEn": "",
+          "cast": "정인",
+          "castEn": "Jung-in"
         },
         {
-          "peopleCd": "",
           "peopleNm": "백주희",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "BACK Joo-hee",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "안석현",
-          "repRoleNm": "배우",
-          "cast": "연우"
+          "peopleNmEn": "An Seok Hyun",
+          "cast": "연우",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이은미",
-          "repRoleNm": "배우",
-          "cast": "공장직원"
+          "peopleNmEn": "LEE Eun-mi",
+          "cast": "공장직원",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -143,9 +142,44 @@
           "staffRoleNm": "투자"
         },
         {
+          "peopleNm": "문진경",
+          "peopleNmEn": "",
+          "staffRoleNm": "제작팀"
+        },
+        {
+          "peopleNm": "최진",
+          "peopleNmEn": "CHOI Jin",
+          "staffRoleNm": "프로듀서"
+        },
+        {
+          "peopleNm": "최호태",
+          "peopleNmEn": "CHOI Ho-tae",
+          "staffRoleNm": "프로듀서"
+        },
+        {
+          "peopleNm": "이제희",
+          "peopleNmEn": "LEE Je-hui",
+          "staffRoleNm": "시나리오(각본)"
+        },
+        {
           "peopleNm": "정수연",
           "peopleNmEn": "",
           "staffRoleNm": "연출팀"
+        },
+        {
+          "peopleNm": "서영주",
+          "peopleNmEn": "SUH Young-joo",
+          "staffRoleNm": "제작"
+        },
+        {
+          "peopleNm": "임동철",
+          "peopleNmEn": "",
+          "staffRoleNm": "프로듀서"
+        },
+        {
+          "peopleNm": "양다연",
+          "peopleNmEn": "",
+          "staffRoleNm": "미술팀"
         },
         {
           "peopleNm": "박다명",
@@ -163,17 +197,32 @@
           "staffRoleNm": "배급진행"
         },
         {
+          "peopleNm": "곽세정",
+          "peopleNmEn": "",
+          "staffRoleNm": "배급진행"
+        },
+        {
           "peopleNm": "김윤정",
           "peopleNmEn": "Kim Yunjeong",
           "staffRoleNm": "배급진행"
         },
         {
-          "peopleNm": "곽세정",
-          "peopleNmEn": "",
-          "staffRoleNm": "배급진행"
+          "peopleNm": "정영홍",
+          "peopleNmEn": "Brian Chung",
+          "staffRoleNm": "기획진행"
+        },
+        {
+          "peopleNm": "서영주",
+          "peopleNmEn": "SUH Young-joo",
+          "staffRoleNm": "기획"
+        },
+        {
+          "peopleNm": "이주은",
+          "peopleNmEn": "LeeJueun",
+          "staffRoleNm": "기획진행"
         }
-      ],
-      "audiAcc": 1637822
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

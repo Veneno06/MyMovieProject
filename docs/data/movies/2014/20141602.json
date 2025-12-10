@@ -25,101 +25,100 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "홍석재",
-          "repRoleNm": "감독"
+          "peopleNmEn": "HONG Seok-jae"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "변요한",
-          "repRoleNm": "배우",
-          "cast": "지웅"
+          "peopleNmEn": "BYUN Yo-han",
+          "cast": "지웅",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이주승",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Juseung",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하윤경",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HA Yun-kyung",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "류준열",
-          "repRoleNm": "배우",
-          "cast": "양게"
+          "peopleNmEn": "RYU Jun-yeol",
+          "cast": "양게",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "오희준",
-          "repRoleNm": "배우",
-          "cast": "군인"
+          "peopleNmEn": "OH Hee-jun",
+          "cast": "군인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박근록",
-          "repRoleNm": "배우",
-          "cast": "문혁"
+          "peopleNmEn": "PARK Keun-rok",
+          "cast": "문혁",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이강욱",
-          "repRoleNm": "배우",
-          "cast": "오형주"
+          "peopleNmEn": "",
+          "cast": "오형주 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "배유람",
-          "repRoleNm": "배우",
-          "cast": "정배"
+          "peopleNmEn": "BAE Yoo-ram",
+          "cast": "정배",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "전신환",
-          "repRoleNm": "배우",
-          "cast": "장세민"
+          "peopleNmEn": "JEON Sin-hwan",
+          "cast": "장세민",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "엄기성",
-          "repRoleNm": "배우",
-          "cast": "노량진 현피멤버"
+          "peopleNmEn": "Eom Ki-seong",
+          "cast": "노량진 현피멤버",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하상명",
-          "repRoleNm": "배우",
-          "cast": "모자남"
+          "peopleNmEn": "HA Sang-myeong",
+          "cast": "모자남",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김종수",
-          "repRoleNm": "배우",
-          "cast": "교수"
+          "peopleNmEn": "KIM Jong-soo",
+          "cast": "교수",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "남문철",
-          "repRoleNm": "배우",
-          "cast": "하영 부"
+          "peopleNmEn": "NAM Mun-cheol",
+          "cast": "하영 부",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박예영",
-          "repRoleNm": "배우",
-          "cast": "하영 동기"
+          "peopleNmEn": "PARK Ye-young",
+          "cast": "하영 동기",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임지호",
-          "repRoleNm": "배우",
-          "cast": "고딩1"
+          "peopleNmEn": "Lim Ji-Ho",
+          "cast": "고딩1",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -673,7 +672,7 @@
         },
         {
           "peopleNm": "노병욱",
-          "peopleNmEn": "NOH Byung-wook",
+          "peopleNmEn": "NOH Byoung-wook",
           "staffRoleNm": "DI팀"
         },
         {
@@ -901,8 +900,8 @@
           "peopleNmEn": "SONG Seung hwan",
           "staffRoleNm": "VFX 슈퍼바이저"
         }
-      ],
-      "audiAcc": 246722
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

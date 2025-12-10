@@ -22,29 +22,28 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "홍원찬",
-          "repRoleNm": "감독"
+          "peopleNmEn": "HONG Won-chan"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "황정민",
-          "repRoleNm": "배우",
-          "cast": "인남"
+          "peopleNmEn": "HWANG Jung-min",
+          "cast": "인남",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이정재",
-          "repRoleNm": "배우",
-          "cast": "레이"
+          "peopleNmEn": "LEE Jung-jae",
+          "cast": "레이",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박정민",
-          "repRoleNm": "배우",
-          "cast": "유이"
+          "peopleNmEn": "Park Jeongmin",
+          "cast": "유이",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -85,8 +84,8 @@
           "peopleNmEn": "HONG Won-chan",
           "staffRoleNm": "시나리오(각본)"
         }
-      ],
-      "audiAcc": 34210
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

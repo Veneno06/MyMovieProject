@@ -22,83 +22,82 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김동후",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Dong-hoo"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "박기웅",
-          "repRoleNm": "배우",
-          "cast": "첸"
+          "peopleNmEn": "PARK Ki-woong",
+          "cast": "첸",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한채아",
-          "repRoleNm": "배우",
-          "cast": "미"
+          "peopleNmEn": "HAN Chae-a",
+          "cast": "미",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유재명",
-          "repRoleNm": "배우",
-          "cast": "장사장"
+          "peopleNmEn": "YU Jae-myeong",
+          "cast": "장사장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임화영",
-          "repRoleNm": "배우",
-          "cast": "길림성"
+          "peopleNmEn": "IM Hwa-yeong",
+          "cast": "길림성",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장인섭",
-          "repRoleNm": "배우",
-          "cast": "건달3"
+          "peopleNmEn": "JANG In-sub",
+          "cast": "건달3",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "전요한",
-          "repRoleNm": "배우",
-          "cast": "건달4"
+          "peopleNmEn": "",
+          "cast": "건달4",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황보민경",
-          "repRoleNm": "배우",
-          "cast": "아가씨2"
+          "peopleNmEn": "",
+          "cast": "아가씨2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정재윤",
-          "repRoleNm": "배우",
-          "cast": "밀항자2"
+          "peopleNmEn": "JUNG Jae-yun",
+          "cast": "밀항자2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김은주",
-          "repRoleNm": "배우",
-          "cast": "용의 아녀"
+          "peopleNmEn": "KIM Eun-ju",
+          "cast": "용의 아녀",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "나철",
-          "repRoleNm": "배우",
-          "cast": "초병 1"
+          "peopleNmEn": "NA Chul",
+          "cast": "초병 1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김윤태",
-          "repRoleNm": "배우",
-          "cast": "남편"
+          "peopleNmEn": "KIM Yun-tae",
+          "cast": "남편",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍상진",
-          "repRoleNm": "배우",
-          "cast": "밀항자1"
+          "peopleNmEn": "Hong Sang Jin",
+          "cast": "밀항자1",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -745,6 +744,7 @@
           "staffRoleNm": "VFX 슈퍼바이저"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

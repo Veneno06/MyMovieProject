@@ -25,35 +25,34 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이종한",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Jong-han"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "신구",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "SHIN Gu",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "나문희",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "NA Moon-hee",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황보라",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HWANG Bo-ra",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최성호",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "CHOI Sung-ho",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -83,6 +82,7 @@
         }
       ],
       "staffs": []
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

@@ -22,83 +22,82 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "심광진",
-          "repRoleNm": "감독"
+          "peopleNmEn": "SHIM Kwang-jin"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "전석호",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "JEON Suk-ho",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "진용욱",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "JIN Yong-uk",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "민지아",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "MIN Jee-a",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이혁",
-          "repRoleNm": "배우",
-          "cast": "재진"
+          "peopleNmEn": "",
+          "cast": "재진",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박성근",
-          "repRoleNm": "배우",
-          "cast": "창수"
+          "peopleNmEn": "PARK Seong-keun",
+          "cast": "창수",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김민지",
-          "repRoleNm": "배우",
-          "cast": "보리"
+          "peopleNmEn": "",
+          "cast": "보리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김구민",
-          "repRoleNm": "배우",
-          "cast": "정신과의사"
+          "peopleNmEn": "",
+          "cast": "정신과의사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김준희",
-          "repRoleNm": "배우",
-          "cast": "수색역행인"
+          "peopleNmEn": "",
+          "cast": "수색역행인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김지혜",
-          "repRoleNm": "배우",
-          "cast": "룸싸롱여자"
+          "peopleNmEn": "",
+          "cast": "룸싸롱여자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이지은",
-          "repRoleNm": "배우",
-          "cast": "수색역행인"
+          "peopleNmEn": "",
+          "cast": "수색역행인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이창원",
-          "repRoleNm": "배우",
-          "cast": "수색역행인"
+          "peopleNmEn": "LEE Chang-won",
+          "cast": "수색역행인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한결",
-          "repRoleNm": "배우",
-          "cast": "부동산업자"
+          "peopleNmEn": "Always-HAN",
+          "cast": "부동산업자",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -496,6 +495,7 @@
           "staffRoleNm": "기획"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

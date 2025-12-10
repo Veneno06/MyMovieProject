@@ -22,131 +22,130 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김태영",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Tae-yeong"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "조선묵",
-          "repRoleNm": "배우",
-          "cast": "김의기"
+          "peopleNmEn": "CHO SEONMOOK",
+          "cast": "김의기",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "양재만",
-          "repRoleNm": "배우",
-          "cast": "베드로"
+          "peopleNmEn": "",
+          "cast": "베드로",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서갑숙",
-          "repRoleNm": "배우",
-          "cast": "지미"
+          "peopleNmEn": "SEO Gap-suk",
+          "cast": "지미",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이경아",
-          "repRoleNm": "배우",
-          "cast": "쥬리"
+          "peopleNmEn": "",
+          "cast": "쥬리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김윤태",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김영석",
-          "repRoleNm": "배우",
-          "cast": "꼬마"
+          "peopleNmEn": "",
+          "cast": "꼬마",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "문창근",
-          "repRoleNm": "배우",
-          "cast": "문코"
+          "peopleNmEn": "MOON Chang-gun",
+          "cast": "문코",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한영숙",
-          "repRoleNm": "배우",
-          "cast": "강여인"
+          "peopleNmEn": "",
+          "cast": "강여인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이영자",
-          "repRoleNm": "배우",
-          "cast": "영옥"
+          "peopleNmEn": "",
+          "cast": "영옥",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "방은희",
-          "repRoleNm": "배우",
-          "cast": "수진"
+          "peopleNmEn": "BANG Eun-hee",
+          "cast": "수진",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이현란",
-          "repRoleNm": "배우",
-          "cast": "영애"
+          "peopleNmEn": "",
+          "cast": "영애",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "전무송",
-          "repRoleNm": "배우",
-          "cast": "신부"
+          "peopleNmEn": "CHON Moo-song",
+          "cast": "신부",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "선동혁",
-          "repRoleNm": "배우",
-          "cast": "군청직원"
+          "peopleNmEn": "",
+          "cast": "군청직원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김정",
-          "repRoleNm": "배우",
-          "cast": "필순"
+          "peopleNmEn": "",
+          "cast": "필순",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "차기환",
-          "repRoleNm": "배우",
-          "cast": "형사"
+          "peopleNmEn": "",
+          "cast": "형사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김찬구",
-          "repRoleNm": "배우",
-          "cast": "미친남자"
+          "peopleNmEn": "",
+          "cast": "미친남자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이은영",
-          "repRoleNm": "배우",
-          "cast": "미친여자"
+          "peopleNmEn": "",
+          "cast": "미친여자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "심지미",
-          "repRoleNm": "배우",
-          "cast": "창고여인여인"
+          "peopleNmEn": "",
+          "cast": "창고여인여인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이숙",
-          "repRoleNm": "배우",
-          "cast": "클럽여인"
+          "peopleNmEn": "LEE Sook",
+          "cast": "클럽여인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유문선",
-          "repRoleNm": "배우",
-          "cast": "여학생"
+          "peopleNmEn": "",
+          "cast": "여학생",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -344,7 +343,7 @@
         },
         {
           "peopleNm": "노병욱",
-          "peopleNmEn": "NOH Byung-wook",
+          "peopleNmEn": "NOH Byoung-wook",
           "staffRoleNm": "DI팀"
         },
         {
@@ -363,6 +362,7 @@
           "staffRoleNm": "홍보/마케팅 진행"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

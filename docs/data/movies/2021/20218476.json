@@ -25,125 +25,124 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "임용재",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "정진운",
-          "repRoleNm": "배우",
-          "cast": "장근"
+          "peopleNmEn": "JEONG Jin-woon",
+          "cast": "장근",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "솔빈",
-          "repRoleNm": "배우",
-          "cast": "민정"
+          "peopleNmEn": "",
+          "cast": "민정",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "곽희성",
-          "repRoleNm": "배우",
-          "cast": "지석"
+          "peopleNmEn": "KWAK Hee-sung",
+          "cast": "지석",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "여훈민",
-          "repRoleNm": "배우",
-          "cast": "인현"
+          "peopleNmEn": "",
+          "cast": "인현",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이순원",
-          "repRoleNm": "배우",
-          "cast": "영식"
+          "peopleNmEn": "",
+          "cast": "영식",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이세희",
-          "repRoleNm": "배우",
-          "cast": "유리"
+          "peopleNmEn": "",
+          "cast": "유리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "민채연",
-          "repRoleNm": "배우",
-          "cast": "소미"
+          "peopleNmEn": "",
+          "cast": "소미",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "지대한",
-          "repRoleNm": "배우",
-          "cast": "파출소장"
+          "peopleNmEn": "JI Dae-han",
+          "cast": "파출소장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조정치",
-          "repRoleNm": "배우",
-          "cast": "준서"
+          "peopleNmEn": "",
+          "cast": "준서",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조지훈",
-          "repRoleNm": "배우",
-          "cast": "정류장직원"
+          "peopleNmEn": "CHO Ji-hun",
+          "cast": "정류장직원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김도신",
-          "repRoleNm": "배우",
-          "cast": "청년회장"
+          "peopleNmEn": "",
+          "cast": "청년회장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김승용",
-          "repRoleNm": "배우",
-          "cast": "민정삼촌"
+          "peopleNmEn": "",
+          "cast": "민정삼촌",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이선주",
-          "repRoleNm": "배우",
-          "cast": "여대표"
+          "peopleNmEn": "",
+          "cast": "여대표",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김현호",
-          "repRoleNm": "배우",
-          "cast": "연출부1"
+          "peopleNmEn": "",
+          "cast": "연출부1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최아진",
-          "repRoleNm": "배우",
-          "cast": "영어강사"
+          "peopleNmEn": "CHOI A-jin",
+          "cast": "영어강사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김난희",
-          "repRoleNm": "배우",
-          "cast": "관광안내원"
+          "peopleNmEn": "",
+          "cast": "관광안내원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이상백",
-          "repRoleNm": "배우",
-          "cast": "관광객"
+          "peopleNmEn": "",
+          "cast": "관광객",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이영식",
-          "repRoleNm": "배우",
-          "cast": "식당손님2"
+          "peopleNmEn": "",
+          "cast": "식당손님2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한성진",
-          "repRoleNm": "배우",
-          "cast": "식당손님3"
+          "peopleNmEn": "HAN Seong-jin",
+          "cast": "식당손님3",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -164,6 +163,12 @@
           "companyNm": "(주)디스테이션",
           "companyNmEn": "",
           "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20253341",
+          "companyNm": "주식회사 케이티스튜디오지니",
+          "companyNmEn": "KT StudioGenie",
+          "companyPartNm": "해외세일즈사"
         }
       ],
       "audits": [
@@ -429,6 +434,11 @@
           "staffRoleNm": "배급진행"
         },
         {
+          "peopleNm": "정종길",
+          "peopleNmEn": "JUNG Jong-gil",
+          "staffRoleNm": "DI팀"
+        },
+        {
           "peopleNm": "최문희",
           "peopleNmEn": "",
           "staffRoleNm": "DI팀"
@@ -579,11 +589,12 @@
           "staffRoleNm": "배급진행"
         },
         {
-          "peopleNm": "정종길",
-          "peopleNmEn": "JUNG Jong-gil",
-          "staffRoleNm": "DI팀"
+          "peopleNm": "김세희",
+          "peopleNmEn": "",
+          "staffRoleNm": "VFX 아티스트"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

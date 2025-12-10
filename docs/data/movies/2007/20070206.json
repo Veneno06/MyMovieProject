@@ -28,35 +28,34 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김진아",
-          "repRoleNm": "감독"
+          "peopleNmEn": "Gina KIM"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "하정우",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HA Jung-woo",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "파미가 베라",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "FARMIGA Vera",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "데이비드 맥기니스",
-          "repRoleNm": "배우",
-          "cast": "앤드류 리"
+          "peopleNmEn": "David MCINNIS",
+          "cast": "앤드류 리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이화시",
-          "repRoleNm": "배우",
-          "cast": "미세스 리"
+          "peopleNmEn": "LEE Hwa-si",
+          "cast": "미세스 리",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -218,8 +217,8 @@
           "peopleNmEn": "",
           "staffRoleNm": "광고디자인"
         }
-      ],
-      "audiAcc": 81075
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

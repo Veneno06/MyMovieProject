@@ -25,65 +25,64 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이윤형",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Yoon-hyoung"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "정다혜",
-          "repRoleNm": "배우",
-          "cast": "수정"
+          "peopleNmEn": "JEONG Da-hye",
+          "cast": "수정",
+          "castEn": "Su-jeong"
         },
         {
-          "peopleCd": "",
           "peopleNm": "연제욱",
-          "repRoleNm": "배우",
-          "cast": "상철"
+          "peopleNmEn": "YEON Je-wook",
+          "cast": "상철",
+          "castEn": "Sang-cheol"
         },
         {
-          "peopleCd": "",
           "peopleNm": "서지석",
-          "repRoleNm": "배우",
-          "cast": "정수"
+          "peopleNmEn": "Seo Ji-seok",
+          "cast": "정수",
+          "castEn": "Jeong-su"
         },
         {
-          "peopleCd": "",
           "peopleNm": "이상일",
-          "repRoleNm": "배우",
-          "cast": "석태"
+          "peopleNmEn": "",
+          "cast": "석태",
+          "castEn": "Seok-tae"
         },
         {
-          "peopleCd": "",
           "peopleNm": "한설아",
-          "repRoleNm": "배우",
-          "cast": "현주"
+          "peopleNmEn": "",
+          "cast": "현주",
+          "castEn": "Hyun-ju"
         },
         {
-          "peopleCd": "",
           "peopleNm": "김기천",
-          "repRoleNm": "배우",
-          "cast": "슈퍼아저씨"
+          "peopleNmEn": "KIM Ki-chun",
+          "cast": "슈퍼아저씨",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이춘성",
-          "repRoleNm": "배우",
-          "cast": "분수대 관리인"
+          "peopleNmEn": "",
+          "cast": "분수대 관리인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김훈",
-          "repRoleNm": "배우",
-          "cast": "루돌프"
+          "peopleNmEn": "",
+          "cast": "루돌프",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정애화",
-          "repRoleNm": "배우",
-          "cast": "슈퍼아줌마"
+          "peopleNmEn": "JUNG Ae-hwa",
+          "cast": "슈퍼아줌마",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -403,6 +402,7 @@
           "staffRoleNm": "DI팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

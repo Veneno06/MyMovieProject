@@ -22,59 +22,58 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "민백두",
-          "repRoleNm": "감독"
+          "peopleNmEn": "MIN Baek-doo"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "박효주",
-          "repRoleNm": "배우",
-          "cast": "박선희"
+          "peopleNmEn": "PARK Hyo-ju",
+          "cast": "박선희",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이진희",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Jin-hee",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하석",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HA Seok",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조한철",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "CHO Han-cheul",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김광현",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Kwang-hyun",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김용진",
-          "repRoleNm": "배우",
-          "cast": "리성진"
+          "peopleNmEn": "",
+          "cast": "리성진",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "주민하",
-          "repRoleNm": "배우",
-          "cast": "박희진"
+          "peopleNmEn": "JU Min-ha",
+          "cast": "박희진",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김형근",
-          "repRoleNm": "배우",
-          "cast": "서진욱"
+          "peopleNmEn": "",
+          "cast": "서진욱",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -649,6 +648,7 @@
           "staffRoleNm": "기획"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

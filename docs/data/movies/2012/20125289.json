@@ -22,83 +22,82 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "인진미",
-          "repRoleNm": "감독"
+          "peopleNmEn": "IN Jin-mee"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이율리",
-          "repRoleNm": "배우",
-          "cast": "아무도안"
+          "peopleNmEn": "Lee Yuly",
+          "cast": "아무도안",
+          "castEn": "nbody"
         },
         {
-          "peopleCd": "",
           "peopleNm": "박혜린",
-          "repRoleNm": "배우",
-          "cast": "나오는사람들"
+          "peopleNmEn": "PARK Hae-rin",
+          "cast": "나오는사람들",
+          "castEn": "Scripter"
         },
         {
-          "peopleCd": "",
           "peopleNm": "한석경",
-          "repRoleNm": "배우",
-          "cast": "한석경"
+          "peopleNmEn": "HAN Seok-kyung",
+          "cast": "한석경",
+          "castEn": "HAN Seok-kyung"
         },
         {
-          "peopleCd": "",
           "peopleNm": "인진미",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "IN Jin-mee",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "전희경",
-          "repRoleNm": "배우",
-          "cast": "나오는 사람들"
+          "peopleNmEn": "",
+          "cast": "나오는 사람들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정성욱",
-          "repRoleNm": "배우",
-          "cast": "나오는 사람들"
+          "peopleNmEn": "JUNG Seong-wook",
+          "cast": "나오는 사람들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박대희",
-          "repRoleNm": "배우",
-          "cast": "나오는 사람들"
+          "peopleNmEn": "",
+          "cast": "나오는 사람들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "백혜령",
-          "repRoleNm": "배우",
-          "cast": "나오는사람들"
+          "peopleNmEn": "",
+          "cast": "나오는사람들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서상호",
-          "repRoleNm": "배우",
-          "cast": "나오는사람들"
+          "peopleNmEn": "",
+          "cast": "나오는사람들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "양재호",
-          "repRoleNm": "배우",
-          "cast": "나오는사람들"
+          "peopleNmEn": "",
+          "cast": "나오는사람들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "윤일중",
-          "repRoleNm": "배우",
-          "cast": "나오는사람들"
+          "peopleNmEn": "YOON Il-joong",
+          "cast": "나오는사람들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이경",
-          "repRoleNm": "배우",
-          "cast": "나오는사람들"
+          "peopleNmEn": "",
+          "cast": "나오는사람들",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -354,6 +353,7 @@
           "staffRoleNm": "DI팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

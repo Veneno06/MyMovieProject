@@ -22,89 +22,88 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "박보상",
-          "repRoleNm": "감독"
+          "peopleNmEn": "PARK Bo-sang"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "홍경인",
-          "repRoleNm": "배우",
-          "cast": "반만호"
+          "peopleNmEn": "HONG Kyung-in",
+          "cast": "반만호",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "고유진",
-          "repRoleNm": "배우",
-          "cast": "하태호"
+          "peopleNmEn": "KOH Yoo-jin",
+          "cast": "하태호",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "배슬기",
-          "repRoleNm": "배우",
-          "cast": "수정"
+          "peopleNmEn": "BAE Seul-ki",
+          "cast": "수정",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김기연",
-          "repRoleNm": "배우",
-          "cast": "순자"
+          "peopleNmEn": "KIM Ki-yeon",
+          "cast": "순자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유주오",
-          "repRoleNm": "배우",
-          "cast": "공사장 인부"
+          "peopleNmEn": "YOO Juo",
+          "cast": "공사장 인부",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "윤선아",
-          "repRoleNm": "배우",
-          "cast": "은행원"
+          "peopleNmEn": "",
+          "cast": "은행원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이영광",
-          "repRoleNm": "배우",
-          "cast": "기자"
+          "peopleNmEn": "",
+          "cast": "기자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이재호",
-          "repRoleNm": "배우",
-          "cast": "불륜커플"
+          "peopleNmEn": "",
+          "cast": "불륜커플",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조채연",
-          "repRoleNm": "배우",
-          "cast": "불륜커플"
+          "peopleNmEn": "",
+          "cast": "불륜커플",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "고경아",
-          "repRoleNm": "배우",
-          "cast": "다방 마담"
+          "peopleNmEn": "",
+          "cast": "다방 마담",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "고봉성",
-          "repRoleNm": "배우",
-          "cast": "다방 손님"
+          "peopleNmEn": "GO Bong-sung",
+          "cast": "다방 손님",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "선정하",
-          "repRoleNm": "배우",
-          "cast": "은행원"
+          "peopleNmEn": "",
+          "cast": "은행원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "변승채",
-          "repRoleNm": "배우",
-          "cast": "갤러리 여학생"
+          "peopleNmEn": "Byun Seung Chae",
+          "cast": "갤러리 여학생",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -361,6 +360,7 @@
           "staffRoleNm": "기타"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

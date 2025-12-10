@@ -22,101 +22,100 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이창희",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Chang-hee"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김상경",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Sang-kyung",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김강우",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Kang-woo",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김희애",
-          "repRoleNm": "배우",
-          "cast": "설희"
+          "peopleNmEn": "KIM Hee-ae",
+          "cast": "설희",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서현우",
-          "repRoleNm": "배우",
-          "cast": "동구"
+          "peopleNmEn": "SEO Hyun-woo",
+          "cast": "동구",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이민지",
-          "repRoleNm": "배우",
-          "cast": "숙경"
+          "peopleNmEn": "LEE Min-ji",
+          "cast": "숙경",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이지훈",
-          "repRoleNm": "배우",
-          "cast": "석원"
+          "peopleNmEn": "LEE Ji-hoon",
+          "cast": "석원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최윤석",
-          "repRoleNm": "배우",
-          "cast": "대식"
+          "peopleNmEn": "",
+          "cast": "대식",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김지영",
-          "repRoleNm": "배우",
-          "cast": "차박사"
+          "peopleNmEn": "KIM Ji-young",
+          "cast": "차박사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "경수진",
-          "repRoleNm": "배우",
-          "cast": "지영"
+          "peopleNmEn": "GYEONG Su-jin",
+          "cast": "지영",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이윤재",
-          "repRoleNm": "배우",
-          "cast": "선배형사"
+          "peopleNmEn": "",
+          "cast": "선배형사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "류경수",
-          "repRoleNm": "배우",
-          "cast": "수리팀2"
+          "peopleNmEn": "RYU Gyeong-su",
+          "cast": "수리팀2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "현봉식",
-          "repRoleNm": "배우",
-          "cast": "경비"
+          "peopleNmEn": "HYUN Bong-sik",
+          "cast": "경비",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황재열",
-          "repRoleNm": "배우",
-          "cast": "친절형사"
+          "peopleNmEn": "HWANG Jae-yeol",
+          "cast": "친절형사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김희상",
-          "repRoleNm": "배우",
-          "cast": "분당경찰"
+          "peopleNmEn": "",
+          "cast": "분당경찰",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "복세훈",
-          "repRoleNm": "배우",
-          "cast": "순경1"
+          "peopleNmEn": "",
+          "cast": "순경1",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -1425,7 +1424,7 @@
         },
         {
           "peopleNm": "노병욱",
-          "peopleNmEn": "NOH Byung-wook",
+          "peopleNmEn": "NOH Byoung-wook",
           "staffRoleNm": "DI팀"
         },
         {
@@ -1864,6 +1863,7 @@
           "staffRoleNm": "VFX 매니지먼트"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

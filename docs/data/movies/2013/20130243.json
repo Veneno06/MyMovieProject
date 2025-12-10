@@ -28,41 +28,40 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "공자관",
-          "repRoleNm": "감독"
+          "peopleNmEn": "GONG Ja-gwan"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이덕재",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김동수",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Dong-su",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박진위",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Park Jin-wi",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "지나",
-          "repRoleNm": "배우",
-          "cast": "정효선"
+          "peopleNmEn": "",
+          "cast": "정효선",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "혜진",
-          "repRoleNm": "배우",
-          "cast": "처녀귀신"
+          "peopleNmEn": "",
+          "cast": "처녀귀신",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -285,6 +284,7 @@
           "staffRoleNm": "기타"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

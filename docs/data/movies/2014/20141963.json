@@ -22,47 +22,46 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김봉은",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Bong-eun"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "배건식",
-          "repRoleNm": "배우",
-          "cast": "태평"
+          "peopleNmEn": "BAE Geon-sik",
+          "cast": "태평",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이유성",
-          "repRoleNm": "배우",
-          "cast": "민우"
+          "peopleNmEn": "",
+          "cast": "민우",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박수연",
-          "repRoleNm": "배우",
-          "cast": "소라"
+          "peopleNmEn": "",
+          "cast": "소라",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "손준영",
-          "repRoleNm": "배우",
-          "cast": "괴한1"
+          "peopleNmEn": "",
+          "cast": "괴한1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임희경",
-          "repRoleNm": "배우",
-          "cast": "모델2"
+          "peopleNmEn": "",
+          "cast": "모델2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황현",
-          "repRoleNm": "배우",
-          "cast": "괴한2"
+          "peopleNmEn": "",
+          "cast": "괴한2",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -218,6 +217,7 @@
           "staffRoleNm": "기획"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

@@ -22,59 +22,58 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이무영",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Moo-young"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "봉만대",
-          "repRoleNm": "배우",
-          "cast": "장효"
+          "peopleNmEn": "BONG Man-dae",
+          "cast": "장효",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "기태영",
-          "repRoleNm": "배우",
-          "cast": "명준"
+          "peopleNmEn": "KI Tae-young",
+          "cast": "명준",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김정팔",
-          "repRoleNm": "배우",
-          "cast": "추자"
+          "peopleNmEn": "",
+          "cast": "추자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김희정",
-          "repRoleNm": "배우",
-          "cast": "마리아"
+          "peopleNmEn": "KIM Hui-jeong",
+          "cast": "마리아",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "금새록",
-          "repRoleNm": "배우",
-          "cast": "간호사 3"
+          "peopleNmEn": "KEUM Sae-rok",
+          "cast": "간호사 3",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "권유진",
-          "repRoleNm": "배우",
-          "cast": "수영"
+          "peopleNmEn": "",
+          "cast": "수영",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유인영",
-          "repRoleNm": "배우",
-          "cast": "수영"
+          "peopleNmEn": "YOO In-young",
+          "cast": "수영",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한민희",
-          "repRoleNm": "배우",
-          "cast": "미정"
+          "peopleNmEn": "",
+          "cast": "미정",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -573,6 +572,7 @@
           "staffRoleNm": "기획"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

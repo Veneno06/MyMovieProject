@@ -22,47 +22,46 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "강미자",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KANG Mi-ja"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "한예리",
-          "repRoleNm": "배우",
-          "cast": "영경"
+          "peopleNmEn": "HAN Ye-ri",
+          "cast": "영경",
+          "castEn": "Yeong-gyeong"
         },
         {
-          "peopleCd": "",
           "peopleNm": "김설진",
-          "repRoleNm": "배우",
-          "cast": "수환"
+          "peopleNmEn": "Seol Jin Kim",
+          "cast": "수환",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김선재",
-          "repRoleNm": "배우",
-          "cast": "의사"
+          "peopleNmEn": "KIM Seon-jai",
+          "cast": "의사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정명원",
-          "repRoleNm": "배우",
-          "cast": "수환 친구"
+          "peopleNmEn": "",
+          "cast": "수환 친구",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김승환",
-          "repRoleNm": "배우",
-          "cast": "종우"
+          "peopleNmEn": "",
+          "cast": "종우",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "오다민",
-          "repRoleNm": "배우",
-          "cast": "편의점 소녀"
+          "peopleNmEn": "",
+          "cast": "편의점 소녀",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -163,6 +162,7 @@
           "staffRoleNm": "조감독"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

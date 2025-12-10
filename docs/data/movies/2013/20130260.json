@@ -28,77 +28,76 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "조은성",
-          "repRoleNm": "감독"
+          "peopleNmEn": "JO Eun-sung"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "오정세",
-          "repRoleNm": "배우",
-          "cast": "길호"
+          "peopleNmEn": "OH Jung-se",
+          "cast": "길호",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조은지",
-          "repRoleNm": "배우",
-          "cast": "정숙"
+          "peopleNmEn": "CHO Eunji",
+          "cast": "정숙",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "송재하",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "SONG JAE HA",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박재철",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이미도",
-          "repRoleNm": "배우",
-          "cast": "성희"
+          "peopleNmEn": "LEE Mi-do",
+          "cast": "성희",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "강민지",
-          "repRoleNm": "배우",
-          "cast": "도로시"
+          "peopleNmEn": "",
+          "cast": "도로시",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한수용",
-          "repRoleNm": "배우",
-          "cast": "그외 코스프레"
+          "peopleNmEn": "",
+          "cast": "그외 코스프레",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "문성환",
-          "repRoleNm": "배우",
-          "cast": "담배남"
+          "peopleNmEn": "",
+          "cast": "담배남",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "손민식",
-          "repRoleNm": "배우",
-          "cast": "지하철역 남"
+          "peopleNmEn": "",
+          "cast": "지하철역 남",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이재석",
-          "repRoleNm": "배우",
-          "cast": "체포남"
+          "peopleNmEn": "LEE Jae-suk",
+          "cast": "체포남",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최혁",
-          "repRoleNm": "배우",
-          "cast": "짝사랑녀남친"
+          "peopleNmEn": "CHOI Hyuk",
+          "cast": "짝사랑녀남친",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -416,6 +415,7 @@
           "staffRoleNm": "DI팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

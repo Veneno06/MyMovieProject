@@ -22,113 +22,112 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김태균",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Tae-gyun"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "윤석화",
-          "repRoleNm": "배우",
-          "cast": "순옥"
+          "peopleNmEn": "YOON Suk-hwa",
+          "cast": "순옥",
+          "castEn": "Soon-ok"
         },
         {
-          "peopleCd": "",
           "peopleNm": "임지규",
-          "repRoleNm": "배우",
-          "cast": "영재"
+          "peopleNmEn": "IM Ji-kyu",
+          "cast": "영재",
+          "castEn": "Young-jae"
         },
         {
-          "peopleCd": "",
           "peopleNm": "이경영",
-          "repRoleNm": "배우",
-          "cast": "아버지"
+          "peopleNmEn": "LEE Gyoung-young",
+          "cast": "아버지",
+          "castEn": "father"
         },
         {
-          "peopleCd": "",
           "peopleNm": "김하진",
-          "repRoleNm": "배우",
-          "cast": "미선"
+          "peopleNmEn": "KIM Ha-jin",
+          "cast": "미선",
+          "castEn": "Mi-sun"
         },
         {
-          "peopleCd": "",
           "peopleNm": "심이영",
-          "repRoleNm": "배우",
-          "cast": "미현"
+          "peopleNmEn": "SHIM Yi-young",
+          "cast": "미현",
+          "castEn": "Mi-hyun"
         },
         {
-          "peopleCd": "",
           "peopleNm": "김영옥",
-          "repRoleNm": "배우",
-          "cast": "할머니"
+          "peopleNmEn": "KIM Yeong-ok",
+          "cast": "할머니",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정은채",
-          "repRoleNm": "배우",
-          "cast": "지윤"
+          "peopleNmEn": "JUNG Eun-chae",
+          "cast": "지윤",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조정원",
-          "repRoleNm": "배우",
-          "cast": "순옥주치의사"
+          "peopleNmEn": "",
+          "cast": "순옥주치의사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김두루",
-          "repRoleNm": "배우",
-          "cast": "119구급대원1"
+          "peopleNmEn": "",
+          "cast": "119구급대원1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김란흔",
-          "repRoleNm": "배우",
-          "cast": "사위"
+          "peopleNmEn": "",
+          "cast": "사위",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "허정임",
-          "repRoleNm": "배우",
-          "cast": "119구급대원2"
+          "peopleNmEn": "",
+          "cast": "119구급대원2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이상백",
-          "repRoleNm": "배우",
-          "cast": "영재 직장동료4"
+          "peopleNmEn": "",
+          "cast": "영재 직장동료4",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김혜성",
-          "repRoleNm": "배우",
-          "cast": "119구급대원3"
+          "peopleNmEn": "",
+          "cast": "119구급대원3",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유재영",
-          "repRoleNm": "배우",
-          "cast": "인턴의사1"
+          "peopleNmEn": "",
+          "cast": "인턴의사1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유형균",
-          "repRoleNm": "배우",
-          "cast": "영재 직장후배"
+          "peopleNmEn": "",
+          "cast": "영재 직장후배",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "윤재묵",
-          "repRoleNm": "배우",
-          "cast": "인턴의사2"
+          "peopleNmEn": "",
+          "cast": "인턴의사2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이언수",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -361,7 +360,7 @@
         },
         {
           "peopleNm": "변지수",
-          "peopleNmEn": "BYUN Ji-soo",
+          "peopleNmEn": "Byeon Ji su",
           "staffRoleNm": "촬영팀"
         },
         {
@@ -1005,6 +1004,7 @@
           "staffRoleNm": "운송"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

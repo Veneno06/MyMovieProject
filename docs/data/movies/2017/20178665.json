@@ -25,17 +25,16 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김동현",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "허진영",
-          "repRoleNm": "배우",
-          "cast": "지안 의뢰인"
+          "peopleNmEn": "",
+          "cast": "지안 의뢰인",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -276,6 +275,7 @@
           "staffRoleNm": "스틸"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

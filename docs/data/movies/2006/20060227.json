@@ -22,47 +22,46 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김은경",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Eun-kyung"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이은성",
-          "repRoleNm": "배우",
-          "cast": "김보람"
+          "peopleNmEn": "LEE Eun-seong",
+          "cast": "김보람 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유호린",
-          "repRoleNm": "배우",
-          "cast": "서유진"
+          "peopleNmEn": "YOO Ho-rin",
+          "cast": "서유진 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김리나",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Ri-na",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "함정이",
-          "repRoleNm": "배우",
-          "cast": "선생 7"
+          "peopleNmEn": "HAM Jeong-i",
+          "cast": "선생 7",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "손지나",
-          "repRoleNm": "배우",
-          "cast": "사감"
+          "peopleNmEn": "",
+          "cast": "사감",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최정인",
-          "repRoleNm": "배우",
-          "cast": "보조선생 1"
+          "peopleNmEn": "CHOI Jung-in",
+          "cast": "보조선생 1",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -636,6 +635,7 @@
           "staffRoleNm": "시각효과"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

@@ -25,23 +25,22 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "동역견",
-          "repRoleNm": "감독"
+          "peopleNmEn": "Yijian Tong"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "홍수아",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HONG Soo-ah",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "강조",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Jiang Chao",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -71,6 +70,7 @@
         }
       ],
       "staffs": []
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

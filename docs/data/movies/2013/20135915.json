@@ -22,47 +22,46 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이우정",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Woo-jung"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "박주희",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "PARK Ju-hee",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "구교환",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KOO Kyohwan",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한슬기",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HAN Seul-gi",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이채은",
-          "repRoleNm": "배우",
-          "cast": "민하"
+          "peopleNmEn": "LEE Chae-eun",
+          "cast": "민하",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "류혜영",
-          "repRoleNm": "배우",
-          "cast": "지혜"
+          "peopleNmEn": "RYU Hye-young",
+          "cast": "지혜",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이민지",
-          "repRoleNm": "배우",
-          "cast": "민지"
+          "peopleNmEn": "LEE Min-ji",
+          "cast": "민지",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -209,7 +208,7 @@
         },
         {
           "peopleNm": "이지환",
-          "peopleNmEn": "LEE Ji-hwan",
+          "peopleNmEn": "",
           "staffRoleNm": "연출팀"
         },
         {
@@ -558,6 +557,7 @@
           "staffRoleNm": "기획"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

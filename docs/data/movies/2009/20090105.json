@@ -22,77 +22,76 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이홍재",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Hong-jae"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "장시원",
-          "repRoleNm": "배우",
-          "cast": "화정"
+          "peopleNmEn": "JANG Si-won",
+          "cast": "화정",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최지혜",
-          "repRoleNm": "배우",
-          "cast": "인화"
+          "peopleNmEn": "CHOI Ji-hye",
+          "cast": "인화",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김수웅",
-          "repRoleNm": "배우",
-          "cast": "순혁"
+          "peopleNmEn": "KIM Su-woong",
+          "cast": "순혁",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이소희",
-          "repRoleNm": "배우",
-          "cast": "영진"
+          "peopleNmEn": "LEE So-hee",
+          "cast": "영진",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이승연",
-          "repRoleNm": "배우",
-          "cast": "영선"
+          "peopleNmEn": "LEE Seung-yeon",
+          "cast": "영선",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "송유현",
-          "repRoleNm": "배우",
-          "cast": "영미"
+          "peopleNmEn": "SONG You-hyun",
+          "cast": "영미",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "형영선",
-          "repRoleNm": "배우",
-          "cast": "중현"
+          "peopleNmEn": "HYUNG Young-sun",
+          "cast": "중현",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정희태",
-          "repRoleNm": "배우",
-          "cast": "준섭"
+          "peopleNmEn": "JUNG Hee-tae",
+          "cast": "준섭",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박성일",
-          "repRoleNm": "배우",
-          "cast": "형중"
+          "peopleNmEn": "PARK Sung-il",
+          "cast": "형중",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이응재",
-          "repRoleNm": "배우",
-          "cast": "영민목소리"
+          "peopleNmEn": "LEE Eung-jae",
+          "cast": "영민목소리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최영열",
-          "repRoleNm": "배우",
-          "cast": "복조리남"
+          "peopleNmEn": "Young Che",
+          "cast": "복조리남",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -274,6 +273,7 @@
           "staffRoleNm": "투자"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

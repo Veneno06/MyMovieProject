@@ -25,59 +25,58 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "윤여창",
-          "repRoleNm": "감독"
+          "peopleNmEn": "YOON Yeo-chang"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김민준",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Min-jun",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "우상전",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "WOO Sang-jeon",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이대연",
-          "repRoleNm": "배우",
-          "cast": "홍국장"
+          "peopleNmEn": "LEE Dae-yon",
+          "cast": "홍국장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황석정",
-          "repRoleNm": "배우",
-          "cast": "연무"
+          "peopleNmEn": "HWANG Seok-jeong",
+          "cast": "연무",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최성민",
-          "repRoleNm": "배우",
-          "cast": "상국"
+          "peopleNmEn": "CHOI Sung-min",
+          "cast": "상국",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이탁건",
-          "repRoleNm": "배우",
-          "cast": "두치리마을사람"
+          "peopleNmEn": "",
+          "cast": "두치리마을사람",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정동근",
-          "repRoleNm": "배우",
-          "cast": "두치리마을사람"
+          "peopleNmEn": "",
+          "cast": "두치리마을사람",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정완희",
-          "repRoleNm": "배우",
-          "cast": "두치리마을사람"
+          "peopleNmEn": "",
+          "cast": "두치리마을사람",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -413,6 +412,7 @@
           "staffRoleNm": "광고디자인"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

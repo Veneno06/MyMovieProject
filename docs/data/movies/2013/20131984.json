@@ -25,53 +25,52 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "한상희",
-          "repRoleNm": "감독"
+          "peopleNmEn": "HAN Sang-hee"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "손은서",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "SON Eun-seo",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "신소율",
-          "repRoleNm": "배우",
-          "cast": "나나"
+          "peopleNmEn": "SHIN So-yul",
+          "cast": "나나",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "다은",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "DA Eun",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한재범",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HAN Jae-beom",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김진선",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Jin-sun",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "공동욱",
-          "repRoleNm": "배우",
-          "cast": "호텔웨이터"
+          "peopleNmEn": "",
+          "cast": "호텔웨이터",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한광수",
-          "repRoleNm": "배우",
-          "cast": "식당손님"
+          "peopleNmEn": "",
+          "cast": "식당손님",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -354,6 +353,7 @@
           "staffRoleNm": "캐스팅디렉터"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

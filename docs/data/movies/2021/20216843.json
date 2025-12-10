@@ -25,101 +25,100 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "임석진",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LIM Seok-jin"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김승훈",
-          "repRoleNm": "배우",
-          "cast": "승훈"
+          "peopleNmEn": "",
+          "cast": "승훈",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍은기",
-          "repRoleNm": "배우",
-          "cast": "종윤"
+          "peopleNmEn": "HONG Eun-ki",
+          "cast": "종윤",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최연청",
-          "repRoleNm": "배우",
-          "cast": "진(JIN)"
+          "peopleNmEn": "",
+          "cast": "진(JIN)",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이유진",
-          "repRoleNm": "배우",
-          "cast": "릴리"
+          "peopleNmEn": "",
+          "cast": "릴리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "오명교",
-          "repRoleNm": "배우",
-          "cast": "썬(SUN)"
+          "peopleNmEn": "",
+          "cast": "썬(SUN)",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "권혁진",
-          "repRoleNm": "배우",
-          "cast": "텐(TEN)"
+          "peopleNmEn": "",
+          "cast": "텐(TEN)",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "양치승",
-          "repRoleNm": "배우",
-          "cast": "최정우대표"
+          "peopleNmEn": "",
+          "cast": "최정우대표",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김율리",
-          "repRoleNm": "배우",
-          "cast": "종윤누나"
+          "peopleNmEn": "",
+          "cast": "종윤누나",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "송유리",
-          "repRoleNm": "배우",
-          "cast": "예선 심사위원"
+          "peopleNmEn": "",
+          "cast": "예선 심사위원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박세준",
-          "repRoleNm": "배우",
-          "cast": "본선 심사위원"
+          "peopleNmEn": "PARK Se-jun",
+          "cast": "본선 심사위원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김상겸",
-          "repRoleNm": "배우",
-          "cast": "진 매니져"
+          "peopleNmEn": "",
+          "cast": "진 매니져",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정형석",
-          "repRoleNm": "배우",
-          "cast": "MC목소리"
+          "peopleNmEn": "",
+          "cast": "MC목소리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박철민",
-          "repRoleNm": "배우",
-          "cast": "회장"
+          "peopleNmEn": "PARK Cheol-min",
+          "cast": "회장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "신정윤",
-          "repRoleNm": "배우",
-          "cast": "보안요원1"
+          "peopleNmEn": "Shin jung yoon",
+          "cast": "보안요원1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "오대양",
-          "repRoleNm": "배우",
-          "cast": "도박꾼2"
+          "peopleNmEn": "",
+          "cast": "도박꾼2 ",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -154,9 +153,9 @@
           "companyPartNm": "제공"
         },
         {
-          "companyCd": "20111211",
-          "companyNm": "(주)케이티알파",
-          "companyNmEn": "kt alpha",
+          "companyCd": "20253341",
+          "companyNm": "주식회사 케이티스튜디오지니",
+          "companyNmEn": "KT StudioGenie",
           "companyPartNm": "해외세일즈사"
         },
         {
@@ -211,6 +210,11 @@
         },
         {
           "peopleNm": "김목현",
+          "peopleNmEn": "",
+          "staffRoleNm": "편집팀"
+        },
+        {
+          "peopleNm": "정윤호",
           "peopleNmEn": "",
           "staffRoleNm": "편집팀"
         },
@@ -401,7 +405,7 @@
         },
         {
           "peopleNm": "신선미",
-          "peopleNmEn": "",
+          "peopleNmEn": "SHIN SUN MI",
           "staffRoleNm": "분장팀"
         },
         {
@@ -420,19 +424,9 @@
           "staffRoleNm": "편집"
         },
         {
-          "peopleNm": "정윤호",
+          "peopleNm": "최한아",
           "peopleNmEn": "",
-          "staffRoleNm": "편집팀"
-        },
-        {
-          "peopleNm": "이지은",
-          "peopleNmEn": "",
-          "staffRoleNm": "DI팀"
-        },
-        {
-          "peopleNm": "이현준",
-          "peopleNmEn": "",
-          "staffRoleNm": "시각효과"
+          "staffRoleNm": "배급진행"
         },
         {
           "peopleNm": "송세진",
@@ -450,11 +444,22 @@
           "staffRoleNm": "DI팀"
         },
         {
+          "peopleNm": "이지은",
+          "peopleNmEn": "",
+          "staffRoleNm": "DI팀"
+        },
+        {
+          "peopleNm": "이현준",
+          "peopleNmEn": "",
+          "staffRoleNm": "시각효과"
+        },
+        {
           "peopleNm": "양진호",
           "peopleNmEn": "",
           "staffRoleNm": "캐스팅디렉터"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

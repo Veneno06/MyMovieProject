@@ -22,65 +22,64 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김회근",
-          "repRoleNm": "감독"
+          "peopleNmEn": "Kim Harry"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "고다미",
-          "repRoleNm": "배우",
-          "cast": "다혜"
+          "peopleNmEn": "GO Da-mi",
+          "cast": "다혜",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "권철",
-          "repRoleNm": "배우",
-          "cast": "백한근"
+          "peopleNmEn": "",
+          "cast": "백한근",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조성진",
-          "repRoleNm": "배우",
-          "cast": "최원장"
+          "peopleNmEn": "",
+          "cast": "최원장 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍원택",
-          "repRoleNm": "배우",
-          "cast": "조감독"
+          "peopleNmEn": "",
+          "cast": "조감독",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김광식",
-          "repRoleNm": "배우",
-          "cast": "명순"
+          "peopleNmEn": "KIM Kwang-sik",
+          "cast": "명순",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김명균",
-          "repRoleNm": "배우",
-          "cast": "부동산중계인"
+          "peopleNmEn": "",
+          "cast": "부동산중계인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서용우",
-          "repRoleNm": "배우",
-          "cast": "사고 피해자"
+          "peopleNmEn": "SEO Yong-woo",
+          "cast": "사고 피해자 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "전주영",
-          "repRoleNm": "배우",
-          "cast": "남자2"
+          "peopleNmEn": "",
+          "cast": "남자2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김정한",
-          "repRoleNm": "배우",
-          "cast": "배주인"
+          "peopleNmEn": "",
+          "cast": "배주인 ",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -436,6 +435,7 @@
           "staffRoleNm": "DI팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

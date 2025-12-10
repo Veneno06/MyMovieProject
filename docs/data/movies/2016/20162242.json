@@ -25,65 +25,64 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김경형",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Kyung-hyung"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김지수",
-          "repRoleNm": "배우",
-          "cast": "성우주"
+          "peopleNmEn": "KIM Ji-soo",
+          "cast": "성우주",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "허이재",
-          "repRoleNm": "배우",
-          "cast": "젊은 성우주"
+          "peopleNmEn": "HEO Yi-jae ",
+          "cast": "젊은 성우주",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "윤소미",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "심은진",
-          "repRoleNm": "배우",
-          "cast": "도연"
+          "peopleNmEn": "SHIM Eun-jin",
+          "cast": "도연",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김다예",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Da-ye",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조덕진",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이동건",
-          "repRoleNm": "배우",
-          "cast": "응급실 운전자"
+          "peopleNmEn": "",
+          "cast": "응급실 운전자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이수연",
-          "repRoleNm": "배우",
-          "cast": "동해시 보조출연 지원"
+          "peopleNmEn": "",
+          "cast": "동해시 보조출연 지원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "손경원",
-          "repRoleNm": "배우",
-          "cast": "우주아빠/선배 목소리"
+          "peopleNmEn": "SON Kyoung-won",
+          "cast": "우주아빠/선배 목소리",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -515,6 +514,7 @@
           "staffRoleNm": "VFX 슈퍼바이저"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

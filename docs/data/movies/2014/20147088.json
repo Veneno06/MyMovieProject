@@ -22,71 +22,70 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "하원준",
-          "repRoleNm": "감독"
+          "peopleNmEn": "HA Won-jun"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김정훈",
-          "repRoleNm": "배우",
-          "cast": "소유준"
+          "peopleNmEn": "KIM Jung-hoon",
+          "cast": "소유준",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "동방우",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "DONG Bang-woo",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김정팔",
-          "repRoleNm": "배우",
-          "cast": "박남식"
+          "peopleNmEn": "",
+          "cast": "박남식",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김주연",
-          "repRoleNm": "배우",
-          "cast": "한정인"
+          "peopleNmEn": "",
+          "cast": "한정인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황영희",
-          "repRoleNm": "배우",
-          "cast": "함복순"
+          "peopleNmEn": "HWANG Young-hee",
+          "cast": "함복순",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조덕제",
-          "repRoleNm": "배우",
-          "cast": "최용길"
+          "peopleNmEn": "JO Duk-je",
+          "cast": "최용길",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "신나라",
-          "repRoleNm": "배우",
-          "cast": "어깨2"
+          "peopleNmEn": "",
+          "cast": "어깨2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이유정",
-          "repRoleNm": "배우",
-          "cast": "여중생"
+          "peopleNmEn": "",
+          "cast": "여중생",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김병우",
-          "repRoleNm": "배우",
-          "cast": "보건소의사"
+          "peopleNmEn": "Brian Byeong Woo Kim",
+          "cast": "보건소의사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박규택",
-          "repRoleNm": "배우",
-          "cast": "신부"
+          "peopleNmEn": "",
+          "cast": "신부",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -447,6 +446,7 @@
           "staffRoleNm": "시각효과"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

@@ -22,39 +22,36 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김태균",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김무삼",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이정황",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Jung-hwang"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김상현",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Sang-hyun",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조원철",
-          "repRoleNm": "배우",
-          "cast": "이철 대역"
+          "peopleNmEn": "Cho Won-chul",
+          "cast": "이철 대역",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍광석",
-          "repRoleNm": "배우",
-          "cast": "수사관2 대역"
+          "peopleNmEn": "HONG Kwang-suk",
+          "cast": "수사관2 대역",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -205,6 +202,7 @@
           "staffRoleNm": "기획"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

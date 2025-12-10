@@ -22,95 +22,94 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "양길영",
-          "repRoleNm": "감독"
+          "peopleNmEn": "YANG Kil-young"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "오지호",
-          "repRoleNm": "배우",
-          "cast": "신세도"
+          "peopleNmEn": "OH Ji-ho",
+          "cast": "신세도",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김조운",
-          "repRoleNm": "배우",
-          "cast": "이인귀"
+          "peopleNmEn": "JO Woon",
+          "cast": "이인귀",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이재용",
-          "repRoleNm": "배우",
-          "cast": "교도소장"
+          "peopleNmEn": "LEE Jae-yong",
+          "cast": "교도소장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정찬",
-          "repRoleNm": "배우",
-          "cast": "S.I.L대장"
+          "peopleNmEn": "JUNG Chan",
+          "cast": "S.I.L대장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "손성윤",
-          "repRoleNm": "배우",
-          "cast": "태희"
+          "peopleNmEn": "SON Sung-yoon",
+          "cast": "태희",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장영진",
-          "repRoleNm": "배우",
-          "cast": "우장기"
+          "peopleNmEn": "",
+          "cast": "우장기",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서범식",
-          "repRoleNm": "배우",
-          "cast": "박견"
+          "peopleNmEn": "SEO-Beom-sik",
+          "cast": "박견",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서인걸",
-          "repRoleNm": "배우",
-          "cast": "함우리"
+          "peopleNmEn": "",
+          "cast": "함우리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "왕휘",
-          "repRoleNm": "배우",
-          "cast": "마광도"
+          "peopleNmEn": "",
+          "cast": "마광도",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하제용",
-          "repRoleNm": "배우",
-          "cast": "명두만"
+          "peopleNmEn": "",
+          "cast": "명두만",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "줄리엔 강",
-          "repRoleNm": "배우",
-          "cast": "제이크"
+          "peopleNmEn": "Julien Kang",
+          "cast": "제이크",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "오승은",
-          "repRoleNm": "배우",
-          "cast": "여의사"
+          "peopleNmEn": "",
+          "cast": "여의사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이시영",
-          "repRoleNm": "배우",
-          "cast": "여마사지사1"
+          "peopleNmEn": "LEE Si-young",
+          "cast": "여마사지사1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김다한",
-          "repRoleNm": "배우",
-          "cast": "교도관"
+          "peopleNmEn": "KIM Da-han",
+          "cast": "교도관",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -134,7 +133,7 @@
         },
         {
           "companyCd": "20175163",
-          "companyNm": "(주)영화사피어나",
+          "companyNm": "주식회사 스튜디오피어나",
           "companyNmEn": "",
           "companyPartNm": "제공"
         }
@@ -182,6 +181,7 @@
           "staffRoleNm": "기획"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

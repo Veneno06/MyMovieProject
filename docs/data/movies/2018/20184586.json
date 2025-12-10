@@ -25,29 +25,28 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "조태호",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "희우",
-          "repRoleNm": "배우",
-          "cast": "주희"
+          "peopleNmEn": "",
+          "cast": "주희",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김현진",
-          "repRoleNm": "배우",
-          "cast": "주인2"
+          "peopleNmEn": "",
+          "cast": "주인2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최철민",
-          "repRoleNm": "배우",
-          "cast": "주인"
+          "peopleNmEn": "",
+          "cast": "주인",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -143,6 +142,7 @@
           "staffRoleNm": "기획"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

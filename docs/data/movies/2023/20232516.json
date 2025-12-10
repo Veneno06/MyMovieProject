@@ -25,23 +25,22 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "심혜정",
-          "repRoleNm": "감독"
+          "peopleNmEn": "SHIM Hye-jung"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김재경",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Jae-kyung",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "현우",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HYUN Woo",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -89,6 +88,11 @@
           "peopleNm": "이승재",
           "peopleNmEn": "Lee seung jae",
           "staffRoleNm": "동시녹음"
+        },
+        {
+          "peopleNm": "고영우",
+          "peopleNmEn": "",
+          "staffRoleNm": "연출팀"
         }
       ]
     },

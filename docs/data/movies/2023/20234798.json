@@ -22,71 +22,70 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "정지훈",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김은아",
-          "repRoleNm": "배우",
-          "cast": "철수"
+          "peopleNmEn": "",
+          "cast": "철수",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "엄상현",
-          "repRoleNm": "배우",
-          "cast": "쿠왕/콩트 백작"
+          "peopleNmEn": "UM Sang-hyun",
+          "cast": "쿠왕/콩트 백작",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이지현",
-          "repRoleNm": "배우",
-          "cast": "영희/엠디원"
+          "peopleNmEn": "LEE Ji-hyun",
+          "cast": "영희/엠디원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이민규",
-          "repRoleNm": "배우",
-          "cast": "블루"
+          "peopleNmEn": "",
+          "cast": "블루",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "전태열",
-          "repRoleNm": "배우",
-          "cast": "레드"
+          "peopleNmEn": "",
+          "cast": "레드",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정영웅",
-          "repRoleNm": "배우",
-          "cast": "옐로"
+          "peopleNmEn": "",
+          "cast": "옐로",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "신용우",
-          "repRoleNm": "배우",
-          "cast": "루키"
+          "peopleNmEn": "SHIN Yong-woo",
+          "cast": "루키",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "남도형",
-          "repRoleNm": "배우",
-          "cast": "클록"
+          "peopleNmEn": "NAM Do-hyung",
+          "cast": "클록",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한만중",
-          "repRoleNm": "배우",
-          "cast": "블랙"
+          "peopleNmEn": "",
+          "cast": "블랙",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍소영",
-          "repRoleNm": "배우",
-          "cast": "오렌지"
+          "peopleNmEn": "HONG So-yeong",
+          "cast": "오렌지",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -491,8 +490,7 @@
           "peopleNmEn": "",
           "staffRoleNm": "배급진행"
         }
-      ],
-      "audiAcc": 22117
+      ]
     },
     "source": "영화진흥위원회"
   }

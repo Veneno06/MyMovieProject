@@ -22,35 +22,34 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "황윤",
-          "repRoleNm": "감독"
+          "peopleNmEn": "Hwang Yun"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "최천권",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최동기",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최태영",
-          "repRoleNm": "배우",
-          "cast": "최태영"
+          "peopleNmEn": "",
+          "cast": "최태영",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황윤",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Hwang Yun",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -175,6 +174,7 @@
           "staffRoleNm": "스틸"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

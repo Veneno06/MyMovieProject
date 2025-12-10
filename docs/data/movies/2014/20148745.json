@@ -25,95 +25,94 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이도윤",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Do-yun"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "지성",
-          "repRoleNm": "배우",
-          "cast": "현태"
+          "peopleNmEn": "JI Sung",
+          "cast": "현태",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "주지훈",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "JU Ji-hoon",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이광수",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Kwang-soo",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최병모",
-          "repRoleNm": "배우",
-          "cast": "재규"
+          "peopleNmEn": "CHOI Byung-mo",
+          "cast": "재규",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최진호",
-          "repRoleNm": "배우",
-          "cast": "이수"
+          "peopleNmEn": "CHOI Jin-ho",
+          "cast": "이수",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박상현",
-          "repRoleNm": "배우",
-          "cast": "김실장"
+          "peopleNmEn": "PARK SANG HUUN",
+          "cast": "김실장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한도진",
-          "repRoleNm": "배우",
-          "cast": "경방4"
+          "peopleNmEn": "",
+          "cast": "경방4",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "강봉성",
-          "repRoleNm": "배우",
-          "cast": "오락실폐인"
+          "peopleNmEn": "KANG Bong-sung",
+          "cast": "오락실폐인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최현희",
-          "repRoleNm": "배우",
-          "cast": "구급2"
+          "peopleNmEn": "",
+          "cast": "구급2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이승우",
-          "repRoleNm": "배우",
-          "cast": "오락실경찰"
+          "peopleNmEn": "",
+          "cast": "오락실경찰",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이재형",
-          "repRoleNm": "배우",
-          "cast": "구급1"
+          "peopleNmEn": "",
+          "cast": "구급1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "남문철",
-          "repRoleNm": "배우",
-          "cast": "경찰서장"
+          "peopleNmEn": "NAM Mun-cheol",
+          "cast": "경찰서장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김태준",
-          "repRoleNm": "배우",
-          "cast": "과거구조경찰"
+          "peopleNmEn": "KIM Tae-joon",
+          "cast": "과거구조경찰",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "강덕중",
-          "repRoleNm": "배우",
-          "cast": "오락실종업원2"
+          "peopleNmEn": "KANG Deok-jung",
+          "cast": "오락실종업원2",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -973,6 +972,11 @@
           "staffRoleNm": "사운드팀"
         },
         {
+          "peopleNm": "최한아",
+          "peopleNmEn": "",
+          "staffRoleNm": "배급진행"
+        },
+        {
           "peopleNm": "이정이",
           "peopleNmEn": "",
           "staffRoleNm": "배급진행"
@@ -1099,7 +1103,7 @@
         },
         {
           "peopleNm": "노병욱",
-          "peopleNmEn": "NOH Byung-wook",
+          "peopleNmEn": "NOH Byoung-wook",
           "staffRoleNm": "DI팀"
         },
         {
@@ -1289,7 +1293,7 @@
         },
         {
           "peopleNm": "황정현",
-          "peopleNmEn": "HWANG Jung-hyun",
+          "peopleNmEn": "HWANG JUNG HYUN",
           "staffRoleNm": "예고편"
         },
         {
@@ -1317,8 +1321,8 @@
           "peopleNmEn": "",
           "staffRoleNm": "광고대행"
         }
-      ],
-      "audiAcc": 406034
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

@@ -22,23 +22,22 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "유진주",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "하정우",
-          "repRoleNm": "배우",
-          "cast": "내레이션"
+          "peopleNmEn": "HA Jung-woo",
+          "cast": "내레이션",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김중희",
-          "repRoleNm": "배우",
-          "cast": "오다 나라지"
+          "peopleNmEn": "",
+          "cast": "오다 나라지",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -67,8 +66,8 @@
           "watchGradeNm": "12세이상관람가"
         }
       ],
-      "staffs": [],
-      "audiAcc": 59231
-    }
+      "staffs": []
+    },
+    "source": "영화진흥위원회"
   }
 }

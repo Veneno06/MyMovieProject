@@ -25,65 +25,64 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "박용집",
-          "repRoleNm": "감독"
+          "peopleNmEn": "PARK Yong-jip"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이종혁",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Jong-hyuk",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "강별",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KANG Byul",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하연주",
-          "repRoleNm": "배우",
-          "cast": "신미수"
+          "peopleNmEn": "HA Yeon-ju",
+          "cast": "신미수",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김형범",
-          "repRoleNm": "배우",
-          "cast": "민국"
+          "peopleNmEn": "KIM Hyoung-beom",
+          "cast": "민국",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최우리",
-          "repRoleNm": "배우",
-          "cast": "장미란"
+          "peopleNmEn": "CHOI Woo-ri",
+          "cast": "장미란",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박효준",
-          "repRoleNm": "배우",
-          "cast": "한영민"
+          "peopleNmEn": "PARK Hyo-jun",
+          "cast": "한영민",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "류현",
-          "repRoleNm": "배우",
-          "cast": "연구원2"
+          "peopleNmEn": "",
+          "cast": "연구원2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이광모",
-          "repRoleNm": "배우",
-          "cast": "카메라맨"
+          "peopleNmEn": "",
+          "cast": "카메라맨",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조선묵",
-          "repRoleNm": "배우",
-          "cast": "연구소 원장"
+          "peopleNmEn": "CHO SEONMOOK",
+          "cast": "연구소 원장",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -645,6 +644,7 @@
           "staffRoleNm": "시각효과"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

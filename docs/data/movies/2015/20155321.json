@@ -22,65 +22,64 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김종관",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Jong-kwan"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "한예리",
-          "repRoleNm": "배우",
-          "cast": "은희"
+          "peopleNmEn": "HAN Ye-ri",
+          "cast": "은희",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이와세 료",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "IWASE Ryo",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "권율",
-          "repRoleNm": "배우",
-          "cast": "현오"
+          "peopleNmEn": "KWON Yul",
+          "cast": "현오",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이승연",
-          "repRoleNm": "배우",
-          "cast": "유진"
+          "peopleNmEn": "",
+          "cast": "유진",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최유화",
-          "repRoleNm": "배우",
-          "cast": "현경"
+          "peopleNmEn": "CHOI Yu-hwa",
+          "cast": "현경",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이승연",
-          "repRoleNm": "배우",
-          "cast": "유진"
+          "peopleNmEn": "LEE Seung-yeon",
+          "cast": "유진",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이희준",
-          "repRoleNm": "배우",
-          "cast": "운철"
+          "peopleNmEn": "LEE Hee-jun",
+          "cast": "운철",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "강숙",
-          "repRoleNm": "배우",
-          "cast": "폰카녀"
+          "peopleNmEn": "KANG Sook",
+          "cast": "폰카녀",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "설창희",
-          "repRoleNm": "배우",
-          "cast": "경찰관"
+          "peopleNmEn": "SEOL Chang-hee",
+          "cast": "경찰관",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -712,6 +711,7 @@
           "staffRoleNm": "시각효과"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

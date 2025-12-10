@@ -22,17 +22,16 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "한동호",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "한동훈",
-          "repRoleNm": "배우",
-          "cast": "손님"
+          "peopleNmEn": "",
+          "cast": "손님",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -188,6 +187,7 @@
           "staffRoleNm": "스틸"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

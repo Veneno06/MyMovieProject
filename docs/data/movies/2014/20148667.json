@@ -22,47 +22,46 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이상우",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Sang-woo"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김영건",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Yeong-geon",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "신원호",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서현석",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이상우",
-          "repRoleNm": "배우",
-          "cast": "목사"
+          "peopleNmEn": "LEE Sang-woo",
+          "cast": "목사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황석하",
-          "repRoleNm": "배우",
-          "cast": "라디오아나운서"
+          "peopleNmEn": "HWANG Seok-Ha",
+          "cast": "라디오아나운서",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유현호",
-          "repRoleNm": "배우",
-          "cast": "기주"
+          "peopleNmEn": "YOO Hyun-ho",
+          "cast": "기주",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -239,6 +238,7 @@
           "staffRoleNm": "예고편"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

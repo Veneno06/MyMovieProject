@@ -22,41 +22,40 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김성호",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Sung-ho"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "조성하",
-          "repRoleNm": "배우",
-          "cast": "동연"
+          "peopleNmEn": "CHO Seong-ha",
+          "cast": "동연",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이우성",
-          "repRoleNm": "배우",
-          "cast": "인수"
+          "peopleNmEn": "LEE Woo-sung",
+          "cast": "인수",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한주영",
-          "repRoleNm": "배우",
-          "cast": "혜련"
+          "peopleNmEn": "HAN Joo-young",
+          "cast": "혜련",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서장현",
-          "repRoleNm": "배우",
-          "cast": "서핑남"
+          "peopleNmEn": "",
+          "cast": "서핑남 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김정홍",
-          "repRoleNm": "배우",
-          "cast": "인수 대역"
+          "peopleNmEn": "",
+          "cast": "인수 대역 ",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -259,6 +258,7 @@
           "staffRoleNm": "스틸"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

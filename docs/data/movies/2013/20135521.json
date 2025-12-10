@@ -22,35 +22,34 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이호재",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Ho-jae"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이호재",
-          "repRoleNm": "배우",
-          "cast": "호재"
+          "peopleNmEn": "LEE Ho-jae",
+          "cast": "호재",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이현학",
-          "repRoleNm": "배우",
-          "cast": "현학"
+          "peopleNmEn": "LEE Hyun-hak",
+          "cast": "현학",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하승엽",
-          "repRoleNm": "배우",
-          "cast": "하비"
+          "peopleNmEn": "HA Seung-yeop",
+          "cast": "하비",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김휘",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Hwi",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -182,6 +181,7 @@
           "staffRoleNm": "기획"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

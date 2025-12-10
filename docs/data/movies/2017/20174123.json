@@ -22,17 +22,16 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "곽영근",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "한석봉",
-          "repRoleNm": "배우",
-          "cast": "기주"
+          "peopleNmEn": "",
+          "cast": "기주",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -223,6 +222,7 @@
           "staffRoleNm": "포스터사진"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

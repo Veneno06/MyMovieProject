@@ -22,17 +22,16 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이영인",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "하마사키 마오",
-          "repRoleNm": "배우",
-          "cast": "마오"
+          "peopleNmEn": "",
+          "cast": "마오",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -62,6 +61,7 @@
         }
       ],
       "staffs": []
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

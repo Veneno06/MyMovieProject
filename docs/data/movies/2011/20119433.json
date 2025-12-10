@@ -22,47 +22,46 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이상우",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Sang-woo"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "권범택",
-          "repRoleNm": "배우",
-          "cast": "아버지"
+          "peopleNmEn": "KWAN Bum-tack",
+          "cast": "아버지",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이태림",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Tae-lim",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이시호",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Lee Si-ho",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유애경",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "YOU Ae-kyung ",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한성원",
-          "repRoleNm": "배우",
-          "cast": "정육점주인"
+          "peopleNmEn": "",
+          "cast": "정육점주인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김헌",
-          "repRoleNm": "배우",
-          "cast": "셋째아들"
+          "peopleNmEn": "KIM Hun",
+          "cast": "셋째아들",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -242,6 +241,7 @@
           "staffRoleNm": "DI팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

@@ -25,35 +25,34 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "허재형",
-          "repRoleNm": "감독"
+          "peopleNmEn": "Her Jai-hyong"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이은미",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Eun-mi",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장상진",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "JANG Sang-jin",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임현미",
-          "repRoleNm": "배우",
-          "cast": "미자"
+          "peopleNmEn": "",
+          "cast": "미자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "허경진",
-          "repRoleNm": "배우",
-          "cast": "선비1"
+          "peopleNmEn": "",
+          "cast": "선비1",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -283,6 +282,7 @@
           "staffRoleNm": "포스터사진"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

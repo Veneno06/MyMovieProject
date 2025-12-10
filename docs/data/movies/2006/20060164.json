@@ -25,29 +25,28 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "아소 마나부",
-          "repRoleNm": "감독"
+          "peopleNmEn": "Manabu Aso"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "호리키타 마키",
-          "repRoleNm": "배우",
-          "cast": "마츠다 아스카"
+          "peopleNmEn": "Maki Horikita",
+          "cast": "마츠다 아스카",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "구로키 메이사",
-          "repRoleNm": "배우",
-          "cast": "구사마 에미리"
+          "peopleNmEn": "Kuroki Meias ",
+          "cast": "구사마 에미리 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장근석",
-          "repRoleNm": "배우",
-          "cast": "안진우"
+          "peopleNmEn": "JANG Keun-suk",
+          "cast": "안진우",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -100,8 +99,8 @@
           "peopleNmEn": "PARK Ja-myung",
           "staffRoleNm": "제작팀"
         }
-      ],
-      "audiAcc": 237877
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

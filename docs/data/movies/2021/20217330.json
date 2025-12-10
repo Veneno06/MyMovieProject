@@ -22,71 +22,70 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김충길",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Chung-gil"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김충길",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Chung-gil",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황현주",
-          "repRoleNm": "배우",
-          "cast": "수진"
+          "peopleNmEn": "",
+          "cast": "수진",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이사라",
-          "repRoleNm": "배우",
-          "cast": "사라"
+          "peopleNmEn": "",
+          "cast": "사라",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이두환",
-          "repRoleNm": "배우",
-          "cast": "두환"
+          "peopleNmEn": "",
+          "cast": "두환",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임성균",
-          "repRoleNm": "배우",
-          "cast": "성균"
+          "peopleNmEn": "",
+          "cast": "성균",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정회동",
-          "repRoleNm": "배우",
-          "cast": "회동"
+          "peopleNmEn": "",
+          "cast": "회동",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정주연",
-          "repRoleNm": "배우",
-          "cast": "주연"
+          "peopleNmEn": "",
+          "cast": "주연",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김시호",
-          "repRoleNm": "배우",
-          "cast": "담배피는 남자"
+          "peopleNmEn": "",
+          "cast": "담배피는 남자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김우현",
-          "repRoleNm": "배우",
-          "cast": "도인"
+          "peopleNmEn": "",
+          "cast": "도인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이원진",
-          "repRoleNm": "배우",
-          "cast": "원진"
+          "peopleNmEn": "LEEWONJIN",
+          "cast": "원진",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -150,7 +149,7 @@
         },
         {
           "peopleNm": "이원진",
-          "peopleNmEn": "",
+          "peopleNmEn": "LEEWONJIN",
           "staffRoleNm": "동시녹음"
         },
         {
@@ -179,6 +178,7 @@
           "staffRoleNm": "배급진행"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

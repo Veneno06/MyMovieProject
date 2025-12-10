@@ -31,107 +31,106 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "박찬욱",
-          "repRoleNm": "감독"
+          "peopleNmEn": "PARK Chanwook"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "송강호",
-          "repRoleNm": "배우",
-          "cast": "상현"
+          "peopleNmEn": "SONG Kang-ho",
+          "cast": "상현",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김옥빈",
-          "repRoleNm": "배우",
-          "cast": "태주"
+          "peopleNmEn": "KIM Ok-vin",
+          "cast": "태주",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "신하균",
-          "repRoleNm": "배우",
-          "cast": "강우"
+          "peopleNmEn": "SHIN Ha-kyun",
+          "cast": "강우",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김해숙",
-          "repRoleNm": "배우",
-          "cast": "태주의 시어머니, 라 여사"
+          "peopleNmEn": "KIM Hae-sook",
+          "cast": "태주의 시어머니, 라 여사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "송영창",
-          "repRoleNm": "배우",
-          "cast": "승대"
+          "peopleNmEn": "SONG Young-chang",
+          "cast": "승대",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "오달수",
-          "repRoleNm": "배우",
-          "cast": "영두"
+          "peopleNmEn": "OH Dal-su",
+          "cast": "영두",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박인환",
-          "repRoleNm": "배우",
-          "cast": "노신부"
+          "peopleNmEn": "PARK In-hwan",
+          "cast": "노신부",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "구용완",
-          "repRoleNm": "배우",
-          "cast": "총각신봉자"
+          "peopleNmEn": "KOO YONG-WAN",
+          "cast": "총각신봉자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "라미란",
-          "repRoleNm": "배우",
-          "cast": "유 간호사"
+          "peopleNmEn": "RA Mi-ran",
+          "cast": "유 간호사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "손종학",
-          "repRoleNm": "배우",
-          "cast": "형사"
+          "peopleNmEn": "SON Jong-hak",
+          "cast": "형사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서동수",
-          "repRoleNm": "배우",
-          "cast": "효성"
+          "peopleNmEn": "SEO Dong-soo",
+          "cast": "효성",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황우슬혜",
-          "repRoleNm": "배우",
-          "cast": "호각처녀"
+          "peopleNmEn": "HWANGWOO Seul-hye",
+          "cast": "호각처녀",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조덕제",
-          "repRoleNm": "배우",
-          "cast": "검사관 1"
+          "peopleNmEn": "JO Duk-je",
+          "cast": "검사관 1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최희진",
-          "repRoleNm": "배우",
-          "cast": "간호사"
+          "peopleNmEn": "CHOI Hee-jin",
+          "cast": "간호사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최종률",
-          "repRoleNm": "배우",
-          "cast": "할아버지 신봉자"
+          "peopleNmEn": "CHOI Jong-ryul",
+          "cast": "할아버지 신봉자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이화룡",
-          "repRoleNm": "배우",
-          "cast": "구 박사"
+          "peopleNmEn": "LEE Hwa-ryong",
+          "cast": "구 박사 ",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -1188,7 +1187,7 @@
         },
         {
           "peopleNm": "노병욱",
-          "peopleNmEn": "NOH Byung-wook",
+          "peopleNmEn": "NOH Byoung-wook",
           "staffRoleNm": "DI팀"
         },
         {
@@ -1751,8 +1750,8 @@
           "peopleNmEn": "LEE Hae-min",
           "staffRoleNm": "DI팀"
         }
-      ],
-      "audiAcc": 2180284
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

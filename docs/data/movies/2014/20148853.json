@@ -26,28 +26,28 @@
       "directors": [],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "허동원",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HEO Dong-won",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정호준",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "보리",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "지현",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -209,6 +209,7 @@
           "staffRoleNm": "메이킹필름"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

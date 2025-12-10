@@ -22,83 +22,82 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "최승호",
-          "repRoleNm": "감독"
+          "peopleNmEn": "CHOI Seung-ho"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "마동석",
-          "repRoleNm": "배우",
-          "cast": "이장호"
+          "peopleNmEn": "Don LEE",
+          "cast": "이장호",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이승연",
-          "repRoleNm": "배우",
-          "cast": "김미현"
+          "peopleNmEn": "LEE Seung-yeon",
+          "cast": "김미현",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "민지현",
-          "repRoleNm": "배우",
-          "cast": "정지희"
+          "peopleNmEn": "MIN Ji-hyun",
+          "cast": "정지희",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "변요한",
-          "repRoleNm": "배우",
-          "cast": "박지훈"
+          "peopleNmEn": "BYUN Yo-han",
+          "cast": "박지훈",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서태화",
-          "repRoleNm": "배우",
-          "cast": "이성렬"
+          "peopleNmEn": "SEO Tae-hwa",
+          "cast": "이성렬                            ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "기주봉",
-          "repRoleNm": "배우",
-          "cast": "현성봉"
+          "peopleNmEn": "KI Joo-bong",
+          "cast": "현성봉",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박용수",
-          "repRoleNm": "배우",
-          "cast": "윤기남"
+          "peopleNmEn": "PARK Yong-soo",
+          "cast": "윤기남",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황태광",
-          "repRoleNm": "배우",
-          "cast": "차정혁"
+          "peopleNmEn": "HWANG Tae-gwang",
+          "cast": "차정혁",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이도아",
-          "repRoleNm": "배우",
-          "cast": "고다령"
+          "peopleNmEn": "",
+          "cast": "고다령",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김영아",
-          "repRoleNm": "배우",
-          "cast": "여성운동가1"
+          "peopleNmEn": "KIM Young-ah",
+          "cast": "여성운동가1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최교식",
-          "repRoleNm": "배우",
-          "cast": "공계장"
+          "peopleNmEn": "CHOI Gyo-sik",
+          "cast": "공계장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서동훈",
-          "repRoleNm": "배우",
-          "cast": "남자주인공"
+          "peopleNmEn": "Donghoon Seo",
+          "cast": "남자주인공",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -201,6 +200,7 @@
           "staffRoleNm": "조명"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

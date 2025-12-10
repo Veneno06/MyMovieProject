@@ -25,77 +25,76 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "조은희",
-          "repRoleNm": "감독"
+          "peopleNmEn": "CHO Eun-hee"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "배용근",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "BAE Yong-geun",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "양은용",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "YANG Eun-yong",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장소연",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "JANG So-yeon",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김두연",
-          "repRoleNm": "배우",
-          "cast": "사병들"
+          "peopleNmEn": "KIM Du-yun",
+          "cast": "사병들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "신서린",
-          "repRoleNm": "배우",
-          "cast": "여종업원"
+          "peopleNmEn": "Shin Seo-lin",
+          "cast": "여종업원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김미정",
-          "repRoleNm": "배우",
-          "cast": "군인여동생"
+          "peopleNmEn": "KIM Mi-jung",
+          "cast": "군인여동생",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조중환",
-          "repRoleNm": "배우",
-          "cast": "사병들"
+          "peopleNmEn": "",
+          "cast": "사병들 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한경탁",
-          "repRoleNm": "배우",
-          "cast": "밴드멤버"
+          "peopleNmEn": "HAN Kyung-tak",
+          "cast": "밴드멤버",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "노준영",
-          "repRoleNm": "배우",
-          "cast": "사병들"
+          "peopleNmEn": "",
+          "cast": "사병들 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정유미",
-          "repRoleNm": "배우",
-          "cast": "진"
+          "peopleNmEn": "",
+          "cast": "진",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이춘화",
-          "repRoleNm": "배우",
-          "cast": "군인 형수"
+          "peopleNmEn": "Lee Chun-wha",
+          "cast": "군인 형수 ",
+          "castEn": "Soldier's sister in law "
         }
       ],
       "showTypes": [
@@ -342,6 +341,7 @@
           "staffRoleNm": "캐스팅디렉터"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

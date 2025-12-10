@@ -28,63 +28,60 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "봉준호",
-          "repRoleNm": "감독"
+          "peopleNmEn": "BONG Joon-ho"
         },
         {
-          "peopleCd": "",
           "peopleNm": "미셸 공드리",
-          "repRoleNm": "감독"
+          "peopleNmEn": "Michel Gondry"
         },
         {
-          "peopleCd": "",
           "peopleNm": "레오스 카락스",
-          "repRoleNm": "감독"
+          "peopleNmEn": "Leos Carax"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "아오이 유우",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Yu Aoi",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "카세 료",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Ryo Kase",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "후지타니 아야코",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Ayako Fujitani",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "츠마부키 사토시",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Satoshi Tsumabuki",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "드니 라방",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Denis Lavant",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "타케나카 나오토",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Naoto Takenaka",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "카가와 테루유키",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Teruyuki Kagawa",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -428,6 +425,7 @@
           "staffRoleNm": "메이킹필름"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

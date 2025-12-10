@@ -22,71 +22,70 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김일종",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Il-jong"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "동방우",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "DONG Bang-woo",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "채민서",
-          "repRoleNm": "배우",
-          "cast": "이진희"
+          "peopleNmEn": "CHAE Min-seo",
+          "cast": "이진희",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍서준",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HONG Seo-joon",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "안민영",
-          "repRoleNm": "배우",
-          "cast": "오미란"
+          "peopleNmEn": "AN Min-young",
+          "cast": "오미란",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박송이",
-          "repRoleNm": "배우",
-          "cast": "병원 수납직원"
+          "peopleNmEn": "",
+          "cast": "병원 수납직원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임주현",
-          "repRoleNm": "배우",
-          "cast": "옷가게 주인"
+          "peopleNmEn": "",
+          "cast": "옷가게 주인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "주인철",
-          "repRoleNm": "배우",
-          "cast": "남자친구"
+          "peopleNmEn": "",
+          "cast": "남자친구",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이석현",
-          "repRoleNm": "배우",
-          "cast": "내과의사"
+          "peopleNmEn": "",
+          "cast": "내과의사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이석현",
-          "repRoleNm": "배우",
-          "cast": "신장내과의사"
+          "peopleNmEn": "",
+          "cast": "신장내과의사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이인주",
-          "repRoleNm": "배우",
-          "cast": "병원 아이"
+          "peopleNmEn": "",
+          "cast": "병원 아이",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -412,6 +411,7 @@
           "staffRoleNm": "기획"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

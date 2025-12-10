@@ -22,71 +22,70 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김중현",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Joong-hyeon"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "엄태구",
-          "repRoleNm": "배우",
-          "cast": "윤호"
+          "peopleNmEn": "UM Tae-goo",
+          "cast": "윤호",
+          "castEn": "Yoon-ho"
         },
         {
-          "peopleCd": "",
           "peopleNm": "박세진",
-          "repRoleNm": "배우",
-          "cast": "서희"
+          "peopleNmEn": "PARK Se-jin",
+          "cast": "서희",
+          "castEn": "Seo-hee"
         },
         {
-          "peopleCd": "",
           "peopleNm": "길해연",
-          "repRoleNm": "배우",
-          "cast": "희수"
+          "peopleNmEn": "GIL Hae-yeon",
+          "cast": "희수",
+          "castEn": "Hee-su"
         },
         {
-          "peopleCd": "",
           "peopleNm": "임학순",
-          "repRoleNm": "배우",
-          "cast": "재식"
+          "peopleNmEn": "",
+          "cast": "재식",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "국경남",
-          "repRoleNm": "배우",
-          "cast": "진술실 경찰"
+          "peopleNmEn": "",
+          "cast": "진술실 경찰",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "허서형",
-          "repRoleNm": "배우",
-          "cast": "식당경찰"
+          "peopleNmEn": "HEO Seo-hyoung",
+          "cast": "식당경찰",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황동미",
-          "repRoleNm": "배우",
-          "cast": "빚쟁이들(목소리)"
+          "peopleNmEn": "",
+          "cast": "빚쟁이들(목소리)",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김영민",
-          "repRoleNm": "배우",
-          "cast": "인부"
+          "peopleNmEn": "",
+          "cast": "인부",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박창민",
-          "repRoleNm": "배우",
-          "cast": "의경"
+          "peopleNmEn": "",
+          "cast": "의경",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이재호",
-          "repRoleNm": "배우",
-          "cast": "동네주민(목소리)"
+          "peopleNmEn": "",
+          "cast": "동네주민(목소리)",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -448,6 +447,7 @@
           "staffRoleNm": "스틸"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

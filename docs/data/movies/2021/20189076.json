@@ -22,83 +22,82 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "권순중",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KWON Soon-joong"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "손숙",
-          "repRoleNm": "배우",
-          "cast": "옥단"
+          "peopleNmEn": "SON Sook",
+          "cast": "옥단",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김이안",
-          "repRoleNm": "배우",
-          "cast": "진다"
+          "peopleNmEn": "",
+          "cast": "진다",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "전무송",
-          "repRoleNm": "배우",
-          "cast": "황진"
+          "peopleNmEn": "CHON Moo-song",
+          "cast": "황진",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한인수",
-          "repRoleNm": "배우",
-          "cast": "병구"
+          "peopleNmEn": "HAN In-soo",
+          "cast": "병구",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이주실",
-          "repRoleNm": "배우",
-          "cast": "말분"
+          "peopleNmEn": "LEE Ju-sil",
+          "cast": "말분",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이용녀",
-          "repRoleNm": "배우",
-          "cast": "금자"
+          "peopleNmEn": "LEE Yong-nyeo",
+          "cast": "금자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "손영순",
-          "repRoleNm": "배우",
-          "cast": "정신"
+          "peopleNmEn": "SON Young-soon",
+          "cast": "정신",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박혜진",
-          "repRoleNm": "배우",
-          "cast": "광숙"
+          "peopleNmEn": "PARK Hye-jin",
+          "cast": "광숙",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이병훈",
-          "repRoleNm": "배우",
-          "cast": "정남"
+          "peopleNmEn": "",
+          "cast": "정남",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "석보배",
-          "repRoleNm": "배우",
-          "cast": "수진"
+          "peopleNmEn": "seok bobae",
+          "cast": "수진",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "민채연",
-          "repRoleNm": "배우",
-          "cast": "한별"
+          "peopleNmEn": "",
+          "cast": "한별",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "전성원",
-          "repRoleNm": "배우",
-          "cast": "중국집 배달부"
+          "peopleNmEn": "",
+          "cast": "중국집 배달부",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -291,6 +290,7 @@
           "staffRoleNm": "배급진행"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

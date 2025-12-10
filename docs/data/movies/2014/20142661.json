@@ -22,65 +22,64 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "한명구",
-          "repRoleNm": "감독"
+          "peopleNmEn": "HAN Myeong-gu"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "전주연",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "민병애",
-          "repRoleNm": "배우",
-          "cast": "영미언니"
+          "peopleNmEn": "MIN Byeong-ae",
+          "cast": "영미언니",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정혜선",
-          "repRoleNm": "배우",
-          "cast": "구멍가게 주인"
+          "peopleNmEn": "JEONG Hye-seon",
+          "cast": "구멍가게 주인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "전원주",
-          "repRoleNm": "배우",
-          "cast": "영미 엄마"
+          "peopleNmEn": "JEON Won-joo",
+          "cast": "영미 엄마",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김명국",
-          "repRoleNm": "배우",
-          "cast": "유 박사"
+          "peopleNmEn": "KIM Myeong-gook",
+          "cast": "유 박사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김진주",
-          "repRoleNm": "배우",
-          "cast": "불고기집여직원"
+          "peopleNmEn": "",
+          "cast": "불고기집여직원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임태순",
-          "repRoleNm": "배우",
-          "cast": "야쿠자2"
+          "peopleNmEn": "",
+          "cast": "야쿠자2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황보민경",
-          "repRoleNm": "배우",
-          "cast": "후지타딸"
+          "peopleNmEn": "",
+          "cast": "후지타딸",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박상훈",
-          "repRoleNm": "배우",
-          "cast": "어린 양이"
+          "peopleNmEn": "PARK Sang-hoon",
+          "cast": "어린 양이",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -346,6 +345,7 @@
           "staffRoleNm": "메이킹필름"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

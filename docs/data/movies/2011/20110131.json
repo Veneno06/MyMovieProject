@@ -28,35 +28,34 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "오영두",
-          "repRoleNm": "감독"
+          "peopleNmEn": "OH Young-doo"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "홍서백",
-          "repRoleNm": "배우",
-          "cast": "영건,아들,아버지,어린시절"
+          "peopleNmEn": "HONG Seo-back",
+          "cast": "영건,아들,아버지,어린시절",
+          "castEn": "Young-gun"
         },
         {
-          "peopleCd": "",
           "peopleNm": "하은정",
-          "repRoleNm": "배우",
-          "cast": "모니카"
+          "peopleNmEn": "HA Eun-jung ",
+          "cast": "모니카",
+          "castEn": "Monica"
         },
         {
-          "peopleCd": "",
           "peopleNm": "김성민",
-          "repRoleNm": "배우",
-          "cast": "본부장"
+          "peopleNmEn": "KIM Sung-min",
+          "cast": "본부장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최영조",
-          "repRoleNm": "배우",
-          "cast": "요원 최"
+          "peopleNmEn": "Young-jo Choi",
+          "cast": "요원 최 ",
+          "castEn": "Secret alien agent Choi "
         }
       ],
       "showTypes": [
@@ -232,6 +231,7 @@
           "staffRoleNm": "홍보/마케팅 진행"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

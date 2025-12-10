@@ -25,83 +25,82 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "허정",
-          "repRoleNm": "감독"
+          "peopleNmEn": "HUH Jung"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "염정아",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "YUM Jung-ah",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박혁권",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "PARK Hyuk-kwon",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "허진",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HEO Jin",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "신린아",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "SHIN Rin-ah",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "방유설",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "BANG Yu-seol",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이준혁",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Jun-hyeok",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이주원",
-          "repRoleNm": "배우",
-          "cast": "정수"
+          "peopleNmEn": "LEE Ju-won",
+          "cast": "정수",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "노수산나",
-          "repRoleNm": "배우",
-          "cast": "민순경"
+          "peopleNmEn": "NOH Su-san-na",
+          "cast": "민순경",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김수안",
-          "repRoleNm": "배우",
-          "cast": "순자언니 목소리"
+          "peopleNmEn": "KIM Su-an",
+          "cast": "순자언니 목소리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이달",
-          "repRoleNm": "배우",
-          "cast": "경찰1"
+          "peopleNmEn": "",
+          "cast": "경찰1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장리우",
-          "repRoleNm": "배우",
-          "cast": "지혜"
+          "peopleNmEn": "JANG Ri-woo",
+          "cast": "지혜",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정지훈",
-          "repRoleNm": "배우",
-          "cast": "준서"
+          "peopleNmEn": "JEONG Ji-hoon",
+          "cast": "준서",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -2093,7 +2092,7 @@
         },
         {
           "peopleNm": "노병욱",
-          "peopleNmEn": "NOH Byung-wook",
+          "peopleNmEn": "NOH Byoung-wook",
           "staffRoleNm": "DI팀"
         },
         {
@@ -2662,6 +2661,7 @@
           "staffRoleNm": "기타"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

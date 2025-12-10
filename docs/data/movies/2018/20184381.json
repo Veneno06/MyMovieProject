@@ -22,17 +22,16 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "조태호",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "희우",
-          "repRoleNm": "배우",
-          "cast": "혜림"
+          "peopleNmEn": "",
+          "cast": "혜림",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -243,6 +242,7 @@
           "staffRoleNm": "포스터사진"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

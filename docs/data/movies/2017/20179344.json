@@ -22,23 +22,22 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "조태호",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "희우",
-          "repRoleNm": "배우",
-          "cast": "유진"
+          "peopleNmEn": "",
+          "cast": "유진",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김지연",
-          "repRoleNm": "배우",
-          "cast": "지선"
+          "peopleNmEn": "",
+          "cast": "지선",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -249,6 +248,7 @@
           "staffRoleNm": "포스터사진"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

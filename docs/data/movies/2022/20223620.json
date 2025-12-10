@@ -22,71 +22,70 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "홍상수",
-          "repRoleNm": "감독"
+          "peopleNmEn": "HONG Sang-soo"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이혜영",
-          "repRoleNm": "배우",
-          "cast": "준희"
+          "peopleNmEn": "LEE Hye-young",
+          "cast": "준희",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김민희",
-          "repRoleNm": "배우",
-          "cast": "길수"
+          "peopleNmEn": "KIM Min-hee",
+          "cast": "길수",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서영화",
-          "repRoleNm": "배우",
-          "cast": "세원"
+          "peopleNmEn": "SEO Young-hwa",
+          "cast": "세원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박미소",
-          "repRoleNm": "배우",
-          "cast": "현우"
+          "peopleNmEn": "Park Miso",
+          "cast": "현우",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "권해효",
-          "repRoleNm": "배우",
-          "cast": "효진"
+          "peopleNmEn": "KWON Hae-hyo",
+          "cast": "효진",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조윤희",
-          "repRoleNm": "배우",
-          "cast": "양주"
+          "peopleNmEn": "Cho Yunhee",
+          "cast": "양주",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하성국",
-          "repRoleNm": "배우",
-          "cast": "경우"
+          "peopleNmEn": "HA Seong-guk",
+          "cast": "경우",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "기주봉",
-          "repRoleNm": "배우",
-          "cast": "만수"
+          "peopleNmEn": "KI Joo-bong",
+          "cast": "만수",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이은미",
-          "repRoleNm": "배우",
-          "cast": "재원"
+          "peopleNmEn": "",
+          "cast": "재원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김시하",
-          "repRoleNm": "배우",
-          "cast": "아이"
+          "peopleNmEn": "",
+          "cast": "아이",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -162,6 +161,7 @@
           "staffRoleNm": "기타"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

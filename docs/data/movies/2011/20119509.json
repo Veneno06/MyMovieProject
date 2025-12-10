@@ -22,53 +22,52 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "박홍민",
-          "repRoleNm": "감독"
+          "peopleNmEn": "PARK Hong-min"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이장훈",
-          "repRoleNm": "배우",
-          "cast": "이전혁"
+          "peopleNmEn": "LEE Jang-hoon",
+          "cast": "이전혁",
+          "castEn": "Lee Jun Hyuk"
         },
         {
-          "peopleCd": "",
           "peopleNm": "최소은",
-          "repRoleNm": "배우",
-          "cast": "지연"
+          "peopleNmEn": "CHOI So-eun",
+          "cast": "지연",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박노식",
-          "repRoleNm": "배우",
-          "cast": "나이든 낚시꾼"
+          "peopleNmEn": "PARK Nou-sik",
+          "cast": "나이든 낚시꾼",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김선빈",
-          "repRoleNm": "배우",
-          "cast": "흥신소"
+          "peopleNmEn": "KIM Sun-bin",
+          "cast": "흥신소",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임호상",
-          "repRoleNm": "배우",
-          "cast": "빨간 모자"
+          "peopleNmEn": "",
+          "cast": "빨간 모자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍이게",
-          "repRoleNm": "배우",
-          "cast": "교통 경찰"
+          "peopleNmEn": "",
+          "cast": "교통 경찰",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박홍민",
-          "repRoleNm": "배우",
-          "cast": "조교/물고기"
+          "peopleNmEn": "PARK Hong-min",
+          "cast": "조교/물고기",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -419,6 +418,7 @@
           "staffRoleNm": "DI팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

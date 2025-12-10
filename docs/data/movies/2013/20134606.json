@@ -22,41 +22,40 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "윤여창",
-          "repRoleNm": "감독"
+          "peopleNmEn": "YOON Yeo-chang"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "최지연",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "CHOE Ji-yeon",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황석정",
-          "repRoleNm": "배우",
-          "cast": "명자"
+          "peopleNmEn": "HWANG Seok-jeong",
+          "cast": "명자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김재록",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Jae-rok",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김진희",
-          "repRoleNm": "배우",
-          "cast": "정선"
+          "peopleNmEn": "",
+          "cast": "정선",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김윤주",
-          "repRoleNm": "배우",
-          "cast": "딸기엄마"
+          "peopleNmEn": "",
+          "cast": "딸기엄마",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -340,6 +339,7 @@
           "staffRoleNm": "광고디자인"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

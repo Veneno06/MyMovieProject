@@ -22,46 +22,44 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "선종훈",
-          "repRoleNm": "감독"
+          "peopleNmEn": "SUN Jong-hoon"
         },
         {
-          "peopleCd": "",
           "peopleNm": "김용완",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Yong-wan"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이지훈",
-          "repRoleNm": "배우",
-          "cast": "한오기"
+          "peopleNmEn": "LEE Ji-hoon",
+          "cast": "한오기",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정연주",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "JEONG Yeon-ju",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유순웅",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "YU Soon-woong",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "신혜선",
-          "repRoleNm": "배우",
-          "cast": "주연"
+          "peopleNmEn": "SHIN Hae-sun",
+          "cast": "주연",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "허지원",
-          "repRoleNm": "배우",
-          "cast": "테니스 강사"
+          "peopleNmEn": "HEO Ji-won",
+          "cast": "테니스 강사",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -95,6 +93,7 @@
           "staffRoleNm": "편집"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

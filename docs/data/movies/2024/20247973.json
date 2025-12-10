@@ -25,53 +25,52 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "신승훈",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "조병규",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "JO Byeong-gyu",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한은수",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "구준회",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최희승",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박철민",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "PARK Cheol-min",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이미도",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Mi-do",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임세찬",
-          "repRoleNm": "배우",
-          "cast": "웅재"
+          "peopleNmEn": "",
+          "cast": "웅재",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -92,6 +91,12 @@
           "companyNm": "(주)메리크리스마스",
           "companyNmEn": "Merry Christmas",
           "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20253341",
+          "companyNm": "주식회사 케이티스튜디오지니",
+          "companyNmEn": "KT StudioGenie",
+          "companyPartNm": "해외세일즈사"
         }
       ],
       "audits": [

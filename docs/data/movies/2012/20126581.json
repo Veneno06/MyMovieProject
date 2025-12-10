@@ -25,59 +25,58 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이수성",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Soo-sung"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "곽현화",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KWAK Hyun-hwa",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하나경",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HA Na-kyoung",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "오성태",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "OH Seong-tae",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이건",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Keon",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황재선",
-          "repRoleNm": "배우",
-          "cast": "학생"
+          "peopleNmEn": "",
+          "cast": "학생",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이보현",
-          "repRoleNm": "배우",
-          "cast": "사찰 신도들"
+          "peopleNmEn": "",
+          "cast": "사찰 신도들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박해성",
-          "repRoleNm": "배우",
-          "cast": "사찰 신도들"
+          "peopleNmEn": "",
+          "cast": "사찰 신도들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "윤나영",
-          "repRoleNm": "배우",
-          "cast": "버스 여승객"
+          "peopleNmEn": "",
+          "cast": "버스 여승객",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -323,6 +322,7 @@
           "staffRoleNm": "예고편"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

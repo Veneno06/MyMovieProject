@@ -31,47 +31,46 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김기덕",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Ki-duk"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이나영",
-          "repRoleNm": "배우",
-          "cast": "란 역"
+          "peopleNmEn": "LEE Na-young",
+          "cast": "란 역",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "오다기리 죠",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Joe Odagiri",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이호영",
-          "repRoleNm": "배우",
-          "cast": "현직경찰1"
+          "peopleNmEn": "LEE Ho-young",
+          "cast": "현직경찰1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "진태현",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "ZIN Tai-hyun",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김민수",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Min-su",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한기중",
-          "repRoleNm": "배우",
-          "cast": "강력계 조서경찰"
+          "peopleNmEn": "HAN Ki-joong",
+          "cast": "강력계 조서경찰",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -655,6 +654,7 @@
           "staffRoleNm": "VFX 아티스트"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

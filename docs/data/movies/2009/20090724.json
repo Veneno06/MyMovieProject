@@ -25,47 +25,46 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이장수",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Jang-soo"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이지아",
-          "repRoleNm": "배우",
-          "cast": "왕소중"
+          "peopleNmEn": "LEE Ji-ah",
+          "cast": "왕소중",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "강지환",
-          "repRoleNm": "배우",
-          "cast": "강태풍"
+          "peopleNmEn": "KANG Ji-hwan",
+          "cast": "강태풍",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "신현탁",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "SHIN Hyeon-Tak",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한수빈",
-          "repRoleNm": "배우",
-          "cast": "승무원2"
+          "peopleNmEn": "",
+          "cast": "승무원2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장지은",
-          "repRoleNm": "배우",
-          "cast": "미녀2"
+          "peopleNmEn": "",
+          "cast": "미녀2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "윤정원",
-          "repRoleNm": "배우",
-          "cast": "승무원4"
+          "peopleNmEn": "",
+          "cast": "승무원4 ",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -715,8 +714,8 @@
           "peopleNmEn": "LEE Ju-won",
           "staffRoleNm": "VFX 슈퍼바이저"
         }
-      ],
-      "audiAcc": 42318
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

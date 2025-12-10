@@ -25,71 +25,70 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "주경중",
-          "repRoleNm": "감독"
+          "peopleNmEn": "JOO Kyung-jung"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이성재",
-          "repRoleNm": "배우",
-          "cast": "황준혁"
+          "peopleNmEn": "LEE Sung-jae",
+          "cast": "황준혁",
+          "castEn": "HWANG Jun-hyuk"
         },
         {
-          "peopleCd": "",
           "peopleNm": "김지훈",
-          "repRoleNm": "배우",
-          "cast": "장민우"
+          "peopleNmEn": "KIM ji-hun",
+          "cast": "장민우",
+          "castEn": "JANG Min-woo "
         },
         {
-          "peopleCd": "",
           "peopleNm": "박현진",
-          "repRoleNm": "배우",
-          "cast": "오미란"
+          "peopleNmEn": "PARK Hyun-jin",
+          "cast": "오미란",
+          "castEn": "OH Mi-ran"
         },
         {
-          "peopleCd": "",
           "peopleNm": "김기연",
-          "repRoleNm": "배우",
-          "cast": "박효림"
+          "peopleNmEn": "KIM Ki-yeon",
+          "cast": "박효림",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조수진",
-          "repRoleNm": "배우",
-          "cast": "무용출연"
+          "peopleNmEn": "",
+          "cast": "무용출연 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황희숙",
-          "repRoleNm": "배우",
-          "cast": "갤러리"
+          "peopleNmEn": "",
+          "cast": "갤러리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "주희",
-          "repRoleNm": "배우",
-          "cast": "무용출연"
+          "peopleNmEn": "",
+          "cast": "무용출연 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임소은",
-          "repRoleNm": "배우",
-          "cast": "아기"
+          "peopleNmEn": "",
+          "cast": "아기",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "양지원",
-          "repRoleNm": "배우",
-          "cast": "무용출연"
+          "peopleNmEn": "",
+          "cast": "무용출연 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김예지",
-          "repRoleNm": "배우",
-          "cast": "무용출연"
+          "peopleNmEn": "",
+          "cast": "무용출연",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -942,8 +941,8 @@
           "peopleNmEn": "JOO Kyung-jung",
           "staffRoleNm": "기획"
         }
-      ],
-      "audiAcc": 88305
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

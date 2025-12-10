@@ -28,119 +28,118 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이형곤",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Hyung-gon"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "주현",
-          "repRoleNm": "배우",
-          "cast": "아버지"
+          "peopleNmEn": "JU Hyun",
+          "cast": "아버지 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박준규",
-          "repRoleNm": "배우",
-          "cast": "기동 역"
+          "peopleNmEn": "PARK Jun-gyu",
+          "cast": "기동 역",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하정우",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HA Jung-woo",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박시연",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "PARK Si-yeon",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최경원",
-          "repRoleNm": "배우",
-          "cast": "형사반장"
+          "peopleNmEn": "CHOI Kyeng-won",
+          "cast": "형사반장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박철민",
-          "repRoleNm": "배우",
-          "cast": "형사 역"
+          "peopleNmEn": "PARK Cheol-min",
+          "cast": "형사 역 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이광현",
-          "repRoleNm": "배우",
-          "cast": "뮤지컬"
+          "peopleNmEn": "",
+          "cast": "뮤지컬",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "우현",
-          "repRoleNm": "배우",
-          "cast": "홍씨"
+          "peopleNmEn": "WOO Hyun",
+          "cast": "홍씨",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김명선",
-          "repRoleNm": "배우",
-          "cast": "쇼호스트2"
+          "peopleNmEn": "",
+          "cast": "쇼호스트2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조승우",
-          "repRoleNm": "배우",
-          "cast": "뮤지컬"
+          "peopleNmEn": "",
+          "cast": "뮤지컬 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이동화",
-          "repRoleNm": "배우",
-          "cast": "뮤지컬"
+          "peopleNmEn": "",
+          "cast": "뮤지컬",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박경수",
-          "repRoleNm": "배우",
-          "cast": "뮤지컬"
+          "peopleNmEn": "",
+          "cast": "뮤지컬 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "윤진석",
-          "repRoleNm": "배우",
-          "cast": "B-Boy"
+          "peopleNmEn": "",
+          "cast": "B-Boy ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "윤태선",
-          "repRoleNm": "배우",
-          "cast": "B-Boy"
+          "peopleNmEn": "",
+          "cast": "B-Boy ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김지민",
-          "repRoleNm": "배우",
-          "cast": "B-Boy"
+          "peopleNmEn": "",
+          "cast": "B-Boy ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이봉규",
-          "repRoleNm": "배우",
-          "cast": "목욕탕 주인"
+          "peopleNmEn": "LEE Bong-gyu",
+          "cast": "목욕탕 주인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "왕지혜",
-          "repRoleNm": "배우",
-          "cast": "편의점 여"
+          "peopleNmEn": "WANG Ji-hye",
+          "cast": "편의점 여",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김영웅",
-          "repRoleNm": "배우",
-          "cast": "기자"
+          "peopleNmEn": "KIM Young-woong",
+          "cast": "기자",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -165,12 +164,6 @@
           "companyNm": "(주)엠케이픽처스 ",
           "companyNmEn": "MK PICTURES",
           "companyPartNm": "배급사"
-        },
-        {
-          "companyCd": "20139617",
-          "companyNm": "(주)리틀빅픽쳐스",
-          "companyNmEn": "Little Big Pictures",
-          "companyPartNm": "해외세일즈사"
         },
         {
           "companyCd": "20253341",
@@ -1533,8 +1526,8 @@
           "peopleNmEn": "PARK Nam-surk",
           "staffRoleNm": "아날로그색보정"
         }
-      ],
-      "audiAcc": 128150
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

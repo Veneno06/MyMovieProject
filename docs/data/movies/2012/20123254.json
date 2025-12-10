@@ -25,29 +25,28 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이세일",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "허재호",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "성현아",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조지예",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "CHO Ji-ye",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -108,6 +107,7 @@
           "staffRoleNm": "촬영"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

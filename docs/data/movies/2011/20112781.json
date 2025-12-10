@@ -22,94 +22,92 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "신아가",
-          "repRoleNm": "감독"
+          "peopleNmEn": "SHIN Aga"
         },
         {
-          "peopleCd": "",
           "peopleNm": "이상철",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Sang-cheol"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "황정민",
-          "repRoleNm": "배우",
-          "cast": "현순"
+          "peopleNmEn": "HWANG Jung-min",
+          "cast": "현순",
+          "castEn": "Hyun-soon"
         },
         {
-          "peopleCd": "",
           "peopleNm": "김미향",
-          "repRoleNm": "배우",
-          "cast": "명순"
+          "peopleNmEn": "KIM Mi-hiyang",
+          "cast": "명순",
+          "castEn": "Myung-soon"
         },
         {
-          "peopleCd": "",
           "peopleNm": "이종윤",
-          "repRoleNm": "배우",
-          "cast": "준호"
+          "peopleNmEn": "LEE Jong-yoon",
+          "cast": "준호",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "백종우",
-          "repRoleNm": "배우",
-          "cast": "정수 역"
+          "peopleNmEn": "BAEK, JONGWOO",
+          "cast": "정수 역",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "신준호",
-          "repRoleNm": "배우",
-          "cast": "병원환자"
+          "peopleNmEn": "",
+          "cast": "병원환자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정희성",
-          "repRoleNm": "배우",
-          "cast": "교인2"
+          "peopleNmEn": "",
+          "cast": "교인2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이상철",
-          "repRoleNm": "배우",
-          "cast": "회계사"
+          "peopleNmEn": "LEE Sang-cheol",
+          "cast": "회계사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이재희",
-          "repRoleNm": "배우",
-          "cast": "아파트아이들"
+          "peopleNmEn": "",
+          "cast": "아파트아이들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "노형석",
-          "repRoleNm": "배우",
-          "cast": "장발남"
+          "peopleNmEn": "",
+          "cast": "장발남",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "노형석",
-          "repRoleNm": "배우",
-          "cast": "목소리출연"
+          "peopleNmEn": "",
+          "cast": "목소리출연",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박지만",
-          "repRoleNm": "배우",
-          "cast": "우유보급소 사장"
+          "peopleNmEn": "PARK JI MAHN",
+          "cast": "우유보급소 사장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "신아가",
-          "repRoleNm": "배우",
-          "cast": "여의사"
+          "peopleNmEn": "SHIN Aga",
+          "cast": "여의사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박상욱",
-          "repRoleNm": "배우",
-          "cast": "남의사"
+          "peopleNmEn": "PARK Sang-wook",
+          "cast": "남의사",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -441,6 +439,7 @@
           "staffRoleNm": "홍보/마케팅 진행"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

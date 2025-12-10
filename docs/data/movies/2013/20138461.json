@@ -22,74 +22,70 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이진우",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Jin-woo"
         },
         {
-          "peopleCd": "",
           "peopleNm": "박진석",
-          "repRoleNm": "감독"
+          "peopleNmEn": "PARK Jin-suk"
         },
         {
-          "peopleCd": "",
           "peopleNm": "박진성",
-          "repRoleNm": "감독"
+          "peopleNmEn": "PARK Jin-sung"
         },
         {
-          "peopleCd": "",
           "peopleNm": "이상우",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Sang-woo"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "한주완",
-          "repRoleNm": "배우",
-          "cast": "우현"
+          "peopleNmEn": "HAN Ju-wan",
+          "cast": "우현",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최덕문",
-          "repRoleNm": "배우",
-          "cast": "영화감독"
+          "peopleNmEn": "CHOI Duk-mun",
+          "cast": "영화감독",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박혁권",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "PARK Hyuk-kwon",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "신동미",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "SHIN Dong-mi",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "배슬기",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "BAE Seul-ki",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김서형",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Seo-hyung",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최원영",
-          "repRoleNm": "배우",
-          "cast": "동규"
+          "peopleNmEn": "CHOI Won-young",
+          "cast": "동규",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이상우",
-          "repRoleNm": "배우",
-          "cast": "업소남 일행2역"
+          "peopleNmEn": "LEE Sang-woo",
+          "cast": "업소남 일행2역",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -321,6 +317,7 @@
           "staffRoleNm": "VFX 아티스트"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

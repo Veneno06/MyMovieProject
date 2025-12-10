@@ -28,29 +28,28 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김태용",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Tae-yong"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "현빈",
-          "repRoleNm": "배우",
-          "cast": "훈"
+          "peopleNmEn": "HYUN Bin",
+          "cast": "훈",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "탕웨이",
-          "repRoleNm": "배우",
-          "cast": "애나"
+          "peopleNmEn": "Tang Wei",
+          "cast": "애나",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김서라",
-          "repRoleNm": "배우",
-          "cast": "옥자"
+          "peopleNmEn": "KIM Seo-ra",
+          "cast": "옥자",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -702,11 +701,11 @@
         },
         {
           "peopleNm": "황정현",
-          "peopleNmEn": "HWANG Jung-hyun",
+          "peopleNmEn": "HWANG JUNG HYUN",
           "staffRoleNm": "예고편"
         }
-      ],
-      "audiAcc": 825952
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

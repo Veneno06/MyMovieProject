@@ -22,71 +22,70 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "송창용",
-          "repRoleNm": "감독"
+          "peopleNmEn": "SONG Chang-yong"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "최성국",
-          "repRoleNm": "배우",
-          "cast": "상훈"
+          "peopleNmEn": "CHOI Sung-kook",
+          "cast": "상훈",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김성경",
-          "repRoleNm": "배우",
-          "cast": "지원"
+          "peopleNmEn": "",
+          "cast": "지원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "송재하",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "SONG JAE HA",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정이연",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한보민",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "배진웅",
-          "repRoleNm": "배우",
-          "cast": "창수"
+          "peopleNmEn": "BAE Jin-woong",
+          "cast": "창수",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "권범택",
-          "repRoleNm": "배우",
-          "cast": "장회장"
+          "peopleNmEn": "KWAN Bum-tack",
+          "cast": "장회장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이준혁",
-          "repRoleNm": "배우",
-          "cast": "사채 사장"
+          "peopleNmEn": "LEE Jun-hyeok",
+          "cast": "사채 사장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "안창화",
-          "repRoleNm": "배우",
-          "cast": "쩐주1"
+          "peopleNmEn": "",
+          "cast": "쩐주1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하윤희",
-          "repRoleNm": "배우",
-          "cast": "교수"
+          "peopleNmEn": "",
+          "cast": "교수",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -565,6 +564,7 @@
           "staffRoleNm": "시각효과"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

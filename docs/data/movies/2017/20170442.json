@@ -22,64 +22,62 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "손병조",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최종구",
-          "repRoleNm": "감독"
+          "peopleNmEn": "CHOI Jong-koo"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이상희",
-          "repRoleNm": "배우",
-          "cast": "련희"
+          "peopleNmEn": "LEE Sang-hee",
+          "cast": "련희",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "윤은지",
-          "repRoleNm": "배우",
-          "cast": "연희"
+          "peopleNmEn": "YOON Eun-jee",
+          "cast": "연희",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김주후",
-          "repRoleNm": "배우",
-          "cast": "대형"
+          "peopleNmEn": "KIM Ju-hu",
+          "cast": "대형",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한이진",
-          "repRoleNm": "배우",
-          "cast": "동네짱"
+          "peopleNmEn": "HAN Iee-jin",
+          "cast": "동네짱",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서아연",
-          "repRoleNm": "배우",
-          "cast": "노래방녀"
+          "peopleNmEn": "",
+          "cast": "노래방녀",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유상원",
-          "repRoleNm": "배우",
-          "cast": "불량2"
+          "peopleNmEn": "",
+          "cast": "불량2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이정표",
-          "repRoleNm": "배우",
-          "cast": "노숙자"
+          "peopleNmEn": "",
+          "cast": "노숙자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김태연",
-          "repRoleNm": "배우",
-          "cast": "희망이"
+          "peopleNmEn": "KIM Tae-yeon",
+          "cast": "희망이",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -326,6 +324,7 @@
           "staffRoleNm": "타이틀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

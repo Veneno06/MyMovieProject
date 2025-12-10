@@ -22,80 +22,76 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "박형익",
-          "repRoleNm": "감독"
+          "peopleNmEn": "PARK Hyeong-ik"
         },
         {
-          "peopleCd": "",
           "peopleNm": "엄태화",
-          "repRoleNm": "감독"
+          "peopleNmEn": "UM Tae-hwa"
         },
         {
-          "peopleCd": "",
           "peopleNm": "강진아",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KANG Jin-a"
         },
         {
-          "peopleCd": "",
           "peopleNm": "이용승",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Yong-seung"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "민영",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "PARK Min-Young",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유시형",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "YOO Si-hyung",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이종필",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Jong-pil",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박주환",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "PARK Joo-hwan",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "엄태구",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "UM Tae-goo",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박근록",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "PARK Keun-rok",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한예리",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HAN Ye-ri",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "강민석",
-          "repRoleNm": "배우",
-          "cast": "편의점 점장"
+          "peopleNmEn": "",
+          "cast": "편의점 점장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이혜연",
-          "repRoleNm": "배우",
-          "cast": "강남여"
+          "peopleNmEn": "",
+          "cast": "강남여",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -236,6 +232,7 @@
           "staffRoleNm": "타이틀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

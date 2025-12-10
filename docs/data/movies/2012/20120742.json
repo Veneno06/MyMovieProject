@@ -25,23 +25,22 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김조광수",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIMJHO Gwang-soo"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "변준석",
-          "repRoleNm": "배우",
-          "cast": "남학생악역"
+          "peopleNmEn": "",
+          "cast": "남학생악역",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한인미",
-          "repRoleNm": "배우",
-          "cast": "고양이 학생"
+          "peopleNmEn": "HAN Inmi",
+          "cast": "고양이 학생",
+          "castEn": ""
         }
       ],
       "showTypes": [],
@@ -164,6 +163,7 @@
           "staffRoleNm": "제작관리"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

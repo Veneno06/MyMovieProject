@@ -25,52 +25,50 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "박성용",
-          "repRoleNm": "감독"
+          "peopleNmEn": "PARK Seung young"
         },
         {
-          "peopleCd": "",
           "peopleNm": "김효정",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Hyo-jung"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "몬구",
-          "repRoleNm": "배우",
-          "cast": "준수"
+          "peopleNmEn": "Mongoo",
+          "cast": "준수",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한희정",
-          "repRoleNm": "배우",
-          "cast": "희정"
+          "peopleNmEn": "Han Hee-jeong",
+          "cast": "희정",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김성태",
-          "repRoleNm": "배우",
-          "cast": "성태"
+          "peopleNmEn": "KIM Sung-tae",
+          "cast": "성태",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "송수연",
-          "repRoleNm": "배우",
-          "cast": "윤진"
+          "peopleNmEn": "Song Su-yeon",
+          "cast": "윤진",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김준원",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Jun-Won",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김명숙",
-          "repRoleNm": "배우",
-          "cast": "레코드사직원"
+          "peopleNmEn": "Kim Myung-suk",
+          "cast": "레코드사직원",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -401,6 +399,7 @@
           "staffRoleNm": "광고디자인"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

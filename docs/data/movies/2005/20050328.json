@@ -25,22 +25,20 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김태일",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Tae-il"
         },
         {
-          "peopleCd": "",
           "peopleNm": "가토 쿠미코",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KATO Kumiko"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "후루카와 마사키",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Furukawa Masaki ",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -199,6 +197,7 @@
           "staffRoleNm": "기획"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

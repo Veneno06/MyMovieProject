@@ -22,57 +22,54 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김헌",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Hun"
         },
         {
-          "peopleCd": "",
           "peopleNm": "황희경",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이상우",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Sang-woo"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이상우",
-          "repRoleNm": "배우",
-          "cast": "아버지"
+          "peopleNmEn": "LEE Sang-woo",
+          "cast": "아버지",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정태원",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한종훈",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정명국",
-          "repRoleNm": "배우",
-          "cast": "할아버지"
+          "peopleNmEn": "",
+          "cast": "할아버지",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이광수",
-          "repRoleNm": "배우",
-          "cast": "광수"
+          "peopleNmEn": "",
+          "cast": "광수",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김헌",
-          "repRoleNm": "배우",
-          "cast": "다방남"
+          "peopleNmEn": "KIM Hun",
+          "cast": "다방남",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -303,6 +300,7 @@
           "staffRoleNm": "스틸"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

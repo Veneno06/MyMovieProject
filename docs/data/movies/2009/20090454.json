@@ -28,35 +28,34 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "에바 진",
-          "repRoleNm": "감독"
+          "peopleNmEn": "Eva Jin"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "장쯔이",
-          "repRoleNm": "배우",
-          "cast": "소피"
+          "peopleNmEn": "Zhang Ziyi",
+          "cast": "소피",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "소지섭",
-          "repRoleNm": "배우",
-          "cast": "제프"
+          "peopleNmEn": "SO Ji-sub",
+          "cast": "제프",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "판빙빙",
-          "repRoleNm": "배우",
-          "cast": "안나"
+          "peopleNmEn": "FAN Bing Bing",
+          "cast": "안나",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하윤동",
-          "repRoleNm": "배우",
-          "cast": "고든"
+          "peopleNmEn": "Peter Ho",
+          "cast": "고든",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -89,8 +88,8 @@
           "watchGradeNm": "12세이상관람가"
         }
       ],
-      "staffs": [],
-      "audiAcc": 80076
-    }
+      "staffs": []
+    },
+    "source": "영화진흥위원회"
   }
 }

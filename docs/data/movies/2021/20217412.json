@@ -22,89 +22,88 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "조은성",
-          "repRoleNm": "감독"
+          "peopleNmEn": "JO Eun-sung"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "심희섭",
-          "repRoleNm": "배우",
-          "cast": "복서"
+          "peopleNmEn": "SIM Hee-sub",
+          "cast": "복서",
+          "castEn": "Bok-ser"
         },
         {
-          "peopleCd": "",
           "peopleNm": "전혜진",
-          "repRoleNm": "배우",
-          "cast": "복희"
+          "peopleNmEn": "JEON Hye-jin",
+          "cast": "복희",
+          "castEn": "Bok-hee"
         },
         {
-          "peopleCd": "",
           "peopleNm": "한승도",
-          "repRoleNm": "배우",
-          "cast": "황반장"
+          "peopleNmEn": "HAN Seung-do",
+          "cast": "황반장",
+          "castEn": "Captain Hwang"
         },
         {
-          "peopleCd": "",
           "peopleNm": "박수영",
-          "repRoleNm": "배우",
-          "cast": "낙봉"
+          "peopleNmEn": "PARK Su-young",
+          "cast": "낙봉",
+          "castEn": "Nak-bong"
         },
         {
-          "peopleCd": "",
           "peopleNm": "오정택",
-          "repRoleNm": "배우",
-          "cast": "종수"
+          "peopleNmEn": "",
+          "cast": "종수",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최보영",
-          "repRoleNm": "배우",
-          "cast": "진숙"
+          "peopleNmEn": "CHOI Bo-young",
+          "cast": "진숙",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이재구",
-          "repRoleNm": "배우",
-          "cast": "경비 소장"
+          "peopleNmEn": "LEE Jae-goo",
+          "cast": "경비 소장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박재철",
-          "repRoleNm": "배우",
-          "cast": "영만"
+          "peopleNmEn": "",
+          "cast": "영만",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최우준",
-          "repRoleNm": "배우",
-          "cast": "공장 직원1"
+          "peopleNmEn": "YOON Chung",
+          "cast": "공장 직원1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이호열",
-          "repRoleNm": "배우",
-          "cast": "면허 시험관"
+          "peopleNmEn": "",
+          "cast": "면허 시험관",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황자영",
-          "repRoleNm": "배우",
-          "cast": "미영"
+          "peopleNmEn": "",
+          "cast": "미영",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "여현준",
-          "repRoleNm": "배우",
-          "cast": "신입 경비원"
+          "peopleNmEn": "",
+          "cast": "신입 경비원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이지혜",
-          "repRoleNm": "배우",
-          "cast": "학원 강사"
+          "peopleNmEn": "",
+          "cast": "학원 강사",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -306,6 +305,7 @@
           "staffRoleNm": "DI팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

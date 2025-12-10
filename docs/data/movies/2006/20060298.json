@@ -22,119 +22,118 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이진우",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Jin-woo"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "임형국",
-          "repRoleNm": "배우",
-          "cast": "호상"
+          "peopleNmEn": "LIM Hyung-kook",
+          "cast": "호상",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "양은용",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "YANG Eun-yong",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "오정세",
-          "repRoleNm": "배우",
-          "cast": "소국"
+          "peopleNmEn": "OH Jung-se",
+          "cast": "소국",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김화섭",
-          "repRoleNm": "배우",
-          "cast": "기찻길 고깃집 손님"
+          "peopleNmEn": "KIM Wha-sub",
+          "cast": "기찻길 고깃집 손님",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김화섭",
-          "repRoleNm": "배우",
-          "cast": "호상 대역"
+          "peopleNmEn": "KIM Wha-sub",
+          "cast": "호상 대역",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "송진열",
-          "repRoleNm": "배우",
-          "cast": "극장관객/택시기사"
+          "peopleNmEn": "SONG Jin-yeol",
+          "cast": "극장관객/택시기사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "노미란",
-          "repRoleNm": "배우",
-          "cast": "고깃집손님"
+          "peopleNmEn": "NO Mi-ran",
+          "cast": "고깃집손님",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "함주리",
-          "repRoleNm": "배우",
-          "cast": "극장관객"
+          "peopleNmEn": "",
+          "cast": "극장관객",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "지윤정",
-          "repRoleNm": "배우",
-          "cast": "간호사2"
+          "peopleNmEn": "JEE Yune-jeong",
+          "cast": "간호사2 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "모성진",
-          "repRoleNm": "배우",
-          "cast": "충주댐관리소"
+          "peopleNmEn": "MO Sung-jin",
+          "cast": "충주댐관리소 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김대옥",
-          "repRoleNm": "배우",
-          "cast": "간호사1"
+          "peopleNmEn": "",
+          "cast": "간호사1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최국희",
-          "repRoleNm": "배우",
-          "cast": "경찰"
+          "peopleNmEn": "CHOI Kook-hee",
+          "cast": "경찰 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "공지영",
-          "repRoleNm": "배우",
-          "cast": "고깃집 손님"
+          "peopleNmEn": "KONG Ji-young",
+          "cast": "고깃집 손님",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박상준",
-          "repRoleNm": "배우",
-          "cast": "남간호사"
+          "peopleNmEn": "",
+          "cast": "남간호사 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "권승구",
-          "repRoleNm": "배우",
-          "cast": "자동차 스턴트맨"
+          "peopleNmEn": "GWON Seung-gu",
+          "cast": "자동차 스턴트맨",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "오주은",
-          "repRoleNm": "배우",
-          "cast": "극장관객"
+          "peopleNmEn": "",
+          "cast": "극장관객 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최윤형",
-          "repRoleNm": "배우",
-          "cast": "은주엄마"
+          "peopleNmEn": "",
+          "cast": "은주엄마 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "오류미",
-          "repRoleNm": "배우",
-          "cast": "극장관객"
+          "peopleNmEn": "",
+          "cast": "극장관객 ",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -252,7 +251,7 @@
         },
         {
           "peopleNm": "지윤정",
-          "peopleNmEn": "JI Yun-jeong",
+          "peopleNmEn": "JEE Yune-jeong",
           "staffRoleNm": "촬영팀"
         },
         {
@@ -326,6 +325,7 @@
           "staffRoleNm": "광고디자인"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

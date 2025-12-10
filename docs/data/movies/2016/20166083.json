@@ -22,65 +22,64 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "민병국",
-          "repRoleNm": "감독"
+          "peopleNmEn": "MIN Byung-kook"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이일화",
-          "repRoleNm": "배우",
-          "cast": "윤정"
+          "peopleNmEn": "LEE Il-hwa",
+          "cast": "윤정",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "양동근",
-          "repRoleNm": "배우",
-          "cast": "종규"
+          "peopleNmEn": "YANG Dong-keun",
+          "cast": "종규",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하용수",
-          "repRoleNm": "배우",
-          "cast": "문호"
+          "peopleNmEn": "HAH Yeong-soo",
+          "cast": "문호",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이혜정",
-          "repRoleNm": "배우",
-          "cast": "수현"
+          "peopleNmEn": "",
+          "cast": "수현",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정나온",
-          "repRoleNm": "배우",
-          "cast": "나온"
+          "peopleNmEn": "",
+          "cast": "나온",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "윤돈휘",
-          "repRoleNm": "배우",
-          "cast": "비걸"
+          "peopleNmEn": "",
+          "cast": "비걸",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정현주",
-          "repRoleNm": "배우",
-          "cast": "난숙"
+          "peopleNmEn": "",
+          "cast": "난숙",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "송현희",
-          "repRoleNm": "배우",
-          "cast": "반장"
+          "peopleNmEn": "",
+          "cast": "반장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "남민우",
-          "repRoleNm": "배우",
-          "cast": "서영"
+          "peopleNmEn": "",
+          "cast": "서영",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -198,7 +197,7 @@
         },
         {
           "peopleNm": "변지수",
-          "peopleNmEn": "BYUN Ji-soo",
+          "peopleNmEn": "Byeon Ji su",
           "staffRoleNm": "촬영팀"
         },
         {
@@ -208,7 +207,7 @@
         },
         {
           "peopleNm": "변지수",
-          "peopleNmEn": "BYUN Ji-soo",
+          "peopleNmEn": "Byeon Ji su",
           "staffRoleNm": "촬영팀"
         },
         {
@@ -337,6 +336,7 @@
           "staffRoleNm": "예고편"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

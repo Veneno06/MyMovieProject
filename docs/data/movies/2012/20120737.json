@@ -25,35 +25,34 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "홍동명",
-          "repRoleNm": "감독"
+          "peopleNmEn": "HONG Dong-myung"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "홍종현",
-          "repRoleNm": "배우",
-          "cast": "재영"
+          "peopleNmEn": "HONG Jong-hyun",
+          "cast": "재영",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "권혜영",
-          "repRoleNm": "배우",
-          "cast": "학생들"
+          "peopleNmEn": "",
+          "cast": "학생들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "차태영",
-          "repRoleNm": "배우",
-          "cast": "학생들"
+          "peopleNmEn": "",
+          "cast": "학생들 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이성현",
-          "repRoleNm": "배우",
-          "cast": "학생들"
+          "peopleNmEn": "",
+          "cast": "학생들",
+          "castEn": ""
         }
       ],
       "showTypes": [],
@@ -271,6 +270,7 @@
           "staffRoleNm": "기타"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

@@ -25,71 +25,70 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "한승룡",
-          "repRoleNm": "감독"
+          "peopleNmEn": "HAN Seung-ryong"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "민경진",
-          "repRoleNm": "배우",
-          "cast": "임방원"
+          "peopleNmEn": "MIN Kyung-jin",
+          "cast": "임방원",
+          "castEn": "IM Bang-won"
         },
         {
-          "peopleCd": "",
           "peopleNm": "이두일",
-          "repRoleNm": "배우",
-          "cast": "만호"
+          "peopleNmEn": "LEE Doo-il",
+          "cast": "만호",
+          "castEn": "Man-ho"
         },
         {
-          "peopleCd": "",
           "peopleNm": "김소현",
-          "repRoleNm": "배우",
-          "cast": "순복"
+          "peopleNmEn": "KIM So-hyun",
+          "cast": "순복",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이승연",
-          "repRoleNm": "배우",
-          "cast": "붉은뱀"
+          "peopleNmEn": "LEE Seung-yeon",
+          "cast": "붉은뱀",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍승민",
-          "repRoleNm": "배우",
-          "cast": "도굴꾼"
+          "peopleNmEn": "",
+          "cast": "도굴꾼",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "권오현",
-          "repRoleNm": "배우",
-          "cast": "지순아빠"
+          "peopleNmEn": "",
+          "cast": "지순아빠",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김태규",
-          "repRoleNm": "배우",
-          "cast": "담임선생님"
+          "peopleNmEn": "",
+          "cast": "담임선생님",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이강빈",
-          "repRoleNm": "배우",
-          "cast": "만석"
+          "peopleNmEn": "",
+          "cast": "만석",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이승민",
-          "repRoleNm": "배우",
-          "cast": "경찰1"
+          "peopleNmEn": "seungmin lee",
+          "cast": "경찰1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "오정훈",
-          "repRoleNm": "배우",
-          "cast": "선글라스2"
+          "peopleNmEn": "",
+          "cast": "선글라스2 ",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -325,6 +324,7 @@
           "staffRoleNm": "예고편"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

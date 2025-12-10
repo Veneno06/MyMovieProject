@@ -31,119 +31,118 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "송민규",
-          "repRoleNm": "감독"
+          "peopleNmEn": "SONG Min-kyu"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "하지원",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HA Ji-won",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "천정명",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "CHUN Jung-myoung",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "진백림",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Bo-lin Chen",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "윤소희",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "YUN So-hui",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "오정세",
-          "repRoleNm": "배우",
-          "cast": "허종구"
+          "peopleNmEn": "OH Jung-se",
+          "cast": "허종구",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "송민정",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "SONG Min-jeong",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조병규",
-          "repRoleNm": "배우",
-          "cast": "고등학생 설록환"
+          "peopleNmEn": "JO Byeong-gyu",
+          "cast": "고등학생 설록환",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정다원",
-          "repRoleNm": "배우",
-          "cast": "112 전화목소리"
+          "peopleNmEn": "JUNG Da-won",
+          "cast": "112 전화목소리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정다원",
-          "repRoleNm": "배우",
-          "cast": "사진작가"
+          "peopleNmEn": "JUNG Da-won",
+          "cast": "사진작가",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이동욱",
-          "repRoleNm": "배우",
-          "cast": "취재진"
+          "peopleNmEn": "",
+          "cast": "취재진",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이병희",
-          "repRoleNm": "배우",
-          "cast": "모니터 악당"
+          "peopleNmEn": "",
+          "cast": "모니터 악당",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이상미",
-          "repRoleNm": "배우",
-          "cast": "변작가 친구"
+          "peopleNmEn": "",
+          "cast": "변작가 친구",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "지동주",
-          "repRoleNm": "배우",
-          "cast": "모니터 악당"
+          "peopleNmEn": "",
+          "cast": "모니터 악당",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최주형",
-          "repRoleNm": "배우",
-          "cast": "피투성이 남자"
+          "peopleNmEn": "",
+          "cast": "피투성이 남자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍주만",
-          "repRoleNm": "배우",
-          "cast": "모니터 악당"
+          "peopleNmEn": "",
+          "cast": "모니터 악당",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "권지훈",
-          "repRoleNm": "배우",
-          "cast": "제이슨 첸 대역"
+          "peopleNmEn": "KWON Jee-hoon",
+          "cast": "제이슨 첸 대역",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김용학",
-          "repRoleNm": "배우",
-          "cast": "설록한대역"
+          "peopleNmEn": "",
+          "cast": "설록한대역",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김유이",
-          "repRoleNm": "배우",
-          "cast": "한제인 대역"
+          "peopleNmEn": "",
+          "cast": "한제인 대역",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -409,7 +408,7 @@
         },
         {
           "peopleNm": "지윤정",
-          "peopleNmEn": "JI Yun-jeong",
+          "peopleNmEn": "JEE Yune-jeong",
           "staffRoleNm": "카메라오퍼레이터"
         },
         {
@@ -1418,6 +1417,11 @@
           "staffRoleNm": "광고대행"
         },
         {
+          "peopleNm": "최한아",
+          "peopleNmEn": "",
+          "staffRoleNm": "배급진행"
+        },
+        {
           "peopleNm": "이정이",
           "peopleNmEn": "",
           "staffRoleNm": "배급진행"
@@ -1763,6 +1767,7 @@
           "staffRoleNm": "VFX 매니지먼트"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

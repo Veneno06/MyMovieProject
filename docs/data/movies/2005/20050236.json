@@ -25,52 +25,50 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이송희일",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEESONG Hee-il"
         },
         {
-          "peopleCd": "",
           "peopleNm": "최진성",
-          "repRoleNm": "감독"
+          "peopleNmEn": "CHOI Jin-sung"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김왕근",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Wang-geun",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황춘하",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HWANG Chun-ha",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "송주희",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Song Ju-hui ",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김광진",
-          "repRoleNm": "배우",
-          "cast": "선글라스 남"
+          "peopleNmEn": "",
+          "cast": "선글라스 남",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "양유미",
-          "repRoleNm": "배우",
-          "cast": "선글라스 여"
+          "peopleNmEn": "Yang Yu-mi",
+          "cast": "선글라스 여 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박미현",
-          "repRoleNm": "배우",
-          "cast": "여자"
+          "peopleNmEn": "PARK Mi-hyen",
+          "cast": "여자",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -231,6 +229,7 @@
           "staffRoleNm": "광고디자인"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

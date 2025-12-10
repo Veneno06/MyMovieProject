@@ -22,23 +22,22 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "박갑종",
-          "repRoleNm": "감독"
+          "peopleNmEn": "PARK Kap-jong"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "홍예나",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HONG Ye-na",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하나경",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HA Na-kyoung",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -68,6 +67,7 @@
         }
       ],
       "staffs": []
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

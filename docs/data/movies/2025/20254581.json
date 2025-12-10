@@ -22,29 +22,28 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "현우성",
-          "repRoleNm": "감독"
+          "peopleNmEn": "Hyun Woo Sung"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "현우성",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Hyun Woo Sung",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한채영",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HAN Chae-young",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장의수",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "JANG Eui-soo",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -80,6 +79,7 @@
           "staffRoleNm": "스크립터"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

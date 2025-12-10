@@ -25,65 +25,64 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김길영",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "강창모",
-          "repRoleNm": "배우",
-          "cast": "K"
+          "peopleNmEn": "",
+          "cast": "K",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍경인",
-          "repRoleNm": "배우",
-          "cast": "관빈"
+          "peopleNmEn": "HONG Kyung-in",
+          "cast": "관빈",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김찬미",
-          "repRoleNm": "배우",
-          "cast": "현주"
+          "peopleNmEn": "",
+          "cast": "현주",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "송하림",
-          "repRoleNm": "배우",
-          "cast": "재호"
+          "peopleNmEn": "",
+          "cast": "재호",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최현서",
-          "repRoleNm": "배우",
-          "cast": "승애"
+          "peopleNmEn": "",
+          "cast": "승애",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "명현만",
-          "repRoleNm": "배우",
-          "cast": "덩치"
+          "peopleNmEn": "",
+          "cast": "덩치",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "전예지",
-          "repRoleNm": "배우",
-          "cast": "진심"
+          "peopleNmEn": "",
+          "cast": "진심",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장재인",
-          "repRoleNm": "배우",
-          "cast": "환희"
+          "peopleNmEn": "",
+          "cast": "환희",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "손성호",
-          "repRoleNm": "배우",
-          "cast": "병원원장"
+          "peopleNmEn": "",
+          "cast": "병원원장",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -224,6 +223,7 @@
           "staffRoleNm": "제작팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

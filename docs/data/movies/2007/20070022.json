@@ -22,125 +22,124 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "민병훈",
-          "repRoleNm": "감독"
+          "peopleNmEn": "MIN Byung-hun"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "서장원",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "SEO Jang-won",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이민정",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Min-jung",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김신",
-          "repRoleNm": "배우",
-          "cast": "친구1"
+          "peopleNmEn": "",
+          "cast": "친구1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "기주봉",
-          "repRoleNm": "배우",
-          "cast": "문 신부"
+          "peopleNmEn": "KI Joo-bong",
+          "cast": "문 신부",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍대성",
-          "repRoleNm": "배우",
-          "cast": "영두"
+          "peopleNmEn": "",
+          "cast": "영두",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "안병준",
-          "repRoleNm": "배우",
-          "cast": "기차역 경찰1"
+          "peopleNmEn": "",
+          "cast": "기차역 경찰1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박현철",
-          "repRoleNm": "배우",
-          "cast": "기차역 경찰2"
+          "peopleNmEn": "",
+          "cast": "기차역 경찰2 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서종환",
-          "repRoleNm": "배우",
-          "cast": "교수신부1"
+          "peopleNmEn": "",
+          "cast": "교수신부1 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김광훈",
-          "repRoleNm": "배우",
-          "cast": "교수신부4"
+          "peopleNmEn": "",
+          "cast": "교수신부4",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이동윤",
-          "repRoleNm": "배우",
-          "cast": "선배1"
+          "peopleNmEn": "Dongyun Lee",
+          "cast": "선배1 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김성대",
-          "repRoleNm": "배우",
-          "cast": "역무원"
+          "peopleNmEn": "",
+          "cast": "역무원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임경영",
-          "repRoleNm": "배우",
-          "cast": "성도2"
+          "peopleNmEn": "",
+          "cast": "성도2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장혁재",
-          "repRoleNm": "배우",
-          "cast": "기차역 경찰2"
+          "peopleNmEn": "",
+          "cast": "기차역 경찰2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임영호",
-          "repRoleNm": "배우",
-          "cast": "요아킴신부"
+          "peopleNmEn": "",
+          "cast": "요아킴신부",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최용준",
-          "repRoleNm": "배우",
-          "cast": "신학교 선배2"
+          "peopleNmEn": "",
+          "cast": "신학교 선배2 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이연소",
-          "repRoleNm": "배우",
-          "cast": "매표소 직원"
+          "peopleNmEn": "LEE YEONSO",
+          "cast": "매표소 직원 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김용모",
-          "repRoleNm": "배우",
-          "cast": "교수신부3"
+          "peopleNmEn": "Kim Yong-mo",
+          "cast": "교수신부3",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이정선",
-          "repRoleNm": "배우",
-          "cast": "수아 약혼남"
+          "peopleNmEn": "",
+          "cast": "수아 약혼남 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정석용",
-          "repRoleNm": "배우",
-          "cast": "클래맨스 수사"
+          "peopleNmEn": "JUNG Suk-yong",
+          "cast": "클래맨스 수사",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -289,7 +288,7 @@
         },
         {
           "peopleNm": "지윤정",
-          "peopleNmEn": "JI Yun-jeong",
+          "peopleNmEn": "JEE Yune-jeong",
           "staffRoleNm": "촬영팀"
         },
         {
@@ -718,6 +717,7 @@
           "staffRoleNm": "VFX 아티스트"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

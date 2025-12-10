@@ -22,47 +22,46 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "안선경",
-          "repRoleNm": "감독"
+          "peopleNmEn": "AHN Sun-kyoung"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김소희",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM So-hee",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "성호준",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "SUNG Ho-jun",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "변중희",
-          "repRoleNm": "배우",
-          "cast": "산부인과 의사"
+          "peopleNmEn": "Byun Chung hee",
+          "cast": "산부인과 의사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍혜미",
-          "repRoleNm": "배우",
-          "cast": "동물병원 간호사"
+          "peopleNmEn": "",
+          "cast": "동물병원 간호사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서은지",
-          "repRoleNm": "배우",
-          "cast": "동물병원 미용사"
+          "peopleNmEn": "",
+          "cast": "동물병원 미용사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이지향",
-          "repRoleNm": "배우",
-          "cast": "산부인과 의사"
+          "peopleNmEn": "",
+          "cast": "산부인과 의사",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -258,6 +257,7 @@
           "staffRoleNm": "광고디자인"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

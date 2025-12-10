@@ -22,52 +22,50 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "정재익",
-          "repRoleNm": "감독"
+          "peopleNmEn": "JUNG Jaeik"
         },
         {
-          "peopleCd": "",
           "peopleNm": "서태수",
-          "repRoleNm": "감독"
+          "peopleNmEn": "SEO Teasoo"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "조민상",
-          "repRoleNm": "배우",
-          "cast": "강재기"
+          "peopleNmEn": "CHO Min-sang",
+          "cast": "강재기",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한태경",
-          "repRoleNm": "배우",
-          "cast": "강은주"
+          "peopleNmEn": "",
+          "cast": "강은주",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임호준",
-          "repRoleNm": "배우",
-          "cast": "고병호"
+          "peopleNmEn": "LIM Ho-jun",
+          "cast": "고병호",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "송민혁",
-          "repRoleNm": "배우",
-          "cast": "고봉수"
+          "peopleNmEn": "",
+          "cast": "고봉수",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서태수",
-          "repRoleNm": "배우",
-          "cast": "양인권"
+          "peopleNmEn": "SEO Teasoo",
+          "cast": "양인권",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서재희",
-          "repRoleNm": "배우",
-          "cast": "장콜기사2"
+          "peopleNmEn": "",
+          "cast": "장콜기사2",
+          "castEn": "Disabled taxi driver2"
         }
       ],
       "showTypes": [
@@ -323,6 +321,7 @@
           "staffRoleNm": "온라인마케팅"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

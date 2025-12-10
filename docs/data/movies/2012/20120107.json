@@ -25,71 +25,70 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "조성규",
-          "repRoleNm": "감독"
+          "peopleNmEn": "CHO Sung-kyu"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김태우",
-          "repRoleNm": "배우",
-          "cast": "인성"
+          "peopleNmEn": "KIM Tae-woo",
+          "cast": "인성",
+          "castEn": "In-seong"
         },
         {
-          "peopleCd": "",
           "peopleNm": "예지원",
-          "repRoleNm": "배우",
-          "cast": "유정"
+          "peopleNmEn": "YEA Ji-won",
+          "cast": "유정",
+          "castEn": "Yu-jung"
         },
         {
-          "peopleCd": "",
           "peopleNm": "안지혜",
-          "repRoleNm": "배우",
-          "cast": "육정아"
+          "peopleNmEn": "AHN Jee-hye",
+          "cast": "육정아",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "류승수",
-          "repRoleNm": "배우",
-          "cast": "류승수"
+          "peopleNmEn": "RYU Seung-soo",
+          "cast": "류승수",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장민관",
-          "repRoleNm": "배우",
-          "cast": "피디"
+          "peopleNmEn": "",
+          "cast": "피디",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한성근",
-          "repRoleNm": "배우",
-          "cast": "사망선고의사"
+          "peopleNmEn": "HAN Sung-keun",
+          "cast": "사망선고의사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이인경",
-          "repRoleNm": "배우",
-          "cast": "김박사 아내"
+          "peopleNmEn": "",
+          "cast": "김박사 아내",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박지홍",
-          "repRoleNm": "배우",
-          "cast": "투자사 직원1"
+          "peopleNmEn": "",
+          "cast": "투자사 직원1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "윤혜리",
-          "repRoleNm": "배우",
-          "cast": "바람녀"
+          "peopleNmEn": "",
+          "cast": "바람녀",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이은채",
-          "repRoleNm": "배우",
-          "cast": "비빔녀1"
+          "peopleNmEn": "LEE Eun-chae",
+          "cast": "비빔녀1",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -342,6 +341,7 @@
           "staffRoleNm": "광고디자인"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

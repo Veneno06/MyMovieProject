@@ -25,35 +25,34 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "박창진",
-          "repRoleNm": "감독"
+          "peopleNmEn": "PARK Chang-jin"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "오인혜",
-          "repRoleNm": "배우",
-          "cast": "초희"
+          "peopleNmEn": "",
+          "cast": "초희",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장성원",
-          "repRoleNm": "배우",
-          "cast": "인만"
+          "peopleNmEn": "JANG Seong-won",
+          "cast": "인만",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한소영",
-          "repRoleNm": "배우",
-          "cast": "혜리"
+          "peopleNmEn": "",
+          "cast": "혜리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김선영",
-          "repRoleNm": "배우",
-          "cast": "지은"
+          "peopleNmEn": "KIM Sun-young",
+          "cast": "지은",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -323,6 +322,7 @@
           "staffRoleNm": "VFX 아티스트"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

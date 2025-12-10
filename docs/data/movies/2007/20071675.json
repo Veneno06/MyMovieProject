@@ -22,113 +22,112 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "윤인호",
-          "repRoleNm": "감독"
+          "peopleNmEn": "YUN Inho"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "변희봉",
-          "repRoleNm": "배우",
-          "cast": "강노식 회장"
+          "peopleNmEn": "BYUN Hee-bong",
+          "cast": "강노식 회장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "손현주",
-          "repRoleNm": "배우",
-          "cast": "희도의 삼촌, 민태석 역"
+          "peopleNmEn": "SON Hyun-ju",
+          "cast": "희도의 삼촌, 민태석 역",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "신하균",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "SHIN Ha-kyun",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이혜영",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Hye-young",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김혁",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Hyeouk",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이은성",
-          "repRoleNm": "배우",
-          "cast": "희도의 여자친구, 주은아"
+          "peopleNmEn": "LEE Eun-seong",
+          "cast": "희도의 여자친구, 주은아 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박유리",
-          "repRoleNm": "배우",
-          "cast": "여장남자1"
+          "peopleNmEn": "",
+          "cast": "여장남자1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "신정근",
-          "repRoleNm": "배우",
-          "cast": "물새"
+          "peopleNmEn": "SHIN Jung-geun",
+          "cast": "물새",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한재영",
-          "repRoleNm": "배우",
-          "cast": "꽁지"
+          "peopleNmEn": "HAN Jae-young",
+          "cast": "꽁지",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "노승범",
-          "repRoleNm": "배우",
-          "cast": "동네건달1"
+          "peopleNmEn": "NO Seung-beom",
+          "cast": "동네건달1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김효배",
-          "repRoleNm": "배우",
-          "cast": "동네건달3"
+          "peopleNmEn": "",
+          "cast": "동네건달3",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박유리",
-          "repRoleNm": "배우",
-          "cast": "여장남자1"
+          "peopleNmEn": "",
+          "cast": "여장남자1 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "차승환",
-          "repRoleNm": "배우",
-          "cast": "30대남자"
+          "peopleNmEn": "",
+          "cast": "30대남자 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김석현",
-          "repRoleNm": "배우",
-          "cast": "길거리화가2"
+          "peopleNmEn": "",
+          "cast": "길거리화가2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유영권",
-          "repRoleNm": "배우",
-          "cast": "길거리화가4"
+          "peopleNmEn": "",
+          "cast": "길거리화가4 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이용철",
-          "repRoleNm": "배우",
-          "cast": "길거리화가1"
+          "peopleNmEn": "YONG-CHUL,LEE",
+          "cast": "길거리화가1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최욱",
-          "repRoleNm": "배우",
-          "cast": "양아치 1"
+          "peopleNmEn": "CHOI Wook",
+          "cast": "양아치 1",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -269,6 +268,11 @@
           "peopleNm": "황치만",
           "peopleNmEn": "",
           "staffRoleNm": "제작관리"
+        },
+        {
+          "peopleNm": "이재진",
+          "peopleNmEn": "Jrhee",
+          "staffRoleNm": "시나리오(각본)"
         },
         {
           "peopleNm": "윤인호",
@@ -1151,6 +1155,7 @@
           "staffRoleNm": "메이킹필름"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

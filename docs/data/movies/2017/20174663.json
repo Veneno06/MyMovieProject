@@ -22,41 +22,40 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "허철",
-          "repRoleNm": "감독"
+          "peopleNmEn": "HEO Chul"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김유석",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Yu-seok",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "손수현",
-          "repRoleNm": "배우",
-          "cast": "주영"
+          "peopleNmEn": "SOHN Suhyun",
+          "cast": "주영",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "리우진",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Woo-jin",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박병은",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "PARK Byung-eun",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "허상진",
-          "repRoleNm": "배우",
-          "cast": "고등학생"
+          "peopleNmEn": "",
+          "cast": "고등학생",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -487,6 +486,7 @@
           "staffRoleNm": "VFX 슈퍼바이저"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

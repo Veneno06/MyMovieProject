@@ -22,107 +22,106 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "신연식",
-          "repRoleNm": "감독"
+          "peopleNmEn": "SHIN Yeon-shick"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이현호",
-          "repRoleNm": "배우",
-          "cast": "안기섭"
+          "peopleNmEn": "LEE Hyun-ho",
+          "cast": "안기섭",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서동갑",
-          "repRoleNm": "배우",
-          "cast": "강요섭"
+          "peopleNmEn": "SEO Dong-gab",
+          "cast": "강요섭",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조성우",
-          "repRoleNm": "배우",
-          "cast": "전도사"
+          "peopleNmEn": "",
+          "cast": "전도사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "허연정",
-          "repRoleNm": "배우",
-          "cast": "여간사"
+          "peopleNmEn": "",
+          "cast": "여간사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍성춘",
-          "repRoleNm": "배우",
-          "cast": "황목사"
+          "peopleNmEn": "",
+          "cast": "황목사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박명신",
-          "repRoleNm": "배우",
-          "cast": "남장로"
+          "peopleNmEn": "PARK Myungshin",
+          "cast": "남장로",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "전경수",
-          "repRoleNm": "배우",
-          "cast": "소민"
+          "peopleNmEn": "",
+          "cast": "소민",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이지민",
-          "repRoleNm": "배우",
-          "cast": "지민"
+          "peopleNmEn": "",
+          "cast": "지민",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최홍일",
-          "repRoleNm": "배우",
-          "cast": "임장로"
+          "peopleNmEn": "CHOI Hong-il",
+          "cast": "임장로",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최종률",
-          "repRoleNm": "배우",
-          "cast": "강원로"
+          "peopleNmEn": "CHOI Jong-ryul",
+          "cast": "강원로",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김다흰",
-          "repRoleNm": "배우",
-          "cast": "현민"
+          "peopleNmEn": "",
+          "cast": "현민",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김하연",
-          "repRoleNm": "배우",
-          "cast": "나은"
+          "peopleNmEn": "",
+          "cast": "나은",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이지민",
-          "repRoleNm": "배우",
-          "cast": "지민"
+          "peopleNmEn": "LEE Ji-min",
+          "cast": "지민",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이승훈",
-          "repRoleNm": "배우",
-          "cast": "박변호사"
+          "peopleNmEn": "",
+          "cast": "박변호사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임수현",
-          "repRoleNm": "배우",
-          "cast": "선교지청년3"
+          "peopleNmEn": "",
+          "cast": "선교지청년3",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍성덕",
-          "repRoleNm": "배우",
-          "cast": "목사2"
+          "peopleNmEn": "HONG Sung-duk",
+          "cast": "목사2",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -665,6 +664,11 @@
           "staffRoleNm": "예고편"
         },
         {
+          "peopleNm": "최한아",
+          "peopleNmEn": "",
+          "staffRoleNm": "배급진행"
+        },
+        {
           "peopleNm": "김무연",
           "peopleNmEn": "",
           "staffRoleNm": "배급진행"
@@ -685,6 +689,7 @@
           "staffRoleNm": "DI팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

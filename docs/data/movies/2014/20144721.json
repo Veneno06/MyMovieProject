@@ -22,41 +22,40 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "신동엽",
-          "repRoleNm": "감독"
+          "peopleNmEn": "SHIN Dong-yeob"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "고세원",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KO Se-won",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한이서",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HANN E-seo",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유재명",
-          "repRoleNm": "배우",
-          "cast": "민형사"
+          "peopleNmEn": "YU Jae-myeong",
+          "cast": "민형사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "반민정",
-          "repRoleNm": "배우",
-          "cast": "주마담"
+          "peopleNmEn": "BAN Min-jung",
+          "cast": "주마담",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조한선",
-          "repRoleNm": "배우",
-          "cast": "운철"
+          "peopleNmEn": "JO Han-sun",
+          "cast": "운철",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -590,6 +589,7 @@
           "staffRoleNm": "VFX 슈퍼바이저"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

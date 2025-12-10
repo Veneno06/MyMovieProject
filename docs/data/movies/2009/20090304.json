@@ -22,113 +22,112 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "윤재연",
-          "repRoleNm": "감독"
+          "peopleNmEn": "YOON Jae-yeon"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "유진",
-          "repRoleNm": "배우",
-          "cast": "효정"
+          "peopleNmEn": "Eu-gene",
+          "cast": "효정",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박한별",
-          "repRoleNm": "배우",
-          "cast": "연주"
+          "peopleNmEn": "PARK Han-byul",
+          "cast": "연주",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "차수연",
-          "repRoleNm": "배우",
-          "cast": "나니"
+          "peopleNmEn": "CHA Soo-yeon",
+          "cast": "나니",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조은지",
-          "repRoleNm": "배우",
-          "cast": "인순"
+          "peopleNmEn": "CHO Eunji",
+          "cast": "인순",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정혜진",
-          "repRoleNm": "배우",
-          "cast": "인순 친구 목소리"
+          "peopleNmEn": "",
+          "cast": "인순 친구 목소리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이혜상",
-          "repRoleNm": "배우",
-          "cast": "간미희"
+          "peopleNmEn": "LEE Hye-sang",
+          "cast": "간미희 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이영진",
-          "repRoleNm": "배우",
-          "cast": "선화"
+          "peopleNmEn": "RIE Young-zin",
+          "cast": "선화",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "반민정",
-          "repRoleNm": "배우",
-          "cast": "은정"
+          "peopleNmEn": "BAN Min-jung",
+          "cast": "은정",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황승언",
-          "repRoleNm": "배우",
-          "cast": "보라"
+          "peopleNmEn": "HWANG Seung-eon",
+          "cast": "보라",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정인기",
-          "repRoleNm": "배우",
-          "cast": "강희중"
+          "peopleNmEn": "JUNG In-gi",
+          "cast": "강희중",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최다니엘",
-          "repRoleNm": "배우",
-          "cast": "동훈"
+          "peopleNmEn": "CHOI Daniel",
+          "cast": "동훈",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이선호",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Sun-ho",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김승훈",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Seung-hoon",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황하나",
-          "repRoleNm": "배우",
-          "cast": "오은실"
+          "peopleNmEn": "HWANG Ha-na",
+          "cast": "오은실",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "윤진성",
-          "repRoleNm": "배우",
-          "cast": "간미희 목소리"
+          "peopleNmEn": "",
+          "cast": "간미희 목소리 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조덕제",
-          "repRoleNm": "배우",
-          "cast": "조감독"
+          "peopleNmEn": "JO Duk-je",
+          "cast": "조감독",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장리우",
-          "repRoleNm": "배우",
-          "cast": "안내데스크"
+          "peopleNmEn": "JANG Ri-woo",
+          "cast": "안내데스크",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -1191,12 +1190,12 @@
         },
         {
           "peopleNm": "노병욱",
-          "peopleNmEn": "NOH Byung-wook",
+          "peopleNmEn": "NOH Byoung-wook",
           "staffRoleNm": "DI팀"
         },
         {
           "peopleNm": "노병욱",
-          "peopleNmEn": "NOH Byung-wook",
+          "peopleNmEn": "NOH Byoung-wook",
           "staffRoleNm": "DI팀"
         },
         {
@@ -1344,8 +1343,8 @@
           "peopleNmEn": "HAN Chung-gu",
           "staffRoleNm": "현상팀"
         }
-      ],
-      "audiAcc": 255609
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

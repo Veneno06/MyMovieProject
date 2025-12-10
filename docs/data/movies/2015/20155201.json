@@ -22,65 +22,64 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김세성",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Seseong"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "권민중",
-          "repRoleNm": "배우",
-          "cast": "이하정"
+          "peopleNmEn": "KWON Min-jung",
+          "cast": "이하정",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "원기준",
-          "repRoleNm": "배우",
-          "cast": "김철륜"
+          "peopleNmEn": "WON Ki-jun",
+          "cast": "김철륜",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김병춘",
-          "repRoleNm": "배우",
-          "cast": "이하연"
+          "peopleNmEn": "KIM Byung-chun",
+          "cast": "이하연",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한창혁",
-          "repRoleNm": "배우",
-          "cast": "형사1"
+          "peopleNmEn": "",
+          "cast": "형사1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김선주",
-          "repRoleNm": "배우",
-          "cast": "손님3"
+          "peopleNmEn": "",
+          "cast": "손님3",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이규창",
-          "repRoleNm": "배우",
-          "cast": "종구"
+          "peopleNmEn": "",
+          "cast": "종구",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김영희",
-          "repRoleNm": "배우",
-          "cast": "손님2"
+          "peopleNmEn": "",
+          "cast": "손님2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김정석",
-          "repRoleNm": "배우",
-          "cast": "잡지사부장 목소리"
+          "peopleNmEn": "",
+          "cast": "잡지사부장 목소리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김정훈",
-          "repRoleNm": "배우",
-          "cast": "손님1"
+          "peopleNmEn": "",
+          "cast": "손님1",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -193,7 +192,7 @@
         },
         {
           "peopleNm": "변지수",
-          "peopleNmEn": "BYUN Ji-soo",
+          "peopleNmEn": "Byeon Ji su",
           "staffRoleNm": "촬영팀"
         },
         {
@@ -447,6 +446,7 @@
           "staffRoleNm": "스틸"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

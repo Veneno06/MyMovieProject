@@ -22,29 +22,28 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이송희일",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEESONG Hee-il"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "원태희",
-          "repRoleNm": "배우",
-          "cast": "원규"
+          "peopleNmEn": "WON Tae-hee",
+          "cast": "원규",
+          "castEn": "Won-gyu"
         },
         {
-          "peopleCd": "",
           "peopleNm": "이이경",
-          "repRoleNm": "배우",
-          "cast": "태준"
+          "peopleNmEn": "YI Yi-kyung",
+          "cast": "태준",
+          "castEn": "Tae-jun"
         },
         {
-          "peopleCd": "",
           "peopleNm": "현성",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Hyun-sung",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -274,6 +273,7 @@
           "staffRoleNm": "예고편"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

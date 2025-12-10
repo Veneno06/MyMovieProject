@@ -22,76 +22,74 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "민두식",
-          "repRoleNm": "감독"
+          "peopleNmEn": "MIN Du-sik"
         },
         {
-          "peopleCd": "",
           "peopleNm": "김정환",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Jeong-hwan"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "홍종현",
-          "repRoleNm": "배우",
-          "cast": "민호수"
+          "peopleNmEn": "HONG Jong-hyun",
+          "cast": "민호수",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박지연",
-          "repRoleNm": "배우",
-          "cast": "서율"
+          "peopleNmEn": "Ji-yeon",
+          "cast": "서율",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이준",
-          "repRoleNm": "배우",
-          "cast": "안바우"
+          "peopleNmEn": "Lee Joon",
+          "cast": "안바우",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "신소율",
-          "repRoleNm": "배우",
-          "cast": "이라이"
+          "peopleNmEn": "SHIN So-yul",
+          "cast": "이라이",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한지우",
-          "repRoleNm": "배우",
-          "cast": "백효안"
+          "peopleNmEn": "HAN Ji-woo",
+          "cast": "백효안",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이미소",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Mi-so",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정경호",
-          "repRoleNm": "배우",
-          "cast": "민찬기"
+          "peopleNmEn": "JUNG Kyung-ho",
+          "cast": "민찬기",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "고경표",
-          "repRoleNm": "배우",
-          "cast": "봉일태"
+          "peopleNmEn": "GO Kyoung-pyo",
+          "cast": "봉일태",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임정배",
-          "repRoleNm": "배우",
-          "cast": "정만식 매니저"
+          "peopleNmEn": "",
+          "cast": "정만식 매니저",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김순석",
-          "repRoleNm": "배우",
-          "cast": "신서현 매니저"
+          "peopleNmEn": "",
+          "cast": "신서현 매니저",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -147,6 +145,11 @@
           "staffRoleNm": "제작"
         },
         {
+          "peopleNm": "김민경",
+          "peopleNmEn": "",
+          "staffRoleNm": "프로듀서"
+        },
+        {
           "peopleNm": "이형숙",
           "peopleNmEn": "LEE Hyung-suk",
           "staffRoleNm": "프로듀서"
@@ -159,11 +162,6 @@
         {
           "peopleNm": "권오주",
           "peopleNmEn": "",
-          "staffRoleNm": "프로듀서"
-        },
-        {
-          "peopleNm": "김민경",
-          "peopleNmEn": "KIM Min-kyoung",
           "staffRoleNm": "프로듀서"
         },
         {
@@ -622,6 +620,7 @@
           "staffRoleNm": "시각효과"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

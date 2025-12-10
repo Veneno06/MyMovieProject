@@ -25,47 +25,46 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이형민",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Hyung-min"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "한효주",
-          "repRoleNm": "배우",
-          "cast": "조하나"
+          "peopleNmEn": "HAN Hyo-joo",
+          "cast": "조하나",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김재중",
-          "repRoleNm": "배우",
-          "cast": "신재준"
+          "peopleNmEn": "KIM Jae-joong",
+          "cast": "신재준",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조선욱",
-          "repRoleNm": "배우",
-          "cast": "문성"
+          "peopleNmEn": "",
+          "cast": "문성 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서민지",
-          "repRoleNm": "배우",
-          "cast": "간호사1"
+          "peopleNmEn": "",
+          "cast": "간호사1 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "윤석현",
-          "repRoleNm": "배우",
-          "cast": "어린 우섭"
+          "peopleNmEn": "",
+          "cast": "어린 우섭 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장주연",
-          "repRoleNm": "배우",
-          "cast": "간호사2"
+          "peopleNmEn": "",
+          "cast": "간호사2",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -535,8 +534,8 @@
           "peopleNmEn": "",
           "staffRoleNm": "시각효과"
         }
-      ],
-      "audiAcc": 90592
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

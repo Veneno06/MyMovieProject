@@ -22,57 +22,54 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "배현지",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김유정",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김성홍",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Sung-hong"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김창완",
-          "repRoleNm": "배우",
-          "cast": "인범"
+          "peopleNmEn": "KIM Chang-wan",
+          "cast": "인범",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "배소은",
-          "repRoleNm": "배우",
-          "cast": "순정"
+          "peopleNmEn": "BAE So-eun",
+          "cast": "순정",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하은설",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "반민정",
-          "repRoleNm": "배우",
-          "cast": "수간호사"
+          "peopleNmEn": "BAN Min-jung",
+          "cast": "수간호사 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최형",
-          "repRoleNm": "배우",
-          "cast": "경찰"
+          "peopleNmEn": "",
+          "cast": "경찰",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "탁대성",
-          "repRoleNm": "배우",
-          "cast": "노숙자"
+          "peopleNmEn": "",
+          "cast": "노숙자",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -787,8 +784,8 @@
           "peopleNmEn": "TCHA Sung-jai",
           "staffRoleNm": "기획"
         }
-      ],
-      "audiAcc": 45162
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

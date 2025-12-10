@@ -25,29 +25,28 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이동희",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Dong-hui"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "정준하",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "JUNG Jun-ha",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하동훈",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HA Dong-hoon",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "송지우",
-          "repRoleNm": "배우",
-          "cast": "남자아이 목소리"
+          "peopleNmEn": "SONG Ji-woo",
+          "cast": "남자아이 목소리",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -633,8 +632,8 @@
           "peopleNmEn": "",
           "staffRoleNm": "예고편"
         }
-      ],
-      "audiAcc": 75546
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

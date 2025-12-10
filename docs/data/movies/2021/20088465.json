@@ -1,85 +1,4 @@
 {
-<<<<<<< HEAD
-  "movieCd": "20088465",
-  "movieNm": "더 프레지던트",
-  "openDt": "20211111",
-  "showTm": "129",
-  "audits": [
-    {
-      "auditNo": "2021-MF02264",
-      "watchGradeNm": "15세이상관람가"
-    }
-  ],
-  "genres": [
-    {
-      "genreNm": "드라마"
-    }
-  ],
-  "directors": [
-    {
-      "peopleNm": "올리버 스톤",
-      "peopleNmEn": "Oliver Stone"
-    }
-  ],
-  "actors": [
-    {
-      "peopleNm": "조슈 브롤린",
-      "peopleNmEn": "Josh Brolin",
-      "cast": "조지 부시",
-      "castEn": "George W. Bush"
-    },
-    {
-      "peopleNm": "엘리자베스 뱅크스",
-      "peopleNmEn": "Elizabeth Banks",
-      "cast": "로라 부시",
-      "castEn": "Laura Bush"
-    },
-    {
-      "peopleNm": "리차드 드레이퍼스",
-      "peopleNmEn": "Richard Dreyfuss",
-      "cast": "",
-      "castEn": ""
-    },
-    {
-      "peopleNm": "탠디 뉴튼",
-      "peopleNmEn": "Thandie Newton",
-      "cast": "",
-      "castEn": ""
-    }
-  ],
-  "companys": [
-    {
-      "companyCd": "20111613",
-      "companyNm": "주식회사 풍경소리",
-      "companyNmEn": "PoongKyung SoRi Inc.",
-      "companyPartNm": "배급사"
-    },
-    {
-      "companyCd": "20217461",
-      "companyNm": "(주)타임앤드스페이스",
-      "companyNmEn": "TIME AND SPACE INC.",
-      "companyPartNm": "배급사"
-    },
-    {
-      "companyCd": "20111613",
-      "companyNm": "주식회사 풍경소리",
-      "companyNmEn": "PoongKyung SoRi Inc.",
-      "companyPartNm": "수입사"
-    },
-    {
-      "companyCd": "20217461",
-      "companyNm": "(주)타임앤드스페이스",
-      "companyNmEn": "TIME AND SPACE INC.",
-      "companyPartNm": "수입사"
-    },
-    {
-      "companyCd": "2016701",
-      "companyNm": "(주)다날엔터테인먼트",
-      "companyNmEn": "Danal Entertainment Co.Ltd",
-      "companyPartNm": "제공"
-    }
-  ]
-=======
   "movieInfoResult": {
     "movieInfo": {
       "movieCd": "20088465",
@@ -194,7 +113,7 @@
         }
       ],
       "staffs": []
-    }
+    },
+    "source": "영화진흥위원회"
   }
->>>>>>> 65004f58d8aff8a75bda4eb18b6fd36a20edc205
 }

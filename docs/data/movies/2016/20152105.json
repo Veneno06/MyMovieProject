@@ -25,59 +25,58 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "백승기",
-          "repRoleNm": "감독"
+          "peopleNmEn": "BAEK Seungkee"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "손이용",
-          "repRoleNm": "배우",
-          "cast": "시발놈1"
+          "peopleNmEn": "SON Yi-yong",
+          "cast": "시발놈1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김보리",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "백승기",
-          "repRoleNm": "배우",
-          "cast": "빨간코유인원1"
+          "peopleNmEn": "BAEK Seungkee",
+          "cast": "빨간코유인원1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이지규",
-          "repRoleNm": "배우",
-          "cast": "바보유인원2"
+          "peopleNmEn": "",
+          "cast": "바보유인원2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장철민",
-          "repRoleNm": "배우",
-          "cast": "빨간코유인원3"
+          "peopleNmEn": "",
+          "cast": "빨간코유인원3",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박은수",
-          "repRoleNm": "배우",
-          "cast": "그냥유인원5"
+          "peopleNmEn": "",
+          "cast": "그냥유인원5",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍서백",
-          "repRoleNm": "배우",
-          "cast": "빨간코유인원2"
+          "peopleNmEn": "HONG Seo-back",
+          "cast": "빨간코유인원2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "윤하리",
-          "repRoleNm": "배우",
-          "cast": "그냥유인원3"
+          "peopleNmEn": "",
+          "cast": "그냥유인원3",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -330,6 +329,7 @@
           "staffRoleNm": "VFX 아티스트"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

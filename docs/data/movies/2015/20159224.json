@@ -28,47 +28,46 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "장동홍",
-          "repRoleNm": "감독"
+          "peopleNmEn": "JANG Dong-hong"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김소희",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM So-hee",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "윤여성",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정태화",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이동준",
-          "repRoleNm": "배우",
-          "cast": "홍수영"
+          "peopleNmEn": "",
+          "cast": "홍수영",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황석정",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HWANG Seok-jeong",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이승헌",
-          "repRoleNm": "배우",
-          "cast": "내시3"
+          "peopleNmEn": "",
+          "cast": "내시3",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -425,6 +424,7 @@
           "staffRoleNm": "DI팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

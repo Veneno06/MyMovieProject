@@ -22,35 +22,34 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "최낙권",
-          "repRoleNm": "감독"
+          "peopleNmEn": "CHOI Nak-kwon"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "하희경",
-          "repRoleNm": "배우",
-          "cast": "차성재"
+          "peopleNmEn": "HA Hui-gyeong",
+          "cast": "차성재",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정재진",
-          "repRoleNm": "배우",
-          "cast": "아버지"
+          "peopleNmEn": "JUNG Jae-jin",
+          "cast": "아버지",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "강봉석",
-          "repRoleNm": "배우",
-          "cast": "어린오빠"
+          "peopleNmEn": "GANG Bong-seok",
+          "cast": "어린오빠",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김진석",
-          "repRoleNm": "배우",
-          "cast": "어린오빠"
+          "peopleNmEn": "",
+          "cast": "어린오빠",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -90,6 +89,11 @@
         }
       ],
       "staffs": [
+        {
+          "peopleNm": "최낙권",
+          "peopleNmEn": "CHOI Nak-kwon",
+          "staffRoleNm": "제작"
+        },
         {
           "peopleNm": "이정근",
           "peopleNmEn": "LEE Jung-geun",
@@ -551,6 +555,7 @@
           "staffRoleNm": "타이틀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

@@ -25,41 +25,40 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "하나도 준지",
-          "repRoleNm": "감독"
+          "peopleNmEn": "Junji Hanado"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "하라 히데코",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Hideko Hara",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이태성",
-          "repRoleNm": "배우",
-          "cast": "이수현"
+          "peopleNmEn": "LEE Tae-sung",
+          "cast": "이수현",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "오나가 마키",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Maki Onaga",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정동환",
-          "repRoleNm": "배우",
-          "cast": "아버지"
+          "peopleNmEn": "CHUNG Dong-hwan",
+          "cast": "아버지",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서재경",
-          "repRoleNm": "배우",
-          "cast": "양민수"
+          "peopleNmEn": "SEO Jae-gyeong",
+          "cast": "양민수",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -135,6 +134,7 @@
           "staffRoleNm": "각색"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

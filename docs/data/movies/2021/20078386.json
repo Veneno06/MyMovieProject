@@ -1,76 +1,4 @@
 {
-<<<<<<< HEAD
-  "movieCd": "20078386",
-  "movieNm": "블라인드",
-  "openDt": "20210114",
-  "showTm": "102",
-  "audits": [
-    {
-      "auditNo": "2020-MF02907",
-      "watchGradeNm": "15세이상관람가"
-    }
-  ],
-  "genres": [
-    {
-      "genreNm": "드라마"
-    },
-    {
-      "genreNm": "멜로/로맨스"
-    }
-  ],
-  "directors": [
-    {
-      "peopleNm": "타마르 반 덴 도프",
-      "peopleNmEn": "Tamar Van Den Dop"
-    }
-  ],
-  "actors": [
-    {
-      "peopleNm": "요런 셀데슬라흐츠",
-      "peopleNmEn": "Joren Seldeslachts",
-      "cast": "",
-      "castEn": ""
-    },
-    {
-      "peopleNm": "핼리너 레인",
-      "peopleNmEn": "Halina Reijn",
-      "cast": "",
-      "castEn": ""
-    },
-    {
-      "peopleNm": "카텔리즈네 베르베케",
-      "peopleNmEn": "Katelijne Verbeke",
-      "cast": "",
-      "castEn": ""
-    },
-    {
-      "peopleNm": "얀 데클레흐",
-      "peopleNmEn": "Jan Decleir",
-      "cast": "",
-      "castEn": ""
-    }
-  ],
-  "companys": [
-    {
-      "companyCd": "20206061",
-      "companyNm": "주식회사 컨텐츠썬",
-      "companyNmEn": "",
-      "companyPartNm": "배급사"
-    },
-    {
-      "companyCd": "20206061",
-      "companyNm": "주식회사 컨텐츠썬",
-      "companyNmEn": "",
-      "companyPartNm": "수입사"
-    },
-    {
-      "companyCd": "20141088",
-      "companyNm": "와이드 릴리즈(주)",
-      "companyNmEn": "Wide Release",
-      "companyPartNm": "수입사"
-    }
-  ]
-=======
   "movieInfoResult": {
     "movieInfo": {
       "movieCd": "20078386",
@@ -109,7 +37,7 @@
           "castEn": ""
         },
         {
-          "peopleNm": "핼리너 레인",
+          "peopleNm": "할리나 레인",
           "peopleNmEn": "Halina Reijn",
           "cast": "",
           "castEn": ""
@@ -164,7 +92,7 @@
         }
       ],
       "staffs": []
-    }
+    },
+    "source": "영화진흥위원회"
   }
->>>>>>> 65004f58d8aff8a75bda4eb18b6fd36a20edc205
 }

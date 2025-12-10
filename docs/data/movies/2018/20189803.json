@@ -25,65 +25,64 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "최현영",
-          "repRoleNm": "감독"
+          "peopleNmEn": "CHOI Hyun-young"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "최수영",
-          "repRoleNm": "배우",
-          "cast": "유미"
+          "peopleNmEn": "CHOI Soo-young",
+          "cast": "유미",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "타나카 슌스케",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Shunsuke Tanaka",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "안보현",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "AHN Bo-hyun",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "동현배",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "DONG Hyun-bae",
+          "cast": "",
+          "castEn": "진성"
         },
         {
-          "peopleCd": "",
           "peopleNm": "배누리",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "BAE Nu-ri",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이정민",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Jung-min",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "히라타 카오루",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Kaoru Hirata",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이정민",
-          "repRoleNm": "배우",
-          "cast": "니코"
+          "peopleNmEn": "LEE Jung-min",
+          "cast": "니코",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유경",
-          "repRoleNm": "배우",
-          "cast": "유미 모"
+          "peopleNmEn": "",
+          "cast": "유미 모",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -450,6 +449,7 @@
           "staffRoleNm": "시각효과"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

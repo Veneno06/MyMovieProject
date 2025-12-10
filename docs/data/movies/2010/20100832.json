@@ -25,65 +25,64 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "성지혜",
-          "repRoleNm": "감독"
+          "peopleNmEn": "SUNG Ji-hye"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김영호",
-          "repRoleNm": "배우",
-          "cast": "종훈"
+          "peopleNmEn": "KIM Young-ho",
+          "cast": "종훈",
+          "castEn": "Jong-hun"
         },
         {
-          "peopleCd": "",
           "peopleNm": "황인영",
-          "repRoleNm": "배우",
-          "cast": "선영"
+          "peopleNmEn": "HWANG In-young",
+          "cast": "선영",
+          "castEn": "Sun-young"
         },
         {
-          "peopleCd": "",
           "peopleNm": "윤주희",
-          "repRoleNm": "배우",
-          "cast": "은주"
+          "peopleNmEn": "YOON Joo-hee",
+          "cast": "은주",
+          "castEn": "Eun-ju"
         },
         {
-          "peopleCd": "",
           "peopleNm": "강동훈",
-          "repRoleNm": "배우",
-          "cast": "남조교"
+          "peopleNmEn": "",
+          "cast": "남조교",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박광수",
-          "repRoleNm": "배우",
-          "cast": "남 교 수"
+          "peopleNmEn": "PARK Kwang-su",
+          "cast": "남 교 수          ",
+          "castEn": "특별출연"
         },
         {
-          "peopleCd": "",
           "peopleNm": "이경선",
-          "repRoleNm": "배우",
-          "cast": "상미"
+          "peopleNmEn": "",
+          "cast": "상미",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "신영진",
-          "repRoleNm": "배우",
-          "cast": "갤러리대표"
+          "peopleNmEn": "",
+          "cast": "갤러리대표",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김준환",
-          "repRoleNm": "배우",
-          "cast": "휴게소남자"
+          "peopleNmEn": "",
+          "cast": "휴게소남자    ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김은희",
-          "repRoleNm": "배우",
-          "cast": "여조교"
+          "peopleNmEn": "",
+          "cast": "여조교    ",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -404,6 +403,7 @@
           "staffRoleNm": "캐스팅"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

@@ -22,41 +22,40 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김봉은",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Bong-eun"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "황정아",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이현국",
-          "repRoleNm": "배우",
-          "cast": "현우"
+          "peopleNmEn": "",
+          "cast": "현우",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "강경돈",
-          "repRoleNm": "배우",
-          "cast": "사진작가"
+          "peopleNmEn": "GANG Gyeong-don",
+          "cast": "사진작가",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최창수",
-          "repRoleNm": "배우",
-          "cast": "건설사임원1"
+          "peopleNmEn": "",
+          "cast": "건설사임원1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김상수",
-          "repRoleNm": "배우",
-          "cast": "건설사임원2"
+          "peopleNmEn": "",
+          "cast": "건설사임원2",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -281,6 +280,7 @@
           "staffRoleNm": "기획"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

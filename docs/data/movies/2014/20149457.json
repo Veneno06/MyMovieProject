@@ -22,41 +22,40 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김성무",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Sung-moo"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이미소",
-          "repRoleNm": "배우",
-          "cast": "여주"
+          "peopleNmEn": "LEE Mi-so",
+          "cast": "여주",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김영필",
-          "repRoleNm": "배우",
-          "cast": "중헌"
+          "peopleNmEn": "KIM Young-pil",
+          "cast": "중헌",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍완표",
-          "repRoleNm": "배우",
-          "cast": "윤근"
+          "peopleNmEn": "HONG Wan-pyo",
+          "cast": "윤근",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황석하",
-          "repRoleNm": "배우",
-          "cast": "갑봉"
+          "peopleNmEn": "HWANG Seok-Ha",
+          "cast": "갑봉",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "허성태",
-          "repRoleNm": "배우",
-          "cast": "항기"
+          "peopleNmEn": "HEO Sungtae",
+          "cast": "항기",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -118,6 +117,7 @@
           "staffRoleNm": "동시녹음"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

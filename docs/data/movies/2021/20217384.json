@@ -25,23 +25,22 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "연태흠",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "정영주",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "JEONG Young-ju",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황석정",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HWANG Seok-jeong",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -83,6 +82,7 @@
         }
       ],
       "staffs": []
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

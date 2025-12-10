@@ -22,71 +22,70 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "한승우",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "방연지",
-          "repRoleNm": "배우",
-          "cast": "금반지 목소리"
+          "peopleNmEn": "",
+          "cast": "금반지 목소리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김선혜",
-          "repRoleNm": "배우",
-          "cast": "변응심 목소리"
+          "peopleNmEn": "KIM Sun-hye",
+          "cast": "변응심 목소리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조경이",
-          "repRoleNm": "배우",
-          "cast": "냠냠/곱단/뽀삐 목소리"
+          "peopleNmEn": "",
+          "cast": "냠냠/곱단/뽀삐 목소리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조진숙",
-          "repRoleNm": "배우",
-          "cast": "칸다 목소리"
+          "peopleNmEn": " ",
+          "cast": "칸다 목소리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "채민지",
-          "repRoleNm": "배우",
-          "cast": "호용/태풍 목소리"
+          "peopleNmEn": "",
+          "cast": "호용/태풍 목소리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍범기",
-          "repRoleNm": "배우",
-          "cast": "뺀돌/아빠 목소리"
+          "peopleNmEn": "HONG Beom-gi",
+          "cast": "뺀돌/아빠 목소리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "여윤미",
-          "repRoleNm": "배우",
-          "cast": "엄마/울자 목소리"
+          "peopleNmEn": "",
+          "cast": "엄마/울자 목소리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박상훈",
-          "repRoleNm": "배우",
-          "cast": "대마왕"
+          "peopleNmEn": "",
+          "cast": "대마왕",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황창영",
-          "repRoleNm": "배우",
-          "cast": "쿠키/솜사탕 목소리"
+          "peopleNmEn": "Hwang changyung",
+          "cast": "쿠키/솜사탕 목소리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "권도일",
-          "repRoleNm": "배우",
-          "cast": "의병대장"
+          "peopleNmEn": "",
+          "cast": "의병대장",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -315,7 +314,7 @@
         },
         {
           "peopleNm": "황창영",
-          "peopleNmEn": "",
+          "peopleNmEn": "Hwang changyung",
           "staffRoleNm": "음악"
         },
         {
@@ -748,8 +747,8 @@
           "peopleNmEn": "CHI WOO PARK",
           "staffRoleNm": "애니메이션팀"
         }
-      ],
-      "audiAcc": 56299
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

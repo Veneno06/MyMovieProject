@@ -25,77 +25,76 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김충길",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Chung-gil"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김충길",
-          "repRoleNm": "배우",
-          "cast": "충길"
+          "peopleNmEn": "KIM Chung-gil",
+          "cast": "충길",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이원선",
-          "repRoleNm": "배우",
-          "cast": "원선"
+          "peopleNmEn": "",
+          "cast": "원선",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한동원",
-          "repRoleNm": "배우",
-          "cast": "헌팅의 추억 감독"
+          "peopleNmEn": "",
+          "cast": "헌팅의 추억 감독",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "신연재",
-          "repRoleNm": "배우",
-          "cast": "연재"
+          "peopleNmEn": "",
+          "cast": "연재",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임성균",
-          "repRoleNm": "배우",
-          "cast": "성균"
+          "peopleNmEn": "",
+          "cast": "성균",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이사라",
-          "repRoleNm": "배우",
-          "cast": "원선 팬"
+          "peopleNmEn": "",
+          "cast": "원선 팬",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김광태",
-          "repRoleNm": "배우",
-          "cast": "남자 시상자"
+          "peopleNmEn": "",
+          "cast": "남자 시상자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김우현",
-          "repRoleNm": "배우",
-          "cast": "여자 시상자"
+          "peopleNmEn": "",
+          "cast": "여자 시상자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이도군",
-          "repRoleNm": "배우",
-          "cast": "사는게 사막 감독"
+          "peopleNmEn": "",
+          "cast": "사는게 사막 감독",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이원진",
-          "repRoleNm": "배우",
-          "cast": "먹기만 하는 남자"
+          "peopleNmEn": "LEEWONJIN",
+          "cast": "먹기만 하는 남자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정회동",
-          "repRoleNm": "배우",
-          "cast": "헌팅의 추억 붐맨"
+          "peopleNmEn": "",
+          "cast": "헌팅의 추억 붐맨",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -177,7 +176,7 @@
         },
         {
           "peopleNm": "이원진",
-          "peopleNmEn": "",
+          "peopleNmEn": "LEEWONJIN",
           "staffRoleNm": "동시녹음"
         },
         {
@@ -201,6 +200,7 @@
           "staffRoleNm": "예고편"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

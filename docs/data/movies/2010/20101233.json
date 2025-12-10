@@ -22,89 +22,88 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이난",
-          "repRoleNm": "감독"
+          "peopleNmEn": "Inan"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "송새벽",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "SONG Sae-byeok",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이주승",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Juseung",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한예리",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HAN Ye-ri",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박종보",
-          "repRoleNm": "배우",
-          "cast": "정신과 의사"
+          "peopleNmEn": "",
+          "cast": "정신과 의사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최희진",
-          "repRoleNm": "배우",
-          "cast": "혜영"
+          "peopleNmEn": "CHOI Hee-jin",
+          "cast": "혜영",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김승훈",
-          "repRoleNm": "배우",
-          "cast": "[DISTANCE] 명규"
+          "peopleNmEn": "KIM Seung-hoon",
+          "cast": "[DISTANCE] 명규",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정인겸",
-          "repRoleNm": "배우",
-          "cast": "[BETWEEN] 팀장"
+          "peopleNmEn": "JUNG In-kyeom",
+          "cast": "[BETWEEN] 팀장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김미소",
-          "repRoleNm": "배우",
-          "cast": "여고생 1"
+          "peopleNmEn": "Kim Mi-so",
+          "cast": "여고생 1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍재희",
-          "repRoleNm": "배우",
-          "cast": "여직원"
+          "peopleNmEn": "",
+          "cast": "여직원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "배수정",
-          "repRoleNm": "배우",
-          "cast": "여고생"
+          "peopleNmEn": "BAE Su-Jeong",
+          "cast": "여고생 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임은영",
-          "repRoleNm": "배우",
-          "cast": "간호사"
+          "peopleNmEn": "",
+          "cast": "간호사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박인수",
-          "repRoleNm": "배우",
-          "cast": "레지던트"
+          "peopleNmEn": "PARK In-soo",
+          "cast": "레지던트",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박성연",
-          "repRoleNm": "배우",
-          "cast": "[BETWEEN] 만취녀"
+          "peopleNmEn": "PARK Sung-yeon",
+          "cast": "[BETWEEN] 만취녀",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -495,6 +494,7 @@
           "staffRoleNm": "광고디자인"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

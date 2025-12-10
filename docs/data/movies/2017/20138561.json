@@ -22,82 +22,80 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이영진",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Young-jin"
         },
         {
-          "peopleCd": "",
           "peopleNm": "노홍식",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KNOW Hong-shik"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김효진",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Hyo-jin",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "강하린",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최라윤",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Choi Ra Yun",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박광일",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "손우혁",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "오유미",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황정인",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이가경",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Ga-kyung",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조승범",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "류진석",
-          "repRoleNm": "배우",
-          "cast": "광철"
+          "peopleNmEn": "",
+          "cast": "광철",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김영학",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -264,6 +262,7 @@
           "staffRoleNm": "기타"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

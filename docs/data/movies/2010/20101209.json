@@ -25,53 +25,52 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "심형래",
-          "repRoleNm": "감독"
+          "peopleNmEn": "SHIM Hyung-rae"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "심형래",
-          "repRoleNm": "배우",
-          "cast": "영구"
+          "peopleNmEn": "SHIM Hyung-rae",
+          "cast": "영구",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "마이클 리스폴리",
-          "repRoleNm": "배우",
-          "cast": "토니 5세"
+          "peopleNmEn": "Michael Rispoli",
+          "cast": "토니 5세",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하비 케이틀",
-          "repRoleNm": "배우",
-          "cast": "돈 카리니"
+          "peopleNmEn": "Harvey Keitel",
+          "cast": "돈 카리니",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "제이슨 미웨스",
-          "repRoleNm": "배우",
-          "cast": "비니"
+          "peopleNmEn": "Jason Mewes",
+          "cast": "비니",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조셀린 도나휴",
-          "repRoleNm": "배우",
-          "cast": "낸시 본판티"
+          "peopleNmEn": "Jocelin Donahue",
+          "cast": "낸시 본판티",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "안소희",
-          "repRoleNm": "배우",
-          "cast": "까메오"
+          "peopleNmEn": "AN So-hee",
+          "cast": "까메오",
+          "castEn": "cameo"
         },
         {
-          "peopleCd": "",
           "peopleNm": "우혜림",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "WOO Hye-rim",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -426,8 +425,8 @@
           "peopleNmEn": "JOONG SUB HWANG",
           "staffRoleNm": "VFX 아티스트"
         }
-      ],
-      "audiAcc": 2512521
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

@@ -22,107 +22,106 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "서세원",
-          "repRoleNm": "감독"
+          "peopleNmEn": "SUH Se-won"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "유오성",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "YU Oh-seong",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "고두심",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KO Doo-shim",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박정환",
-          "repRoleNm": "배우",
-          "cast": "조도선"
+          "peopleNmEn": "PARK Jung-hwan",
+          "cast": "조도선 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정혜선",
-          "repRoleNm": "배우",
-          "cast": "한말 군인 딸"
+          "peopleNmEn": "Jeong Hye-seon ",
+          "cast": "한말 군인 딸",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최우혁",
-          "repRoleNm": "배우",
-          "cast": "한말군인 아들"
+          "peopleNmEn": "CHOI Woo-hyuk",
+          "cast": "한말군인 아들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정성모",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "JUNG Sung-mo",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "강민선",
-          "repRoleNm": "배우",
-          "cast": "유남식"
+          "peopleNmEn": "KANG Min-sun",
+          "cast": "유남식",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김효섭",
-          "repRoleNm": "배우",
-          "cast": "안중근 아들"
+          "peopleNmEn": "",
+          "cast": "안중근 아들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "안성균",
-          "repRoleNm": "배우",
-          "cast": "교도소장"
+          "peopleNmEn": "AHN Sung-Kyun",
+          "cast": "교도소장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "노은영",
-          "repRoleNm": "배우",
-          "cast": "한말 군인 아내"
+          "peopleNmEn": "",
+          "cast": "한말 군인 아내",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한명숙",
-          "repRoleNm": "배우",
-          "cast": "술집여자1"
+          "peopleNmEn": "HAN Myeong-suk",
+          "cast": "술집여자1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "서광석",
-          "repRoleNm": "배우",
-          "cast": "김성백"
+          "peopleNmEn": "",
+          "cast": "김성백 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "원주한",
-          "repRoleNm": "배우",
-          "cast": "일본천황"
+          "peopleNmEn": "",
+          "cast": "일본천황 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유재영",
-          "repRoleNm": "배우",
-          "cast": "일본형사1"
+          "peopleNmEn": "YU Jae-youg",
+          "cast": "일본형사1 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박소연",
-          "repRoleNm": "배우",
-          "cast": "마사꼬"
+          "peopleNmEn": "PARK So-youn",
+          "cast": "마사꼬 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조유진",
-          "repRoleNm": "배우",
-          "cast": "김성백 딸"
+          "peopleNmEn": "CHO You-jin",
+          "cast": "김성백 딸 ",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -274,7 +273,7 @@
         },
         {
           "peopleNm": "김상수",
-          "peopleNmEn": "",
+          "peopleNmEn": "KIM SANGSU",
           "staffRoleNm": "촬영팀"
         },
         {
@@ -803,6 +802,7 @@
           "staffRoleNm": "스턴트연기"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

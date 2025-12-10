@@ -22,65 +22,64 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이재규",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Jae-kyoo"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이병헌",
-          "repRoleNm": "배우",
-          "cast": "W"
+          "peopleNmEn": "LEE Byung-hun",
+          "cast": "W",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한채영",
-          "repRoleNm": "배우",
-          "cast": "J"
+          "peopleNmEn": "HAN Chae-young",
+          "cast": "J",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조재현",
-          "repRoleNm": "배우",
-          "cast": "고종"
+          "peopleNmEn": "CHO Jae-hyun",
+          "cast": "고종",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "전노민",
-          "repRoleNm": "배우",
-          "cast": "김우경"
+          "peopleNmEn": "JEON No-min",
+          "cast": "김우경",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김태우",
-          "repRoleNm": "배우",
-          "cast": "최동훈"
+          "peopleNmEn": "KIM Tae-woo",
+          "cast": "최동훈",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이제훈",
-          "repRoleNm": "배우",
-          "cast": "이척(순종)"
+          "peopleNmEn": "LEE Je-hoon",
+          "cast": "이척(순종)",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박병은",
-          "repRoleNm": "배우",
-          "cast": "오드아이"
+          "peopleNmEn": "PARK Byung-eun",
+          "cast": "오드아이",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임소영",
-          "repRoleNm": "배우",
-          "cast": "아나운서"
+          "peopleNmEn": "",
+          "cast": "아나운서",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김성준",
-          "repRoleNm": "배우",
-          "cast": "청소년"
+          "peopleNmEn": "",
+          "cast": "청소년",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -1106,6 +1105,7 @@
           "staffRoleNm": "VFX 슈퍼바이저"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

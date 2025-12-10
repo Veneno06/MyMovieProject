@@ -22,77 +22,76 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김태곤",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Tae-gon"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "심희섭",
-          "repRoleNm": "배우",
-          "cast": "상원"
+          "peopleNmEn": "SIM Hee-sub",
+          "cast": "상원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김창환",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Chang-hwan",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "안재홍",
-          "repRoleNm": "배우",
-          "cast": "승준"
+          "peopleNmEn": "AHN Jae-hong",
+          "cast": "승준",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김꽃비",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Kkot-bi",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황미영",
-          "repRoleNm": "배우",
-          "cast": "보희"
+          "peopleNmEn": "HWANG Mi-yeong",
+          "cast": "보희",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "전고운",
-          "repRoleNm": "배우",
-          "cast": "누나 목소리"
+          "peopleNmEn": "JEON Go-woon",
+          "cast": "누나 목소리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "진태철",
-          "repRoleNm": "배우",
-          "cast": "다방사장"
+          "peopleNmEn": "",
+          "cast": "다방사장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "고봉곤",
-          "repRoleNm": "배우",
-          "cast": "위병소병장"
+          "peopleNmEn": "",
+          "cast": "위병소병장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김범철",
-          "repRoleNm": "배우",
-          "cast": "보초병"
+          "peopleNmEn": "",
+          "cast": "보초병",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최형선",
-          "repRoleNm": "배우",
-          "cast": "상병"
+          "peopleNmEn": "",
+          "cast": "상병",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김태곤",
-          "repRoleNm": "배우",
-          "cast": "말년병장 목소리"
+          "peopleNmEn": "KIM Tae-gon",
+          "cast": "말년병장 목소리",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -327,6 +326,7 @@
           "staffRoleNm": "포스터사진"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

@@ -22,77 +22,76 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김희영",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "장광",
-          "repRoleNm": "배우",
-          "cast": "동일"
+          "peopleNmEn": "JANG Kwang",
+          "cast": "동일",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "연준석",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "YEON Jun-seok",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하성광",
-          "repRoleNm": "배우",
-          "cast": "민성"
+          "peopleNmEn": "HA Sung-kwang",
+          "cast": "민성",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김가현",
-          "repRoleNm": "배우",
-          "cast": "팬션 사람들"
+          "peopleNmEn": "",
+          "cast": "팬션 사람들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김민재",
-          "repRoleNm": "배우",
-          "cast": "재훈친구2"
+          "peopleNmEn": "KIM Min-jae",
+          "cast": "재훈친구2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김승환",
-          "repRoleNm": "배우",
-          "cast": "피시방 경찰"
+          "peopleNmEn": "",
+          "cast": "피시방 경찰",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김지은",
-          "repRoleNm": "배우",
-          "cast": "비키니 녀"
+          "peopleNmEn": "",
+          "cast": "비키니 녀",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박완규",
-          "repRoleNm": "배우",
-          "cast": "형사1"
+          "peopleNmEn": "",
+          "cast": "형사1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이승현",
-          "repRoleNm": "배우",
-          "cast": "팬션 남"
+          "peopleNmEn": "",
+          "cast": "팬션 남",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김현숙",
-          "repRoleNm": "배우",
-          "cast": "피해자 할머니 역"
+          "peopleNmEn": "",
+          "cast": "피해자 할머니 역",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "강민지",
-          "repRoleNm": "배우",
-          "cast": "팬션 녀"
+          "peopleNmEn": "",
+          "cast": "팬션 녀",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -654,17 +653,17 @@
         },
         {
           "peopleNm": "노병욱",
-          "peopleNmEn": "NOH Byung-wook",
+          "peopleNmEn": "NOH Byoung-wook",
           "staffRoleNm": "DI팀"
         },
         {
           "peopleNm": "노병욱",
-          "peopleNmEn": "NOH Byung-wook",
+          "peopleNmEn": "NOH Byoung-wook",
           "staffRoleNm": "DI팀"
         },
         {
           "peopleNm": "노병욱",
-          "peopleNmEn": "NOH Byung-wook",
+          "peopleNmEn": "NOH Byoung-wook",
           "staffRoleNm": "DI팀"
         },
         {
@@ -683,6 +682,7 @@
           "staffRoleNm": "기획"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

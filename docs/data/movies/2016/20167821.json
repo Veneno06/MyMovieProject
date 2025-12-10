@@ -22,17 +22,16 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김대현",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Dae-hyun"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "황건",
-          "repRoleNm": "배우",
-          "cast": "김대건 신부/내레이션"
+          "peopleNmEn": "HWANG Gun",
+          "cast": "김대건 신부/내레이션",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -298,6 +297,7 @@
           "staffRoleNm": "예고편"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

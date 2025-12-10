@@ -22,107 +22,106 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김동욱",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Dong-uk"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김효진",
-          "repRoleNm": "배우",
-          "cast": "윤소주"
+          "peopleNmEn": "KIM Hyo-jin",
+          "cast": "윤소주 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박건형",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "PARK Gun-hyung",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최원영",
-          "repRoleNm": "배우",
-          "cast": "학생과 선생1"
+          "peopleNmEn": "CHOI Won-young",
+          "cast": "학생과 선생1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정욱",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "JUNG Wook",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "강기재",
-          "repRoleNm": "배우",
-          "cast": "이종 격투기 선수"
+          "peopleNmEn": "KANG Ki-jae",
+          "cast": "이종 격투기 선수",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김호규",
-          "repRoleNm": "배우",
-          "cast": "불량 고삐리1"
+          "peopleNmEn": "",
+          "cast": "불량 고삐리1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김미림",
-          "repRoleNm": "배우",
-          "cast": "깻잎3"
+          "peopleNmEn": "",
+          "cast": "깻잎3",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박지혜",
-          "repRoleNm": "배우",
-          "cast": "깻잎1"
+          "peopleNmEn": "",
+          "cast": "깻잎1 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박찬훈",
-          "repRoleNm": "배우",
-          "cast": "현재패2"
+          "peopleNmEn": "",
+          "cast": "현재패2 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정진우",
-          "repRoleNm": "배우",
-          "cast": "버스기사"
+          "peopleNmEn": "JiN-woo Jung",
+          "cast": "버스기사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한승훈",
-          "repRoleNm": "배우",
-          "cast": "학원남학생"
+          "peopleNmEn": "HAN Seung-hun",
+          "cast": "학원남학생",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박동진",
-          "repRoleNm": "배우",
-          "cast": "현재패3"
+          "peopleNmEn": "",
+          "cast": "현재패3 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임미미",
-          "repRoleNm": "배우",
-          "cast": "정승미"
+          "peopleNmEn": "",
+          "cast": "정승미",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김소정",
-          "repRoleNm": "배우",
-          "cast": "시연"
+          "peopleNmEn": "",
+          "cast": "시연",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김명국",
-          "repRoleNm": "배우",
-          "cast": "교장"
+          "peopleNmEn": "KIM Myeong-gook",
+          "cast": "교장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍주환",
-          "repRoleNm": "배우",
-          "cast": "형사2"
+          "peopleNmEn": "",
+          "cast": "형사2",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -574,13 +573,13 @@
           "staffRoleNm": "분장"
         },
         {
-          "peopleNm": "박상희",
-          "peopleNmEn": "PARK Sang-hee",
+          "peopleNm": "이선숙",
+          "peopleNmEn": "Lee SUN-suk",
           "staffRoleNm": "분장팀"
         },
         {
-          "peopleNm": "김선숙",
-          "peopleNmEn": "",
+          "peopleNm": "박상희",
+          "peopleNmEn": "PARK Sang-hee",
           "staffRoleNm": "분장팀"
         },
         {
@@ -1018,8 +1017,8 @@
           "peopleNmEn": "",
           "staffRoleNm": "VFX 슈퍼바이저"
         }
-      ],
-      "audiAcc": 218912
-    }
+      ]
+    },
+    "source": "영화진흥위원회"
   }
 }

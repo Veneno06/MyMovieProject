@@ -22,71 +22,70 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "장문일",
-          "repRoleNm": "감독"
+          "peopleNmEn": "JANG Moon-il"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "황정음",
-          "repRoleNm": "배우",
-          "cast": "재화"
+          "peopleNmEn": "HWANG Jung-eum",
+          "cast": "재화",
+          "castEn": "Jaehwa"
         },
         {
-          "peopleCd": "",
           "peopleNm": "이종혁",
-          "repRoleNm": "배우",
-          "cast": "준섭"
+          "peopleNmEn": "LEE Jong-hyuk",
+          "cast": "준섭",
+          "castEn": "Junseob"
         },
         {
-          "peopleCd": "",
           "peopleNm": "최여진",
-          "repRoleNm": "배우",
-          "cast": "유자"
+          "peopleNmEn": "CHOI Yeo-jin",
+          "cast": "유자",
+          "castEn": "Yooja"
         },
         {
-          "peopleCd": "",
           "peopleNm": "박진주",
-          "repRoleNm": "배우",
-          "cast": "미자"
+          "peopleNmEn": "PARK Jin-ju",
+          "cast": "미자",
+          "castEn": "Mija"
         },
         {
-          "peopleCd": "",
           "peopleNm": "최지연",
-          "repRoleNm": "배우",
-          "cast": "학생들"
+          "peopleNmEn": "",
+          "cast": "학생들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정민지",
-          "repRoleNm": "배우",
-          "cast": "학생들"
+          "peopleNmEn": "",
+          "cast": "학생들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임민주",
-          "repRoleNm": "배우",
-          "cast": "학생들"
+          "peopleNmEn": "",
+          "cast": "학생들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이용호",
-          "repRoleNm": "배우",
-          "cast": "의사"
+          "peopleNmEn": "",
+          "cast": "의사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김대식",
-          "repRoleNm": "배우",
-          "cast": "학생들"
+          "peopleNmEn": "",
+          "cast": "학생들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박소연",
-          "repRoleNm": "배우",
-          "cast": "학생들"
+          "peopleNmEn": "",
+          "cast": "학생들",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -899,6 +898,7 @@
           "staffRoleNm": "시각효과"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

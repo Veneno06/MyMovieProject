@@ -22,71 +22,70 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "심광진",
-          "repRoleNm": "감독"
+          "peopleNmEn": "SHIM Kwang-jin"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이대근",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Dae-geun",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "안선영",
-          "repRoleNm": "배우",
-          "cast": "딸 역"
+          "peopleNmEn": "Ahn Sun-young",
+          "cast": "딸 역",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이지민",
-          "repRoleNm": "배우",
-          "cast": "병원소녀"
+          "peopleNmEn": "",
+          "cast": "병원소녀 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정경순",
-          "repRoleNm": "배우",
-          "cast": "며느리"
+          "peopleNmEn": "CHUNG Kyung-soon",
+          "cast": "며느리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "현유",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Hyun Yu",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박재운",
-          "repRoleNm": "배우",
-          "cast": "진짜 사위"
+          "peopleNmEn": "",
+          "cast": "진짜 사위 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "신진철",
-          "repRoleNm": "배우",
-          "cast": "재연배우"
+          "peopleNmEn": "",
+          "cast": "재연배우",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "판유걸",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "PHAN Yu-goel",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황영희",
-          "repRoleNm": "배우",
-          "cast": "30대 여자"
+          "peopleNmEn": "HWANG Young-hee",
+          "cast": "30대 여자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "손진호",
-          "repRoleNm": "배우",
-          "cast": "막내/동료"
+          "peopleNmEn": "SOHN Jin-ho",
+          "cast": "막내/동료",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -994,6 +993,7 @@
           "staffRoleNm": "배급진행"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

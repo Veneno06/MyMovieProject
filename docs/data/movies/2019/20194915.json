@@ -22,59 +22,58 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "강유가람",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KANGYU Ga-ram"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "허은주",
-          "repRoleNm": "배우",
-          "cast": "키라"
+          "peopleNmEn": "",
+          "cast": "키라",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김이승현",
-          "repRoleNm": "배우",
-          "cast": "짜투리"
+          "peopleNmEn": "",
+          "cast": "짜투리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유여원",
-          "repRoleNm": "배우",
-          "cast": "어라"
+          "peopleNmEn": "",
+          "cast": "어라",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김혜정",
-          "repRoleNm": "배우",
-          "cast": "오매"
+          "peopleNmEn": "",
+          "cast": "오매",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "강정임",
-          "repRoleNm": "배우",
-          "cast": "흐른"
+          "peopleNmEn": "",
+          "cast": "흐른",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최은희",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김용현",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김건우",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -349,6 +348,7 @@
           "staffRoleNm": "홍보/마케팅 진행"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

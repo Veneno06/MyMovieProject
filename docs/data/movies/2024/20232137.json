@@ -22,113 +22,112 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김진태",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Jin-tae"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이동휘",
-          "repRoleNm": "배우",
-          "cast": "선우"
+          "peopleNmEn": "LEE Dong-hwi",
+          "cast": "선우",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "강신일",
-          "repRoleNm": "배우",
-          "cast": "강신일"
+          "peopleNmEn": "KANG Sin-Il",
+          "cast": "강신일",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한지은",
-          "repRoleNm": "배우",
-          "cast": "우정"
+          "peopleNmEn": "HAN Ji-eun",
+          "cast": "우정",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "차미경",
-          "repRoleNm": "배우",
-          "cast": "미자"
+          "peopleNmEn": "",
+          "cast": "미자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박성근",
-          "repRoleNm": "배우",
-          "cast": "철용"
+          "peopleNmEn": "PARK Seong-keun",
+          "cast": "철용",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박소진",
-          "repRoleNm": "배우",
-          "cast": "혜영"
+          "peopleNmEn": "PARK So-jin",
+          "cast": "혜영",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김미향",
-          "repRoleNm": "배우",
-          "cast": "할머니"
+          "peopleNmEn": "KIM Mi-hiyang",
+          "cast": "할머니",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "허준석",
-          "repRoleNm": "배우",
-          "cast": "태용"
+          "peopleNmEn": "HEO Jun-seok",
+          "cast": "태용",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유재명",
-          "repRoleNm": "배우",
-          "cast": "경비"
+          "peopleNmEn": "YU Jae-myeong",
+          "cast": "경비",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "안도경",
-          "repRoleNm": "배우",
-          "cast": "숙모"
+          "peopleNmEn": "Ahn DoKyung",
+          "cast": "숙모",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장명갑",
-          "repRoleNm": "배우",
-          "cast": "의사"
+          "peopleNmEn": "JANG Myong-kab",
+          "cast": "의사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조련",
-          "repRoleNm": "배우",
-          "cast": "우정모"
+          "peopleNmEn": "",
+          "cast": "우정모",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박준성",
-          "repRoleNm": "배우",
-          "cast": "선배"
+          "peopleNmEn": "",
+          "cast": "선배",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이정비",
-          "repRoleNm": "배우",
-          "cast": "주민센터 직원"
+          "peopleNmEn": "LEE Jung-bi",
+          "cast": "주민센터 직원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김종인",
-          "repRoleNm": "배우",
-          "cast": "사촌형"
+          "peopleNmEn": "",
+          "cast": "사촌형",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정서인",
-          "repRoleNm": "배우",
-          "cast": "간병인"
+          "peopleNmEn": "",
+          "cast": "간병인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "배재원",
-          "repRoleNm": "배우",
-          "cast": "원무과 직원"
+          "peopleNmEn": "",
+          "cast": "원무과 직원",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -300,6 +299,11 @@
           "peopleNm": "유아종",
           "peopleNmEn": "",
           "staffRoleNm": "조명"
+        },
+        {
+          "peopleNm": "이재진",
+          "peopleNmEn": "LEEJAEJIN",
+          "staffRoleNm": "조명팀"
         },
         {
           "peopleNm": "이주원",
@@ -668,7 +672,7 @@
         },
         {
           "peopleNm": "유현일",
-          "peopleNmEn": "",
+          "peopleNmEn": "YOO HYUN-IL",
           "staffRoleNm": "배급진행"
         },
         {
@@ -685,6 +689,11 @@
           "peopleNm": "윤혜진",
           "peopleNmEn": "YOON Hye-jin",
           "staffRoleNm": "배급진행"
+        },
+        {
+          "peopleNm": "박원준",
+          "peopleNmEn": "",
+          "staffRoleNm": "매니지먼트"
         },
         {
           "peopleNm": "김진태",

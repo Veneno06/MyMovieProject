@@ -22,65 +22,64 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "박진순",
-          "repRoleNm": "감독"
+          "peopleNmEn": "PARK Jin-soon"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "다나",
-          "repRoleNm": "배우",
-          "cast": "설지"
+          "peopleNmEn": "DANA",
+          "cast": "설지",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "강은탁",
-          "repRoleNm": "배우",
-          "cast": "신웅"
+          "peopleNmEn": "KANG Eun-Tak",
+          "cast": "신웅",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이미소",
-          "repRoleNm": "배우",
-          "cast": "순영"
+          "peopleNmEn": "LEE Mi-so",
+          "cast": "순영",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박주혁",
-          "repRoleNm": "배우",
-          "cast": "붐맨"
+          "peopleNmEn": "park joohyuk",
+          "cast": "붐맨",
+          "castEn": "yong tae"
         },
         {
-          "peopleCd": "",
           "peopleNm": "김중기",
-          "repRoleNm": "배우",
-          "cast": "제주도 이장님"
+          "peopleNmEn": "KIM Jung-ki",
+          "cast": "제주도 이장님",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "공민정",
-          "repRoleNm": "배우",
-          "cast": "방작가"
+          "peopleNmEn": "GONG Min-jeong",
+          "cast": "방작가",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이설애",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Lee Seol Ae",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장석우",
-          "repRoleNm": "배우",
-          "cast": "갤러리 게스트"
+          "peopleNmEn": "Jang Seok U",
+          "cast": "갤러리 게스트    ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한성수",
-          "repRoleNm": "배우",
-          "cast": "갤러리 게스트"
+          "peopleNmEn": "Han Seong Su",
+          "cast": "갤러리 게스트    ",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -716,6 +715,7 @@
           "staffRoleNm": "VFX 슈퍼바이저"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

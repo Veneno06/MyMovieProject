@@ -25,59 +25,58 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이주헌",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Ju-heon"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "서우",
-          "repRoleNm": "배우",
-          "cast": "정화"
+          "peopleNmEn": "Seo-woo",
+          "cast": "정화",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "현성",
-          "repRoleNm": "배우",
-          "cast": "도혁"
+          "peopleNmEn": "Hyun-sung",
+          "cast": "도혁",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "주민하",
-          "repRoleNm": "배우",
-          "cast": "성주"
+          "peopleNmEn": "JU Min-ha",
+          "cast": "성주",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "백서빈",
-          "repRoleNm": "배우",
-          "cast": "경민"
+          "peopleNmEn": "BAEK Seo-bin",
+          "cast": "경민",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하은설",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장대용",
-          "repRoleNm": "배우",
-          "cast": "웨딩 커플 남"
+          "peopleNmEn": "",
+          "cast": "웨딩 커플 남",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최재혁",
-          "repRoleNm": "배우",
-          "cast": "어린 도혁"
+          "peopleNmEn": "",
+          "cast": "어린 도혁",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황유진",
-          "repRoleNm": "배우",
-          "cast": "학생1"
+          "peopleNmEn": "",
+          "cast": "학생1",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -678,6 +677,7 @@
           "staffRoleNm": "VFX 슈퍼바이저"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

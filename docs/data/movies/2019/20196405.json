@@ -31,41 +31,40 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "조영광",
-          "repRoleNm": "감독"
+          "peopleNmEn": "Young Kwang Jo"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "홍범기",
-          "repRoleNm": "배우",
-          "cast": "어썰트/ 시그널 / 헤비 / 메딕안 목소리 역"
+          "peopleNmEn": "HONG Beom-gi",
+          "cast": "어썰트/ 시그널 / 헤비 / 메딕안 목소리 역",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "안영미",
-          "repRoleNm": "배우",
-          "cast": "공대장 / 스나이퍼 목소리 역"
+          "peopleNmEn": "AN Young-mi",
+          "cast": "공대장 / 스나이퍼 목소리 역",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "안효민",
-          "repRoleNm": "배우",
-          "cast": "레인져 / 서플라이 / 공대왕 목소리 역"
+          "peopleNmEn": "",
+          "cast": "레인져 / 서플라이 / 공대왕 목소리 역",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최낙윤",
-          "repRoleNm": "배우",
-          "cast": "블랙어썰트 목소리 역"
+          "peopleNmEn": "",
+          "cast": "블랙어썰트 목소리 역",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "강시현",
-          "repRoleNm": "배우",
-          "cast": "힐러 목소리 역"
+          "peopleNmEn": "",
+          "cast": "힐러 목소리 역",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -571,6 +570,7 @@
           "staffRoleNm": "기획진행"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

@@ -22,59 +22,58 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "조성규",
-          "repRoleNm": "감독"
+          "peopleNmEn": "CHO Sung-kyu"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "임원희",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LIM Won-hee",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "전석호",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "JEON Suk-ho",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "신소율",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "SHIN So-yul",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정연주",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "JEONG Yeon-ju",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "허동원",
-          "repRoleNm": "배우",
-          "cast": "승수"
+          "peopleNmEn": "HEO Dong-won",
+          "cast": "승수",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조선묵",
-          "repRoleNm": "배우",
-          "cast": "호은"
+          "peopleNmEn": "CHO SEONMOOK",
+          "cast": "호은",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이봉련",
-          "repRoleNm": "배우",
-          "cast": "식당주인"
+          "peopleNmEn": "LEE Bong-ryeon",
+          "cast": "식당주인 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이윤희",
-          "repRoleNm": "배우",
-          "cast": "비키니녀"
+          "peopleNmEn": "",
+          "cast": "비키니녀",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -331,6 +330,7 @@
           "staffRoleNm": "DI팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

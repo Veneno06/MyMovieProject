@@ -22,47 +22,46 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이대희",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Dae-hee"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김현지",
-          "repRoleNm": "배우",
-          "cast": "고등어/여자도다리/여고생1 목소리"
+          "peopleNmEn": "KIM Hyun-ji",
+          "cast": "고등어/여자도다리/여고생1 목소리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "안영미",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "AN Young-mi",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "현경수",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HYEON Gyoung-su",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이호산",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Ho-san",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "시영준",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "SI Young-jun",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이서준",
-          "repRoleNm": "배우",
-          "cast": "커플남"
+          "peopleNmEn": "",
+          "cast": "커플남",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -503,6 +502,7 @@
           "staffRoleNm": "광고디자인"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

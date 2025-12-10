@@ -28,83 +28,82 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "신동엽",
-          "repRoleNm": "감독"
+          "peopleNmEn": "SHIN Dong-yeob"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김병만",
-          "repRoleNm": "배우",
-          "cast": "손오공"
+          "peopleNmEn": "KIM Byung-man",
+          "cast": "손오공",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한민관",
-          "repRoleNm": "배우",
-          "cast": "사오정"
+          "peopleNmEn": "HAN Min-kwan",
+          "cast": "사오정",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "류담",
-          "repRoleNm": "배우",
-          "cast": "저팔계"
+          "peopleNmEn": "RYU Dam",
+          "cast": "저팔계",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조은주",
-          "repRoleNm": "배우",
-          "cast": "아나운서"
+          "peopleNmEn": "",
+          "cast": "아나운서 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최홍일",
-          "repRoleNm": "배우",
-          "cast": "우마왕"
+          "peopleNmEn": "CHOI Hong-il",
+          "cast": "우마왕",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한이진",
-          "repRoleNm": "배우",
-          "cast": "금각"
+          "peopleNmEn": "HAN Iee-jin",
+          "cast": "금각",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박준용",
-          "repRoleNm": "배우",
-          "cast": "연구원4"
+          "peopleNmEn": "",
+          "cast": "연구원4 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "백송이",
-          "repRoleNm": "배우",
-          "cast": "수행원1"
+          "peopleNmEn": "",
+          "cast": "수행원1 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최영우",
-          "repRoleNm": "배우",
-          "cast": "한국대표"
+          "peopleNmEn": "",
+          "cast": "한국대표 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정영우",
-          "repRoleNm": "배우",
-          "cast": "MC"
+          "peopleNmEn": "",
+          "cast": "MC",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최윤수",
-          "repRoleNm": "배우",
-          "cast": "경호원1"
+          "peopleNmEn": "",
+          "cast": "경호원1 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김용래",
-          "repRoleNm": "배우",
-          "cast": "우마왕부하1"
+          "peopleNmEn": "",
+          "cast": "우마왕부하1",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -958,6 +957,7 @@
           "staffRoleNm": "메이킹필름"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

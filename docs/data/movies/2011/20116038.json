@@ -22,125 +22,124 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "변성현",
-          "repRoleNm": "감독"
+          "peopleNmEn": "BYUN Sung-hyun"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "봉태규",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "BONG Tae-gyu",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이영훈",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Yeong-hoon",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "곽지민",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KWAK Ji-Min",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이재원",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Jae-won",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이영민",
-          "repRoleNm": "배우",
-          "cast": "호준"
+          "peopleNmEn": "",
+          "cast": "호준",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "변성현",
-          "repRoleNm": "배우",
-          "cast": "춥스"
+          "peopleNmEn": "BYUN Sung-hyun",
+          "cast": "춥스",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "라미란",
-          "repRoleNm": "배우",
-          "cast": "케이블PD"
+          "peopleNmEn": "RA Mi-ran",
+          "cast": "케이블PD",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김동영",
-          "repRoleNm": "배우",
-          "cast": "용찬"
+          "peopleNmEn": "KIM Dong-young",
+          "cast": "용찬",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이영란",
-          "repRoleNm": "배우",
-          "cast": "창대 엄마"
+          "peopleNmEn": "LEE Young-ran",
+          "cast": "창대 엄마",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임효라",
-          "repRoleNm": "배우",
-          "cast": "명동인터뷰 여자3"
+          "peopleNmEn": "",
+          "cast": "명동인터뷰 여자3",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장민철",
-          "repRoleNm": "배우",
-          "cast": "의사2"
+          "peopleNmEn": "",
+          "cast": "의사2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "구본웅",
-          "repRoleNm": "배우",
-          "cast": "구사장"
+          "peopleNmEn": "GOO Bon-woong",
+          "cast": "구사장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조민식",
-          "repRoleNm": "배우",
-          "cast": "창대회사 직원"
+          "peopleNmEn": "",
+          "cast": "창대회사 직원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한경탁",
-          "repRoleNm": "배우",
-          "cast": "레스토랑 사장"
+          "peopleNmEn": "HAN Kyung-tak",
+          "cast": "레스토랑 사장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍희연",
-          "repRoleNm": "배우",
-          "cast": "간호사2"
+          "peopleNmEn": "",
+          "cast": "간호사2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이연수",
-          "repRoleNm": "배우",
-          "cast": "명동인터뷰 여자2명동인터뷰 여자2"
+          "peopleNmEn": "",
+          "cast": "명동인터뷰 여자2명동인터뷰 여자2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박종근",
-          "repRoleNm": "배우",
-          "cast": "믹싱기사"
+          "peopleNmEn": "Park Jong Kun",
+          "cast": "믹싱기사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "신근철",
-          "repRoleNm": "배우",
-          "cast": "명동인터뷰 커플1"
+          "peopleNmEn": "",
+          "cast": "명동인터뷰 커플1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정지안",
-          "repRoleNm": "배우",
-          "cast": "편의점 알바"
+          "peopleNmEn": "JUNG Ji-an",
+          "cast": "편의점 알바",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -443,7 +442,7 @@
         },
         {
           "peopleNm": "박종근",
-          "peopleNmEn": "PARK Jong-geun",
+          "peopleNmEn": "Park Jong Kun",
           "staffRoleNm": "동시녹음"
         },
         {
@@ -742,6 +741,7 @@
           "staffRoleNm": "시각효과"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

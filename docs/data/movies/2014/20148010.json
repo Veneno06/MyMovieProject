@@ -22,65 +22,64 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김형범",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "최원영",
-          "repRoleNm": "배우",
-          "cast": "태성"
+          "peopleNmEn": "CHOI Won-young",
+          "cast": "태성",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "류혜연",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "강산",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KANG San",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장수미",
-          "repRoleNm": "배우",
-          "cast": "미소"
+          "peopleNmEn": "",
+          "cast": "미소",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "송재룡",
-          "repRoleNm": "배우",
-          "cast": "사진사"
+          "peopleNmEn": "SONG Jae-ryong",
+          "cast": "사진사 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임희대",
-          "repRoleNm": "배우",
-          "cast": "입양부부1"
+          "peopleNmEn": "",
+          "cast": "입양부부1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "송정우",
-          "repRoleNm": "배우",
-          "cast": "부동산 사장"
+          "peopleNmEn": "",
+          "cast": "부동산 사장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한수련",
-          "repRoleNm": "배우",
-          "cast": "집보러온 부부2"
+          "peopleNmEn": "",
+          "cast": "집보러온 부부2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박현철",
-          "repRoleNm": "배우",
-          "cast": "입양부부3"
+          "peopleNmEn": "",
+          "cast": "입양부부3",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -541,6 +540,7 @@
           "staffRoleNm": "VFX 슈퍼바이저"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

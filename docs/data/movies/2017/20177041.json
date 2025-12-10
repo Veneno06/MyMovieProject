@@ -22,35 +22,34 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "강유민",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KANG Yu-min"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "이은미",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Eun-mi",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한나",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이재현",
-          "repRoleNm": "배우",
-          "cast": "민호"
+          "peopleNmEn": "",
+          "cast": "민호",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조배성",
-          "repRoleNm": "배우",
-          "cast": "남학생(목소리)"
+          "peopleNmEn": "",
+          "cast": "남학생(목소리)",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -251,6 +250,7 @@
           "staffRoleNm": "기획"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

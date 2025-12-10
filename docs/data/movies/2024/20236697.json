@@ -25,131 +25,130 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "최이현",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "동방우",
-          "repRoleNm": "배우",
-          "cast": "규만"
+          "peopleNmEn": "DONG Bang-woo",
+          "cast": "규만",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "지대한",
-          "repRoleNm": "배우",
-          "cast": "진기"
+          "peopleNmEn": "JI Dae-han",
+          "cast": "진기",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이혁",
-          "repRoleNm": "배우",
-          "cast": "도필"
+          "peopleNmEn": "E.Hyuk",
+          "cast": "도필",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "노준영",
-          "repRoleNm": "배우",
-          "cast": "정아"
+          "peopleNmEn": "",
+          "cast": "정아",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유준혁",
-          "repRoleNm": "배우",
-          "cast": "경태"
+          "peopleNmEn": "",
+          "cast": "경태",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한태일",
-          "repRoleNm": "배우",
-          "cast": "송노인"
+          "peopleNmEn": "HAN Tae-il",
+          "cast": "송노인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장명갑",
-          "repRoleNm": "배우",
-          "cast": "명갑"
+          "peopleNmEn": "JANG Myong-kab",
+          "cast": "명갑",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이진경",
-          "repRoleNm": "배우",
-          "cast": "CF모델"
+          "peopleNmEn": "",
+          "cast": "CF모델",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김재철",
-          "repRoleNm": "배우",
-          "cast": "경일"
+          "peopleNmEn": "",
+          "cast": "경일",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "공정환",
-          "repRoleNm": "배우",
-          "cast": "선장"
+          "peopleNmEn": "GONG Jung-hwan",
+          "cast": "선장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "허진",
-          "repRoleNm": "배우",
-          "cast": "봉숙"
+          "peopleNmEn": "HEO Jin",
+          "cast": "봉숙",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김병옥",
-          "repRoleNm": "배우",
-          "cast": "명균"
+          "peopleNmEn": "KIM Byung-ok",
+          "cast": "명균",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이재용",
-          "repRoleNm": "배우",
-          "cast": "금철"
+          "peopleNmEn": "LEE Jae-yong",
+          "cast": "금철",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "리우진",
-          "repRoleNm": "배우",
-          "cast": "두순"
+          "peopleNmEn": "LEE Woo-jin",
+          "cast": "두순",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조두현",
-          "repRoleNm": "배우",
-          "cast": "연안부두 보완"
+          "peopleNmEn": "",
+          "cast": "연안부두 보완",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황상경",
-          "repRoleNm": "배우",
-          "cast": "경찰1"
+          "peopleNmEn": "",
+          "cast": "경찰1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박지연",
-          "repRoleNm": "배우",
-          "cast": "경찰2"
+          "peopleNmEn": "",
+          "cast": "경찰2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정도원",
-          "repRoleNm": "배우",
-          "cast": "CF감독"
+          "peopleNmEn": "",
+          "cast": "CF감독",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "지연주",
-          "repRoleNm": "배우",
-          "cast": "봉숙 며느리"
+          "peopleNmEn": "",
+          "cast": "봉숙 며느리",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "소정인",
-          "repRoleNm": "배우",
-          "cast": "소선장"
+          "peopleNmEn": "",
+          "cast": "소선장",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -260,6 +259,11 @@
           "staffRoleNm": "조명팀"
         },
         {
+          "peopleNm": "박동순",
+          "peopleNmEn": "PARK Dong-soon",
+          "staffRoleNm": "조명"
+        },
+        {
           "peopleNm": "오희성",
           "peopleNmEn": "",
           "staffRoleNm": "제작"
@@ -365,34 +369,9 @@
           "staffRoleNm": "카메라오퍼레이터"
         },
         {
-          "peopleNm": "박동순",
-          "peopleNmEn": "PARK Dong-soon",
-          "staffRoleNm": "조명"
-        },
-        {
-          "peopleNm": "최석원",
-          "peopleNmEn": "Choi Seok Won",
-          "staffRoleNm": "DI팀"
-        },
-        {
-          "peopleNm": "서유진",
-          "peopleNmEn": "SEO Eugene",
+          "peopleNm": "노홍아",
+          "peopleNmEn": "Hongah Noh",
           "staffRoleNm": "온라인마케팅"
-        },
-        {
-          "peopleNm": "남유경",
-          "peopleNmEn": "Nam Yu-gyeong",
-          "staffRoleNm": "온라인마케팅"
-        },
-        {
-          "peopleNm": "이현지",
-          "peopleNmEn": "",
-          "staffRoleNm": "온라인마케팅"
-        },
-        {
-          "peopleNm": "임소리",
-          "peopleNmEn": "",
-          "staffRoleNm": "캐스팅"
         },
         {
           "peopleNm": "이하림",
@@ -410,9 +389,34 @@
           "staffRoleNm": "온라인마케팅"
         },
         {
-          "peopleNm": "노홍아",
-          "peopleNmEn": "Hongah Noh",
+          "peopleNm": "임소리",
+          "peopleNmEn": "",
+          "staffRoleNm": "캐스팅"
+        },
+        {
+          "peopleNm": "김주현",
+          "peopleNmEn": "",
+          "staffRoleNm": "캐스팅디렉터"
+        },
+        {
+          "peopleNm": "서유진",
+          "peopleNmEn": "SEO Eugene",
           "staffRoleNm": "온라인마케팅"
+        },
+        {
+          "peopleNm": "남유경",
+          "peopleNmEn": "Nam Yu-gyeong",
+          "staffRoleNm": "온라인마케팅"
+        },
+        {
+          "peopleNm": "이현지",
+          "peopleNmEn": "",
+          "staffRoleNm": "온라인마케팅"
+        },
+        {
+          "peopleNm": "최석원",
+          "peopleNmEn": "Choi Seok Won",
+          "staffRoleNm": "DI팀"
         }
       ]
     },

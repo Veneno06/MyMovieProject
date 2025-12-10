@@ -22,71 +22,70 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이로이",
-          "repRoleNm": "감독"
+          "peopleNmEn": "Roy Lee"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김혜나",
-          "repRoleNm": "배우",
-          "cast": "윤서"
+          "peopleNmEn": "KIM Hye-na",
+          "cast": "윤서",
+          "castEn": "Yoon-suh"
         },
         {
-          "peopleCd": "",
           "peopleNm": "이선호",
-          "repRoleNm": "배우",
-          "cast": "태인"
+          "peopleNmEn": "LEE Sun-ho",
+          "cast": "태인",
+          "castEn": "Tae-in"
         },
         {
-          "peopleCd": "",
           "peopleNm": "조승연",
-          "repRoleNm": "배우",
-          "cast": "조형사"
+          "peopleNmEn": "CHO Seung-yeon",
+          "cast": "조형사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "고우리",
-          "repRoleNm": "배우",
-          "cast": "지은"
+          "peopleNmEn": "Ko, Woo-ri",
+          "cast": "지은",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김민지",
-          "repRoleNm": "배우",
-          "cast": "수진"
+          "peopleNmEn": "",
+          "cast": "수진",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이영진",
-          "repRoleNm": "배우",
-          "cast": "카페매니저"
+          "peopleNmEn": "RIE Young-zin",
+          "cast": "카페매니저",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "가민채",
-          "repRoleNm": "배우",
-          "cast": "카페손님"
+          "peopleNmEn": "Ga, Min-chae",
+          "cast": "카페손님",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "윤영민",
-          "repRoleNm": "배우",
-          "cast": "옆집여자"
+          "peopleNmEn": "YOON Young-min",
+          "cast": "옆집여자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김남순",
-          "repRoleNm": "배우",
-          "cast": "동네주민"
+          "peopleNmEn": "KIM Nam-soon",
+          "cast": "동네주민",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한희경",
-          "repRoleNm": "배우",
-          "cast": "바텐더"
+          "peopleNmEn": "Heekyung Han",
+          "cast": "바텐더",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -629,6 +628,7 @@
           "staffRoleNm": "VFX 슈퍼바이저"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

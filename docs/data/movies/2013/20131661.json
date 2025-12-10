@@ -22,47 +22,46 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "성지혜",
-          "repRoleNm": "감독"
+          "peopleNmEn": "SUNG Ji-hye"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "남성진",
-          "repRoleNm": "배우",
-          "cast": "피터"
+          "peopleNmEn": "NAM Sung-jin",
+          "cast": "피터",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "배정화",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "BAE Jung-hwa",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "배정화",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "BAE Jung-hwa",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "지성원",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "JI Sung-won",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이미경",
-          "repRoleNm": "배우",
-          "cast": "청소아줌마"
+          "peopleNmEn": "",
+          "cast": "청소아줌마",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "허성수",
-          "repRoleNm": "배우",
-          "cast": "레이정"
+          "peopleNmEn": "",
+          "cast": "레이정",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -279,6 +278,7 @@
           "staffRoleNm": "기타"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

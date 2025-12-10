@@ -25,23 +25,22 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "장률",
-          "repRoleNm": "감독"
+          "peopleNmEn": "ZHANG Lu"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "궈커이",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Guo Ke Yu",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "허궈펑",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "He Guo Feng",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -134,6 +133,7 @@
           "staffRoleNm": "제작팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

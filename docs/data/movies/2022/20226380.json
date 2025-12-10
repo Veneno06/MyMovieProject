@@ -22,71 +22,70 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이윤호",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "임세미",
-          "repRoleNm": "배우",
-          "cast": "소진"
+          "peopleNmEn": "Se Mi Lim",
+          "cast": "소진",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "성지루",
-          "repRoleNm": "배우",
-          "cast": "동혁"
+          "peopleNmEn": "SUNG Ji-ru",
+          "cast": "동혁",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한지원",
-          "repRoleNm": "배우",
-          "cast": "혜린"
+          "peopleNmEn": "Han jee won",
+          "cast": "혜린",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조용준",
-          "repRoleNm": "배우",
-          "cast": "간수"
+          "peopleNmEn": "JO Yong-jun",
+          "cast": "간수",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정윤지",
-          "repRoleNm": "배우",
-          "cast": "세희"
+          "peopleNmEn": "",
+          "cast": "세희",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박정언",
-          "repRoleNm": "배우",
-          "cast": "소진 모"
+          "peopleNmEn": "",
+          "cast": "소진 모",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "안태린",
-          "repRoleNm": "배우",
-          "cast": "다은"
+          "peopleNmEn": "",
+          "cast": "다은",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이유나",
-          "repRoleNm": "배우",
-          "cast": "여고생1"
+          "peopleNmEn": "",
+          "cast": "여고생1",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김정인",
-          "repRoleNm": "배우",
-          "cast": "여고생2"
+          "peopleNmEn": "",
+          "cast": "여고생2",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이강희",
-          "repRoleNm": "배우",
-          "cast": "의문의 남자"
+          "peopleNmEn": "LEE Kang Hee",
+          "cast": "의문의 남자",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -627,6 +626,7 @@
           "staffRoleNm": "기타"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

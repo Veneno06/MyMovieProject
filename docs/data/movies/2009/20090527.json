@@ -25,35 +25,34 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김용화",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Yong-hwa"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "하정우",
-          "repRoleNm": "배우",
-          "cast": "밥/차헌태"
+          "peopleNmEn": "HA Jung-woo",
+          "cast": "밥/차헌태",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "성동일",
-          "repRoleNm": "배우",
-          "cast": "방 코치"
+          "peopleNmEn": "SUNG Dong-il",
+          "cast": "방 코치",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김지석",
-          "repRoleNm": "배우",
-          "cast": "강칠구"
+          "peopleNmEn": "KIM Ji-suk",
+          "cast": "강칠구",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김동욱",
-          "repRoleNm": "배우",
-          "cast": "최흥철"
+          "peopleNmEn": "KIM Dong-wook",
+          "cast": "최흥철",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -86,8 +85,8 @@
           "watchGradeNm": "12세이상관람가"
         }
       ],
-      "staffs": [],
-      "audiAcc": 235250
-    }
+      "staffs": []
+    },
+    "source": "영화진흥위원회"
   }
 }

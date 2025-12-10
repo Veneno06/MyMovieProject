@@ -25,89 +25,88 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김우석",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "조관우",
-          "repRoleNm": "배우",
-          "cast": "태원"
+          "peopleNmEn": "",
+          "cast": "태원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장윤서",
-          "repRoleNm": "배우",
-          "cast": "칠성"
+          "peopleNmEn": "Yun Seo Jang",
+          "cast": "칠성",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이문식",
-          "repRoleNm": "배우",
-          "cast": "신남"
+          "peopleNmEn": "LEE Moon-sik",
+          "cast": "신남",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "안이서",
-          "repRoleNm": "배우",
-          "cast": "선자"
+          "peopleNmEn": "",
+          "cast": "선자",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박노식",
-          "repRoleNm": "배우",
-          "cast": "삐그덕"
+          "peopleNmEn": "PARK Nou-sik",
+          "cast": "삐그덕",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이재용",
-          "repRoleNm": "배우",
-          "cast": "서울분"
+          "peopleNmEn": "LEE Jae-yong",
+          "cast": "서울분",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "윤복인",
-          "repRoleNm": "배우",
-          "cast": "옥주"
+          "peopleNmEn": "",
+          "cast": "옥주",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "강성진",
-          "repRoleNm": "배우",
-          "cast": "홍초"
+          "peopleNmEn": "KANG Sung-jin",
+          "cast": "홍초",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "현우섭",
-          "repRoleNm": "배우",
-          "cast": "방검사"
+          "peopleNmEn": "",
+          "cast": "방검사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김경룡",
-          "repRoleNm": "배우",
-          "cast": "딸목아버지"
+          "peopleNmEn": "KIM Gyeong-ryong",
+          "cast": "딸목아버지",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한태일",
-          "repRoleNm": "배우",
-          "cast": "은덕할아버지"
+          "peopleNmEn": "HAN Tae-il",
+          "cast": "은덕할아버지",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "전진우",
-          "repRoleNm": "배우",
-          "cast": "이장"
+          "peopleNmEn": "",
+          "cast": "이장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이다금",
-          "repRoleNm": "배우",
-          "cast": "뽕녀"
+          "peopleNmEn": "",
+          "cast": "뽕녀",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -138,6 +137,21 @@
       ],
       "staffs": [
         {
+          "peopleNm": "정성우",
+          "peopleNmEn": "",
+          "staffRoleNm": "프로듀서"
+        },
+        {
+          "peopleNm": "김유진",
+          "peopleNmEn": "YOOJIN KIM",
+          "staffRoleNm": "프로듀서"
+        },
+        {
+          "peopleNm": "이보익",
+          "peopleNmEn": "BOIK LEE",
+          "staffRoleNm": "프로듀서"
+        },
+        {
           "peopleNm": "정상수",
           "peopleNmEn": "",
           "staffRoleNm": "프로듀서"
@@ -146,6 +160,21 @@
           "peopleNm": "채승훈",
           "peopleNmEn": "",
           "staffRoleNm": "각색"
+        },
+        {
+          "peopleNm": "장진혁",
+          "peopleNmEn": "Jang jin hyuk",
+          "staffRoleNm": "조감독"
+        },
+        {
+          "peopleNm": "최호빈",
+          "peopleNmEn": "",
+          "staffRoleNm": "연출팀"
+        },
+        {
+          "peopleNm": "양황아",
+          "peopleNmEn": "YANG Hwang-a",
+          "staffRoleNm": "연출팀"
         },
         {
           "peopleNm": "양진석",
@@ -164,7 +193,7 @@
         },
         {
           "peopleNm": "서승현",
-          "peopleNmEn": "",
+          "peopleNmEn": "Suh Seung Hyun",
           "staffRoleNm": "편집"
         },
         {
@@ -178,6 +207,7 @@
           "staffRoleNm": "DI팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

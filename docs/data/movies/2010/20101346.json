@@ -25,98 +25,94 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "박미선",
-          "repRoleNm": "감독"
+          "peopleNmEn": "PARK Mi-sun"
         },
         {
-          "peopleCd": "",
           "peopleNm": "이재호",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Jae-ho"
         },
         {
-          "peopleCd": "",
           "peopleNm": "이현진",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LEE Hyeon-jin"
         },
         {
-          "peopleCd": "",
           "peopleNm": "반주영",
-          "repRoleNm": "감독"
+          "peopleNmEn": "BAN Ju-young"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김꽃비",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KIM Kkot-bi",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하재숙",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HA Jae-sook",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최정호",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "CHOI Jung-ho",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최하나",
-          "repRoleNm": "배우",
-          "cast": "집신 아줌마"
+          "peopleNmEn": "",
+          "cast": "집신 아줌마 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박민우",
-          "repRoleNm": "배우",
-          "cast": "가영 아빠"
+          "peopleNmEn": "",
+          "cast": "가영 아빠 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박민우",
-          "repRoleNm": "배우",
-          "cast": "강만파 지지자1"
+          "peopleNmEn": "",
+          "cast": "강만파 지지자1 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박민우",
-          "repRoleNm": "배우",
-          "cast": "문신남"
+          "peopleNmEn": "",
+          "cast": "문신남 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박민우",
-          "repRoleNm": "배우",
-          "cast": "설비상 김씨"
+          "peopleNmEn": "",
+          "cast": "설비상 김씨  ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박민우",
-          "repRoleNm": "배우",
-          "cast": "소방관3"
+          "peopleNmEn": "",
+          "cast": "소방관3 ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "양소라",
-          "repRoleNm": "배우",
-          "cast": "리포터"
+          "peopleNmEn": "",
+          "cast": "리포터  ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "양소라",
-          "repRoleNm": "배우",
-          "cast": "모델하우스 여"
+          "peopleNmEn": "",
+          "cast": "모델하우스 여  ",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "양소라",
-          "repRoleNm": "배우",
-          "cast": "사이비종교아줌마2"
+          "peopleNmEn": "",
+          "cast": "사이비종교아줌마2 ",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -843,6 +839,7 @@
           "staffRoleNm": "기타"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

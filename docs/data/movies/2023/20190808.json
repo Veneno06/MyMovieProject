@@ -22,41 +22,40 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "임순례",
-          "repRoleNm": "감독"
+          "peopleNmEn": "YIM Soonrye"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "황정민",
-          "repRoleNm": "배우",
-          "cast": "재호"
+          "peopleNmEn": "HWANG Jung-min",
+          "cast": "재호",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "현빈",
-          "repRoleNm": "배우",
-          "cast": "대식"
+          "peopleNmEn": "HYUN Bin",
+          "cast": "대식",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "강기영",
-          "repRoleNm": "배우",
-          "cast": "카심"
+          "peopleNmEn": "KANG Ki-young",
+          "cast": "카심",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "도기범",
-          "repRoleNm": "배우",
-          "cast": "피랍인6"
+          "peopleNmEn": "Do Ki Beom",
+          "cast": "피랍인6",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조윤상",
-          "repRoleNm": "배우",
-          "cast": "피랍인10"
+          "peopleNmEn": "Cho Yoonsang",
+          "cast": "피랍인10",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -115,14 +114,14 @@
           "staffRoleNm": "투자"
         },
         {
-          "peopleNm": "안영수",
-          "peopleNmEn": "AHN Young-soo",
-          "staffRoleNm": "시나리오(각본)"
+          "peopleNm": "임은송",
+          "peopleNmEn": "",
+          "staffRoleNm": "미술팀"
         },
         {
-          "peopleNm": "심규봉",
+          "peopleNm": "김규동",
           "peopleNmEn": "",
-          "staffRoleNm": "제작팀"
+          "staffRoleNm": "특수촬영"
         },
         {
           "peopleNm": "임현진",
@@ -130,13 +129,13 @@
           "staffRoleNm": "투자"
         },
         {
-          "peopleNm": "원지현",
-          "peopleNmEn": "",
+          "peopleNm": "황인지",
+          "peopleNmEn": "Inji Hwang",
           "staffRoleNm": "투자"
         },
         {
-          "peopleNm": "황인지",
-          "peopleNmEn": "Inji Hwang",
+          "peopleNm": "원지현",
+          "peopleNmEn": "",
           "staffRoleNm": "투자"
         },
         {
@@ -155,6 +154,21 @@
           "staffRoleNm": "프로듀서"
         },
         {
+          "peopleNm": "심규봉",
+          "peopleNmEn": "",
+          "staffRoleNm": "제작팀"
+        },
+        {
+          "peopleNm": "안영수",
+          "peopleNmEn": "AHN Young-soo",
+          "staffRoleNm": "시나리오(각본)"
+        },
+        {
+          "peopleNm": "조세훈",
+          "peopleNmEn": "",
+          "staffRoleNm": "홍보/마케팅 진행"
+        },
+        {
           "peopleNm": "류해은",
           "peopleNmEn": "",
           "staffRoleNm": "홍보/마케팅 진행"
@@ -165,17 +179,11 @@
           "staffRoleNm": "홍보/마케팅 진행"
         },
         {
-          "peopleNm": "조세훈",
-          "peopleNmEn": "",
-          "staffRoleNm": "홍보/마케팅 진행"
-        },
-        {
           "peopleNm": "곽인선",
           "peopleNmEn": "",
           "staffRoleNm": "온라인마케팅"
         }
-      ],
-      "audiAcc": 1697864
+      ]
     },
     "source": "영화진흥위원회"
   }

@@ -8,7 +8,7 @@
       "showTm": "123",
       "prdtYear": "2025",
       "openDt": "20250903",
-      "prdtStatNm": "개봉예정",
+      "prdtStatNm": "개봉",
       "typeNm": "장편",
       "nations": [
         {
@@ -25,77 +25,76 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "박준호",
-          "repRoleNm": "감독"
+          "peopleNmEn": "PARK Joonho"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "조유현",
-          "repRoleNm": "배우",
-          "cast": "철준"
+          "peopleNmEn": "CHO  YOUHYUN",
+          "cast": "철준",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김현목",
-          "repRoleNm": "배우",
-          "cast": "영준"
+          "peopleNmEn": "KIM Hyun-mok",
+          "cast": "영준",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "조대희",
-          "repRoleNm": "배우",
-          "cast": "현택"
+          "peopleNmEn": "CHO DAEHEE",
+          "cast": "현택",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "배한솔",
-          "repRoleNm": "배우",
-          "cast": "민성"
+          "peopleNmEn": "",
+          "cast": "민성",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "임지형",
-          "repRoleNm": "배우",
-          "cast": "진우"
+          "peopleNmEn": "",
+          "cast": "진우",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "전두식",
-          "repRoleNm": "배우",
-          "cast": "학민"
+          "peopleNmEn": "",
+          "cast": "학민",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하승우",
-          "repRoleNm": "배우",
-          "cast": "정학"
+          "peopleNmEn": "",
+          "cast": "정학",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "윤설",
-          "repRoleNm": "배우",
-          "cast": "지예"
+          "peopleNmEn": "",
+          "cast": "지예",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김진이",
-          "repRoleNm": "배우",
-          "cast": "선생님"
+          "peopleNmEn": "Kim Jin-e",
+          "cast": "선생님",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "차미경",
-          "repRoleNm": "배우",
-          "cast": "철준이모"
+          "peopleNmEn": "",
+          "cast": "철준이모",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "유태규",
-          "repRoleNm": "배우",
-          "cast": "97모임 친구"
+          "peopleNmEn": "",
+          "cast": "97모임 친구",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -106,6 +105,10 @@
         {
           "showTypeGroupNm": "2D",
           "showTypeNm": "디지털 영문자막"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털 가치봄"
         }
       ],
       "companys": [
@@ -143,6 +146,11 @@
           "peopleNm": "박준호",
           "peopleNmEn": "PARK Joonho",
           "staffRoleNm": "시나리오(각본)"
+        },
+        {
+          "peopleNm": "김보경",
+          "peopleNmEn": "KIM Bo-kyeong",
+          "staffRoleNm": "연출팀"
         },
         {
           "peopleNm": "한상길",

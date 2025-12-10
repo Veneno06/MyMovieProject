@@ -25,35 +25,34 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "박준기",
-          "repRoleNm": "감독"
+          "peopleNmEn": "PARK Jun-ki"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "유학재",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정재학",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박준기",
-          "repRoleNm": "배우",
-          "cast": "출연"
+          "peopleNmEn": "PARK Jun-ki",
+          "cast": "출연",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "황영순",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -235,6 +234,7 @@
           "staffRoleNm": "광고디자인"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

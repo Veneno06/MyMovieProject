@@ -22,22 +22,20 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "한학수",
-          "repRoleNm": "감독"
+          "peopleNmEn": "HAN Hak-su"
         },
         {
-          "peopleCd": "",
           "peopleNm": "장형원",
-          "repRoleNm": "감독"
+          "peopleNmEn": "JANG Hyung-won"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "현빈",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "HYUN Bin",
+          "cast": "",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -399,6 +397,7 @@
           "staffRoleNm": "시각효과"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

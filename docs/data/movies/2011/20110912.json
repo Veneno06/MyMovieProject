@@ -22,41 +22,40 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김규민",
-          "repRoleNm": "감독"
+          "peopleNmEn": "GIM Gyu-min"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "정승원",
-          "repRoleNm": "배우",
-          "cast": "진호"
+          "peopleNmEn": "JEONG Seung-won",
+          "cast": "진호",
+          "castEn": "Jin-ho"
         },
         {
-          "peopleCd": "",
           "peopleNm": "박소연",
-          "repRoleNm": "배우",
-          "cast": "진호엄마"
+          "peopleNmEn": "PARK So-yeon",
+          "cast": "진호엄마 ",
+          "castEn": "Mother"
         },
         {
-          "peopleCd": "",
           "peopleNm": "허선행",
-          "repRoleNm": "배우",
-          "cast": "(시장 남)안철진"
+          "peopleNmEn": "HEO Seon-haeng",
+          "cast": "(시장 남)안철진",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "홍성수",
-          "repRoleNm": "배우",
-          "cast": "안전원"
+          "peopleNmEn": "",
+          "cast": "안전원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "하영수",
-          "repRoleNm": "배우",
-          "cast": "(사진)진호아버지"
+          "peopleNmEn": "",
+          "cast": "(사진)진호아버지",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -437,6 +436,7 @@
           "staffRoleNm": "시각효과"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

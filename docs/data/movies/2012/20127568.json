@@ -25,89 +25,88 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "이항배",
-          "repRoleNm": "감독"
+          "peopleNmEn": "YI Hang-pae"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "김정태",
-          "repRoleNm": "배우",
-          "cast": "현배"
+          "peopleNmEn": "KIM Jung-tae",
+          "cast": "현배",
+          "castEn": "Hyeon-bae"
         },
         {
-          "peopleCd": "",
           "peopleNm": "박하영",
-          "repRoleNm": "배우",
-          "cast": "박지호"
+          "peopleNmEn": "PARK Ha-young",
+          "cast": "박지호",
+          "castEn": "Ji-ho"
         },
         {
-          "peopleCd": "",
           "peopleNm": "구승현",
-          "repRoleNm": "배우",
-          "cast": "선호"
+          "peopleNmEn": "KOO Seung-hyun",
+          "cast": "선호",
+          "castEn": "Seon-ho"
         },
         {
-          "peopleCd": "",
           "peopleNm": "최정우",
-          "repRoleNm": "배우",
-          "cast": "파출소장"
+          "peopleNmEn": "CHOE Jeong-u",
+          "cast": "파출소장",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "지대한",
-          "repRoleNm": "배우",
-          "cast": "김 형사"
+          "peopleNmEn": "JI Dae-han",
+          "cast": "김 형사",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "손여은",
-          "repRoleNm": "배우",
-          "cast": "영숙"
+          "peopleNmEn": "SON Yeo-eun",
+          "cast": "영숙",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "성유빈",
-          "repRoleNm": "배우",
-          "cast": "한상필"
+          "peopleNmEn": "SUNG Yu-bin",
+          "cast": "한상필",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한사명",
-          "repRoleNm": "배우",
-          "cast": "나일경"
+          "peopleNmEn": "HAN Sa-myung",
+          "cast": "나일경",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "나윤성",
-          "repRoleNm": "배우",
-          "cast": "공익요원"
+          "peopleNmEn": "NA Yoon-sung",
+          "cast": "공익요원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이종경",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "LEE Jong-kyeong",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정민성",
-          "repRoleNm": "배우",
-          "cast": "만취남"
+          "peopleNmEn": "JUNG Min-sung",
+          "cast": "만취남",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이은채",
-          "repRoleNm": "배우",
-          "cast": "세단 여"
+          "peopleNmEn": "LEE Eun-chae",
+          "cast": "세단 여",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김서원",
-          "repRoleNm": "배우",
-          "cast": "안산경찰"
+          "peopleNmEn": "KIM Seo-won",
+          "cast": "안산경찰",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -1119,6 +1118,7 @@
           "staffRoleNm": "온라인마케팅"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

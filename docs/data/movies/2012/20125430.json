@@ -25,89 +25,88 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "임진순",
-          "repRoleNm": "감독"
+          "peopleNmEn": "LIM Jin-sun"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "송재하",
-          "repRoleNm": "배우",
-          "cast": "진수"
+          "peopleNmEn": "SONG JAE HA",
+          "cast": "진수",
+          "castEn": "Jin-soo"
         },
         {
-          "peopleCd": "",
           "peopleNm": "김정태",
-          "repRoleNm": "배우",
-          "cast": "태욱"
+          "peopleNmEn": "KIM Jung-tae",
+          "cast": "태욱",
+          "castEn": "Tae-wook"
         },
         {
-          "peopleCd": "",
           "peopleNm": "한여울",
-          "repRoleNm": "배우",
-          "cast": "여울"
+          "peopleNmEn": "",
+          "cast": "여울",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장경아",
-          "repRoleNm": "배우",
-          "cast": "은숙"
+          "peopleNmEn": "JANG Kyoung-ah",
+          "cast": "은숙",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이형석",
-          "repRoleNm": "배우",
-          "cast": "극장 관객들"
+          "peopleNmEn": "LEE Hyoung-seok",
+          "cast": "극장 관객들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장백호",
-          "repRoleNm": "배우",
-          "cast": "케네디바 손님들"
+          "peopleNmEn": "",
+          "cast": "케네디바 손님들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "공태원",
-          "repRoleNm": "배우",
-          "cast": "횟집영화팀"
+          "peopleNmEn": "GONG Tae-won",
+          "cast": "횟집영화팀",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "전찬영",
-          "repRoleNm": "배우",
-          "cast": "극장 관객들"
+          "peopleNmEn": "",
+          "cast": "극장 관객들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "차상균",
-          "repRoleNm": "배우",
-          "cast": "횟집영화팀"
+          "peopleNmEn": "CHA Sang-kyun",
+          "cast": "횟집영화팀",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "최명완",
-          "repRoleNm": "배우",
-          "cast": "극장 관객들"
+          "peopleNmEn": "",
+          "cast": "극장 관객들",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "함주영",
-          "repRoleNm": "배우",
-          "cast": "횟집손님"
+          "peopleNmEn": "",
+          "cast": "횟집손님",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김정환",
-          "repRoleNm": "배우",
-          "cast": "주유원"
+          "peopleNmEn": "",
+          "cast": "주유원",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "윤선명",
-          "repRoleNm": "배우",
-          "cast": "녹음기사"
+          "peopleNmEn": "",
+          "cast": "녹음기사",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -464,6 +463,7 @@
           "staffRoleNm": "홍보/마케팅 진행"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

@@ -22,47 +22,46 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "권하",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "송길호",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Song gilho",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "기주봉",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "KI Joo-bong",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "현리원",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "신현규",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김다솔",
-          "repRoleNm": "배우",
-          "cast": ""
+          "peopleNmEn": "Kim Dhasol",
+          "cast": "",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "정회근",
-          "repRoleNm": "배우",
-          "cast": "기도2"
+          "peopleNmEn": "",
+          "cast": "기도2",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -95,6 +94,12 @@
           "companyNm": "(주)에스와이코마드",
           "companyNmEn": "SYcomad",
           "companyPartNm": "제공"
+        },
+        {
+          "companyCd": "20253341",
+          "companyNm": "주식회사 케이티스튜디오지니",
+          "companyNmEn": "KT StudioGenie",
+          "companyPartNm": "해외세일즈사"
         }
       ],
       "audits": [

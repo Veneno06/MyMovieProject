@@ -25,83 +25,82 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "현해리",
-          "repRoleNm": "감독"
+          "peopleNmEn": "Harry Hyun"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "송재림",
-          "repRoleNm": "배우",
-          "cast": "도현"
+          "peopleNmEn": "SONG Jae-lim",
+          "cast": "도현",
+          "castEn": "Dohyun"
         },
         {
-          "peopleCd": "",
           "peopleNm": "안우연",
-          "repRoleNm": "배우",
-          "cast": "지우"
+          "peopleNmEn": "AN Woo-yeon",
+          "cast": "지우",
+          "castEn": "Jiwoo"
         },
         {
-          "peopleCd": "",
           "peopleNm": "민성욱",
-          "repRoleNm": "배우",
-          "cast": "케빈"
+          "peopleNmEn": "MIN Seong-uk",
+          "cast": "케빈",
+          "castEn": "Kevin"
         },
         {
-          "peopleCd": "",
           "peopleNm": "소희정",
-          "repRoleNm": "배우",
-          "cast": "옥자"
+          "peopleNmEn": "",
+          "cast": "옥자",
+          "castEn": "Ok-ja"
         },
         {
-          "peopleCd": "",
           "peopleNm": "이승빈",
-          "repRoleNm": "배우",
-          "cast": "승건"
+          "peopleNmEn": "",
+          "cast": "승건",
+          "castEn": "SEUNG GUN"
         },
         {
-          "peopleCd": "",
           "peopleNm": "손승범",
-          "repRoleNm": "배우",
-          "cast": "상수"
+          "peopleNmEn": "",
+          "cast": "상수",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "장재호",
-          "repRoleNm": "배우",
-          "cast": "세동"
+          "peopleNmEn": "",
+          "cast": "세동",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "함상혁",
-          "repRoleNm": "배우",
-          "cast": "어린 도현"
+          "peopleNmEn": "ham sang hyuk",
+          "cast": "어린 도현",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "오정연",
-          "repRoleNm": "배우",
-          "cast": "경제방송 전문가"
+          "peopleNmEn": "",
+          "cast": "경제방송 전문가",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "안상진",
-          "repRoleNm": "배우",
-          "cast": "성우"
+          "peopleNmEn": "Ahn sang jin",
+          "cast": "성우",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김근영",
-          "repRoleNm": "배우",
-          "cast": "노년부부 여성"
+          "peopleNmEn": "KIM Geun-yeong",
+          "cast": "노년부부 여성",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "한명철",
-          "repRoleNm": "배우",
-          "cast": "마미코인 피해자 남성1"
+          "peopleNmEn": "HAN Myeong-cheol",
+          "cast": "마미코인 피해자 남성1",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -230,6 +229,7 @@
           "staffRoleNm": "DI팀"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

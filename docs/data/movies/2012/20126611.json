@@ -22,47 +22,46 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "김혜정",
-          "repRoleNm": "감독"
+          "peopleNmEn": "KIM Hye-jung"
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "조금앵",
-          "repRoleNm": "배우",
-          "cast": "본인"
+          "peopleNmEn": "JO Geum-aeng",
+          "cast": "본인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김진진",
-          "repRoleNm": "배우",
-          "cast": "본인"
+          "peopleNmEn": "",
+          "cast": "본인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "박미숙",
-          "repRoleNm": "배우",
-          "cast": "본인"
+          "peopleNmEn": "",
+          "cast": "본인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "허숙자",
-          "repRoleNm": "배우",
-          "cast": "본인"
+          "peopleNmEn": "",
+          "cast": "본인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "김혜리",
-          "repRoleNm": "배우",
-          "cast": "본인"
+          "peopleNmEn": "",
+          "cast": "본인",
+          "castEn": ""
         },
         {
-          "peopleCd": "",
           "peopleNm": "이옥천",
-          "repRoleNm": "배우",
-          "cast": "본인"
+          "peopleNmEn": "",
+          "cast": "본인",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -248,6 +247,7 @@
           "staffRoleNm": "기획"
         }
       ]
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }

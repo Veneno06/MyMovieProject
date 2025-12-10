@@ -22,17 +22,16 @@
       ],
       "directors": [
         {
-          "peopleCd": "",
           "peopleNm": "함성한",
-          "repRoleNm": "감독"
+          "peopleNmEn": ""
         }
       ],
       "actors": [
         {
-          "peopleCd": "",
           "peopleNm": "한석봉",
-          "repRoleNm": "배우",
-          "cast": "석봉"
+          "peopleNmEn": "",
+          "cast": "석봉",
+          "castEn": ""
         }
       ],
       "showTypes": [
@@ -62,6 +61,7 @@
         }
       ],
       "staffs": []
-    }
+    },
+    "source": "영화진흥위원회"
   }
 }
