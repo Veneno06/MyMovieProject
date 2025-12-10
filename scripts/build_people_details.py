@@ -35,7 +35,8 @@ def load_json(p: Path):
 
 def save_json(p: Path, data: dict):
     p.parent.mkdir(parents=True, exist_ok=True)
-    p.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+    with open(p, 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
 
 def is_korean_movie(data: dict) -> bool:
     info = data if data.get("movieCd") else ((data.get("movieInfoResult") or {}).get("movieInfo") or {})
@@ -45,7 +46,6 @@ def is_korean_movie(data: dict) -> bool:
             return True
     return False
 
-# 'ㅎ'씨 성 필터링
 def is_h_name(name: str) -> bool:
     if not name: return False
     norm_name = unicodedata.normalize('NFC', name)
@@ -115,13 +115,11 @@ def build_details():
         korean_movie_cnt += 1
         info = data if data.get("movieCd") else ((data.get("movieInfoResult") or {}).get("movieInfo") or {})
         
-        # 배우와 감독 모두 스캔
         for key in ["directors", "actors"]:
             for person in (info.get(key) or []):
                 code = person.get("peopleCd", "").strip()
                 name = person.get("peopleNm", "").strip()
                 
-                # [핵심] 코드가 존재하고 + 이름이 'ㅎ'으로 시작하는 경우만 타겟팅
                 if code and name and is_h_name(name):
                     target_people.add(code)
 
@@ -130,7 +128,6 @@ def build_details():
     count = 0
     sorted_people = sorted(list(target_people))
     
-    # 이미 파일이 있으면 건너뛰기
     needed_people = []
     for code in sorted_people:
         person_file = PEOPLE_DIR / f"{code}.json"
