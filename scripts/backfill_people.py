@@ -26,7 +26,7 @@ except ImportError:
 HERE = Path(__file__).resolve()
 ROOT = HERE.parents[1] if HERE.parents[1].name == "MyMovieProject" else HERE.parents[2]
 DETAIL_DIR = ROOT / "docs" / "data" / "movies"
-# [변경] 영화 상세 대신 '영화인 목록' 검색 API 사용
+# [핵심 변경] 영화 상세 대신 '영화인 목록' 검색 API 사용
 PEOPLE_LIST_URL = "https://www.kobis.or.kr/kobisopenapi/webservice/rest/people/searchPeopleList.json"
 
 CURRENT_KEY_INDEX = 0
@@ -131,8 +131,12 @@ def backfill(budget: int, rate_sleep_ms: int):
 
     target_names = sorted(target_map.keys(), key=lambda k: len(target_map[k]), reverse=True)
     print(f"[Step 1 완료] 총 {len(target_names)}명의 'ㅎ'씨 배우(코드 미보유) 발견.")
-    if target_names:
-        print(f" -> 주요 타겟: {target_names[:5]} 등...")
+    
+    if not target_names:
+        print(" -> 대상이 없습니다. 이미 작업이 완료되었거나 파일이 없을 수 있습니다.")
+        return
+
+    print(f" -> 상위 타겟 예시: {target_names[:5]}")
 
     # 2. 배우 이름별로 API 검색 및 매칭
     used = 0
@@ -140,31 +144,26 @@ def backfill(budget: int, rate_sleep_ms: int):
     
     for name in target_names:
         if used >= budget:
-            print(f"[Stop] 예산 소진 ({used}회).")
+            print(f"[Stop] 설정된 예산({used}회)에 도달하여 중단합니다.")
             break
             
         occurrences = target_map[name]
-        print(f"[API 검색] 배우 '{name}' (관련 영화 {len(occurrences)}편) 찾는 중...")
+        # print(f"[API 검색] 배우 '{name}' (관련 영화 {len(occurrences)}편) 찾는 중...")
         
         try:
-            # API 호출: 배우 이름으로 검색
+            # API 호출: 배우 이름으로 검색 (1회 호출로 해당 배우 모든 영화 처리 시도)
             res = fetch_people_list_smart(name)
             used += 1
             if rate_sleep_ms > 0: time.sleep(rate_sleep_ms / 1000.0)
             
             people_list = (res.get("peopleListResult") or {}).get("peopleList") or []
             
-            # 검색 결과가 없으면 패스
             if not people_list:
-                print(f" -> 결과 없음.")
+                # print(f" -> '{name}' 검색 결과 없음.")
                 continue
 
-            # 3. 매칭 로직: API에서 나온 배우들의 '필모그래피'와 내 로컬 영화 제목 비교
+            # 3. 매칭 로직
             matched_movies_for_actor = 0
-            
-            # 로컬 파일을 매번 다시 읽어서 업데이트 (한 파일에 여러 배우가 있을 수 있으므로)
-            # 효율을 위해: path별로 업데이트 할 내용을 모은 뒤 한 번에 쓰면 좋겠지만,
-            # 코드 단순화를 위해 발견 즉시 업데이트 시도.
             
             for person in people_list:
                 pid = person.get("peopleCd")
@@ -173,7 +172,7 @@ def backfill(budget: int, rate_sleep_ms: int):
                 
                 filmo_set = set(normalize_title(t) for t in filmos.split("|"))
                 
-                # 이 'person'이 출연한 영화가 내 로컬 타겟 목록에 있는지 확인
+                # 내 로컬 영화 중 이 배우의 필모에 있는 것이 있는지 확인
                 for target in occurrences:
                     if target["cleanNm"] in filmo_set:
                         # 매칭 성공! 파일 업데이트
@@ -192,7 +191,6 @@ def backfill(budget: int, rate_sleep_ms: int):
                                 changed = True
                         
                         if changed:
-                            # 구조 유지하며 저장
                             if f_data.get("movieCd"):
                                 f_data["actors"] = actors_list
                             elif "movieInfoResult" in f_data:
@@ -203,7 +201,7 @@ def backfill(budget: int, rate_sleep_ms: int):
                             updated_files_count += 1
             
             if matched_movies_for_actor > 0:
-                print(f" -> ✅ {matched_movies_for_actor}편의 영화에 코드({name}) 주입 완료!")
+                print(f" -> ✅ 배우 '{name}': {matched_movies_for_actor}편의 영화에 코드 주입 성공")
             
         except Exception as e:
             print(f"[Error] {name} 처리 중 오류: {e}")
