@@ -11,14 +11,15 @@ on:
 jobs:
   run:
     runs-on: ubuntu-latest
+    # [수정] 7개 키 모두 로드
     env:
-      # 6개 키 모두 로드
       KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
       KOFIC_API_KEY_2: ${{ secrets.KOFIC_API_KEY_2 }}
       KOFIC_API_KEY_3: ${{ secrets.KOFIC_API_KEY_3 }}
       KOFIC_API_KEY_4: ${{ secrets.KOFIC_API_KEY_4 }}
       KOFIC_API_KEY_5: ${{ secrets.KOFIC_API_KEY_5 }}
       KOFIC_API_KEY_6: ${{ secrets.KOFIC_API_KEY_6 }}
+      KOFIC_API_KEY_7: ${{ secrets.KOFIC_API_KEY_7 }}
 
     steps:
       - name: Checkout
@@ -42,7 +43,7 @@ jobs:
             --budget "${{ inputs.budget }}" \
             --rate-sleep-ms "100"
 
-      # 2단계: 확보된 ID를 바탕으로 성별/세부정보 다운로드 ('ㅎ'씨 필터 + 키 자동 교체)
+      # 2단계: 확보된 ID를 바탕으로 성별/세부정보 다운로드 (키 자동 교체 적용)
       - name: Build people details (Gender)
         run: |
           python scripts/build_people_details.py
