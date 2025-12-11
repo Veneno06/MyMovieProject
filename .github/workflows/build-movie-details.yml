@@ -31,6 +31,15 @@ on:
         required: false
         default: "0"   # 0 이면 recent 모드 끔
         type: string
+      audiacc_mode:
+        description: 'audiAcc 복구 모드 (off|missing|all)'
+        required: false
+        default: 'missing'
+        type: choice
+        options:
+        - off
+        - missing
+        - all
 
 permissions:
   contents: write
@@ -60,18 +69,24 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
 
-      # 상세 수집 단계 (옵션으로 건너뛰기)
+      # [수정] 7개 키 모두 로드하여 전달
       - name: Build movie details
         if: ${{ inputs.skip_details != 'true' }}
         env:
           KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
+          KOFIC_API_KEY_2: ${{ secrets.KOFIC_API_KEY_2 }}
+          KOFIC_API_KEY_3: ${{ secrets.KOFIC_API_KEY_3 }}
+          KOFIC_API_KEY_4: ${{ secrets.KOFIC_API_KEY_4 }}
+          KOFIC_API_KEY_5: ${{ secrets.KOFIC_API_KEY_5 }}
+          KOFIC_API_KEY_6: ${{ secrets.KOFIC_API_KEY_6 }}
+          KOFIC_API_KEY_7: ${{ secrets.KOFIC_API_KEY_7 }}
         run: |
           python scripts/build_movie_details.py \
             --year-start "${{ inputs.year_start }}" \
             --year-end   "${{ inputs.year_end }}" \
-            --max        "${{ inputs.max_count }}"
+            --max        "${{ inputs.max_count }}" \
+            --audiacc    "${{ inputs.audiacc_mode || 'missing' }}"
 
-      # 인덱스 생성 (recent/audiAcc 옵션 전달)
       - name: Build search & people indexes
         run: |
           python scripts/build_indices.py \
