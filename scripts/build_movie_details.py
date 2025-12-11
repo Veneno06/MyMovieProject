@@ -11,7 +11,10 @@ YEARS_DIR = os.path.join(DATA, "years")
 MOVIES_DIR = os.path.join(DATA, "movies")
 
 KOFIC_KEY = os.environ.get("KOFIC_API_KEY", "").strip()
-HEADERS = {"User-Agent": "cache-builder/1.0"}
+# [중요] 웹사이트 접근을 위한 헤더 설정
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+}
 
 def make_session() -> requests.Session:
     s = requests.Session()
@@ -35,62 +38,45 @@ def save_json(path, obj):
     with open(tmp, "w", encoding="utf-8") as f: json.dump(obj, f, ensure_ascii=False, indent=2)
     os.replace(tmp, path)
 
-def get(session, url, timeout=30, sleep=0.13):
+def get(session, url, timeout=30, sleep=0.2): # 웹 스크래핑이므로 0.2초 대기
     time.sleep(sleep)
     r = session.get(url, timeout=timeout)
     r.raise_for_status()
     return r
 
-def norm_ymd(s):
-    if not s: return ""
-    return re.sub(r"\D", "", str(s))[:8]
-
-def parse_date_ymd(s):
-    s = norm_ymd(s)
-    if len(s) != 8: return None
-    return datetime(int(s[:4]), int(s[4:6]), int(s[6:]))
-
 def fetch_movie_info(session, movieCd):
+    # 기본 메타데이터는 여전히 API가 가장 정확함
     url = f"https://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?key={KOFIC_KEY}&movieCd={movieCd}"
     try:
-        r = get(session, url)
+        r = get(session, url, sleep=0.1)
         j = r.json()
         if j.get("faultInfo") or j.get("faultResult"): return None, f"fault={j.get('faultInfo') or j.get('faultResult')}"
         info = (j.get("movieInfoResult") or {}).get("movieInfo")
         return info, None
     except requests.exceptions.RequestException as e: return None, f"http_error={e}"
 
-def fetch_weekly_audi_acc(session, movieCd, openDtYMD, weeks=12):
-    if not KOFIC_KEY: return None
-    openDtYMD = norm_ymd(openDtYMD)
-    base = parse_date_ymd(openDtYMD) or datetime.now()
-    base = base + timedelta(days=3)
-    max_acc = None
-    
-    # [데이터 복구 핵심] 조회 범위를 넓게 잡아 확실하게 가져옴
-    for i in range(weeks):
-        d = (base + timedelta(weeks=i))
-        td = d.strftime("%Y%m%d")
-        url = f"https://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json?key={KOFIC_KEY}&targetDt={td}&weekGb=0"
-        try:
-            r = get(session, url, sleep=0.1)
-            js = r.json()
-            if js.get("faultInfo") or js.get("faultResult"):
-                err = js.get("faultInfo") or js.get("faultResult") or {}; 
-                code = str(err.get("errorCode") or err.get("errorcode") or "")
-                if code == "320011": raise RuntimeError("RATE_LIMIT")
-                continue
-            
-            items = (js.get("boxOfficeResult") or {}).get("weeklyBoxOfficeList") or []
-            for it in items:
-                if it.get("movieCd") == movieCd:
-                    a = it.get("audiAcc")
-                    if a is None: continue
-                    a = int(str(a).replace(",", ""))
-                    if max_acc is None or a > max_acc:
-                        max_acc = a
-        except requests.exceptions.RequestException: continue
-    return max_acc
+# [핵심 기능] KOBIS 웹사이트에서 최종 관객수 '직접' 가져오기 (1회 호출)
+def fetch_final_audi_from_kobis(session, movieCd):
+    url = f"https://www.kobis.or.kr/kobis/business/mast/mvie/searchMovieDtl.do?code={movieCd}"
+    try:
+        # 웹페이지 HTML 요청
+        r = get(session, url)
+        html = r.text
+        
+        # 정규표현식으로 "누적관객수" 숫자 추출
+        # 패턴: <dt>누적관객수</dt> ... <dd> 12,345 명</dd> 형태를 찾음
+        # (공백이나 줄바꿈에 유연하게 대응하도록 작성)
+        match = re.search(r"누적관객수\s*</dt>\s*<dd>\s*([0-9,]+)\s*명", html, re.DOTALL)
+        
+        if match:
+            raw_num = match.group(1).replace(",", "")
+            return int(raw_num)
+        
+        return None # 못 찾았으면 None
+        
+    except Exception as e:
+        # print(f"[warn] Scraping failed for {movieCd}: {e}")
+        return None
 
 def collect_candidates(year_start, year_end):
     all_cds = set()
@@ -113,14 +99,13 @@ def main():
     ap.add_argument("--year-start", type=int, required=True)
     ap.add_argument("--year-end", type=int, required=True)
     ap.add_argument("--max", type=str, default="999999")
-    # [복구 모드] 기본값을 'missing'으로 설정 (관객수 없는 것만 채워라!)
+    # off: 안함, missing: 없는것만 채움(복구용), all: 전부 다시 채움(업그레이드용)
     ap.add_argument("--audiacc", choices=["off","all","missing"], default="missing")
-    ap.add_argument("--audiacc-weeks", default="8")
+    ap.add_argument("--audiacc-weeks", default="0") # 더 이상 사용 안 함
     args, unknown = ap.parse_known_args()
 
     y1, y2 = args.year_start, args.year_end
     mode = args.audiacc
-    weeks = int(args.audiacc_weeks)
     session = make_session()
     
     total_newly_saved = 0
@@ -128,7 +113,7 @@ def main():
     
     try:
         cds = collect_candidates(y1, y2)
-        print(f"[{y1}-{y2}] 총 {len(cds)}개 영화 검사 시작 (관객수 복구 모드: {mode})")
+        print(f"[{y1}-{y2}] 총 {len(cds)}개 영화 검사 시작 (모드: {mode} - KOBIS 직접 조회)")
 
         for i, cd in enumerate(cds):
             year_guess = cd[:4]
@@ -141,25 +126,29 @@ def main():
                 info = get_movie_info_from_data(data)
                 if not info: continue
                 
-                # 관객수 데이터가 있는지 확인 (0이거나 없으면 복구 대상)
-                current_audi = info.get("audiAcc")
-                has_audi = (current_audi is not None and int(str(current_audi).replace(",","")) > 0)
-                
                 if mode == "off": continue
                 
-                # [핵심] missing 모드일 때: 관객수가 없으면 API 호출!
-                if mode == "missing" and has_audi: 
-                    # 이미 있으면 패스 (API 절약)
-                    continue 
+                # 현재 관객수 확인
+                current_audi = info.get("audiAcc")
+                has_valid_audi = (current_audi is not None and int(str(current_audi).replace(",","")) > 0)
                 
-                print(f" -> [복구 중] {cd} ({info.get('movieNm')}) 관객수 재수집...")
-                acc = fetch_weekly_audi_acc(session, cd, info.get("openDt"), weeks=weeks)
-                if isinstance(acc, int):
-                    info["audiAcc"] = acc
+                # missing 모드인데 이미 있으면 패스
+                if mode == "missing" and has_valid_audi:
+                    continue 
+
+                # [업그레이드] all 모드이거나, missing인데 데이터가 없으면 실행
+                print(f" -> [KOBIS 조회] {cd} ({info.get('movieNm')}) 최종 관객수 확인 중...", end='\r')
+                
+                final_acc = fetch_final_audi_from_kobis(session, cd)
+                
+                # 성공 시 업데이트 (0명이어도 확정 데이터면 저장)
+                if final_acc is not None:
+                    info["audiAcc"] = final_acc
                     save_json(out, data)
                     total_updated_audi += 1
+                    # print(f" -> 업데이트 완료: {final_acc}명")
             else:
-                # 파일이 없는 경우 (드물겠지만)
+                # 아예 파일이 없는 경우 -> API로 기본정보 + 웹으로 관객수
                 info, err = fetch_movie_info(session, cd)
                 if err:
                     if "320011" in err: raise RuntimeError("RATE_LIMIT")
@@ -167,13 +156,14 @@ def main():
                 if not info: continue
                 
                 if mode in ["all", "missing"]:
-                    acc = fetch_weekly_audi_acc(session, cd, info.get("openDt"), weeks=weeks)
-                    if isinstance(acc, int): info["audiAcc"] = acc
+                    final_acc = fetch_final_audi_from_kobis(session, cd)
+                    if final_acc is not None:
+                        info["audiAcc"] = final_acc
                 
                 save_json(out, {"movieInfoResult": {"movieInfo": info}})
                 total_newly_saved += 1
         
-        print(f"\n[완료] 총 {total_updated_audi}개의 영화 관객수 데이터 복구 완료!")
+        print(f"\n[완료] 총 {total_updated_audi}개의 영화 관객수 데이터를 '최종 확정값'으로 업데이트했습니다.")
 
     except RuntimeError as e:
         if str(e) == "RATE_LIMIT":
