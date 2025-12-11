@@ -19,8 +19,6 @@ ul.list { list-style:none; padding:0; margin:12px 0; }
 li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
 .audi { font-size: 14px; color: #333; }
 .cast-list { font-size: 13px; color: #555; margin-left: 4px; }
-.cast-list b { color: #000; font-weight: 700; background-color: #fff3cd; padding: 0 2px; border-radius: 2px; }
-/* 링크 스타일 추가 (기존 UI 해치지 않게) */
 .cast-list a { color: #555; text-decoration: none; }
 .cast-list a:hover { text-decoration: underline; color: #000; }
 .chart-buttons { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
@@ -72,6 +70,7 @@ const PATHS_INDEX = [`docs/data/search_index.json?v=${TS}`, `data/search_index.j
 const PATHS_DETAILS = [`docs/data/people/`, `data/people/`]; 
 
 function getParam(k){ return new URL(location.href).searchParams.get(k) || ""; }
+// [수정] 숫자가 아닌 경우 0으로 안전하게 변환하는 함수 강화
 const safeParseInt = (v) => {
     if (v === null || v === undefined) return 0;
     if (typeof v === 'number') return v;
@@ -80,7 +79,7 @@ const safeParseInt = (v) => {
 };
 const fmtNum = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-let MOVIES_RAW = [], PEOPLE_DETAILS = {}, myChart = null;
+let MOVIES_RAW = [], myChart = null;
 let currentId = null, currentName = null;
 const saveBtn = document.getElementById('saveBtn');
 
@@ -127,6 +126,7 @@ async function render(){
   document.getElementById('title').textContent = currentName;
   renderSaveBtn();
 
+  // 성별 정보 표시 (상세 JSON이 있으면 로드)
   const details = await fetchPersonDetail(currentId);
   if (details) {
       const info = (details.peopleInfoResult && details.peopleInfoResult.peopleInfo) 
@@ -140,6 +140,7 @@ async function render(){
       }
   }
 
+  // 영화 필터링 로직
   const seen = new Set();
   const myMovies = [];
 
@@ -156,6 +157,7 @@ async function render(){
           const dMatch = directors.some(d => d.name === targetName && (!d.id));
           match = aMatch || dMatch;
       } else {
+          // [핵심] ID 기반 매칭
           const aMatch = actors.some(a => a.id === currentId);
           const dMatch = directors.some(d => d.id === currentId);
           match = aMatch || dMatch;
@@ -171,7 +173,7 @@ async function render(){
   
   const out = document.getElementById('out');
   out.innerHTML = '';
-  const filmsWithAudi = [];
+  const filmsWithAudi = []; // 차트용 데이터
 
   if (myMovies.length === 0) {
       document.getElementById('msg').textContent = "등록된 출연작이 없습니다.";
@@ -184,15 +186,10 @@ async function render(){
     
     let castStr = "";
     if (f.actors) {
-        // [수정 핵심] 배우 이름을 링크로 변환
         const d = f.actors.slice(0, 7).map(a => {
-            if (a.name === currentName) return `<b>${a.name}</b>`; // 본인은 굵게
-            
-            // ID가 있으면 사용, 없으면 name: 사용
+            if (a.name === currentName) return `<b>${a.name}</b>`; 
             const pid = (a.id && a.id.trim()) ? a.id : `name:${a.name}`;
             const href = `person.html?id=${encodeURIComponent(pid)}&name=${encodeURIComponent(a.name)}`;
-            
-            // 새 탭 열기 (target="_blank")
             return `<a href="${href}" target="_blank">${a.name}</a>`;
         });
         castStr = ` · 배우: ${d.join(', ')}`;
@@ -203,15 +200,23 @@ async function render(){
       <span class="note">(${f.openDt||'미상'}${audiStr}<span class="cast-list">${castStr}</span>)</span>`;
     out.appendChild(li);
     
-    if (f.openDt && audiNum > 0) filmsWithAudi.push({ ...f, audiAcc: audiNum });
+    // [차트 데이터 수집] 개봉일이 있고 관객수가 있으면 추가
+    if (f.openDt && audiNum > 0) {
+        filmsWithAudi.push({ ...f, audiAcc: audiNum });
+    }
   }
 
+  // [차트 그리기] 데이터가 1개라도 있으면 무조건 표시
   if (filmsWithAudi.length > 0) {
       document.getElementById('chart-container').style.display = 'block';
       
+      // 개봉일 순 정렬 (과거 -> 미래)
       const chartData = [...filmsWithAudi].sort((a,b) => (a.openDt||'').localeCompare(b.openDt||''));
+      
+      // 초기 차트 그리기
       drawChart(chartData, 'totalAudi');
       
+      // 버튼 이벤트 연결
       const buttons = [
         { id: 'btnTotalAudi', type: 'totalAudi' },
         { id: 'btnAudiPerActor', type: 'audiPerActor' },
@@ -236,35 +241,44 @@ function drawChart(films, type) {
     const ctx = document.getElementById('audiChart');
     if (!ctx) return;
     
-    if (myChart) myChart.destroy();
+    if (myChart) { myChart.destroy(); }
     
-    let rawData = films.map(f => f.audiAcc);
+    // [수정] 데이터 매핑 시 안전하게 safeParseInt 사용
+    let rawData = films.map(f => safeParseInt(f.audiAcc));
     
     if (type === 'audiPerActor') {
-        rawData = films.map(f => Math.round(f.audiAcc / (f.actors && f.actors.length > 0 ? f.actors.length : 1)));
+        rawData = films.map(f => {
+            const acc = safeParseInt(f.audiAcc);
+            const count = (f.actors && f.actors.length > 0) ? f.actors.length : 1;
+            return Math.round(acc / count);
+        });
     }
     if (type === 'audiPerFilmography') { 
         const t = films.length; 
-        rawData = films.map(f => Math.round(f.audiAcc / t)); 
+        rawData = films.map(f => Math.round(safeParseInt(f.audiAcc) / t)); 
     }
     if (type === 'audiPerCareer') {
         if (films.length > 0) {
             const firstYear = parseInt(films[0].openDt.slice(0,4));
             rawData = films.map(f => {
+                const acc = safeParseInt(f.audiAcc);
                 const curYear = parseInt(f.openDt.slice(0,4));
                 const yearDiff = Math.max(1, curYear - firstYear + 1);
-                return Math.round(f.audiAcc / yearDiff);
+                return Math.round(acc / yearDiff);
             });
         }
     }
     if (type === 'audiBonus') {
-        rawData = films.map(f => f.audiAcc > 5000000 ? f.audiAcc * 1.5 : f.audiAcc);
+        rawData = films.map(f => {
+            const acc = safeParseInt(f.audiAcc);
+            return acc > 5000000 ? acc * 1.5 : acc;
+        });
     }
 
-    const dataPoints = rawData.map(v => Math.round(v / 1000));
+    const dataPoints = rawData.map(v => Math.round(v / 1000)); // 천명 단위
 
     const labels = films.map(f => {
-        const d = f.openDt.replace(/-/g, '');
+        const d = (f.openDt || '').replace(/-/g, '');
         if (d.length >= 6) {
             return `${d.slice(0,4)}.${d.slice(4,6)}`;
         }
@@ -278,8 +292,8 @@ function drawChart(films, type) {
             datasets: [{
                 label: '관객수 (단위: 천명)',
                 data: dataPoints,
-                borderColor: 'rgba(75, 192, 192, 1)',
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'var(--accent, #2e7d32)', // CSS 변수 활용
+                backgroundColor: 'rgba(46, 125, 50, 0.1)',
                 borderWidth: 2,
                 fill: true,
                 tension: 0.3
@@ -290,28 +304,15 @@ function drawChart(films, type) {
             responsive: true,
             scales: {
                 y: {
-                    ticks: {
-                        stepSize: 1000,
-                        callback: function(value) {
-                            return value.toLocaleString();
-                        }
-                    },
-                    title: {
-                        display: true,
-                        text: '단위: 천명'
-                    }
+                    ticks: { callback: function(value) { return value.toLocaleString(); } },
+                    title: { display: true, text: '단위: 천명' }
                 }
             },
             plugins: {
                 tooltip: {
                     callbacks: {
-                        title: function(tooltipItems) {
-                            const index = tooltipItems[0].dataIndex;
-                            return films[index].movieNm;
-                        },
-                        label: function(context) {
-                            return ` 관객수: ${fmtNum(context.raw * 1000)}명`;
-                        }
+                        title: (tooltipItems) => films[tooltipItems[0].dataIndex].movieNm,
+                        label: (context) => ` 관객수: ${fmtNum(context.raw * 1000)}명`
                     }
                 }
             }
