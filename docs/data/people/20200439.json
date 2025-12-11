@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20200439",
+      "peopleNm": "한명수",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "제작팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20180868",
+          "movieNm": "뺑반",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20141609",
+          "movieNm": "현기증",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20141609",
+          "movieNm": "현기증",
+          "moviePartNm": "제작팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

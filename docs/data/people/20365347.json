@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20365347",
+      "peopleNm": "황인철",
+      "peopleNmEn": "",
+      "sex": null,
+      "repRoleNm": "제작팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20217218",
+          "movieNm": "아이들은 즐겁다",
+          "moviePartNm": "미술팀"
+        },
+        {
+          "movieCd": "20181164",
+          "movieNm": "카센타",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20181164",
+          "movieNm": "카센타",
+          "moviePartNm": "제작팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20398700",
+      "peopleNm": "한동희",
+      "peopleNmEn": "HAN DONG HEE",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20244537",
+          "movieNm": "강령: 귀신놀이",
+          "moviePartNm": "현장편집"
+        },
+        {
+          "movieCd": "20212932",
+          "movieNm": "탈주",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20212932",
+          "movieNm": "탈주",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20219628",
+          "movieNm": "정직한 후보2",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20240910",
+          "movieNm": "올해의 가족",
+          "moviePartNm": "감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

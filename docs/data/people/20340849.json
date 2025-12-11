@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20340849",
+      "peopleNm": "홍진기",
+      "peopleNmEn": "Hong Jin Gi",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20256439",
+          "movieNm": "식사이론",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20218653",
+          "movieNm": "귀문",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20184462",
+          "movieNm": "봉오동 전투",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20198453",
+          "movieNm": "롱 리브 더 킹: 목포 영웅",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

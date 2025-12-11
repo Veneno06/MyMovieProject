@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20234047",
+      "peopleNm": "허재원",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20183358",
+          "movieNm": "겨울밤에",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20216501",
+          "movieNm": "유공자",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20141589",
+          "movieNm": "철원기행",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20340216",
+      "peopleNm": "허진",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20209926",
+          "movieNm": "세자매",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20183343",
+          "movieNm": "메이트",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20203354",
+          "movieNm": "상규형이 하지 말랬어",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20125226",
+      "peopleNm": "허형규",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "제작팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20100566",
+          "movieNm": "바다",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20100566",
+          "movieNm": "바다",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20100566",
+          "movieNm": "바다",
+          "moviePartNm": "촬영팀"
+        },
+        {
+          "movieCd": "20134248",
+          "movieNm": "무서운 이야기 2 '탈출'",
+          "moviePartNm": "제작팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}
