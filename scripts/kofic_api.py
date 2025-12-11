@@ -7,13 +7,15 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 from itertools import cycle
 
-# 사용할 API 키 환경변수 이름들
+# [수정] 7번째 키 추가
 KEY_NAMES = [
     "KOFIC_API_KEY",
     "KOFIC_API_KEY_2",
     "KOFIC_API_KEY_3",
     "KOFIC_API_KEY_4",
-    "KOFIC_API_KEY_5"
+    "KOFIC_API_KEY_5",
+    "KOFIC_API_KEY_6",
+    "KOFIC_API_KEY_7"
 ]
 
 class KoficApiRotator:
@@ -25,7 +27,6 @@ class KoficApiRotator:
                 self.keys.append(val)
         
         if not self.keys:
-            # 로컬 테스트 등을 위해 더미 키라도 넣음 (실행 시 경고)
             self.keys = ["DUMMY_KEY"]
             
         self.key_cycle = cycle(self.keys)
@@ -52,10 +53,6 @@ class KoficApiRotator:
         return self.current_key
 
     def request(self, url, params=None, timeout=30):
-        """
-        API 요청을 보냅니다. 
-        429(Too Many Requests)나 일일 허용량 초과 에러 발생 시 자동으로 키를 교체하고 재시도합니다.
-        """
         if params is None: params = {}
         
         max_retries = len(self.keys) + 1
@@ -65,21 +62,17 @@ class KoficApiRotator:
                 r = self.session.get(url, params=params, timeout=timeout)
                 data = r.json()
                 
-                # KOFIC 에러 체크
                 fault = data.get("faultInfo") or data.get("faultResult")
                 if fault:
                     msg = fault.get("message", "")
                     code = fault.get("errorCode", "")
-                    # 320010: 일일 트래픽 초과, 320011: 키 에러 등
                     if code in ["320010", "320011"] or "limit" in msg.lower():
                         print(f"[kofic_api] 키 소진됨 ({self.current_key[:4]}...). 교체 시도.")
                         self.rotate_key()
                         time.sleep(1)
-                        continue # 재시도
+                        continue 
                     else:
-                        # 다른 에러는 그냥 반환 (예: 데이터 없음)
                         return data
-                
                 return data
 
             except Exception as e:
@@ -88,16 +81,12 @@ class KoficApiRotator:
         
         raise Exception("모든 API 키를 시도했으나 실패했습니다.")
 
-# 전역 인스턴스
 rotator = KoficApiRotator()
 
-# 외부에서 사용할 함수들
 def get_session():
-    # 호환성을 위해 (session, key) 튜플 반환
     return rotator.session, rotator.current_key
 
 def fetch(url, params=None):
     return rotator.request(url, params)
 
-# 상수 호환성
 API_KEYS = rotator.keys
