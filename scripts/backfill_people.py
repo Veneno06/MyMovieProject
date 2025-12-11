@@ -26,7 +26,6 @@ except ImportError:
 HERE = Path(__file__).resolve()
 ROOT = HERE.parents[1] if HERE.parents[1].name == "MyMovieProject" else HERE.parents[2]
 DETAIL_DIR = ROOT / "docs" / "data" / "movies"
-# [핵심 변경] 영화 상세 대신 '영화인 목록' 검색 API 사용
 PEOPLE_LIST_URL = "https://www.kobis.or.kr/kobisopenapi/webservice/rest/people/searchPeopleList.json"
 
 CURRENT_KEY_INDEX = 0
@@ -42,14 +41,7 @@ def save_json(p: Path, data: dict):
     with open(p, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
-def is_h_name(name: str) -> bool:
-    if not name: return False
-    norm_name = unicodedata.normalize('NFC', name)
-    first_char = norm_name[0]
-    return '\ud558' <= first_char <= '\ud7a3'
-
 def normalize_title(title):
-    """영화 제목 매칭을 위해 공백/특수문자 제거"""
     if not title: return ""
     return "".join(c for c in title if c.isalnum()).lower()
 
@@ -72,7 +64,6 @@ def fetch_people_list_smart(peopleNm):
     
     for attempt in range(max_retries + 1):
         try:
-            # 동명이인 처리를 위해 한 번에 100명까지 검색
             qs = urlencode({"key": api_key, "peopleNm": peopleNm, "itemPerPage": 100})
             url = f"{PEOPLE_LIST_URL}?{qs}"
             r = session.get(url, timeout=10)
@@ -95,10 +86,10 @@ def fetch_people_list_smart(peopleNm):
     raise RuntimeError("All API keys exhausted.")
 
 def backfill(budget: int, rate_sleep_ms: int):
-    # 1. 로컬 파일 스캔 및 타겟(코드 없는 'ㅎ' 배우) 수집
+    # 1. 파일 스캔 및 타겟 수집 (모든 국내 배우 대상)
     files = sorted([Path(p) for p in glob.glob(str(DETAIL_DIR / "**" / "*.json"), recursive=True)], reverse=True)
     
-    print(f"[Step 1] 전체 파일({len(files)}개) 스캔 중... 'ㅎ'씨 배우 타겟팅")
+    print(f"[Step 1] 전체 파일({len(files)}개) 스캔 중... '국내 배우(코드 미보유)' 전체 타겟팅")
     
     # name -> list of {path: Path, movieNm: str}
     target_map = defaultdict(list)
@@ -111,7 +102,7 @@ def backfill(budget: int, rate_sleep_ms: int):
         movieNm = info.get("movieNm")
         if not movieNm: continue
 
-        # 한국 영화만 대상
+        # 한국 영화만 대상 (예산 절약을 위해)
         nations = info.get("nations") or []
         if not any(n.get("nationNm") == "한국" for n in nations):
             continue
@@ -121,24 +112,22 @@ def backfill(budget: int, rate_sleep_ms: int):
             nm = a.get("peopleNm", "").strip()
             cd = a.get("peopleCd", "").strip()
             
-            # 코드가 없고 'ㅎ'으로 시작하는 경우 수집
-            if nm and (not cd) and is_h_name(nm):
+            # [수정] 'ㅎ' 필터 제거 -> 모든 이름 수집
+            if nm and (not cd):
                 target_map[nm].append({
                     "path": p,
                     "movieNm": movieNm,
                     "cleanNm": normalize_title(movieNm)
                 })
 
+    # 출연작이 많은 순서대로 정렬 (유명 배우 우선 처리)
     target_names = sorted(target_map.keys(), key=lambda k: len(target_map[k]), reverse=True)
-    print(f"[Step 1 완료] 총 {len(target_names)}명의 'ㅎ'씨 배우(코드 미보유) 발견.")
+    print(f"[Step 1 완료] 총 {len(target_names)}명의 배우(코드 미보유) 발견.")
     
-    if not target_names:
-        print(" -> 대상이 없습니다. 이미 작업이 완료되었거나 파일이 없을 수 있습니다.")
-        return
+    if target_names:
+        print(f" -> 최다 출연 타겟 예시: {target_names[:10]}")
 
-    print(f" -> 상위 타겟 예시: {target_names[:5]}")
-
-    # 2. 배우 이름별로 API 검색 및 매칭
+    # 2. API 검색 및 매칭
     used = 0
     updated_files_count = 0
     
@@ -148,10 +137,8 @@ def backfill(budget: int, rate_sleep_ms: int):
             break
             
         occurrences = target_map[name]
-        # print(f"[API 검색] 배우 '{name}' (관련 영화 {len(occurrences)}편) 찾는 중...")
         
         try:
-            # API 호출: 배우 이름으로 검색 (1회 호출로 해당 배우 모든 영화 처리 시도)
             res = fetch_people_list_smart(name)
             used += 1
             if rate_sleep_ms > 0: time.sleep(rate_sleep_ms / 1000.0)
@@ -159,23 +146,19 @@ def backfill(budget: int, rate_sleep_ms: int):
             people_list = (res.get("peopleListResult") or {}).get("peopleList") or []
             
             if not people_list:
-                # print(f" -> '{name}' 검색 결과 없음.")
                 continue
 
-            # 3. 매칭 로직
             matched_movies_for_actor = 0
             
             for person in people_list:
                 pid = person.get("peopleCd")
-                filmos = person.get("filmoNames", "") # "영화1|영화2|..."
+                filmos = person.get("filmoNames", "")
                 if not filmos or not pid: continue
                 
                 filmo_set = set(normalize_title(t) for t in filmos.split("|"))
                 
-                # 내 로컬 영화 중 이 배우의 필모에 있는 것이 있는지 확인
                 for target in occurrences:
                     if target["cleanNm"] in filmo_set:
-                        # 매칭 성공! 파일 업데이트
                         f_path = target["path"]
                         f_data = load_json(f_path)
                         if not f_data: continue
@@ -185,7 +168,6 @@ def backfill(budget: int, rate_sleep_ms: int):
                         
                         changed = False
                         for ac in actors_list:
-                            # 이름이 같고 코드가 비어있으면 채워넣기
                             if ac.get("peopleNm") == name and not ac.get("peopleCd"):
                                 ac["peopleCd"] = pid
                                 changed = True
