@@ -30,27 +30,22 @@ CURRENT_KEY_INDEX = 0
 def load_json(p: Path):
     try:
         return json.loads(p.read_text(encoding="utf-8"))
-    except:
-        return None
+    except: return None
 
 def save_json(p: Path, data: dict):
     p.parent.mkdir(parents=True, exist_ok=True)
     with open(p, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
-def is_korean_movie(data: dict) -> bool:
-    info = data if data.get("movieCd") else ((data.get("movieInfoResult") or {}).get("movieInfo") or {})
-    nations = info.get("nations") or []
-    for n in nations:
-        if n.get("nationNm") == "한국":
-            return True
-    return False
-
-def is_h_name(name: str) -> bool:
+# [설정] 자음 필터링: ㄱ~ㄹ (0, 1, 2, 3, 4, 5)
+def is_target_consonant(name: str) -> bool:
     if not name: return False
-    norm_name = unicodedata.normalize('NFC', name)
-    first_char = norm_name[0]
-    return '\ud558' <= first_char <= '\ud7a3'
+    nm = unicodedata.normalize('NFC', name)
+    first_char = nm[0]
+    if not ('\uAC00' <= first_char <= '\uD7A3'): return False
+    idx = (ord(first_char) - 0xAC00) // 588
+    # 0(ㄱ) ~ 5(ㄹ)
+    return idx in [0, 1, 2, 3, 4, 5]
 
 def get_next_key_session():
     global CURRENT_KEY_INDEX
@@ -64,11 +59,9 @@ def get_next_key_session():
 def fetch_people_info_smart(peopleCd):
     global CURRENT_KEY_INDEX
     if not API_KEYS: raise RuntimeError("No API Keys")
-    
     api_key = API_KEYS[CURRENT_KEY_INDEX]
     session = requests.Session()
     max_retries = len(API_KEYS)
-    
     for attempt in range(max_retries + 1):
         try:
             qs = urlencode({"key": api_key, "peopleCd": peopleCd})
@@ -76,22 +69,17 @@ def fetch_people_info_smart(peopleCd):
             r = session.get(url, timeout=10)
             r.raise_for_status()
             j = r.json()
-            
             fault = j.get("faultInfo") or j.get("faultResult")
             if fault:
-                err_code = fault.get("errorCode")
-                if err_code == '320011':
+                if str(fault.get("errorCode")) == '320011':
                     print(f"[warning] Key exhausted. Switching...")
                     session, api_key = get_next_key_session()
                     continue
-                else:
-                    raise RuntimeError(f"KOBIS fault: {fault.get('message')}")
+                else: raise RuntimeError(f"KOBIS fault: {fault.get('message')}")
             return j
-            
         except Exception as e:
             if attempt == max_retries: raise e
             time.sleep(1)
-            
     raise RuntimeError("All API keys exhausted.")
 
 def build_details():
@@ -99,20 +87,15 @@ def build_details():
         print("[build_people] No API Keys. Skipping.")
         return
 
+    # 1. 영화 파일에서 '코드가 있고 + 타겟 자음인 배우' 수집
     files = sorted(glob.glob(str(MOVIE_DIR / "**" / "*.json"), recursive=True))
-    target_people = set()
+    existing_people_codes = set()
 
-    print(f"[scan] 'ㅎ'씨 배우 상세정보 수집 대상을 찾습니다...")
+    print(f"[scan] 'ㄱ~ㄹ' 배우 중 상세정보(성별)가 없는 대상을 찾습니다...")
     
-    korean_movie_cnt = 0
     for p in files:
         data = load_json(Path(p))
         if not data: continue
-        
-        if not is_korean_movie(data):
-            continue
-
-        korean_movie_cnt += 1
         info = data if data.get("movieCd") else ((data.get("movieInfoResult") or {}).get("movieInfo") or {})
         
         for key in ["directors", "actors"]:
@@ -120,28 +103,28 @@ def build_details():
                 code = person.get("peopleCd", "").strip()
                 name = person.get("peopleNm", "").strip()
                 
-                if code and name and is_h_name(name):
-                    target_people.add(code)
+                # [필터] 코드가 있고 + 이름이 ㄱ~ㄹ 범위인 경우
+                if code and name and is_target_consonant(name):
+                    existing_people_codes.add(code)
 
-    print(f"[info] 한국 영화 {korean_movie_cnt}편 분석 결과: 'ㅎ'씨 배우/감독 {len(target_people)}명 코드 발견.")
-
-    count = 0
-    sorted_people = sorted(list(target_people))
-    
+    # 2. 파일 부재 여부 확인
     needed_people = []
-    for code in sorted_people:
+    for code in sorted(list(existing_people_codes)):
         person_file = PEOPLE_DIR / f"{code}.json"
         if not (person_file.exists() and person_file.stat().st_size > 50):
             needed_people.append(code)
 
-    print(f"[info] 신규 수집 필요 인원: {len(needed_people)}명")
+    print(f"[info] 수집 대상: 총 {len(needed_people)}명 (ㄱ~ㄹ)")
+    
+    if not needed_people:
+        return
 
+    # 3. API 호출
+    count = 0
     for i, code in enumerate(needed_people):
         person_file = PEOPLE_DIR / f"{code}.json"
-        
         try:
             data = fetch_people_info_smart(code)
-            
             p_result = data.get("peopleInfoResult")
             p_info = p_result.get("peopleInfo") if p_result else None
             
@@ -164,7 +147,7 @@ def build_details():
             print(f"[error] {code}: {e}")
             time.sleep(1)
 
-    print(f"[done] 'ㅎ'씨 배우 데이터 신규 저장: {count}건")
+    print(f"[done] 배우 상세정보(성별) 신규 저장: {count}건")
 
 if __name__ == "__main__":
     build_details()
