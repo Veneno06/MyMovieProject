@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20186343",
+      "peopleNm": "강영수",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "조감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20134413",
+          "movieNm": "소녀",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20101244",
+          "movieNm": "자가당착: 시대정신과 현실참여",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20101244",
+          "movieNm": "자가당착: 시대정신과 현실참여",
+          "moviePartNm": "조감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

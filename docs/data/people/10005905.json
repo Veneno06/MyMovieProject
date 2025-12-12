@@ -1,0 +1,50 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10005905",
+      "peopleNm": "김진묵",
+      "peopleNmEn": "KIM Jin-muk",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20167007",
+          "movieNm": "살인소설",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20167007",
+          "movieNm": "살인소설",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "20060277",
+          "movieNm": "타짜",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060277",
+          "movieNm": "타짜",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20050330",
+          "movieNm": "작업의 정석",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20050256",
+          "movieNm": "새드무비",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20070283",
+          "movieNm": "Oh! 뷰리플 라이프",
+          "moviePartNm": "촬영"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

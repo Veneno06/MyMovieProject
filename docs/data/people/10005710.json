@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10005710",
+      "peopleNm": "김종철",
+      "peopleNmEn": "KIM Jong-cheol",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20060200",
+          "movieNm": "내 청춘에게 고함",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20072073",
+          "movieNm": "얼굴 없는 것들",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20030335",
+          "movieNm": "선택",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19980017",
+          "movieNm": "실락원",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19910111",
+          "movieNm": "검은 휘파람",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20164091",
+      "peopleNm": "김영춘",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "로케이션매니저",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20050332",
+          "movieNm": "파랑주의보",
+          "moviePartNm": "로케이션매니저"
+        },
+        {
+          "movieCd": "20050197",
+          "movieNm": "종려나무 숲",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20050197",
+          "movieNm": "종려나무 숲",
+          "moviePartNm": "로케이션매니저"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

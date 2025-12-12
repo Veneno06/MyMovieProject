@@ -1,0 +1,25 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10003908",
+      "peopleNm": "김도일",
+      "peopleNmEn": "KIM Do-il",
+      "sex": "남자",
+      "repRoleNm": "홍보/마케팅 진행",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20070209",
+          "movieNm": "화려한 휴가",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20070209",
+          "movieNm": "화려한 휴가",
+          "moviePartNm": "홍보/마케팅 진행"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

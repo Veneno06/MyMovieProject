@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10005733",
+      "peopleNm": "김주범",
+      "peopleNmEn": "KIM Ju-bum",
+      "sex": "남자",
+      "repRoleNm": "라인프로듀서",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20060138",
+          "movieNm": "강적",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060138",
+          "movieNm": "강적",
+          "moviePartNm": "라인프로듀서"
+        },
+        {
+          "movieCd": "20050306",
+          "movieNm": "애인",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20050102",
+          "movieNm": "활",
+          "moviePartNm": "제작팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

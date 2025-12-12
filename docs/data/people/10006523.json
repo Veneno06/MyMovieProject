@@ -1,0 +1,25 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10006523",
+      "peopleNm": "김희경",
+      "peopleNmEn": "Kim Hee-Kyung",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20080174",
+          "movieNm": "과거는 낯선 나라다",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20100621",
+          "movieNm": "호로자식을 위하여",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

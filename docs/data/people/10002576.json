@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10002576",
+      "peopleNm": "권희덕",
+      "peopleNmEn": "KWEON Hee-deok",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20060180",
+          "movieNm": "파이스토리",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060180",
+          "movieNm": "파이스토리",
+          "moviePartNm": "캐스팅디렉터"
+        },
+        {
+          "movieCd": "20060180",
+          "movieNm": "파이스토리",
+          "moviePartNm": "기타"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

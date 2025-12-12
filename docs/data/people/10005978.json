@@ -1,0 +1,45 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10005978",
+      "peopleNm": "김창균",
+      "peopleNmEn": "KIM Chang-kyun",
+      "sex": "남자",
+      "repRoleNm": "촬영",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20101040",
+          "movieNm": "소와 함께 여행하는 법",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20100075",
+          "movieNm": "무법자",
+          "moviePartNm": "카메라오퍼레이터"
+        },
+        {
+          "movieCd": "20020006",
+          "movieNm": "마들렌",
+          "moviePartNm": "촬영팀"
+        },
+        {
+          "movieCd": "20020139",
+          "movieNm": "오버 더 레인보우",
+          "moviePartNm": "촬영팀"
+        },
+        {
+          "movieCd": "20010036",
+          "movieNm": "파이란",
+          "moviePartNm": "촬영팀"
+        },
+        {
+          "movieCd": "20080431",
+          "movieNm": "Painter",
+          "moviePartNm": "촬영"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20112008",
+      "peopleNm": "강다영",
+      "peopleNmEn": "KANG Da-young",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20138226",
+          "movieNm": "우아한 거짓말",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20111319",
+          "movieNm": "좋은 이웃",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20100699",
+          "movieNm": "붉은 여왕들",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

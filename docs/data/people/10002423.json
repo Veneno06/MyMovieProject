@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10002423",
+      "peopleNm": "권순영",
+      "peopleNmEn": "KWON Soon-young",
+      "sex": "여자",
+      "repRoleNm": null,
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20080516",
+          "movieNm": "서울이 보이냐",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19880033",
+          "movieNm": "소금장수",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19830054",
+          "movieNm": "0시의 호텔",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

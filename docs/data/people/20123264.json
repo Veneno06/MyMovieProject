@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20123264",
+      "peopleNm": "강철",
+      "peopleNmEn": "KANG Yo-hwan",
+      "sex": "남자",
+      "repRoleNm": "기획",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20206424",
+          "movieNm": "사랑하고 있습니까",
+          "moviePartNm": "기획"
+        },
+        {
+          "movieCd": "20206424",
+          "movieNm": "사랑하고 있습니까",
+          "moviePartNm": "제작"
+        },
+        {
+          "movieCd": "20206424",
+          "movieNm": "사랑하고 있습니까",
+          "moviePartNm": "투자"
+        },
+        {
+          "movieCd": "20120181",
+          "movieNm": "스타: 빛나는 사랑",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

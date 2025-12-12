@@ -1,0 +1,50 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10004481",
+      "peopleNm": "김석우",
+      "peopleNmEn": "KIM Seok-u",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20081569",
+          "movieNm": "길",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20081569",
+          "movieNm": "길",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20081569",
+          "movieNm": "길",
+          "moviePartNm": "투자"
+        },
+        {
+          "movieCd": "20081569",
+          "movieNm": "길",
+          "moviePartNm": "편집"
+        },
+        {
+          "movieCd": "19980003",
+          "movieNm": "태양은 없다",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "19970037",
+          "movieNm": "비트",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "19950048",
+          "movieNm": "런어웨이",
+          "moviePartNm": "연출팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

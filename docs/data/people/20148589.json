@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20148589",
+      "peopleNm": "공광호",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "조감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20100981",
+          "movieNm": "살인의 강",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20100981",
+          "movieNm": "살인의 강",
+          "moviePartNm": "스크립터"
+        },
+        {
+          "movieCd": "20120762",
+          "movieNm": "진실을 위하여",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "20120762",
+          "movieNm": "진실을 위하여",
+          "moviePartNm": "조감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

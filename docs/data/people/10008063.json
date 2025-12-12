@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10008063",
+      "peopleNm": "노미란",
+      "peopleNmEn": "NO Mi-ran",
+      "sex": null,
+      "repRoleNm": "제작팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20060298",
+          "movieNm": "8월의 일요일들",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060298",
+          "movieNm": "8월의 일요일들",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20060681",
+          "movieNm": "물안경",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}
