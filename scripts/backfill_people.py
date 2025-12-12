@@ -12,7 +12,6 @@ from urllib.parse import urlencode
 import requests
 from collections import defaultdict
 
-# 모듈 경로 추가
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 if CURRENT_DIR not in sys.path:
     sys.path.append(CURRENT_DIR)
@@ -45,6 +44,26 @@ def normalize_title(title):
     if not title: return ""
     return "".join(c for c in title if c.isalnum()).lower()
 
+# [핵심] 자음 필터링 함수
+def is_target_consonant(name: str) -> bool:
+    if not name: return False
+    nm = unicodedata.normalize('NFC', name)
+    first_char = nm[0]
+    
+    if not ('\uAC00' <= first_char <= '\uD7A3'):
+        return False
+    
+    # 초성 인덱스: (유니코드 - 0xAC00) // 588
+    # 0:ㄱ, 1:ㄲ, 2:ㄴ, 3:ㄷ, 4:ㄸ, 5:ㄹ ...
+    idx = (ord(first_char) - 0xAC00) // 588
+    
+    # ==========================================
+    # [설정] 여기를 수정해서 타겟을 변경합니다.
+    # 1차 작업용: ㄱ, ㄲ, ㄴ (0, 1, 2)
+    # ==========================================
+    return idx in [0, 1, 2]
+
+# [스마트 키 교체] 다음 키 가져오기
 def get_next_key_session():
     global CURRENT_KEY_INDEX
     if not API_KEYS: return None, None
@@ -54,10 +73,10 @@ def get_next_key_session():
     print(f"[system] 🔄 API Key switched to index {CURRENT_KEY_INDEX}")
     return session, api_key
 
+# [스마트 키 교체] API 호출 및 자동 교체
 def fetch_people_list_smart(peopleNm):
     global CURRENT_KEY_INDEX
     if not API_KEYS: raise RuntimeError("No API Keys")
-    
     api_key = API_KEYS[CURRENT_KEY_INDEX]
     session = requests.Session()
     max_retries = len(API_KEYS)
@@ -72,13 +91,11 @@ def fetch_people_list_smart(peopleNm):
             
             fault = j.get("faultInfo") or j.get("faultResult")
             if fault:
-                err_code = fault.get("errorCode")
-                if err_code == '320011':
+                if str(fault.get("errorCode")) == '320011':
                     print(f"[warning] Key exhausted. Switching...")
                     session, api_key = get_next_key_session()
                     continue
-                else:
-                    raise RuntimeError(f"KOBIS fault: {fault.get('message')}")
+                else: raise RuntimeError(f"KOBIS fault: {fault.get('message')}")
             return j
         except Exception as e:
             if attempt == max_retries: raise e
@@ -86,23 +103,19 @@ def fetch_people_list_smart(peopleNm):
     raise RuntimeError("All API keys exhausted.")
 
 def backfill(budget: int, rate_sleep_ms: int):
-    # 1. 파일 스캔 및 타겟 수집 (모든 국내 배우 대상)
     files = sorted([Path(p) for p in glob.glob(str(DETAIL_DIR / "**" / "*.json"), recursive=True)], reverse=True)
     
-    print(f"[Step 1] 전체 파일({len(files)}개) 스캔 중... '국내 배우(코드 미보유)' 전체 타겟팅")
+    print(f"[Step 1] 전체 파일({len(files)}개) 스캔 중... 'ㄱ, ㄴ' 배우 타겟팅")
     
-    # name -> list of {path: Path, movieNm: str}
     target_map = defaultdict(list)
     
     for p in files:
         raw = load_json(p)
         if not raw: continue
-        
         info = raw if raw.get("movieCd") else ((raw.get("movieInfoResult") or {}).get("movieInfo") or {})
         movieNm = info.get("movieNm")
         if not movieNm: continue
 
-        # 한국 영화만 대상 (예산 절약을 위해)
         nations = info.get("nations") or []
         if not any(n.get("nationNm") == "한국" for n in nations):
             continue
@@ -112,49 +125,38 @@ def backfill(budget: int, rate_sleep_ms: int):
             nm = a.get("peopleNm", "").strip()
             cd = a.get("peopleCd", "").strip()
             
-            # [수정] 'ㅎ' 필터 제거 -> 모든 이름 수집
-            if nm and (not cd):
+            # 코드가 없고 + 타겟 자음(ㄱ,ㄴ)인 경우만 수집
+            if nm and (not cd) and is_target_consonant(nm):
                 target_map[nm].append({
-                    "path": p,
-                    "movieNm": movieNm,
-                    "cleanNm": normalize_title(movieNm)
+                    "path": p, "movieNm": movieNm, "cleanNm": normalize_title(movieNm)
                 })
 
-    # 출연작이 많은 순서대로 정렬 (유명 배우 우선 처리)
     target_names = sorted(target_map.keys(), key=lambda k: len(target_map[k]), reverse=True)
-    print(f"[Step 1 완료] 총 {len(target_names)}명의 배우(코드 미보유) 발견.")
-    
-    if target_names:
-        print(f" -> 최다 출연 타겟 예시: {target_names[:10]}")
+    print(f"[Step 1 완료] 총 {len(target_names)}명의 대상 배우(코드 미보유) 발견.")
+    if target_names: print(f" -> 주요 타겟: {target_names[:10]}")
 
-    # 2. API 검색 및 매칭
     used = 0
     updated_files_count = 0
     
     for name in target_names:
         if used >= budget:
-            print(f"[Stop] 설정된 예산({used}회)에 도달하여 중단합니다.")
+            print(f"[Stop] 예산 소진 ({used}회).")
             break
             
         occurrences = target_map[name]
-        
         try:
             res = fetch_people_list_smart(name)
             used += 1
             if rate_sleep_ms > 0: time.sleep(rate_sleep_ms / 1000.0)
             
             people_list = (res.get("peopleListResult") or {}).get("peopleList") or []
-            
-            if not people_list:
-                continue
+            if not people_list: continue
 
-            matched_movies_for_actor = 0
-            
+            matched = 0
             for person in people_list:
                 pid = person.get("peopleCd")
                 filmos = person.get("filmoNames", "")
                 if not filmos or not pid: continue
-                
                 filmo_set = set(normalize_title(t) for t in filmos.split("|"))
                 
                 for target in occurrences:
@@ -162,7 +164,6 @@ def backfill(budget: int, rate_sleep_ms: int):
                         f_path = target["path"]
                         f_data = load_json(f_path)
                         if not f_data: continue
-                        
                         f_info = f_data if f_data.get("movieCd") else ((f_data.get("movieInfoResult") or {}).get("movieInfo") or {})
                         actors_list = f_info.get("actors") or []
                         
@@ -173,32 +174,25 @@ def backfill(budget: int, rate_sleep_ms: int):
                                 changed = True
                         
                         if changed:
-                            if f_data.get("movieCd"):
-                                f_data["actors"] = actors_list
-                            elif "movieInfoResult" in f_data:
-                                f_data["movieInfoResult"]["movieInfo"]["actors"] = actors_list
-                                
+                            if f_data.get("movieCd"): f_data["actors"] = actors_list
+                            elif "movieInfoResult" in f_data: f_data["movieInfoResult"]["movieInfo"]["actors"] = actors_list
                             save_json(f_path, f_data)
-                            matched_movies_for_actor += 1
+                            matched += 1
                             updated_files_count += 1
-            
-            if matched_movies_for_actor > 0:
-                print(f" -> ✅ 배우 '{name}': {matched_movies_for_actor}편의 영화에 코드 주입 성공")
-            
+            if matched > 0:
+                print(f" -> ✅ 배우 '{name}': {matched}편 업데이트 성공")
         except Exception as e:
-            print(f"[Error] {name} 처리 중 오류: {e}")
+            print(f"[Error] {name}: {e}")
             time.sleep(1)
 
-    print(f"=== 최종 완료: 총 {updated_files_count}번의 파일 업데이트 발생, API {used}회 사용 ===")
+    print(f"=== 최종 완료: 총 {updated_files_count}번 파일 업데이트, API {used}회 사용 ===")
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--budget", type=int, default=3000)
     ap.add_argument("--rate-sleep-ms", type=int, default=100)
     args, unknown = ap.parse_known_args()
-    
     if not API_KEYS:
-        print("[error] API 키가 없습니다.")
+        print("[error] No API Keys.")
         exit(1)
-        
     backfill(args.budget, args.rate_sleep_ms)
