@@ -32,8 +32,7 @@ CURRENT_KEY_INDEX = 0
 def load_json(p: Path):
     try:
         return json.loads(p.read_text(encoding="utf-8"))
-    except:
-        return None
+    except: return None
 
 def save_json(p: Path, data: dict):
     p.parent.mkdir(parents=True, exist_ok=True)
@@ -44,7 +43,7 @@ def normalize_title(title):
     if not title: return ""
     return "".join(c for c in title if c.isalnum()).lower()
 
-# [핵심] 자음 필터링 함수
+# [설정] 자음 필터링: ㄷ, ㄸ, ㄹ (3, 4, 5)
 def is_target_consonant(name: str) -> bool:
     if not name: return False
     nm = unicodedata.normalize('NFC', name)
@@ -57,14 +56,9 @@ def is_target_consonant(name: str) -> bool:
     # 0:ㄱ, 1:ㄲ, 2:ㄴ, 3:ㄷ, 4:ㄸ, 5:ㄹ ...
     idx = (ord(first_char) - 0xAC00) // 588
     
-    # ==========================================
-    # [설정] 여기를 수정해서 타겟을 변경합니다.
-    # 1차 작업용: ㄱ, ㄲ, ㄴ (0, 1, 2)
-    # 2차 작업용: ㄷ, ㄸ, ㄹ (3, 4, 5)
-    # ==========================================
+    # ㄷ(3), ㄸ(4), ㄹ(5)
     return idx in [3, 4, 5]
 
-# [스마트 키 교체] 다음 키 가져오기
 def get_next_key_session():
     global CURRENT_KEY_INDEX
     if not API_KEYS: return None, None
@@ -74,14 +68,12 @@ def get_next_key_session():
     print(f"[system] 🔄 API Key switched to index {CURRENT_KEY_INDEX}")
     return session, api_key
 
-# [스마트 키 교체] API 호출 및 자동 교체
 def fetch_people_list_smart(peopleNm):
     global CURRENT_KEY_INDEX
     if not API_KEYS: raise RuntimeError("No API Keys")
     api_key = API_KEYS[CURRENT_KEY_INDEX]
     session = requests.Session()
     max_retries = len(API_KEYS)
-    
     for attempt in range(max_retries + 1):
         try:
             qs = urlencode({"key": api_key, "peopleNm": peopleNm, "itemPerPage": 100})
@@ -89,7 +81,6 @@ def fetch_people_list_smart(peopleNm):
             r = session.get(url, timeout=10)
             r.raise_for_status()
             j = r.json()
-            
             fault = j.get("faultInfo") or j.get("faultResult")
             if fault:
                 if str(fault.get("errorCode")) == '320011':
@@ -104,9 +95,10 @@ def fetch_people_list_smart(peopleNm):
     raise RuntimeError("All API keys exhausted.")
 
 def backfill(budget: int, rate_sleep_ms: int):
+    # 최신순 스캔
     files = sorted([Path(p) for p in glob.glob(str(DETAIL_DIR / "**" / "*.json"), recursive=True)], reverse=True)
     
-    print(f"[Step 1] 전체 파일({len(files)}개) 스캔 중... 'ㄱ, ㄴ' 배우 타겟팅")
+    print(f"[Step 1] 전체 파일({len(files)}개) 스캔 중... 'ㄷ, ㄹ' 배우 타겟팅")
     
     target_map = defaultdict(list)
     
@@ -126,7 +118,7 @@ def backfill(budget: int, rate_sleep_ms: int):
             nm = a.get("peopleNm", "").strip()
             cd = a.get("peopleCd", "").strip()
             
-            # 코드가 없고 + 타겟 자음(ㄱ,ㄴ)인 경우만 수집
+            # [필터] 코드가 없고 + 자음이 ㄷ,ㄹ 인 경우
             if nm and (not cd) and is_target_consonant(nm):
                 target_map[nm].append({
                     "path": p, "movieNm": movieNm, "cleanNm": normalize_title(movieNm)
