@@ -37,15 +37,20 @@ def save_json(p: Path, data: dict):
     with open(p, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
-# [설정] 자음 필터링: ㄱ~ㄹ (0, 1, 2, 3, 4, 5)
+# [설정] 자음 필터링: ㄱ, ㄲ, ㄴ (0, 1, 2)
 def is_target_consonant(name: str) -> bool:
     if not name: return False
     nm = unicodedata.normalize('NFC', name)
     first_char = nm[0]
-    if not ('\uAC00' <= first_char <= '\uD7A3'): return False
+    
+    if not ('\uAC00' <= first_char <= '\uD7A3'):
+        return False
+    
     idx = (ord(first_char) - 0xAC00) // 588
-    # 0(ㄱ) ~ 5(ㄹ)
-    return idx in [0, 1, 2, 3, 4, 5]
+    
+    # 0:ㄱ, 1:ㄲ, 2:ㄴ
+    # 이번 타겟: ㄱ, ㄴ
+    return idx in [0, 1, 2]
 
 def get_next_key_session():
     global CURRENT_KEY_INDEX
@@ -87,11 +92,11 @@ def build_details():
         print("[build_people] No API Keys. Skipping.")
         return
 
-    # 1. 영화 파일에서 '코드가 있고 + 타겟 자음인 배우' 수집
+    # 1. 영화 파일 스캔 (코드 + 이름 수집)
     files = sorted(glob.glob(str(MOVIE_DIR / "**" / "*.json"), recursive=True))
-    existing_people_codes = set()
+    people_map = {} # code -> name
 
-    print(f"[scan] 'ㄱ~ㄹ' 배우 중 상세정보(성별)가 없는 대상을 찾습니다...")
+    print(f"[scan] 'ㄱ, ㄴ' 배우 중 성별 정보가 없는 대상을 찾습니다...")
     
     for p in files:
         data = load_json(Path(p))
@@ -102,21 +107,30 @@ def build_details():
             for person in (info.get(key) or []):
                 code = person.get("peopleCd", "").strip()
                 name = person.get("peopleNm", "").strip()
-                
-                # [필터] 코드가 있고 + 이름이 ㄱ~ㄹ 범위인 경우
-                if code and name and is_target_consonant(name):
-                    existing_people_codes.add(code)
+                if code and name:
+                    people_map[code] = name
 
-    # 2. 파일 부재 여부 확인
+    # 2. 필터링 (파일 미보유 + 타겟 자음)
     needed_people = []
-    for code in sorted(list(existing_people_codes)):
+    
+    # 코드를 정렬해서 처리
+    for code in sorted(people_map.keys()):
+        name = people_map[code]
+        
+        # [핵심] 이름이 ㄱ, ㄴ 인지 확인
+        if not is_target_consonant(name):
+            continue
+            
         person_file = PEOPLE_DIR / f"{code}.json"
+        
+        # 파일이 없거나 내용이 부실하면 수집 대상
         if not (person_file.exists() and person_file.stat().st_size > 50):
             needed_people.append(code)
 
-    print(f"[info] 수집 대상: 총 {len(needed_people)}명 (ㄱ~ㄹ)")
+    print(f"[info] 수집 대상: 총 {len(needed_people)}명 (이름이 ㄱ, ㄴ으로 시작)")
     
     if not needed_people:
+        print(" -> 대상이 없습니다.")
         return
 
     # 3. API 호출
