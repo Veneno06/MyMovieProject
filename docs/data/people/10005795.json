@@ -1,0 +1,25 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10005795",
+      "peopleNm": "김준홍",
+      "peopleNmEn": "KIM Jun-hong",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20205341",
+          "movieNm": "선샤인 패밀리",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20100528",
+          "movieNm": "내 맘도 몰라주고",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

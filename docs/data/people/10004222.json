@@ -1,0 +1,25 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10004222",
+      "peopleNm": "김민지",
+      "peopleNmEn": "KIM Min-ji",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20101200",
+          "movieNm": "김종욱 찾기",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20100299",
+          "movieNm": "이파네마 소년",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

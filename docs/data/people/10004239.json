@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10004239",
+      "peopleNm": "김바다",
+      "peopleNmEn": "KIM Ba-da",
+      "sex": "여자",
+      "repRoleNm": "시나리오(각본)",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20155223",
+          "movieNm": "목숨 건 연애",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "20126090",
+          "movieNm": "조선미녀삼총사",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "20071067",
+          "movieNm": "슈퍼맨이었던 사나이",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20071067",
+          "movieNm": "슈퍼맨이었던 사나이",
+          "moviePartNm": "시나리오(각본)"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

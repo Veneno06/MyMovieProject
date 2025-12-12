@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10005858",
+      "peopleNm": "김지인",
+      "peopleNmEn": "KIM Ji-in ",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20100053",
+          "movieNm": "계몽영화",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060540",
+          "movieNm": "전쟁영화",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20048547",
+          "movieNm": "단속평형",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

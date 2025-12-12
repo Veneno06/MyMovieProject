@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10004990",
+      "peopleNm": "김영식",
+      "peopleNmEn": "KIM Yeong-sik",
+      "sex": null,
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20212391",
+          "movieNm": "2차 송환",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20040520",
+          "movieNm": "송환",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19740081",
+          "movieNm": "빵간에 산다",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "19560046",
+          "movieNm": "천추의 한",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19778023",
+          "movieNm": "고슴도치",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

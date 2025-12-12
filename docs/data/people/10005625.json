@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10005625",
+      "peopleNm": "김정학",
+      "peopleNmEn": "KIM Jung-hak",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20122702",
+          "movieNm": "네모난원",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060053",
+          "movieNm": "창공으로",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20020277",
+          "movieNm": "해안선",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20020193",
+          "movieNm": "아 유 레디?",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20247485",
+          "movieNm": "쉘위",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

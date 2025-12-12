@@ -1,0 +1,45 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10003801",
+      "peopleNm": "김남진",
+      "peopleNmEn": "KIM Nam-jin",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20120106",
+          "movieNm": "뒷담화: 감독이 미쳤어요",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20070497",
+          "movieNm": "궁녀",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20030155",
+          "movieNm": "봄날의 곰을 좋아하세요?",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20020238",
+          "movieNm": "연애소설",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20120743",
+          "movieNm": "날아라 닭!",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20070547",
+          "movieNm": "판타스틱 자살소동",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

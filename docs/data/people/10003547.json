@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10003547",
+      "peopleNm": "김경섭",
+      "peopleNmEn": "KIM Kyung-sub",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20181983",
+          "movieNm": "이웃사촌",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20193666",
+          "movieNm": "오! 문희",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20200490",
+          "movieNm": "제인의 썸머",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20030439",
+          "movieNm": "그녀를 모르면 간첩",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20010092",
+          "movieNm": "아프리카",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

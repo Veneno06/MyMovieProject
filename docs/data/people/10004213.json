@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10004213",
+      "peopleNm": "김이정",
+      "peopleNmEn": "KIM Yi-jung",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20184243",
+          "movieNm": "판소리 복서",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20120105",
+          "movieNm": "누구나 제 명에 죽고 싶다",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20199702",
+          "movieNm": "생일케익",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20119540",
+          "movieNm": "구경",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20072132",
+          "movieNm": "코스튬 플레이",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

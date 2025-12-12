@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10000686",
+      "peopleNm": "강성연",
+      "peopleNmEn": "KANG Sung-yeon",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20211303",
+          "movieNm": "여타짜",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20070066",
+          "movieNm": "수",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20050333",
+          "movieNm": "왕의 남자",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

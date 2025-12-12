@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10004225",
+      "peopleNm": "김민채",
+      "peopleNmEn": "KIM Min-chae",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20081672",
+          "movieNm": "과속스캔들",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20080663",
+          "movieNm": "크로싱",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20070639",
+          "movieNm": "내 사랑",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20225936",
+          "movieNm": "데드 악셀",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

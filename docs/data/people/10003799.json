@@ -1,0 +1,25 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10003799",
+      "peopleNm": "김남주",
+      "peopleNmEn": "KIM Nam-joo",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20070015",
+          "movieNm": "그놈 목소리",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20010019",
+          "movieNm": "아이 러브 유",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

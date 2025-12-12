@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10005500",
+      "peopleNm": "김재영",
+      "peopleNmEn": "KIM Jae-young",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20080303",
+          "movieNm": "천막",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20080303",
+          "movieNm": "천막",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20100067",
+          "movieNm": "대추리에 살다",
+          "moviePartNm": "편집"
+        },
+        {
+          "movieCd": "20072064",
+          "movieNm": "대추리 전쟁",
+          "moviePartNm": "촬영"
+        },
+        {
+          "movieCd": "20110050",
+          "movieNm": "모순이에게",
+          "moviePartNm": "감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

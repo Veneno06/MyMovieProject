@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10004166",
+      "peopleNm": "김미희",
+      "peopleNmEn": "KIM Mi-hee",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20192101",
+          "movieNm": "히트맨",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20177537",
+          "movieNm": "상류사회",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20100060",
+          "movieNm": "불타는 내 마음",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20080409",
+          "movieNm": "보람이에겐 뭔가 특별한 것이 있다",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

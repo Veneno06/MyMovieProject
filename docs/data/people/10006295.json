@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10006295",
+      "peopleNm": "김현정",
+      "peopleNmEn": "KIM Hyun-jung",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20233075",
+          "movieNm": "신체모음.zip",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20040486",
+          "movieNm": "마지막 늑대",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20000001",
+          "movieNm": "해변으로가다",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20058800",
+          "movieNm": "내 이름은 김삼순",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

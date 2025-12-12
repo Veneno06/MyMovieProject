@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10004089",
+      "peopleNm": "김명희",
+      "peopleNmEn": "KIM Myung-hee",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20170841",
+          "movieNm": "리틀 포레스트",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19890044",
+          "movieNm": "외계인과 콩콩강시",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19870029",
+          "movieNm": "요화 어을우동",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

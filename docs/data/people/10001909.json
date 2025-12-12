@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10001909",
+      "peopleNm": "공지영",
+      "peopleNmEn": "GONG Ji-young",
+      "sex": "여자",
+      "repRoleNm": "원작",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20129806",
+          "movieNm": "맥코리아",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20112534",
+          "movieNm": "도가니",
+          "moviePartNm": "스토리"
+        },
+        {
+          "movieCd": "19950056",
+          "movieNm": "무소의 뿔처럼 혼자서 가라",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "19920095",
+          "movieNm": "숲속의 방",
+          "moviePartNm": "시나리오(각본)"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

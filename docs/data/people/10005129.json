@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10005129",
+      "peopleNm": "김용옥",
+      "peopleNmEn": "KIM Yong-oak",
+      "sex": "남자",
+      "repRoleNm": "시나리오(각본)",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20162608",
+          "movieNm": "나의 살던 고향은",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20020053",
+          "movieNm": "취화선",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "19910051",
+          "movieNm": "개벽",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "19900042",
+          "movieNm": "장군의 아들",
+          "moviePartNm": "각색"
+        },
+        {
+          "movieCd": "19880038",
+          "movieNm": "깜동",
+          "moviePartNm": "각색"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

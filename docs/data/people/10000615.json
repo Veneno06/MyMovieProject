@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10000615",
+      "peopleNm": "강민선",
+      "peopleNmEn": "KANG Min-sun",
+      "sex": "남자",
+      "repRoleNm": "프로듀서",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20110906",
+          "movieNm": "특수본",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20040647",
+          "movieNm": "도마 안중근",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20040647",
+          "movieNm": "도마 안중근",
+          "moviePartNm": "프로듀서"
+        },
+        {
+          "movieCd": "20020216",
+          "movieNm": "긴급조치 19호",
+          "moviePartNm": "제작팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

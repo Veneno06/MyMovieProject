@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10005228",
+      "peopleNm": "김유나",
+      "peopleNmEn": "KIM Yoo-nah",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20080394",
+          "movieNm": "비스티 보이즈",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20070185",
+          "movieNm": "저 하늘에도 슬픔이",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060055",
+          "movieNm": "모두들, 괜찮아요?",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20040793",
+          "movieNm": "제니, 주노",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20040612",
+          "movieNm": "신부수업",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

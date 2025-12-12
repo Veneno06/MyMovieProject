@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10003651",
+      "peopleNm": "김국진",
+      "peopleNmEn": "KIM Kuk-jin",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20196749",
+          "movieNm": "언더그라운드",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20194456",
+          "movieNm": "양자물리학",
+          "moviePartNm": "캐스팅"
+        },
+        {
+          "movieCd": "20020242",
+          "movieNm": "보스 상륙 작전(Boss X File)",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20018794",
+          "movieNm": "내 약혼녀 이야기",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10007427",
+      "peopleNm": "나현주",
+      "peopleNmEn": "NA Hyun-Joo",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20175546",
+          "movieNm": "폴리스 스파이",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20090014",
+          "movieNm": "유감스러운 도시",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20050363",
+          "movieNm": "투사부일체",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10005231",
+      "peopleNm": "김유미",
+      "peopleNmEn": "KIM You-mi",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20240532",
+          "movieNm": "짱구",
+          "moviePartNm": "기획"
+        },
+        {
+          "movieCd": "20131245",
+          "movieNm": "블랙 가스펠",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20135405",
+          "movieNm": "붉은 가족",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20070289",
+          "movieNm": "리턴",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060112",
+          "movieNm": "공필두",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20050197",
+          "movieNm": "종려나무 숲",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20040614",
+          "movieNm": "인형사",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20020213",
+          "movieNm": "폰",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

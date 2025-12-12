@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10002562",
+      "peopleNm": "권혁호",
+      "peopleNmEn": "KWON Hyeok-ho",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20040688",
+          "movieNm": "빈집",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20030413",
+          "movieNm": "목포는 항구다",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20030092",
+          "movieNm": "청풍명월(淸風明月)",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20010005",
+          "movieNm": "나쁜 남자",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

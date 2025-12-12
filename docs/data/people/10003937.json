@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10003937",
+      "peopleNm": "김동길",
+      "peopleNmEn": "KIM Dong-gil",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20205378",
+          "movieNm": "그녀의 비밀정원",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20122832",
+          "movieNm": "한 번도 안 해본 여자",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20124012",
+          "movieNm": "초대",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20101171",
+          "movieNm": "컬러 동물원",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20090156",
+          "movieNm": "그림자 살인",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

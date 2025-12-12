@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10000824",
+      "peopleNm": "강인기",
+      "peopleNmEn": "KANG In-ki",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20234711",
+          "movieNm": "해야 할 일",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20202247",
+          "movieNm": "싱글 인 서울",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20020141",
+          "movieNm": "후아유",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

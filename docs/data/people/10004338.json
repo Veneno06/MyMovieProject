@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10004338",
+      "peopleNm": "김보정",
+      "peopleNmEn": "KIM Bo-jeong",
+      "sex": "여자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20080257",
+          "movieNm": "동거, 동락",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20080257",
+          "movieNm": "동거, 동락",
+          "moviePartNm": "각색"
+        },
+        {
+          "movieCd": "20060244",
+          "movieNm": "우리들의 행복한 시간",
+          "moviePartNm": "스크립터"
+        },
+        {
+          "movieCd": "20070278",
+          "movieNm": "생리해서 좋은 날",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20070278",
+          "movieNm": "생리해서 좋은 날",
+          "moviePartNm": "시나리오(각본)"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

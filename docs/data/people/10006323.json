@@ -1,0 +1,50 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10006323",
+      "peopleNm": "김형기",
+      "peopleNmEn": "KIM Hyoung-ki",
+      "sex": "남자",
+      "repRoleNm": "조감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20192697",
+          "movieNm": "미스터 보스",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20192697",
+          "movieNm": "미스터 보스",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "20090822",
+          "movieNm": "바람",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20090822",
+          "movieNm": "바람",
+          "moviePartNm": "조감독"
+        },
+        {
+          "movieCd": "20081200",
+          "movieNm": "쉿! 그녀에겐 비밀이에요",
+          "moviePartNm": "조감독"
+        },
+        {
+          "movieCd": "20060017",
+          "movieNm": "흡혈형사 나도열",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "20060017",
+          "movieNm": "흡혈형사 나도열",
+          "moviePartNm": "스토리"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

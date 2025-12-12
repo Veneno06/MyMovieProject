@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10004880",
+      "peopleNm": "김아름",
+      "peopleNmEn": "KIM Ah-rum",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20148349",
+          "movieNm": "타인의 멜로디",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20113825",
+          "movieNm": "청소년 드라마의 이해와 실제",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20081006",
+          "movieNm": "시선 1318",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20081006",
+          "movieNm": "시선 1318",
+          "moviePartNm": "시나리오(각본)"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

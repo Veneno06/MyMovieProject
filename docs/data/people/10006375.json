@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10006375",
+      "peopleNm": "김혜민",
+      "peopleNmEn": "KIM Hye-min",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20060135",
+          "movieNm": "모노폴리",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20020299",
+          "movieNm": "일장춘몽",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060800",
+          "movieNm": "일장춘몽",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060814",
+          "movieNm": "저 푸른 초원",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

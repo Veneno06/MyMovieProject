@@ -1,0 +1,45 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10005234",
+      "peopleNm": "김유미",
+      "peopleNmEn": "KIM You-mee",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "19990082",
+          "movieNm": "정",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19990082",
+          "movieNm": "정",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "19960057",
+          "movieNm": "러브 스토리",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19960057",
+          "movieNm": "러브 스토리",
+          "moviePartNm": "원작"
+        },
+        {
+          "movieCd": "20100019",
+          "movieNm": "여행",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20100019",
+          "movieNm": "여행",
+          "moviePartNm": "시나리오(각본)"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

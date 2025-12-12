@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10003492",
+      "peopleNm": "김가연",
+      "peopleNmEn": "KIM Ga-yeon",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20040471",
+          "movieNm": "어디선가 누군가에 무슨일이 생기면 틀림없이 나타난다 홍반장",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20000040",
+          "movieNm": "물고기자리",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20000030",
+          "movieNm": "반칙왕",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20070547",
+          "movieNm": "판타스틱 자살소동",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

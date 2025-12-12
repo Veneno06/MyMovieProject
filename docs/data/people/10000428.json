@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10000428",
+      "peopleNm": "간미연",
+      "peopleNmEn": "Kan mi-youn",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20234063",
+          "movieNm": "한탕",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20200583",
+          "movieNm": "요가학원 : 죽음의 쿤달리니",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20020216",
+          "movieNm": "긴급조치 19호",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

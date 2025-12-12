@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10004277",
+      "peopleNm": "김병석",
+      "peopleNmEn": "KIM Byoung-seok",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20154908",
+          "movieNm": "7년의 밤",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20160484",
+          "movieNm": "누에치던 방",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20070174",
+          "movieNm": "우리에게 내일은 없다",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20040762",
+          "movieNm": "마이 제너레이션",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19880046",
+          "movieNm": "돌아이 4 둔버기",
+          "moviePartNm": "투자"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

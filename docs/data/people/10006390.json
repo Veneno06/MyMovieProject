@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10006390",
+      "peopleNm": "김혜자",
+      "peopleNmEn": "KIM Hye-ja",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20174644",
+          "movieNm": "길",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20130574",
+          "movieNm": "개를 훔치는 완벽한 방법",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20090248",
+          "movieNm": "마더",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19990085",
+          "movieNm": "마요네즈",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20112212",
+          "movieNm": "만추",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

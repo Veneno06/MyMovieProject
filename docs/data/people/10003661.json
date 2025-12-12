@@ -1,0 +1,50 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10003661",
+      "peopleNm": "김규남",
+      "peopleNmEn": "KIM Gyu-nam",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20179101",
+          "movieNm": "공작",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20110894",
+          "movieNm": "천사의 숨소리",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20100213",
+          "movieNm": "부당거래",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20090248",
+          "movieNm": "마더",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20081396",
+          "movieNm": "사람을 찾습니다",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20040472",
+          "movieNm": "귀여워",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20119893",
+          "movieNm": "더블 클러치",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

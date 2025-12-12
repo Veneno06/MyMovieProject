@@ -1,0 +1,25 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10004456",
+      "peopleNm": "김서경",
+      "peopleNmEn": "KIM Seo-kyung",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20070014",
+          "movieNm": "1번가의 기적",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20080369",
+          "movieNm": "초콜렛 중독",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

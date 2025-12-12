@@ -1,0 +1,45 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10003951",
+      "peopleNm": "김동수",
+      "peopleNmEn": "KIM Dong-su",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20150481",
+          "movieNm": "7공주 대리운전",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20130243",
+          "movieNm": "허풍",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20070608",
+          "movieNm": "색화동",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20010018",
+          "movieNm": "게임오버",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19880054",
+          "movieNm": "뽕 2",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19870052",
+          "movieNm": "박철수의 헬로 임꺽정",
+          "moviePartNm": "조명"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

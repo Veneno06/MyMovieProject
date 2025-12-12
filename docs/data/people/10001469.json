@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10001469",
+      "peopleNm": "고다미",
+      "peopleNmEn": "GO Da-mi",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20090496",
+          "movieNm": "핑크 토끼",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20072149",
+          "movieNm": "내 사랑 유리에",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20070082",
+          "movieNm": "내 여자의 남자친구",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

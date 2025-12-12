@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10005109",
+      "peopleNm": "김용림",
+      "peopleNmEn": "KIM Yong-rim",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20219628",
+          "movieNm": "정직한 후보2",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20196271",
+          "movieNm": "강철비2: 정상회담",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20193321",
+          "movieNm": "정직한 후보",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10006371",
+      "peopleNm": "김혜리",
+      "peopleNmEn": "KIM Hye-ri",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20040558",
+          "movieNm": "클레멘타인",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20030397",
+          "movieNm": "천년호",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19940044",
+          "movieNm": "계약 커플",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19920079",
+          "movieNm": "언제나 막차를 타고 오는 사람",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

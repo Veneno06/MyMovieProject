@@ -1,0 +1,45 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10006158",
+      "peopleNm": "김태희",
+      "peopleNmEn": "KIM Tae-hee",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20100329",
+          "movieNm": "그랑프리",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20090316",
+          "movieNm": "아이리스 더 무비",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20070610",
+          "movieNm": "싸움",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060370",
+          "movieNm": "중천",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20010038",
+          "movieNm": "선물",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060597",
+          "movieNm": "신 도시인",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10005605",
+      "peopleNm": "김정이",
+      "peopleNmEn": "KIM Jeong-ui",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20060234",
+          "movieNm": "두뇌유희프로젝트, 퍼즐",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060200",
+          "movieNm": "내 청춘에게 고함",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

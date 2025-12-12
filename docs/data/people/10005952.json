@@ -1,0 +1,25 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10005952",
+      "peopleNm": "김진표",
+      "peopleNmEn": "KIM Jin-pyo",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20174369",
+          "movieNm": "변산",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20020240",
+          "movieNm": "성냥팔이 소녀의 재림",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

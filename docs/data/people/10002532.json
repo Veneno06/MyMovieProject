@@ -1,0 +1,45 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10002532",
+      "peopleNm": "권창범",
+      "peopleNmEn": "GWON Chang-beom",
+      "sex": "남자",
+      "repRoleNm": "조감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20090146",
+          "movieNm": "펜트하우스 코끼리",
+          "moviePartNm": "조감독"
+        },
+        {
+          "movieCd": "20070023",
+          "movieNm": "어깨 너머의 연인",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20060053",
+          "movieNm": "창공으로",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060053",
+          "movieNm": "창공으로",
+          "moviePartNm": "조감독"
+        },
+        {
+          "movieCd": "20040752",
+          "movieNm": "까불지마",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20040752",
+          "movieNm": "까불지마",
+          "moviePartNm": "조감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

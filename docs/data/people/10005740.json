@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10005740",
+      "peopleNm": "김주연",
+      "peopleNmEn": "KIM Joo-yeun ",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20210165",
+          "movieNm": "브라더",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19960062",
+          "movieNm": "콜렉터",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19960057",
+          "movieNm": "러브 스토리",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19960061",
+          "movieNm": "충무로 돈키호테",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19870040",
+          "movieNm": "영점구일칠",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

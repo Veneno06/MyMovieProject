@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10000499",
+      "peopleNm": "강경희",
+      "peopleNmEn": "GANG Gyeong-hui",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20061214",
+          "movieNm": "작은 연못",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20081337",
+          "movieNm": "사랑과 전쟁:열두 번째 남자",
+          "moviePartNm": "캐스팅디렉터"
+        },
+        {
+          "movieCd": "20050013",
+          "movieNm": "잠복근무",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

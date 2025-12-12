@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10005315",
+      "peopleNm": "김은경",
+      "peopleNmEn": "KIM Eun-kyung",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20060017",
+          "movieNm": "흡혈형사 나도열",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20050077",
+          "movieNm": "댄서의 순정",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20030145",
+          "movieNm": "내츄럴시티",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20020277",
+          "movieNm": "해안선",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20020054",
+          "movieNm": "일단뛰어",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

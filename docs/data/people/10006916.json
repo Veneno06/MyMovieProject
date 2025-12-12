@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10006916",
+      "peopleNm": "나성천",
+      "peopleNmEn": "NA Seong-cheon",
+      "sex": "남자",
+      "repRoleNm": "각색",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20060341",
+          "movieNm": "후회하지 않아",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20070547",
+          "movieNm": "판타스틱 자살소동",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20070547",
+          "movieNm": "판타스틱 자살소동",
+          "moviePartNm": "각색"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

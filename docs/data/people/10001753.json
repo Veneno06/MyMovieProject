@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10001753",
+      "peopleNm": "고정일",
+      "peopleNmEn": "GO Jeong-il",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20224495",
+          "movieNm": "폭로",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20149819",
+          "movieNm": "바리새인",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20050227",
+          "movieNm": "한길수",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19920061",
+          "movieNm": "우리들의 일그러진 영웅",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19900035",
+          "movieNm": "혼자도는 바람개비",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

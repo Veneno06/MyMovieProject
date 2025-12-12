@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10005283",
+      "peopleNm": "김윤아",
+      "peopleNmEn": "Kim Yun A",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20070497",
+          "movieNm": "궁녀",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060352",
+          "movieNm": "누가 그녀와 잤을까?",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060200",
+          "movieNm": "내 청춘에게 고함",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20129237",
+          "movieNm": "인 굿 컴퍼니",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20121421",
+          "movieNm": "가족시네마",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

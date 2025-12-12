@@ -1,0 +1,45 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10002449",
+      "peopleNm": "권영철",
+      "peopleNmEn": "KWON Young-chul",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20205341",
+          "movieNm": "선샤인 패밀리",
+          "moviePartNm": "조감독"
+        },
+        {
+          "movieCd": "20133681",
+          "movieNm": "태양을 쏴라",
+          "moviePartNm": "각색"
+        },
+        {
+          "movieCd": "20133681",
+          "movieNm": "태양을 쏴라",
+          "moviePartNm": "스토리보드"
+        },
+        {
+          "movieCd": "20090794",
+          "movieNm": "나쁜 놈이 더 잘 잔다",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20090794",
+          "movieNm": "나쁜 놈이 더 잘 잔다",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "20070095",
+          "movieNm": "아내의 애인을 만나다",
+          "moviePartNm": "조감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}
