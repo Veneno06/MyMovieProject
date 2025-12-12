@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20383452",
+      "peopleNm": "김진영",
+      "peopleNmEn": "",
+      "sex": null,
+      "repRoleNm": "제작팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20225639",
+          "movieNm": "기브 뎀: 사라진 자들의 비밀",
+          "moviePartNm": "미술/프로덕션 디자인"
+        },
+        {
+          "movieCd": "20210690",
+          "movieNm": "테이블 매너",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20180902",
+          "movieNm": "아워 바디",
+          "moviePartNm": "제작팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

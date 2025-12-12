@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20387543",
+      "peopleNm": "김희지",
+      "peopleNmEn": "Kim Hee Ji",
+      "sex": "여자",
+      "repRoleNm": "제작팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20231042",
+          "movieNm": "빅토리",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20210546",
+          "movieNm": "악마가 이사왔다",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20219997",
+          "movieNm": "드림팰리스",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20200566",
+          "movieNm": "거래완료",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

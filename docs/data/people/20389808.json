@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20389808",
+      "peopleNm": "김예은",
+      "peopleNmEn": "kimyeeun",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20234874",
+          "movieNm": "커플지옥",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20218935",
+          "movieNm": "더 문",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20229015",
+          "movieNm": "대화가 필요해",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20232653",
+          "movieNm": "어둠이 내리면",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

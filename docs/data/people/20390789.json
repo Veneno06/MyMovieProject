@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20390789",
+      "peopleNm": "김윤진",
+      "peopleNmEn": "KIM YOON JIN",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20247245",
+          "movieNm": "홈캠",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20253249",
+          "movieNm": "맨홀",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20173612",
+          "movieNm": "메소드",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

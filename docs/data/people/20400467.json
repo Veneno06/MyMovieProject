@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20400467",
+      "peopleNm": "김형석",
+      "peopleNmEn": "Kim Hyung Seok",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20244536",
+          "movieNm": "전, 란",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20198317",
+          "movieNm": "인생은 아름다워",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20250357",
+          "movieNm": "그냥 봤을 뿐인데",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

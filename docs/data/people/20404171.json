@@ -1,0 +1,45 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20404171",
+      "peopleNm": "김한",
+      "peopleNmEn": "KIM HAN",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20259725",
+          "movieNm": "후광",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20234687",
+          "movieNm": "독전 2",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20196701",
+          "movieNm": "69세",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20255519",
+          "movieNm": "목인",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20252234",
+          "movieNm": "전염",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20241481",
+          "movieNm": "복채",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

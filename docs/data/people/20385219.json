@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20385219",
+      "peopleNm": "권일",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20200566",
+          "movieNm": "거래완료",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20230624",
+          "movieNm": "아귀",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20230616",
+          "movieNm": "오 내 가문의 라이타!",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

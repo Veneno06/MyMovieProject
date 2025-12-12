@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20403239",
+      "peopleNm": "김세원",
+      "peopleNmEn": "Kim Se Won",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20257089",
+          "movieNm": "낮은 곳으로부터",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20259200",
+          "movieNm": "내일의 민재",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20249462",
+          "movieNm": "수학영재 형주",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

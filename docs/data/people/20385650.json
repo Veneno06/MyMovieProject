@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20385650",
+      "peopleNm": "김대중",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20246989",
+          "movieNm": "스노우 퍼핀즈",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20211596",
+          "movieNm": "불안은 영혼을 잠식한다",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20226823",
+          "movieNm": "기기묘묘",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

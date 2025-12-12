@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20384260",
+      "peopleNm": "김소원",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20245399",
+          "movieNm": "4분 44초",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20226185",
+          "movieNm": "오싹한 동거",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20236694",
+          "movieNm": "아톰 새로운 시작",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20400383",
+      "peopleNm": "김현아",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "라인프로듀서",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20254722",
+          "movieNm": "신명",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20254722",
+          "movieNm": "신명",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20245061",
+          "movieNm": "내가 만난 사람들",
+          "moviePartNm": "라인프로듀서"
+        },
+        {
+          "movieCd": "20208245",
+          "movieNm": "핸섬가이즈",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20202822",
+          "movieNm": "라스트필름",
+          "moviePartNm": "제작팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

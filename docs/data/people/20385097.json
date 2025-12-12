@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20385097",
+      "peopleNm": "강현아",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20234692",
+          "movieNm": "딜리버리",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20217425",
+          "movieNm": "더 와일드: 야수들의 전쟁",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20190815",
+          "movieNm": "보이스",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060137",
+          "movieNm": "비열한 거리",
+          "moviePartNm": "제작팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

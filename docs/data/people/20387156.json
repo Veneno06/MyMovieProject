@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20387156",
+      "peopleNm": "기모태",
+      "peopleNmEn": "Ki Mo-tae",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20247913",
+          "movieNm": "시네마 테러리스트",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20247913",
+          "movieNm": "시네마 테러리스트",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "20228535",
+          "movieNm": "페이퍼맨",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20228535",
+          "movieNm": "페이퍼맨",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

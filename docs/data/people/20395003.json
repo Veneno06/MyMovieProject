@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20395003",
+      "peopleNm": "강희구",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "제작팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20234675",
+          "movieNm": "파묘",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20236181",
+          "movieNm": "은하수",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20223819",
+          "movieNm": "말할 수 없는 비밀",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20243007",
+          "movieNm": "주연을 찾습니다",
+          "moviePartNm": "연출팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20389591",
+      "peopleNm": "김병준",
+      "peopleNmEn": "KIM Byung-Jun",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20232285",
+          "movieNm": "위험사회",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20232285",
+          "movieNm": "위험사회",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "20196676",
+          "movieNm": "종이꽃",
+          "moviePartNm": "조감독"
+        },
+        {
+          "movieCd": "20181631",
+          "movieNm": "비포선라이즈",
+          "moviePartNm": "감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

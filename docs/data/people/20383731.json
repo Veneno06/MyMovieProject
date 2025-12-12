@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20383731",
+      "peopleNm": "김요한",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20256308",
+          "movieNm": "인턴",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20241093",
+          "movieNm": "그 시절, 우리가 좋아했던 소녀",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20216726",
+          "movieNm": "스트리밍",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20211872",
+          "movieNm": "감동주의보",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

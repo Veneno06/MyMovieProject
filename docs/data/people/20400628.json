@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20400628",
+      "peopleNm": "김무건",
+      "peopleNmEn": "KIM MU GEON",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20246110",
+          "movieNm": "고백하지마",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20234874",
+          "movieNm": "커플지옥",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20249478",
+          "movieNm": "하나, 둘, 셋 러브",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

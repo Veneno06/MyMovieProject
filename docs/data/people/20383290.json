@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20383290",
+      "peopleNm": "김명선",
+      "peopleNmEn": "Kim Myoungsun",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20226883",
+          "movieNm": "여기도 사람 있어요",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20211792",
+          "movieNm": "헌트",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20223939",
+          "movieNm": "부기나이트",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20217334",
+          "movieNm": "안녕하세요",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}
