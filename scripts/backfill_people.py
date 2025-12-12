@@ -57,7 +57,7 @@ def is_target_consonant(name: str) -> bool:
     idx = (ord(first_char) - 0xAC00) // 588
     
     # ㄷ(3), ㄸ(4), ㄹ(5)
-    return idx in [3, 4, 5]
+    return idx in [0, 1, 2]
 
 def get_next_key_session():
     global CURRENT_KEY_INDEX
