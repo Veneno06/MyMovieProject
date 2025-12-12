@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20155617",
+      "peopleNm": "김세호",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20138224",
+          "movieNm": "플랜맨",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20122782",
+          "movieNm": "그녀가 부른다",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20020053",
+          "movieNm": "취화선",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

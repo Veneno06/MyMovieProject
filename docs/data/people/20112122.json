@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20112122",
+      "peopleNm": "김성태",
+      "peopleNmEn": "KIM Sung-tae",
+      "sex": "남자",
+      "repRoleNm": "프로듀서",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20113260",
+          "movieNm": "퍼펙트 게임",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20113260",
+          "movieNm": "퍼펙트 게임",
+          "moviePartNm": "제작"
+        },
+        {
+          "movieCd": "20113260",
+          "movieNm": "퍼펙트 게임",
+          "moviePartNm": "기획"
+        },
+        {
+          "movieCd": "20100351",
+          "movieNm": "60년전, 사선에서",
+          "moviePartNm": "프로듀서"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

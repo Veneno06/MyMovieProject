@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20367224",
+      "peopleNm": "김다운",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "동시녹음",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20196264",
+          "movieNm": "유체이탈자",
+          "moviePartNm": "동시녹음팀"
+        },
+        {
+          "movieCd": "20198201",
+          "movieNm": "오늘, 우리",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20198201",
+          "movieNm": "오늘, 우리",
+          "moviePartNm": "동시녹음"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

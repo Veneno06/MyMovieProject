@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20324892",
+      "peopleNm": "김병기",
+      "peopleNmEn": "KIM Byung-gi",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20190678",
+          "movieNm": "삽질",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20190678",
+          "movieNm": "삽질",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20190678",
+          "movieNm": "삽질",
+          "moviePartNm": "기타"
+        },
+        {
+          "movieCd": "20190678",
+          "movieNm": "삽질",
+          "moviePartNm": "촬영팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

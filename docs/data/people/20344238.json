@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20344238",
+      "peopleNm": "김지현",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20209349",
+          "movieNm": "나를 죽여줘",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20190621",
+          "movieNm": "죽지않는 인간들의 밤",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20191121",
+          "movieNm": "7월7일",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20181301",
+          "movieNm": "사범",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

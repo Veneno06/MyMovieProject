@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20315256",
+      "peopleNm": "김학준",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20255464",
+          "movieNm": "흥신소",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20202026",
+          "movieNm": "마루이 비디오",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20184571",
+          "movieNm": "천문: 하늘에 묻는다",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20179189",
+          "movieNm": "암수살인",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

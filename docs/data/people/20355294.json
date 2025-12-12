@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20355294",
+      "peopleNm": "김미영",
+      "peopleNmEn": "kim mee young",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20225967",
+          "movieNm": "니자리",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20211546",
+          "movieNm": "같은 속옷을 입는 두 여자",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20190477",
+          "movieNm": "겨울의 수박",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

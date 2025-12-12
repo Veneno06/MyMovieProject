@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20319599",
+      "peopleNm": "김남우",
+      "peopleNmEn": "NamWoo Kim",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20202822",
+          "movieNm": "라스트필름",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20211382",
+          "movieNm": "오마주",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20178190",
+          "movieNm": "이,기적인 남자",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20230276",
+          "movieNm": "라스트 트레인",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

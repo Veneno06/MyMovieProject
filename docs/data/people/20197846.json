@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20197846",
+      "peopleNm": "김진",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "동시녹음",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20127207",
+          "movieNm": "나의 싸움",
+          "moviePartNm": "동시녹음"
+        },
+        {
+          "movieCd": "20135770",
+          "movieNm": "레디액션! 폭력영화",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20135770",
+          "movieNm": "레디액션! 폭력영화",
+          "moviePartNm": "동시녹음"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

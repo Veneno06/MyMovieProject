@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20375675",
+      "peopleNm": "김형서",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20227626",
+          "movieNm": "화란",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20214823",
+          "movieNm": "유령",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20218240",
+          "movieNm": "여고괴담 여섯번째 이야기 : 모교",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

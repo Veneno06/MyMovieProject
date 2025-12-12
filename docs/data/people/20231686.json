@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20231686",
+      "peopleNm": "김태현",
+      "peopleNmEn": "KIM Tae-hyun",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20161590",
+          "movieNm": "그렌델",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20161590",
+          "movieNm": "그렌델",
+          "moviePartNm": "프로듀서"
+        },
+        {
+          "movieCd": "20151063",
+          "movieNm": "깡치",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

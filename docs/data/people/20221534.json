@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20221534",
+      "peopleNm": "김달선",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "각색",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20148841",
+          "movieNm": "헬머니",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20148841",
+          "movieNm": "헬머니",
+          "moviePartNm": "각색"
+        },
+        {
+          "movieCd": "20148841",
+          "movieNm": "헬머니",
+          "moviePartNm": "스틸"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

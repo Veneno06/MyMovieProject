@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20162862",
+      "peopleNm": "김진경",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20100787",
+          "movieNm": "옥희의 영화",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19940061",
+          "movieNm": "핑크빛 깡통",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19998937",
+          "movieNm": "삼승할망",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

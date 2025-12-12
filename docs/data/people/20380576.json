@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20380576",
+      "peopleNm": "김진",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20208101",
+          "movieNm": "대무가",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20208962",
+          "movieNm": "대외비",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20201815",
+          "movieNm": "간호중",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

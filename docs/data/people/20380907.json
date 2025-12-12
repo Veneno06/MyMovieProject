@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20380907",
+      "peopleNm": "김아해",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20235765",
+          "movieNm": "최초의 기억",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20190665",
+          "movieNm": "임신한 나무와 도깨비",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20190665",
+          "movieNm": "임신한 나무와 도깨비",
+          "moviePartNm": "기타"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

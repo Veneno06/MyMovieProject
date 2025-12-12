@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20336195",
+      "peopleNm": "김가영",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20181164",
+          "movieNm": "카센타",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20181198",
+          "movieNm": "보희와 녹양",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20191302",
+          "movieNm": "우리 지금 만나",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

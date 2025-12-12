@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20204786",
+      "peopleNm": "김태희",
+      "peopleNmEn": "KIM Tae-hee",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20142402",
+          "movieNm": "간신",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20137043",
+          "movieNm": "남자가 사랑할 때",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20070168",
+          "movieNm": "경의선",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20130943",
+          "movieNm": "나를 잊지 말아요",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

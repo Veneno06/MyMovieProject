@@ -1,0 +1,42 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20382657",
+      "peopleNm": "김지윤",
+      "peopleNmEn": "KIM Ji-yoon",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [
+        {
+          "homepgUrl": "http://www.kmdb.or.kr/db/per/00220405"
+        },
+        {
+          "homepgUrl": "http://www.instagram.com/kimm_jiyoon"
+        }
+      ],
+      "filmos": [
+        {
+          "movieCd": "20234874",
+          "movieNm": "커플지옥",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20230522",
+          "movieNm": "2퍼센트",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20224302",
+          "movieNm": "3.5교시",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20248616",
+          "movieNm": "매직포션21",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

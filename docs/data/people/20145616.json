@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20145616",
+      "peopleNm": "김경민",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "제작팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20080399",
+          "movieNm": "트럭",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20080399",
+          "movieNm": "트럭",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20060277",
+          "movieNm": "타짜",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20060231",
+          "movieNm": "뚝방전설",
+          "moviePartNm": "제작팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

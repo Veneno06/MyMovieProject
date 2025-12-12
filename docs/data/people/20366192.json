@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20366192",
+      "peopleNm": "김대종",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20210364",
+          "movieNm": "탄생",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20180902",
+          "movieNm": "아워 바디",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20240766",
+          "movieNm": "렛 미 아웃",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

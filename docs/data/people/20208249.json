@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20208249",
+      "peopleNm": "김수빈",
+      "peopleNmEn": "KIM Soo-vin",
+      "sex": "여자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20158161",
+          "movieNm": "소꿉놀이",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20158161",
+          "movieNm": "소꿉놀이",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20158161",
+          "movieNm": "소꿉놀이",
+          "moviePartNm": "편집"
+        },
+        {
+          "movieCd": "20158161",
+          "movieNm": "소꿉놀이",
+          "moviePartNm": "촬영"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20161377",
+      "peopleNm": "김진환",
+      "peopleNmEn": "Kim jinhwan",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20217905",
+          "movieNm": "데시벨",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20203286",
+          "movieNm": "강릉",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20090581",
+          "movieNm": "부산",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

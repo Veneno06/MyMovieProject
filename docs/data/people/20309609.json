@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20309609",
+      "peopleNm": "김정환",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20189869",
+          "movieNm": "해피 투게더",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20189869",
+          "movieNm": "해피 투게더",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20189869",
+          "movieNm": "해피 투게더",
+          "moviePartNm": "각색"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

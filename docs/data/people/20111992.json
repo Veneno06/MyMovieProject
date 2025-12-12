@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20111992",
+      "peopleNm": "김진이",
+      "peopleNmEn": "Kim Jin-e",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20246333",
+          "movieNm": "3670",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20209461",
+          "movieNm": "입천장 까지도록 와그작",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20100566",
+          "movieNm": "바다",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20193816",
+          "movieNm": "은서",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

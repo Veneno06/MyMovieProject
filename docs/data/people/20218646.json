@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20218646",
+      "peopleNm": "김선주",
+      "peopleNmEn": "",
+      "sex": null,
+      "repRoleNm": "프로듀서",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20155201",
+          "movieNm": "란제리살인사건",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20157147",
+          "movieNm": "힙스터: 안개의 덫",
+          "moviePartNm": "제작"
+        },
+        {
+          "movieCd": "20157147",
+          "movieNm": "힙스터: 안개의 덫",
+          "moviePartNm": "프로듀서"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20150685",
+      "peopleNm": "김선하",
+      "peopleNmEn": "Kim Sun-Ha",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20147930",
+          "movieNm": "나의 사랑 나의 신부",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20131102",
+          "movieNm": "수상한 그녀",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20081367",
+          "movieNm": "가벼운 잠",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

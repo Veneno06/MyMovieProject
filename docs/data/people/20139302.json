@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20139302",
+      "peopleNm": "김재흥",
+      "peopleNmEn": "KIM Jae-heung",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20202786",
+          "movieNm": "귀여운 남자",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20121072",
+          "movieNm": "남쪽으로 간다",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20135381",
+          "movieNm": "지난 여름, 갑자기 남쪽으로 간다",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20200731",
+          "movieNm": "수상한 동거",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

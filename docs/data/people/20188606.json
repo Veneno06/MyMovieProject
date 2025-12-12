@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20188606",
+      "peopleNm": "김준호",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20217624",
+          "movieNm": "컴백홈",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20208006",
+          "movieNm": "인민을 위해 복무하라",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20148277",
+          "movieNm": "몬스터 왕국",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

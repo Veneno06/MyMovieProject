@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20374564",
+      "peopleNm": "김성",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "제작팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20201786",
+          "movieNm": "좀비크러쉬: 헤이리",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20201786",
+          "movieNm": "좀비크러쉬: 헤이리",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20252316",
+          "movieNm": "소탐대실",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20225883",
+          "movieNm": "주둥아리",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

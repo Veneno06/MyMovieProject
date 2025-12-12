@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20123885",
+      "peopleNm": "김홍택",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20227947",
+          "movieNm": "모자산책",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20193017",
+          "movieNm": "발광하는 현대사",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20070421",
+          "movieNm": "권순분여사 납치사건",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

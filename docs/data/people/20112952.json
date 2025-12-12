@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20112952",
+      "peopleNm": "김종찬",
+      "peopleNmEn": "KIM Jong-chan",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20101028",
+          "movieNm": "조금만 더 가까이",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20080747",
+          "movieNm": "라라 선샤인",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20080747",
+          "movieNm": "라라 선샤인",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20110468",
+          "movieNm": "이제 난 용감해질거야",
+          "moviePartNm": "감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

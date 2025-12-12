@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20343859",
+      "peopleNm": "김찬욱",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "연출팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20199023",
+          "movieNm": "걸작",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20199023",
+          "movieNm": "걸작",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20199023",
+          "movieNm": "걸작",
+          "moviePartNm": "동시녹음"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

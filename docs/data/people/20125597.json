@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20125597",
+      "peopleNm": "강민영",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "스크립터",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20090815",
+          "movieNm": "홍길동의 후예",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20090815",
+          "movieNm": "홍길동의 후예",
+          "moviePartNm": "스크립터"
+        },
+        {
+          "movieCd": "20081718",
+          "movieNm": "로맨틱 아일랜드",
+          "moviePartNm": "스크립터"
+        },
+        {
+          "movieCd": "20101245",
+          "movieNm": "시선 너머",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

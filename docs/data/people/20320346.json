@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20320346",
+      "peopleNm": "김준식",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20218541",
+          "movieNm": "밀수",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20186663",
+          "movieNm": "뷰티풀 뱀파이어",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20243007",
+          "movieNm": "주연을 찾습니다",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20243007",
+          "movieNm": "주연을 찾습니다",
+          "moviePartNm": "스크립터"
+        },
+        {
+          "movieCd": "20243007",
+          "movieNm": "주연을 찾습니다",
+          "moviePartNm": "편집"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

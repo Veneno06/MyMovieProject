@@ -1,0 +1,50 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20134783",
+      "peopleNm": "김석",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "현장편집",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20233259",
+          "movieNm": "정보원",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20233259",
+          "movieNm": "정보원",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "20110295",
+          "movieNm": "마이 웨이",
+          "moviePartNm": "현장편집"
+        },
+        {
+          "movieCd": "20100210",
+          "movieNm": "맨발의 꿈",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20100210",
+          "movieNm": "맨발의 꿈",
+          "moviePartNm": "현장편집"
+        },
+        {
+          "movieCd": "20100210",
+          "movieNm": "맨발의 꿈",
+          "moviePartNm": "스크립터"
+        },
+        {
+          "movieCd": "20090074",
+          "movieNm": "해운대",
+          "moviePartNm": "스크립터"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20366136",
+      "peopleNm": "김별",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20209926",
+          "movieNm": "세자매",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20196799",
+          "movieNm": "경미의 세계",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20192603",
+          "movieNm": "좀비파이터",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20064715",
+      "peopleNm": "김은정",
+      "peopleNmEn": "KIM Eun-jung",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20040774",
+          "movieNm": "몽정기2",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20008676",
+          "movieNm": "육침",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20132514",
+          "movieNm": "남선생과 여제자",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

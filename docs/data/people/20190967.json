@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20190967",
+      "peopleNm": "김혜원",
+      "peopleNmEn": "KIM Hye-won",
+      "sex": "여자",
+      "repRoleNm": "프로듀서",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20149458",
+          "movieNm": "픽업 아티스트",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20149458",
+          "movieNm": "픽업 아티스트",
+          "moviePartNm": "프로듀서"
+        },
+        {
+          "movieCd": "20139463",
+          "movieNm": "시선",
+          "moviePartNm": "투자"
+        },
+        {
+          "movieCd": "20090317",
+          "movieNm": "영도 다리",
+          "moviePartNm": "프로듀서"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

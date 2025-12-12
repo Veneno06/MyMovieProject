@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20164626",
+      "peopleNm": "김용덕",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "제작",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "19820019",
+          "movieNm": "만추",
+          "moviePartNm": "프로듀서"
+        },
+        {
+          "movieCd": "20060015",
+          "movieNm": "백만장자의 첫사랑",
+          "moviePartNm": "제작"
+        },
+        {
+          "movieCd": "20040567",
+          "movieNm": "투 가이즈",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20040567",
+          "movieNm": "투 가이즈",
+          "moviePartNm": "기획"
+        },
+        {
+          "movieCd": "20040567",
+          "movieNm": "투 가이즈",
+          "moviePartNm": "제작관리"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

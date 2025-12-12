@@ -1,0 +1,47 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20110241",
+      "peopleNm": "김윤아",
+      "peopleNmEn": "KIM Yun-a",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [
+        {
+          "homepgUrl": "http://www.jaurim.com/jaurim/"
+        },
+        {
+          "homepgUrl": "http://blog.naver.com/jaurim_blog"
+        }
+      ],
+      "filmos": [
+        {
+          "movieCd": "20070114",
+          "movieNm": "열세살 수아",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20070114",
+          "movieNm": "열세살 수아",
+          "moviePartNm": "작사/작곡/편곡"
+        },
+        {
+          "movieCd": "20050007",
+          "movieNm": "그때 그 사람들",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20050007",
+          "movieNm": "그때 그 사람들",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20000015",
+          "movieNm": "인터뷰",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20152342",
+      "peopleNm": "김인선",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "스크립터",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20101066",
+          "movieNm": "맛있는 인생",
+          "moviePartNm": "스크립터"
+        },
+        {
+          "movieCd": "20060245",
+          "movieNm": "원탁의 천사",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060245",
+          "movieNm": "원탁의 천사",
+          "moviePartNm": "스크립터"
+        },
+        {
+          "movieCd": "20120764",
+          "movieNm": "니마",
+          "moviePartNm": "스크립터"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

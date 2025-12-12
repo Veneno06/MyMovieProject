@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20143460",
+      "peopleNm": "김남경",
+      "peopleNmEn": "",
+      "sex": null,
+      "repRoleNm": "아트디렉터",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20080516",
+          "movieNm": "서울이 보이냐",
+          "moviePartNm": "미술팀"
+        },
+        {
+          "movieCd": "20060407",
+          "movieNm": "마파도2",
+          "moviePartNm": "아트디렉터"
+        },
+        {
+          "movieCd": "20060014",
+          "movieNm": "썬데이 서울",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060014",
+          "movieNm": "썬데이 서울",
+          "moviePartNm": "미술팀"
+        },
+        {
+          "movieCd": "20040641",
+          "movieNm": "S 다이어리",
+          "moviePartNm": "미술팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

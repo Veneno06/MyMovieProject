@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20111673",
+      "peopleNm": "김현주",
+      "peopleNmEn": "Kim Hyun-ju ",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20081649",
+          "movieNm": "낙타는 말했다",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20081403",
+          "movieNm": "그 남자의 책 198쪽",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20080257",
+          "movieNm": "동거, 동락",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20050100",
+          "movieNm": "프락치",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060528",
+          "movieNm": "사과",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

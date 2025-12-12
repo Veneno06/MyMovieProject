@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20337322",
+      "peopleNm": "김미진",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20188441",
+          "movieNm": "킹메이커",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20191106",
+          "movieNm": "영화로운 나날",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20185881",
+          "movieNm": "증인",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

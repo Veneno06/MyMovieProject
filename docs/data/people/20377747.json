@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20377747",
+      "peopleNm": "김서원",
+      "peopleNmEn": "KIM Seo-won",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20224579",
+          "movieNm": "악마들",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20204548",
+          "movieNm": "범죄도시2",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20204845",
+          "movieNm": "공기살인",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20210168",
+          "movieNm": "F20",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20190621",
+          "movieNm": "죽지않는 인간들의 밤",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

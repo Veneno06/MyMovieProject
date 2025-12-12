@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20135704",
+      "peopleNm": "김민혜",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20177005",
+          "movieNm": "레슬러",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20141663",
+          "movieNm": "라이브 TV",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20081525",
+          "movieNm": "지구에서 사는 법",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

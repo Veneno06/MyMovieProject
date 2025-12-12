@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10007587",
+      "peopleNm": "남주현",
+      "peopleNmEn": "Nam Ju-hyeon",
+      "sex": "남자",
+      "repRoleNm": "제작팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20070433",
+          "movieNm": "행복",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20070433",
+          "movieNm": "행복",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20060236",
+          "movieNm": "폭력써클",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20050330",
+          "movieNm": "작업의 정석",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20050220",
+          "movieNm": "외출",
+          "moviePartNm": "제작팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

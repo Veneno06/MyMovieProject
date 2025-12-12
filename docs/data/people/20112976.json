@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20112976",
+      "peopleNm": "남현",
+      "peopleNmEn": "Nam Hyeon",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20040750",
+          "movieNm": "신석기 블루스",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20030014",
+          "movieNm": "국화꽃 향기",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20010084",
+          "movieNm": "마리이야기",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20010039",
+          "movieNm": "클럽 버터플라이",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

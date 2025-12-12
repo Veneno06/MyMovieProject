@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20365460",
+      "peopleNm": "김요한",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20208006",
+          "movieNm": "인민을 위해 복무하라",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20191282",
+          "movieNm": "소설가 구보의 하루",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20194456",
+          "movieNm": "양자물리학",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

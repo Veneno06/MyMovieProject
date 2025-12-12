@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20197061",
+      "peopleNm": "김재열",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "연출팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20147927",
+          "movieNm": "숙희",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20147927",
+          "movieNm": "숙희",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20147927",
+          "movieNm": "숙희",
+          "moviePartNm": "스토리보드"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

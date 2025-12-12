@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20242106",
+      "peopleNm": "김정희",
+      "peopleNmEn": "KIM Jung-hee",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20181086",
+          "movieNm": "군산: 거위를 노래하다",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20180282",
+          "movieNm": "속닥속닥",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20150979",
+          "movieNm": "덕혜옹주",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20156564",
+          "movieNm": "부산행",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20068576",
+          "movieNm": "그날의 분위기",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

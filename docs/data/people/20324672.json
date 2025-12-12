@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20324672",
+      "peopleNm": "김재윤",
+      "peopleNmEn": "",
+      "sex": null,
+      "repRoleNm": "제작",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20190268",
+          "movieNm": "세트플레이",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20190268",
+          "movieNm": "세트플레이",
+          "moviePartNm": "제작"
+        },
+        {
+          "movieCd": "20181109",
+          "movieNm": "녹차의 중력",
+          "moviePartNm": "제작"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

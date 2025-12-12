@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20257193",
+      "peopleNm": "김나들",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "각색",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20232949",
+          "movieNm": "대도시의 사랑법",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20232949",
+          "movieNm": "대도시의 사랑법",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "20191243",
+          "movieNm": "장르만 로맨스",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "20191243",
+          "movieNm": "장르만 로맨스",
+          "moviePartNm": "각색"
+        },
+        {
+          "movieCd": "20152782",
+          "movieNm": "날, 보러와요",
+          "moviePartNm": "각색"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

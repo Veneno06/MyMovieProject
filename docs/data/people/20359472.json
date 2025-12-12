@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20359472",
+      "peopleNm": "김규남",
+      "peopleNmEn": "KIM Kyu-nam",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20212352",
+          "movieNm": "1승",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20247735",
+          "movieNm": "휴강",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20225852",
+          "movieNm": "더 셀러브레이션",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20209268",
+          "movieNm": "조지아",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

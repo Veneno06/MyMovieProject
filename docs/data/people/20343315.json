@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20343315",
+      "peopleNm": "남기쁨",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20210590",
+          "movieNm": "카시오페아",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20217769",
+          "movieNm": "봄날",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20198982",
+          "movieNm": "크게 될 놈",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20223977",
+          "movieNm": "죽지 않은",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20223977",
+          "movieNm": "죽지 않은",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

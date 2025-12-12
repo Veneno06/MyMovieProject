@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20146980",
+      "peopleNm": "김대현",
+      "peopleNmEn": "",
+      "sex": null,
+      "repRoleNm": "미술팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20110295",
+          "movieNm": "마이 웨이",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20110295",
+          "movieNm": "마이 웨이",
+          "moviePartNm": "미술팀"
+        },
+        {
+          "movieCd": "20090022",
+          "movieNm": "키친",
+          "moviePartNm": "미술팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

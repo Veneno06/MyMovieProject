@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20267511",
+      "peopleNm": "김다율",
+      "peopleNmEn": "KIM Da-yul",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20147129",
+          "movieNm": "패션왕",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20216363",
+          "movieNm": "비 온 뒤, 차차",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20160643",
+          "movieNm": "퍼플 패션",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

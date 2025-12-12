@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20114652",
+      "peopleNm": "김봉곤",
+      "peopleNmEn": "KIM Bong-kon",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20112940",
+          "movieNm": "훈장과 악동들",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20112940",
+          "movieNm": "훈장과 악동들",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20112940",
+          "movieNm": "훈장과 악동들",
+          "moviePartNm": "투자"
+        },
+        {
+          "movieCd": "20110289",
+          "movieNm": "회초리",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20110289",
+          "movieNm": "회초리",
+          "moviePartNm": "미술/프로덕션 디자인"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

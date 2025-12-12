@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20332257",
+      "peopleNm": "강도연",
+      "peopleNmEn": "KANG Do-yeon",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20216476",
+          "movieNm": "브로큰",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20195002",
+          "movieNm": "블랙머니",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20169348",
+          "movieNm": "대립군",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

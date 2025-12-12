@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20227212",
+      "peopleNm": "김민서",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20157465",
+          "movieNm": "그놈이다",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20202615",
+          "movieNm": "엘리트",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20209984",
+          "movieNm": "선아",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

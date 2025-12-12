@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20376275",
+      "peopleNm": "김지영",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "스토리보드",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20244267",
+          "movieNm": "사람과 고기",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20196676",
+          "movieNm": "종이꽃",
+          "moviePartNm": "스토리보드"
+        },
+        {
+          "movieCd": "20180902",
+          "movieNm": "아워 바디",
+          "moviePartNm": "미술팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

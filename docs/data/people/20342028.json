@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20342028",
+      "peopleNm": "구예형",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20186652",
+          "movieNm": "오늘도 평화로운",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20223667",
+          "movieNm": "덫",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20223667",
+          "movieNm": "덫",
+          "moviePartNm": "제작"
+        },
+        {
+          "movieCd": "20223667",
+          "movieNm": "덫",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "20223667",
+          "movieNm": "덫",
+          "moviePartNm": "촬영"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

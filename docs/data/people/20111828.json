@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20111828",
+      "peopleNm": "김대현",
+      "peopleNmEn": "KIM Dae-hyun",
+      "sex": null,
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20150970",
+          "movieNm": "범죄의 여왕",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20129339",
+          "movieNm": "최종면접",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20119441",
+          "movieNm": "다문입술",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

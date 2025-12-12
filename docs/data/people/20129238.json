@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20129238",
+      "peopleNm": "강나영",
+      "peopleNmEn": "KANG Na-young",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20203286",
+          "movieNm": "강릉",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20177539",
+          "movieNm": "사바하",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20101190",
+          "movieNm": "수상한 이웃들",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

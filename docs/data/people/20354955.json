@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20354955",
+      "peopleNm": "김승화",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20218647",
+          "movieNm": "액션히어로",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20204421",
+          "movieNm": "디시플린",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20227670",
+          "movieNm": "그리고 집",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

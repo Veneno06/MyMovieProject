@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20181355",
+      "peopleNm": "김이루",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "액션/스턴트팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20199541",
+          "movieNm": "미션 파서블",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20199541",
+          "movieNm": "미션 파서블",
+          "moviePartNm": "액션/스턴트팀"
+        },
+        {
+          "movieCd": "20126671",
+          "movieNm": "런닝맨",
+          "moviePartNm": "액션/스턴트팀"
+        },
+        {
+          "movieCd": "20126089",
+          "movieNm": "자칼이 온다",
+          "moviePartNm": "액션/스턴트팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

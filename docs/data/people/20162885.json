@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20162885",
+      "peopleNm": "김진",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "메이킹필름",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20030434",
+          "movieNm": "안녕! 유에프오",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20030434",
+          "movieNm": "안녕! 유에프오",
+          "moviePartNm": "메이킹필름"
+        },
+        {
+          "movieCd": "20060813",
+          "movieNm": "보통사람",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

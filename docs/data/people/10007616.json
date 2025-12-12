@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10007616",
+      "peopleNm": "남현",
+      "peopleNmEn": "Nam Hyeon",
+      "sex": "남자",
+      "repRoleNm": "제작",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20119337",
+          "movieNm": "그대를 사랑합니다",
+          "moviePartNm": "제작"
+        },
+        {
+          "movieCd": "20119337",
+          "movieNm": "그대를 사랑합니다",
+          "moviePartNm": "기획"
+        },
+        {
+          "movieCd": "20080257",
+          "movieNm": "동거, 동락",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20080257",
+          "movieNm": "동거, 동락",
+          "moviePartNm": "기획"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

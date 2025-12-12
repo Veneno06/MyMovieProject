@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20295834",
+      "peopleNm": "김진욱",
+      "peopleNmEn": "",
+      "sex": null,
+      "repRoleNm": "제작팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20172863",
+          "movieNm": "원스텝",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20166421",
+          "movieNm": "재심",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20166421",
+          "movieNm": "재심",
+          "moviePartNm": "제작팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

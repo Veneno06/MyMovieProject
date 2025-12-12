@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20374711",
+      "peopleNm": "김지수",
+      "peopleNmEn": "KIM JISU",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20224495",
+          "movieNm": "폭로",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20226411",
+          "movieNm": "범죄도시3",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20227343",
+          "movieNm": "단편영화 유니버스",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20217730",
+          "movieNm": "볼록한 나라",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

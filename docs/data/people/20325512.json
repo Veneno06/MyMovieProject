@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20325512",
+      "peopleNm": "남다름",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20210364",
+          "movieNm": "탄생",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20196270",
+          "movieNm": "싱크홀",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20191962",
+          "movieNm": "제8일의 밤",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20196427",
+      "peopleNm": "김민정",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20181205",
+          "movieNm": "영하의 바람",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20174008",
+          "movieNm": "인어전설",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20168161",
+          "movieNm": "1급기밀",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20138226",
+          "movieNm": "우아한 거짓말",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

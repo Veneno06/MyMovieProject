@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20229250",
+      "peopleNm": "김보람",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20204432",
+          "movieNm": "애비규환",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20198414",
+          "movieNm": "시동",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20156748",
+          "movieNm": "열정같은소리하고있네",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

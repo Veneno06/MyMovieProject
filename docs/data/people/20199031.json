@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20199031",
+      "peopleNm": "김형욱",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20178401",
+          "movieNm": "검객",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20198453",
+          "movieNm": "롱 리브 더 킹: 목포 영웅",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20147930",
+          "movieNm": "나의 사랑 나의 신부",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20148668",
+          "movieNm": "귀접",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

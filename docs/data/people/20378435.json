@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20378435",
+      "peopleNm": "김혜영",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20256148",
+          "movieNm": "빨대",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20201688",
+          "movieNm": "헝거",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20219306",
+          "movieNm": "어댑테이션",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20135323",
+      "peopleNm": "김해원",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "조감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20101029",
+          "movieNm": "어쿠스틱",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20101029",
+          "movieNm": "어쿠스틱",
+          "moviePartNm": "조감독"
+        },
+        {
+          "movieCd": "20147098",
+          "movieNm": "바나나 향기",
+          "moviePartNm": "감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

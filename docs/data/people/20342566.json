@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20342566",
+      "peopleNm": "김바비",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20211472",
+          "movieNm": "늑대사냥",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20190601",
+          "movieNm": "디바",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20209022",
+          "movieNm": "메피스토",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20185881",
+          "movieNm": "증인",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

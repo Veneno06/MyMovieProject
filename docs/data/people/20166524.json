@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20166524",
+      "peopleNm": "고성훈",
+      "peopleNmEn": "KO Seong-hoon",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20209430",
+          "movieNm": "열혈형사",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20209430",
+          "movieNm": "열혈형사",
+          "moviePartNm": "프로듀서"
+        },
+        {
+          "movieCd": "20123153",
+          "movieNm": "애퍼타이트",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20123153",
+          "movieNm": "애퍼타이트",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "20123153",
+          "movieNm": "애퍼타이트",
+          "moviePartNm": "촬영"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

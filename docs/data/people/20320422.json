@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20320422",
+      "peopleNm": "김충길",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "연출팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20183390",
+          "movieNm": "다영씨",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20183390",
+          "movieNm": "다영씨",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20183390",
+          "movieNm": "다영씨",
+          "moviePartNm": "촬영팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

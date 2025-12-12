@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20165682",
+      "peopleNm": "김기리",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20230956",
+          "movieNm": "세기말의 사랑",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20226003",
+          "movieNm": "달을 빚는 토끼",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20201786",
+          "movieNm": "좀비크러쉬: 헤이리",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20123741",
+          "movieNm": "드래곤 헌터",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

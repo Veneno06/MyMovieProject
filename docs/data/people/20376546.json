@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20376546",
+      "peopleNm": "김성권",
+      "peopleNmEn": "",
+      "sex": null,
+      "repRoleNm": "제작팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20224494",
+          "movieNm": "파로호",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20224494",
+          "movieNm": "파로호",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20218345",
+          "movieNm": "괴기맨숀",
+          "moviePartNm": "제작팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

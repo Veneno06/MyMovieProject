@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20134531",
+      "peopleNm": "김은옥",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20174008",
+          "movieNm": "인어전설",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20110290",
+          "movieNm": "퀵",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20008702",
+          "movieNm": "용산탕",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20199691",
+      "peopleNm": "김수정",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20183848",
+          "movieNm": "수상한 이웃",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20187322",
+          "movieNm": "힘을 내요, 미스터 리",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20142131",
+          "movieNm": "파랑새",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

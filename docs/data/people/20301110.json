@@ -1,0 +1,25 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20301110",
+      "peopleNm": "김성제",
+      "peopleNmEn": "KIM Sung-je",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20212281",
+          "movieNm": "긴 하루",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20179263",
+          "movieNm": "게스트하우스",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

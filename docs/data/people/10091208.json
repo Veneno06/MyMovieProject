@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10091208",
+      "peopleNm": "나나",
+      "peopleNmEn": "Nana",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20233227",
+          "movieNm": "전지적 독자 시점",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20252380",
+          "movieNm": "안동",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20198429",
+          "movieNm": "자백",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20196782",
+          "movieNm": "초미의 관심사",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20165748",
+          "movieNm": "꾼",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

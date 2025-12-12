@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20152341",
+      "peopleNm": "김인석",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20210544",
+          "movieNm": "웅남이",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20183848",
+          "movieNm": "수상한 이웃",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20080750",
+          "movieNm": "달콤한 거짓말",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

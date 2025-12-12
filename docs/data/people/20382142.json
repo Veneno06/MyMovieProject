@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20382142",
+      "peopleNm": "공연해",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "스크립터",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20201792",
+          "movieNm": "액션동자",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20201792",
+          "movieNm": "액션동자",
+          "moviePartNm": "데이타매니저"
+        },
+        {
+          "movieCd": "20197961",
+          "movieNm": "매미소리",
+          "moviePartNm": "스크립터"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

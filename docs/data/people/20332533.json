@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20332533",
+      "peopleNm": "김민주",
+      "peopleNmEn": "KIM Min-ju",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20233261",
+          "movieNm": "청설",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20198890",
+          "movieNm": "아이즈 온 미 : 더 무비",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20184133",
+          "movieNm": "어제 일은 모두 괜찮아",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

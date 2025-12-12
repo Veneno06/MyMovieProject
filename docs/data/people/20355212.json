@@ -1,0 +1,50 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20355212",
+      "peopleNm": "김예솔",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "조감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20219595",
+          "movieNm": "영화의 거리",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20219595",
+          "movieNm": "영화의 거리",
+          "moviePartNm": "프로듀서"
+        },
+        {
+          "movieCd": "20219595",
+          "movieNm": "영화의 거리",
+          "moviePartNm": "기획"
+        },
+        {
+          "movieCd": "20219595",
+          "movieNm": "영화의 거리",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "20178177",
+          "movieNm": "나는 보았다",
+          "moviePartNm": "조감독"
+        },
+        {
+          "movieCd": "20184014",
+          "movieNm": "손님",
+          "moviePartNm": "제작"
+        },
+        {
+          "movieCd": "20169649",
+          "movieNm": "엄마 풍경 집",
+          "moviePartNm": "조감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

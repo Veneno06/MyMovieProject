@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20367325",
+      "peopleNm": "김민수",
+      "peopleNmEn": "",
+      "sex": null,
+      "repRoleNm": "촬영",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20218653",
+          "movieNm": "귀문",
+          "moviePartNm": "촬영팀"
+        },
+        {
+          "movieCd": "20196801",
+          "movieNm": "비밀의 정원",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20196801",
+          "movieNm": "비밀의 정원",
+          "moviePartNm": "촬영팀"
+        },
+        {
+          "movieCd": "20183407",
+          "movieNm": "버티고",
+          "moviePartNm": "촬영팀"
+        },
+        {
+          "movieCd": "20198201",
+          "movieNm": "오늘, 우리",
+          "moviePartNm": "촬영"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

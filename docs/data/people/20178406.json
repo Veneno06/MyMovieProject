@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20178406",
+      "peopleNm": "김희성",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "프로듀서",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20217769",
+          "movieNm": "봄날",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20217769",
+          "movieNm": "봄날",
+          "moviePartNm": "기타"
+        },
+        {
+          "movieCd": "20120104",
+          "movieNm": "가시꽃",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

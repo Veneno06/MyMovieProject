@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20232966",
+      "peopleNm": "김동아",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20133322",
+          "movieNm": "인간중독",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20227412",
+          "movieNm": "미호",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20223611",
+          "movieNm": "유산",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20218251",
+          "movieNm": "4.5평",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20226823",
+          "movieNm": "기기묘묘",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

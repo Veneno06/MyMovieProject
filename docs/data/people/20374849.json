@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20374849",
+      "peopleNm": "김하영",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20226877",
+          "movieNm": "미혹",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20226877",
+          "movieNm": "미혹",
+          "moviePartNm": "제작회계"
+        },
+        {
+          "movieCd": "20217824",
+          "movieNm": "코스프레",
+          "moviePartNm": "감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

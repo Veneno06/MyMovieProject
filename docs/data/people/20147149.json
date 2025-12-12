@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20147149",
+      "peopleNm": "김광태",
+      "peopleNmEn": "KIM Gwang-tae",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20148844",
+          "movieNm": "손님",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20148844",
+          "movieNm": "손님",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "20060051",
+          "movieNm": "청춘만화",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

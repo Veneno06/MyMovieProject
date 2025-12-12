@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20315198",
+      "peopleNm": "김태환",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20193450",
+          "movieNm": "반도",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20196201",
+          "movieNm": "소리꾼",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20183003",
+          "movieNm": "서복",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20184621",
+          "movieNm": "엑시트",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20153446",
+          "movieNm": "너의 결혼식",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

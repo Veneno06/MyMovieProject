@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20341352",
+      "peopleNm": "김종훈",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20219997",
+          "movieNm": "드림팰리스",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20231541",
+          "movieNm": "혐오의 스타",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20201784",
+          "movieNm": "귀신",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20197434",
+          "movieNm": "자산어보",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20183096",
+          "movieNm": "생일",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

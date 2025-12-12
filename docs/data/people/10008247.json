@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10008247",
+      "peopleNm": "노현정",
+      "peopleNmEn": "NO Hyeon-jeong",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20040496",
+          "movieNm": "아홉살 인생",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20000053",
+          "movieNm": "파라다이스빌라",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19980039",
+          "movieNm": "마지막 시도",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

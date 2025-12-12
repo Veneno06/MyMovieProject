@@ -1,0 +1,50 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20342653",
+      "peopleNm": "김선동",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20234675",
+          "movieNm": "파묘",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20224717",
+          "movieNm": "썬더버드",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20202786",
+          "movieNm": "귀여운 남자",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20181434",
+          "movieNm": "신의 한 수: 귀수편",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20188750",
+          "movieNm": "나쁜 녀석들: 더 무비",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20188404",
+          "movieNm": "암전",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20212622",
+          "movieNm": "오하꼬",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20130199",
+      "peopleNm": "김명기",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20196705",
+          "movieNm": "집 이야기",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20080741",
+          "movieNm": "고고 70",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20229442",
+          "movieNm": "어른이 된다는 건",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

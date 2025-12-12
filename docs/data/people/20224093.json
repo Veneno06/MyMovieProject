@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20224093",
+      "peopleNm": "김정아",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "스크립터",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20134800",
+          "movieNm": "그라운드의 이방인",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20134800",
+          "movieNm": "그라운드의 이방인",
+          "moviePartNm": "조감독"
+        },
+        {
+          "movieCd": "20133667",
+          "movieNm": "폴라로이드",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20133667",
+          "movieNm": "폴라로이드",
+          "moviePartNm": "스크립터"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20218467",
+      "peopleNm": "강신유",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "제작팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20144601",
+          "movieNm": "고양이 장례식",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20144601",
+          "movieNm": "고양이 장례식",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20249183",
+          "movieNm": "계란",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20249183",
+          "movieNm": "계란",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "20204866",
+          "movieNm": "숟가락",
+          "moviePartNm": "감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

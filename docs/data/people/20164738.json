@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20164738",
+      "peopleNm": "김용석",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20232284",
+          "movieNm": "만분의 일초",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20200311",
+          "movieNm": "더블패티",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20179101",
+          "movieNm": "공작",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20040482",
+          "movieNm": "맹부삼천지교",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

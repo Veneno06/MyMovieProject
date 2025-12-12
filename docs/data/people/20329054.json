@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20329054",
+      "peopleNm": "김찬민",
+      "peopleNmEn": "KIM CHAN MIN",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20211539",
+          "movieNm": "피아노 프리즘",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20211539",
+          "movieNm": "피아노 프리즘",
+          "moviePartNm": "촬영"
+        },
+        {
+          "movieCd": "20194805",
+          "movieNm": "을지 네이티브",
+          "moviePartNm": "감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

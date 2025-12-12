@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20319566",
+      "peopleNm": "김경진",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20250351",
+          "movieNm": "아모르 파티",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20212705",
+          "movieNm": "트로트는 인생이다",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20183785",
+          "movieNm": "점박이 한반도의 공룡2 : 새로운 낙원",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

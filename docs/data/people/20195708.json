@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20195708",
+      "peopleNm": "김경미",
+      "peopleNmEn": "KIM Kyoung-mi",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20161724",
+          "movieNm": "스타박'스 다방",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20123662",
+          "movieNm": "만신",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20125318",
+          "movieNm": "베일",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

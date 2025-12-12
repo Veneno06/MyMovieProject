@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20380078",
+      "peopleNm": "김경탁",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20219473",
+          "movieNm": "나는 여기에 있다",
+          "moviePartNm": "의상팀"
+        },
+        {
+          "movieCd": "20211317",
+          "movieNm": "살수",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20225479",
+          "movieNm": "핸썸",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20210165",
+          "movieNm": "브라더",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20229072",
+          "movieNm": "갑둔리 흉가",
+          "moviePartNm": "의상"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

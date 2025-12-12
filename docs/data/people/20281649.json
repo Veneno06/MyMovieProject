@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20281649",
+      "peopleNm": "김민재",
+      "peopleNmEn": "KIM Min-jae",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20172204",
+          "movieNm": "명당",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20177005",
+          "movieNm": "레슬러",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20188824",
+          "movieNm": "60일의 썸머",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

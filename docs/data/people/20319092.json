@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20319092",
+      "peopleNm": "김수진",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20184481",
+          "movieNm": "성난황소",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20182935",
+          "movieNm": "출국",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20189783",
+          "movieNm": "챔피언",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20174008",
+          "movieNm": "인어전설",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

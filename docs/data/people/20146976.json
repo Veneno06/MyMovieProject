@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20146976",
+      "peopleNm": "김대현",
+      "peopleNmEn": "KIM Dae-hyeon",
+      "sex": "남자",
+      "repRoleNm": "액션/스턴트팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20101010",
+          "movieNm": "초능력자",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060137",
+          "movieNm": "비열한 거리",
+          "moviePartNm": "액션/스턴트팀"
+        },
+        {
+          "movieCd": "20100587",
+          "movieNm": "소나무",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19991077",
+          "movieNm": "애절한운동",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

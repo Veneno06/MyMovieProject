@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20379824",
+      "peopleNm": "김지아",
+      "peopleNmEn": "Kim Jia",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20224579",
+          "movieNm": "악마들",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20196669",
+          "movieNm": "앵커",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20228532",
+          "movieNm": "한산 리덕스",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20209343",
+          "movieNm": "한산: 용의 출현",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20195959",
+          "movieNm": "사막을 건너 호수를 지나",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20342847",
+      "peopleNm": "김유현",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20196669",
+          "movieNm": "앵커",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20210956",
+          "movieNm": "남의 나라",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20182325",
+          "movieNm": "타인은 지옥이다",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

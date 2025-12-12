@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20382283",
+      "peopleNm": "김수정",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20219310",
+          "movieNm": "말임씨를 부탁해",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20182585",
+          "movieNm": "비스트",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20080871",
+          "movieNm": "잘못된 만남",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

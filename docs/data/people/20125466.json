@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20125466",
+      "peopleNm": "김효서",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20101028",
+          "movieNm": "조금만 더 가까이",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20100214",
+          "movieNm": "아저씨",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20137337",
+          "movieNm": "트릴",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}
