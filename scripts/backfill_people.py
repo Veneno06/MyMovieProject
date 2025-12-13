@@ -43,7 +43,7 @@ def normalize_title(title):
     if not title: return ""
     return "".join(c for c in title if c.isalnum()).lower()
 
-# [설정] 자음 필터링: ㅁ, ㅂ, ㅃ (6, 7, 8)
+# [설정] 자음 필터링: ㅅ, ㅆ, ㅇ (9, 10, 11)
 def is_target_consonant(name: str) -> bool:
     if not name: return False
     nm = unicodedata.normalize('NFC', name)
@@ -54,9 +54,9 @@ def is_target_consonant(name: str) -> bool:
     
     idx = (ord(first_char) - 0xAC00) // 588
     
-    # 0:ㄱ, 1:ㄲ, 2:ㄴ, 3:ㄷ, 4:ㄸ, 5:ㄹ
-    # 6:ㅁ, 7:ㅂ, 8:ㅃ
-    return idx in [6, 7, 8]
+    # 0:ㄱ ... 6:ㅁ, 7:ㅂ, 8:ㅃ
+    # 9:ㅅ, 10:ㅆ, 11:ㅇ
+    return idx in [9, 10, 11]
 
 def get_next_key_session():
     global CURRENT_KEY_INDEX
@@ -97,7 +97,7 @@ def backfill(budget: int, rate_sleep_ms: int):
     # 최신순 스캔
     files = sorted([Path(p) for p in glob.glob(str(DETAIL_DIR / "**" / "*.json"), recursive=True)], reverse=True)
     
-    print(f"[Step 1] 전체 파일({len(files)}개) 스캔 중... 'ㅁ, ㅂ' 배우 타겟팅")
+    print(f"[Step 1] 전체 파일({len(files)}개) 스캔 중... 'ㅅ, ㅇ' 배우 타겟팅")
     
     target_map = defaultdict(list)
     
@@ -117,7 +117,7 @@ def backfill(budget: int, rate_sleep_ms: int):
             nm = a.get("peopleNm", "").strip()
             cd = a.get("peopleCd", "").strip()
             
-            # [필터] 코드가 없고 + 자음이 ㅁ,ㅂ 인 경우
+            # [필터] 코드가 없고 + 자음이 ㅅ, ㅇ 인 경우
             if nm and (not cd) and is_target_consonant(nm):
                 target_map[nm].append({
                     "path": p, "movieNm": movieNm, "cleanNm": normalize_title(movieNm)
