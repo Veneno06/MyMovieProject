@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10029274",
+      "peopleNm": "박준영",
+      "peopleNmEn": "PARK Joon-young",
+      "sex": null,
+      "repRoleNm": "각색",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20020216",
+          "movieNm": "긴급조치 19호",
+          "moviePartNm": "각색"
+        },
+        {
+          "movieCd": "20000003",
+          "movieNm": "아티스트",
+          "moviePartNm": "각색"
+        },
+        {
+          "movieCd": "19970045",
+          "movieNm": "파트너",
+          "moviePartNm": "각색"
+        },
+        {
+          "movieCd": "20101245",
+          "movieNm": "시선 너머",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

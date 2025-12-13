@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10028556",
+      "peopleNm": "박도연",
+      "peopleNmEn": "Park Do-yeon",
+      "sex": null,
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20201691",
+          "movieNm": "인천스텔라",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20090328",
+          "movieNm": "여행자",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20110204",
+          "movieNm": "데뷔",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

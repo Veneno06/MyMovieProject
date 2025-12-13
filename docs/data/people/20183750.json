@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20183750",
+      "peopleNm": "방영배",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "조감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20135405",
+          "movieNm": "붉은 가족",
+          "moviePartNm": "조감독"
+        },
+        {
+          "movieCd": "20112841",
+          "movieNm": "로맨스 조",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20112841",
+          "movieNm": "로맨스 조",
+          "moviePartNm": "조감독"
+        },
+        {
+          "movieCd": "20112071",
+          "movieNm": "태어나서 미안해",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20112071",
+          "movieNm": "태어나서 미안해",
+          "moviePartNm": "조감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

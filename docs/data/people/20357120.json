@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20357120",
+      "peopleNm": "박찰리",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20245685",
+          "movieNm": "청춘, 레디 액션",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20245685",
+          "movieNm": "청춘, 레디 액션",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20193450",
+          "movieNm": "반도",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20218056",
+          "movieNm": "잠수부들",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

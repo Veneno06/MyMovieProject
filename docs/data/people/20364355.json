@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20364355",
+      "peopleNm": "박상규",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20202822",
+          "movieNm": "라스트필름",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20224717",
+          "movieNm": "썬더버드",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20208962",
+          "movieNm": "대외비",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20199500",
+          "movieNm": "뜨거운 피",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20184572",
+          "movieNm": "타짜: 원 아이드 잭",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

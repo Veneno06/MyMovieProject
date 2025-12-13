@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20345992",
+      "peopleNm": "배우희",
+      "peopleNmEn": "BAE Woo-hee",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20219711",
+          "movieNm": "늑대들",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20211931",
+          "movieNm": "아이돌레시피",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20202602",
+          "movieNm": "오늘도 참치마요",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20147928",
+          "movieNm": "터널 3D",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20345246",
+      "peopleNm": "박선우",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20196410",
+          "movieNm": "비상선언",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20180902",
+          "movieNm": "아워 바디",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20198982",
+          "movieNm": "크게 될 놈",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

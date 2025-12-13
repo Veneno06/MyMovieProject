@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10028910",
+      "peopleNm": "박연아",
+      "peopleNmEn": "PARK Yeon-a",
+      "sex": null,
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20050135",
+          "movieNm": "분홍신",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060523",
+          "movieNm": "숙자야",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060539",
+          "movieNm": "조금만 더",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20090370",
+          "movieNm": "엄마가 없다",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20154800",
+      "peopleNm": "박병철",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20110301",
+          "movieNm": "푸른소금",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060100",
+          "movieNm": "사생결단",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060088",
+          "movieNm": "마이 캡틴 김대출",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

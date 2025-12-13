@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10028694",
+      "peopleNm": "박상우",
+      "peopleNmEn": "PARK Sang-woo",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20040554",
+          "movieNm": "가족",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20030073",
+          "movieNm": "튜브",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20030046",
+          "movieNm": "살인의 추억",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10028588",
+      "peopleNm": "박리디아",
+      "peopleNmEn": "PARK Lydia",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20190727",
+          "movieNm": "죽도 서핑 다이어리",
+          "moviePartNm": "조감독"
+        },
+        {
+          "movieCd": "20158745",
+          "movieNm": "고백할 수 없는",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20123327",
+          "movieNm": "베케이션",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20321120",
+      "peopleNm": "백결",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "현장편집",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20170001",
+          "movieNm": "아메리카 타운",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20170001",
+          "movieNm": "아메리카 타운",
+          "moviePartNm": "미술팀"
+        },
+        {
+          "movieCd": "20174641",
+          "movieNm": "가을 우체국",
+          "moviePartNm": "현장편집"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

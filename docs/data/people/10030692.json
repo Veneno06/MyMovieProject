@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10030692",
+      "peopleNm": "범문방",
+      "peopleNmEn": "Fann Wong",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20162583",
+          "movieNm": "불륜관계",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20120664",
+          "movieNm": "댄스 오브 드래곤",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20078640",
+          "movieNm": "저스트 팔로우 로우",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20000190",
+          "movieNm": "진심화",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

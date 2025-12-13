@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20135394",
+      "peopleNm": "박준서",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "미술/프로덕션 디자인",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20101191",
+          "movieNm": "심장이 뛰네",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20101191",
+          "movieNm": "심장이 뛰네",
+          "moviePartNm": "미술/프로덕션 디자인"
+        },
+        {
+          "movieCd": "20101191",
+          "movieNm": "심장이 뛰네",
+          "moviePartNm": "스토리보드"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

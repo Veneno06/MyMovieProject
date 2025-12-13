@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20134452",
+      "peopleNm": "박정선",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20164981",
+          "movieNm": "비스티걸스",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20070641",
+          "movieNm": "가면",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20121842",
+          "movieNm": "생수",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

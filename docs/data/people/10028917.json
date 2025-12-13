@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10028917",
+      "peopleNm": "박영",
+      "peopleNmEn": "PARK Young",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20183041",
+          "movieNm": "삼촌",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20111011",
+          "movieNm": "간이역",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20127187",
+          "movieNm": "도서관에서는 실내정숙",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

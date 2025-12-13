@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20182674",
+      "peopleNm": "박순철",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "제작팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20181722",
+          "movieNm": "이모의 유혹",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20125916",
+          "movieNm": "두 개의 달",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20125916",
+          "movieNm": "두 개의 달",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20113322",
+          "movieNm": "만화방",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20113322",
+          "movieNm": "만화방",
+          "moviePartNm": "소품"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20143130",
+      "peopleNm": "백지열",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "조감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20142403",
+          "movieNm": "늙은 자전거",
+          "moviePartNm": "조감독"
+        },
+        {
+          "movieCd": "20100835",
+          "movieNm": "방가? 방가!",
+          "moviePartNm": "조감독"
+        },
+        {
+          "movieCd": "20060005",
+          "movieNm": "맨발의 기봉이",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20050288",
+          "movieNm": "무영검",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20050288",
+          "movieNm": "무영검",
+          "moviePartNm": "연출팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

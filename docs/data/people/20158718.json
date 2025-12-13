@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20158718",
+      "peopleNm": "박순명",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "조감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20147952",
+          "movieNm": "아웃사이더",
+          "moviePartNm": "조감독"
+        },
+        {
+          "movieCd": "20100260",
+          "movieNm": "마마 앤드 파파",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20100260",
+          "movieNm": "마마 앤드 파파",
+          "moviePartNm": "조감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

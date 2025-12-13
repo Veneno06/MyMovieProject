@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20110789",
+      "peopleNm": "박혜숙",
+      "peopleNmEn": "PARK Hye-sook",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20126672",
+          "movieNm": "은밀하게 위대하게",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060389",
+          "movieNm": "오래된 정원",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19998864",
+          "movieNm": "두여름",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

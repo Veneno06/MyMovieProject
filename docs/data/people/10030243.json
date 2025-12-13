@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10030243",
+      "peopleNm": "배철수",
+      "peopleNmEn": "BAE Cheol-soo",
+      "sex": null,
+      "repRoleNm": null,
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20212932",
+          "movieNm": "탈주",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19840043",
+          "movieNm": "대학 괴짜들",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19830042",
+          "movieNm": "송골매의 모두 다 사랑하리",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19820028",
+          "movieNm": "갈채",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

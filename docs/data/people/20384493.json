@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20384493",
+      "peopleNm": "박병관",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20234045",
+          "movieNm": "설계자",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20211792",
+          "movieNm": "헌트",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20198461",
+          "movieNm": "리멤버",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

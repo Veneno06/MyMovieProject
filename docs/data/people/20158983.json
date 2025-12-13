@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20158983",
+      "peopleNm": "박영",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20110297",
+          "movieNm": "블라인드",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20127186",
+          "movieNm": "열정의 기준",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20122722",
+          "movieNm": "회색동화",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

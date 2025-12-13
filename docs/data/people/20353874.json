@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20353874",
+      "peopleNm": "박정민",
+      "peopleNmEn": "",
+      "sex": null,
+      "repRoleNm": "촬영",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20211303",
+          "movieNm": "여타짜",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20193450",
+          "movieNm": "반도",
+          "moviePartNm": "촬영팀"
+        },
+        {
+          "movieCd": "20183813",
+          "movieNm": "결백",
+          "moviePartNm": "촬영팀"
+        },
+        {
+          "movieCd": "20190866",
+          "movieNm": "파이알제곱",
+          "moviePartNm": "촬영"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

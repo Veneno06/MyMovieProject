@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20371450",
+      "peopleNm": "박성민",
+      "peopleNmEn": "seongmin park",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20212932",
+          "movieNm": "탈주",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20234796",
+          "movieNm": "비밀",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20248302",
+          "movieNm": "한강의 아이들",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20200129",
+          "movieNm": "러브라인",
+          "moviePartNm": "촬영팀"
+        },
+        {
+          "movieCd": "20200129",
+          "movieNm": "러브라인",
+          "moviePartNm": "제작팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

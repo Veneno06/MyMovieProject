@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20137908",
+      "peopleNm": "박지호",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "메이킹필름",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20070639",
+          "movieNm": "내 사랑",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20070639",
+          "movieNm": "내 사랑",
+          "moviePartNm": "메이킹필름"
+        },
+        {
+          "movieCd": "20070104",
+          "movieNm": "극락도 살인사건",
+          "moviePartNm": "메이킹필름"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

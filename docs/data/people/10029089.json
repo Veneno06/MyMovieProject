@@ -1,0 +1,45 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10029089",
+      "peopleNm": "박인철",
+      "peopleNmEn": "PARK In-cheol",
+      "sex": "남자",
+      "repRoleNm": "조감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20149495",
+          "movieNm": "춘하추동 로맨스",
+          "moviePartNm": "조감독"
+        },
+        {
+          "movieCd": "20061214",
+          "movieNm": "작은 연못",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20080741",
+          "movieNm": "고고 70",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20080741",
+          "movieNm": "고고 70",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20138025",
+          "movieNm": "괜찮아, 임마",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20123122",
+          "movieNm": "인사이드",
+          "moviePartNm": "감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

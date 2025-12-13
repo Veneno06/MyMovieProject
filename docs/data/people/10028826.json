@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10028826",
+      "peopleNm": "박소현",
+      "peopleNmEn": "PARK So-hyun",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20101012",
+          "movieNm": "페스티발",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20030063",
+          "movieNm": "화성으로 간 사나이",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19970056",
+          "movieNm": "패자부활전",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

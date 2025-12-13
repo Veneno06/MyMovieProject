@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20330572",
+      "peopleNm": "배혜원",
+      "peopleNmEn": "BAE Hye-weon",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20211101",
+          "movieNm": "절해고도",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20211101",
+          "movieNm": "절해고도",
+          "moviePartNm": "미술팀"
+        },
+        {
+          "movieCd": "20196007",
+          "movieNm": "표해록",
+          "moviePartNm": "감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20344364",
+      "peopleNm": "박지서",
+      "peopleNmEn": "Park Ji Seo",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20254722",
+          "movieNm": "신명",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20199448",
+          "movieNm": "어린 의뢰인",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20248079",
+          "movieNm": "손톱쥐",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20205844",
+          "movieNm": "후회",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

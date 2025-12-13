@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20153294",
+      "peopleNm": "박문진",
+      "peopleNmEn": "PARK Mun-jin",
+      "sex": "여자",
+      "repRoleNm": "제작관리",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20185350",
+          "movieNm": "칠곡 가시나들",
+          "moviePartNm": "제작관리"
+        },
+        {
+          "movieCd": "20174645",
+          "movieNm": "미스 프레지던트",
+          "moviePartNm": "제작관리"
+        },
+        {
+          "movieCd": "20141114",
+          "movieNm": "쿼바디스",
+          "moviePartNm": "제작회계"
+        },
+        {
+          "movieCd": "20120541",
+          "movieNm": "MB의 추억",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20110607",
+          "movieNm": "트루맛쇼",
+          "moviePartNm": "제작회계"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

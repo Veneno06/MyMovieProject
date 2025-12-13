@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20187587",
+      "peopleNm": "박세영",
+      "peopleNmEn": "PARK Se-young",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20196906",
+          "movieNm": "스텔라",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20144601",
+          "movieNm": "고양이 장례식",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20147129",
+          "movieNm": "패션왕",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

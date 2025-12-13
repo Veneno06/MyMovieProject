@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10088883",
+      "peopleNm": "백마",
+      "peopleNmEn": "",
+      "sex": null,
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20192672",
+          "movieNm": "섹스면허007",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20180947",
+          "movieNm": "리얼라이저",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20183126",
+          "movieNm": "매니저",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20183126",
+          "movieNm": "매니저",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20285610",
+      "peopleNm": "박아름",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "의상팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20217167",
+          "movieNm": "동백",
+          "moviePartNm": "의상"
+        },
+        {
+          "movieCd": "20175021",
+          "movieNm": "쇠파리",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20175021",
+          "movieNm": "쇠파리",
+          "moviePartNm": "의상팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

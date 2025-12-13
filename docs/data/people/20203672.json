@@ -1,0 +1,45 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20203672",
+      "peopleNm": "박다함",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "조감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20173502",
+          "movieNm": "도돌이 언덕에 난기류",
+          "moviePartNm": "음악"
+        },
+        {
+          "movieCd": "20137564",
+          "movieNm": "파티51",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20137564",
+          "movieNm": "파티51",
+          "moviePartNm": "조감독"
+        },
+        {
+          "movieCd": "20137564",
+          "movieNm": "파티51",
+          "moviePartNm": "음악진행"
+        },
+        {
+          "movieCd": "20111932",
+          "movieNm": "환호성",
+          "moviePartNm": "음악"
+        },
+        {
+          "movieCd": "20212536",
+          "movieNm": "트랜스-컨티넨탈-레일웨이",
+          "moviePartNm": "프로듀서"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

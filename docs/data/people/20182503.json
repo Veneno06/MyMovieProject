@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20182503",
+      "peopleNm": "박남혁",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "제작팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20159161",
+          "movieNm": "마돈나",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20159161",
+          "movieNm": "마돈나",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20125329",
+          "movieNm": "순환선",
+          "moviePartNm": "제작팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

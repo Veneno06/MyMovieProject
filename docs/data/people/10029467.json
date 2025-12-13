@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10029467",
+      "peopleNm": "박한준",
+      "peopleNmEn": "PARK Han-jun",
+      "sex": null,
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20212446",
+          "movieNm": "단'ㅅ 패밀리 남바완",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20030439",
+          "movieNm": "그녀를 모르면 간첩",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20030439",
+          "movieNm": "그녀를 모르면 간첩",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20185302",
+      "peopleNm": "박장호",
+      "peopleNmEn": "Jang Ho Park",
+      "sex": "남자",
+      "repRoleNm": "애니메이션팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20166541",
+          "movieNm": "달빛궁궐",
+          "moviePartNm": "애니메이션팀"
+        },
+        {
+          "movieCd": "20156807",
+          "movieNm": "뽀로로 극장판 컴퓨터 왕국 대모험",
+          "moviePartNm": "애니메이션팀"
+        },
+        {
+          "movieCd": "20123681",
+          "movieNm": "뽀로로 극장판 슈퍼썰매 대모험",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20123681",
+          "movieNm": "뽀로로 극장판 슈퍼썰매 대모험",
+          "moviePartNm": "애니메이션팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

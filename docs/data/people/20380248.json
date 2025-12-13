@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20380248",
+      "peopleNm": "박수남",
+      "peopleNmEn": "PARK Soo-nam",
+      "sex": "여자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20212428",
+          "movieNm": "되살아나는 목소리",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20212428",
+          "movieNm": "되살아나는 목소리",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20212428",
+          "movieNm": "되살아나는 목소리",
+          "moviePartNm": "촬영"
+        },
+        {
+          "movieCd": "20250028",
+          "movieNm": "누치가후 - 옥쇄장으로부터의 증언",
+          "moviePartNm": "감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

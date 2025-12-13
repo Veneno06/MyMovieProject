@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20132329",
+      "peopleNm": "박용제",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20200471",
+          "movieNm": "스웨그",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20090484",
+          "movieNm": "애자",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20123008",
+          "movieNm": "바람은 소망하는 곳으로 분다",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10029241",
+      "peopleNm": "박주미",
+      "peopleNmEn": "PARK Ju-mi",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20182935",
+          "movieNm": "출국",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20150979",
+          "movieNm": "덕혜옹주",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20100353",
+          "movieNm": "파괴된 사나이",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19940024",
+          "movieNm": "어린 연인",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

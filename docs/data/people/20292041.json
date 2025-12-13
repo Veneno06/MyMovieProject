@@ -1,0 +1,45 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20292041",
+      "peopleNm": "박경은",
+      "peopleNmEn": "PARK Kyung-eun",
+      "sex": "여자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20228231",
+          "movieNm": "관계의 일변",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20192601",
+          "movieNm": "작은 방안의 소녀",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20172779",
+          "movieNm": "지구별",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20225774",
+          "movieNm": "사이;pause",
+          "moviePartNm": "제작"
+        },
+        {
+          "movieCd": "20225773",
+          "movieNm": "우윤",
+          "moviePartNm": "제작"
+        },
+        {
+          "movieCd": "20183727",
+          "movieNm": "한낮의 피크닉",
+          "moviePartNm": "조감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

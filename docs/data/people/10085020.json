@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10085020",
+      "peopleNm": "블라디미르 토도로비치",
+      "peopleNmEn": "Vladimir TODOROVIC",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20142221",
+          "movieNm": "경계",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20142221",
+          "movieNm": "경계",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20112017",
+          "movieNm": "워터 핸드",
+          "moviePartNm": "감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

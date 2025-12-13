@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20137199",
+      "peopleNm": "박지원",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "조감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20060014",
+          "movieNm": "썬데이 서울",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060014",
+          "movieNm": "썬데이 서울",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20060014",
+          "movieNm": "썬데이 서울",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "20149057",
+          "movieNm": "너를 봤어",
+          "moviePartNm": "조감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

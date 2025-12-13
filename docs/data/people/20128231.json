@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20128231",
+      "peopleNm": "박인영",
+      "peopleNmEn": "PARK In-young",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20134123",
+          "movieNm": "집으로 가는 길",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20125886",
+          "movieNm": "저스트 프렌즈",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20101149",
+          "movieNm": "여의도",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

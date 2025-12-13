@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10028575",
+      "peopleNm": "박동현",
+      "peopleNmEn": "PARK Dong-hyun",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20174662",
+          "movieNm": "나의 자전거에 대하여",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20100564",
+          "movieNm": "기이한 춤 : 기무",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20100564",
+          "movieNm": "기이한 춤 : 기무",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20113143",
+          "movieNm": "살의",
+          "moviePartNm": "감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

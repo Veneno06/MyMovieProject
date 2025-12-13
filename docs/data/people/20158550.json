@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20158550",
+      "peopleNm": "박소현",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20090308",
+          "movieNm": "불꽃처럼 나비처럼",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20030046",
+          "movieNm": "살인의 추억",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20020233",
+          "movieNm": "패밀리",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

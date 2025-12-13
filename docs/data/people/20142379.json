@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20142379",
+      "peopleNm": "백남재",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "식당차",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20070500",
+          "movieNm": "펀치레이디",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20070500",
+          "movieNm": "펀치레이디",
+          "moviePartNm": "식당차"
+        },
+        {
+          "movieCd": "20060407",
+          "movieNm": "마파도2",
+          "moviePartNm": "식당차"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

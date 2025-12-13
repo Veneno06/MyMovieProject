@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20303009",
+      "peopleNm": "박소라",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20203936",
+          "movieNm": "마이 리틀 포니: 레인보우 로드 트립",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20196271",
+          "movieNm": "강철비2: 정상회담",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20184483",
+          "movieNm": "퍼펙트맨",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20181579",
+          "movieNm": "토이 가디언즈",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

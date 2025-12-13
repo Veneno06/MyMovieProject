@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20145910",
+      "peopleNm": "문상우",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "액션/스턴트팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20100053",
+          "movieNm": "계몽영화",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20030350",
+          "movieNm": "올드보이",
+          "moviePartNm": "스턴트연기"
+        },
+        {
+          "movieCd": "20020065",
+          "movieNm": "공공의 적",
+          "moviePartNm": "액션/스턴트팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

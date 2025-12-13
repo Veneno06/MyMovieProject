@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20335544",
+      "peopleNm": "박경현",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20211791",
+          "movieNm": "하이파이브",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20196906",
+          "movieNm": "스텔라",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20191243",
+          "movieNm": "장르만 로맨스",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20180868",
+          "movieNm": "뺑반",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

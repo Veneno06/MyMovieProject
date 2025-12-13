@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20313894",
+      "peopleNm": "배민정",
+      "peopleNmEn": "BAE Min-jung",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20201785",
+          "movieNm": "태백권",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20173202",
+          "movieNm": "버닝",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20150964",
+          "movieNm": "조작된 도시",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

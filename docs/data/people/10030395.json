@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10030395",
+      "peopleNm": "백학기",
+      "peopleNmEn": "BAEK Hak-gi",
+      "sex": null,
+      "repRoleNm": null,
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20179421",
+          "movieNm": "참외향기",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20189902",
+          "movieNm": "파도 여인 그리고 탱고 무삭제판",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20176345",
+          "movieNm": "파도 여인 그리고 탱고",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20137981",
+          "movieNm": "탱고",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20112558",
+      "peopleNm": "박봉남",
+      "peopleNmEn": "Park Bong-Nam",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20174323",
+          "movieNm": "B급 며느리",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20140343",
+          "movieNm": "김대중",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20100503",
+          "movieNm": "아이언 크로우즈",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20100503",
+          "movieNm": "아이언 크로우즈",
+          "moviePartNm": "편집"
+        },
+        {
+          "movieCd": "20100503",
+          "movieNm": "아이언 크로우즈",
+          "moviePartNm": "시나리오(각본)"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

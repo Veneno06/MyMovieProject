@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20297011",
+      "peopleNm": "마정석",
+      "peopleNmEn": "",
+      "sex": null,
+      "repRoleNm": "제작팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20200304",
+          "movieNm": "테우리",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20167829",
+          "movieNm": "마차 타고 고래고래",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20167829",
+          "movieNm": "마차 타고 고래고래",
+          "moviePartNm": "제작팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

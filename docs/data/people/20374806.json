@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20374806",
+      "peopleNm": "박지영",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20190815",
+          "movieNm": "보이스",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20204117",
+          "movieNm": "모가디슈",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20209627",
+          "movieNm": "아이",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

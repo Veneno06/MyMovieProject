@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10027769",
+      "peopleNm": "민경철",
+      "peopleNmEn": "MIN Gyeong-cheol",
+      "sex": "남자",
+      "repRoleNm": "연출팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20201792",
+          "movieNm": "액션동자",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19930015",
+          "movieNm": "비상구가 없다",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "19908057",
+          "movieNm": "파업전야",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "20223551",
+          "movieNm": "지미추",
+          "moviePartNm": "동시녹음"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

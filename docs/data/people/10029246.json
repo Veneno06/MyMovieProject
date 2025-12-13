@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10029246",
+      "peopleNm": "박주연",
+      "peopleNmEn": "Park Joo-yeon",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20224757",
+          "movieNm": "룸 쉐어링",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20090590",
+          "movieNm": "청담보살",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20129237",
+          "movieNm": "인 굿 컴퍼니",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

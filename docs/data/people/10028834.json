@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10028834",
+      "peopleNm": "박수범",
+      "peopleNmEn": "Park Soo-bum",
+      "sex": null,
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20070656",
+          "movieNm": "소리아이",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20224294",
+          "movieNm": "일장춘몽",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20224294",
+          "movieNm": "일장춘몽",
+          "moviePartNm": "음악진행"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

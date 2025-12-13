@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20154832",
+      "peopleNm": "박보연",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20160503",
+          "movieNm": "분장",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20040625",
+          "movieNm": "얼굴 없는 미녀",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20030092",
+          "movieNm": "청풍명월(淸風明月)",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

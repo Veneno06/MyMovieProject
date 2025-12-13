@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20134495",
+      "peopleNm": "박정오",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20162431",
+          "movieNm": "극장판 프랭키와 친구들: 생명의 나무",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20162431",
+          "movieNm": "극장판 프랭키와 친구들: 생명의 나무",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20162431",
+          "movieNm": "극장판 프랭키와 친구들: 생명의 나무",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "20119718",
+          "movieNm": "지구대표 롤링스타즈",
+          "moviePartNm": "스토리"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20378503",
+      "peopleNm": "박지원",
+      "peopleNmEn": "PARK JIWON",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20198955",
+          "movieNm": "입문반",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20210718",
+          "movieNm": "사랑의 여름",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20183727",
+          "movieNm": "한낮의 피크닉",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

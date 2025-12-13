@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20135495",
+      "peopleNm": "박준오",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "조감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20060068",
+          "movieNm": "달콤, 살벌한 연인",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060068",
+          "movieNm": "달콤, 살벌한 연인",
+          "moviePartNm": "조감독"
+        },
+        {
+          "movieCd": "20040628",
+          "movieNm": "우리 형",
+          "moviePartNm": "조감독"
+        },
+        {
+          "movieCd": "20020122",
+          "movieNm": "결혼은, 미친짓이다",
+          "moviePartNm": "연출팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

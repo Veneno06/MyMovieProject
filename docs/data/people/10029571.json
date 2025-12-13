@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10029571",
+      "peopleNm": "박효신",
+      "peopleNmEn": "PARK Hyo-shin",
+      "sex": "남자",
+      "repRoleNm": "음악",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20175208",
+          "movieNm": "뷰티풀 투모로우",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20175208",
+          "movieNm": "뷰티풀 투모로우",
+          "moviePartNm": "음악"
+        },
+        {
+          "movieCd": "20175208",
+          "movieNm": "뷰티풀 투모로우",
+          "moviePartNm": "의상"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

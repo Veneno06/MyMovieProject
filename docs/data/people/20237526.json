@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20237526",
+      "peopleNm": "문혜원",
+      "peopleNmEn": "MOON Hye-won",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20207254",
+          "movieNm": "나의이름",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20020076",
+          "movieNm": "싸울아비",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20010037",
+          "movieNm": "와이키키 브라더스",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

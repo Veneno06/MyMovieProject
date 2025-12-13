@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20110834",
+      "peopleNm": "백배정",
+      "peopleNmEn": "BAEK Bae-jeong",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20080741",
+          "movieNm": "고고 70",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "20070382",
+          "movieNm": "우리 생애 최고의 순간",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060100",
+          "movieNm": "사생결단",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20048296",
+          "movieNm": "살인자들",
+          "moviePartNm": "감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

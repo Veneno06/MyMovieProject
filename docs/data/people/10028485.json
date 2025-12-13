@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10028485",
+      "peopleNm": "박근영",
+      "peopleNmEn": "PARK Geun-yeong",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20070099",
+          "movieNm": "천년학",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20080689",
+          "movieNm": "철인들",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19810013",
+          "movieNm": "종군수첩",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

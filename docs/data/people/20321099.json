@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20321099",
+      "peopleNm": "백민준",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "제작팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20192995",
+          "movieNm": "보호자",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20181172",
+          "movieNm": "멀리가지마라",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20181172",
+          "movieNm": "멀리가지마라",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20179230",
+          "movieNm": "도어락",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20179230",
+          "movieNm": "도어락",
+          "moviePartNm": "제작팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

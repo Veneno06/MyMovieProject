@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20146544",
+      "peopleNm": "문지영",
+      "peopleNmEn": "",
+      "sex": null,
+      "repRoleNm": "제작팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20197032",
+          "movieNm": "후쿠오카",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20197032",
+          "movieNm": "후쿠오카",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20197032",
+          "movieNm": "후쿠오카",
+          "moviePartNm": "기타"
+        },
+        {
+          "movieCd": "20170841",
+          "movieNm": "리틀 포레스트",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20020062",
+          "movieNm": "케이티",
+          "moviePartNm": "제작팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

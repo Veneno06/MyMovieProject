@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20068044",
+      "peopleNm": "박지윤",
+      "peopleNmEn": "PARK Ji-yoon",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20124013",
+          "movieNm": "청포도 사탕: 17년 전의 약속",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20100181",
+          "movieNm": "서울",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20100027",
+          "movieNm": "회복",
+          "moviePartNm": "기타"
+        },
+        {
+          "movieCd": "20123741",
+          "movieNm": "드래곤 헌터",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

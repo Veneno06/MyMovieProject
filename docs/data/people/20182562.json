@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20182562",
+      "peopleNm": "박서아",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "제작팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20137048",
+          "movieNm": "국제시장",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20070588",
+          "movieNm": "도다리 - 리덕스",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20070588",
+          "movieNm": "도다리 - 리덕스",
+          "moviePartNm": "제작팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

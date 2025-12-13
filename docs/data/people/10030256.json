@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10030256",
+      "peopleNm": "배형준",
+      "peopleNmEn": "BAE Hyoung-jun",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20126089",
+          "movieNm": "자칼이 온다",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20061223",
+          "movieNm": "소년은 울지 않는다",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20061223",
+          "movieNm": "소년은 울지 않는다",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20040446",
+          "movieNm": "그녀를 믿지 마세요",
+          "moviePartNm": "감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

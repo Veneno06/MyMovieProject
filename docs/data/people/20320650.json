@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20320650",
+      "peopleNm": "바스키아",
+      "peopleNmEn": "",
+      "sex": null,
+      "repRoleNm": "헤어",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20177365",
+          "movieNm": "필동",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20177365",
+          "movieNm": "필동",
+          "moviePartNm": "헤어"
+        },
+        {
+          "movieCd": "20177365",
+          "movieNm": "필동",
+          "moviePartNm": "헤어"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

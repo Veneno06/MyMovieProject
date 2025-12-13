@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20158001",
+      "peopleNm": "박성희",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20040498",
+          "movieNm": "그놈은 멋있었다",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20030371",
+          "movieNm": "태극기 휘날리며",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20020226",
+          "movieNm": "오아시스",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20010013",
+          "movieNm": "봄날은 간다",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

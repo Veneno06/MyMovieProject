@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20400968",
+      "peopleNm": "박수빈",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20254283",
+          "movieNm": "안동",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20254283",
+          "movieNm": "안동",
+          "moviePartNm": "음악진행"
+        },
+        {
+          "movieCd": "20241610",
+          "movieNm": "스위트홈 감독판",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20232164",
+          "movieNm": "그 노래",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

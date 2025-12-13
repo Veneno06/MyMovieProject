@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20248548",
+      "peopleNm": "박준형",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "연출팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20174264",
+          "movieNm": "샘",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20167867",
+          "movieNm": "그물",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20167867",
+          "movieNm": "그물",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20159643",
+          "movieNm": "글로리데이",
+          "moviePartNm": "현장편집"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

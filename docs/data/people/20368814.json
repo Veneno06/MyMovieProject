@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20368814",
+      "peopleNm": "박종현",
+      "peopleNmEn": "",
+      "sex": null,
+      "repRoleNm": "연출팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20227979",
+          "movieNm": "보통의 가족",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20206257",
+          "movieNm": "브로커",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20206257",
+          "movieNm": "브로커",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20199882",
+          "movieNm": "경관의 피",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20195002",
+          "movieNm": "블랙머니",
+          "moviePartNm": "연출팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20110750",
+      "peopleNm": "박지혜",
+      "peopleNmEn": "Park Ji-hye",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20100363",
+          "movieNm": "분홍돌고래",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19940022",
+          "movieNm": "비는 사랑을 타고",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060706",
+          "movieNm": "동기",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20343897",
+      "peopleNm": "박범석",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20193450",
+          "movieNm": "반도",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20196271",
+          "movieNm": "강철비2: 정상회담",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20192206",
+          "movieNm": "백두산",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20184462",
+          "movieNm": "봉오동 전투",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

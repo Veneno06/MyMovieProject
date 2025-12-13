@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20110809",
+      "peopleNm": "박소영",
+      "peopleNmEn": "Park So-yeong",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20070185",
+          "movieNm": "저 하늘에도 슬픔이",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060460",
+          "movieNm": "나 그런 사람 아니에요",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20100440",
+          "movieNm": "우리 그만 헤어져",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

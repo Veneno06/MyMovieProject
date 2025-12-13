@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20207286",
+      "peopleNm": "박하나",
+      "peopleNmEn": "PARK Ha-na",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20227225",
+          "movieNm": "귀못",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20186662",
+          "movieNm": "폐쇄병동",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20155926",
+          "movieNm": "몽골리안 프린세스",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

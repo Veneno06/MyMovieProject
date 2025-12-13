@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10028732",
+      "peopleNm": "박선아",
+      "peopleNmEn": "PARK Seon-a",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20200474",
+          "movieNm": "기적",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20020197",
+          "movieNm": "서프라이즈",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20020054",
+          "movieNm": "일단뛰어",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20010020",
+          "movieNm": "엽기적인 그녀",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

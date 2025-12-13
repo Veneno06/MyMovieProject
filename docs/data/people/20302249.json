@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20302249",
+      "peopleNm": "문예원",
+      "peopleNmEn": "MUN Ye-won",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20235912",
+          "movieNm": "로망스",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20194044",
+          "movieNm": "공포체험단 곤지암편",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20170942",
+          "movieNm": "인랑",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20180804",
+          "movieNm": "곤지암",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}
