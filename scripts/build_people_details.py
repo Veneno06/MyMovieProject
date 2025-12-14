@@ -4,6 +4,7 @@ import json
 import time
 import glob
 import sys
+import argparse
 import unicodedata
 from pathlib import Path
 from urllib.parse import urlencode
@@ -84,13 +85,20 @@ def fetch_people_info_smart(peopleCd):
     raise RuntimeError("All API keys exhausted.")
 
 def build_details():
+    # [수정] argparse 추가하여 Budget 기능 구현
+    parser = argparse.ArgumentParser()
+    # 워크플로우에서 값을 안 넘겨주므로 기본값(default)을 2000으로 설정
+    parser.add_argument("--budget", type=int, default=2000) 
+    args, _ = parser.parse_known_args()
+    budget = args.budget
+
     if not API_KEYS:
         print("[build_people] No API Keys. Skipping.")
         return
 
-    # 1. 영화 파일 스캔 (코드 + 이름 수집)
+    # 1. 영화 파일 스캔
     files = sorted(glob.glob(str(MOVIE_DIR / "**" / "*.json"), recursive=True))
-    people_map = {} # code -> name
+    people_map = {} 
 
     print(f"[scan] 'ㅅ, ㅇ' 배우 중 성별 정보가 없는 대상을 찾습니다...")
     
@@ -106,13 +114,11 @@ def build_details():
                 if code and name:
                     people_map[code] = name
 
-    # 2. 필터링 (파일 미보유 + 타겟 자음)
+    # 2. 필터링
     needed_people = []
     
     for code in sorted(people_map.keys()):
         name = people_map[code]
-        
-        # [핵심] 이름이 ㅅ, ㅇ 인지 확인
         if not is_target_consonant(name):
             continue
             
@@ -130,6 +136,11 @@ def build_details():
     # 3. API 호출
     count = 0
     for i, code in enumerate(needed_people):
+        # [핵심] 예산 초과 시 중단
+        if budget > 0 and count >= budget:
+            print(f"[Stop] 성별 정보 예산 소진 ({budget}건).")
+            break
+
         person_file = PEOPLE_DIR / f"{code}.json"
         try:
             data = fetch_people_info_smart(code)
