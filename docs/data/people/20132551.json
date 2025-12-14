@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20132551",
+      "peopleNm": "신용식",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "연출팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20070589",
+          "movieNm": "여기보다 어딘가에",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20070589",
+          "movieNm": "여기보다 어딘가에",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20070589",
+          "movieNm": "여기보다 어딘가에",
+          "moviePartNm": "편집팀"
+        },
+        {
+          "movieCd": "20070016",
+          "movieNm": "소녀X소녀",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20154232",
+      "peopleNm": "이서이",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "의상팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20112082",
+          "movieNm": "챔프",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20112082",
+          "movieNm": "챔프",
+          "moviePartNm": "의상팀"
+        },
+        {
+          "movieCd": "20101223",
+          "movieNm": "헬로우 고스트",
+          "moviePartNm": "의상팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

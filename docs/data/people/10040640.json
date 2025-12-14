@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10040640",
+      "peopleNm": "신창주",
+      "peopleNmEn": "SIN Chang-ju",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20140144",
+          "movieNm": "도리화가",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20101048",
+          "movieNm": "젓가락",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20100380",
+          "movieNm": "마음이2",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060046",
+          "movieNm": "방과후 옥상",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20188232",
+          "movieNm": "담배를 태우는 법",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

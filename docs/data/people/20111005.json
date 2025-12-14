@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20111005",
+      "peopleNm": "서경화",
+      "peopleNmEn": "SEO Gyeong-hwa",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20050349",
+          "movieNm": "홀리데이",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20070169",
+          "movieNm": "살결",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20080369",
+          "movieNm": "초콜렛 중독",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20038800",
+          "movieNm": "메리고라운드 서커스청년",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

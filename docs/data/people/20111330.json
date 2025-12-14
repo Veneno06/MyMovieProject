@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20111330",
+      "peopleNm": "이광우",
+      "peopleNmEn": "LEE Gwang-u",
+      "sex": "남자",
+      "repRoleNm": "프로듀서",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20101113",
+          "movieNm": "이층의 악당",
+          "moviePartNm": "제작"
+        },
+        {
+          "movieCd": "20100188",
+          "movieNm": "하녀",
+          "moviePartNm": "제작"
+        },
+        {
+          "movieCd": "20060068",
+          "movieNm": "달콤, 살벌한 연인",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060068",
+          "movieNm": "달콤, 살벌한 연인",
+          "moviePartNm": "제작팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

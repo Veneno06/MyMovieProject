@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10050633",
+      "peopleNm": "오우정",
+      "peopleNmEn": "OH Woo-jung",
+      "sex": null,
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20100053",
+          "movieNm": "계몽영화",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20080351",
+          "movieNm": "봉수",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060464",
+          "movieNm": "난년이",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

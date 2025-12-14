@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10035377",
+      "peopleNm": "서린",
+      "peopleNmEn": "SEO Rin",
+      "sex": null,
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20080313",
+          "movieNm": "나의 스캔들",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20030145",
+          "movieNm": "내츄럴시티",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20020248",
+          "movieNm": "로드무비",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20010019",
+          "movieNm": "아이 러브 유",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

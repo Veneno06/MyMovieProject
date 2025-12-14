@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20130377",
+      "peopleNm": "신나래",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배급진행",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20183391",
+          "movieNm": "앵커",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20183391",
+          "movieNm": "앵커",
+          "moviePartNm": "배급진행"
+        },
+        {
+          "movieCd": "20162986",
+          "movieNm": "프레스",
+          "moviePartNm": "각색"
+        },
+        {
+          "movieCd": "20162986",
+          "movieNm": "프레스",
+          "moviePartNm": "스크립터"
+        },
+        {
+          "movieCd": "20162986",
+          "movieNm": "프레스",
+          "moviePartNm": "연출팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20123631",
+      "peopleNm": "손대식",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "분장",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20110313",
+          "movieNm": "모비딕",
+          "moviePartNm": "분장"
+        },
+        {
+          "movieCd": "20090862",
+          "movieNm": "여배우들",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20090862",
+          "movieNm": "여배우들",
+          "moviePartNm": "분장"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

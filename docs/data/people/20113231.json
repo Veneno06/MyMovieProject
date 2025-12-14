@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20113231",
+      "peopleNm": "이선정",
+      "peopleNmEn": "LEE Sun-jung",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20100444",
+          "movieNm": "너의 세계",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20113825",
+          "movieNm": "청소년 드라마의 이해와 실제",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20081006",
+          "movieNm": "시선 1318",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

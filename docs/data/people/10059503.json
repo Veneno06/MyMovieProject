@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10059503",
+      "peopleNm": "안 내쉬",
+      "peopleNmEn": "Nash Ang",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20211504",
+          "movieNm": "싸나희 순정",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20149501",
+          "movieNm": "사선의 끝",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20174004",
+          "movieNm": "아무도 혼자인 사람은 없다",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20173986",
+          "movieNm": "장례식",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20162263",
+          "movieNm": "구원자",
+          "moviePartNm": "감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

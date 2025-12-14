@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20123831",
+      "peopleNm": "손수정",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "제작팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20180282",
+          "movieNm": "속닥속닥",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20132796",
+          "movieNm": "못",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20132796",
+          "movieNm": "못",
+          "moviePartNm": "제작팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

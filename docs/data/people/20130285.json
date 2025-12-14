@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20130285",
+      "peopleNm": "신경하",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "특수촬영",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20050332",
+          "movieNm": "파랑주의보",
+          "moviePartNm": "특수촬영"
+        },
+        {
+          "movieCd": "20050013",
+          "movieNm": "잠복근무",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20050013",
+          "movieNm": "잠복근무",
+          "moviePartNm": "특수촬영"
+        },
+        {
+          "movieCd": "20010040",
+          "movieNm": "친구",
+          "moviePartNm": "특수촬영"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

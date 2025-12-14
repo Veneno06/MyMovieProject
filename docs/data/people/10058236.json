@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10058236",
+      "peopleNm": "이화란",
+      "peopleNmEn": "LEE Hwa-ran",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20050219",
+          "movieNm": "가문의 위기",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19950010",
+          "movieNm": "총잡이",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19900081",
+          "movieNm": "짚시애마",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

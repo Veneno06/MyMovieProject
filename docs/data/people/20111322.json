@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20111322",
+      "peopleNm": "이경호",
+      "peopleNmEn": "LEE Gyeong-ho",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20070610",
+          "movieNm": "싸움",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19940003",
+          "movieNm": "태양 속의 남자",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20090361",
+          "movieNm": "숨",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

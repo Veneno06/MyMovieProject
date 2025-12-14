@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20137726",
+      "peopleNm": "안복진",
+      "peopleNmEn": "AN Bok-jin",
+      "sex": "남자",
+      "repRoleNm": "음악",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20130482",
+          "movieNm": "잉투기",
+          "moviePartNm": "작사/작곡/편곡"
+        },
+        {
+          "movieCd": "20130482",
+          "movieNm": "잉투기",
+          "moviePartNm": "음악"
+        },
+        {
+          "movieCd": "20090784",
+          "movieNm": "좋아서 만든 영화",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20090784",
+          "movieNm": "좋아서 만든 영화",
+          "moviePartNm": "음악"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

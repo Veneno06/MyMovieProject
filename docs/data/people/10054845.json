@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10054845",
+      "peopleNm": "이광재",
+      "peopleNmEn": "LEE Kwang-jae",
+      "sex": null,
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20090890",
+          "movieNm": "아빠가 여자를 좋아해",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20090890",
+          "movieNm": "아빠가 여자를 좋아해",
+          "moviePartNm": "각색"
+        },
+        {
+          "movieCd": "20040585",
+          "movieNm": "내 남자의 로맨스",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20040585",
+          "movieNm": "내 남자의 로맨스",
+          "moviePartNm": "연출팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

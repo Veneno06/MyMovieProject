@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20111471",
+      "peopleNm": "이상혁",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20070587",
+          "movieNm": "리튼",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20110728",
+          "movieNm": "전설의 케이",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19998319",
+          "movieNm": "포 더 피스 오브 올 맨카인드",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

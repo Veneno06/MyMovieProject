@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10056658",
+      "peopleNm": "이영석",
+      "peopleNmEn": "LEE Young-seok",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20204432",
+          "movieNm": "애비규환",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20149501",
+          "movieNm": "사선의 끝",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20080786",
+          "movieNm": "바다로 가는 날",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060454",
+          "movieNm": "꿈 도깨비 ",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20060454",
+          "movieNm": "꿈 도깨비 ",
+          "moviePartNm": "시나리오(각본)"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

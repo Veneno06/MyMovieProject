@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10054785",
+      "peopleNm": "이계영",
+      "peopleNmEn": "LEE Gye-young",
+      "sex": null,
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20209022",
+          "movieNm": "메피스토",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20061267",
+          "movieNm": "너무 많이 본 사나이",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19920007",
+          "movieNm": "쿵후보이 친미",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "20090143",
+          "movieNm": "경찰+칠득이와 너털도사",
+          "moviePartNm": "투자"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

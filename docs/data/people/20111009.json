@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20111009",
+      "peopleNm": "이동혁",
+      "peopleNmEn": "LEE Dong-hyeok",
+      "sex": "남자",
+      "repRoleNm": "조감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20050345",
+          "movieNm": "야수",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20050345",
+          "movieNm": "야수",
+          "moviePartNm": "조감독"
+        },
+        {
+          "movieCd": "20030371",
+          "movieNm": "태극기 휘날리며",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20030371",
+          "movieNm": "태극기 휘날리며",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20000049",
+          "movieNm": "불후의 명작",
+          "moviePartNm": "연출팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

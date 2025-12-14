@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10053651",
+      "peopleNm": "유명순",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20050111",
+          "movieNm": "녹색의자",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19870054",
+          "movieNm": "비창",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19860078",
+          "movieNm": "여로",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19780027",
+          "movieNm": "체험",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

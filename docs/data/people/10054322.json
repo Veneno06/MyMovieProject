@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10054322",
+      "peopleNm": "윤석화",
+      "peopleNmEn": "YOON Suk-hwa",
+      "sex": null,
+      "repRoleNm": "제작",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20113556",
+          "movieNm": "봄, 눈",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20040611",
+          "movieNm": "날으는 돼지 - 해적 마테오",
+          "moviePartNm": "아트디렉터"
+        },
+        {
+          "movieCd": "19950045",
+          "movieNm": "돌아온 홍길동",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19950045",
+          "movieNm": "돌아온 홍길동",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "19870021",
+          "movieNm": "레테의 연가",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

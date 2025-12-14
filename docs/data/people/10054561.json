@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10054561",
+      "peopleNm": "윤태영",
+      "peopleNmEn": "",
+      "sex": null,
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20050280",
+          "movieNm": "미스터 소크라테스",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20010043",
+          "movieNm": "천사몽",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19990049",
+          "movieNm": "표절",
+          "moviePartNm": "기타"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

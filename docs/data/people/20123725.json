@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20123725",
+      "peopleNm": "손보현",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "기타",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20072686",
+          "movieNm": "모던보이",
+          "moviePartNm": "투자"
+        },
+        {
+          "movieCd": "20050283",
+          "movieNm": "소년, 천국에 가다",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20050283",
+          "movieNm": "소년, 천국에 가다",
+          "moviePartNm": "투자"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

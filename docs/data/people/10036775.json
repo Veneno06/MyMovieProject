@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10036775",
+      "peopleNm": "소희",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20071060",
+          "movieNm": "걸스카우트",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19789036",
+          "movieNm": "대동강 출신",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19780136",
+          "movieNm": "무상",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19770041",
+          "movieNm": "무적 600만불",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

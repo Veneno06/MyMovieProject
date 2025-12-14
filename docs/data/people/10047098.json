@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10047098",
+      "peopleNm": "양진우",
+      "peopleNmEn": "YANG Jin-woo",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20111003",
+          "movieNm": "러브 콜",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20100113",
+          "movieNm": "이번 일요일에",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20070466",
+          "movieNm": "세븐 데이즈",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20070109",
+          "movieNm": "파란자전거",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20110753",
+          "movieNm": "당신이 잠든 사이에",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

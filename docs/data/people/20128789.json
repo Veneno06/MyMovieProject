@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20128789",
+      "peopleNm": "이형석",
+      "peopleNmEn": "LEE Hyoung-seok",
+      "sex": "남자",
+      "repRoleNm": "제작",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20178501",
+          "movieNm": "니 부모 얼굴이 보고 싶다",
+          "moviePartNm": "제작"
+        },
+        {
+          "movieCd": "20178501",
+          "movieNm": "니 부모 얼굴이 보고 싶다",
+          "moviePartNm": "기획"
+        },
+        {
+          "movieCd": "20125430",
+          "movieNm": "슈퍼스타",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20125430",
+          "movieNm": "슈퍼스타",
+          "moviePartNm": "프로듀서"
+        },
+        {
+          "movieCd": "20125430",
+          "movieNm": "슈퍼스타",
+          "moviePartNm": "제작"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

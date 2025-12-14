@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10056779",
+      "peopleNm": "이완수",
+      "peopleNmEn": "LEE Wan-soo",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20174263",
+          "movieNm": "노마드",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20120425",
+          "movieNm": "사랑해! 진영아",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20120425",
+          "movieNm": "사랑해! 진영아",
+          "moviePartNm": "조감독"
+        },
+        {
+          "movieCd": "20119398",
+          "movieNm": "아비정전",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20121201",
+          "movieNm": "잠수왕 무하마드",
+          "moviePartNm": "붐오퍼레이터"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

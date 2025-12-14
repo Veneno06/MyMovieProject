@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10054118",
+      "peopleNm": "유하나",
+      "peopleNmEn": "YOO Ha-na",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20100049",
+          "movieNm": "도쿄택시",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20070168",
+          "movieNm": "경의선",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20068908",
+          "movieNm": "6호 출구",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

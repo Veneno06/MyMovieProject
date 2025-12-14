@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10054443",
+      "peopleNm": "윤은정",
+      "peopleNmEn": "YUN Eun-jung",
+      "sex": "여자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20060280",
+          "movieNm": "잔혹한 출근",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20040752",
+          "movieNm": "까불지마",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20040752",
+          "movieNm": "까불지마",
+          "moviePartNm": "조감독"
+        },
+        {
+          "movieCd": "20008921",
+          "movieNm": "동행",
+          "moviePartNm": "감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

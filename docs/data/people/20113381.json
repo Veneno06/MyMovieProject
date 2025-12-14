@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20113381",
+      "peopleNm": "윤진선",
+      "peopleNmEn": "YOON Jin-sun",
+      "sex": "여자",
+      "repRoleNm": "프로듀서",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20060389",
+          "movieNm": "오래된 정원",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060389",
+          "movieNm": "오래된 정원",
+          "moviePartNm": "프로듀서"
+        },
+        {
+          "movieCd": "20060276",
+          "movieNm": "무도리",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20120723",
+          "movieNm": "백 개의 못, 사슴의 뿔",
+          "moviePartNm": "프로듀서"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

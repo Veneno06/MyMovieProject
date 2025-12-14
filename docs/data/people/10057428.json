@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10057428",
+      "peopleNm": "이주민",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20050011",
+          "movieNm": "파송송 계란탁",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20050011",
+          "movieNm": "파송송 계란탁",
+          "moviePartNm": "조감독"
+        },
+        {
+          "movieCd": "20030152",
+          "movieNm": "위대한 유산",
+          "moviePartNm": "스크립터"
+        },
+        {
+          "movieCd": "20060870",
+          "movieNm": "단팥죽",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20123340",
+          "movieNm": "비오는 날의 부침개",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

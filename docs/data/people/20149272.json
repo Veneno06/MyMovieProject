@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20149272",
+      "peopleNm": "이병민",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "제작팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20050332",
+          "movieNm": "파랑주의보",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20050332",
+          "movieNm": "파랑주의보",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20050216",
+          "movieNm": "형사 Duelist",
+          "moviePartNm": "제작팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

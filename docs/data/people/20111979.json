@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20111979",
+      "peopleNm": "서윤아",
+      "peopleNmEn": "SUH Yoon-a",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20190481",
+          "movieNm": "앙상블",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20155085",
+          "movieNm": "전화번호가 필요해!!",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20090852",
+          "movieNm": "이웃집 좀비",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

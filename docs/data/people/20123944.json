@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20123944",
+      "peopleNm": "손영희",
+      "peopleNmEn": "SON Young-hee",
+      "sex": "여자",
+      "repRoleNm": "스크립터",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20081525",
+          "movieNm": "지구에서 사는 법",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20081525",
+          "movieNm": "지구에서 사는 법",
+          "moviePartNm": "스크립터"
+        },
+        {
+          "movieCd": "20090264",
+          "movieNm": "바다 쪽으로, 한 뼘 더",
+          "moviePartNm": "연출팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20138593",
+      "peopleNm": "안유정",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "조감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20070500",
+          "movieNm": "펀치레이디",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20070500",
+          "movieNm": "펀치레이디",
+          "moviePartNm": "조감독"
+        },
+        {
+          "movieCd": "20060339",
+          "movieNm": "사랑할 때 이야기하는 것들",
+          "moviePartNm": "스크립터"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

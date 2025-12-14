@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20124003",
+      "peopleNm": "손일준",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "조감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20101028",
+          "movieNm": "조금만 더 가까이",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20101028",
+          "movieNm": "조금만 더 가까이",
+          "moviePartNm": "조감독"
+        },
+        {
+          "movieCd": "20100813",
+          "movieNm": "퀴즈왕",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

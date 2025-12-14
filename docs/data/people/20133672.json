@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20133672",
+      "peopleNm": "신진우",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "조감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20155491",
+          "movieNm": "아내의 애인",
+          "moviePartNm": "조감독"
+        },
+        {
+          "movieCd": "20072148",
+          "movieNm": "GP 506",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20072148",
+          "movieNm": "GP 506",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20040613",
+          "movieNm": "알포인트",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20040613",
+          "movieNm": "알포인트",
+          "moviePartNm": "연출팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

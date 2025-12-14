@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20123093",
+      "peopleNm": "성종훈",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "연출팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20070115",
+          "movieNm": "밀양",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20070115",
+          "movieNm": "밀양",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20040596",
+          "movieNm": "바람의 파이터",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20040596",
+          "movieNm": "바람의 파이터",
+          "moviePartNm": "각색"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

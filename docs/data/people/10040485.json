@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10040485",
+      "peopleNm": "신신범",
+      "peopleNmEn": "SHIN Sin-bum",
+      "sex": null,
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20200291",
+          "movieNm": "무지개 여신",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19950012",
+          "movieNm": "죽어도 좋은 경험: 천사여 악녀가 되라",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060587",
+          "movieNm": "탐정사무소:나를 찾아주세요",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10036223",
+      "peopleNm": "세영",
+      "peopleNmEn": "Se-young",
+      "sex": "여자",
+      "repRoleNm": "촬영",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20061233",
+          "movieNm": "쇼킹패밀리",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20061233",
+          "movieNm": "쇼킹패밀리",
+          "moviePartNm": "촬영"
+        },
+        {
+          "movieCd": "20112517",
+          "movieNm": "Jam Docu 강정",
+          "moviePartNm": "촬영"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

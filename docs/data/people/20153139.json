@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20153139",
+      "peopleNm": "이태임",
+      "peopleNmEn": "LEE Tae-im",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20134591",
+          "movieNm": "황제를 위하여",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20122786",
+          "movieNm": "응징자",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20110906",
+          "movieNm": "특수본",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10058798",
+      "peopleNm": "임준일",
+      "peopleNmEn": "LIM Jun-il",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20101029",
+          "movieNm": "어쿠스틱",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20080268",
+          "movieNm": "스페어",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060231",
+          "movieNm": "뚝방전설",
+          "moviePartNm": "액션/스턴트팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

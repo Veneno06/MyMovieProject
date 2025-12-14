@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20135761",
+      "peopleNm": "신효진",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "액션/스턴트팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20060389",
+          "movieNm": "오래된 정원",
+          "moviePartNm": "스턴트연기"
+        },
+        {
+          "movieCd": "20040766",
+          "movieNm": "여고생 시집가기",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20040766",
+          "movieNm": "여고생 시집가기",
+          "moviePartNm": "액션/스턴트팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

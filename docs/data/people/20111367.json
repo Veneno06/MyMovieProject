@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20111367",
+      "peopleNm": "이명수",
+      "peopleNmEn": "LEE Myeong-su",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20040682",
+          "movieNm": "역도산",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20040762",
+          "movieNm": "마이 제너레이션",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20040619",
+          "movieNm": "슈퍼스타 감사용",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20040576",
+          "movieNm": "늑대의 유혹",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

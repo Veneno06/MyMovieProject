@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10056844",
+      "peopleNm": "이우성",
+      "peopleNmEn": "LEE Woo-sung",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20100264",
+          "movieNm": "그녀에게",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20070547",
+          "movieNm": "판타스틱 자살소동",
+          "moviePartNm": "음악"
+        },
+        {
+          "movieCd": "20050312",
+          "movieNm": "눈부신 하루",
+          "moviePartNm": "음악"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}
