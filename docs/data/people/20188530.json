@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20188530",
+      "peopleNm": "이종길",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "제작팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20174225",
+          "movieNm": "메멘토모리",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20174225",
+          "movieNm": "메멘토모리",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20131245",
+          "movieNm": "블랙 가스펠",
+          "moviePartNm": "라인프로듀서"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

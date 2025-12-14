@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20166892",
+      "peopleNm": "신유환",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20254526",
+          "movieNm": "승리의 시작",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20122634",
+          "movieNm": "공기",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20122731",
+          "movieNm": "지옥",
+          "moviePartNm": "감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

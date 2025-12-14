@@ -1,0 +1,34 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20189446",
+      "peopleNm": "이인경",
+      "peopleNmEn": "LEE In-kyung",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [
+        {
+          "homepgUrl": "http://people.search.naver.com/search.naver?where=nexearch&query=%EC%9D%B4%EC%9D%B8%EA%B2%BD&sm=tab_etc&ie=utf8&key=PeopleService&os=219691"
+        }
+      ],
+      "filmos": [
+        {
+          "movieCd": "20208595",
+          "movieNm": "얼굴없는 보스: 못다한 이야기 감독판",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20184341",
+          "movieNm": "얼굴없는 보스",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20148447",
+          "movieNm": "일대일",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

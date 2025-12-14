@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20184479",
+      "peopleNm": "양재호",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20192599",
+          "movieNm": "인생게임",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20192599",
+          "movieNm": "인생게임",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "20192599",
+          "movieNm": "인생게임",
+          "moviePartNm": "편집"
+        },
+        {
+          "movieCd": "20125289",
+          "movieNm": "부귀영화",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20125289",
+          "movieNm": "부귀영화",
+          "moviePartNm": "시나리오(각본)"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20155571",
+      "peopleNm": "윤유순",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "조감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20210406",
+          "movieNm": "당신의 우주",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20080008",
+          "movieNm": "어린 왕자",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20080008",
+          "movieNm": "어린 왕자",
+          "moviePartNm": "스크립터"
+        },
+        {
+          "movieCd": "20070419",
+          "movieNm": "오프 로드",
+          "moviePartNm": "조감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

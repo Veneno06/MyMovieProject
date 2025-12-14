@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20159763",
+      "peopleNm": "오진섭",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "프로듀서",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20111874",
+          "movieNm": "짐승",
+          "moviePartNm": "기획"
+        },
+        {
+          "movieCd": "20080264",
+          "movieNm": "감자심포니",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20080264",
+          "movieNm": "감자심포니",
+          "moviePartNm": "프로듀서"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

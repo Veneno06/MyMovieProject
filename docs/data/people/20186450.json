@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20186450",
+      "peopleNm": "윤창섭",
+      "peopleNmEn": "Chang Sub Yoon",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20198183",
+          "movieNm": "뽀로로 극장판 보물섬 대모험",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20156807",
+          "movieNm": "뽀로로 극장판 컴퓨터 왕국 대모험",
+          "moviePartNm": "조감독"
+        },
+        {
+          "movieCd": "20123681",
+          "movieNm": "뽀로로 극장판 슈퍼썰매 대모험",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20123681",
+          "movieNm": "뽀로로 극장판 슈퍼썰매 대모험",
+          "moviePartNm": "조감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

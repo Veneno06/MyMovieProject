@@ -1,0 +1,34 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20162834",
+      "peopleNm": "이강영",
+      "peopleNmEn": "LEE Kang-yong",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [
+        {
+          "homepgUrl": "http://blog.naver.com/pcps78"
+        }
+      ],
+      "filmos": [
+        {
+          "movieCd": "20070209",
+          "movieNm": "화려한 휴가",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20030023",
+          "movieNm": "대한민국 헌법 제1조",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20110272",
+          "movieNm": "고스트",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

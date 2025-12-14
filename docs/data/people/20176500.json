@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20176500",
+      "peopleNm": "이수정",
+      "peopleNmEn": "LEE Soo-jeong",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20153085",
+          "movieNm": "캠핑",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20156242",
+          "movieNm": "환타스틱 러브짐: 전쟁 같은 사랑",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20130706",
+          "movieNm": "미스체인지",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

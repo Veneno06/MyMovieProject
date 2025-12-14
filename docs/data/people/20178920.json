@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20178920",
+      "peopleNm": "이태희",
+      "peopleNmEn": "LEE Tae-hee",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20134413",
+          "movieNm": "소녀",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20133161",
+          "movieNm": "스토커",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20135421",
+          "movieNm": "마이 로맨스",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

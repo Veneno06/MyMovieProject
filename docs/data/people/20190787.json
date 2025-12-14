@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20190787",
+      "peopleNm": "유승원",
+      "peopleNmEn": "YOO Seung-won",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20152209",
+          "movieNm": "퀴어영화 나비 : 어른들의 일",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20140863",
+          "movieNm": "퀴어영화 캔디: 우리가 사랑한 소년의 이름",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20135463",
+          "movieNm": "퀴어영화 20",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20166884",
+      "peopleNm": "이태인",
+      "peopleNmEn": "",
+      "sex": null,
+      "repRoleNm": "조감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20113231",
+          "movieNm": "누나",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20113231",
+          "movieNm": "누나",
+          "moviePartNm": "조감독"
+        },
+        {
+          "movieCd": "20218886",
+          "movieNm": "토요일 오후",
+          "moviePartNm": "기타"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

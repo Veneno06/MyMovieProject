@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20184519",
+      "peopleNm": "여정민",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "연출팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20156188",
+          "movieNm": "블랙스톤",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20156188",
+          "movieNm": "블랙스톤",
+          "moviePartNm": "조감독"
+        },
+        {
+          "movieCd": "20111774",
+          "movieNm": "가비",
+          "moviePartNm": "데이타매니저"
+        },
+        {
+          "movieCd": "20125624",
+          "movieNm": "만찬",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20125624",
+          "movieNm": "만찬",
+          "moviePartNm": "연출팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}
