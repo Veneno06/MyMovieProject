@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20393232",
+      "peopleNm": "유승원",
+      "peopleNmEn": "RYU Seung-won",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20235815",
+          "movieNm": "아가미",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20235815",
+          "movieNm": "아가미",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20235815",
+          "movieNm": "아가미",
+          "moviePartNm": "제작"
+        },
+        {
+          "movieCd": "20235815",
+          "movieNm": "아가미",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "20235815",
+          "movieNm": "아가미",
+          "moviePartNm": "편집"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

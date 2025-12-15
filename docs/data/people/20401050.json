@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20401050",
+      "peopleNm": "이예은",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20070383",
+          "movieNm": "상사부일체",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20253805",
+          "movieNm": "식물",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20253800",
+          "movieNm": "망각",
+          "moviePartNm": "감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

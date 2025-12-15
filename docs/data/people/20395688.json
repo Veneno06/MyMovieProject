@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20395688",
+      "peopleNm": "이귀우",
+      "peopleNmEn": "Lee Kwy woo",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20249456",
+          "movieNm": "어텀 노트",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20212866",
+          "movieNm": "서울의 봄",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20247375",
+          "movieNm": "귀마개",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

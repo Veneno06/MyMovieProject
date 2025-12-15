@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20403468",
+      "peopleNm": "이송아",
+      "peopleNmEn": "LI SIYA",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20230167",
+          "movieNm": "아줌마",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20218647",
+          "movieNm": "액션히어로",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20218647",
+          "movieNm": "액션히어로",
+          "moviePartNm": "기타"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

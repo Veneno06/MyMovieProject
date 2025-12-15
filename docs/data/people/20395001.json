@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20395001",
+      "peopleNm": "이다인",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "제작회계",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20234692",
+          "movieNm": "딜리버리",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20234692",
+          "movieNm": "딜리버리",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20234675",
+          "movieNm": "파묘",
+          "moviePartNm": "제작회계"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

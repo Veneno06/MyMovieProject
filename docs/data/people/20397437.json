@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20397437",
+      "peopleNm": "오충근",
+      "peopleNmEn": "Oh Choong Geun",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20232394",
+          "movieNm": "야당",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20239670",
+          "movieNm": "베테랑2",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20233006",
+          "movieNm": "히트맨2",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20233038",
+          "movieNm": "리볼버",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

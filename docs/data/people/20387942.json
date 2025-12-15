@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20387942",
+      "peopleNm": "안상태",
+      "peopleNmEn": "ahn sang-tae",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20239670",
+          "movieNm": "베테랑2",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20206228",
+          "movieNm": "안상태 첫번째 단편선",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20206228",
+          "movieNm": "안상태 첫번째 단편선",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}
