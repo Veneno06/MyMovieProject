@@ -43,7 +43,7 @@ def normalize_title(title):
     if not title: return ""
     return "".join(c for c in title if c.isalnum()).lower()
 
-# [설정] 자음 필터링: ㅈ, ㅉ, ㅊ (12, 13, 14)
+# [설정] 자음 필터링: ㅋ, ㅌ (15, 16)
 def is_target_consonant(name: str) -> bool:
     if not name: return False
     nm = unicodedata.normalize('NFC', name)
@@ -55,7 +55,8 @@ def is_target_consonant(name: str) -> bool:
     idx = (ord(first_char) - 0xAC00) // 588
     
     # 12:ㅈ, 13:ㅉ, 14:ㅊ
-    return idx in [12, 13, 14]
+    # 15:ㅋ, 16:ㅌ
+    return idx in [15, 16]
 
 def get_next_key_session():
     global CURRENT_KEY_INDEX
@@ -93,7 +94,7 @@ def fetch_people_list_smart(peopleNm):
     raise RuntimeError("All API keys exhausted.")
 
 def backfill(budget: int, rate_sleep_ms: int):
-    # [핵심] 입력받은 Budget을 파일로 저장 (다음 스크립트가 볼 수 있게)
+    # [핵심] Budget 전달
     try:
         limit_file = ROOT / "budget_limit.txt"
         limit_file.write_text(str(budget), encoding="utf-8")
@@ -101,10 +102,9 @@ def backfill(budget: int, rate_sleep_ms: int):
     except Exception as e:
         print(f"[Warning] Budget 전달 실패: {e}")
 
-    # 최신순 스캔
     files = sorted([Path(p) for p in glob.glob(str(DETAIL_DIR / "**" / "*.json"), recursive=True)], reverse=True)
     
-    print(f"[Step 1] 전체 파일({len(files)}개) 스캔 중... 'ㅈ, ㅊ' 배우 타겟팅")
+    print(f"[Step 1] 전체 파일({len(files)}개) 스캔 중... 'ㅋ, ㅌ' 배우 타겟팅")
     
     target_map = defaultdict(list)
     
@@ -124,7 +124,6 @@ def backfill(budget: int, rate_sleep_ms: int):
             nm = a.get("peopleNm", "").strip()
             cd = a.get("peopleCd", "").strip()
             
-            # [필터] 코드가 없고 + 자음이 ㅈ, ㅊ 인 경우
             if nm and (not cd) and is_target_consonant(nm):
                 target_map[nm].append({
                     "path": p, "movieNm": movieNm, "cleanNm": normalize_title(movieNm)
