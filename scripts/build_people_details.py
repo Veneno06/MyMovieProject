@@ -38,7 +38,7 @@ def save_json(p: Path, data: dict):
     with open(p, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
-# [설정] 자음 필터링: ㅅ, ㅆ, ㅇ (9, 10, 11)
+# [설정] 자음 필터링: ㅈ, ㅉ, ㅊ (12, 13, 14)
 def is_target_consonant(name: str) -> bool:
     if not name: return False
     nm = unicodedata.normalize('NFC', name)
@@ -46,8 +46,8 @@ def is_target_consonant(name: str) -> bool:
     if not ('\uAC00' <= first_char <= '\uD7A3'): return False
     idx = (ord(first_char) - 0xAC00) // 588
     
-    # 9:ㅅ, 10:ㅆ, 11:ㅇ
-    return idx in [9, 10, 11]
+    # 12:ㅈ, 13:ㅉ, 14:ㅊ
+    return idx in [12, 13, 14]
 
 def get_next_key_session():
     global CURRENT_KEY_INDEX
@@ -85,9 +85,9 @@ def fetch_people_info_smart(peopleCd):
     raise RuntimeError("All API keys exhausted.")
 
 def build_details():
-    # [핵심] 1단계에서 저장해둔 Budget 파일을 읽어옵니다.
+    # 1단계에서 저장된 Budget 파일 읽기
     limit_file = ROOT / "budget_limit.txt"
-    budget = 2000 # 파일이 없으면 기본값
+    budget = 2000 # 기본값
     
     if limit_file.exists():
         try:
@@ -95,18 +95,17 @@ def build_details():
             if val.isdigit():
                 budget = int(val)
                 print(f"[System] 사용자 입력 Budget 적용: {budget}건")
-        except:
-            pass
+        except: pass
     
     if not API_KEYS:
         print("[build_people] No API Keys. Skipping.")
         return
 
-    # 1. 영화 파일 스캔
+    # 1. 스캔
     files = sorted(glob.glob(str(MOVIE_DIR / "**" / "*.json"), recursive=True))
     people_map = {} 
 
-    print(f"[scan] 'ㅅ, ㅇ' 배우 중 성별 정보가 없는 대상을 찾습니다...")
+    print(f"[scan] 'ㅈ, ㅊ' 배우 중 성별 정보가 없는 대상을 찾습니다...")
     
     for p in files:
         data = load_json(Path(p))
@@ -129,11 +128,10 @@ def build_details():
             continue
             
         person_file = PEOPLE_DIR / f"{code}.json"
-        
         if not (person_file.exists() and person_file.stat().st_size > 50):
             needed_people.append(code)
 
-    print(f"[info] 수집 대상: 총 {len(needed_people)}명 (이름이 ㅅ, ㅇ로 시작)")
+    print(f"[info] 수집 대상: 총 {len(needed_people)}명 (이름이 ㅈ, ㅊ로 시작)")
     
     if not needed_people:
         print(" -> 대상이 없습니다.")
@@ -142,7 +140,6 @@ def build_details():
     # 3. API 호출
     count = 0
     for i, code in enumerate(needed_people):
-        # [핵심] 읽어온 Budget만큼만 실행하고 멈춤
         if budget > 0 and count >= budget:
             print(f"[Stop] 입력하신 Budget({budget})에 도달하여 중단합니다.")
             break
