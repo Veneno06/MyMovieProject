@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20382053",
+      "peopleNm": "이서진",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20233731",
+          "movieNm": "호러메이트",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20224006",
+          "movieNm": "드림메이커",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20167903",
+          "movieNm": "원더풀 고스트",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20380234",
+      "peopleNm": "오세연",
+      "peopleNmEn": "OH Seyeon",
+      "sex": "여자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20211244",
+          "movieNm": "성덕",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20211244",
+          "movieNm": "성덕",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20211244",
+          "movieNm": "성덕",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "20211244",
+          "movieNm": "성덕",
+          "moviePartNm": "촬영"
+        },
+        {
+          "movieCd": "20211244",
+          "movieNm": "성덕",
+          "moviePartNm": "편집"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

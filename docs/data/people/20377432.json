@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20377432",
+      "peopleNm": "이주원",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20225826",
+          "movieNm": "양치기",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20219595",
+          "movieNm": "영화의 거리",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20227499",
+          "movieNm": "카페 속 사람들",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}
