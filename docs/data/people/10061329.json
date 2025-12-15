@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10061329",
+      "peopleNm": "전수영",
+      "peopleNmEn": "JEON Su-yeong",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20191143",
+          "movieNm": "원더랜드",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20120726",
+          "movieNm": "달리는 차은",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20081006",
+          "movieNm": "시선 1318",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

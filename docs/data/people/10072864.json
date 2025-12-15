@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10072864",
+      "peopleNm": "최혁",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "프로듀서",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20101109",
+          "movieNm": "두 여자",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20050029",
+          "movieNm": "엄마",
+          "moviePartNm": "프로듀서"
+        },
+        {
+          "movieCd": "20030094",
+          "movieNm": "원더풀 데이즈",
+          "moviePartNm": "라인프로듀서"
+        },
+        {
+          "movieCd": "20020187",
+          "movieNm": "예스터데이",
+          "moviePartNm": "라인프로듀서"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

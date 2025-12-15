@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10060091",
+      "peopleNm": "장나라",
+      "peopleNmEn": "CHANG Na-ra",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20133667",
+          "movieNm": "폴라로이드",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20133667",
+          "movieNm": "폴라로이드",
+          "moviePartNm": "작사/작곡/편곡"
+        },
+        {
+          "movieCd": "20155180",
+          "movieNm": "플라잉 위드 유",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20090670",
+          "movieNm": "하늘과 바다",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20030120",
+          "movieNm": "오! 해피데이",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

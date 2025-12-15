@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10067476",
+      "peopleNm": "조혜진",
+      "peopleNmEn": "CHO Hye-Jin",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20061214",
+          "movieNm": "작은 연못",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20070640",
+          "movieNm": "용의주도 미스신",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20050180",
+          "movieNm": "웰컴 투 동막골",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19798049",
+          "movieNm": "지옥의 49일",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

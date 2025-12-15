@@ -1,0 +1,45 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10072961",
+      "peopleNm": "추상록",
+      "peopleNmEn": "CHOO Sang-rock",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20123082",
+          "movieNm": "소리굽쇠",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20123082",
+          "movieNm": "소리굽쇠",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20123082",
+          "movieNm": "소리굽쇠",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "20112697",
+          "movieNm": "감 3D",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20018003",
+          "movieNm": "빨간 피터의 고백",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20072086",
+          "movieNm": "서바이벌 게임",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

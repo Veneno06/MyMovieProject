@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10072753",
+      "peopleNm": "최지나",
+      "peopleNmEn": "CHOI Ji-na",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20090605",
+          "movieNm": "굿모닝 프레지던트",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19990051",
+          "movieNm": "학교전설",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20178707",
+          "movieNm": "기억의 재구성",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

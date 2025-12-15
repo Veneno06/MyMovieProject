@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10060344",
+      "peopleNm": "장예원",
+      "peopleNmEn": "JANG Ye-won ",
+      "sex": null,
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20100519",
+          "movieNm": "장마",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20080264",
+          "movieNm": "감자심포니",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20061226",
+          "movieNm": "장마",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

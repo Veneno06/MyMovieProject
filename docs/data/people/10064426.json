@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10064426",
+      "peopleNm": "제임스 호란",
+      "peopleNmEn": "James Horan",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20208245",
+          "movieNm": "핸섬가이즈",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19990119",
+          "movieNm": "카운터메져",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20098557",
+          "movieNm": "쇼룸",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

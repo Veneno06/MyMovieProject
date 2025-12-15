@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10072323",
+      "peopleNm": "최선영",
+      "peopleNmEn": "Choi Sun-young",
+      "sex": "여자",
+      "repRoleNm": "스크립터",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20060229",
+          "movieNm": "아이스케키",
+          "moviePartNm": "스크립터"
+        },
+        {
+          "movieCd": "20050363",
+          "movieNm": "투사부일체",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20050363",
+          "movieNm": "투사부일체",
+          "moviePartNm": "조감독"
+        },
+        {
+          "movieCd": "20050178",
+          "movieNm": "박수칠 때 떠나라",
+          "moviePartNm": "연출팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

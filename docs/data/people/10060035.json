@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10060035",
+      "peopleNm": "장경진",
+      "peopleNmEn": "JANG Gyung-jin",
+      "sex": null,
+      "repRoleNm": null,
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20072687",
+          "movieNm": "경축! 우리사랑",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060552",
+          "movieNm": "생산적 활동",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060723",
+          "movieNm": "비가 내린다",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

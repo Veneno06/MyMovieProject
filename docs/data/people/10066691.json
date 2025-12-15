@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10066691",
+      "peopleNm": "조영남",
+      "peopleNmEn": "",
+      "sex": null,
+      "repRoleNm": "음악",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20243409",
+          "movieNm": "오빠, 남진",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19920067",
+          "movieNm": "눈꽃",
+          "moviePartNm": "음악"
+        },
+        {
+          "movieCd": "19910011",
+          "movieNm": "서울에비타",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19910011",
+          "movieNm": "서울에비타",
+          "moviePartNm": "음악"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

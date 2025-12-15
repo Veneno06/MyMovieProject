@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10066773",
+      "peopleNm": "조유진",
+      "peopleNmEn": "CHO You-jin",
+      "sex": "여자",
+      "repRoleNm": "조감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20183423",
+          "movieNm": "오목소녀",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20141705",
+          "movieNm": "마이 페어 웨딩",
+          "moviePartNm": "조감독"
+        },
+        {
+          "movieCd": "20040647",
+          "movieNm": "도마 안중근",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20040647",
+          "movieNm": "도마 안중근",
+          "moviePartNm": "연출팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

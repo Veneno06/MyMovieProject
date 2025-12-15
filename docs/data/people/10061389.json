@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10061389",
+      "peopleNm": "전용택",
+      "peopleNmEn": "JEON Yong-taek",
+      "sex": null,
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20080264",
+          "movieNm": "감자심포니",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20080264",
+          "movieNm": "감자심포니",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20080264",
+          "movieNm": "감자심포니",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "20080264",
+          "movieNm": "감자심포니",
+          "moviePartNm": "제작"
+        },
+        {
+          "movieCd": "20080264",
+          "movieNm": "감자심포니",
+          "moviePartNm": "투자"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

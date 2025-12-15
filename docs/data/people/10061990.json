@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10061990",
+      "peopleNm": "정예지",
+      "peopleNmEn": "JEONG Ye-ji",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20178401",
+          "movieNm": "검객",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20070497",
+          "movieNm": "궁녀",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20080430",
+          "movieNm": "여우비",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

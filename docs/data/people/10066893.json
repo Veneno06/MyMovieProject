@@ -1,0 +1,34 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10066893",
+      "peopleNm": "조이진",
+      "peopleNmEn": "JO I-Jin",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [
+        {
+          "homepgUrl": "http://blog.naver.com/page88"
+        }
+      ],
+      "filmos": [
+        {
+          "movieCd": "20142641",
+          "movieNm": "나를 잊지 말아요",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060093",
+          "movieNm": "국경의 남쪽",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20050015",
+          "movieNm": "태풍태양",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

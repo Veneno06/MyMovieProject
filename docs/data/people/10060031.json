@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10060031",
+      "peopleNm": "장경아",
+      "peopleNmEn": "JANG Kyoung-ah",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20125430",
+          "movieNm": "슈퍼스타",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20113260",
+          "movieNm": "퍼펙트 게임",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20090327",
+          "movieNm": "여고괴담 5",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

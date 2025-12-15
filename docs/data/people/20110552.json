@@ -1,0 +1,45 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20110552",
+      "peopleNm": "조세래",
+      "peopleNmEn": "CHO Se-rae",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20130929",
+          "movieNm": "스톤",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20130929",
+          "movieNm": "스톤",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20130929",
+          "movieNm": "스톤",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "20130929",
+          "movieNm": "스톤",
+          "moviePartNm": "기획"
+        },
+        {
+          "movieCd": "19920051",
+          "movieNm": "하얀전쟁",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "19910012",
+          "movieNm": "산산이 부서진 이름이여",
+          "moviePartNm": "시나리오(각본)"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

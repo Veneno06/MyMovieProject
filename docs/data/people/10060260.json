@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10060260",
+      "peopleNm": "장성진",
+      "peopleNmEn": "Jang Liu",
+      "sex": "남자",
+      "repRoleNm": "조감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20060027",
+          "movieNm": "달려라 장미",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060027",
+          "movieNm": "달려라 장미",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20040472",
+          "movieNm": "귀여워",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20010057",
+          "movieNm": "새는 폐곡선을 그린다",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20010057",
+          "movieNm": "새는 폐곡선을 그린다",
+          "moviePartNm": "조감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20112503",
+      "peopleNm": "조진모",
+      "peopleNmEn": "CHO Jin-mo",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20193068",
+          "movieNm": "비와 당신의 이야기",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20193068",
+          "movieNm": "비와 당신의 이야기",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20165723",
+          "movieNm": "메이킹 패밀리",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20165723",
+          "movieNm": "메이킹 패밀리",
+          "moviePartNm": "각색"
+        },
+        {
+          "movieCd": "20113743",
+          "movieNm": "댄싱퀸",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20119974",
+          "movieNm": "수상한 고객들",
+          "moviePartNm": "감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

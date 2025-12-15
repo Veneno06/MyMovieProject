@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10065895",
+      "peopleNm": "조석영",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "기획",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20060288",
+          "movieNm": "가을로",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060288",
+          "movieNm": "가을로",
+          "moviePartNm": "기획"
+        },
+        {
+          "movieCd": "20060218",
+          "movieNm": "다세포소녀",
+          "moviePartNm": "기획"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}
