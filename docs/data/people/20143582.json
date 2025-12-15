@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20143582",
+      "peopleNm": "전충룡",
+      "peopleNmEn": "",
+      "sex": null,
+      "repRoleNm": "제작팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20070209",
+          "movieNm": "화려한 휴가",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20060373",
+          "movieNm": "조용한 세상",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20050355",
+          "movieNm": "음란서생",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20050355",
+          "movieNm": "음란서생",
+          "moviePartNm": "제작팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}
