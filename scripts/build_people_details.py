@@ -85,13 +85,19 @@ def fetch_people_info_smart(peopleCd):
     raise RuntimeError("All API keys exhausted.")
 
 def build_details():
-    # [수정] argparse 추가하여 Budget 기능 구현
-    parser = argparse.ArgumentParser()
-    # 워크플로우에서 값을 안 넘겨주므로 기본값(default)을 2000으로 설정
-    parser.add_argument("--budget", type=int, default=2000) 
-    args, _ = parser.parse_known_args()
-    budget = args.budget
-
+    # [핵심] 1단계에서 저장해둔 Budget 파일을 읽어옵니다.
+    limit_file = ROOT / "budget_limit.txt"
+    budget = 2000 # 파일이 없으면 기본값
+    
+    if limit_file.exists():
+        try:
+            val = limit_file.read_text(encoding="utf-8").strip()
+            if val.isdigit():
+                budget = int(val)
+                print(f"[System] 사용자 입력 Budget 적용: {budget}건")
+        except:
+            pass
+    
     if not API_KEYS:
         print("[build_people] No API Keys. Skipping.")
         return
@@ -136,9 +142,9 @@ def build_details():
     # 3. API 호출
     count = 0
     for i, code in enumerate(needed_people):
-        # [핵심] 예산 초과 시 중단
+        # [핵심] 읽어온 Budget만큼만 실행하고 멈춤
         if budget > 0 and count >= budget:
-            print(f"[Stop] 성별 정보 예산 소진 ({budget}건).")
+            print(f"[Stop] 입력하신 Budget({budget})에 도달하여 중단합니다.")
             break
 
         person_file = PEOPLE_DIR / f"{code}.json"
