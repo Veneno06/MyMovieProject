@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20220119",
+      "peopleNm": "성유진",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "조감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20179123",
+          "movieNm": "어둔 밤",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20179123",
+          "movieNm": "어둔 밤",
+          "moviePartNm": "조감독"
+        },
+        {
+          "movieCd": "20159422",
+          "movieNm": "권법형사 : 차이나타운",
+          "moviePartNm": "스크립터"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

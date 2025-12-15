@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20305972",
+      "peopleNm": "임난아",
+      "peopleNmEn": "",
+      "sex": null,
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20200566",
+          "movieNm": "거래완료",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20206843",
+          "movieNm": "마음 울적한 날엔",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20185953",
+          "movieNm": "보라",
+          "moviePartNm": "감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20237307",
+      "peopleNm": "엄홍식",
+      "peopleNmEn": "Um hongsik",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20204548",
+          "movieNm": "범죄도시2",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20173993",
+          "movieNm": "이월",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20176104",
+          "movieNm": "그것만이 내 세상",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20164151",
+          "movieNm": "농담",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20164140",
+          "movieNm": "[인디포럼2016] 신작14 어느 날 내게 다가온 너",
+          "moviePartNm": "감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

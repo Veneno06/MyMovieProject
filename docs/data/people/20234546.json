@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20234546",
+      "peopleNm": "이유비",
+      "peopleNmEn": "LEE Yu-bi",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20181983",
+          "movieNm": "이웃사촌",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20148845",
+          "movieNm": "스물",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20147176",
+          "movieNm": "상의원",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

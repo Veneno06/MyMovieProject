@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20204036",
+      "peopleNm": "이승아",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "조감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20153311",
+          "movieNm": "기적의 피아노",
+          "moviePartNm": "조감독"
+        },
+        {
+          "movieCd": "20143666",
+          "movieNm": "울언니",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20143666",
+          "movieNm": "울언니",
+          "moviePartNm": "스크립터"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

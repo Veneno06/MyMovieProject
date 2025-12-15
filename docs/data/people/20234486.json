@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20234486",
+      "peopleNm": "안승균",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20211791",
+          "movieNm": "하이파이브",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20223819",
+          "movieNm": "말할 수 없는 비밀",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20209349",
+          "movieNm": "나를 죽여줘",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20151022",
+          "movieNm": "걷기왕",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20223750",
+          "movieNm": "당신의 좌석은 어디인가요?",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

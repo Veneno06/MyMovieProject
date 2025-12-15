@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20199868",
+      "peopleNm": "이리나",
+      "peopleNmEn": "Irina Griga",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20144521",
+          "movieNm": "뽕2014",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20140245",
+          "movieNm": "원죄적 정사 2014",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20145071",
+          "movieNm": "새폴더",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

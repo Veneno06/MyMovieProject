@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20275809",
+      "peopleNm": "안현준",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20190665",
+          "movieNm": "임신한 나무와 도깨비",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20190665",
+          "movieNm": "임신한 나무와 도깨비",
+          "moviePartNm": "조감독"
+        },
+        {
+          "movieCd": "20190665",
+          "movieNm": "임신한 나무와 도깨비",
+          "moviePartNm": "촬영"
+        },
+        {
+          "movieCd": "20173423",
+          "movieNm": "멀리있는 그대와 가까이 있는 당신에게",
+          "moviePartNm": "감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

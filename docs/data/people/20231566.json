@@ -1,0 +1,47 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20231566",
+      "peopleNm": "윤택",
+      "peopleNmEn": "Yoon-taek",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [
+        {
+          "homepgUrl": "http://cafe.naver.com/yoontaekcamp"
+        },
+        {
+          "homepgUrl": "http://blog.naver.com/iamyoontaek"
+        }
+      ],
+      "filmos": [
+        {
+          "movieCd": "20112221",
+          "movieNm": "히트",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20050308",
+          "movieNm": "카리스마 탈출기",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20050154",
+          "movieNm": "발리언트(애니)",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20040672",
+          "movieNm": "발레 교습소",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20030098",
+          "movieNm": "갈갈이 패밀리와 드라큐라",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

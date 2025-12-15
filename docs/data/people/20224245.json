@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20224245",
+      "peopleNm": "이은정",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20202888",
+          "movieNm": "연안부두",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20149569",
+          "movieNm": "악의 연대기",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20124079",
+          "movieNm": "광해, 왕이 된 남자",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

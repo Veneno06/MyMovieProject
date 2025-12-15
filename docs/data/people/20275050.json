@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20275050",
+      "peopleNm": "이영범",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20202625",
+          "movieNm": "마지막 휴가",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20182889",
+          "movieNm": "왕을 참하라 무삭제판",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20172401",
+          "movieNm": "왕을 참하라",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

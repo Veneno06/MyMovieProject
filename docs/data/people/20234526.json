@@ -1,0 +1,34 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20234526",
+      "peopleNm": "유주하",
+      "peopleNmEn": "Jooha",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [
+        {
+          "homepgUrl": "http://movie.naver.com/movie/bi/pi/basic.nhn?code=254514"
+        }
+      ],
+      "filmos": [
+        {
+          "movieCd": "20181087",
+          "movieNm": "호흡",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20162723",
+          "movieNm": "무꾸리",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20135998",
+          "movieNm": "방관자",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

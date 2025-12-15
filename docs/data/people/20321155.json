@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20321155",
+      "peopleNm": "산이",
+      "peopleNmEn": "",
+      "sex": null,
+      "repRoleNm": "음악진행",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20183495",
+          "movieNm": "리스펙트",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20180063",
+          "movieNm": "라라",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20180063",
+          "movieNm": "라라",
+          "moviePartNm": "음악진행"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

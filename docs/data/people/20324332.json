@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20324332",
+      "peopleNm": "양희원",
+      "peopleNmEn": "YANG Hee-won",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20236227",
+          "movieNm": "보이 인 더 풀",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20204264",
+          "movieNm": "콘크리트 유토피아",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20183002",
+          "movieNm": "해치지않아",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20199448",
+          "movieNm": "어린 의뢰인",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

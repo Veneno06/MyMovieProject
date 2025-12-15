@@ -1,0 +1,65 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20222666",
+      "peopleNm": "서보경",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20191682",
+          "movieNm": "몽마르트 파파",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20202434",
+          "movieNm": "피싱",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20202434",
+          "movieNm": "피싱",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "20180521",
+          "movieNm": "미행",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20180521",
+          "movieNm": "미행",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "20172981",
+          "movieNm": "필살기",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20172981",
+          "movieNm": "필살기",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "20158671",
+          "movieNm": "포파라치",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20158671",
+          "movieNm": "포파라치",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "20158671",
+          "movieNm": "포파라치",
+          "moviePartNm": "편집"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

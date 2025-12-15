@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20225666",
+      "peopleNm": "이성경",
+      "peopleNmEn": "LEE Sung-kyoung",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20184082",
+          "movieNm": "걸캅스",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20177005",
+          "movieNm": "레슬러",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20161744",
+          "movieNm": "트롤",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20159405",
+          "movieNm": "브로커",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20208004",
+          "movieNm": "하트어택",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

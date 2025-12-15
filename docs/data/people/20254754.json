@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20254754",
+      "peopleNm": "이승환",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20176122",
+          "movieNm": "안시성",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20179101",
+          "movieNm": "공작",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20178982",
+          "movieNm": "박열",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20175021",
+          "movieNm": "쇠파리",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20152746",
+          "movieNm": "커터",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20314318",
+      "peopleNm": "서영희",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20209947",
+          "movieNm": "더스트맨",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20185341",
+          "movieNm": "마녀",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19980042",
+          "movieNm": "바이 준",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

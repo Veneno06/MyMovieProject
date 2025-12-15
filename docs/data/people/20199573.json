@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20199573",
+      "peopleNm": "이소라",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "연출팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20157191",
+          "movieNm": "위선자들",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20143101",
+          "movieNm": "정사",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20143101",
+          "movieNm": "정사",
+          "moviePartNm": "스크립터"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

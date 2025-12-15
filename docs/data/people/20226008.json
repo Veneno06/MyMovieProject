@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20226008",
+      "peopleNm": "이재현",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20179189",
+          "movieNm": "암수살인",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20141610",
+          "movieNm": "영도",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20182777",
+          "movieNm": "날",
+          "moviePartNm": "감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

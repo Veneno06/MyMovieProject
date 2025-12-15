@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20203378",
+      "peopleNm": "우서현",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "제작팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20163702",
+          "movieNm": "까시",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20163702",
+          "movieNm": "까시",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20143250",
+          "movieNm": "환상",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20145262",
+          "movieNm": "환상-금지된 정사버전",
+          "moviePartNm": "제작팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

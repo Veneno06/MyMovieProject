@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20314736",
+      "peopleNm": "이창석",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20192206",
+          "movieNm": "백두산",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20172204",
+          "movieNm": "명당",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20179101",
+          "movieNm": "공작",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

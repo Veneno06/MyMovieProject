@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20324833",
+      "peopleNm": "이우동",
+      "peopleNmEn": "LEE Woo-dong",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20225432",
+          "movieNm": "한끗",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20225432",
+          "movieNm": "한끗",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20172244",
+          "movieNm": "치즈인더트랩",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20190642",
+          "movieNm": "병",
+          "moviePartNm": "감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

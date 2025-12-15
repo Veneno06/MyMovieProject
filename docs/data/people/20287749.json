@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20287749",
+      "peopleNm": "신선",
+      "peopleNmEn": "SHIN Sun",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20257801",
+          "movieNm": "미로",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20211564",
+          "movieNm": "모퉁이",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20179442",
+          "movieNm": "밤의 해변에서 혼자",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

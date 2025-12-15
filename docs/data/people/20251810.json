@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20251810",
+      "peopleNm": "양재영",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "연출팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20198282",
+          "movieNm": "노프라블랜드",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20168773",
+          "movieNm": "마약왕",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20167902",
+          "movieNm": "보통사람",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20167902",
+          "movieNm": "보통사람",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20159641",
+          "movieNm": "위대한 소원",
+          "moviePartNm": "제작팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

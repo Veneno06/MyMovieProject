@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20314760",
+      "peopleNm": "이하영",
+      "peopleNmEn": "LEE Ha-young",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20183002",
+          "movieNm": "해치지않아",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20185341",
+          "movieNm": "마녀",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20170590",
+          "movieNm": "1987",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

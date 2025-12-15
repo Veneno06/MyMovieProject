@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20254132",
+      "peopleNm": "이성호",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "제작",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20207722",
+          "movieNm": "저 산 너머",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20207722",
+          "movieNm": "저 산 너머",
+          "moviePartNm": "제작"
+        },
+        {
+          "movieCd": "20145182",
+          "movieNm": "4등",
+          "moviePartNm": "제작"
+        },
+        {
+          "movieCd": "20150843",
+          "movieNm": "과대망상자들",
+          "moviePartNm": "제작"
+        },
+        {
+          "movieCd": "20150844",
+          "movieNm": "소주와 아이스크림",
+          "moviePartNm": "제작"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}
