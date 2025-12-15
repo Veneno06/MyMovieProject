@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20375244",
+      "peopleNm": "이율",
+      "peopleNmEn": "Lee yul",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20211242",
+          "movieNm": "고속도로 가족",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20228080",
+          "movieNm": "빨간덩어리",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20203470",
+          "movieNm": "구더기, 흩어지다",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

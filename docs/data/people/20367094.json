@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20367094",
+      "peopleNm": "이상홍",
+      "peopleNmEn": "",
+      "sex": null,
+      "repRoleNm": "캐스팅",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20194501",
+          "movieNm": "내일의 기억",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20183744",
+          "movieNm": "니나 내나",
+          "moviePartNm": "캐스팅"
+        },
+        {
+          "movieCd": "20188750",
+          "movieNm": "나쁜 녀석들: 더 무비",
+          "moviePartNm": "캐스팅"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

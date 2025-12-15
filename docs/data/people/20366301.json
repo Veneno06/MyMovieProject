@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20366301",
+      "peopleNm": "이지현",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20204845",
+          "movieNm": "공기살인",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20200311",
+          "movieNm": "더블패티",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20191422",
+          "movieNm": "공수도",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

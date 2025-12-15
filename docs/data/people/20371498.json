@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20371498",
+      "peopleNm": "이준우",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20200127",
+          "movieNm": "우리 안의 그들",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20200127",
+          "movieNm": "우리 안의 그들",
+          "moviePartNm": "조명팀"
+        },
+        {
+          "movieCd": "20200127",
+          "movieNm": "우리 안의 그들",
+          "moviePartNm": "촬영팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}
