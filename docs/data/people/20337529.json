@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20337529",
+      "peopleNm": "안영주",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20217167",
+          "movieNm": "동백",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20217167",
+          "movieNm": "동백",
+          "moviePartNm": "기타"
+        },
+        {
+          "movieCd": "20197434",
+          "movieNm": "자산어보",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20192101",
+          "movieNm": "히트맨",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20184543",
+          "movieNm": "변신",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

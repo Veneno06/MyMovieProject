@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20353712",
+      "peopleNm": "서삼선",
+      "peopleNmEn": "seo samsun",
+      "sex": "남자",
+      "repRoleNm": "연출팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20209184",
+          "movieNm": "아워 미드나잇",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20230104",
+          "movieNm": "열대야",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20230123",
+          "movieNm": "사이렌",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20204208",
+          "movieNm": "연우의 마음",
+          "moviePartNm": "연출팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

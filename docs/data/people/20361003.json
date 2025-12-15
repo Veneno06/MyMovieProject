@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20361003",
+      "peopleNm": "성일",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20188441",
+          "movieNm": "킹메이커",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20183003",
+          "movieNm": "서복",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20208828",
+          "movieNm": "불량한 가족",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

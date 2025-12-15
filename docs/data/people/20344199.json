@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20344199",
+      "peopleNm": "안진현",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20233234",
+          "movieNm": "문경",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20193321",
+          "movieNm": "정직한 후보",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20181205",
+          "movieNm": "영하의 바람",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20181103",
+          "movieNm": "벌새",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

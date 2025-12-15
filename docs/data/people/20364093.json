@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20364093",
+      "peopleNm": "서임철",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20208101",
+          "movieNm": "대무가",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20196701",
+          "movieNm": "69세",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20196705",
+          "movieNm": "집 이야기",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20216501",
+          "movieNm": "유공자",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

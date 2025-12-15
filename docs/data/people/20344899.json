@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20344899",
+      "peopleNm": "안예은",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20234045",
+          "movieNm": "설계자",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20210140",
+          "movieNm": "젠틀맨",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20181103",
+          "movieNm": "벌새",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

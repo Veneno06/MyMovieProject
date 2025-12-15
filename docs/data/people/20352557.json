@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20352557",
+      "peopleNm": "성민준",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20208721",
+          "movieNm": "리미트",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20201785",
+          "movieNm": "태백권",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20230716",
+          "movieNm": "이야기 상",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

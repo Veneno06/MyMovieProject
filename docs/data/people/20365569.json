@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20365569",
+      "peopleNm": "서인수",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20233473",
+          "movieNm": "흙으로 돌아가리라",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20219595",
+          "movieNm": "영화의 거리",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20183572",
+          "movieNm": "작은 빛",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20242906",
+          "movieNm": "라스트 씬",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20232121",
+          "movieNm": "유령극",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20343312",
+      "peopleNm": "우연희",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20180442",
+          "movieNm": "사자",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20195947",
+          "movieNm": "클라운",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20195947",
+          "movieNm": "클라운",
+          "moviePartNm": "기타"
+        },
+        {
+          "movieCd": "20211945",
+          "movieNm": "숏버스 배우행",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20211945",
+          "movieNm": "숏버스 배우행",
+          "moviePartNm": "기타"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}
