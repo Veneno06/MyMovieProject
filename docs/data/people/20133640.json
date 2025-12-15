@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20133640",
+      "peopleNm": "차현우",
+      "peopleNmEn": "CHA Hyun-woo",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20125920",
+          "movieNm": "이웃사람",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20128271",
+          "movieNm": "577 프로젝트",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20113260",
+          "movieNm": "퍼펙트 게임",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20141913",
+      "peopleNm": "정주홍",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "분장팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20110303",
+          "movieNm": "통증",
+          "moviePartNm": "분장팀"
+        },
+        {
+          "movieCd": "20110601",
+          "movieNm": "플레이",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20110601",
+          "movieNm": "플레이",
+          "moviePartNm": "분장팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

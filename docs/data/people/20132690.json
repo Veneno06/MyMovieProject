@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20132690",
+      "peopleNm": "최정윤",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "조감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20168766",
+          "movieNm": "종이 비행기",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20168766",
+          "movieNm": "종이 비행기",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20137585",
+          "movieNm": "천안함 프로젝트",
+          "moviePartNm": "조감독"
+        },
+        {
+          "movieCd": "20081661",
+          "movieNm": "어떤 개인 날",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20081661",
+          "movieNm": "어떤 개인 날",
+          "moviePartNm": "연출팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

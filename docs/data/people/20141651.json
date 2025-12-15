@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20141651",
+      "peopleNm": "주경탁",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "메이킹필름",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20040596",
+          "movieNm": "바람의 파이터",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20040596",
+          "movieNm": "바람의 파이터",
+          "moviePartNm": "메이킹필름"
+        },
+        {
+          "movieCd": "20030410",
+          "movieNm": "실미도",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20030410",
+          "movieNm": "실미도",
+          "moviePartNm": "메이킹필름"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

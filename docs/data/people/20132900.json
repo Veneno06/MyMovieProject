@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20132900",
+      "peopleNm": "최종학",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "제작팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20100305",
+          "movieNm": "해결사",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20090434",
+          "movieNm": "불신지옥",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20090085",
+          "movieNm": "슬픔보다 더 슬픈 이야기",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20090085",
+          "movieNm": "슬픔보다 더 슬픈 이야기",
+          "moviePartNm": "제작팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

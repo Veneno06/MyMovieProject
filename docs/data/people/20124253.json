@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20124253",
+      "peopleNm": "정효준",
+      "peopleNmEn": "",
+      "sex": null,
+      "repRoleNm": "그립",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20090312",
+          "movieNm": "토끼와 리저드",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20090312",
+          "movieNm": "토끼와 리저드",
+          "moviePartNm": "그립"
+        },
+        {
+          "movieCd": "20134229",
+          "movieNm": "인류 멸망 보고서 '멋진 신세계'",
+          "moviePartNm": "그립"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

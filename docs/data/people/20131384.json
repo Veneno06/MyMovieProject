@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20131384",
+      "peopleNm": "최재웅",
+      "peopleNmEn": "CHOI Jae-woong",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20142855",
+          "movieNm": "성난 변호사",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20113951",
+          "movieNm": "페이스메이커",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20090308",
+          "movieNm": "불꽃처럼 나비처럼",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

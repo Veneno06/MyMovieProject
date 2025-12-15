@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20141467",
+      "peopleNm": "장동원",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "연출팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20120103",
+          "movieNm": "닥터",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20124039",
+          "movieNm": "타워",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20119513",
+          "movieNm": "7광구",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20119513",
+          "movieNm": "7광구",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20101109",
+          "movieNm": "두 여자",
+          "moviePartNm": "연출팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

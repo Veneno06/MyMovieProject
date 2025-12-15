@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20123903",
+      "peopleNm": "정혜연",
+      "peopleNmEn": "JEONG Hye-yeon",
+      "sex": "여자",
+      "repRoleNm": "제작팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20152370",
+          "movieNm": "잡아야 산다",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20152370",
+          "movieNm": "잡아야 산다",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20147931",
+          "movieNm": "소녀괴담",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20113312",
+          "movieNm": "결정적 한방",
+          "moviePartNm": "제작회계"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}
