@@ -33,15 +33,18 @@ jobs:
 
       - name: Fetch KOFIC Daily Box Office
         env:
-          KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
+          # [수정됨] 기존 키 대신 8번 키를 사용하여 일일 박스오피스를 가져옵니다.
+          KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY_8 }}
         run: |
           TARGET_DT=$(TZ=Asia/Seoul date -d "yesterday" +%Y%m%d)
           TARGET_DT_FMT=$(TZ=Asia/Seoul date -d "yesterday" +%Y-%m-%d)
           DAILY_FILE="docs/data/${TARGET_DT}.json"
           
           echo "Fetching data for $TARGET_DT"
+          # KOFIC_API_KEY_8을 사용하여 요청
           curl -s "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=${KOFIC_API_KEY}&targetDt=${TARGET_DT}" > "$DAILY_FILE"
           
+          # 데이터 유효성 검사 (목록이 비었거나 에러면 중단)
           if ! jq -e '.boxOfficeResult.dailyBoxOfficeList[0]' "$DAILY_FILE" > /dev/null; then
             echo "Fetched data is invalid or empty. Skipping update."
             exit 0
@@ -52,7 +55,8 @@ jobs:
 
       - name: Update movie details from new daily file
         env:
-          KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
+          # [수정됨] 파이썬 스크립트에도 8번 키를 전달합니다.
+          KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY_8 }}
         run: |
           python scripts/update_data.py
 
@@ -72,9 +76,9 @@ jobs:
             echo "No new data to commit."
             exit 0
           fi
-          git commit -m "KOFIC: Daily data update"
+          git commit -m "KOFIC: Daily data update (Key 8)"
           
-          # [핵심 수정] push 하기 전에 pull을 먼저 실행하여 원격 변경사항을 합칩니다.
+          # [유지] 원격 변경사항을 먼저 당겨와서 충돌 방지
           git pull --rebase origin "$BRANCH"
           
           git push origin "HEAD:$BRANCH"
