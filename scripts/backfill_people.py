@@ -54,7 +54,6 @@ def is_target_consonant(name: str) -> bool:
     
     idx = (ord(first_char) - 0xAC00) // 588
     
-    # 0:ㄱ ... 11:ㅇ
     # 12:ㅈ, 13:ㅉ, 14:ㅊ
     return idx in [12, 13, 14]
 
@@ -94,6 +93,14 @@ def fetch_people_list_smart(peopleNm):
     raise RuntimeError("All API keys exhausted.")
 
 def backfill(budget: int, rate_sleep_ms: int):
+    # [핵심] 입력받은 Budget을 파일로 저장 (다음 스크립트가 볼 수 있게)
+    try:
+        limit_file = ROOT / "budget_limit.txt"
+        limit_file.write_text(str(budget), encoding="utf-8")
+        print(f"[System] Budget {budget} 설정 완료 (성별 정보 스크립트로 전달됨)")
+    except Exception as e:
+        print(f"[Warning] Budget 전달 실패: {e}")
+
     # 최신순 스캔
     files = sorted([Path(p) for p in glob.glob(str(DETAIL_DIR / "**" / "*.json"), recursive=True)], reverse=True)
     
