@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20149150",
+      "peopleNm": "장은수",
+      "peopleNmEn": "",
+      "sex": null,
+      "repRoleNm": "아트디렉터",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20081660",
+          "movieNm": "마녀의 관",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20081660",
+          "movieNm": "마녀의 관",
+          "moviePartNm": "아트디렉터"
+        },
+        {
+          "movieCd": "20080257",
+          "movieNm": "동거, 동락",
+          "moviePartNm": "아트디렉터"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

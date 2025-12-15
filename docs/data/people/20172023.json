@@ -1,0 +1,34 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20172023",
+      "peopleNm": "최홍준",
+      "peopleNmEn": "CHOI Hong-jun",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [
+        {
+          "homepgUrl": "http://www.facefilm.co.kr"
+        }
+      ],
+      "filmos": [
+        {
+          "movieCd": "20209515",
+          "movieNm": "메이드 인 루프탑",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20160787",
+          "movieNm": "더티 로맨스",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20137761",
+          "movieNm": "인간의 숲",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

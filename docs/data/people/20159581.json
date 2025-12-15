@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20159581",
+      "peopleNm": "정재은",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20234709",
+          "movieNm": "장손",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060137",
+          "movieNm": "비열한 거리",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20028883",
+          "movieNm": "바람 이야기",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

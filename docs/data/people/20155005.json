@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20155005",
+      "peopleNm": "장명진",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20205106",
+          "movieNm": "압꾸정",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20208101",
+          "movieNm": "대무가",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20199500",
+          "movieNm": "뜨거운 피",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20149501",
+          "movieNm": "사선의 끝",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20080741",
+          "movieNm": "고고 70",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

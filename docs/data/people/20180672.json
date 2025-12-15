@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20180672",
+      "peopleNm": "최효신",
+      "peopleNmEn": "",
+      "sex": null,
+      "repRoleNm": "제작팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20135543",
+          "movieNm": "환상속의 그대",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20135543",
+          "movieNm": "환상속의 그대",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20121241",
+          "movieNm": "비정한 도시 감독판",
+          "moviePartNm": "제작팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}
