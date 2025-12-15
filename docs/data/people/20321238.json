@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20321238",
+      "peopleNm": "최정열",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "연출팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20070072",
+          "movieNm": "우아한 세계",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20070072",
+          "movieNm": "우아한 세계",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20030162",
+          "movieNm": "미소",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20030162",
+          "movieNm": "미소",
+          "moviePartNm": "촬영팀"
+        },
+        {
+          "movieCd": "20061250",
+          "movieNm": "언니가 이해하셔야 돼요",
+          "moviePartNm": "연출팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

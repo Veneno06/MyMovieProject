@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20204224",
+      "peopleNm": "최윤주",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "연출팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20218647",
+          "movieNm": "액션히어로",
+          "moviePartNm": "촬영팀"
+        },
+        {
+          "movieCd": "20155390",
+          "movieNm": "양치기들",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20155390",
+          "movieNm": "양치기들",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20135899",
+          "movieNm": "춘곤증 ",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20135915",
+          "movieNm": "서울연애",
+          "moviePartNm": "연출팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

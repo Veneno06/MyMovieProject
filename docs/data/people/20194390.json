@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20194390",
+      "peopleNm": "정조성",
+      "peopleNmEn": "",
+      "sex": null,
+      "repRoleNm": "조감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20179251",
+          "movieNm": "전설의 고향",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20179251",
+          "movieNm": "전설의 고향",
+          "moviePartNm": "조감독"
+        },
+        {
+          "movieCd": "20149950",
+          "movieNm": "관계",
+          "moviePartNm": "편집"
+        },
+        {
+          "movieCd": "20147885",
+          "movieNm": "나가요 미스콜",
+          "moviePartNm": "편집"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20355152",
+      "peopleNm": "장세민",
+      "peopleNmEn": "Semin Jang",
+      "sex": "여자",
+      "repRoleNm": "제작회계",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20225969",
+          "movieNm": "늘봄가든",
+          "moviePartNm": "스크립터"
+        },
+        {
+          "movieCd": "20225969",
+          "movieNm": "늘봄가든",
+          "moviePartNm": "편집"
+        },
+        {
+          "movieCd": "20209945",
+          "movieNm": "갈매기",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20209945",
+          "movieNm": "갈매기",
+          "moviePartNm": "제작회계"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

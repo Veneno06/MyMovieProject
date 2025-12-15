@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20328032",
+      "peopleNm": "최민영",
+      "peopleNmEn": "Choi Minyoung",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20209185",
+          "movieNm": "온 세상이 하얗다",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20209185",
+          "movieNm": "온 세상이 하얗다",
+          "moviePartNm": "조감독"
+        },
+        {
+          "movieCd": "20193944",
+          "movieNm": "낡은 북이 울리면",
+          "moviePartNm": "감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20235206",
+      "peopleNm": "최승호",
+      "peopleNmEn": "CHOI Seung-ho",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20256001",
+          "movieNm": "추적",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20179187",
+          "movieNm": "공범자들",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20163014",
+          "movieNm": "7년-그들이 없는 언론",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20163041",
+          "movieNm": "자백",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20163041",
+          "movieNm": "자백",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20200546",
+      "peopleNm": "조일준",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "기획",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20197865",
+          "movieNm": "스튜디오",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20176421",
+          "movieNm": "속사정",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20176421",
+          "movieNm": "속사정",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "20143285",
+          "movieNm": "위층여자",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20143285",
+          "movieNm": "위층여자",
+          "moviePartNm": "기획"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

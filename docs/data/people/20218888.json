@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20218888",
+      "peopleNm": "정완희",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20198161",
+          "movieNm": "미드나이트",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20181983",
+          "movieNm": "이웃사촌",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20143252",
+          "movieNm": "개: dog eat dog",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20159882",
+          "movieNm": "우리의 마지막 여름",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

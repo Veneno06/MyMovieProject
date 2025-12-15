@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20233566",
+      "peopleNm": "정성일",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20189869",
+          "movieNm": "해피 투게더",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20162983",
+          "movieNm": "운동회",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20158745",
+          "movieNm": "고백할 수 없는",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20245649",
+      "peopleNm": "조다빈",
+      "peopleNmEn": "JO Da-bin",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20219595",
+          "movieNm": "영화의 거리",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20178174",
+          "movieNm": "부귀영화",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20160892",
+          "movieNm": "파스텔",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20160873",
+          "movieNm": "싸구려 슈퍼맨",
+          "moviePartNm": "감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

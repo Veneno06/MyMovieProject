@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20312193",
+      "peopleNm": "조강위",
+      "peopleNmEn": "JO Kang-we",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20258127",
+          "movieNm": "검은뱀",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20215967",
+          "movieNm": "불어라 검풍아",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20184728",
+          "movieNm": "쎈놈들의 반란",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20182752",
+          "movieNm": "검은비: 악의연대기",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

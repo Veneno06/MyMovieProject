@@ -1,0 +1,45 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20323798",
+      "peopleNm": "최진욱",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20219274",
+          "movieNm": "오 마이 갓",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20198978",
+          "movieNm": "갈까부다",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20199023",
+          "movieNm": "걸작",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20199023",
+          "movieNm": "걸작",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20199023",
+          "movieNm": "걸작",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "20199023",
+          "movieNm": "걸작",
+          "moviePartNm": "편집"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

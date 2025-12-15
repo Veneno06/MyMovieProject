@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20199995",
+      "peopleNm": "정수남",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20227979",
+          "movieNm": "보통의 가족",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20129370",
+          "movieNm": "명량",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20258639",
+          "movieNm": "년놈들",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

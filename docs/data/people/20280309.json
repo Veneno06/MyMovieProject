@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20280309",
+      "peopleNm": "정준",
+      "peopleNmEn": "JEONG Jun",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20191029",
+          "movieNm": "82년생 김지영",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19910330",
+          "movieNm": "무장도시",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19850019",
+          "movieNm": "차이나타운",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19760106",
+          "movieNm": "아메리카 방문객",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

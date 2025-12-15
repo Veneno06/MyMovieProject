@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20224514",
+      "peopleNm": "장윤정",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20191143",
+          "movieNm": "원더랜드",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20214763",
+          "movieNm": "내겐 너무 소중한 너",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20158982",
+          "movieNm": "트릭",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

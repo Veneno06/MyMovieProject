@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20360032",
+      "peopleNm": "정다이",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20200129",
+          "movieNm": "러브라인",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20200129",
+          "movieNm": "러브라인",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20200129",
+          "movieNm": "러브라인",
+          "moviePartNm": "각색"
+        },
+        {
+          "movieCd": "20200129",
+          "movieNm": "러브라인",
+          "moviePartNm": "음악"
+        },
+        {
+          "movieCd": "20200129",
+          "movieNm": "러브라인",
+          "moviePartNm": "미술/프로덕션 디자인"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

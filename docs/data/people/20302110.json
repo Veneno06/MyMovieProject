@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20302110",
+      "peopleNm": "최혁",
+      "peopleNmEn": "CHOI Hyuk",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20224666",
+          "movieNm": "파일럿",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20162983",
+          "movieNm": "운동회",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20130260",
+          "movieNm": "션샤인 러브",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20139550",
+          "movieNm": "대회전 ",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}
