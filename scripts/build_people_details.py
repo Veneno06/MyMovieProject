@@ -38,7 +38,7 @@ def save_json(p: Path, data: dict):
     with open(p, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
-# [설정] 자음 필터링: ㅈ, ㅉ, ㅊ (12, 13, 14)
+# [설정] 자음 필터링: ㅋ, ㅌ, ㅍ, ㅎ (15, 16, 17, 18)
 def is_target_consonant(name: str) -> bool:
     if not name: return False
     nm = unicodedata.normalize('NFC', name)
@@ -46,8 +46,8 @@ def is_target_consonant(name: str) -> bool:
     if not ('\uAC00' <= first_char <= '\uD7A3'): return False
     idx = (ord(first_char) - 0xAC00) // 588
     
-    # 12:ㅈ, 13:ㅉ, 14:ㅊ
-    return idx in [12, 13, 14]
+    # 15:ㅋ, 16:ㅌ, 17:ㅍ, 18:ㅎ
+    return idx in [15, 16, 17, 18]
 
 def get_next_key_session():
     global CURRENT_KEY_INDEX
@@ -105,7 +105,7 @@ def build_details():
     files = sorted(glob.glob(str(MOVIE_DIR / "**" / "*.json"), recursive=True))
     people_map = {} 
 
-    print(f"[scan] 'ㅈ, ㅊ' 배우 중 성별 정보가 없는 대상을 찾습니다...")
+    print(f"[scan] 'ㅋ~ㅎ' 배우 중 성별 정보가 없는 대상을 찾습니다...")
     
     for p in files:
         data = load_json(Path(p))
@@ -131,7 +131,7 @@ def build_details():
         if not (person_file.exists() and person_file.stat().st_size > 50):
             needed_people.append(code)
 
-    print(f"[info] 수집 대상: 총 {len(needed_people)}명 (이름이 ㅈ, ㅊ로 시작)")
+    print(f"[info] 수집 대상: 총 {len(needed_people)}명 (이름이 ㅋ~ㅎ로 시작)")
     
     if not needed_people:
         print(" -> 대상이 없습니다.")
