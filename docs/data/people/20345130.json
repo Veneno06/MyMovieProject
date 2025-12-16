@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20345130",
+      "peopleNm": "허웅",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20232394",
+          "movieNm": "야당",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20197853",
+          "movieNm": "잔칫날",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20196675",
+          "movieNm": "젊은이의 양지",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20191221",
+          "movieNm": "법피아",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

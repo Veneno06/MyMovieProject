@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20345041",
+      "peopleNm": "황민수",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20175407",
+          "movieNm": "우상",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20245587",
+          "movieNm": "돌아갈 곳으로",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20217160",
+          "movieNm": "불모지",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20226823",
+          "movieNm": "기기묘묘",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20344057",
+      "peopleNm": "홍현수",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "촬영",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20173930",
+          "movieNm": "검은 여름",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20173930",
+          "movieNm": "검은 여름",
+          "moviePartNm": "촬영"
+        },
+        {
+          "movieCd": "20211700",
+          "movieNm": "숏버스 감독행",
+          "moviePartNm": "촬영팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

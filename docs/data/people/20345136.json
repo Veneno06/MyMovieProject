@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20345136",
+      "peopleNm": "허부영",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20211242",
+          "movieNm": "고속도로 가족",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20183382",
+          "movieNm": "예수보다 낯선",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20241162",
+          "movieNm": "계약만료",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20241162",
+          "movieNm": "계약만료",
+          "moviePartNm": "기타"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

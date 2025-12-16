@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20395378",
+      "peopleNm": "한소희",
+      "peopleNmEn": "HAN Sohee",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20249624",
+          "movieNm": "프로젝트 Y",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20256308",
+          "movieNm": "인턴",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20248364",
+          "movieNm": "폭설",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

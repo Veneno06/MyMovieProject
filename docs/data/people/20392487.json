@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20392487",
+      "peopleNm": "홍나윤",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20232227",
+          "movieNm": "믿을 수 있는 사람",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20232227",
+          "movieNm": "믿을 수 있는 사람",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20229072",
+          "movieNm": "갑둔리 흉가",
+          "moviePartNm": "스크립터"
+        },
+        {
+          "movieCd": "20247400",
+          "movieNm": "열외",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20247400",
+          "movieNm": "열외",
+          "moviePartNm": "촬영팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

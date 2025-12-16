@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20404301",
+      "peopleNm": "하이안",
+      "peopleNmEn": "Iaan Ha",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20249832",
+          "movieNm": "미망교실",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20232285",
+          "movieNm": "위험사회",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20227528",
+          "movieNm": "물비늘",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

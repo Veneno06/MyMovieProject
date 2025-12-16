@@ -1,0 +1,29 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20393159",
+      "peopleNm": "함채영",
+      "peopleNmEn": "HAM Chaeyoung",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [
+        {
+          "homepgUrl": "http://www.kmdb.or.kr/db/per/00221679"
+        }
+      ],
+      "filmos": [
+        {
+          "movieCd": "20197121",
+          "movieNm": "삼진그룹 영어토익반",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20236469",
+          "movieNm": "돼지 공은주",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}
