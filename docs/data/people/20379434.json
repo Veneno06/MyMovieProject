@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20379434",
+      "peopleNm": "주소정",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20232060",
+          "movieNm": "영동선",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20223991",
+          "movieNm": "어부바",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20210578",
+          "movieNm": "색다른 그녀",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20199564",
+          "movieNm": "접전: 갑을 전쟁",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20204100",
+          "movieNm": "수상한 법정",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

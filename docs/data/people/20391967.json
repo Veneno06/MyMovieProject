@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20391967",
+      "peopleNm": "최지온",
+      "peopleNmEn": "CHOI Zion",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20258780",
+          "movieNm": "힘",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20258780",
+          "movieNm": "힘",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20233947",
+          "movieNm": "매트",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20233947",
+          "movieNm": "매트",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

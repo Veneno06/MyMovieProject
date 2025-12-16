@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20374808",
+      "peopleNm": "정원상",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20208721",
+          "movieNm": "리미트",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20209627",
+          "movieNm": "아이",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20209627",
+          "movieNm": "아이",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20223756",
+          "movieNm": "가열 79번, 반딧불",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20212577",
+          "movieNm": "지붕 위의 두 남자",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

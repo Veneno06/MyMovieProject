@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20393453",
+      "peopleNm": "차주영",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20257782",
+          "movieNm": "랜드",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20247690",
+          "movieNm": "시스터(가제)",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20233008",
+          "movieNm": "로비",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

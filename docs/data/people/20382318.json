@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20382318",
+      "peopleNm": "장하나",
+      "peopleNmEn": "hana Jang",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20241425",
+          "movieNm": "내가 좀비?",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20225543",
+          "movieNm": "일편단심 민들레",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20211931",
+          "movieNm": "아이돌레시피",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

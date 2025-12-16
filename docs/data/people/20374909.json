@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20374909",
+      "peopleNm": "조문정",
+      "peopleNmEn": "JOMUNJEONG",
+      "sex": "여자",
+      "repRoleNm": "조감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20225880",
+          "movieNm": "잔고: 분노의 적자",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20225880",
+          "movieNm": "잔고: 분노의 적자",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20207972",
+          "movieNm": "대마법사",
+          "moviePartNm": "조감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}
