@@ -1,0 +1,73 @@
+name: Backfill BoxOffice History (API)
+
+on:
+  workflow_dispatch:
+    inputs:
+      days:
+        description: '조회할 과거 일수 (예: 365 = 1년)'
+        required: true
+        default: '365'
+      start_date:
+        description: '시작 날짜 (YYYYMMDD, 비워두면 어제)'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: |
+          pip install requests
+
+      - name: Run BoxOffice Backfill
+        env:
+          KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
+          KOFIC_API_KEY_2: ${{ secrets.KOFIC_API_KEY_2 }}
+          KOFIC_API_KEY_3: ${{ secrets.KOFIC_API_KEY_3 }}
+          KOFIC_API_KEY_4: ${{ secrets.KOFIC_API_KEY_4 }}
+          KOFIC_API_KEY_5: ${{ secrets.KOFIC_API_KEY_5 }}
+          KOFIC_API_KEY_6: ${{ secrets.KOFIC_API_KEY_6 }}
+          KOFIC_API_KEY_7: ${{ secrets.KOFIC_API_KEY_7 }}
+          # 8번 키도 있다면 추가
+          KOFIC_API_KEY_8: ${{ secrets.KOFIC_API_KEY_8 }}
+        run: |
+          # 입력값이 없으면 파이썬 내부 기본값(어제) 사용
+          START_DT="${{ inputs.start_date }}"
+          DAYS="${{ inputs.days }}"
+          
+          if [ -z "$START_DT" ]; then
+            python scripts/backfill_boxoffice.py --days "$DAYS"
+          else
+            python scripts/backfill_boxoffice.py --start-date "$START_DT" --days "$DAYS"
+          fi
+
+      - name: Rebuild search indexes
+        run: |
+          python scripts/reindex_search.py
+
+      - name: Commit updated data
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          
+          git add docs/data/movies/
+          git add docs/data/search_index.json
+          
+          git commit -m "Update audiAcc from BoxOffice History" || echo "No changes"
+          
+          git pull --rebase origin main
+          git push
