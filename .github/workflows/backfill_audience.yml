@@ -1,0 +1,72 @@
+name: Backfill Audience & Reindex
+
+on:
+  workflow_dispatch:
+    inputs:
+      budget:
+        description: '크롤링할 영화 수 (Budget)'
+        required: true
+        default: '500'
+      rate_sleep_ms:
+        description: '요청 간 딜레이 (ms)'
+        required: true
+        default: '500'
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360  # 6시간
+
+    steps:
+      - name: Setup job
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          # [핵심] beautifulsoup4 설치 (크롤링용)
+          pip install requests beautifulsoup4
+
+      - name: Backfill Audience Count (Crawling)
+        run: |
+          # 새로 만든 backfill_audience.py 스크립트 실행
+          python scripts/backfill_audience.py \
+            --budget "${{ inputs.budget }}" \
+            --rate-sleep-ms "${{ inputs.rate_sleep_ms }}"
+        shell: bash
+        env:
+          # 크롤링이라 키는 필요 없지만 환경 변수 에러 방지용으로 둠
+          KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
+
+      - name: Rebuild search indexes
+        run: |
+          python scripts/reindex_search.py
+        shell: bash
+        env:
+          KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
+
+      - name: Commit updated data
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          
+          git add --force docs/data/movies/
+          git add docs/data/search_index.json
+          git add .
+          
+          # 변경 사항이 있을 때만 커밋
+          git commit -m "Update audience counts (Crawling)" || echo "No changes to commit"
+          
+          git pull --rebase origin main
+          git push
+        shell: bash
+        env:
+          KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
