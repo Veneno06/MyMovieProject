@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20330573",
+      "peopleNm": "함혜경",
+      "peopleNmEn": "HAM Hyekyung",
+      "sex": "여자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20090264",
+          "movieNm": "바다 쪽으로, 한 뼘 더",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20212433",
+          "movieNm": "한 남자 달린다",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20195970",
+          "movieNm": "벌이 없으면, 도망치는 재미도 없다",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20110100",
+          "movieNm": "무진장",
+          "moviePartNm": "미술/프로덕션 디자인"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

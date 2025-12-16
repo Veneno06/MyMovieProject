@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20120062",
+      "peopleNm": "함형래",
+      "peopleNmEn": "HAM Hyoung-rae",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20090808",
+          "movieNm": "보통소년",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20150373",
+          "movieNm": "방과 후 티타임 리턴즈",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20149118",
+          "movieNm": "희야",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

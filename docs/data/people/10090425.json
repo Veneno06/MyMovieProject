@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10090425",
+      "peopleNm": "황효은",
+      "peopleNmEn": "HWANG Hyo-eun",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20231415",
+          "movieNm": "소풍",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20184621",
+          "movieNm": "엑시트",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20134229",
+          "movieNm": "인류 멸망 보고서 '멋진 신세계'",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

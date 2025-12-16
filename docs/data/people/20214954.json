@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20214954",
+      "peopleNm": "홍다예",
+      "peopleNmEn": "HONG Daye",
+      "sex": null,
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20224493",
+          "movieNm": "잠자리 구하기",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20224493",
+          "movieNm": "잠자리 구하기",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20154445",
+          "movieNm": "시발.",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20154447",
+          "movieNm": "청소년경쟁 묶음 ",
+          "moviePartNm": "감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

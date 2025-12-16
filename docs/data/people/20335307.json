@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20335307",
+      "peopleNm": "한미자",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20234675",
+          "movieNm": "파묘",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20207226",
+          "movieNm": "행복한 선물",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20183782",
+          "movieNm": "기생충",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

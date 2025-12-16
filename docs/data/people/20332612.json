@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20332612",
+      "peopleNm": "홍성현",
+      "peopleNmEn": "",
+      "sex": null,
+      "repRoleNm": "프로듀서",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20192623",
+          "movieNm": "어서오시게스트하우스",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20192623",
+          "movieNm": "어서오시게스트하우스",
+          "moviePartNm": "프로듀서"
+        },
+        {
+          "movieCd": "20196705",
+          "movieNm": "집 이야기",
+          "moviePartNm": "제작팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

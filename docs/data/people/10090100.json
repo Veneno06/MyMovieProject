@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10090100",
+      "peopleNm": "황복순",
+      "peopleNmEn": "HWANG Bok-sun",
+      "sex": null,
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20224757",
+          "movieNm": "룸 쉐어링",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20217334",
+          "movieNm": "안녕하세요",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20205986",
+          "movieNm": "연애 빠진 로맨스",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20061225",
+          "movieNm": "마지막 밥상",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

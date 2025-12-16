@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10089894",
+      "peopleNm": "홍진희",
+      "peopleNmEn": "HONG Jin-hui",
+      "sex": null,
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20111250",
+          "movieNm": "써니 감독판",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20110193",
+          "movieNm": "써니",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19790118",
+          "movieNm": "뒤돌아 보지마라",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20108573",
+          "movieNm": "폭풍을 잡는 사나이",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

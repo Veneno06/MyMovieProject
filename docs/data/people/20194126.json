@@ -1,0 +1,29 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20194126",
+      "peopleNm": "한세아",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [
+        {
+          "homepgUrl": "http://movie.naver.com/movie/bi/pi/basic.nhn?code=358071"
+        }
+      ],
+      "filmos": [
+        {
+          "movieCd": "20143101",
+          "movieNm": "정사",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20157265",
+          "movieNm": "정사 무삭제판",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

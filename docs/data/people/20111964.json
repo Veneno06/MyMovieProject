@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20111964",
+      "peopleNm": "한송이",
+      "peopleNmEn": "HAN Song-i",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20100301",
+          "movieNm": "악마를 보았다",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20124729",
+          "movieNm": "악마를 보았다 감독판",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20080741",
+          "movieNm": "고고 70",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

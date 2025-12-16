@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20226223",
+      "peopleNm": "한보름",
+      "peopleNmEn": "HAN Bo-reum",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20205106",
+          "movieNm": "압꾸정",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20123384",
+          "movieNm": "밤의 여왕",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20113312",
+          "movieNm": "결정적 한방",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

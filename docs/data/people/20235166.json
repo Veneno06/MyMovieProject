@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20235166",
+      "peopleNm": "한선희",
+      "peopleNmEn": "HAN Sunhee",
+      "sex": "여자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20163021",
+          "movieNm": "올드 데이즈",
+          "moviePartNm": "감독"
+        },
+        {
+          "movieCd": "20133803",
+          "movieNm": "망원동 인공위성",
+          "moviePartNm": "제작"
+        },
+        {
+          "movieCd": "20123662",
+          "movieNm": "만신",
+          "moviePartNm": "프로듀서"
+        },
+        {
+          "movieCd": "20112808",
+          "movieNm": "말하는 건축가",
+          "moviePartNm": "프로듀서"
+        },
+        {
+          "movieCd": "20212569",
+          "movieNm": "거북이와 여자들",
+          "moviePartNm": "감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

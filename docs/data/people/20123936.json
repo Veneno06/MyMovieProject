@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20123936",
+      "peopleNm": "허문호",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "조명팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20100825",
+          "movieNm": "동자 대소동",
+          "moviePartNm": "조명팀"
+        },
+        {
+          "movieCd": "20080516",
+          "movieNm": "서울이 보이냐",
+          "moviePartNm": "조명팀"
+        },
+        {
+          "movieCd": "20072148",
+          "movieNm": "GP 506",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20072148",
+          "movieNm": "GP 506",
+          "moviePartNm": "조명팀"
+        },
+        {
+          "movieCd": "20010030",
+          "movieNm": "헤라퍼플",
+          "moviePartNm": "조명팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

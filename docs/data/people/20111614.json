@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20111614",
+      "peopleNm": "홍수연",
+      "peopleNmEn": "Hong Su-yeon",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20060051",
+          "movieNm": "청춘만화",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20050283",
+          "movieNm": "소년, 천국에 가다",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20048805",
+          "movieNm": "부업이좋은이유",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20180869",
+      "peopleNm": "허정임",
+      "peopleNmEn": "",
+      "sex": null,
+      "repRoleNm": "제작팀",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20113556",
+          "movieNm": "봄, 눈",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20113556",
+          "movieNm": "봄, 눈",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20112018",
+          "movieNm": "밀월도 가는 길",
+          "moviePartNm": "제작회계"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

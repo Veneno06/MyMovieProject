@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20124495",
+      "peopleNm": "허정규",
+      "peopleNmEn": "",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20090802",
+          "movieNm": "트라이앵글",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20090605",
+          "movieNm": "굿모닝 프레지던트",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20040750",
+          "movieNm": "신석기 블루스",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

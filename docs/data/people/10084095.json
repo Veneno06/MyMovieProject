@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10084095",
+      "peopleNm": "표영재",
+      "peopleNmEn": "Pyo Yeong-jae",
+      "sex": "남자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20240614",
+          "movieNm": "퇴마록",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20040565",
+          "movieNm": "망치",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20030055",
+          "movieNm": "오세암",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

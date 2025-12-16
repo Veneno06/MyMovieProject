@@ -1,0 +1,40 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10090253",
+      "peopleNm": "황인영",
+      "peopleNmEn": "HWANG In-young",
+      "sex": null,
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20100981",
+          "movieNm": "살인의 강",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20100832",
+          "movieNm": "여덟 번의 감정",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20020233",
+          "movieNm": "패밀리",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19990063",
+          "movieNm": "댄스댄스",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20068879",
+          "movieNm": "굿럭",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20180775",
+      "peopleNm": "한윤선",
+      "peopleNmEn": "",
+      "sex": "여자",
+      "repRoleNm": "라인프로듀서",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20148929",
+          "movieNm": "좀비스쿨",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20148929",
+          "movieNm": "좀비스쿨",
+          "moviePartNm": "라인프로듀서"
+        },
+        {
+          "movieCd": "20147432",
+          "movieNm": "야간비행",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20129211",
+          "movieNm": "설인",
+          "moviePartNm": "제작팀"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

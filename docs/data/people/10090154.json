@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10090154",
+      "peopleNm": "황수정",
+      "peopleNmEn": "HWANG Soo-jung",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20101149",
+          "movieNm": "여의도",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20080052",
+          "movieNm": "밤과 낮",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20121841",
+          "movieNm": "떠나야 할 시간",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20121602",
+          "movieNm": "사이에서",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

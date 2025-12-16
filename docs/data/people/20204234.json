@@ -1,0 +1,50 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20204234",
+      "peopleNm": "하상명",
+      "peopleNmEn": "HA Sang-myeong",
+      "sex": "남자",
+      "repRoleNm": "감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20186649",
+          "movieNm": "라이브 하드",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20141602",
+          "movieNm": "소셜포비아",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20141602",
+          "movieNm": "소셜포비아",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20134590",
+          "movieNm": "빅매치",
+          "moviePartNm": "제작팀"
+        },
+        {
+          "movieCd": "20253465",
+          "movieNm": "리타이어",
+          "moviePartNm": "시나리오(각본)"
+        },
+        {
+          "movieCd": "20232642",
+          "movieNm": "캐치볼",
+          "moviePartNm": "각색"
+        },
+        {
+          "movieCd": "20170146",
+          "movieNm": "이별택시",
+          "moviePartNm": "감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

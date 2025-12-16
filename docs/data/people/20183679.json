@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20183679",
+      "peopleNm": "한현근",
+      "peopleNmEn": "HAN Hyun-geun",
+      "sex": null,
+      "repRoleNm": "프로듀서",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20112795",
+          "movieNm": "영화판",
+          "moviePartNm": "프로듀서"
+        },
+        {
+          "movieCd": "20127589",
+          "movieNm": "마스터 클래스의 산책",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20127589",
+          "movieNm": "마스터 클래스의 산책",
+          "moviePartNm": "프로듀서"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

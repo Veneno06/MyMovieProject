@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10086752",
+      "peopleNm": "하라 히데코",
+      "peopleNmEn": "Hideko Hara",
+      "sex": null,
+      "repRoleNm": null,
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20241822",
+          "movieNm": "위대한 부재",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20164926",
+          "movieNm": "분노",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20081519",
+          "movieNm": "너를 잊지 않을 거야",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

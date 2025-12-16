@@ -1,0 +1,30 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10083162",
+      "peopleNm": "페이 매터슨",
+      "peopleNmEn": "Fay Masterson",
+      "sex": "여자",
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20090720",
+          "movieNm": "샘스 레이크",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20011450",
+          "movieNm": "캐더브라의 잃어버린 해골",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "19998337",
+          "movieNm": "헌티드 아파트",
+          "moviePartNm": "배우"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "10089521",
+      "peopleNm": "홍석천",
+      "peopleNmEn": "HONG Seok-cheon",
+      "sex": null,
+      "repRoleNm": "배우",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20224645",
+          "movieNm": "공짜 : 공기타짜",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20199541",
+          "movieNm": "미션 파서블",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20060234",
+          "movieNm": "두뇌유희프로젝트, 퍼즐",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20182422",
+          "movieNm": "고추",
+          "moviePartNm": "기획"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}

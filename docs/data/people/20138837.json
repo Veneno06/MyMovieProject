@@ -1,0 +1,35 @@
+{
+  "peopleInfoResult": {
+    "peopleInfo": {
+      "peopleCd": "20138837",
+      "peopleNm": "황하민",
+      "peopleNmEn": "HWANG HA-MIN",
+      "sex": null,
+      "repRoleNm": "조감독",
+      "homepages": [],
+      "filmos": [
+        {
+          "movieCd": "20090794",
+          "movieNm": "나쁜 놈이 더 잘 잔다",
+          "moviePartNm": "배우"
+        },
+        {
+          "movieCd": "20090794",
+          "movieNm": "나쁜 놈이 더 잘 잔다",
+          "moviePartNm": "조감독"
+        },
+        {
+          "movieCd": "20070022",
+          "movieNm": "포도나무를 베어라",
+          "moviePartNm": "연출팀"
+        },
+        {
+          "movieCd": "20070418",
+          "movieNm": "괜찮아 울지마",
+          "moviePartNm": "조감독"
+        }
+      ]
+    },
+    "source": "영화진흥위원회"
+  }
+}
