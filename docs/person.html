@@ -10,14 +10,20 @@
 <style>
 body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple SD Gothic Neo, Noto Sans KR, 'Malgun Gothic', sans-serif; line-height:1.6; }
 .wrap { max-width:980px; margin:24px auto; padding:0 12px; }
-h1 { font-size:28px; margin:0 0 16px; }
+/* [수정] 헤더 스타일 변경 */
+.profile-header { margin-bottom: 20px; }
+.profile-label { font-size: 14px; color: #666; margin-bottom: 4px; font-weight: bold; }
+.profile-name-row { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+h1 { font-size:28px; margin:0; line-height: 1.2; }
+.actor-code { font-size: 18px; color: #888; font-weight: normal; font-family: monospace; } /* 영화인 코드 스타일 */
+
 h2 { font-size:20px; margin:24px 0 8px; }
-.ctrls { display:flex; gap:8px; margin-bottom:12px; }
+.ctrls { display:flex; gap:8px; margin-bottom:24px; }
 .ctrls a { padding:6px 10px; border:1px solid #e5e7eb; border-radius:8px; background:#fff; text-decoration:none; color:#111827; }
 .note { color:#6b7280; }
 ul.list { list-style:none; padding:0; margin:12px 0; }
 li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
-.audi { font-size: 14px; color: #333; font-weight: bold; } /* 관객수 강조 */
+.audi { font-size: 14px; color: #333; font-weight: bold; }
 .cast-list { font-size: 13px; color: #555; margin-left: 4px; }
 .cast-list a { color: #555; text-decoration: none; }
 .cast-list a:hover { text-decoration: underline; color: #000; }
@@ -25,7 +31,7 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
 .chart-buttons button { padding:4px 10px; border:1px solid #ccc; border-radius:16px; background:#f0f0f0; cursor:pointer; font-size:14px; }
 .chart-buttons button.active { background:#333; color:#fff; border-color:#333; font-weight:bold; }
 .btn { padding:6px 10px; border:1px solid #e6e6e6; border-radius:6px; background:#fafafa; cursor:pointer; }
-.sex-badge { font-size: 1rem; margin-left: 8px; font-weight:bold; }
+.sex-badge { font-size: 1.2rem; font-weight:bold; vertical-align: middle; }
 </style>
 </head>
 <body>
@@ -38,7 +44,10 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
     <a href="saved.html" class="btn" data-i18n-key="savedList">저장 목록</a>
   </div>
 
-  <h1 id="title" style="display:inline-block;" data-i18n-key="actorProfileTitle">배우 프로필</h1><span id="sexBadge" class="sex-badge"></span>
+  <div class="profile-header">
+      <div class="profile-label">배우 프로필</div> <div class="profile-name-row">
+          <h1 id="title"></h1> <span id="codeDisplay" class="actor-code"></span> <span id="sexBadge" class="sex-badge"></span> </div>
+  </div>
   
   <div class="note" data-i18n-key="filmography">출연작 (최신 개봉일 순)</div>
   <ul id="out" class="list"></ul>
@@ -117,16 +126,17 @@ async function render(){
   
   if (!currentId) { document.getElementById('msg').textContent = '잘못된 접근'; return; }
   
+  // [수정] 헤더 정보 표시 (이름, 코드)
   document.getElementById('title').textContent = currentName;
+  if (!currentId.startsWith('name:')) {
+      document.getElementById('codeDisplay').textContent = `(${currentId})`;
+  }
   renderSaveBtn();
 
-  // 1. 전체 영화 인덱스 로드 (기본 정보용)
   const allMovies = await fetchIndex() || [];
-  // movieCd를 키로 하는 맵 생성 (빠른 검색용)
   const movieMap = {};
   allMovies.forEach(m => movieMap[m.movieCd] = m);
 
-  // 2. 배우 상세 정보 로드 (여기에 최신 관객수(audiAcc)가 들어있음!)
   const details = await fetchPersonDetail(currentId);
   
   let myMovies = [];
@@ -137,7 +147,6 @@ async function render(){
                      ? details.peopleInfoResult.peopleInfo 
                      : details;
 
-      // 성별 표시
       if (personInfo && personInfo.sex) {
            const s = personInfo.sex.trim();
            const badge = document.getElementById('sexBadge');
@@ -145,22 +154,19 @@ async function render(){
            else if (s === "여자" || s === "여") { badge.textContent = "♀"; badge.style.color = "red"; }
       }
 
-      // [핵심] 배우 파일의 'filmos' 데이터를 기반으로 영화 목록 생성
       if (personInfo && personInfo.filmos) {
           myMovies = personInfo.filmos.map(filmo => {
-              // search_index의 정보(배우 목록 등)와 합치기
               const baseInfo = movieMap[filmo.movieCd] || {};
               return {
-                  ...baseInfo,      // 기본 정보 (actors 등)
-                  ...filmo,         // 배우 파일의 정보 (여기에 최신 audiAcc가 있음)
-                  movieNm: filmo.movieNm || baseInfo.movieNm, // 이름 안전장치
-                  openDt: baseInfo.openDt || filmo.openDt // 개봉일 안전장치
+                  ...baseInfo,      
+                  ...filmo,         
+                  movieNm: filmo.movieNm || baseInfo.movieNm, 
+                  openDt: baseInfo.openDt || filmo.openDt 
               };
           });
       }
   }
 
-  // 만약 배우 파일이 없거나 filmos가 비어있다면, 기존 방식(search_index 검색)으로 백업
   if (myMovies.length === 0) {
       const seen = new Set();
       allMovies.forEach(m => {
@@ -183,25 +189,30 @@ async function render(){
       });
   }
 
-  // 개봉일 순 정렬
-  myMovies.sort((a,b) => (b.openDt || '').localeCompare(a.openDt || ''));
+  // [수정] 필수 정보(개봉일)가 없는 영화 필터링 (숨기기)
+  // 조건: openDt가 존재하고 4글자(연도) 이상이어야 함.
+  const validMovies = myMovies.filter(m => {
+      const hasDate = m.openDt && m.openDt.replace(/-/g, '').trim().length >= 4;
+      return hasDate;
+  });
+
+  // 개봉일 순 정렬 (유효한 영화만)
+  validMovies.sort((a,b) => (b.openDt || '').localeCompare(a.openDt || ''));
   
   const out = document.getElementById('out');
   out.innerHTML = '';
   const filmsWithAudi = [];
 
-  if (myMovies.length === 0) {
-      document.getElementById('msg').textContent = "등록된 출연작이 없습니다.";
+  if (validMovies.length === 0) {
+      document.getElementById('msg').textContent = "등록된(개봉일이 확인된) 출연작이 없습니다.";
       return;
   }
 
-  for (const f of myMovies) {
-    // [중요] 관객수 표시 로직 강화
+  for (const f of validMovies) {
     const audiNum = safeParseInt(f.audiAcc);
     const audiStr = audiNum ? ` / <span class="audi">누적 ${fmtNum(audiNum)}명</span>` : '';
     
     let castStr = "";
-    // actors 정보는 search_index에서 가져온 것을 사용
     if (f.actors && Array.isArray(f.actors)) {
         const d = f.actors.slice(0, 7).map(a => {
             if (a.name === currentName) return `<b>${a.name}</b>`;
@@ -214,15 +225,16 @@ async function render(){
     
     const li = document.createElement('li');
     li.innerHTML = `<a href="detail.html?movieCd=${encodeURIComponent(f.movieCd)}">${f.movieNm}</a>
-      <span class="note">(${f.openDt||'미상'}${audiStr}<span class="cast-list">${castStr}</span>)</span>`;
+      <span class="note">(${f.openDt}${audiStr}<span class="cast-list">${castStr}</span>)</span>`;
     out.appendChild(li);
     
+    // 차트용 데이터에도 유효한 영화만 포함
     if (f.openDt) {
         filmsWithAudi.push({ ...f, audiAcc: audiNum });
     }
   }
 
-  // 차트 렌더링 (이전과 동일)
+  // 차트 렌더링
   if (filmsWithAudi.length > 0) {
       document.getElementById('chart-container').style.display = 'block';
       const chartData = [...filmsWithAudi].sort((a,b) => (a.openDt||'').localeCompare(b.openDt||''));
