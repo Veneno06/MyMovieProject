@@ -17,6 +17,8 @@ ul.list { list-style:none; padding:0; margin:12px 0; }
 li { padding:6px 0; border-bottom:1px dashed #e5e7eb; }
 label { margin-right:8px; }
 .box { background:#f6f7f9; border:1px solid #e5e7eb; border-radius:8px; padding:12px; }
+/* [추가] 코드 스타일 */
+.code-badge { font-family: monospace; font-size: 0.85em; color: #666; margin-right: 4px; }
 </style>
 </head>
 <body>
@@ -42,7 +44,6 @@ label { margin-right:8px; }
 </div>
 
 <script>
-// [핵심] 데이터 경로 캐싱 방지
 const TS = Date.now();
 const PATHS = [`docs/data/search_index.json?v=${TS}`, `data/search_index.json?v=${TS}`];
 let PEOPLE_DB = [];
@@ -68,7 +69,6 @@ function processData(movies) {
         // 배우 처리
         if (m.actors) {
             m.actors.forEach(a => {
-                // ID가 있으면 ID, 없으면 name:이름
                 const id = (a.id && a.id.trim()) ? a.id : `name:${a.name}`;
                 
                 if (!peopleMap.has(id)) {
@@ -77,13 +77,12 @@ function processData(movies) {
                         peopleNm: a.name, 
                         repRoleNm: '배우', 
                         filmos: [],
-                        sex: a.gender || '' // 성별 정보 수집
+                        sex: a.gender || ''
                     });
                 }
                 const p = peopleMap.get(id);
-                // 중복 영화명 방지
                 if (!p.filmos.includes(m.movieNm)) {
-                     if (p.filmos.length < 4) p.filmos.push(m.movieNm); // 4개까지만 저장
+                     if (p.filmos.length < 4) p.filmos.push(m.movieNm); 
                 }
             });
         }
@@ -110,7 +109,6 @@ function search(){
   let list = PEOPLE_DB.filter(p => (p.peopleNm||'').toLowerCase().includes(q));
   if (f.get('actorOnly')) list = list.filter(p => p.repRoleNm === '배우');
   
-  // 출연작 많은 순 정렬
   list.sort((a, b) => b.filmos.length - a.filmos.length);
   list = list.slice(0, 200);
 
@@ -122,17 +120,24 @@ function search(){
     const href = `person.html?id=${encodeURIComponent(p.personKey)}&name=${encodeURIComponent(p.peopleNm)}`;
     const filmoStr = p.filmos.length > 0 ? `(${p.filmos.join(', ')} 등)` : '';
     
-    // [UI 개선] 성별 표시
+    // 성별 표시
     let genderBadge = '';
     if (p.sex === '남자' || p.sex === '남') genderBadge = ' <span style="color:blue;font-size:0.8em;">(남)</span>';
     else if (p.sex === '여자' || p.sex === '여') genderBadge = ' <span style="color:red;font-size:0.8em;">(여)</span>';
 
-    // 코드 유무 표시 (디버깅 및 구분용)
-    const hasCode = !p.personKey.startsWith('name:');
-    const codeInfo = hasCode ? '' : ' <span style="font-size:0.8em;color:#999;">(상세정보 없음)</span>';
+    // [수정] 코드 표시 로직 (1번 요청 반영)
+    let codeStr = '';
+    if (!p.personKey.startsWith('name:')) {
+        // 코드가 있는 경우 (예: 20137049) -> (20137049) 형태로 표시
+        codeStr = ` <span class="code-badge">(${p.personKey})</span>`;
+    } else {
+        // 코드가 없는 경우 -> (코드없음)
+        codeStr = ` <span class="code-badge" style="color:#aaa;">(코드없음)</span>`;
+    }
     
     const li = document.createElement('li');
-    li.innerHTML = `<a href="${href}"><strong>${p.peopleNm}</strong></a>${genderBadge} <span class="note">${p.repRoleNm} ${filmoStr}</span> ${codeInfo}`;
+    // 순서: 이름 + [코드] + [성별] + [직업/필모]
+    li.innerHTML = `<a href="${href}"><strong>${p.peopleNm}</strong></a>${codeStr}${genderBadge} <span class="note">${p.repRoleNm} ${filmoStr}</span>`;
     ul.appendChild(li);
   }
 }
