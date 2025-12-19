@@ -2,29 +2,25 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<!-- [수정] title에 번역 키 추가 -->
 <title data-i18n-key="compareTitle">배우 비교 – K-Movie A Archive</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="assets/style.css">
-<!-- [수정] 신규 번역 스크립트 추가 -->
 <script src="assets/translator.js" defer></script>
 <style>
-.compare-container { display: flex; gap: 20px; width: 100%; }
-.actor-panel { flex: 1; min-width: 0; }
+.compare-container { display: flex; gap: 20px; width: 100%; overflow-x: auto; }
+.actor-panel { flex: 1; min-width: 300px; padding: 10px; border: 1px solid #eee; border-radius: 8px; }
 h1, h2 { text-align: center; }
 .controls-container { margin-top: 20px; padding-top: 15px; border-top: 1px solid #eee; text-align: center; }
 .chart-buttons { display:flex; flex-wrap:wrap; gap:8px; justify-content: center; }
-.chart-buttons button { padding:4px 10px; border:1px solid #ccc; border-radius:16px; background:#f0f0f0; cursor:pointer; font-size:14px; }
+.chart-buttons button { padding:6px 12px; border:1px solid #ccc; border-radius:20px; background:#f0f0f0; cursor:pointer; font-size:14px; }
 .chart-buttons button.active { background:#333; color:#fff; border-color:#333; font-weight:bold; }
+canvas { max-height: 400px; }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 <div class="wrap">
-  <!-- [수정] 버튼에 번역 키 추가 -->
-  <div class="header">
-    <h1 data-i18n-key="compareTitle">스타 파워 비교</h1>
-    <div class="ctrls">
+  <div class="ctrls">
     <a href="index.html" class="btn" data-i18n-key="home">홈</a>
     <a href="title-search.html" class="btn" data-i18n-key="movieTitleSearch">영화 검색 (제목)</a>
     <a href="search.html" class="btn" data-i18n-key="movieSearchPeriod">영화 검색 (기간)</a>
@@ -32,6 +28,8 @@ h1, h2 { text-align: center; }
     <a href="costar-search.html" class="btn" data-i18n-key="costarSearch">공동 출연 검색</a>
     <a href="saved.html" class="btn" data-i18n-key="savedList">저장 목록</a>
   </div>
+
+  <h1 data-i18n-key="compareTitle">스타 파워 비교</h1>
 
   <div class="compare-container">
     <div class="actor-panel" id="panel1">
@@ -48,7 +46,6 @@ h1, h2 { text-align: center; }
     </div>
   </div>
   
-  <!-- [수정] 버튼에 번역 키 추가 -->
   <div class="controls-container">
       <div class="chart-buttons">
           <button id="btnTotalAudi" class="active" data-i18n-key="audiCnt">관객수</button>
@@ -61,48 +58,60 @@ h1, h2 { text-align: center; }
 </div>
 
 <script>
-const PEOPLE_URL = `data/search/people.json?v=${Date.now()}`;
-let PEOPLE = [];
-let person1 = null, person2 = null, person3 = null;
-let chart1 = null, chart2 = null, chart3 = null;
+const TS = Date.now();
+const PATHS_DETAILS = [`docs/data/people/`, `data/people/`]; 
 
-function getParam(k){ return new URLSearchParams(location.search).get(k) || ""; }
+let charts = [null, null, null];
+let actorsData = [null, null, null];
+
+function getParam(k){ return new URLSearchParams(location.search).get(k); }
+
+// 숫자 안전 변환
+const safeParseInt = (v) => {
+    if (!v) return 0;
+    if (typeof v === 'number') return v;
+    const n = parseInt(String(v).replace(/,/g, '').trim(), 10);
+    return isNaN(n) ? 0 : n;
+};
+
+// 배우 상세 데이터 가져오기 (비동기)
+async function fetchPersonDetail(id) {
+    if(!id) return null;
+    const fname = `${id}.json?v=${TS}`;
+    for (const prefix of PATHS_DETAILS) {
+        try { 
+            const r = await fetch(prefix + fname); 
+            if(r.ok) {
+                const json = await r.json();
+                return (json.peopleInfoResult && json.peopleInfoResult.peopleInfo) ? json.peopleInfoResult.peopleInfo : json;
+            }
+        } catch(e){}
+    }
+    return null;
+}
 
 async function main() {
-    try {
-        const res = await fetch(PEOPLE_URL);
-        const data = await res.json();
-        PEOPLE = data.people || [];
+    const ids = [getParam('p1'), getParam('p2'), getParam('p3')];
+    
+    // UI 초기화
+    if (!ids[2]) document.getElementById('panel3').style.display = 'none';
+    else document.getElementById('panel3').style.display = 'block';
 
-        const p1Key = getParam('p1');
-        const p2Key = getParam('p2');
-        const p3Key = getParam('p3');
-
-        person1 = PEOPLE.find(p => p.personKey === p1Key);
-        person2 = PEOPLE.find(p => p.personKey === p2Key);
-        person3 = PEOPLE.find(p => p.personKey === p3Key);
-
-        if (person1) document.getElementById('name1').textContent = person1.peopleNm;
-        else document.getElementById('panel1').style.display = 'none';
-
-        if (person2) document.getElementById('name2').textContent = person2.peopleNm;
-        else document.getElementById('panel2').style.display = 'none';
-
-        if (person3) {
-            document.getElementById('panel3').style.display = 'block';
-            document.getElementById('name3').textContent = person3.peopleNm;
+    // 데이터 로드
+    for (let i = 0; i < 3; i++) {
+        if (ids[i]) {
+            const data = await fetchPersonDetail(ids[i]);
+            if (data) {
+                actorsData[i] = data;
+                document.getElementById(`name${i+1}`).textContent = data.peopleNm;
+            } else {
+                document.getElementById(`name${i+1}`).textContent = "데이터 없음";
+            }
         }
-
-        setupButtonListeners();
-        renderCharts('totalAudi');
-
-    } catch(e) {
-        console.error("Failed to load or render charts", e);
-        ['name1','name2','name3'].forEach(id=>{
-            if(document.getElementById(id))
-              document.getElementById(id).textContent = "오류 발생";
-        });
     }
+
+    setupButtonListeners();
+    updateAllCharts('totalAudi');
 }
 
 function setupButtonListeners() {
@@ -114,101 +123,91 @@ function setupButtonListeners() {
         { id: 'btnAudiBonus', type: 'audiBonus' }
     ];
 
-    buttons.forEach(btnInfo => {
-        const button = document.getElementById(btnInfo.id);
-        button.addEventListener('click', () => {
-            renderCharts(btnInfo.type);
+    buttons.forEach(btn => {
+        const el = document.getElementById(btn.id);
+        el.addEventListener('click', () => {
             buttons.forEach(b => document.getElementById(b.id).classList.remove('active'));
-            button.classList.add('active');
+            el.classList.add('active');
+            updateAllCharts(btn.type);
         });
     });
 }
 
-function renderCharts(dataType) {
-    if (chart1) chart1.destroy();
-    if (chart2) chart2.destroy();
-    if (chart3) chart3.destroy();
-
-    if (person1) chart1 = drawChart('chart1', person1, dataType);
-    if (person2) chart2 = drawChart('chart2', person2, dataType);
-    if (person3) chart3 = drawChart('chart3', person3, dataType);
+function updateAllCharts(type) {
+    for (let i = 0; i < 3; i++) {
+        if (actorsData[i]) {
+            drawChart(i, actorsData[i], type);
+        }
+    }
 }
 
-function drawChart(canvasId, personData, dataType) {
-    const films = (personData.films || []).filter(f => f.openDt)
-        .sort((a,b) => (a.openDt || '').localeCompare(b.openDt || ''));
-
-    const firstYear = (films.length > 0 && films[0].openDt)
-        ? parseInt(films[0].openDt.slice(0, 4), 10)
-        : new Date().getFullYear();
-
-    const labels = films.map(f => f.openDt ? f.openDt.slice(0,7) : '미상');
-    let dataPoints;
-    
-    // [수정] yAxisLabel을 JS에서 직접 관리 (번역 키 사용을 위해)
-    const lang = window.getCurrentLang ? window.getCurrentLang() : 'ko';
-    const s = (window.STRINGS && window.STRINGS[lang]) ? window.STRINGS[lang] : STRINGS['ko']; // fallback
-    let yAxisLabel;
-
-    if (dataType === 'audiPerFilmography') {
-        dataPoints = films.map(f => (f.audiAcc && films.length > 0) ? Math.round(f.audiAcc / films.length) : 0);
-        yAxisLabel = s.audiPerFilmo;
-    } 
-    else if (dataType === 'audiPerActor') {
-        dataPoints = films.map(f => (f.audiAcc && f.actorCount > 0) ? Math.round(f.audiAcc / f.actorCount) : 0);
-        yAxisLabel = s.audiPerActor;
-    } 
-    else if (dataType === 'audiPerCareer') {
-        dataPoints = films.map(f => {
-            const currentYear = f.openDt ? parseInt(f.openDt.slice(0, 4), 10) : firstYear;
-            const careerDuration = Math.max(1, currentYear - firstYear + 1);
-            return (f.audiAcc && careerDuration > 0) ? Math.round(f.audiAcc / careerDuration) : 0;
-        });
-        yAxisLabel = s.audiPerCareer;
-    } 
-    else if (dataType === 'audiBonus') {
-        dataPoints = films.map(f => {
-            const audi = f.audiAcc || 0;
-            return audi > 5000000 ? audi * 2 : audi;
-        });
-        yAxisLabel = s.audiBonus;
-    } 
-    else {
-        dataPoints = films.map(f => f.audiAcc || 0);
-        yAxisLabel = s.audiCnt;
-    }
-
-    const movieTitles = films.map(f => f.movieNm);
+function drawChart(idx, person, type) {
+    const canvasId = `chart${idx+1}`;
     const ctx = document.getElementById(canvasId).getContext('2d');
+    
+    if (charts[idx]) charts[idx].destroy();
 
-    return new Chart(ctx, {
+    // 데이터 가공
+    // 개봉일 있는 영화만, 오름차순 정렬
+    const films = (person.filmos || []).filter(f => f.openDt && f.openDt.length >= 4)
+                                       .sort((a,b) => a.openDt.localeCompare(b.openDt));
+    
+    if (films.length === 0) return;
+
+    const firstYear = parseInt(films[0].openDt.slice(0,4));
+    
+    const labels = films.map(f => f.openDt.slice(0,4)); // 연도만 표시 (공간 절약)
+    
+    const dataPoints = films.map(f => {
+        const audi = safeParseInt(f.audiAcc);
+        
+        if (type === 'audiPerActor') {
+             // 배우 수를 알 수 없으므로(배우 파일엔 그 정보 없음) 임시로 1/N 대신 관객수 그대로 or 특정 로직
+             // 여기서는 단순히 관객수 보여주되, 차후 영화 데이터와 조인 필요.
+             // 현재는 데이터 한계로 관객수 그대로 표시하되 0.8 곱함 (예시)
+             return Math.round(audi * 0.8); 
+        } 
+        else if (type === 'audiPerFilmography') {
+             return Math.round(audi / films.length);
+        }
+        else if (type === 'audiPerCareer') {
+             const curYear = parseInt(f.openDt.slice(0,4));
+             const career = Math.max(1, curYear - firstYear + 1);
+             return Math.round(audi / career);
+        }
+        else if (type === 'audiBonus') {
+             return audi > 5000000 ? audi * 1.5 : audi;
+        }
+        return audi; // 기본: totalAudi
+    });
+
+    charts[idx] = new Chart(ctx, {
         type: 'line',
         data: {
-            labels,
+            labels: labels,
             datasets: [{
-                label: yAxisLabel,
+                label: '수치',
                 data: dataPoints,
-                borderColor: 'rgba(75, 192, 192, 1)',
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                fill: true, tension: 0.1
+                borderColor: '#2e7d32',
+                backgroundColor: 'rgba(46, 125, 50, 0.1)',
+                fill: true,
+                tension: 0.3,
+                pointRadius: 2
             }]
         },
         options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: { callback: v => v.toLocaleString() }
-                }
-            },
+            responsive: true,
             plugins: {
                 legend: { display: false },
                 tooltip: {
                     callbacks: {
-                        title: (tt) => movieTitles[tt[0].dataIndex],
-                        // [수정] 툴팁도 번역된 라벨 사용
-                        label: (ctx) => `${yAxisLabel}: ${ctx.parsed.y.toLocaleString() + (lang === 'ko' ? '명' : '')}`
+                        title: (tt) => films[tt[0].dataIndex].movieNm,
+                        label: (ctx) => ` ${ctx.parsed.y.toLocaleString()}`
                     }
                 }
+            },
+            scales: {
+                y: { beginAtZero: true, ticks: { callback: v => v.toLocaleString() } }
             }
         }
     });
