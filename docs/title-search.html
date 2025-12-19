@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title data-i18n-key="movieTitleSearch">영화 검색 (제목)</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/translator.js" defer></script>
+<style>
+body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple SD Gothic Neo, Noto Sans KR, 'Malgun Gothic', sans-serif; line-height:1.6; }
+.wrap { max-width:980px; margin:24px auto; padding:0 12px; }
+h1 { font-size:28px; margin:0 0 16px; }
+/* 버튼 네비게이션 스타일 (기존 유지) */
+.ctrls { display:flex; gap:8px; margin-bottom:12px; flex-wrap: wrap; }
+.ctrls a { padding:6px 10px; border:1px solid #e5e7eb; border-radius:8px; background:#fff; text-decoration:none; color:#111827; }
+
+/* 검색 박스 스타일 */
+.box { background:#f6f7f9; border:1px solid #e5e7eb; border-radius:8px; padding:12px; position: relative; }
+.search-input { width: 100%; padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+
+/* 자동완성 드롭다운 스타일 */
+.suggestions { 
+    list-style: none; padding: 0; margin: 0; 
+    border: 1px solid #ccc; border-top: none; 
+    border-radius: 0 0 4px 4px; 
+    max-height: 300px; overflow-y: auto; 
+    background: #fff; 
+    position: absolute; left: 12px; right: 12px; top: 55px; z-index: 1000;
+    display: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.suggestions li { padding: 10px; border-bottom: 1px solid #eee; cursor: pointer; }
+.suggestions li:last-child { border-bottom: none; }
+.suggestions li:hover { background-color: #f0f0f0; }
+.suggestions li strong { color: #2e7d32; }
+.suggestions .meta { font-size: 0.85em; color: #666; margin-left: 5px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="ctrls">
+    <a href="index.html" class="btn" data-i18n-key="home">홈</a>
+    <a href="title-search.html" class="btn" style="font-weight:bold; border-color:#333;">영화 검색 (제목)</a>
+    <a href="search.html" class="btn" data-i18n-key="movieSearchPeriod">영화 검색 (기간)</a>
+    <a href="people-search.html" class="btn" data-i18n-key="peopleSearch">배우 검색</a>
+    <a href="costar-search.html" class="btn" data-i18n-key="costarSearch">공동 출연 검색</a>
+    <a href="saved.html" class="btn" data-i18n-key="savedList">저장 목록</a>
+  </div>
+
+  <h1 data-i18n-key="movieTitleSearch">영화 검색 (제목)</h1>
+
+  <div class="box">
+    <input type="text" id="q" class="search-input" placeholder="영화 제목을 입력하세요 (예: 범죄도시)" autocomplete="off">
+    <ul id="suggestions" class="suggestions"></ul>
+  </div>
+
+  <div style="margin-top:20px; color:#666; font-size:0.9em;">
+      * 제목을 입력하면 유사한 영화 목록이 아래에 표시됩니다.<br>
+      * 목록에서 영화를 클릭하면 상세 페이지가 <strong>새 탭</strong>에서 열립니다.
+  </div>
+</div>
+
+<script>
+const TS = Date.now();
+// search_index.json 로드
+const PATHS = [`docs/data/search_index.json?v=${TS}`, `data/search_index.json?v=${TS}`];
+let MOVIES = [];
+
+async function loadIndex(){
+  for (const path of PATHS) {
+      try {
+          const r = await fetch(path);
+          if (r.ok) {
+              MOVIES = await r.json();
+              return;
+          }
+      } catch(e) {}
+  }
+}
+
+const inp = document.getElementById('q');
+const list = document.getElementById('suggestions');
+
+// 검색 로직
+function doSearch() {
+    const val = inp.value.trim().toLowerCase();
+    if (val.length < 1) {
+        list.style.display = 'none';
+        return;
+    }
+
+    // 제목에 검색어가 포함된 영화 필터링 (최대 30개)
+    const matched = MOVIES.filter(m => (m.movieNm || '').toLowerCase().includes(val))
+                          .sort((a,b) => (b.openDt||'').localeCompare(a.openDt||'')) // 최신순
+                          .slice(0, 30);
+
+    list.innerHTML = '';
+    if (matched.length === 0) {
+        list.style.display = 'none';
+        return;
+    }
+
+    matched.forEach(m => {
+        const li = document.createElement('li');
+        // 관객수 포맷팅
+        const audi = m.audiAcc ? parseInt(m.audiAcc).toLocaleString() : 0;
+        const audiStr = audi > 0 ? ` (누적 ${audi}명)` : '';
+        
+        // 검색어 하이라이팅 (단순 구현)
+        const title = m.movieNm;
+        
+        li.innerHTML = `<strong>${title}</strong> <span class="meta">${m.openDt || '미개봉'} ${audiStr}</span>`;
+        
+        // 클릭 이벤트
+        li.onclick = () => {
+            const url = `detail.html?movieCd=${m.movieCd}`;
+            window.open(url, '_blank'); // 새 탭 열기
+        };
+        list.appendChild(li);
+    });
+
+    list.style.display = 'block';
+}
+
+// 이벤트 리스너
+inp.addEventListener('input', doSearch);
+// 클릭시 닫기
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.box')) list.style.display = 'none';
+});
+
+(async function main(){ await loadIndex(); })();
+</script>
+</body>
+</html>
