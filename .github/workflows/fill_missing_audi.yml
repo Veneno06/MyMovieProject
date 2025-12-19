@@ -1,0 +1,49 @@
+name: Fill Missing Audience (Deep Scan)
+
+on:
+  workflow_dispatch: # 수동 실행 버튼
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360 # 최대 6시간 실행 허용
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: pip install requests
+
+      # 1. 누락된 관객수 채우기
+      - name: Run Deep Scan
+        env:
+          KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
+          KOFIC_API_KEY_2: ${{ secrets.KOFIC_API_KEY_2 }}
+          KOFIC_API_KEY_3: ${{ secrets.KOFIC_API_KEY_3 }}
+          KOFIC_API_KEY_4: ${{ secrets.KOFIC_API_KEY_4 }}
+          KOFIC_API_KEY_5: ${{ secrets.KOFIC_API_KEY_5 }}
+          KOFIC_API_KEY_6: ${{ secrets.KOFIC_API_KEY_6 }}
+          KOFIC_API_KEY_7: ${{ secrets.KOFIC_API_KEY_7 }}
+        run: python scripts/fill_missing_audi_gh.py
+
+      # 2. 채워진 데이터를 배우 파일에도 반영 (동기화)
+      - name: Sync People Stats
+        run: python scripts/sync_people_stats.py
+
+      # 3. 변경사항 저장
+      - name: Commit changes
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add .
+          git commit -m "Fill missing audience counts via Deep Scan" || echo "No changes"
+          git push
