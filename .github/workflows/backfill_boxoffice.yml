@@ -13,7 +13,7 @@ on:
         required: false
         default: ''
   
-  # 2. 자동 실행 (추가된 기능)
+  # 2. 자동 실행 (스케줄링)
   # 매일 한국 시간 오전 11시 (UTC 02:00)에 실행
   schedule:
     - cron: '0 2 * * *'
@@ -51,7 +51,7 @@ jobs:
         run: |
           # [자동/수동 분기 처리]
           if [ "${{ github.event_name }}" == "schedule" ]; then
-            # 자동 실행일 경우: 최근 7일치만 가볍게 조회
+            # 자동 실행일 경우: 최근 7일치만 가볍게 조회 (API 절약)
             echo "Running scheduled update (last 7 days)..."
             python scripts/backfill_boxoffice.py --days 7
           else
@@ -66,7 +66,7 @@ jobs:
             fi
           fi
 
-      # [추가된 단계] 영화 파일의 관객수를 배우 파일로 복사
+      # [추가됨] 영화 파일의 최신 관객수를 배우 프로필에도 반영
       - name: Sync People Stats
         run: |
           python scripts/sync_people_stats.py
