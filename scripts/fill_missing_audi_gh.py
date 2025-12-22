@@ -5,6 +5,7 @@ import glob
 import time
 import requests
 import sys
+import argparse
 from pathlib import Path
 
 # 인코딩 설정
@@ -15,7 +16,6 @@ ROOT = HERE.parents[1] if HERE.parents[1].name == "MyMovieProject" else HERE.par
 MOVIE_DIR = ROOT / "docs" / "data" / "movies"
 DETAIL_URL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json"
 
-# GitHub Secrets에서 키 가져오기
 API_KEYS = []
 for i in range(1, 10):
     k = os.environ.get(f"KOFIC_API_KEY_{i}" if i > 1 else "KOFIC_API_KEY")
@@ -39,21 +39,20 @@ def save_json(p: Path, data: dict):
         json.dump(data, f, ensure_ascii=False, indent=2)
 
 def fetch_movie_detail(movie_cd):
-    for _ in range(len(API_KEYS) + 1): # 키 개수만큼 재시도
+    for _ in range(len(API_KEYS) + 1):
         api_key = get_next_key()
         if not api_key: return None
         try:
             params = { "key": api_key, "movieCd": movie_cd }
-            r = requests.get(DETAIL_URL, params=params, timeout=10) # 타임아웃 10초
+            r = requests.get(DETAIL_URL, params=params, timeout=5)
             data = r.json()
-            if "faultInfo" in data: continue # 키 에러시 다음 키
+            if "faultInfo" in data: continue
             return data
-        except:
-            time.sleep(1)
+        except: time.sleep(1)
     return None
 
-def run_fill():
-    print("[Step 1] 관객수 누락된 영화 스캔 중...")
+def run_fill(pattern=None):
+    print(f"[Step 1] 관객수 누락 영화 스캔 중... (패턴: {pattern or '전체'})")
     files = glob.glob(str(MOVIE_DIR / "**" / "*.json"), recursive=True)
     target_files = []
     
@@ -62,43 +61,41 @@ def run_fill():
         if not data: continue
         info = data if data.get("movieCd") else ((data.get("movieInfoResult") or {}).get("movieInfo") or {})
         
-        # 관객수가 없거나 0인 경우 타겟
+        movie_nm = info.get("movieNm", "")
+        # 패턴 필터링 (예: '가' -> 가로 시작하는 영화)
+        if pattern and not movie_nm.startswith(pattern):
+            continue
+
         audi = info.get("audiAcc")
+        # 관객수가 없거나 0인 경우만
         if not audi or str(audi).strip() in ["0", "", "None"]:
             target_files.append((Path(p), info.get("movieCd")))
 
-    print(f" -> 총 {len(target_files)}개의 누락 영화 발견. 복구 시작...")
+    print(f" -> 대상 영화: {len(target_files)}개")
     
     success_count = 0
-    # API 부하 고려하여 한번에 최대 2000개까지만 처리 (워크플로우 타임아웃 방지)
-    # 남은건 다음에 또 돌리면 됨
-    LIMIT = 3000 
-    
-    for idx, (f_path, movie_cd) in enumerate(target_files[:LIMIT]):
-        if not movie_cd: continue
+    # 타임아웃 방지를 위해 한 번에 최대 1000개만 처리
+    for idx, (f_path, movie_cd) in enumerate(target_files[:1000]):
+        if idx % 50 == 0: print(f" ... {idx}/{len(target_files)} 진행 중")
         
-        # 진행상황 로깅 (50개마다)
-        if idx % 50 == 0:
-            print(f" ... {idx}/{len(target_files)} 진행 중")
-
         res = fetch_movie_detail(movie_cd)
         if res and "movieInfoResult" in res:
-            detail_info = res["movieInfoResult"]["movieInfo"]
-            new_audi = detail_info.get("audiAcc")
+            detail = res["movieInfoResult"]["movieInfo"]
+            new_audi = detail.get("audiAcc")
             
-            # 0명이 아닌 유의미한 데이터가 있다면 업데이트
             if new_audi and str(new_audi) != "0":
                 file_data = load_json(f_path)
                 if file_data.get("movieCd"): file_data["audiAcc"] = new_audi
                 elif "movieInfoResult" in file_data: file_data["movieInfoResult"]["movieInfo"]["audiAcc"] = new_audi
-                
                 save_json(f_path, file_data)
-                print(f" [복구성공] {detail_info.get('movieNm')} -> {new_audi}명")
+                print(f" [복구] {detail.get('movieNm')} -> {new_audi}명")
                 success_count += 1
-        
-        time.sleep(0.05) # 서버 보호용 미세 딜레이
+        time.sleep(0.05)
 
-    print(f"=== 작업 종료: 총 {success_count}건 복구 완료 ===")
+    print(f"=== {pattern or '전체'} 작업 종료: {success_count}건 복구 완료 ===")
 
 if __name__ == "__main__":
-    run_fill()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--pattern", type=str, default="", help="영화 제목 시작 글자 (예: 가)")
+    args = parser.parse_args()
+    run_fill(args.pattern)
