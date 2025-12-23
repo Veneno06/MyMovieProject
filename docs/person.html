@@ -187,15 +187,13 @@ async function render(){
       });
   }
 
-  // [핵심] 중복 제거 및 유효 영화 필터링
+  // 중복 제거 및 유효 영화 필터링 (리스트용)
   const uniqueMovies = [];
   const seenCodes = new Set();
 
   myMovies.forEach(m => {
-      // 1. 영화 코드가 이미 등록되었으면 스킵
       if (seenCodes.has(m.movieCd)) return;
-      
-      // 2. 개봉일이 유효한지 체크 (최소 4자리 연도)
+      // 리스트에는 개봉일 4자리만 있으면 일단 포함 (관객수 0이어도 포함)
       const hasDate = m.openDt && m.openDt.replace(/-/g, '').trim().length >= 4;
       if (hasDate) {
           seenCodes.add(m.movieCd);
@@ -203,12 +201,11 @@ async function render(){
       }
   });
 
-  // 개봉일 순 정렬
   uniqueMovies.sort((a,b) => (b.openDt || '').localeCompare(a.openDt || ''));
   
   const out = document.getElementById('out');
   out.innerHTML = '';
-  const filmsWithAudi = [];
+  const filmsForChart = []; // 차트용 데이터 배열 (관객수 있는 것만)
 
   if (uniqueMovies.length === 0) {
       document.getElementById('msg').textContent = "등록된(개봉일이 확인된) 출연작이 없습니다.";
@@ -237,17 +234,17 @@ async function render(){
       <span class="note">(${f.openDt}${audiStr}<span style="font-size:13px; color:#666; margin-left:5px;">${castStr}</span>)</span>`;
     out.appendChild(li);
     
-    if (f.openDt) {
-        filmsWithAudi.push({ ...f, audiAcc: audiNum });
+    // [핵심 변경] 차트 데이터에는 '관객수가 0보다 큰 경우'에만 추가
+    if (f.openDt && audiNum > 0) {
+        filmsForChart.push({ ...f, audiAcc: audiNum });
     }
   }
 
-  // 차트 렌더링
-  if (filmsWithAudi.length > 0) {
+  // 차트 렌더링 (데이터가 있을 때만)
+  if (filmsForChart.length > 0) {
       document.getElementById('chart-container').style.display = 'block';
-      const chartData = [...filmsWithAudi].sort((a,b) => (a.openDt||'').localeCompare(b.openDt||''));
+      const chartData = [...filmsForChart].sort((a,b) => (a.openDt||'').localeCompare(b.openDt||''));
       
-      // 초기 버튼 스타일 설정
       updateActiveBtn('btnTotalAudi');
       drawChart(chartData, 'totalAudi');
       
@@ -267,6 +264,9 @@ async function render(){
               };
           }
       });
+  } else {
+      // 관객수 데이터가 하나도 없으면 차트 숨김
+      document.getElementById('chart-container').style.display = 'none';
   }
 }
 
