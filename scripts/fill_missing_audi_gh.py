@@ -23,6 +23,9 @@ for i in range(1, 10):
 
 CURRENT_KEY_INDEX = 0
 
+# 한글 초성 리스트
+CHOSUNG_LIST = ['ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ']
+
 def get_next_key():
     global CURRENT_KEY_INDEX
     if not API_KEYS: return None
@@ -38,6 +41,23 @@ def save_json(p: Path, data: dict):
     with open(p, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
+# [핵심 로직] 문자의 초성(자음)을 추출하는 함수
+def get_initial_sound(char):
+    if not char: return ""
+    
+    # 1. 이미 자음만 입력된 경우 ('ㄱ')
+    if char in CHOSUNG_LIST:
+        return char
+        
+    # 2. 완성형 한글인 경우 ('가', '고' -> 'ㄱ')
+    if '가' <= char <= '힣':
+        char_code = ord(char) - 0xAC00
+        chosung_index = char_code // 588
+        return CHOSUNG_LIST[chosung_index]
+        
+    # 3. 영어/숫자/특수문자인 경우 그대로 반환 ('A' -> 'A')
+    return char
+
 def fetch_movie_detail(movie_cd):
     for _ in range(len(API_KEYS) + 1):
         api_key = get_next_key()
@@ -52,7 +72,11 @@ def fetch_movie_detail(movie_cd):
     return None
 
 def run_fill(pattern=None):
-    print(f"[Step 1] 관객수 누락 영화 스캔 중... (패턴: {pattern or '전체'})")
+    # 패턴에서 대표 초성 추출 (예: "가" -> "ㄱ", "A" -> "A")
+    target_initial = get_initial_sound(pattern[0]) if pattern else None
+    
+    print(f"[Step 1] 관객수 누락 영화 스캔 중... (입력: '{pattern}' -> 타겟 초성: '{target_initial or '전체'}')")
+    
     files = glob.glob(str(MOVIE_DIR / "**" / "*.json"), recursive=True)
     target_files = []
     
@@ -62,16 +86,23 @@ def run_fill(pattern=None):
         info = data if data.get("movieCd") else ((data.get("movieInfoResult") or {}).get("movieInfo") or {})
         
         movie_nm = info.get("movieNm", "")
-        # 패턴 필터링 (예: '가' -> 가로 시작하는 영화)
-        if pattern and not movie_nm.startswith(pattern):
-            continue
+        if not movie_nm: continue
+
+        # [필터링 로직 변경] 초성이 같은지 비교
+        if target_initial:
+            # 영화 제목 첫 글자의 초성 추출
+            movie_initial = get_initial_sound(movie_nm[0])
+            
+            # 다르면 건너뛰기 (대소문자 구분 없이 비교하기 위해 upper 사용)
+            if movie_initial.upper() != target_initial.upper():
+                continue
 
         audi = info.get("audiAcc")
-        # 관객수가 없거나 0인 경우만
+        # 관객수가 없거나 0인 경우만 타겟
         if not audi or str(audi).strip() in ["0", "", "None"]:
             target_files.append((Path(p), info.get("movieCd")))
 
-    print(f" -> 대상 영화: {len(target_files)}개")
+    print(f" -> '{target_initial or '전체'}'로 시작하는 누락 영화: {len(target_files)}개 발견.")
     
     success_count = 0
     # 타임아웃 방지를 위해 한 번에 최대 1000개만 처리
@@ -92,10 +123,10 @@ def run_fill(pattern=None):
                 success_count += 1
         time.sleep(0.05)
 
-    print(f"=== {pattern or '전체'} 작업 종료: {success_count}건 복구 완료 ===")
+    print(f"=== 작업 종료: {success_count}건 복구 완료 ===")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--pattern", type=str, default="", help="영화 제목 시작 글자 (예: 가)")
+    parser.add_argument("--pattern", type=str, default="", help="검색할 시작 글자 (예: 가, 나, A)")
     args = parser.parse_args()
     run_fill(args.pattern)
