@@ -10,15 +10,23 @@
 body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple SD Gothic Neo, Noto Sans KR, 'Malgun Gothic', sans-serif; line-height:1.6; }
 .wrap { max-width:980px; margin:24px auto; padding:0 12px; }
 h1 { font-size:28px; margin:0 0 16px; }
-/* 버튼 네비게이션 스타일 (기존 유지) */
+
+/* 네비게이션 버튼 */
 .ctrls { display:flex; gap:8px; margin-bottom:12px; flex-wrap: wrap; }
 .ctrls a { padding:6px 10px; border:1px solid #e5e7eb; border-radius:8px; background:#fff; text-decoration:none; color:#111827; }
 
-/* 검색 박스 스타일 */
-.box { background:#f6f7f9; border:1px solid #e5e7eb; border-radius:8px; padding:12px; position: relative; }
-.search-input { width: 100%; padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+/* 검색 박스 스타일 (Flex 적용으로 버튼 옆 배치) */
+.box { 
+    background:#f6f7f9; border:1px solid #e5e7eb; border-radius:8px; padding:12px; 
+    position: relative; 
+    display: flex; gap: 8px; /* 입력창과 버튼 사이 간격 */
+}
+.search-input { 
+    flex-grow: 1; /* 남은 공간 꽉 채우기 */
+    padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; 
+}
 
-/* 자동완성 드롭다운 스타일 */
+/* 자동완성 드롭다운 */
 .suggestions { 
     list-style: none; padding: 0; margin: 0; 
     border: 1px solid #ccc; border-top: none; 
@@ -39,7 +47,7 @@ h1 { font-size:28px; margin:0 0 16px; }
 <div class="wrap">
   <div class="ctrls">
     <a href="index.html" class="btn" data-i18n-key="home">홈</a>
-    <a href="title-search.html" class="btn" style="font-weight:bold; border-color:#333;">영화 검색 (제목)</a>
+    <a href="title-search.html" class="btn" style="font-weight:bold; border-color:#333;" data-i18n-key="movieTitleSearch">영화 검색 (제목)</a>
     <a href="search.html" class="btn" data-i18n-key="movieSearchPeriod">영화 검색 (기간)</a>
     <a href="people-search.html" class="btn" data-i18n-key="peopleSearch">배우 검색</a>
     <a href="costar-search.html" class="btn" data-i18n-key="costarSearch">공동 출연 검색</a>
@@ -50,18 +58,19 @@ h1 { font-size:28px; margin:0 0 16px; }
 
   <div class="box">
     <input type="text" id="q" class="search-input" placeholder="영화 제목을 입력하세요 (예: 범죄도시)" autocomplete="off">
+    <button id="searchBtn" class="btn" style="white-space: nowrap;" data-i18n-key="searchBtn">검색</button>
+    
     <ul id="suggestions" class="suggestions"></ul>
   </div>
 
   <div style="margin-top:20px; color:#666; font-size:0.9em;">
       * 제목을 입력하면 유사한 영화 목록이 아래에 표시됩니다.<br>
-      * 목록에서 영화를 클릭하면 상세 페이지가 <strong>새 탭</strong>에서 열립니다.
+      * 목록에서 영화를 클릭하거나 <strong>엔터(Enter)</strong>를 누르면 가장 정확한 결과의 상세 페이지가 <strong>새 탭</strong>에서 열립니다.
   </div>
 </div>
 
 <script>
 const TS = Date.now();
-// search_index.json 로드
 const PATHS = [`docs/data/search_index.json?v=${TS}`, `data/search_index.json?v=${TS}`];
 let MOVIES = [];
 
@@ -79,8 +88,9 @@ async function loadIndex(){
 
 const inp = document.getElementById('q');
 const list = document.getElementById('suggestions');
+const btn = document.getElementById('searchBtn');
 
-// 검색 로직
+// 검색 로직 (자동완성 목록 표시)
 function doSearch() {
     const val = inp.value.trim().toLowerCase();
     if (val.length < 1) {
@@ -88,10 +98,7 @@ function doSearch() {
         return;
     }
 
-    // 제목에 검색어가 포함된 영화 필터링 (최대 30개)
-    const matched = MOVIES.filter(m => (m.movieNm || '').toLowerCase().includes(val))
-                          .sort((a,b) => (b.openDt||'').localeCompare(a.openDt||'')) // 최신순
-                          .slice(0, 30);
+    const matched = getMatchedMovies(val);
 
     list.innerHTML = '';
     if (matched.length === 0) {
@@ -101,19 +108,13 @@ function doSearch() {
 
     matched.forEach(m => {
         const li = document.createElement('li');
-        // 관객수 포맷팅
         const audi = m.audiAcc ? parseInt(m.audiAcc).toLocaleString() : 0;
         const audiStr = audi > 0 ? ` (누적 ${audi}명)` : '';
         
-        // 검색어 하이라이팅 (단순 구현)
-        const title = m.movieNm;
+        li.innerHTML = `<strong>${m.movieNm}</strong> <span class="meta">${m.openDt || '미개봉'} ${audiStr}</span>`;
         
-        li.innerHTML = `<strong>${title}</strong> <span class="meta">${m.openDt || '미개봉'} ${audiStr}</span>`;
-        
-        // 클릭 이벤트
         li.onclick = () => {
-            const url = `detail.html?movieCd=${m.movieCd}`;
-            window.open(url, '_blank'); // 새 탭 열기
+            openDetail(m.movieCd);
         };
         list.appendChild(li);
     });
@@ -121,9 +122,56 @@ function doSearch() {
     list.style.display = 'block';
 }
 
+// 공통 필터링 함수
+function getMatchedMovies(val) {
+    if (!val) return [];
+    return MOVIES.filter(m => (m.movieNm || '').toLowerCase().includes(val))
+                 .sort((a,b) => (b.openDt||'').localeCompare(a.openDt||'')) // 최신순 정렬
+                 .slice(0, 30);
+}
+
+// 상세 페이지 열기
+function openDetail(movieCd) {
+    const url = `detail.html?movieCd=${movieCd}`;
+    window.open(url, '_blank');
+}
+
+// [추가 기능] 엔터키 또는 검색 버튼 클릭 시 동작
+function handleDirectSearch() {
+    const val = inp.value.trim().toLowerCase();
+    if (!val) {
+        alert("검색어를 입력해주세요.");
+        return;
+    }
+
+    // 목록이 로드되지 않았을 경우 대비
+    if (MOVIES.length === 0) {
+        alert("데이터를 로딩 중입니다. 잠시 후 다시 시도해주세요.");
+        return;
+    }
+
+    const matched = getMatchedMovies(val);
+    
+    if (matched.length > 0) {
+        // 가장 최신(정확도 높은) 영화 1개를 엽니다.
+        // (필요시 정확히 일치하는 제목을 우선하는 로직을 추가할 수 있음)
+        openDetail(matched[0].movieCd);
+    } else {
+        alert("일치하는 영화가 없습니다.");
+    }
+}
+
 // 이벤트 리스너
 inp.addEventListener('input', doSearch);
-// 클릭시 닫기
+inp.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        handleDirectSearch();
+        list.style.display = 'none'; // 엔터 치면 자동완성 목록 닫기
+    }
+});
+btn.addEventListener('click', handleDirectSearch);
+
+// 외부 클릭시 닫기
 document.addEventListener('click', (e) => {
     if (!e.target.closest('.box')) list.style.display = 'none';
 });
