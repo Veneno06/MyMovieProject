@@ -49,7 +49,10 @@ def get_initial_sound(char):
         return CHOSUNG_LIST[(ord(char) - 0xAC00) // 588]
     return char
 
-# [기능 1] 영화 상세 정보 조회 (관객수 확인용)
+# 문자열 정규화 (공백 제거, 소문자)
+def normalize(s):
+    return str(s).replace(" ", "").strip().lower()
+
 def fetch_movie_detail(movie_cd):
     for _ in range(len(API_KEYS) + 1):
         api_key = get_next_key()
@@ -58,19 +61,19 @@ def fetch_movie_detail(movie_cd):
             params = { "key": api_key, "movieCd": movie_cd }
             r = requests.get(DETAIL_URL, params=params, timeout=5)
             data = r.json()
-            if "faultInfo" in data: continue
+            if "faultInfo" in data: 
+                # 키 에러 발생 시 로그 남기고 다음 키 시도
+                continue
             return data
         except: time.sleep(1)
     return None
 
-# [기능 2] 영화 목록 검색 (이름으로 다른 코드 찾기)
 def search_movie_list(movie_nm):
     for _ in range(len(API_KEYS) + 1):
         api_key = get_next_key()
         if not api_key: return None
         try:
-            # 이름으로 검색 (동명 영화 찾기)
-            params = { "key": api_key, "movieNm": movie_nm, "itemPerPage": 10 }
+            params = { "key": api_key, "movieNm": movie_nm, "itemPerPage": 20 } # 후보를 좀 더 많이(20개) 조회
             r = requests.get(LIST_URL, params=params, timeout=5)
             data = r.json()
             if "faultInfo" in data: continue
@@ -93,7 +96,6 @@ def run_fill(pattern=None):
         movie_nm = info.get("movieNm", "")
         if not movie_nm: continue
 
-        # 초성 필터링 (예: ㄱ 입력시 개들의 전쟁 포함)
         if target_initial:
             movie_initial = get_initial_sound(movie_nm[0])
             if movie_initial.upper() != target_initial.upper():
@@ -107,66 +109,63 @@ def run_fill(pattern=None):
     print(f" -> '{target_initial or '전체'}' 해당 누락 영화: {len(target_files)}개 발견. 정밀 조회(Deep Search) 시작...")
     
     success_count = 0
-    # 타임아웃 방지: 정밀 조회는 API 호출이 많으므로 1회 실행시 최대 200개로 제한
-    LIMIT = 200 
+    # 타임아웃 방지: 1회 최대 100개 (로그를 보며 확인하기 위해 줄임)
+    LIMIT = 100 
     
     for idx, (f_path, original_cd, movie_nm) in enumerate(target_files[:LIMIT]):
-        print(f"[{idx+1}/{min(len(target_files), LIMIT)}] '{movie_nm}' 확인 중...", end="", flush=True)
+        print(f"[{idx+1}/{min(len(target_files), LIMIT)}] '{movie_nm}' ", end="", flush=True)
         
-        # 1. 내 코드로 먼저 조회
+        # 1. 기존 코드로 먼저 조회
         res = fetch_movie_detail(original_cd)
         final_audi = "0"
         
         if res and "movieInfoResult" in res:
             final_audi = res["movieInfoResult"]["movieInfo"].get("audiAcc", "0")
 
-        # 2. 내 코드가 0명이면 -> 이름으로 다른 코드 찾기 (Deep Search Strategy)
+        # 2. 기존 코드가 0명이면 -> 이름으로 다른 코드 찾기
         if str(final_audi) == "0":
-            print(" (기존코드 0명 -> 대체코드 검색)", end="")
+            print(f"(기존 0명) -> '{movie_nm}' 검색 ", end="")
             list_res = search_movie_list(movie_nm)
             
+            found_candidate = False
             if list_res and "movieListResult" in list_res:
                 candidates = list_res["movieListResult"]["movieList"]
                 
-                # 후보군 순회 (다른 코드 찾기)
                 for cand in candidates:
-                    # 이름이 정확히 같아야 함 (유사 영화 제외)
-                    if cand["movieNm"].strip() != movie_nm.strip():
+                    # [핵심 변경] 공백 제거 후 비교 (띄어쓰기 달라도 찾음)
+                    if normalize(cand["movieNm"]) != normalize(movie_nm):
                         continue
                     
-                    # 이미 조회한 내 코드는 패스
-                    if cand["movieCd"] == original_cd:
-                        continue
+                    if cand["movieCd"] == original_cd: continue
 
-                    # 후보의 상세 정보 조회
+                    # 후보 상세 조회
                     cand_res = fetch_movie_detail(cand["movieCd"])
                     if cand_res and "movieInfoResult" in cand_res:
                         cand_info = cand_res["movieInfoResult"]["movieInfo"]
                         cand_audi = cand_info.get("audiAcc", "0")
                         
-                        # 유의미한 관객수(0보다 큰)를 찾으면 즉시 채택!
                         if cand_audi and str(cand_audi) != "0":
                             final_audi = cand_audi
-                            print(f" -> 찾음! ({cand_audi}명)", end="")
+                            print(f"-> 찾음! (코드:{cand['movieCd']}, {cand_audi}명)", end="")
+                            found_candidate = True
                             break
+            
+            if not found_candidate:
+                print("-> 후보 없음", end="")
                             
-        # 3. 결과가 0보다 크면 파일 업데이트
+        # 3. 결과 업데이트
         if str(final_audi) != "0":
             file_data = load_json(f_path)
-            
-            # 파일 구조에 맞춰 업데이트
-            if file_data.get("movieCd"): 
-                file_data["audiAcc"] = final_audi
-            elif "movieInfoResult" in file_data: 
-                file_data["movieInfoResult"]["movieInfo"]["audiAcc"] = final_audi
+            if file_data.get("movieCd"): file_data["audiAcc"] = final_audi
+            elif "movieInfoResult" in file_data: file_data["movieInfoResult"]["movieInfo"]["audiAcc"] = final_audi
             
             save_json(f_path, file_data)
-            print(" -> ✅ 저장 완료")
+            print(" -> ✅ 저장")
             success_count += 1
         else:
-            print(" -> ❌ 데이터 없음")
+            print(" -> ❌ 0명")
             
-        time.sleep(0.1) # API 보호용 딜레이
+        time.sleep(0.1)
 
     print(f"=== 작업 종료: {success_count}건 복구 완료 ===")
 
