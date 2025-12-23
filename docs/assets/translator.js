@@ -1,5 +1,6 @@
 /**
  * K-Movie A Archive 다국어 번역 스크립트 (i18n)
+ * Fix: 'movieSearchTitle' 키 추가 (페이지 제목용)
  */
 
 // 1. 번역 문자열 (KO/EN)
@@ -8,14 +9,15 @@ const STRINGS = {
         'langToggle': "EN",
         // --- 공통 헤더 (네비게이션) ---
         'home': "홈",
-        'movieTitleSearch': "영화 검색 (제목)", // [추가됨]
-        'movieSearchPeriod': "영화 검색 (기간)", // [키 이름 변경: movieSearch -> movieSearchPeriod]
+        'movieTitleSearch': "영화 검색 (제목)",
+        'movieSearchPeriod': "영화 검색 (기간)",
         'peopleSearch': "배우 검색",
         'costarSearch': "공동 출연 검색",
         'savedList': "저장 목록",
         
         // --- 페이지 제목 ---
         'homeTitle': "K-Movie A Archive",
+        'movieSearchTitle': "영화 검색(기간)", // [복구됨] 이 부분이 빠져 있었습니다!
         'peopleSearchTitle': "배우/감독 검색",
         'costarSearchTitle': "공동 출연 검색",
         'savedListTitle': "저장 목록",
@@ -49,7 +51,7 @@ const STRINGS = {
         'actorOnly': "배우만",
 
         // --- costar-search.html ---
-        'actorNamesLabel': "배우 이름들:", // [수정]
+        'actorNamesLabel': "배우 이름들:",
 
         // --- person.html ---
         'filmography': "출연작 (최신 개봉일 순)",
@@ -82,14 +84,15 @@ const STRINGS = {
         'langToggle': "KR",
         // --- Common Header ---
         'home': "Home",
-        'movieTitleSearch': "Movie Search (Title)", // [추가됨]
-        'movieSearchPeriod': "Movie Search (Date)", // [수정됨]
+        'movieTitleSearch': "Movie Search (Title)",
+        'movieSearchPeriod': "Movie Search (Date)",
         'peopleSearch': "People Search",
         'costarSearch': "Co-star Search",
         'savedList': "Saved List",
 
         // --- Page Titles ---
         'homeTitle': "K-Movie A Archive",
+        'movieSearchTitle': "Movie Search (by Date)", // [복구됨] English translation added
         'peopleSearchTitle': "Actor/Director Search",
         'costarSearchTitle': "Co-star Search",
         'savedListTitle': "Saved List",
