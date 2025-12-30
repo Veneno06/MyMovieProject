@@ -19,8 +19,16 @@
     }
     .actor-info { flex-grow: 1; }
     .film-list { font-size: 14px; color: #555; margin-top: 6px; }
-    .compare-section { margin-top: 20px; padding-top: 15px; border-top: 1px solid #eee; display:flex; gap:8px; flex-wrap:wrap; }
-    .muted { color:#6b7280; }
+    .compare-section { 
+        margin-top: 20px; padding-top: 15px; border-top: 1px solid #eee; 
+        display:flex; justify-content: center; align-items: center; flex-direction: column; gap: 10px; 
+    }
+    .muted { color:#6b7280; font-size: 0.9rem; }
+    /* 통합 비교 버튼 스타일 */
+    #compareBtn {
+        background-color: #2563eb; color: white; border: none; font-weight: bold; padding: 10px 20px; font-size: 16px;
+    }
+    #compareBtn:disabled { background-color: #ccc; cursor: not-allowed; }
   </style>
 </head>
 <body>
@@ -39,19 +47,18 @@
   <div id="savedPeopleList" class="grid"></div>
 
   <div class="compare-section">
-    <button class="btn" id="compareBtn2" disabled data-i18n-key="compareBtn2">스타 파워 비교 (2명 선택)</button>
-    <button class="btn" id="compareBtn3" disabled data-i18n-key="compareBtn3">스타 파워 비교 (3명 선택)</button>
+    <button class="btn" id="compareBtn" disabled>배우 관객수 비교 (2~4명 선택)</button>
+    <div id="selectionMsg" class="muted">비교할 배우를 2명에서 4명까지 선택해주세요.</div>
     <div id="emptyMsg" class="muted" style="display:none;">저장된 배우가 없습니다.</div>
   </div>
 </div>
 
 <script>
 const LIST_BOX = document.getElementById('savedPeopleList');
-const COMPARE_BTN2 = document.getElementById('compareBtn2');
-const COMPARE_BTN3 = document.getElementById('compareBtn3');
+const COMPARE_BTN = document.getElementById('compareBtn');
 const EMPTY_MSG = document.getElementById('emptyMsg');
+const SELECTION_MSG = document.getElementById('selectionMsg');
 
-// 로컬스토리지에서만 데이터를 가져오도록 변경 (심플)
 function getSavedPeople() {
   try { return JSON.parse(localStorage.getItem('savedPeople') || '{}'); }
   catch { return {}; }
@@ -69,25 +76,37 @@ function removeSaved(id) {
   render();
 }
 
+// [핵심] 체크박스 상태 확인 (2~4명)
 function updateCompareButtons() {
   const picked = document.querySelectorAll('.actor-checkbox:checked').length;
-  COMPARE_BTN2.disabled = (picked !== 2);
-  COMPARE_BTN3.disabled = (picked !== 3);
+  if (picked >= 2 && picked <= 4) {
+      COMPARE_BTN.disabled = false;
+      SELECTION_MSG.textContent = `${picked}명이 선택되었습니다.`;
+      SELECTION_MSG.style.color = "#2563eb";
+      SELECTION_MSG.style.fontWeight = "bold";
+  } else {
+      COMPARE_BTN.disabled = true;
+      SELECTION_MSG.textContent = "비교할 배우를 2명에서 4명까지 선택해주세요.";
+      SELECTION_MSG.style.color = "#6b7280";
+      SELECTION_MSG.style.fontWeight = "normal";
+  }
 }
 
-// 상세 정보 없이 로컬스토리지에 저장된 이름만으로 빠르게 렌더링
 function render() {
   const saved = getSavedPeople();
   const savedKeys = Object.keys(saved);
 
   LIST_BOX.innerHTML = '';
   if (savedKeys.length === 0) {
-    EMPTY_MSG.style.display = '';
-    COMPARE_BTN2.disabled = true;
-    COMPARE_BTN3.disabled = true;
+    EMPTY_MSG.style.display = 'block';
+    COMPARE_BTN.style.display = 'none';
+    SELECTION_MSG.style.display = 'none';
     return;
   }
+  
   EMPTY_MSG.style.display = 'none';
+  COMPARE_BTN.style.display = 'block';
+  SELECTION_MSG.style.display = 'block';
 
   // 이름순 정렬
   const list = savedKeys.map(k => ({ id: k, name: saved[k].name })).sort((a,b) => a.name.localeCompare(b.name, 'ko'));
@@ -115,13 +134,13 @@ function render() {
   updateCompareButtons();
 }
 
-COMPARE_BTN2.addEventListener('click', () => {
+// [핵심] 비교 페이지로 이동 (p1, p2, p3, p4 파라미터 전달)
+COMPARE_BTN.addEventListener('click', () => {
   const picked = [...document.querySelectorAll('.actor-checkbox:checked')].map(x=>x.value);
-  if (picked.length === 2) location.href = `compare.html?p1=${picked[0]}&p2=${picked[1]}`;
-});
-COMPARE_BTN3.addEventListener('click', () => {
-  const picked = [...document.querySelectorAll('.actor-checkbox:checked')].map(x=>x.value);
-  if (picked.length === 3) location.href = `compare.html?p1=${picked[0]}&p2=${picked[1]}&p3=${picked[2]}`;
+  if (picked.length >= 2 && picked.length <= 4) {
+      const queryParams = picked.map((id, idx) => `p${idx+1}=${encodeURIComponent(id)}`).join('&');
+      location.href = `compare.html?${queryParams}`;
+  }
 });
 
 render();
