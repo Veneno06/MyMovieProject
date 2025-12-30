@@ -7,25 +7,18 @@
 <link rel="stylesheet" href="assets/style.css">
 <script src="assets/translator.js" defer></script>
 <style>
-/* 차트 컨테이너: 가로 스크롤 가능하도록 설정 */
-.chart-scroll-container {
-    width: 100%;
-    overflow-x: auto; /* 내용이 넘치면 가로 스크롤 */
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    background: #fff;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    margin: 20px 0;
-    padding: 10px;
-}
-
-/* 실제 차트 영역: 영화 개수에 따라 너비를 동적으로 늘릴 예정 */
+/* 차트 컨테이너 (기본 반응형) */
 .chart-wrapper { 
-    height: 500px;
+    width: 100%; 
+    height: 500px; 
+    margin: 20px 0; 
+    padding: 10px;
+    border: 1px solid #e5e7eb; 
+    border-radius: 12px; 
+    background: #fff; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     position: relative;
-    min-width: 800px; /* 최소 너비 보장 */
 }
-
 h1 { text-align: center; margin-bottom: 20px; }
 .controls-container { margin-top: 20px; padding-top: 15px; border-top: 1px solid #eee; text-align: center; }
 .chart-buttons { display:flex; flex-wrap:wrap; gap:8px; justify-content: center; }
@@ -52,17 +45,15 @@ h1 { text-align: center; margin-bottom: 20px; }
       <button class="btn" onclick="history.back()" data-i18n-key="btnBack">🔙 뒤로</button>
   </div>
 
-  <div class="chart-scroll-container">
-      <div class="chart-wrapper">
-          <canvas id="mainChart"></canvas>
-      </div>
+  <div class="chart-wrapper">
+      <canvas id="mainChart"></canvas>
   </div>
   
   <div class="controls-container">
       <div class="chart-buttons">
           <button id="btnTotalAudi" class="active" data-i18n-key="audiCnt">관객수</button>
           <button id="btnAudiPerActor" data-i18n-key="audiPerActor">관객수/배우 수</button>
-          <button id="btnAudiPerFilmography" data-i18n-key="audiPerFilmo">관객수/출연작</button>
+          <button id="btnAudiPerFilmography" data-i18n-key="audiPerFilmo" style="display:none;">관객수/출연작</button>
           <button id="btnAudiPerCareer" data-i18n-key="audiPerCareer">관객수/연기경력</button>
           <button id="btnAudiBonus" data-i18n-key="audiBonus">500만+ 가중치</button>
       </div>
@@ -94,6 +85,19 @@ const safeParseInt = (v) => {
     const n = parseInt(String(v).replace(/,/g, '').trim(), 10);
     return isNaN(n) ? 0 : n;
 };
+
+// [핵심 유틸] 날짜 문자열(YYYY-MM-DD)을 주차 문자열(YYYY-Www)로 변환
+function getWeekString(dateStr) {
+    const date = new Date(dateStr);
+    date.setHours(0, 0, 0, 0);
+    // Thursday in current week decides the year.
+    date.setDate(date.getDate() + 3 - (date.getDay() + 6) % 7);
+    // January 4 is always in week 1.
+    const week1 = new Date(date.getFullYear(), 0, 4);
+    // Adjust to Thursday in week 1 and count number of weeks from date to week1.
+    const weekNumber = 1 + Math.round(((date.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7);
+    return `${date.getFullYear()}-W${weekNumber.toString().padStart(2, '0')}`;
+}
 
 async function loadSearchIndex() {
     if (SEARCH_INDEX.length > 0) return;
@@ -166,6 +170,7 @@ async function main() {
     actorsData = results.filter(data => data && data.peopleNm); 
 
     setupButtonListeners();
+    // '관객수/출연작' 버튼은 주차별 합산 로직과 맞지 않아 숨김 처리했습니다.
     drawIntegratedChart('totalAudi');
 }
 
@@ -173,15 +178,16 @@ function setupButtonListeners() {
     const buttons = [
         { id: 'btnTotalAudi', type: 'totalAudi' },
         { id: 'btnAudiPerActor', type: 'audiPerActor' },
-        { id: 'btnAudiPerFilmography', type: 'audiPerFilmography' },
+        // { id: 'btnAudiPerFilmography', type: 'audiPerFilmography' }, // 숨김
         { id: 'btnAudiPerCareer', type: 'audiPerCareer' },
         { id: 'btnAudiBonus', type: 'audiBonus' }
     ];
 
     buttons.forEach(btn => {
         const el = document.getElementById(btn.id);
+        if(!el) return;
         el.addEventListener('click', () => {
-            buttons.forEach(b => document.getElementById(b.id).classList.remove('active'));
+            buttons.forEach(b => document.getElementById(b.id)?.classList.remove('active'));
             el.classList.add('active');
             drawIntegratedChart(btn.type);
         });
@@ -192,60 +198,62 @@ function drawIntegratedChart(type) {
     const ctx = document.getElementById('mainChart').getContext('2d');
     if (mainChart) mainChart.destroy();
 
-    // 1. 모든 배우의 유효한 영화 개봉일 수집 (X축 구성용)
-    const dateSet = new Set();
+    // 1. 모든 배우의 영화 개봉일을 주차(Week) 단위로 변환하여 수집
+    const weekSet = new Set();
     actorsData.forEach(person => {
         (person.filmos || []).forEach(f => {
             if (f.openDt && f.openDt.length >= 8 && safeParseInt(f.audiAcc) > 0) {
-                dateSet.add(f.openDt); 
+                weekSet.add(getWeekString(f.openDt));
             }
         });
     });
     
-    // 날짜 오름차순 정렬 (2024-01-01 -> 2024-12-31)
-    const labels = Array.from(dateSet).sort(); 
+    // 주차별 오름차순 정렬
+    const labels = Array.from(weekSet).sort(); 
 
-    // 2. 차트 너비 동적 조절 (영화가 많으면 옆으로 길어지게)
-    const wrapper = document.querySelector('.chart-wrapper');
-    // 라벨 하나당 최소 30px 확보 (너무 좁으면 글자 겹침)
-    const minWidth = Math.max(800, labels.length * 30); 
-    wrapper.style.width = `${minWidth}px`;
-
-    // 3. 데이터셋 생성
+    // 2. 데이터셋 생성
     const datasets = actorsData.map((person, idx) => {
         const color = COLORS[idx % COLORS.length];
-        
-        // 각 날짜(label)에 해당하는 영화 데이터 매핑
-        const dataPoints = labels.map(date => {
-            // 해당 날짜에 개봉한 이 배우의 영화 찾기
-            const film = (person.filmos || []).find(f => f.openDt === date && safeParseInt(f.audiAcc) > 0);
+        const firstYear = parseInt(person.filmos.filter(x=>x.openDt).sort((a,b)=>a.openDt.localeCompare(b.openDt))[0]?.openDt.slice(0,4) || new Date().getFullYear());
 
-            if (!film) return null; // 그 날 개봉한 영화 없으면 null
+        // 각 주차(label)별로 데이터 합산
+        const dataPoints = labels.map(weekStr => {
+            // 해당 주차에 속하는 영화 찾기
+            const filmsInWeek = (person.filmos || []).filter(f => 
+                f.openDt && f.openDt.length >= 8 && getWeekString(f.openDt) === weekStr && safeParseInt(f.audiAcc) > 0
+            );
 
-            const audi = safeParseInt(film.audiAcc);
-            let val = 0;
+            if (filmsInWeek.length === 0) return null; // 해당 주차에 영화 없으면 null
 
-            if (type === 'audiPerActor') val = Math.round(audi * 0.8); 
-            else if (type === 'audiPerFilmography') {
-                // 누적 평균을 구하려면 복잡해지므로, 여기선 단순 관객수 보여주고 Y축 라벨로 구분하거나
-                // 혹은 해당 영화까지의 누적 평균? -> 직관성을 위해 여기선 '해당 영화의 기여도' 개념으로 단순화
-                // (이전 코드 로직 유지: 총 관객수 / 총 편수 -> 이건 단일값이라 시계열 불가)
-                // 따라서 시계열 비교에선 '개별 영화 관객수'가 가장 적합하지만, 요청하신 계산식 적용
-                // 영화별 편차를 보기 위해 여기선 그냥 관객수 사용 (or 전체 평균선?)
-                // 일단은 관객수 그대로 갑니다. (나눌 분모가 애매함)
-                val = audi; 
-            }
-            else if (type === 'audiPerCareer') {
-                 // 경력: 첫 영화 개봉연도부터 해당 영화 개봉연도까지의 연차
-                 const firstYear = parseInt(person.filmos.filter(x=>x.openDt).sort((a,b)=>a.openDt.localeCompare(b.openDt))[0].openDt.slice(0,4));
-                 const curYear = parseInt(date.slice(0,4));
-                 const career = Math.max(1, curYear - firstYear + 1);
-                 val = Math.round(audi / career);
-            }
-            else if (type === 'audiBonus') val = audi > 5000000 ? audi * 1.5 : audi;
-            else val = audi; // totalAudi
+            // 해당 주차 관객수 합산 및 대표 영화 제목 선정
+            let totalWeekAudi = 0;
+            let topMovieNm = "";
+            let maxAudi = -1;
+            
+            filmsInWeek.forEach(f => {
+                const audi = safeParseInt(f.audiAcc);
+                if (audi > maxAudi) {
+                    maxAudi = audi;
+                    topMovieNm = f.movieNm;
+                }
 
-            return { x: date, y: val, movieNm: film.movieNm }; // 툴팁용 영화제목 포함
+                let pointVal = 0;
+                if (type === 'audiPerActor') pointVal = Math.round(audi * 0.8);
+                else if (type === 'audiPerCareer') {
+                     const curYear = parseInt(weekStr.slice(0,4));
+                     const career = Math.max(1, curYear - firstYear + 1);
+                     pointVal = Math.round(audi / career);
+                }
+                else if (type === 'audiBonus') pointVal = audi > 5000000 ? audi * 1.5 : audi;
+                else pointVal = audi; // totalAudi (기본 합산)
+
+                totalWeekAudi += pointVal;
+            });
+
+            // 툴팁용 영화 제목 처리 (2편 이상이면 "범죄도시 외 1편" 형식)
+            const finalMovieNm = filmsInWeek.length > 1 ? `${topMovieNm} 외 ${filmsInWeek.length - 1}편` : topMovieNm;
+            
+            return { x: weekStr, y: totalWeekAudi, movieNm: finalMovieNm }; 
         });
 
         return {
@@ -254,8 +262,8 @@ function drawIntegratedChart(type) {
             borderColor: color.border,
             backgroundColor: color.bg,
             borderWidth: 2,
-            tension: 0.2, // 꺾은선 부드럽게
-            spanGaps: true, // [중요] null 데이터 건너뛰고 선 잇기
+            tension: 0.2,
+            spanGaps: true, // 데이터 없는 주차 건너뛰고 연결
             pointRadius: 4,
             pointHoverRadius: 6,
             fill: false
@@ -272,7 +280,7 @@ function drawIntegratedChart(type) {
             responsive: true,
             maintainAspectRatio: false,
             interaction: {
-                mode: 'nearest', // 마우스 근처의 점 인식
+                mode: 'nearest', 
                 axis: 'x',
                 intersect: false
             },
@@ -284,16 +292,8 @@ function drawIntegratedChart(type) {
                 },
                 tooltip: {
                     callbacks: {
-                        // 툴팁에 영화 제목 표시
-                        title: (items) => {
-                            const item = items[0];
-                            // raw 데이터에서 movieNm 추출 (구조가 {x,y,movieNm} 형태임)
-                            const point = item.raw; 
-                            return point.movieNm ? point.movieNm : item.label;
-                        },
-                        label: (ctx) => {
-                            return ` ${ctx.dataset.label}: ${ctx.parsed.y.toLocaleString()}명`;
-                        }
+                        title: (items) => items[0].raw.movieNm || items[0].label,
+                        label: (ctx) => ` ${ctx.dataset.label}: ${ctx.parsed.y.toLocaleString()}명`
                     }
                 }
             },
@@ -307,7 +307,9 @@ function drawIntegratedChart(type) {
                     grid: { display: false },
                     ticks: {
                         maxRotation: 45,
-                        minRotation: 45
+                        minRotation: 45,
+                        autoSkip: true, // 라벨이 너무 많으면 자동으로 건너뜀
+                        maxTicksLimit: 20 // 최대 표시 라벨 수 제한
                     }
                 }
             }
