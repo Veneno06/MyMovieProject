@@ -7,17 +7,23 @@
 <link rel="stylesheet" href="assets/style.css">
 <script src="assets/translator.js" defer></script>
 <style>
-.compare-container { display: flex; gap: 20px; width: 100%; overflow-x: auto; padding-bottom: 10px; }
-.actor-panel { flex: 1; min-width: 300px; padding: 15px; border: 1px solid #e5e7eb; border-radius: 12px; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-h1 { text-align: center; margin-bottom: 30px; }
-h2 { text-align: center; margin-bottom: 15px; font-size: 1.2rem; color: #111; }
-.controls-container { margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; text-align: center; }
+/* 그래프 컨테이너 (하나로 통합) */
+.chart-wrapper { 
+    width: 100%; 
+    height: 500px; /* 높이 충분히 확보 */
+    margin: 20px 0; 
+    padding: 10px;
+    border: 1px solid #e5e7eb; 
+    border-radius: 12px; 
+    background: #fff; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+h1 { text-align: center; margin-bottom: 20px; }
+.controls-container { margin-top: 20px; padding-top: 15px; border-top: 1px solid #eee; text-align: center; }
 .chart-buttons { display:flex; flex-wrap:wrap; gap:8px; justify-content: center; }
 .chart-buttons button { padding:8px 16px; border:1px solid #d1d5db; border-radius:20px; background:#fff; cursor:pointer; font-size:14px; transition: all 0.2s; }
 .chart-buttons button:hover { background: #f3f4f6; }
 .chart-buttons button.active { background:#374151; color:#fff; border-color:#374151; font-weight:bold; }
-canvas { width: 100%; height: 300px; }
-.loading-msg { text-align: center; color: #666; font-size: 0.9em; margin-top: 50px; }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -34,25 +40,12 @@ canvas { width: 100%; height: 300px; }
 
   <h1 data-i18n-key="compareTitle">스타 파워 비교</h1>
 
-  <div class="compare-container">
-    <div class="actor-panel" id="panel1">
-        <h2 id="name1">로딩 중...</h2>
-        <div style="position: relative; height:300px;">
-            <canvas id="chart1"></canvas>
-        </div>
-    </div>
-    <div class="actor-panel" id="panel2">
-        <h2 id="name2">로딩 중...</h2>
-        <div style="position: relative; height:300px;">
-            <canvas id="chart2"></canvas>
-        </div>
-    </div>
-    <div class="actor-panel" id="panel3" style="display: none;">
-        <h2 id="name3">로딩 중...</h2>
-        <div style="position: relative; height:300px;">
-            <canvas id="chart3"></canvas>
-        </div>
-    </div>
+  <div style="margin-bottom:15px;">
+      <button class="btn" onclick="history.back()" data-i18n-key="btnBack">🔙 뒤로</button>
+  </div>
+
+  <div class="chart-wrapper">
+      <canvas id="mainChart"></canvas>
   </div>
   
   <div class="controls-container">
@@ -71,10 +64,18 @@ const TS = Date.now();
 const PATHS_INDEX = [`docs/data/search_index.json?v=${TS}`, `data/search_index.json?v=${TS}`];
 const PATHS_DETAILS = [`docs/data/people/`, `data/people/`]; 
 
-let charts = [null, null, null];
-let actorsData = [null, null, null];
-let SEARCH_INDEX = []; // 영화 정보 족보
-let MOVIE_MAP = {};    // 영화 코드 -> 정보 매핑용
+let mainChart = null;
+let actorsData = []; // [ {name, filmos}, ... ]
+let SEARCH_INDEX = []; 
+let MOVIE_MAP = {};    
+
+// 지정 색상 (최대 4명)
+const COLORS = [
+    { border: '#2563eb', bg: 'rgba(37, 99, 235, 0.1)' }, // 파랑
+    { border: '#dc2626', bg: 'rgba(220, 38, 38, 0.1)' }, // 빨강
+    { border: '#16a34a', bg: 'rgba(22, 163, 74, 0.1)' }, // 초록
+    { border: '#9333ea', bg: 'rgba(147, 51, 234, 0.1)' }  // 보라
+];
 
 function getParam(k){ return new URLSearchParams(location.search).get(k); }
 
@@ -85,7 +86,6 @@ const safeParseInt = (v) => {
     return isNaN(n) ? 0 : n;
 };
 
-// [핵심] 인덱스 로드 및 영화 족보(Map) 생성
 async function loadSearchIndex() {
     if (SEARCH_INDEX.length > 0) return;
     for (const path of PATHS_INDEX) {
@@ -93,10 +93,7 @@ async function loadSearchIndex() {
             const r = await fetch(path);
             if (r.ok) {
                 SEARCH_INDEX = await r.json();
-                // 영화 코드로 개봉일 등을 빨리 찾기 위해 맵핑
-                SEARCH_INDEX.forEach(m => {
-                    MOVIE_MAP[m.movieCd] = m;
-                });
+                SEARCH_INDEX.forEach(m => { MOVIE_MAP[m.movieCd] = m; });
                 return;
             }
         } catch(e) {}
@@ -107,7 +104,6 @@ async function resolveAndFetch(key) {
     if (!key) return null;
     let targetId = key;
 
-    // 키가 이름 형태라면 ID로 변환
     if (!/^\d+$/.test(key)) {
         await loadSearchIndex(); 
         let namePart = key;
@@ -122,16 +118,12 @@ async function resolveAndFetch(key) {
             const actors = m.actors || [];
             const directors = m.directors || [];
             const target = [...actors, ...directors].find(p => p.name === namePart && p.id);
-            if (target) {
-                foundId = target.id;
-                break;
-            }
+            if (target) { foundId = target.id; break; }
         }
         if (foundId) targetId = foundId;
         else return { peopleNm: namePart + " (데이터 없음)", filmos: [] };
     }
 
-    // 상세 파일 로드
     const fname = `${targetId}.json?v=${TS}`;
     let rawData = null;
     for (const prefix of PATHS_DETAILS) {
@@ -146,42 +138,29 @@ async function resolveAndFetch(key) {
     }
 
     if (rawData && rawData.filmos) {
-        await loadSearchIndex(); // 확실하게 인덱스 로드
-        // [중요] 필모그래피에 개봉일(openDt) 정보 합체(Merge)
+        await loadSearchIndex(); 
         rawData.filmos = rawData.filmos.map(f => {
             const baseInfo = MOVIE_MAP[f.movieCd] || {};
             return {
-                ...f, // 원래 정보 (관객수 등)
-                openDt: baseInfo.openDt || f.openDt || '', // 개봉일 보충
-                movieNm: f.movieNm || baseInfo.movieNm // 제목 보충
+                ...f, 
+                openDt: baseInfo.openDt || f.openDt || '', 
+                movieNm: f.movieNm || baseInfo.movieNm 
             };
         });
     }
-
     return rawData;
 }
 
 async function main() {
-    const ids = [getParam('p1'), getParam('p2'), getParam('p3')];
-    if (!ids[2]) document.getElementById('panel3').style.display = 'none';
-    else document.getElementById('panel3').style.display = 'block';
-
+    // 최대 4명까지 파라미터 확인
+    const ids = [getParam('p1'), getParam('p2'), getParam('p3'), getParam('p4')].filter(Boolean);
+    
+    // 데이터 병렬 로드
     const results = await Promise.all(ids.map(id => resolveAndFetch(id)));
-
-    for (let i = 0; i < 3; i++) {
-        if (ids[i]) {
-            const data = results[i];
-            if (data && data.peopleNm) {
-                actorsData[i] = data;
-                document.getElementById(`name${i+1}`).textContent = data.peopleNm;
-            } else {
-                document.getElementById(`name${i+1}`).textContent = "데이터 없음";
-            }
-        }
-    }
+    actorsData = results.filter(data => data && data.peopleNm); // 유효한 데이터만
 
     setupButtonListeners();
-    updateAllCharts('totalAudi');
+    drawIntegratedChart('totalAudi');
 }
 
 function setupButtonListeners() {
@@ -198,82 +177,122 @@ function setupButtonListeners() {
         el.addEventListener('click', () => {
             buttons.forEach(b => document.getElementById(b.id).classList.remove('active'));
             el.classList.add('active');
-            updateAllCharts(btn.type);
+            drawIntegratedChart(btn.type);
         });
     });
 }
 
-function updateAllCharts(type) {
-    for (let i = 0; i < 3; i++) {
-        if (actorsData[i]) {
-            drawChart(i, actorsData[i], type);
-        }
-    }
-}
+// [핵심] 하나의 차트에 모든 배우 데이터를 그리기
+function drawIntegratedChart(type) {
+    const ctx = document.getElementById('mainChart').getContext('2d');
+    if (mainChart) mainChart.destroy();
 
-function drawChart(idx, person, type) {
-    const canvasId = `chart${idx+1}`;
-    const ctx = document.getElementById(canvasId).getContext('2d');
+    // 1. 모든 배우의 영화 개봉일(X축) 수집 및 정렬
+    const allDates = new Set();
+    actorsData.forEach(person => {
+        (person.filmos || []).forEach(f => {
+            // 관객수 0 이상인 영화만 차트에 포함
+            if (f.openDt && f.openDt.length >= 4 && safeParseInt(f.audiAcc) > 0) {
+                allDates.add(f.openDt.slice(0, 4)); // 연도만 사용 (너무 촘촘하지 않게)
+            }
+        });
+    });
     
-    if (charts[idx]) charts[idx].destroy();
+    // X축 라벨 정렬 (과거 -> 미래)
+    const labels = Array.from(allDates).sort(); 
 
-    // 이제 openDt가 합쳐졌으므로 필터링이 잘 작동함
-    const films = (person.filmos || []).filter(f => f.openDt && f.openDt.length >= 4)
-                                       .sort((a,b) => a.openDt.localeCompare(b.openDt));
-    
-    if (films.length === 0) return;
+    // 2. 데이터셋 생성
+    const datasets = actorsData.map((person, idx) => {
+        const color = COLORS[idx % COLORS.length];
+        
+        // 각 연도(label)별로 해당 배우의 데이터 계산 (같은 연도에 여러 영화면 합산 혹은 평균)
+        const dataPoints = labels.map(year => {
+            // 해당 연도에 개봉한 영화들 찾기
+            const filmsInYear = (person.filmos || []).filter(f => 
+                f.openDt && f.openDt.startsWith(year) && safeParseInt(f.audiAcc) > 0
+            );
 
-    const firstYear = parseInt(films[0].openDt.slice(0,4));
-    const labels = films.map(f => f.openDt.slice(0,4));
-    const dataPoints = films.map(f => {
-        const audi = safeParseInt(f.audiAcc);
-        if (type === 'audiPerActor') return Math.round(audi * 0.8); 
-        else if (type === 'audiPerFilmography') return Math.round(audi / films.length);
-        else if (type === 'audiPerCareer') {
-             const curYear = parseInt(f.openDt.slice(0,4));
-             const career = Math.max(1, curYear - firstYear + 1);
-             return Math.round(audi / career);
-        }
-        else if (type === 'audiBonus') return audi > 5000000 ? audi * 1.5 : audi;
-        return audi;
+            if (filmsInYear.length === 0) return null; // 데이터 없으면 끊어짐 (null)
+
+            // 값 계산 (합산 or 평균)
+            let val = 0;
+            filmsInYear.forEach(f => {
+                const audi = safeParseInt(f.audiAcc);
+                let pointVal = 0;
+                
+                if (type === 'audiPerActor') pointVal = Math.round(audi * 0.8); 
+                else if (type === 'audiPerFilmography') pointVal = audi; // 나중에 1/N 처리 애매하므로 합산 후 나눔? 여기선 단순 합산 추천
+                else if (type === 'audiPerCareer') {
+                     // 경력은 첫 영화 기준이라 연도별로는 애매하지만, 단순 수치로 계산
+                     const firstYear = parseInt(person.filmos.filter(x=>x.openDt).sort((a,b)=>a.openDt.localeCompare(b.openDt))[0].openDt.slice(0,4));
+                     const curYear = parseInt(year);
+                     const career = Math.max(1, curYear - firstYear + 1);
+                     pointVal = Math.round(audi / career);
+                }
+                else if (type === 'audiBonus') pointVal = audi > 5000000 ? audi * 1.5 : audi;
+                else pointVal = audi; // totalAudi
+
+                val += pointVal;
+            });
+
+            // 필모그래피 평균의 경우 (해당 연도 영화 수로 나눔)
+            if (type === 'audiPerFilmography') val = Math.round(val / filmsInYear.length);
+
+            return val;
+        });
+
+        return {
+            label: person.peopleNm, // 범례에 표시될 이름
+            data: dataPoints,
+            borderColor: color.border,
+            backgroundColor: color.bg,
+            borderWidth: 2,
+            tension: 0.3,
+            spanGaps: true, // 데이터 없는 구간(null) 이어 그리기 여부 (true면 이어짐)
+            pointRadius: 4,
+            pointHoverRadius: 6,
+            fill: false // 겹치면 보기 싫으므로 채우기 끔
+        };
     });
 
-    const colors = [
-        { border: '#2563eb', bg: 'rgba(37, 99, 235, 0.1)' }, 
-        { border: '#dc2626', bg: 'rgba(220, 38, 38, 0.1)' }, 
-        { border: '#16a34a', bg: 'rgba(22, 163, 74, 0.1)' } 
-    ];
-    const color = colors[idx % 3];
-
-    charts[idx] = new Chart(ctx, {
+    mainChart = new Chart(ctx, {
         type: 'line',
         data: {
             labels: labels,
-            datasets: [{
-                label: '수치',
-                data: dataPoints,
-                borderColor: color.border,
-                backgroundColor: color.bg,
-                fill: true,
-                tension: 0.3,
-                pointRadius: 3
-            }]
+            datasets: datasets
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            interaction: {
+                mode: 'index', // 마우스 올리면 같은 연도의 모든 배우 데이터 툴팁 표시
+                intersect: false,
+            },
             plugins: {
-                legend: { display: false },
+                legend: { 
+                    display: true, // 범례 표시
+                    position: 'bottom',
+                    labels: {
+                        font: { size: 14, weight: 'bold' },
+                        usePointStyle: true,
+                        padding: 20
+                    }
+                },
                 tooltip: {
                     callbacks: {
-                        title: (tt) => films[tt[0].dataIndex].movieNm,
-                        label: (ctx) => ` ${ctx.parsed.y.toLocaleString()}명`
+                        label: (ctx) => ` ${ctx.dataset.label}: ${ctx.raw.toLocaleString()}명`
                     }
                 }
             },
             scales: {
-                y: { beginAtZero: true, ticks: { callback: v => v.toLocaleString() } },
-                x: { grid: { display: false } }
+                y: { 
+                    beginAtZero: true, 
+                    ticks: { callback: v => v.toLocaleString() },
+                    grid: { color: '#f3f4f6' }
+                },
+                x: {
+                    grid: { display: false }
+                }
             }
         }
     });
