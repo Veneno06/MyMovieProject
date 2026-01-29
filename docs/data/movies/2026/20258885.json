@@ -1,0 +1,88 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20258885",
+      "movieNm": "프라이메이트",
+      "movieNmEn": "Primate",
+      "movieNmOg": "",
+      "showTm": "88",
+      "prdtYear": "2025",
+      "openDt": "20260128",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "공포(호러)"
+        },
+        {
+          "genreNm": "스릴러"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "요하네스 로버츠",
+          "peopleNmEn": "Johannes Roberts"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "조니 세쿼야",
+          "peopleNmEn": "Johnny Sequoyah",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "제시카 알렉산더",
+          "peopleNmEn": "Jessica Alexander",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "트로이 코처",
+          "peopleNmEn": "Troy Kotsur",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20188021",
+          "companyNm": "롯데컬처웍스(주)롯데엔터테인먼트",
+          "companyNmEn": "Lotte Entertainment",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20188021",
+          "companyNm": "롯데컬처웍스(주)롯데엔터테인먼트",
+          "companyNmEn": "Lotte Entertainment",
+          "companyPartNm": "수입사"
+        },
+        {
+          "companyCd": "20104469",
+          "companyNm": "파라마운트 픽쳐스",
+          "companyNmEn": "Paramount Pictures",
+          "companyPartNm": "제공"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2025-MF03338",
+          "watchGradeNm": "청소년관람불가"
+        }
+      ],
+      "staffs": []
+    },
+    "source": "영화진흥위원회"
+  }
+}
