@@ -1,12 +1,14 @@
-name: YouTube Sentiment Analysis (AI)
+name: YouTube Sentiment Auto Update
 
 on:
   workflow_dispatch:
     inputs:
-      actor:
-        description: '여론을 분석할 배우 이름 (예: 마동석, 유해진)'
-        required: true
-        default: '마동석'
+      pattern:
+        description: '자음 검색 모드 (예: ㄱ, ㄴ, ㄷ, ㄹ)'
+        required: false
+      actor_name:
+        description: '단일 배우 검색 모드 (예: 황정민). ※ 패턴과 배우 이름 중 하나만 입력하세요.'
+        required: false
 
 permissions:
   contents: write
@@ -14,7 +16,7 @@ permissions:
 jobs:
   run-sentiment-analysis:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 360 
 
     steps:
       - name: Checkout Repository
@@ -29,15 +31,26 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      - name: Run AI Sentiment Analysis
+      # A. 자음(초성) 검색 실행
+      - name: Run AI Sentiment Analysis (Pattern Mode)
+        if: ${{ github.event.inputs.pattern != '' }}
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
-        run: python scripts/youtube_sentiment.py --actor "${{ inputs.actor }}"
+          YOUTUBE_API_KEY_2: ${{ secrets.YOUTUBE_API_KEY_2 }}
+        run: python scripts/youtube_sentiment.py --pattern "${{ github.event.inputs.pattern }}"
+
+      # B. 단일 배우 실행
+      - name: Run AI Sentiment Analysis (Single Mode)
+        if: ${{ github.event.inputs.actor_name != '' }}
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          YOUTUBE_API_KEY_2: ${{ secrets.YOUTUBE_API_KEY_2 }}
+        run: python scripts/youtube_sentiment.py --actor "${{ github.event.inputs.actor_name }}"
 
       - name: Commit and Push Data
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           git add docs/data/sentiment/*.json
-          git commit -m "Add/Update sentiment analysis for ${{ inputs.actor }}" || echo "No changes to commit"
+          git commit -m "Auto update YouTube sentiment analysis data" || echo "No changes to commit"
           git push
