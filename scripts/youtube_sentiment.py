@@ -1,133 +1,129 @@
-# scripts/youtube_sentiment.py (개선판: 조회수 필터 적용)
+# scripts/youtube_sentiment.py
 import os
 import json
+import glob
 import argparse
 from datetime import datetime
 from pathlib import Path
 from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
 from transformers import pipeline
 import sys
 
 # 한글 출력 세팅
 sys.stdout.reconfigure(encoding='utf-8')
 
-# 파일 경로
 HERE = Path(__file__).resolve()
 ROOT = HERE.parents[1] if HERE.parents[1].name == "MyMovieProject" else HERE.parents[2]
+PEOPLE_DIR = ROOT / "docs" / "data" / "people"
 SENTIMENT_DIR = ROOT / "docs" / "data" / "sentiment"
 SENTIMENT_DIR.mkdir(parents=True, exist_ok=True)
 
-YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY")
+# [핵심] 여러 개의 API 키를 리스트로 묶어 관리합니다.
+API_KEYS = []
+for k in [os.environ.get("YOUTUBE_API_KEY"), os.environ.get("YOUTUBE_API_KEY_2")]:
+    if k: API_KEYS.append(k)
+
+CURRENT_KEY_INDEX = 0
+CLASSIFIER = None 
+
+def load_ai_model():
+    global CLASSIFIER
+    if CLASSIFIER is None:
+        print("🤖 AI 감성 분석 모델 로딩 중... (최초 1회만 실행)")
+        CLASSIFIER = pipeline("sentiment-analysis", model="nlptown/bert-base-multilingual-uncased-sentiment")
+    return CLASSIFIER
 
 def get_week_string(date_str):
     dt = datetime.strptime(date_str[:10], "%Y-%m-%d")
     year, week, _ = dt.isocalendar()
     return f"{year}-W{week:02d}"
 
+def get_initial_sound(char):
+    CHOSUNG_LIST = ['ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ']
+    if not char: return ""
+    if char in CHOSUNG_LIST: return char
+    if '가' <= char <= '힣':
+        return CHOSUNG_LIST[(ord(char) - 0xAC00) // 588]
+    return char
+
 def get_youtube_comments(actor_name, min_views=100000, max_videos_check=10, max_comments_per_video=100):
-    """
-    actor_name: 검색할 배우 이름
-    min_views: 최소 조회수 (기본 10만)
-    max_videos_check: 조회수 확인을 위해 검사할 후보 영상 개수 (기본 10개)
-    """
-    if not YOUTUBE_API_KEY:
-        print("❌ [오류] YOUTUBE_API_KEY 없음")
+    global CURRENT_KEY_INDEX
+    
+    if not API_KEYS:
+        print("❌ [오류] 등록된 YOUTUBE_API_KEY가 없습니다.")
         return []
 
-    youtube = build('youtube', 'v3', developerKey=YOUTUBE_API_KEY)
-    
-    print(f"🔍 '{actor_name}' 관련 영상 검색 중... (조회수 {min_views}회 이상 필터링)")
-    
-    # 1. 검색 (검색어 범위를 넓힘: 이름만 검색)
-    # type='video'로 영상만 검색
-    search_response = youtube.search().list(
-        q=actor_name, 
-        part='id,snippet',
-        maxResults=max_videos_check, 
-        type='video',
-        order='relevance' # 관련성 순 (조회수 순으로 하면 너무 옛날 영상만 나올 수 있어서 관련성 추천)
-    ).execute()
-
-    # 검색된 영상들의 ID 목록
-    candidate_ids = [item['id']['videoId'] for item in search_response.get('items', [])]
-    
-    if not candidate_ids:
-        print(" -> 검색 결과가 없습니다.")
-        return []
-
-    # 2. 영상 세부 정보(조회수) 조회
-    # search()에서는 조회수가 안 나와서 videos()를 한 번 더 호출해야 함
-    stats_response = youtube.videos().list(
-        part='statistics,snippet',
-        id=','.join(candidate_ids)
-    ).execute()
-
-    target_video_ids = []
-    
-    print(f" -> 후보 영상 {len(candidate_ids)}개 중 조회수 {min_views}회 이상 선별 중...")
-
-    for item in stats_response.get('items', []):
-        view_count = int(item['statistics'].get('viewCount', 0))
-        video_title = item['snippet']['title']
+    # API 키를 모두 소진할 때까지 반복
+    while CURRENT_KEY_INDEX < len(API_KEYS):
+        current_key = API_KEYS[CURRENT_KEY_INDEX]
+        youtube = build('youtube', 'v3', developerKey=current_key)
         
-        # [조건 체크] 조회수 10만 이상인가?
-        if view_count >= min_views:
-            print(f"  [O] 선택됨: {video_title} (조회수: {view_count:,}회)")
-            target_video_ids.append(item['id'])
-            # 너무 많이 수집하면 시간 걸리니 상위 3개만 수집
-            if len(target_video_ids) >= 3: 
-                break
-        else:
-            print(f"  [X] 제외됨: {video_title} (조회수: {view_count:,}회 - 기준 미달)")
-
-    if not target_video_ids:
-        print("⚠️ 조건(조회수 10만 이상)을 만족하는 영상이 없습니다.")
-        return []
-
-    all_comments = []
-
-    # 3. 선별된 영상에서 댓글 수집
-    for video_id in target_video_ids:
         try:
-            comment_response = youtube.commentThreads().list(
-                videoId=video_id,
-                part='snippet',
-                maxResults=max_comments_per_video,
-                order='relevance'
+            print(f"🔍 '{actor_name}' 유튜브 검색 중... (Key {CURRENT_KEY_INDEX+1} 사용 / 조회수 {min_views}+ 필터)")
+            
+            search_response = youtube.search().list(
+                q=actor_name, part='id,snippet', maxResults=max_videos_check, type='video', order='relevance'
             ).execute()
 
-            for item in comment_response.get('items', []):
-                snippet = item['snippet']['topLevelComment']['snippet']
-                text = snippet['textOriginal']
-                published_at = snippet['publishedAt']
-                
-                if len(text) > 5 and "http" not in text:
-                    all_comments.append({
-                        "text": text,
-                        "date": published_at
-                    })
-        except Exception as e:
-            print(f"⚠️ 영상({video_id}) 댓글 수집 불가: {e}")
+            candidate_ids = [item['id']['videoId'] for item in search_response.get('items', [])]
+            if not candidate_ids: return []
 
-    print(f"💬 총 {len(all_comments)}개의 유효한 댓글 수집 완료.")
-    return all_comments
+            stats_response = youtube.videos().list(part='statistics,snippet', id=','.join(candidate_ids)).execute()
+
+            target_video_ids = []
+            for item in stats_response.get('items', []):
+                view_count = int(item['statistics'].get('viewCount', 0))
+                if view_count >= min_views:
+                    target_video_ids.append(item['id'])
+                    if len(target_video_ids) >= 3: break
+
+            if not target_video_ids: return []
+
+            all_comments = []
+            for video_id in target_video_ids:
+                comment_response = youtube.commentThreads().list(
+                    videoId=video_id, part='snippet', maxResults=max_comments_per_video, order='relevance'
+                ).execute()
+
+                for item in comment_response.get('items', []):
+                    text = item['snippet']['topLevelComment']['snippet']['textOriginal']
+                    date = item['snippet']['topLevelComment']['snippet']['publishedAt']
+                    if len(text) > 5 and "http" not in text:
+                        all_comments.append({"text": text, "date": date})
+
+            print(f"💬 총 {len(all_comments)}개 댓글 수집 완료.")
+            return all_comments
+
+        except HttpError as e:
+            # 403 (할당량 초과) 에러 발생 시 다음 키로 교체!
+            if e.resp.status in [403, 429]:
+                print(f"⚠️ API Key {CURRENT_KEY_INDEX+1} 할당량 초과!")
+                CURRENT_KEY_INDEX += 1
+                if CURRENT_KEY_INDEX < len(API_KEYS):
+                    print(f"🔄 다음 키(Key {CURRENT_KEY_INDEX+1})로 교체하여 다시 시도합니다...")
+                    continue # while 루프 처음으로 돌아가 다음 키로 재시도
+                else:
+                    print("🚨 모든 API 키의 할당량이 소진되었습니다.")
+                    return []
+            else:
+                print(f"❌ 검색 API 기타 오류: {e}")
+                return []
+        except Exception as e:
+            print(f"❌ 알 수 없는 오류: {e}")
+            return []
+            
+    return []
 
 def analyze_sentiment(comments):
     if not comments: return {}
-
-    print("🤖 AI 감성 분석 모델 로딩 중...")
-    classifier = pipeline("sentiment-analysis", model="nlptown/bert-base-multilingual-uncased-sentiment")
-    
+    classifier = load_ai_model()
     timeline_data = {}
 
-    print("🧠 댓글 분석 시작...")
-    for idx, comment in enumerate(comments):
-        if idx > 0 and idx % 50 == 0: print(f" ... {idx}/{len(comments)} 완료")
-            
+    for comment in comments:
         try:
             text = comment["text"][:500]
-            result = classifier(text)[0]
-            label = result['label']
+            label = classifier(text)[0]['label']
             
             if "1 star" in label or "2 stars" in label: sentiment = "negative"
             elif "4 stars" in label or "5 stars" in label: sentiment = "positive"
@@ -136,20 +132,20 @@ def analyze_sentiment(comments):
             week_str = get_week_string(comment["date"])
             if week_str not in timeline_data: timeline_data[week_str] = {"positive": 0, "negative": 0}
             timeline_data[week_str][sentiment] += 1
-            
         except: continue
 
     return timeline_data
 
-def run(actor_name):
-    print(f"=== [{actor_name}] 유튜브 여론 분석 (조회수 10만+ 필터) ===")
-    
+def run_single(actor_name):
+    print(f"\n========================================")
+    print(f"🎬 분석 시작: {actor_name}")
+    print(f"========================================")
     comments = get_youtube_comments(actor_name)
     timeline_data = analyze_sentiment(comments)
     
     if not timeline_data:
-        print(f"❌ 데이터 부족으로 저장 생략.")
-        return
+        print(f"❌ 유효한 데이터가 없어 '{actor_name}' 저장을 생략합니다.")
+        return False
 
     save_path = SENTIMENT_DIR / f"{actor_name}.json"
     
@@ -170,11 +166,95 @@ def run(actor_name):
 
     with open(save_path, 'w', encoding='utf-8') as f:
         json.dump(final_data, f, ensure_ascii=False, indent=2)
+    print(f"✅ 저장 완료: {actor_name}.json")
+    return True
+
+def run_pattern(pattern):
+    target_initial = get_initial_sound(pattern[0]) if pattern else None
+    print(f"🎬 [자음 검색 모드] 패턴: '{pattern}' -> 초성: '{target_initial or '전체'}'")
+
+    if not PEOPLE_DIR.exists():
+        print(f"❌ 배우 데이터 폴더를 찾을 수 없습니다: {PEOPLE_DIR}")
+        return
+
+    files = glob.glob(str(PEOPLE_DIR / "*.json"))
+    candidate_actors = []
+    
+    for p in files:
+        try:
+            with open(p, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+            info = data.get("peopleInfoResult", {}).get("peopleInfo", data)
+            name = info.get("peopleNm", "").strip()
+            
+            if not name: continue
+            
+            if target_initial:
+                movie_initial = get_initial_sound(name[0])
+                if movie_initial.upper() == target_initial.upper():
+                    candidate_actors.append(name)
+            else:
+                candidate_actors.append(name)
+        except: continue
         
-    print(f"✅ 저장 완료: {save_path.name}")
+    candidate_actors = list(set(candidate_actors))
+    print(f"-> 대상 초성에 해당하는 총 배우 수: {len(candidate_actors)}명")
+
+    # 최근 업데이트된 배우 스킵 (API 절약)
+    target_actors = []
+    for name in candidate_actors:
+        save_path = SENTIMENT_DIR / f"{name}.json"
+        if save_path.exists():
+            try:
+                with open(save_path, 'r', encoding='utf-8') as f:
+                    last_updated_str = json.load(f).get("last_updated", "")
+                if last_updated_str:
+                    last_updated = datetime.strptime(last_updated_str, "%Y-%m-%d %H:%M:%S")
+                    # 최근 6일 이내에 업데이트된 파일이면 스킵
+                    if (datetime.now() - last_updated).days < 6:
+                        continue
+            except: pass
+        target_actors.append(name)
+
+    print(f"-> 최근 업데이트된 배우 제외 후 실제 분석할 배우 수: {len(target_actors)}명")
+
+    # API 보호를 위해 1회 실행 시 최대 50명까지만 제한
+    LIMIT = 50
+    if len(target_actors) > LIMIT:
+        print(f"⚠️ 안전을 위해 이번 실행에서는 최대 {LIMIT}명까지만 분석합니다.")
+        target_actors = target_actors[:LIMIT]
+
+    if not target_actors:
+        print("✅ 이번 실행에서 업데이트가 필요한 배우가 없습니다.")
+        return
+
+    success_count = 0
+    for idx, actor in enumerate(target_actors):
+        print(f"\n전체 진행률: [{idx+1}/{len(target_actors)}]")
+        try:
+            if run_single(actor):
+                success_count += 1
+        except Exception as e:
+            print(f"⚠️ {actor} 처리 중 예기치 않은 오류 발생: {e}")
+            continue
+            
+        # 키가 2개 모두 소진되었다면 전체 루프 강제 종료
+        global CURRENT_KEY_INDEX
+        if CURRENT_KEY_INDEX >= len(API_KEYS):
+            print("🚨 모든 API 키가 소진되어 오늘의 작업을 조기 종료합니다.")
+            break
+
+    print(f"\n🎉 작업 완료! (성공: {success_count}/{len(target_actors)}명)")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--actor", type=str, required=True)
+    parser.add_argument("--pattern", type=str, help="초성 검색 (예: ㄱ, ㄴ, ㄷ)")
+    parser.add_argument("--actor", type=str, help="단일 배우 이름 검색 (예: 마동석)")
     args = parser.parse_args()
-    run(args.actor)
+
+    if args.pattern:
+        run_pattern(args.pattern)
+    elif args.actor:
+        run_single(args.actor)
+    else:
+        print("사용법: python youtube_sentiment.py --pattern ㄱ (또는 --actor 배우이름)")
