@@ -1,0 +1,43 @@
+name: YouTube Sentiment Analysis (AI)
+
+on:
+  workflow_dispatch:
+    inputs:
+      actor:
+        description: '여론을 분석할 배우 이름 (예: 마동석, 유해진)'
+        required: true
+        default: '마동석'
+
+permissions:
+  contents: write
+
+jobs:
+  run-sentiment-analysis:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run AI Sentiment Analysis
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: python scripts/youtube_sentiment.py --actor "${{ inputs.actor }}"
+
+      - name: Commit and Push Data
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add docs/data/sentiment/*.json
+          git commit -m "Add/Update sentiment analysis for ${{ inputs.actor }}" || echo "No changes to commit"
+          git push
