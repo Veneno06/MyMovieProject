@@ -1,20 +1,20 @@
 <!doctype html>
-<html lang="ko">  
+<html lang="ko">
 <head>
 <meta charset="utf-8">
 <title>배우 프로필</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="assets/style.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@1.0.1/dist/chartjs-adapter-moment.min.js"></script>
 <script src="assets/translator.js" defer></script>
 <style>
-.sentiment-control-box { background: #f6f7f9; border: 1px solid #e5e7eb; border-radius: 8px; padding: 15px; margin-bottom: 20px; display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
+/* 여론 분석 컨트롤 박스 스타일 */
+.sentiment-control-box {
+    background: #f6f7f9; border: 1px solid #e5e7eb; border-radius: 8px; 
+    padding: 15px; margin-bottom: 20px; display: flex; gap: 20px; flex-wrap: wrap; align-items: center;
+}
 .sentiment-control-box label { font-weight: bold; margin-right: 5px; font-size: 14px; }
 .sentiment-control-box select, .sentiment-control-box input { padding: 6px; border: 1px solid #ccc; border-radius: 4px; }
-/* 차트 컨테이너 동일한 너비 확보 */
-.shared-chart-container { position: relative; height:300px; width:100%; margin-bottom: 30px; }
 </style>
 </head>
 <body>
@@ -55,32 +55,37 @@
         <button id="btnAudiPerCareer" class="btn" data-i18n-key="audiPerCareer">관객수/연기경력</button>
         <button id="btnAudiBonus" class="btn" data-i18n-key="audiBonus">500만+ 가중치</button>
     </div>
-    <div class="shared-chart-container">
+    <div style="position: relative; height:300px; width:100%">
         <canvas id="audiChart"></canvas>
     </div>
   </div>
 
-  <div id="sentiment-container" style="display:none; margin-top: 20px; padding-top: 20px; border-top: 2px dashed #e5e7eb;">
+  <div id="sentiment-container" style="display:none; margin-top: 60px; padding-top: 20px; border-top: 2px dashed #e5e7eb;">
     <h2>유튜브 여론 분석 (긍정/부정)</h2>
+    
     <div class="sentiment-control-box">
         <div>
             <label>X축 (기간) 설정:</label>
             <select id="timeRange">
                 <option value="all">전체 기간 보기</option>
-                <option value="3">최근 3년</option>
-                <option value="1">최근 1년</option>
+                <option value="12">최근 3개월 (12주)</option>
+                <option value="24">최근 6개월 (24주)</option>
+                <option value="52">최근 1년 (52주)</option>
             </select>
         </div>
         <div>
             <label>Y축 (댓글 수) 고정:</label>
             <input type="number" id="yMax" placeholder="예: 30" style="width: 80px;">
+            <span style="font-size: 12px; color: #666;">(비워두면 자동 조절)</span>
         </div>
         <button class="btn" onclick="drawSentimentChart()">그래프 적용</button>
     </div>
-    <div class="shared-chart-container" style="height: 350px;">
+
+    <div style="position: relative; height:400px; width:100%">
         <canvas id="sentimentChart"></canvas>
     </div>
   </div>
+
 </div>
 
 <script>
@@ -89,70 +94,124 @@ const PATHS_INDEX = [`docs/data/search_index.json?v=${TS}`, `data/search_index.j
 const PATHS_DETAILS = [`docs/data/people/`, `data/people/`]; 
 
 function getParam(k){ return new URL(location.href).searchParams.get(k) || ""; }
-const safeParseInt = (v) => { if (!v) return 0; if (typeof v === 'number') return v; const n = parseInt(String(v).replace(/,/g, ''), 10); return isNaN(n) ? 0 : n; };
+const safeParseInt = (v) => {
+    if (v === null || v === undefined) return 0;
+    if (typeof v === 'number') return v;
+    const n = parseInt(String(v).replace(/,/g, '').trim(), 10);
+    return isNaN(n) ? 0 : n;
+};
 const fmtNum = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-let myChart = null; 
-let sentimentChartInstance = null; 
+let myChart = null; // 관객수 차트
+let sentimentChartInstance = null; // 여론 분석 차트
 let currentId = null, currentName = null;
-let rawSentimentData = null; 
-let chartMoviesData = []; 
+let rawSentimentData = null; // 여론 원본 데이터
 
-// 공통 X축 옵션 (두 차트의 시간 비율을 똑같이 맞춤)
-const commonXScaleOptions = {
-    type: 'time',
-    time: {
-        unit: 'year',
-        displayFormats: { year: 'YYYY년', month: 'YYYY.MM' },
-        tooltipFormat: 'YYYY년 MM월 DD일'
-    },
-    grid: { display: false },
-    ticks: { maxRotation: 45, minRotation: 45 }
-};
-
-// ... [중략] 기존 fetchIndex, fetchPersonDetail 등 저장 관련 함수 그대로 유지
 const saveBtn = document.getElementById('saveBtn');
+
 function isSaved(id) { const s = JSON.parse(localStorage.getItem('savedPeople')||'{}'); return !!s[id]; }
-function renderSaveBtn() { if (!currentId) return; saveBtn.style.display = 'inline-block'; saveBtn.textContent = isSaved(currentId) ? '⭐ 저장됨' : '☆ 배우 저장'; }
-saveBtn.addEventListener('click', () => { const s = JSON.parse(localStorage.getItem('savedPeople')||'{}'); if (s[currentId]) delete s[currentId]; else s[currentId] = { name: currentName, personKey: currentId }; localStorage.setItem('savedPeople', JSON.stringify(s)); renderSaveBtn(); });
+function renderSaveBtn() {
+    if (!currentId) return;
+    saveBtn.style.display = 'inline-block';
+    saveBtn.textContent = isSaved(currentId) ? '⭐ 저장됨' : '☆ 배우 저장';
+}
+saveBtn.addEventListener('click', () => {
+    const s = JSON.parse(localStorage.getItem('savedPeople')||'{}');
+    if (s[currentId]) delete s[currentId];
+    else s[currentId] = { name: currentName, personKey: currentId };
+    localStorage.setItem('savedPeople', JSON.stringify(s));
+    renderSaveBtn();
+});
 
 function updateActiveBtn(activeId) {
     const ids = ['btnTotalAudi','btnAudiPerActor','btnAudiPerFilmography','btnAudiPerCareer','btnAudiBonus'];
     ids.forEach(id => {
         const el = document.getElementById(id);
-        if(id === activeId) { el.classList.add('active'); el.style.backgroundColor = '#333'; el.style.color = '#fff'; el.style.borderColor = '#333'; } 
-        else { el.classList.remove('active'); el.style.backgroundColor = '#fff'; el.style.color = '#333'; el.style.borderColor = '#e5e7eb'; }
+        if(id === activeId) {
+            el.classList.add('active');
+            el.style.backgroundColor = '#333';
+            el.style.color = '#fff';
+            el.style.borderColor = '#333';
+        } else {
+            el.classList.remove('active');
+            el.style.backgroundColor = '#fff';
+            el.style.color = '#333';
+            el.style.borderColor = '#e5e7eb';
+        }
     });
 }
 
-async function fetchIndex() { for (const p of PATHS_INDEX) { try { const r = await fetch(p); if(r.ok) return await r.json(); } catch(e){} } return []; }
-async function fetchPersonDetail(id) { if(!id || id.startsWith('name:')) return null; const fname = `${id}.json?v=${TS}`; for (const prefix of PATHS_DETAILS) { try { const r = await fetch(prefix + fname); if(r.ok) return await r.json(); } catch(e){} } return null; }
-async function fetchSentimentData(name) { const url = `data/sentiment/${name}.json?v=${TS}`; const url2 = `docs/data/sentiment/${name}.json?v=${TS}`; for (const p of [url, url2]) { try { const r = await fetch(p); if (r.ok) return await r.json(); } catch(e) {} } return null; }
+async function fetchIndex() {
+    for (const p of PATHS_INDEX) {
+        try { const r = await fetch(p); if(r.ok) return await r.json(); } catch(e){}
+    }
+    return [];
+}
+async function fetchPersonDetail(id) {
+    if(!id || id.startsWith('name:')) return null;
+    const fname = `${id}.json?v=${TS}`;
+    for (const prefix of PATHS_DETAILS) {
+        try { const r = await fetch(prefix + fname); if(r.ok) return await r.json(); } catch(e){}
+    }
+    return null;
+}
+
+// [추가] 여론 분석 데이터 로드 함수
+async function fetchSentimentData(name) {
+    const url = `data/sentiment/${name}.json?v=${TS}`;
+    // docs 경로 처리
+    const url2 = `docs/data/sentiment/${name}.json?v=${TS}`;
+    for (const p of [url, url2]) {
+        try {
+            const r = await fetch(p);
+            if (r.ok) return await r.json();
+        } catch(e) {}
+    }
+    return null;
+}
 
 async function render(){
   currentId = getParam('id') || getParam('personKey');
   currentName = getParam('name') || "이름 없음";
-  if (!currentId) return;
+  
+  if (!currentId) { document.getElementById('msg').textContent = '잘못된 접근'; return; }
+  
   document.getElementById('title').textContent = currentName;
-  if (!currentId.startsWith('name:')) document.getElementById('codeDisplay').textContent = `(${currentId})`;
+  if (!currentId.startsWith('name:')) {
+      document.getElementById('codeDisplay').textContent = `(${currentId})`;
+  }
   renderSaveBtn();
 
   const allMovies = await fetchIndex() || [];
-  const movieMap = {}; allMovies.forEach(m => movieMap[m.movieCd] = m);
+  const movieMap = {};
+  allMovies.forEach(m => movieMap[m.movieCd] = m);
+
   const details = await fetchPersonDetail(currentId);
   
   let myMovies = [];
+  let personInfo = null;
+
   if (details) {
-      const personInfo = (details.peopleInfoResult && details.peopleInfoResult.peopleInfo) ? details.peopleInfoResult.peopleInfo : details;
+      personInfo = (details.peopleInfoResult && details.peopleInfoResult.peopleInfo) 
+                     ? details.peopleInfoResult.peopleInfo 
+                     : details;
+
       if (personInfo && personInfo.sex) {
-           const s = personInfo.sex.trim(); const badge = document.getElementById('sexBadge');
+           const s = personInfo.sex.trim();
+           const badge = document.getElementById('sexBadge');
            if (s === "남자" || s === "남") { badge.textContent = "♂"; badge.style.color = "blue"; }
            else if (s === "여자" || s === "여") { badge.textContent = "♀"; badge.style.color = "red"; }
       }
+
       if (personInfo && personInfo.filmos) {
           myMovies = personInfo.filmos.map(filmo => {
               const baseInfo = movieMap[filmo.movieCd] || {};
-              return { ...baseInfo, ...filmo, movieNm: filmo.movieNm || baseInfo.movieNm, openDt: baseInfo.openDt || filmo.openDt };
+              return {
+                  ...baseInfo,      
+                  ...filmo,         
+                  movieNm: filmo.movieNm || baseInfo.movieNm, 
+                  openDt: baseInfo.openDt || filmo.openDt 
+              };
           });
       }
   }
@@ -161,44 +220,99 @@ async function render(){
       const seen = new Set();
       allMovies.forEach(m => {
           if (seen.has(m.movieCd)) return;
-          const actors = m.actors || []; const directors = m.directors || [];
-          let match = currentId.startsWith('name:') ? (actors.some(a => a.name === currentName) || directors.some(d => d.name === currentName)) : (actors.some(a => a.id === currentId) || directors.some(d => d.id === currentId));
-          if (match) { myMovies.push(m); seen.add(m.movieCd); }
+          let match = false;
+          const actors = m.actors || [];
+          const directors = m.directors || [];
+
+          if (currentId.startsWith('name:')) {
+              const targetName = currentId.replace('name:', '');
+              match = actors.some(a => a.name === targetName) || directors.some(d => d.name === targetName);
+          } else {
+              match = actors.some(a => a.id === currentId) || directors.some(d => d.id === currentId);
+          }
+
+          if (match) {
+              myMovies.push(m);
+              seen.add(m.movieCd);
+          }
       });
   }
 
-  const uniqueMovies = []; const seenCodes = new Set();
+  const uniqueMovies = [];
+  const seenCodes = new Set();
+
   myMovies.forEach(m => {
       if (seenCodes.has(m.movieCd)) return;
-      if (m.openDt && m.openDt.replace(/-/g, '').trim().length >= 4) { seenCodes.add(m.movieCd); uniqueMovies.push(m); }
+      const hasDate = m.openDt && m.openDt.replace(/-/g, '').trim().length >= 4;
+      if (hasDate) {
+          seenCodes.add(m.movieCd);
+          uniqueMovies.push(m);
+      }
   });
+
   uniqueMovies.sort((a,b) => (b.openDt || '').localeCompare(a.openDt || ''));
   
-  const out = document.getElementById('out'); out.innerHTML = '';
+  const out = document.getElementById('out');
+  out.innerHTML = '';
   const filmsForChart = [];
 
-  for (const f of uniqueMovies) {
-      const audiNum = safeParseInt(f.audiAcc);
-      const li = document.createElement('li'); li.style.borderBottom = "1px dashed #e5e7eb"; li.style.padding = "8px 0";
-      li.innerHTML = `<a href="detail.html?movieCd=${encodeURIComponent(f.movieCd)}" style="font-weight:bold;">${f.movieNm}</a> <span class="note">(${f.openDt})</span>`;
-      out.appendChild(li);
-      if (f.openDt && f.openDt.length >= 8 && audiNum > 0) filmsForChart.push({ ...f, audiAcc: audiNum });
+  if (uniqueMovies.length === 0) {
+      document.getElementById('msg').textContent = "등록된(개봉일이 확인된) 출연작이 없습니다.";
+  } else {
+      for (const f of uniqueMovies) {
+        const audiNum = safeParseInt(f.audiAcc);
+        const audiStr = audiNum ? ` / <span style="font-weight:bold; color:#333;">누적 ${fmtNum(audiNum)}명</span>` : '';
+        
+        let castStr = "";
+        if (f.actors && Array.isArray(f.actors)) {
+            const d = f.actors.slice(0, 7).map(a => {
+                if (a.name === currentName) return `<b>${a.name}</b>`;
+                const pid = (a.id && a.id.trim()) ? a.id : `name:${a.name}`;
+                const href = `person.html?id=${encodeURIComponent(pid)}&name=${encodeURIComponent(a.name)}`;
+                return `<a href="${href}" target="_blank" style="color:#555;">${a.name}</a>`;
+            });
+            castStr = ` · 배우: ${d.join(', ')}`;
+        }
+        
+        const li = document.createElement('li');
+        li.style.borderBottom = "1px dashed #e5e7eb";
+        li.style.padding = "8px 0";
+        li.innerHTML = `<a href="detail.html?movieCd=${encodeURIComponent(f.movieCd)}" style="font-weight:bold;">${f.movieNm}</a>
+          <span class="note">(${f.openDt}${audiStr}<span style="font-size:13px; color:#666; margin-left:5px;">${castStr}</span>)</span>`;
+        out.appendChild(li);
+        
+        if (f.openDt && audiNum > 0) {
+            filmsForChart.push({ ...f, audiAcc: audiNum });
+        }
+      }
+
+      if (filmsForChart.length > 0) {
+          document.getElementById('chart-container').style.display = 'block';
+          const chartData = [...filmsForChart].sort((a,b) => (a.openDt||'').localeCompare(b.openDt||''));
+          
+          updateActiveBtn('btnTotalAudi');
+          drawAudiChart(chartData, 'totalAudi');
+          
+          const buttons = [
+            { id: 'btnTotalAudi', type: 'totalAudi' },
+            { id: 'btnAudiPerActor', type: 'audiPerActor' },
+            { id: 'btnAudiPerFilmography', type: 'audiPerFilmography' },
+            { id: 'btnAudiPerCareer', type: 'audiPerCareer' },
+            { id: 'btnAudiBonus', type: 'audiBonus' }
+          ];
+          buttons.forEach(b => {
+              const el = document.getElementById(b.id);
+              if(el) {
+                  el.onclick = () => {
+                      updateActiveBtn(b.id);
+                      drawAudiChart(chartData, b.type);
+                  };
+              }
+          });
+      }
   }
 
-  chartMoviesData = [...filmsForChart].sort((a,b) => (a.openDt||'').localeCompare(b.openDt||''));
-
-  if (chartMoviesData.length > 0) {
-      document.getElementById('chart-container').style.display = 'block';
-      updateActiveBtn('btnTotalAudi');
-      drawAudiChart('totalAudi');
-      
-      const buttons = [ { id: 'btnTotalAudi', type: 'totalAudi' }, { id: 'btnAudiPerActor', type: 'audiPerActor' }, { id: 'btnAudiPerFilmography', type: 'audiPerFilmography' }, { id: 'btnAudiPerCareer', type: 'audiPerCareer' }, { id: 'btnAudiBonus', type: 'audiBonus' } ];
-      buttons.forEach(b => {
-          const el = document.getElementById(b.id);
-          if(el) el.onclick = () => { updateActiveBtn(b.id); drawAudiChart(b.type); };
-      });
-  }
-
+  // [추가] 여론 분석 데이터 로드 및 렌더링
   rawSentimentData = await fetchSentimentData(currentName);
   if (rawSentimentData && rawSentimentData.timeline) {
       document.getElementById('sentiment-container').style.display = 'block';
@@ -206,106 +320,126 @@ async function render(){
   }
 }
 
-function drawAudiChart(type) {
-    if (!chartMoviesData || chartMoviesData.length === 0) return;
+// 기존 관객수 차트 그리기 함수
+function drawAudiChart(films, type) {
     const ctx = document.getElementById('audiChart');
+    if (!ctx) return;
     if (myChart) myChart.destroy();
     
-    // Time Scale에 맞게 { x: date, y: value } 형태로 데이터 생성
-    const parsedData = chartMoviesData.map(f => {
-        let val = safeParseInt(f.audiAcc);
-        if (type === 'audiPerActor') val = Math.round(val / ((f.actors && f.actors.length > 0) ? f.actors.length : 1));
-        else if (type === 'audiPerFilmography') val = Math.round(val / chartMoviesData.length);
-        else if (type === 'audiBonus') val = val > 5000000 ? val * 1.5 : val;
-        
-        // 날짜 파싱 (YYYYMMDD -> YYYY-MM-DD)
-        const dStr = f.openDt.replace(/-/g, '');
-        const dateObj = new Date(`${dStr.slice(0,4)}-${dStr.slice(4,6)}-${dStr.slice(6,8)}`);
+    let rawData = [];
+    if (type === 'audiPerActor') {
+        rawData = films.map(f => Math.round(safeParseInt(f.audiAcc) / ((f.actors && f.actors.length > 0) ? f.actors.length : 1)));
+    } else if (type === 'audiPerFilmography') { 
+        const t = films.length; 
+        rawData = films.map(f => Math.round(safeParseInt(f.audiAcc) / t)); 
+    } else if (type === 'audiPerCareer') {
+        if (films.length > 0) {
+            const firstYear = parseInt(films[0].openDt.slice(0,4));
+            rawData = films.map(f => {
+                const curYear = parseInt(f.openDt.slice(0,4));
+                return Math.round(safeParseInt(f.audiAcc) / Math.max(1, curYear - firstYear + 1));
+            });
+        }
+    } else if (type === 'audiBonus') {
+        rawData = films.map(f => safeParseInt(f.audiAcc) > 5000000 ? safeParseInt(f.audiAcc) * 1.5 : safeParseInt(f.audiAcc));
+    } else {
+        rawData = films.map(f => safeParseInt(f.audiAcc));
+    }
 
-        return { x: dateObj, y: Math.round(val / 1000), movieNm: f.movieNm };
+    const dataPoints = rawData.map(v => Math.round(v / 1000));
+    const labels = films.map(f => {
+        const d = (f.openDt || '').replace(/-/g, '');
+        if (d.length >= 6) return `${d.slice(0,4)}.${d.slice(4,6)}`;
+        return d;
     });
 
     myChart = new Chart(ctx, {
         type: 'line',
         data: {
+            labels: labels,
             datasets: [{
                 label: '관객수 (단위: 천명)',
-                data: parsedData,
+                data: dataPoints,
                 borderColor: '#2e7d32', backgroundColor: 'rgba(46, 125, 50, 0.1)',
-                borderWidth: 2, fill: true, tension: 0.2, pointRadius: 4, pointHoverRadius: 6
+                borderWidth: 2, fill: true, tension: 0.3, pointRadius: 4, pointHoverRadius: 6
             }]
         },
         options: { 
             maintainAspectRatio: false, responsive: true,
             scales: {
-                x: commonXScaleOptions, // 공통 X축 (시간)
-                y: { beginAtZero: true, ticks: { callback: v => v.toLocaleString() }, title: { display: true, text: '단위: 천명' }, grid: { color: '#f3f4f6' } }
+                y: { beginAtZero: true, ticks: { callback: v => v.toLocaleString() }, title: { display: true, text: '단위: 천명' }, grid: { color: '#f3f4f6' } },
+                x: { grid: { display: false } }
             },
             plugins: {
                 legend: { display: false },
-                tooltip: { callbacks: { title: (tt) => tt[0].raw.movieNm, label: (ctx) => ` 수치: ${fmtNum(ctx.raw.y * 1000)}` } }
+                tooltip: {
+                    callbacks: {
+                        title: (tt) => films[tt[0].dataIndex].movieNm,
+                        label: (ctx) => ` 수치: ${fmtNum(ctx.raw * 1000)}`
+                    }
+                }
             }
         }
     });
 }
 
-function ISOWeekToDate(weekStr) {
-    // weekStr 예: "2024-W12"
-    const parts = weekStr.split('-W');
-    const year = parseInt(parts[0], 10);
-    const week = parseInt(parts[1], 10);
-    const date = new Date(year, 0, 1 + (week - 1) * 7);
-    const day = date.getDay();
-    date.setDate(date.getDate() - day + 1); // 주의 시작(월요일)로 맞춤
-    return date;
-}
-
+// [추가] 신규 여론 분석 차트 그리기 함수
 function drawSentimentChart() {
     if (!rawSentimentData || !rawSentimentData.timeline) return;
+
     const ctx = document.getElementById('sentimentChart').getContext('2d');
     if (sentimentChartInstance) sentimentChartInstance.destroy();
 
     let labels = Object.keys(rawSentimentData.timeline).sort();
     
     const timeRange = document.getElementById('timeRange').value;
-    let minDate = null;
     if (timeRange !== 'all') {
-        const yearsToSubtract = parseInt(timeRange, 10);
-        minDate = new Date();
-        minDate.setFullYear(minDate.getFullYear() - yearsToSubtract);
+        const limit = parseInt(timeRange, 10);
+        labels = labels.slice(Math.max(labels.length - limit, 0));
     }
 
-    // Time Scale에 맞게 { x: date, y: value } 형태로 데이터 생성
-    const posData = [];
-    const negData = [];
-    
-    labels.forEach(week => {
-        const dateObj = ISOWeekToDate(week);
-        if (minDate && dateObj < minDate) return; // 기간 필터 적용
-        
-        posData.push({ x: dateObj, y: rawSentimentData.timeline[week].positive || 0 });
-        negData.push({ x: dateObj, y: -(Math.abs(rawSentimentData.timeline[week].negative || 0)) });
-    });
+    const positiveData = labels.map(week => rawSentimentData.timeline[week].positive || 0);
+    const negativeData = labels.map(week => -(Math.abs(rawSentimentData.timeline[week].negative || 0)));
 
     const yMaxInput = document.getElementById('yMax').value;
     let yMaxVal = yMaxInput ? parseInt(yMaxInput, 10) : undefined;
     let yMinVal = yMaxVal ? -yMaxVal : undefined;
 
     sentimentChartInstance = new Chart(ctx, {
-        type: 'bar', // 명확성을 위해 바 차트로 변경도 좋으나, 요청대로 라인 유지
+        type: 'line',
         data: {
+            labels: labels,
             datasets: [
-                { label: '긍정 댓글 (+)', data: posData, borderColor: '#3b82f6', backgroundColor: '#3b82f6', borderWidth: 2, tension: 0.1, pointRadius: 4 },
-                { label: '부정 댓글 (-)', data: negData, borderColor: '#ef4444', backgroundColor: '#ef4444', borderWidth: 2, tension: 0.1, pointRadius: 4 }
+                {
+                    label: '긍정 댓글 (+)', data: positiveData,
+                    borderColor: '#3b82f6', backgroundColor: '#3b82f6', pointBackgroundColor: '#3b82f6',
+                    borderWidth: 2, tension: 0.1, pointRadius: 5, pointHoverRadius: 7
+                },
+                {
+                    label: '부정 댓글 (-)', data: negativeData,
+                    borderColor: '#ef4444', backgroundColor: '#ef4444', pointBackgroundColor: '#ef4444',
+                    borderWidth: 2, tension: 0.1, pointRadius: 5, pointHoverRadius: 7
+                }
             ]
         },
         options: {
             responsive: true, maintainAspectRatio: false,
-            scales: {
-                x: commonXScaleOptions, // 공통 X축 (시간) 적용!
-                y: { max: yMaxVal, min: yMinVal, grid: { color: (ctx) => ctx.tick.value === 0 ? '#000000' : '#e5e7eb', lineWidth: (ctx) => ctx.tick.value === 0 ? 2 : 1 } }
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return ` ${context.dataset.label}: ${Math.abs(context.parsed.y)}개`;
+                        }
+                    }
+                }
             },
-            plugins: { tooltip: { callbacks: { label: (ctx) => ` ${ctx.dataset.label}: ${Math.abs(ctx.parsed.y)}개` } } }
+            scales: {
+                y: {
+                    max: yMaxVal, min: yMinVal,
+                    grid: { color: (ctx) => ctx.tick.value === 0 ? '#000000' : '#e5e7eb', lineWidth: (ctx) => ctx.tick.value === 0 ? 2 : 1 }
+                },
+                x: { grid: { display: false }, ticks: { maxRotation: 45, minRotation: 45 } }
+            }
         }
     });
 }
