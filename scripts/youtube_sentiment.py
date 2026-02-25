@@ -165,7 +165,7 @@ def run_pattern(pattern):
     print(f"🎬 [자음 검색] 초성: '{target_initial or '전체'}'")
 
     # 1. KOFIC 흥행작 기반 필터링 (API 낭비 방지)
-    MIN_AUDIENCE = 500000 # 50만 명 이상 관객 동원작 기준
+    MIN_AUDIENCE = 5000000 # 500만 명 이상 관객 동원작 기준
     famous_actors = set()
     
     if SEARCH_INDEX_PATH.exists():
