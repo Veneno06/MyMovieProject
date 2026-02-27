@@ -1,4 +1,4 @@
-# scripts/build_people_details.py
+# scripts/build_movie_details.py
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import os
