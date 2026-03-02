@@ -1,0 +1,101 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20256283",
+      "movieNm": "호퍼스",
+      "movieNmEn": "HOPPERS",
+      "movieNmOg": "",
+      "showTm": "104",
+      "prdtYear": "2026",
+      "openDt": "20260304",
+      "prdtStatNm": "개봉예정",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "애니메이션"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "다니엘 총",
+          "peopleNmEn": "Daniel Chong"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "파이퍼 쿠르다",
+          "peopleNmEn": "Piper Curda",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "바비 모니한",
+          "peopleNmEn": "Bobby Moynihan",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "존 햄",
+          "peopleNmEn": "Jon Hamm",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "메릴 스트립",
+          "peopleNmEn": "Meryl Streep",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털 더빙"
+        },
+        {
+          "showTypeGroupNm": "4D",
+          "showTypeNm": "4D 더빙"
+        },
+        {
+          "showTypeGroupNm": "4D",
+          "showTypeNm": "4D"
+        },
+        {
+          "showTypeGroupNm": "DOLBYCINEMA",
+          "showTypeNm": "DOLBYCINEMA"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20161801",
+          "companyNm": "월트디즈니컴퍼니코리아 유한책임회사",
+          "companyNmEn": "The Walt Disney Company Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20161801",
+          "companyNm": "월트디즈니컴퍼니코리아 유한책임회사",
+          "companyNmEn": "The Walt Disney Company Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2026-MF00438",
+          "watchGradeNm": "전체관람가"
+        }
+      ],
+      "staffs": []
+    },
+    "source": "영화진흥위원회"
+  }
+}
