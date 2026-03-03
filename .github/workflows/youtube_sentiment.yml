@@ -4,10 +4,10 @@ on:
   workflow_dispatch:
     inputs:
       pattern:
-        description: '자음 검색 모드 (예: ㄱ, ㄴ, ㄷ, ㄹ)'
+        description: '자음 검색 모드 (예: ㄱ, ㄴ) - 테스트용'
         required: false
       actor_name:
-        description: '단일 배우 검색 모드 (예: 황정민). ※ 패턴과 배우 이름 중 하나만 입력하세요.'
+        description: '배우 이름 입력 (예: 유해진, 마동석, 김혜수). 쉼표로 구분하여 여러 명 입력 가능'
         required: false
 
 permissions:
@@ -39,8 +39,8 @@ jobs:
           YOUTUBE_API_KEY_2: ${{ secrets.YOUTUBE_API_KEY_2 }}
         run: python scripts/youtube_sentiment.py --pattern "${{ github.event.inputs.pattern }}"
 
-      # B. 단일 배우 실행
-      - name: Run AI Sentiment Analysis (Single Mode)
+      # B. 지정 배우 실행 (단일 또는 다중)
+      - name: Run AI Sentiment Analysis (Specific Actors)
         if: ${{ github.event.inputs.actor_name != '' }}
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
