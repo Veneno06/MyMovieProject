@@ -108,7 +108,7 @@ let myChart = null;
 let sentimentChartInstance = null; 
 let currentId = null, currentName = null;
 let rawSentimentData = null; 
-let filmsForChart = []; // 전역 변수화하여 동기화 시 사용
+let filmsForChart = []; 
 let currentChartType = 'totalAudi';
 
 const saveBtn = document.getElementById('saveBtn');
@@ -280,6 +280,15 @@ async function render(){
   });
 }
 
+// 헬퍼: ISO 주차 문자열(YYYY-Www)을 Date 객체로 변환
+function ISOWeekToDate(weekStr) {
+    const parts = weekStr.split('-W');
+    const year = parseInt(parts[0], 10);
+    const week = parseInt(parts[1], 10);
+    // moment.js를 사용하여 해당 연도, 해당 주차의 시작일(월요일)을 반환
+    return moment().year(year).isoWeek(week).startOf('isoWeek');
+}
+
 // 핵심 기능: X축 범위를 계산하고 두 차트를 동시에 렌더링
 function drawChartsWithSync() {
     const chartData = [...filmsForChart].sort((a,b) => (a.openDt||'').localeCompare(b.openDt||''));
@@ -297,8 +306,9 @@ function drawChartsWithSync() {
 
     if (rawSentimentData && rawSentimentData.timeline) {
         const weeks = Object.keys(rawSentimentData.timeline).sort();
-        const startWeek = moment(weeks[0].split('-W')[0]).add(weeks[0].split('-W')[1], 'weeks');
-        const endWeek = moment(weeks[weeks.length-1].split('-W')[0]).add(weeks[weeks.length-1].split('-W')[1], 'weeks');
+        // [수정] 헬퍼 함수를 사용하여 일관성 확보
+        const startWeek = ISOWeekToDate(weeks[0]);
+        const endWeek = ISOWeekToDate(weeks[weeks.length-1]);
         
         if (!minDate || startWeek.isBefore(minDate)) minDate = startWeek;
         if (!maxDate || endWeek.isAfter(maxDate)) maxDate = endWeek;
@@ -383,13 +393,6 @@ function drawAudiChart(films, type, minDate, maxDate) {
     });
 }
 
-function ISOWeekToDate(weekStr) {
-    const parts = weekStr.split('-W');
-    const year = parseInt(parts[0], 10);
-    const week = parseInt(parts[1], 10);
-    return moment().year(year).isoWeek(week).startOf('isoWeek').toDate();
-}
-
 function drawSentimentChart(minDate, maxDate) {
     if (!rawSentimentData || !rawSentimentData.timeline) return;
     const ctx = document.getElementById('sentimentChart').getContext('2d');
@@ -400,7 +403,7 @@ function drawSentimentChart(minDate, maxDate) {
     const negData = [];
 
     labels.forEach(week => {
-        const dateObj = ISOWeekToDate(week);
+        const dateObj = ISOWeekToDate(week).toDate();
         posData.push({ x: dateObj, y: rawSentimentData.timeline[week].positive || 0 });
         negData.push({ x: dateObj, y: -(Math.abs(rawSentimentData.timeline[week].negative || 0)) });
     });
