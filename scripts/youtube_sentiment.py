@@ -32,15 +32,10 @@ def load_ai_model():
     global CLASSIFIER
     if CLASSIFIER is None:
         print("🤖 AI 감성 분석 모델 로딩 중... (최초 1회만 실행)")
-        # [모델 변경] 영화/배우 리뷰(NSMC)에 최적화된 모델로 교체 (한국어 이해도 대폭 상승)
         CLASSIFIER = pipeline("sentiment-analysis", model="sangrimlee/bert-base-multilingual-cased-nsmc")
     return CLASSIFIER
 
 def clean_text(text):
-    """
-    유튜브 댓글 특유의 반복 자음/모음을 축약하여 AI 인식률을 높입니다.
-    예: ㅋㅋㅋㅋㅋㅋㅋㅋ -> ㅋㅋ, ㅠㅠㅠㅠㅠㅠ -> ㅠㅠ
-    """
     text = re.sub(r'([ㅋㅎㅠㅜ]){3,}', r'\1\1', text)
     return text
 
@@ -62,8 +57,8 @@ def get_initial_sound(char):
 
 def get_youtube_comments(actor_name):
     """
-    연도별(2010~현재) 검색을 수행하여, 매년 댓글 수가 가장 많은 상위 3개 영상에서 데이터를 수집합니다.
-    예상 API 소모량: 연간 약 104 포인트 -> 17년 = 1,768 포인트 (할당량 10,000 포인트 내 아주 안전함)
+    연도별 검색을 수행하여, 매년 댓글 수가 가장 많은 상위 3개 영상에서 데이터를 수집합니다.
+    유튜브 서비스가 본격화된 2005년을 시작점으로 잡습니다.
     """
     global CURRENT_KEY_INDEX
     
@@ -73,7 +68,7 @@ def get_youtube_comments(actor_name):
 
     all_comments = []
     current_year = datetime.now().year
-    start_year = 2010
+    start_year = 2005 # 유튜브 서비스 시작 년도로 변경
 
     print(f"🔍 '{actor_name}' 연도별({start_year}~{current_year}) 유튜브 영상 분할 수집 시작...")
 
@@ -93,7 +88,6 @@ def get_youtube_comments(actor_name):
             try:
                 print(f" 📅 [{target_year}년] 영상 검색 중...")
                 
-                # 1. 영상 검색 (비용: 100)
                 search_response = youtube.search().list(
                     q=actor_name,
                     part='id',
@@ -111,7 +105,6 @@ def get_youtube_comments(actor_name):
                     success_for_year = True 
                     continue
 
-                # 2. 통계 확인 (비용: 1)
                 stats_response = youtube.videos().list(
                     part='statistics,snippet', 
                     id=','.join(candidate_ids)
@@ -130,16 +123,14 @@ def get_youtube_comments(actor_name):
                             'comment_count': comment_count
                         })
 
-                # 3. [요청 반영] 댓글 수 많은 상위 3개 영상 선정
                 valid_videos.sort(key=lambda x: x['comment_count'], reverse=True)
-                target_videos = valid_videos[:3] 
+                target_videos = valid_videos[:3] # 상위 3개 영상 추출
 
                 if not target_videos:
                     print(f"   -> 유효한(댓글 있는) 영상 없음.")
                     success_for_year = True
                     continue
 
-                # 4. 댓글 수집 (비용: 영상 개수만큼, 최대 3)
                 year_comments = 0
                 for video in target_videos:
                     try:
@@ -155,7 +146,6 @@ def get_youtube_comments(actor_name):
                             text = comment_snippet['textOriginal']
                             date = comment_snippet['publishedAt'] 
                             
-                            # 성의 없는 짧은 글, 링크 포함 광고 제외
                             if len(text) > 3 and "http" not in text:
                                 all_comments.append({"text": text, "date": date})
                                 year_comments += 1
@@ -194,20 +184,16 @@ def analyze_sentiment(comments):
     
     for i, comment in enumerate(comments):
         try:
-            # 텍스트 전처리 및 길이 제한
             raw_text = comment["text"][:500] 
             clean_txt = clean_text(raw_text)
             
-            # AI 추론 (1개의 댓글은 단 1번의 평가만 받음)
             result = classifier(clean_txt)[0]
             label = result['label']
-            score = result['score'] # 0.0 ~ 1.0 (확신도)
+            score = result['score'] 
             
-            # [요청 반영] 중립/애매함 필터링: 확신도가 60%(0.6) 미만이면 버림
             if score < 0.6:
                 continue
 
-            # NSMC 모델은 라벨이 'positive', 'negative' 등으로 나옵니다.
             label_lower = label.lower()
             if 'positive' in label_lower or 'label_1' in label_lower:
                 sentiment = "positive"
