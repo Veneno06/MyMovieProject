@@ -62,7 +62,7 @@
     </div>
   </div>
 
-  <div id="sentiment-container" style="display:none; margin-top: 60px; padding-top: 20px; border-top: 2px dashed #e5e7eb;">
+  <div id="sentiment-container" style="display:none; margin-top: 20px; padding-top: 20px; border-top: 2px dashed #e5e7eb;">
     <h2>유튜브 여론 분석 (긍정/부정)</h2>
     
     <div class="sentiment-control-box">
@@ -86,6 +86,7 @@
     <div style="position: relative; height:400px; width:100%">
         <canvas id="sentimentChart"></canvas>
     </div>
+    <div id="sentimentSummary" style="text-align: right; font-size: 13px; color: #666; margin-top: 8px;"></div>
   </div>
 
 </div>
@@ -280,22 +281,19 @@ async function render(){
   });
 }
 
-// 헬퍼: ISO 주차 문자열(YYYY-Www)을 Date 객체로 변환
 function ISOWeekToDate(weekStr) {
     const parts = weekStr.split('-W');
     const year = parseInt(parts[0], 10);
     const week = parseInt(parts[1], 10);
-    // moment.js를 사용하여 해당 연도, 해당 주차의 시작일(월요일)을 반환
     return moment().year(year).isoWeek(week).startOf('isoWeek');
 }
 
-// 핵심 기능: X축 범위를 계산하고 두 차트를 동시에 렌더링
 function drawChartsWithSync() {
     const chartData = [...filmsForChart].sort((a,b) => (a.openDt||'').localeCompare(b.openDt||''));
     if (chartData.length > 0) document.getElementById('chart-container').style.display = 'block';
     if (rawSentimentData && rawSentimentData.timeline) document.getElementById('sentiment-container').style.display = 'block';
 
-    // 1. 공통 X축 범위 계산 (X축 동기화의 핵심)
+    // 1. 공통 X축 범위 계산
     let minDate = null;
     let maxDate = null;
 
@@ -306,7 +304,6 @@ function drawChartsWithSync() {
 
     if (rawSentimentData && rawSentimentData.timeline) {
         const weeks = Object.keys(rawSentimentData.timeline).sort();
-        // [수정] 헬퍼 함수를 사용하여 일관성 확보
         const startWeek = ISOWeekToDate(weeks[0]);
         const endWeek = ISOWeekToDate(weeks[weeks.length-1]);
         
@@ -314,17 +311,14 @@ function drawChartsWithSync() {
         if (!maxDate || endWeek.isAfter(maxDate)) maxDate = endWeek;
     }
 
-    // 유튜브 필터링 적용 시 minDate 조정
     const timeRange = document.getElementById('timeRange')?.value;
     if (timeRange && timeRange !== 'all') {
         const filterMin = moment().subtract(parseInt(timeRange), 'weeks');
         if (filterMin.isAfter(minDate)) minDate = filterMin;
     }
 
-    // 2. 관객수 차트 그리기
+    // 2. 차트 그리기
     drawAudiChart(chartData, currentChartType, minDate, maxDate);
-    
-    // 3. 여론 분석 차트 그리기
     drawSentimentChart(minDate, maxDate);
 }
 
@@ -401,12 +395,27 @@ function drawSentimentChart(minDate, maxDate) {
     const labels = Object.keys(rawSentimentData.timeline).sort();
     const posData = [];
     const negData = [];
+    
+    // [3번 요청 반영] 긍정/부정 총합 계산 변수 추가
+    let totalPositiveCount = 0;
+    let totalNegativeCount = 0;
 
     labels.forEach(week => {
         const dateObj = ISOWeekToDate(week).toDate();
-        posData.push({ x: dateObj, y: rawSentimentData.timeline[week].positive || 0 });
-        negData.push({ x: dateObj, y: -(Math.abs(rawSentimentData.timeline[week].negative || 0)) });
+        const posVal = rawSentimentData.timeline[week].positive || 0;
+        const negVal = rawSentimentData.timeline[week].negative || 0; // JSON에 양수로 저장됨
+        
+        totalPositiveCount += posVal;
+        totalNegativeCount += negVal;
+
+        posData.push({ x: dateObj, y: posVal });
+        negData.push({ x: dateObj, y: -(Math.abs(negVal)) }); // 차트 표현을 위해 음수로 변환
     });
+
+    // 화면 하단에 계산된 통계 렌더링
+    const totalComments = totalPositiveCount + totalNegativeCount;
+    document.getElementById('sentimentSummary').innerHTML = 
+        `총 분석 댓글: <b>${fmtNum(totalComments)}</b>개 (긍정: <span style="color:#3b82f6">${fmtNum(totalPositiveCount)}</span>개 / 부정: <span style="color:#ef4444">${fmtNum(totalNegativeCount)}</span>개)`;
 
     const yMaxInput = document.getElementById('yMax').value;
     let yMaxVal = yMaxInput ? parseInt(yMaxInput, 10) : undefined;
