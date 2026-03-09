@@ -1,0 +1,44 @@
+name: AI Model Performance Comparison
+
+on:
+  workflow_dispatch:
+    inputs:
+      actors:
+        description: '테스트할 배우 최대 5명 입력 (예: 최민식, 조진웅, 김혜수, 황정민, 이병헌)'
+        required: true
+        default: '최민식, 조진웅, 김혜수, 황정민, 이병헌'
+
+permissions:
+  contents: write
+
+jobs:
+  compare-models:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360 
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run Model Comparison
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          YOUTUBE_API_KEY_2: ${{ secrets.YOUTUBE_API_KEY_2 }}
+        run: python scripts/run_model_comparison.py --actors "${{ github.event.inputs.actors }}"
+
+      - name: Commit and Push Results
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add docs/data/model_comparison.json
+          git commit -m "🔬 Update AI Model comparison results" || echo "No changes to commit"
+          git push
