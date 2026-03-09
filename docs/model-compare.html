@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>AI 모델 성능 비교 – K-Movie A Archive</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .select-box { padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 16px; margin-bottom: 20px; }
+  .table-wrap { overflow-x: auto; margin-top: 20px; border: 1px solid #e5e7eb; border-radius: 8px; background: #fff; }
+  table { width: 100%; border-collapse: collapse; text-align: center; }
+  th, td { padding: 12px; border-bottom: 1px solid #e5e7eb; }
+  th { background-color: #f9fafb; font-weight: bold; color: #374151; }
+  tr:last-child td { border-bottom: none; }
+  .badge-pos { color: #3b82f6; font-weight: bold; }
+  .badge-neg { color: #ef4444; font-weight: bold; }
+  .badge-drop { color: #9ca3af; }
+  .highlight { background-color: #fefce8; } /* 가장 성적이 좋은 셀 강조용 */
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="ctrls">
+    <a href="index.html" class="btn">홈</a>
+    <a href="saved.html" class="btn">🔙 저장 목록으로 돌아가기</a>
+  </div>
+
+  <h1>🔬 AI 감성 분석 모델 성능 비교 (임시)</h1>
+  <div class="note" style="margin-bottom: 20px;">
+    * 동일한 유튜브 댓글 데이터(Input)를 5개의 각기 다른 AI 모델에 통과시켜 추출된 긍정/부정 개수와 처리 속도를 비교합니다.<br>
+    * <b>유효 산출율(Yield Rate):</b> 60% 미만의 애매한 댓글을 버리고, 확실한 긍/부정으로 분류해 낸 댓글의 비율입니다.
+  </div>
+
+  <select id="actorSelect" class="select-box" style="display:none;"></select>
+  
+  <div id="statsInfo" style="font-weight:bold; margin-bottom:10px; color:#2563eb; display:none;"></div>
+
+  <div class="table-wrap">
+    <table id="compareTable">
+      <thead>
+        <tr>
+          <th>모델 종류</th>
+          <th>긍정 댓글 <span class="badge-pos">(+)</span></th>
+          <th>부정 댓글 <span class="badge-neg">(-)</span></th>
+          <th>판단 불가 탈락 <span class="badge-drop">(Drop)</span></th>
+          <th>유효 산출율 (%)</th>
+          <th>처리 시간 (초)</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+        <tr><td colspan="6" style="padding:30px;">데이터를 불러오는 중입니다... (GitHub Actions 실행을 먼저 완료해주세요)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+async function loadComparison() {
+    try {
+        const ts = Date.now();
+        const res = await fetch(`data/model_comparison.json?v=${ts}`);
+        if (!res.ok) throw new Error("JSON 파일을 찾을 수 없습니다.");
+        const data = await res.json();
+        
+        const select = document.getElementById('actorSelect');
+        const actors = Object.keys(data);
+        
+        if (actors.length === 0) return;
+        
+        select.style.display = 'inline-block';
+        actors.forEach(actor => {
+            const opt = document.createElement('option');
+            opt.value = actor; opt.textContent = `${actor} 데이터 결과 보기`;
+            select.appendChild(opt);
+        });
+
+        const renderTable = (actorName) => {
+            const actorData = data[actorName];
+            document.getElementById('statsInfo').style.display = 'block';
+            document.getElementById('statsInfo').textContent = `입력된 원본(Input) 댓글 총합: ${actorData.total_input}개`;
+            
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = '';
+            
+            // 최고 산출율 모델 찾기
+            let maxYield = -1;
+            actorData.models.forEach(m => { if (m.yield_rate > maxYield) maxYield = m.yield_rate; });
+
+            actorData.models.forEach(m => {
+                const tr = document.createElement('tr');
+                if (m.yield_rate === maxYield) tr.className = "highlight";
+                
+                tr.innerHTML = `
+                    <td style="text-align:left;"><b>${m.model_name}</b><br><span style="font-size:11px; color:#666;">${m.model_id}</span></td>
+                    <td class="badge-pos">${m.positive}</td>
+                    <td class="badge-neg">${m.negative}</td>
+                    <td class="badge-drop">${m.dropped}</td>
+                    <td><b>${m.yield_rate}%</b></td>
+                    <td>${m.time_sec}초</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        };
+
+        select.addEventListener('change', (e) => renderTable(e.target.value));
+        renderTable(actors[0]); // 첫 번째 배우 자동 렌더링
+
+    } catch (e) {
+        document.getElementById('tableBody').innerHTML = `<tr><td colspan="6" style="color:red;">데이터 로딩 실패: 아직 Actions가 실행되지 않았거나 파일이 없습니다.</td></tr>`;
+    }
+}
+loadComparison();
+</script>
+</body>
+</html>
