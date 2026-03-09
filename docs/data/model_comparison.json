@@ -1,0 +1,117 @@
+{
+  "유해진": {
+    "total_input": 1430,
+    "models": [
+      {
+        "model_id": "nlptown/bert-base-multilingual-uncased-sentiment",
+        "model_name": "기존 다국어 모델 (NLPTown)",
+        "positive": 78,
+        "negative": 31,
+        "dropped": 1321,
+        "yield_rate": 7.6,
+        "time_sec": 115.19
+      },
+      {
+        "model_id": "sangrimlee/bert-base-multilingual-cased-nsmc",
+        "model_name": "네이버 영화 리뷰 모델 (현재 사용)",
+        "positive": 1136,
+        "negative": 179,
+        "dropped": 115,
+        "yield_rate": 92.0,
+        "time_sec": 93.61
+      }
+    ]
+  },
+  "이병헌": {
+    "total_input": 1339,
+    "models": [
+      {
+        "model_id": "nlptown/bert-base-multilingual-uncased-sentiment",
+        "model_name": "기존 다국어 모델 (NLPTown)",
+        "positive": 54,
+        "negative": 14,
+        "dropped": 1271,
+        "yield_rate": 5.1,
+        "time_sec": 90.32
+      },
+      {
+        "model_id": "sangrimlee/bert-base-multilingual-cased-nsmc",
+        "model_name": "네이버 영화 리뷰 모델 (현재 사용)",
+        "positive": 750,
+        "negative": 429,
+        "dropped": 160,
+        "yield_rate": 88.1,
+        "time_sec": 74.98
+      }
+    ]
+  },
+  "류승룡": {
+    "total_input": 1317,
+    "models": [
+      {
+        "model_id": "nlptown/bert-base-multilingual-uncased-sentiment",
+        "model_name": "기존 다국어 모델 (NLPTown)",
+        "positive": 65,
+        "negative": 24,
+        "dropped": 1228,
+        "yield_rate": 6.8,
+        "time_sec": 96.2
+      },
+      {
+        "model_id": "sangrimlee/bert-base-multilingual-cased-nsmc",
+        "model_name": "네이버 영화 리뷰 모델 (현재 사용)",
+        "positive": 868,
+        "negative": 303,
+        "dropped": 146,
+        "yield_rate": 88.9,
+        "time_sec": 79.14
+      }
+    ]
+  },
+  "하정우": {
+    "total_input": 893,
+    "models": [
+      {
+        "model_id": "nlptown/bert-base-multilingual-uncased-sentiment",
+        "model_name": "기존 다국어 모델 (NLPTown)",
+        "positive": 25,
+        "negative": 21,
+        "dropped": 847,
+        "yield_rate": 5.2,
+        "time_sec": 57.38
+      },
+      {
+        "model_id": "sangrimlee/bert-base-multilingual-cased-nsmc",
+        "model_name": "네이버 영화 리뷰 모델 (현재 사용)",
+        "positive": 400,
+        "negative": 353,
+        "dropped": 140,
+        "yield_rate": 84.3,
+        "time_sec": 48.22
+      }
+    ]
+  },
+  "주지훈": {
+    "total_input": 1196,
+    "models": [
+      {
+        "model_id": "nlptown/bert-base-multilingual-uncased-sentiment",
+        "model_name": "기존 다국어 모델 (NLPTown)",
+        "positive": 53,
+        "negative": 30,
+        "dropped": 1113,
+        "yield_rate": 6.9,
+        "time_sec": 83.8
+      },
+      {
+        "model_id": "sangrimlee/bert-base-multilingual-cased-nsmc",
+        "model_name": "네이버 영화 리뷰 모델 (현재 사용)",
+        "positive": 724,
+        "negative": 340,
+        "dropped": 132,
+        "yield_rate": 89.0,
+        "time_sec": 70.23
+      }
+    ]
+  }
+}
