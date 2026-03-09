@@ -5,20 +5,47 @@
       {
         "model_id": "nlptown/bert-base-multilingual-uncased-sentiment",
         "model_name": "기존 다국어 모델 (NLPTown)",
-        "positive": 78,
-        "negative": 31,
-        "dropped": 1321,
-        "yield_rate": 7.6,
-        "time_sec": 115.19
+        "positive": 68,
+        "negative": 34,
+        "dropped": 1328,
+        "yield_rate": 7.1,
+        "time_sec": 110.91
       },
       {
         "model_id": "sangrimlee/bert-base-multilingual-cased-nsmc",
         "model_name": "네이버 영화 리뷰 모델 (현재 사용)",
-        "positive": 1136,
-        "negative": 179,
-        "dropped": 115,
-        "yield_rate": 92.0,
-        "time_sec": 93.61
+        "positive": 1115,
+        "negative": 197,
+        "dropped": 118,
+        "yield_rate": 91.7,
+        "time_sec": 99.56
+      },
+      {
+        "model_id": "matthewburke/korean_sentiment",
+        "model_name": "구어체 특화 (KcBERT 기반)",
+        "positive": 1245,
+        "negative": 137,
+        "dropped": 48,
+        "yield_rate": 96.6,
+        "time_sec": 85.32
+      },
+      {
+        "model_id": "daekeun-ml/koelectra-small-v3-nsmc",
+        "model_name": "경량화/고속 특화 (KoELECTRA 기반)",
+        "positive": 1197,
+        "negative": 209,
+        "dropped": 24,
+        "yield_rate": 98.3,
+        "time_sec": 25.27
+      },
+      {
+        "model_id": "snunlp/KR-FinBert-SC",
+        "model_name": "한국어 정밀 분석 (SNUNLP 기반)",
+        "positive": 8,
+        "negative": 24,
+        "dropped": 1398,
+        "yield_rate": 2.2,
+        "time_sec": 86.59
       }
     ]
   },
@@ -28,89 +55,197 @@
       {
         "model_id": "nlptown/bert-base-multilingual-uncased-sentiment",
         "model_name": "기존 다국어 모델 (NLPTown)",
-        "positive": 54,
-        "negative": 14,
-        "dropped": 1271,
-        "yield_rate": 5.1,
-        "time_sec": 90.32
+        "positive": 57,
+        "negative": 22,
+        "dropped": 1260,
+        "yield_rate": 5.9,
+        "time_sec": 91.45
       },
       {
         "model_id": "sangrimlee/bert-base-multilingual-cased-nsmc",
         "model_name": "네이버 영화 리뷰 모델 (현재 사용)",
-        "positive": 750,
-        "negative": 429,
-        "dropped": 160,
-        "yield_rate": 88.1,
-        "time_sec": 74.98
+        "positive": 742,
+        "negative": 434,
+        "dropped": 163,
+        "yield_rate": 87.8,
+        "time_sec": 77.18
+      },
+      {
+        "model_id": "matthewburke/korean_sentiment",
+        "model_name": "구어체 특화 (KcBERT 기반)",
+        "positive": 837,
+        "negative": 434,
+        "dropped": 68,
+        "yield_rate": 94.9,
+        "time_sec": 66.84
+      },
+      {
+        "model_id": "daekeun-ml/koelectra-small-v3-nsmc",
+        "model_name": "경량화/고속 특화 (KoELECTRA 기반)",
+        "positive": 806,
+        "negative": 498,
+        "dropped": 35,
+        "yield_rate": 97.4,
+        "time_sec": 16.19
+      },
+      {
+        "model_id": "snunlp/KR-FinBert-SC",
+        "model_name": "한국어 정밀 분석 (SNUNLP 기반)",
+        "positive": 14,
+        "negative": 52,
+        "dropped": 1273,
+        "yield_rate": 4.9,
+        "time_sec": 71.78
       }
     ]
   },
   "류승룡": {
-    "total_input": 1317,
+    "total_input": 1268,
     "models": [
       {
         "model_id": "nlptown/bert-base-multilingual-uncased-sentiment",
         "model_name": "기존 다국어 모델 (NLPTown)",
         "positive": 65,
-        "negative": 24,
-        "dropped": 1228,
-        "yield_rate": 6.8,
-        "time_sec": 96.2
+        "negative": 22,
+        "dropped": 1181,
+        "yield_rate": 6.9,
+        "time_sec": 94.37
       },
       {
         "model_id": "sangrimlee/bert-base-multilingual-cased-nsmc",
         "model_name": "네이버 영화 리뷰 모델 (현재 사용)",
-        "positive": 868,
-        "negative": 303,
-        "dropped": 146,
-        "yield_rate": 88.9,
-        "time_sec": 79.14
+        "positive": 851,
+        "negative": 281,
+        "dropped": 136,
+        "yield_rate": 89.3,
+        "time_sec": 80.45
+      },
+      {
+        "model_id": "matthewburke/korean_sentiment",
+        "model_name": "구어체 특화 (KcBERT 기반)",
+        "positive": 946,
+        "negative": 261,
+        "dropped": 61,
+        "yield_rate": 95.2,
+        "time_sec": 68.38
+      },
+      {
+        "model_id": "daekeun-ml/koelectra-small-v3-nsmc",
+        "model_name": "경량화/고속 특화 (KoELECTRA 기반)",
+        "positive": 939,
+        "negative": 293,
+        "dropped": 36,
+        "yield_rate": 97.2,
+        "time_sec": 16.17
+      },
+      {
+        "model_id": "snunlp/KR-FinBert-SC",
+        "model_name": "한국어 정밀 분석 (SNUNLP 기반)",
+        "positive": 6,
+        "negative": 18,
+        "dropped": 1244,
+        "yield_rate": 1.9,
+        "time_sec": 72.47
       }
     ]
   },
   "하정우": {
-    "total_input": 893,
+    "total_input": 882,
     "models": [
       {
         "model_id": "nlptown/bert-base-multilingual-uncased-sentiment",
         "model_name": "기존 다국어 모델 (NLPTown)",
-        "positive": 25,
-        "negative": 21,
-        "dropped": 847,
-        "yield_rate": 5.2,
-        "time_sec": 57.38
+        "positive": 26,
+        "negative": 19,
+        "dropped": 837,
+        "yield_rate": 5.1,
+        "time_sec": 55.71
       },
       {
         "model_id": "sangrimlee/bert-base-multilingual-cased-nsmc",
         "model_name": "네이버 영화 리뷰 모델 (현재 사용)",
-        "positive": 400,
-        "negative": 353,
-        "dropped": 140,
-        "yield_rate": 84.3,
-        "time_sec": 48.22
+        "positive": 418,
+        "negative": 345,
+        "dropped": 119,
+        "yield_rate": 86.5,
+        "time_sec": 48.63
+      },
+      {
+        "model_id": "matthewburke/korean_sentiment",
+        "model_name": "구어체 특화 (KcBERT 기반)",
+        "positive": 433,
+        "negative": 393,
+        "dropped": 56,
+        "yield_rate": 93.7,
+        "time_sec": 43.17
+      },
+      {
+        "model_id": "daekeun-ml/koelectra-small-v3-nsmc",
+        "model_name": "경량화/고속 특화 (KoELECTRA 기반)",
+        "positive": 494,
+        "negative": 358,
+        "dropped": 30,
+        "yield_rate": 96.6,
+        "time_sec": 10.46
+      },
+      {
+        "model_id": "snunlp/KR-FinBert-SC",
+        "model_name": "한국어 정밀 분석 (SNUNLP 기반)",
+        "positive": 5,
+        "negative": 45,
+        "dropped": 832,
+        "yield_rate": 5.7,
+        "time_sec": 45.4
       }
     ]
   },
   "주지훈": {
-    "total_input": 1196,
+    "total_input": 1148,
     "models": [
       {
         "model_id": "nlptown/bert-base-multilingual-uncased-sentiment",
         "model_name": "기존 다국어 모델 (NLPTown)",
-        "positive": 53,
-        "negative": 30,
-        "dropped": 1113,
-        "yield_rate": 6.9,
-        "time_sec": 83.8
+        "positive": 46,
+        "negative": 35,
+        "dropped": 1067,
+        "yield_rate": 7.1,
+        "time_sec": 77.88
       },
       {
         "model_id": "sangrimlee/bert-base-multilingual-cased-nsmc",
         "model_name": "네이버 영화 리뷰 모델 (현재 사용)",
-        "positive": 724,
-        "negative": 340,
-        "dropped": 132,
-        "yield_rate": 89.0,
-        "time_sec": 70.23
+        "positive": 694,
+        "negative": 323,
+        "dropped": 131,
+        "yield_rate": 88.6,
+        "time_sec": 66.86
+      },
+      {
+        "model_id": "matthewburke/korean_sentiment",
+        "model_name": "구어체 특화 (KcBERT 기반)",
+        "positive": 744,
+        "negative": 339,
+        "dropped": 65,
+        "yield_rate": 94.3,
+        "time_sec": 59.28
+      },
+      {
+        "model_id": "daekeun-ml/koelectra-small-v3-nsmc",
+        "model_name": "경량화/고속 특화 (KoELECTRA 기반)",
+        "positive": 787,
+        "negative": 330,
+        "dropped": 31,
+        "yield_rate": 97.3,
+        "time_sec": 14.31
+      },
+      {
+        "model_id": "snunlp/KR-FinBert-SC",
+        "model_name": "한국어 정밀 분석 (SNUNLP 기반)",
+        "positive": 7,
+        "negative": 21,
+        "dropped": 1120,
+        "yield_rate": 2.4,
+        "time_sec": 64.36
       }
     ]
   }
