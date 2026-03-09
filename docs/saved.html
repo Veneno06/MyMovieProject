@@ -18,17 +18,36 @@
       background: #fff;
     }
     .actor-info { flex-grow: 1; }
-    .film-list { font-size: 14px; color: #555; margin-top: 6px; }
     .compare-section { 
         margin-top: 20px; padding-top: 15px; border-top: 1px solid #eee; 
         display:flex; justify-content: center; align-items: center; flex-direction: column; gap: 10px; 
     }
     .muted { color:#6b7280; font-size: 0.9rem; }
-    /* 통합 비교 버튼 스타일 */
     #compareBtn {
         background-color: #2563eb; color: white; border: none; font-weight: bold; padding: 10px 20px; font-size: 16px;
     }
     #compareBtn:disabled { background-color: #ccc; cursor: not-allowed; }
+    
+    /* [3번 요청] 우측 하단 모델 비교 임시 버튼 스타일 */
+    .floating-model-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background-color: #111827;
+        color: #fff !important;
+        padding: 14px 24px;
+        border-radius: 50px;
+        font-weight: bold;
+        font-size: 15px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        text-decoration: none;
+        z-index: 1000;
+        transition: transform 0.2s ease;
+    }
+    .floating-model-btn:hover {
+        transform: translateY(-3px);
+        text-decoration: none;
+    }
   </style>
 </head>
 <body>
@@ -53,6 +72,8 @@
   </div>
 </div>
 
+<a href="model-compare.html" class="floating-model-btn">🔬 모델 성능 비교 (임시)</a>
+
 <script>
 const LIST_BOX = document.getElementById('savedPeopleList');
 const COMPARE_BTN = document.getElementById('compareBtn');
@@ -76,7 +97,6 @@ function removeSaved(id) {
   render();
 }
 
-// [핵심] 체크박스 상태 확인 (2~4명)
 function updateCompareButtons() {
   const picked = document.querySelectorAll('.actor-checkbox:checked').length;
   if (picked >= 2 && picked <= 4) {
@@ -108,7 +128,6 @@ function render() {
   COMPARE_BTN.style.display = 'block';
   SELECTION_MSG.style.display = 'block';
 
-  // 이름순 정렬
   const list = savedKeys.map(k => ({ id: k, name: saved[k].name })).sort((a,b) => a.name.localeCompare(b.name, 'ko'));
 
   for (const person of list) {
@@ -134,7 +153,6 @@ function render() {
   updateCompareButtons();
 }
 
-// [핵심] 비교 페이지로 이동 (p1, p2, p3, p4 파라미터 전달)
 COMPARE_BTN.addEventListener('click', () => {
   const picked = [...document.querySelectorAll('.actor-checkbox:checked')].map(x=>x.value);
   if (picked.length >= 2 && picked.length <= 4) {
