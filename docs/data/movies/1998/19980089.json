@@ -1,0 +1,99 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "19980089",
+      "movieNm": "굿 윌 헌팅",
+      "movieNmEn": "Good Will Hunting",
+      "movieNmOg": "",
+      "showTm": "126",
+      "prdtYear": "1997",
+      "openDt": "19980321",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "구스 반 산트",
+          "peopleNmEn": "Gus Van Sant"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "맷 데이먼",
+          "peopleNmEn": "Matt Damon",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "로빈 윌리엄스",
+          "peopleNmEn": "Robin Williams",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20104369",
+          "companyNm": "미라맥스 필름즈",
+          "companyNmEn": "Miramax Films",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20230987",
+          "companyNm": "롯데컬처웍스(주)롯데시네마",
+          "companyNmEn": "",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20142849",
+          "companyNm": "(주)영화사오원",
+          "companyNmEn": "",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20230987",
+          "companyNm": "롯데컬처웍스(주)롯데시네마",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        },
+        {
+          "companyCd": "20142849",
+          "companyNm": "(주)영화사오원",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "K98-38",
+          "watchGradeNm": "15세 미만인 자는 관람할 수 없는 등급 "
+        },
+        {
+          "auditNo": "2016-MF01216",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    },
+    "source": "영화진흥위원회"
+  }
+}
