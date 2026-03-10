@@ -73,6 +73,9 @@
                 <option value="12">최근 3개월 (12주)</option>
                 <option value="24">최근 6개월 (24주)</option>
                 <option value="52">최근 1년 (52주)</option>
+                <option value="104">최근 2년 (104주)</option>
+                <option value="156">최근 3년 (156주)</option>
+                <option value="260">최근 5년 (260주)</option>
             </select>
         </div>
         <div>
@@ -258,10 +261,8 @@ async function render(){
 
   rawSentimentData = await fetchSentimentData(currentName);
   
-  // 두 차트를 동기화하여 그리기
   drawChartsWithSync();
 
-  // 버튼 이벤트 연결
   const buttons = [
     { id: 'btnTotalAudi', type: 'totalAudi' },
     { id: 'btnAudiPerActor', type: 'audiPerActor' },
@@ -293,7 +294,6 @@ function drawChartsWithSync() {
     if (chartData.length > 0) document.getElementById('chart-container').style.display = 'block';
     if (rawSentimentData && rawSentimentData.timeline) document.getElementById('sentiment-container').style.display = 'block';
 
-    // 1. 공통 X축 범위 계산
     let minDate = null;
     let maxDate = null;
 
@@ -312,17 +312,32 @@ function drawChartsWithSync() {
     }
 
     const timeRange = document.getElementById('timeRange')?.value;
+    
+    // [동적 X축 단위 변경 로직 핵심]
+    let tUnit = 'year';
+    let tFormats = { year: 'YYYY' };
+
     if (timeRange && timeRange !== 'all') {
         const filterMin = moment().subtract(parseInt(timeRange), 'weeks');
-        if (filterMin.isAfter(minDate)) minDate = filterMin;
+        minDate = filterMin; // 필터링 시에는 무조건 해당 날짜로 강제 지정
+        maxDate = moment();  // 끝을 오늘 날짜로 고정하여 예쁘게 정렬
+
+        if (['12', '24', '52'].includes(timeRange)) {
+            // 3, 6, 12개월: 주 단위 표시 (YYYY.MM.DD)
+            tUnit = 'week';
+            tFormats = { week: 'YYYY.MM.DD' };
+        } else if (['104', '156', '260'].includes(timeRange)) {
+            // 2, 3, 5년: 월 단위 표시 (YYYY.MM)
+            tUnit = 'month';
+            tFormats = { month: 'YYYY.MM' };
+        }
     }
 
-    // 2. 차트 그리기
-    drawAudiChart(chartData, currentChartType, minDate, maxDate);
-    drawSentimentChart(minDate, maxDate);
+    drawAudiChart(chartData, currentChartType, minDate, maxDate, tUnit, tFormats);
+    drawSentimentChart(minDate, maxDate, tUnit, tFormats);
 }
 
-function drawAudiChart(films, type, minDate, maxDate) {
+function drawAudiChart(films, type, minDate, maxDate, tUnit, tFormats) {
     const ctx = document.getElementById('audiChart');
     if (!ctx) return;
     if (myChart) myChart.destroy();
@@ -367,7 +382,7 @@ function drawAudiChart(films, type, minDate, maxDate) {
             scales: {
                 x: {
                     type: 'time',
-                    time: { unit: 'year', displayFormats: { year: 'YYYY' } },
+                    time: { unit: tUnit, displayFormats: tFormats },
                     min: minDate?.toDate(),
                     max: maxDate?.toDate(),
                     grid: { display: false }
@@ -387,7 +402,7 @@ function drawAudiChart(films, type, minDate, maxDate) {
     });
 }
 
-function drawSentimentChart(minDate, maxDate) {
+function drawSentimentChart(minDate, maxDate, tUnit, tFormats) {
     if (!rawSentimentData || !rawSentimentData.timeline) return;
     const ctx = document.getElementById('sentimentChart').getContext('2d');
     if (sentimentChartInstance) sentimentChartInstance.destroy();
@@ -396,23 +411,21 @@ function drawSentimentChart(minDate, maxDate) {
     const posData = [];
     const negData = [];
     
-    // [3번 요청 반영] 긍정/부정 총합 계산 변수 추가
     let totalPositiveCount = 0;
     let totalNegativeCount = 0;
 
     labels.forEach(week => {
         const dateObj = ISOWeekToDate(week).toDate();
         const posVal = rawSentimentData.timeline[week].positive || 0;
-        const negVal = rawSentimentData.timeline[week].negative || 0; // JSON에 양수로 저장됨
+        const negVal = rawSentimentData.timeline[week].negative || 0; 
         
         totalPositiveCount += posVal;
         totalNegativeCount += negVal;
 
         posData.push({ x: dateObj, y: posVal });
-        negData.push({ x: dateObj, y: -(Math.abs(negVal)) }); // 차트 표현을 위해 음수로 변환
+        negData.push({ x: dateObj, y: -(Math.abs(negVal)) }); 
     });
 
-    // 화면 하단에 계산된 통계 렌더링
     const totalComments = totalPositiveCount + totalNegativeCount;
     document.getElementById('sentimentSummary').innerHTML = 
         `총 분석 댓글: <b>${fmtNum(totalComments)}</b>개 (긍정: <span style="color:#3b82f6">${fmtNum(totalPositiveCount)}</span>개 / 부정: <span style="color:#ef4444">${fmtNum(totalNegativeCount)}</span>개)`;
@@ -442,7 +455,7 @@ function drawSentimentChart(minDate, maxDate) {
             scales: {
                 x: {
                     type: 'time',
-                    time: { unit: 'year', displayFormats: { year: 'YYYY' } },
+                    time: { unit: tUnit, displayFormats: tFormats },
                     min: minDate?.toDate(),
                     max: maxDate?.toDate(),
                     grid: { display: false }
