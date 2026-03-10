@@ -31,13 +31,14 @@ CLASSIFIER = None
 def load_ai_model():
     global CLASSIFIER
     if CLASSIFIER is None:
-        print("🤖 AI 감성 분석 모델 로딩 중... (최초 1회만 실행)")
-        CLASSIFIER = pipeline("sentiment-analysis", model="sangrimlee/bert-base-multilingual-cased-nsmc")
+        print("🤖 AI 감성 분석 모델 로딩 중... (KoELECTRA-small-v3-nsmc 적용)")
+        # [최종 채택 모델] 속도와 정확도 모두 가장 우수한 KoELECTRA 기반 모델
+        CLASSIFIER = pipeline("sentiment-analysis", model="daekeun-ml/koelectra-small-v3-nsmc")
     return CLASSIFIER
 
 def clean_text(text):
     text = re.sub(r'([ㅋㅎㅠㅜ]){3,}', r'\1\1', text)
-    return text
+    return text[:500]
 
 def get_week_string(date_str):
     try:
@@ -56,10 +57,6 @@ def get_initial_sound(char):
     return char
 
 def get_youtube_comments(actor_name):
-    """
-    연도별 검색을 수행하여, 매년 댓글 수가 가장 많은 상위 3개 영상에서 데이터를 수집합니다.
-    유튜브 서비스가 본격화된 2005년을 시작점으로 잡습니다.
-    """
     global CURRENT_KEY_INDEX
     
     if not API_KEYS:
@@ -68,7 +65,7 @@ def get_youtube_comments(actor_name):
 
     all_comments = []
     current_year = datetime.now().year
-    start_year = 2005 # 유튜브 서비스 시작 년도로 변경
+    start_year = 2005 
 
     print(f"🔍 '{actor_name}' 연도별({start_year}~{current_year}) 유튜브 영상 분할 수집 시작...")
 
@@ -124,7 +121,7 @@ def get_youtube_comments(actor_name):
                         })
 
                 valid_videos.sort(key=lambda x: x['comment_count'], reverse=True)
-                target_videos = valid_videos[:3] # 상위 3개 영상 추출
+                target_videos = valid_videos[:3] 
 
                 if not target_videos:
                     print(f"   -> 유효한(댓글 있는) 영상 없음.")
@@ -180,7 +177,7 @@ def analyze_sentiment(comments):
     classifier = load_ai_model()
     timeline_data = {}
 
-    print(f"📊 수집된 댓글 {len(comments)}개 감성 분석 시작 (NSMC 모델 적용)...")
+    print(f"📊 수집된 댓글 {len(comments)}개 감성 분석 시작 (KoELECTRA 적용)...")
     
     for i, comment in enumerate(comments):
         try:
@@ -188,16 +185,17 @@ def analyze_sentiment(comments):
             clean_txt = clean_text(raw_text)
             
             result = classifier(clean_txt)[0]
-            label = result['label']
+            label = str(result['label']).lower()
             score = result['score'] 
             
+            # 확신도 60% 미만은 중립으로 판단하여 과감히 버림
             if score < 0.6:
                 continue
 
-            label_lower = label.lower()
-            if 'positive' in label_lower or 'label_1' in label_lower:
+            # KoELECTRA 모델은 '0' (부정), '1' (긍정) 형식으로 결과값을 출력함
+            if '1' in label or 'positive' in label:
                 sentiment = "positive"
-            elif 'negative' in label_lower or 'label_0' in label_lower:
+            elif '0' in label or 'negative' in label:
                 sentiment = "negative"
             else:
                 continue 
