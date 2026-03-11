@@ -32,7 +32,6 @@ def load_ai_model():
     global CLASSIFIER
     if CLASSIFIER is None:
         print("🤖 AI 감성 분석 모델 로딩 중... (KoELECTRA-small-v3-nsmc 적용)")
-        # 속도와 정확도 모두 가장 우수한 KoELECTRA 기반 모델 사용
         CLASSIFIER = pipeline("sentiment-analysis", model="daekeun-ml/koelectra-small-v3-nsmc")
     return CLASSIFIER
 
@@ -85,7 +84,6 @@ def get_youtube_comments(actor_name):
             try:
                 print(f" 📅 [{target_year}년] 영상 검색 중...")
                 
-                # 인위적인 키워드 추가 없이 순수 이름만 검색하여 공식 예고편 등 고가치 데이터 유실 방지
                 search_response = youtube.search().list(
                     q=actor_name,
                     part='id',
@@ -189,7 +187,6 @@ def analyze_sentiment(comments):
             label = str(result['label']).lower()
             score = result['score'] 
             
-            # 확신도 60% 미만은 중립으로 판단하여 과감히 버림 (가짜 데이터/다른 동명이인 댓글 필터링 효과)
             if score < 0.6:
                 continue
 
@@ -240,7 +237,6 @@ def run_pattern(pattern):
     target_initial = get_initial_sound(pattern[0]) if pattern else None
     print(f"🎬 [자음 검색] 초성: '{target_initial or '전체'}'")
 
-    # [수정됨] 1000만 관객 이상으로 기준 상향 조정
     MIN_AUDIENCE = 10000000 
     famous_actors = set()
     
@@ -252,7 +248,6 @@ def run_pattern(pattern):
                 audi_str = str(m.get('audiAcc', '0')).replace(',', '')
                 audi_num = int(audi_str) if audi_str.isdigit() else 0
                 
-                # 1000만 이상 흥행작에 출연한 배우만 명단에 추가
                 if audi_num >= MIN_AUDIENCE:
                     for actor in m.get('actors', []):
                         famous_actors.add(actor.get('name', '').strip())
@@ -268,11 +263,32 @@ def run_pattern(pattern):
         else:
             candidate_actors.append(name)
 
-    print(f"-> 1000만 흥행작 출연 & 대상 초성에 해당하는 '유명 배우' 수: {len(candidate_actors)}명")
+    # [핵심 추가] 이미 분석된 배우(파일 존재)는 대상에서 제외하는 '이어달리기' 로직 추가
+    target_actors = []
+    for name in candidate_actors:
+        save_path = SENTIMENT_DIR / f"{name}.json"
+        if save_path.exists():
+            try:
+                with open(save_path, 'r', encoding='utf-8') as f:
+                    last_updated_str = json.load(f).get("last_updated", "")
+                if last_updated_str:
+                    last_updated = datetime.strptime(last_updated_str, "%Y-%m-%d %H:%M:%S")
+                    # 최근 7일 이내에 분석을 완료한 배우는 건너뜁니다.
+                    if (datetime.now() - last_updated).days < 7:
+                        continue
+            except:
+                pass
+        target_actors.append(name)
+
+    print(f"-> 1000만 흥행작 출연 & 대상 초성 배우 중 미완료(작업 대상) 배우: {len(target_actors)}명")
+
+    if not target_actors:
+        print("✅ 해당 초성의 모든 배우 분석이 완료되었습니다. 다른 초성을 시도해 주세요.")
+        return
 
     success_count = 0
-    # 자음 자동 검색 시에는 API 소진을 고려하여 상위 5명만 제한
-    for idx, actor in enumerate(candidate_actors[:5]): 
+    # 상위 5명만 제한하여 실행 (안전망 유지)
+    for idx, actor in enumerate(target_actors[:5]): 
         if run_single(actor): success_count += 1
         
         global CURRENT_KEY_INDEX
