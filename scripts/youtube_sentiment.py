@@ -32,7 +32,7 @@ def load_ai_model():
     global CLASSIFIER
     if CLASSIFIER is None:
         print("🤖 AI 감성 분석 모델 로딩 중... (KoELECTRA-small-v3-nsmc 적용)")
-        # [최종 채택 모델] 속도와 정확도 모두 가장 우수한 KoELECTRA 기반 모델
+        # 속도와 정확도 모두 가장 우수한 KoELECTRA 기반 모델 사용
         CLASSIFIER = pipeline("sentiment-analysis", model="daekeun-ml/koelectra-small-v3-nsmc")
     return CLASSIFIER
 
@@ -85,6 +85,7 @@ def get_youtube_comments(actor_name):
             try:
                 print(f" 📅 [{target_year}년] 영상 검색 중...")
                 
+                # 인위적인 키워드 추가 없이 순수 이름만 검색하여 공식 예고편 등 고가치 데이터 유실 방지
                 search_response = youtube.search().list(
                     q=actor_name,
                     part='id',
@@ -188,11 +189,10 @@ def analyze_sentiment(comments):
             label = str(result['label']).lower()
             score = result['score'] 
             
-            # 확신도 60% 미만은 중립으로 판단하여 과감히 버림
+            # 확신도 60% 미만은 중립으로 판단하여 과감히 버림 (가짜 데이터/다른 동명이인 댓글 필터링 효과)
             if score < 0.6:
                 continue
 
-            # KoELECTRA 모델은 '0' (부정), '1' (긍정) 형식으로 결과값을 출력함
             if '1' in label or 'positive' in label:
                 sentiment = "positive"
             elif '0' in label or 'negative' in label:
@@ -240,16 +240,19 @@ def run_pattern(pattern):
     target_initial = get_initial_sound(pattern[0]) if pattern else None
     print(f"🎬 [자음 검색] 초성: '{target_initial or '전체'}'")
 
-    MIN_AUDIENCE = 5000000 
+    # [수정됨] 1000만 관객 이상으로 기준 상향 조정
+    MIN_AUDIENCE = 10000000 
     famous_actors = set()
     
     if SEARCH_INDEX_PATH.exists():
+        print(f"📊 로컬 관객수 데이터 분석 중... (기준: {MIN_AUDIENCE}명 이상 흥행작 출연)")
         with open(SEARCH_INDEX_PATH, 'r', encoding='utf-8') as f:
             movies = json.load(f)
             for m in movies:
                 audi_str = str(m.get('audiAcc', '0')).replace(',', '')
                 audi_num = int(audi_str) if audi_str.isdigit() else 0
                 
+                # 1000만 이상 흥행작에 출연한 배우만 명단에 추가
                 if audi_num >= MIN_AUDIENCE:
                     for actor in m.get('actors', []):
                         famous_actors.add(actor.get('name', '').strip())
@@ -265,9 +268,10 @@ def run_pattern(pattern):
         else:
             candidate_actors.append(name)
 
-    print(f"-> 대상 배우 수: {len(candidate_actors)}명")
+    print(f"-> 1000만 흥행작 출연 & 대상 초성에 해당하는 '유명 배우' 수: {len(candidate_actors)}명")
 
     success_count = 0
+    # 자음 자동 검색 시에는 API 소진을 고려하여 상위 5명만 제한
     for idx, actor in enumerate(candidate_actors[:5]): 
         if run_single(actor): success_count += 1
         
