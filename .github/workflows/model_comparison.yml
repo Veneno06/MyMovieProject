@@ -33,6 +33,10 @@ jobs:
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
           YOUTUBE_API_KEY_2: ${{ secrets.YOUTUBE_API_KEY_2 }}
+          YOUTUBE_API_KEY_3: ${{ secrets.YOUTUBE_API_KEY_3 }}
+          YOUTUBE_API_KEY_4: ${{ secrets.YOUTUBE_API_KEY_4 }}
+          YOUTUBE_API_KEY_5: ${{ secrets.YOUTUBE_API_KEY_5 }}
+          YOUTUBE_API_KEY_6: ${{ secrets.YOUTUBE_API_KEY_6 }}
         run: python scripts/run_model_comparison.py --actors "${{ github.event.inputs.actors }}"
 
       - name: Commit and Push Results
