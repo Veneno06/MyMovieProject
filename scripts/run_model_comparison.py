@@ -18,10 +18,15 @@ DATA_DIR = ROOT / "docs" / "data"
 DATA_DIR.mkdir(parents=True, exist_ok=True)
 OUT_FILE = DATA_DIR / "model_comparison.json"
 
-API_KEYS = [k for k in [os.environ.get("YOUTUBE_API_KEY"), os.environ.get("YOUTUBE_API_KEY_2")] if k]
+# [수정] 메인 스크립트와 동일하게 5개 키 자동 로딩 적용
+API_KEYS = []
+for key_name in ["YOUTUBE_API_KEY"] + [f"YOUTUBE_API_KEY_{i}" for i in range(2, 11)]:
+    val = os.environ.get(key_name)
+    if val and val.strip():
+        API_KEYS.append(val.strip())
+
 CURRENT_KEY_INDEX = 0
 
-# [완벽 수정 완료] 허깅페이스에 실제로 존재하는 검증된 공식 한국어 모델 5가지의 정확한 ID
 MODELS_TO_TEST = [
     {"id": "nlptown/bert-base-multilingual-uncased-sentiment", "name": "기존 다국어 모델 (NLPTown)"},
     {"id": "sangrimlee/bert-base-multilingual-cased-nsmc", "name": "네이버 영화 리뷰 모델 (현재 사용)"},
@@ -31,7 +36,6 @@ MODELS_TO_TEST = [
 ]
 
 def clean_text(text):
-    """유튜브 특유의 반복 자음/모음을 축약하여 AI 인식률 향상"""
     text = re.sub(r'([ㅋㅎㅠㅜ]){3,}', r'\1\1', text)
     return text[:500]
 
@@ -75,23 +79,18 @@ def get_youtube_comments(actor_name):
     return all_comments
 
 def parse_label(label, score):
-    """다양한 AI 모델들의 각기 다른 결과 포맷을 하나로 통일시키는 파서"""
-    # 60% 미만 확신은 무조건 탈락 (중립 처리)
     if score < 0.6: return "dropped"
     
     lbl = str(label).lower()
     
-    # 1. 별점형 모델 (nlptown 등)
     if 'star' in lbl:
         if '4' in lbl or '5' in lbl: return "positive"
         if '1' in lbl or '2' in lbl: return "negative"
         return "dropped"
         
-    # 2. 긍정/부정 텍스트 출력 모델 (snunlp, sangrimlee 등)
     if 'positive' in lbl: return "positive"
     if 'negative' in lbl: return "negative"
     
-    # 3. 라벨 번호 출력 모델 (KcBERT, KoELECTRA 등) -> 1: 긍정, 0: 부정
     if 'label_1' in lbl or lbl == '1': return "positive"
     if 'label_0' in lbl or lbl == '0': return "negative"
     
@@ -107,12 +106,10 @@ def run_comparison(actors):
         
         actor_result = {"total_input": total_input, "models": []}
         
-        # 5개 모델 순차적 로드 및 테스트
         for m_info in MODELS_TO_TEST:
             print(f"\n🤖 [{actor}] 모델 테스트 중: {m_info['name']}")
             try:
                 start_time = time.time()
-                # 여기서 허깅페이스 서버에 접속해 모델을 다운로드/로드 합니다.
                 classifier = pipeline("sentiment-analysis", model=m_info["id"])
                 
                 pos_count = 0
@@ -144,12 +141,12 @@ def run_comparison(actors):
                 
         results[actor] = actor_result
 
-    # 저장
     with open(OUT_FILE, 'w', encoding='utf-8') as f:
         json.dump(results, f, ensure_ascii=False, indent=2)
     print("\n🎉 모든 모델 비교 및 JSON 저장 완료!")
 
 if __name__ == "__main__":
+    print(f"🔑 로드된 YouTube API 키 개수: {len(API_KEYS)}개")
     parser = argparse.ArgumentParser()
     parser.add_argument("--actors", type=str, required=True, help="테스트할 배우 이름들 (쉼표 구분)")
     args = parser.parse_args()
