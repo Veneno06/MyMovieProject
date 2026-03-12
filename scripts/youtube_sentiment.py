@@ -21,9 +21,12 @@ SEARCH_INDEX_PATH = ROOT / "docs" / "data" / "search_index.json"
 SENTIMENT_DIR = ROOT / "docs" / "data" / "sentiment"
 SENTIMENT_DIR.mkdir(parents=True, exist_ok=True)
 
+# 1번부터 10번까지 등록된 모든 유튜브 API 키를 자동으로 긁어옵니다 (현재 5개 등록됨)
 API_KEYS = []
-for k in [os.environ.get("YOUTUBE_API_KEY"), os.environ.get("YOUTUBE_API_KEY_2")]:
-    if k: API_KEYS.append(k)
+for key_name in ["YOUTUBE_API_KEY"] + [f"YOUTUBE_API_KEY_{i}" for i in range(2, 11)]:
+    val = os.environ.get(key_name)
+    if val and val.strip():
+        API_KEYS.append(val.strip())
 
 CURRENT_KEY_INDEX = 0
 CLASSIFIER = None 
@@ -82,7 +85,7 @@ def get_youtube_comments(actor_name):
             youtube = build('youtube', 'v3', developerKey=current_key)
             
             try:
-                print(f" 📅 [{target_year}년] 영상 검색 중...")
+                print(f" 📅 [{target_year}년] 영상 검색 중... (Key {CURRENT_KEY_INDEX + 1} 사용)")
                 
                 search_response = youtube.search().list(
                     q=actor_name,
@@ -157,7 +160,7 @@ def get_youtube_comments(actor_name):
                     print(f"⚠️ API Key {CURRENT_KEY_INDEX+1} 할당량 초과!")
                     CURRENT_KEY_INDEX += 1
                     if CURRENT_KEY_INDEX < len(API_KEYS):
-                        print(f"🔄 다음 키로 교체하여 {target_year}년 데이터부터 이어서 시도합니다...")
+                        print(f"🔄 다음 키({CURRENT_KEY_INDEX+1}번)로 교체하여 {target_year}년 이어서 시도합니다...")
                     else:
                         print("🚨 모든 키가 소진되었습니다.")
                         return all_comments
@@ -233,6 +236,54 @@ def run_single(actor_name):
     print(f"✅ 저장 완료: {actor_name}.json")
     return True
 
+def run_auto():
+    print(f"🎬 [자동 수집 모드] 1000만 관객 이상 흥행작 배우 자동 추출 및 분석 시작...")
+    MIN_AUDIENCE = 10000000 
+    famous_actors = set()
+    
+    if SEARCH_INDEX_PATH.exists():
+        with open(SEARCH_INDEX_PATH, 'r', encoding='utf-8') as f:
+            movies = json.load(f)
+            for m in movies:
+                audi_str = str(m.get('audiAcc', '0')).replace(',', '')
+                audi_num = int(audi_str) if audi_str.isdigit() else 0
+                if audi_num >= MIN_AUDIENCE:
+                    for actor in m.get('actors', []):
+                        famous_actors.add(actor.get('name', '').strip())
+    else:
+        print("⚠️ search_index.json 파일이 없습니다.")
+        return
+
+    target_actors = []
+    for name in famous_actors:
+        if not name: continue
+        save_path = SENTIMENT_DIR / f"{name}.json"
+        
+        # 파일이 존재하면 무조건 스킵 (한 바퀴 완주 보장)
+        if save_path.exists():
+            continue
+            
+        target_actors.append(name)
+
+    print(f"-> 1000만 흥행작 출연 배우 중 미완료(작업 대상) 전체 배우: {len(target_actors)}명")
+
+    if not target_actors:
+        print("✅ 모든 천만 배우의 여론 분석이 완료되었습니다!")
+        return
+
+    success_count = 0
+    # [수정] 5개 키 분량에 맞춰 하루 20명으로 제한 상향
+    for idx, actor in enumerate(target_actors[:20]): 
+        if run_single(actor): success_count += 1
+        
+        global CURRENT_KEY_INDEX
+        if CURRENT_KEY_INDEX >= len(API_KEYS):
+            print("🚨 모든 API 키가 소진되어 오늘의 자동 수집을 종료합니다.")
+            break
+
+    print(f"\n🎉 오늘의 자동 수집 완료! (성공: {success_count}명)")
+
+
 def run_pattern(pattern):
     target_initial = get_initial_sound(pattern[0]) if pattern else None
     print(f"🎬 [자음 검색] 초성: '{target_initial or '전체'}'")
@@ -241,18 +292,14 @@ def run_pattern(pattern):
     famous_actors = set()
     
     if SEARCH_INDEX_PATH.exists():
-        print(f"📊 로컬 관객수 데이터 분석 중... (기준: {MIN_AUDIENCE}명 이상 흥행작 출연)")
         with open(SEARCH_INDEX_PATH, 'r', encoding='utf-8') as f:
             movies = json.load(f)
             for m in movies:
                 audi_str = str(m.get('audiAcc', '0')).replace(',', '')
                 audi_num = int(audi_str) if audi_str.isdigit() else 0
-                
                 if audi_num >= MIN_AUDIENCE:
                     for actor in m.get('actors', []):
                         famous_actors.add(actor.get('name', '').strip())
-    else:
-        print("⚠️ search_index.json 파일이 없어 흥행 필터링을 적용할 수 없습니다.")
 
     candidate_actors = []
     for name in famous_actors:
@@ -263,32 +310,22 @@ def run_pattern(pattern):
         else:
             candidate_actors.append(name)
 
-    # [핵심 추가] 이미 분석된 배우(파일 존재)는 대상에서 제외하는 '이어달리기' 로직 추가
     target_actors = []
     for name in candidate_actors:
         save_path = SENTIMENT_DIR / f"{name}.json"
         if save_path.exists():
-            try:
-                with open(save_path, 'r', encoding='utf-8') as f:
-                    last_updated_str = json.load(f).get("last_updated", "")
-                if last_updated_str:
-                    last_updated = datetime.strptime(last_updated_str, "%Y-%m-%d %H:%M:%S")
-                    # 최근 7일 이내에 분석을 완료한 배우는 건너뜁니다.
-                    if (datetime.now() - last_updated).days < 7:
-                        continue
-            except:
-                pass
+            continue
         target_actors.append(name)
 
-    print(f"-> 1000만 흥행작 출연 & 대상 초성 배우 중 미완료(작업 대상) 배우: {len(target_actors)}명")
+    print(f"-> 1000만 흥행작 출연 & 대상 초성 배우 중 미완료(작업 대상): {len(target_actors)}명")
 
     if not target_actors:
-        print("✅ 해당 초성의 모든 배우 분석이 완료되었습니다. 다른 초성을 시도해 주세요.")
+        print("✅ 해당 초성의 모든 배우 분석이 완료되었습니다.")
         return
 
     success_count = 0
-    # 상위 5명만 제한하여 실행 (안전망 유지)
-    for idx, actor in enumerate(target_actors[:5]): 
+    # [수정] 자음 검색 시에도 20명으로 상향
+    for idx, actor in enumerate(target_actors[:20]): 
         if run_single(actor): success_count += 1
         
         global CURRENT_KEY_INDEX
@@ -299,12 +336,16 @@ def run_pattern(pattern):
     print(f"\n🎉 작업 완료! (성공: {success_count}명)")
 
 if __name__ == "__main__":
+    print(f"🔑 로드된 YouTube API 키 개수: {len(API_KEYS)}개")
     parser = argparse.ArgumentParser()
     parser.add_argument("--pattern", type=str, help="초성 검색")
     parser.add_argument("--actor", type=str, help="단일 또는 다중 배우 검색 (쉼표로 구분)")
+    parser.add_argument("--auto", action="store_true", help="전체 미완료 배우 대상 자동 수집")
     args = parser.parse_args()
 
-    if args.pattern:
+    if args.auto:
+        run_auto()
+    elif args.pattern:
         run_pattern(args.pattern)
     elif args.actor:
         actors = [x.strip() for x in args.actor.split(',') if x.strip()]
