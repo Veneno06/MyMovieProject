@@ -1,13 +1,16 @@
 name: YouTube Sentiment Auto Update
 
 on:
+  # 매일 UTC 19:00 (한국 시간 새벽 04:00)에 자동 실행
+  schedule:
+    - cron: '0 19 * * *'
   workflow_dispatch:
     inputs:
       pattern:
         description: '자음 검색 모드 (예: ㄱ, ㄴ) - 테스트용'
         required: false
       actor_name:
-        description: '배우 이름 입력 (예: 유해진, 마동석, 김혜수). 쉼표로 구분하여 여러 명 입력 가능'
+        description: '배우 이름 입력 (예: 유해진, 마동석, 김혜수). 쉼표로 구분'
         required: false
 
 permissions:
@@ -31,17 +34,21 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      # A. 자음(초성) 검색 실행
+      # A. 자음(초성) 검색 실행 (수동)
       - name: Run AI Sentiment Analysis (Pattern Mode)
-        if: ${{ github.event.inputs.pattern != '' }}
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.pattern != '' }}
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
           YOUTUBE_API_KEY_2: ${{ secrets.YOUTUBE_API_KEY_2 }}
+          YOUTUBE_API_KEY_3: ${{ secrets.YOUTUBE_API_KEY_3 }}
+          YOUTUBE_API_KEY_4: ${{ secrets.YOUTUBE_API_KEY_4 }}
+          YOUTUBE_API_KEY_5: ${{ secrets.YOUTUBE_API_KEY_5 }}
+          YOUTUBE_API_KEY_6: ${{ secrets.YOUTUBE_API_KEY_6 }}
         run: python scripts/youtube_sentiment.py --pattern "${{ github.event.inputs.pattern }}"
 
-      # B. 지정 배우 실행 (단일 또는 다중)
+      # B. 지정 배우 실행 (수동)
       - name: Run AI Sentiment Analysis (Specific Actors)
-        if: ${{ github.event.inputs.actor_name != '' }}
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.actor_name != '' }}
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
           YOUTUBE_API_KEY_2: ${{ secrets.YOUTUBE_API_KEY_2 }}
@@ -50,6 +57,18 @@ jobs:
           YOUTUBE_API_KEY_5: ${{ secrets.YOUTUBE_API_KEY_5 }}
           YOUTUBE_API_KEY_6: ${{ secrets.YOUTUBE_API_KEY_6 }}
         run: python scripts/youtube_sentiment.py --actor "${{ github.event.inputs.actor_name }}"
+
+      # C. [이 부분이 아까 누락되었던 핵심 코드입니다!] 매일 새벽 자동 실행 (Auto Mode)
+      - name: Run AI Sentiment Analysis (Auto Daily)
+        if: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && github.event.inputs.pattern == '' && github.event.inputs.actor_name == '') }}
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          YOUTUBE_API_KEY_2: ${{ secrets.YOUTUBE_API_KEY_2 }}
+          YOUTUBE_API_KEY_3: ${{ secrets.YOUTUBE_API_KEY_3 }}
+          YOUTUBE_API_KEY_4: ${{ secrets.YOUTUBE_API_KEY_4 }}
+          YOUTUBE_API_KEY_5: ${{ secrets.YOUTUBE_API_KEY_5 }}
+          YOUTUBE_API_KEY_6: ${{ secrets.YOUTUBE_API_KEY_6 }}
+        run: python scripts/youtube_sentiment.py --auto
 
       - name: Commit and Push Data
         run: |
