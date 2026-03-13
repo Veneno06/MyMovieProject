@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>스타 파워 분석 – K-Movie A Archive</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="assets/style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+  h1 { text-align: center; margin-bottom: 5px; }
+  .subtitle { text-align: center; color: #6b7280; margin-bottom: 30px; font-size: 14px; }
+  
+  .formula-selector {
+      background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 20px;
+      margin-bottom: 30px; display: flex; flex-direction: column; gap: 15px;
+  }
+  .formula-option {
+      display: flex; align-items: flex-start; gap: 10px; cursor: pointer;
+      padding: 10px; border-radius: 6px; transition: background 0.2s;
+  }
+  .formula-option:hover { background: #f3f4f6; }
+  .formula-option input[type="radio"] { margin-top: 4px; transform: scale(1.2); cursor: pointer; }
+  .formula-title { font-weight: bold; font-size: 16px; color: #111827; }
+  .formula-desc { font-size: 13px; color: #4b5563; margin-top: 4px; }
+  .math-text { font-family: monospace; background: #e5e7eb; padding: 2px 6px; border-radius: 4px; font-size: 12px; }
+
+  .chart-container {
+      width: 100%; height: 400px; padding: 15px; border: 1px solid #e5e7eb; 
+      border-radius: 12px; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.05); margin-bottom: 30px;
+  }
+  
+  table { width: 100%; border-collapse: collapse; text-align: center; font-size: 14px; }
+  th, td { padding: 12px; border-bottom: 1px solid #e5e7eb; }
+  th { background-color: #f9fafb; font-weight: bold; color: #374151; }
+  .score-cell { font-weight: bold; color: #2563eb; font-size: 16px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="ctrls">
+    <a href="index.html" class="btn">홈</a>
+    <a href="saved.html" class="btn">🔙 저장 목록</a>
+  </div>
+
+  <h1>🌟 스타 파워 (Star Power) 정밀 분석</h1>
+  <div class="subtitle">배우의 흥행력, 점유율, 기여도, 타율을 과학적인 지표로 계산하여 비교합니다.</div>
+
+  <div class="formula-selector">
+      <label class="formula-option">
+          <input type="radio" name="formulaType" value="SP1" checked onchange="calculateAndRender()">
+          <div>
+              <div class="formula-title">공식 1: 기여도 및 최신성 모델 (SP_Contribution)</div>
+              <div class="formula-desc">개별 영화의 관객수를 배역 비중(W_role)과 출연진 수 분산(√C_i)으로 나누어 개인의 기여도를 도출하고, 최신작일수록 높은 가중치(W_time)를 부여합니다.</div>
+              <div class="formula-desc" style="margin-top:5px;"><span class="math-text">Σ ( A_i × (W_role / √C_i) × W_time )</span></div>
+          </div>
+      </label>
+      <label class="formula-option">
+          <input type="radio" name="formulaType" value="SP2" onchange="calculateAndRender()">
+          <div>
+              <div class="formula-title">공식 2: 거시경제 시대 보정 모델 (SP_Market)</div>
+              <div class="formula-desc">해당 영화 개봉 연도의 전체 극장 관객수 총합(Total_Y) 대비 이 영화가 차지한 파이(%)를 누적 합산합니다. 코로나 시기나 비수기의 흥행을 높게 평가합니다.</div>
+              <div class="formula-desc" style="margin-top:5px;"><span class="math-text">Σ ( A_i / Total_Y(i) ) × 1000</span></div>
+          </div>
+      </label>
+      <label class="formula-option">
+          <input type="radio" name="formulaType" value="SP3" onchange="calculateAndRender()">
+          <div>
+              <div class="formula-title">공식 3: 흥행 타율 모델 (SP_HitRatio)</div>
+              <div class="formula-desc">배우의 전체 필모그래피 중, 사이트 내 모든 영화의 평균 관객수(Avg_site)를 뛰어넘은 '흥행 성공작'의 비율(%)을 나타냅니다. 안정성을 평가합니다.</div>
+              <div class="formula-desc" style="margin-top:5px;"><span class="math-text">( Hit_Count / N ) × 100</span></div>
+          </div>
+      </label>
+      <label class="formula-option">
+          <input type="radio" name="formulaType" value="SP_FINAL" onchange="calculateAndRender()">
+          <div>
+              <div class="formula-title">🌟 최종 통합 스타 파워 (SP_Final)</div>
+              <div class="formula-desc">시대 보정(점유율), 개인의 배역 기여도, 그리고 시계열 가중치를 모두 융합하여 단일 스코어로 산출하는 마스터 공식입니다.</div>
+              <div class="formula-desc" style="margin-top:5px; color:#2563eb;"><span class="math-text" style="background:#dbeafe;">Σ ( (A_i / Total_Y(i)) × (W_role / √C_i) × W_time ) × 10000</span></div>
+          </div>
+      </label>
+  </div>
+
+  <div class="chart-container">
+      <canvas id="spChart"></canvas>
+  </div>
+
+  <div style="overflow-x: auto; border: 1px solid #e5e7eb; border-radius: 8px; background: #fff;">
+      <table id="resultTable">
+          <thead>
+              <tr>
+                  <th>순위</th>
+                  <th>배우 이름</th>
+                  <th>분석된 영화 수</th>
+                  <th>누적 관객수 합계</th>
+                  <th>스타 파워 (Score)</th>
+              </tr>
+          </thead>
+          <tbody id="tableBody">
+              <tr><td colspan="5" style="padding: 30px;">데이터를 분석 중입니다...</td></tr>
+          </tbody>
+      </table>
+  </div>
+</div>
+
+<script>
+const TS = Date.now();
+const PATHS_INDEX = [`docs/data/search_index.json?v=${TS}`, `data/search_index.json?v=${TS}`];
+const PATHS_DETAILS = [`docs/data/people/`, `data/people/`]; 
+
+let SEARCH_INDEX = [];
+let MOVIE_MAP = {}; 
+let YEAR_TOTALS = {}; // 연도별 총 관객수 (Total_Y)
+let GLOBAL_AVG = 0;   // 사이트 전체 평균 관객수 (Avg_site)
+
+let actorsData = [];
+let spChartInstance = null;
+
+const COLORS = ['#2563eb', '#dc2626', '#16a34a', '#9333ea'];
+
+function getParam(k){ return new URLSearchParams(location.search).get(k); }
+const safeParseInt = (v) => {
+    if (!v) return 0;
+    if (typeof v === 'number') return v;
+    const n = parseInt(String(v).replace(/,/g, '').trim(), 10);
+    return isNaN(n) ? 0 : n;
+};
+const fmtNum = n => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+// 1. 인덱스 로드 및 전역 변수(Total_Y, Avg_site) 계산
+async function loadSearchIndex() {
+    if (SEARCH_INDEX.length > 0) return;
+    for (const path of PATHS_INDEX) {
+        try {
+            const r = await fetch(path);
+            if (r.ok) {
+                SEARCH_INDEX = await r.json();
+                
+                let totalAudiAll = 0;
+                let validMovieCount = 0;
+
+                SEARCH_INDEX.forEach(m => { 
+                    MOVIE_MAP[m.movieCd] = m; 
+                    const audi = safeParseInt(m.audiAcc);
+                    const year = (m.openDt || '').slice(0,4) || String(m.prdtYear);
+                    
+                    if (year && audi > 0) {
+                        YEAR_TOTALS[year] = (YEAR_TOTALS[year] || 0) + audi;
+                        totalAudiAll += audi;
+                        validMovieCount++;
+                    }
+                });
+                
+                GLOBAL_AVG = validMovieCount > 0 ? (totalAudiAll / validMovieCount) : 0;
+                return;
+            }
+        } catch(e) {}
+    }
+}
+
+// 2. 특정 배우 데이터 로드
+async function resolveAndFetch(key) {
+    if (!key) return null;
+    let targetId = key;
+
+    if (!/^\d+$/.test(key)) {
+        await loadSearchIndex(); 
+        let namePart = key.startsWith('name:') ? key.split(':')[1] : key;
+        namePart = decodeURIComponent(namePart);
+
+        let foundId = null;
+        for (const m of SEARCH_INDEX) {
+            const cast = [...(m.actors || []), ...(m.directors || [])];
+            const target = cast.find(p => p.name === namePart && p.id);
+            if (target) { foundId = target.id; break; }
+        }
+        if (foundId) targetId = foundId;
+        else return { peopleNm: namePart, filmos: [] };
+    }
+
+    const fname = `${targetId}.json?v=${TS}`;
+    let rawData = null;
+    for (const prefix of PATHS_DETAILS) {
+        try { 
+            const r = await fetch(prefix + fname); 
+            if(r.ok) {
+                const json = await r.json();
+                rawData = (json.peopleInfoResult && json.peopleInfoResult.peopleInfo) ? json.peopleInfoResult.peopleInfo : json;
+                break;
+            }
+        } catch(e){}
+    }
+
+    if (rawData && rawData.filmos) {
+        await loadSearchIndex(); 
+        // 유효한 개봉일과 관객수가 있는 영화만 필터링
+        rawData.filmos = rawData.filmos.map(f => {
+            const baseInfo = MOVIE_MAP[f.movieCd] || {};
+            return {
+                ...f, 
+                openDt: baseInfo.openDt || f.openDt || '', 
+                movieNm: f.movieNm || baseInfo.movieNm,
+                baseInfo: baseInfo // 캐스트 크기 등 접근용
+            };
+        }).filter(f => f.openDt.length >= 4 && safeParseInt(f.audiAcc) > 0);
+    }
+    return rawData;
+}
+
+// 3. 메인 실행 함수
+async function main() {
+    await loadSearchIndex();
+    const ids = [getParam('p1'), getParam('p2'), getParam('p3'), getParam('p4')].filter(Boolean);
+    const results = await Promise.all(ids.map(id => resolveAndFetch(id)));
+    actorsData = results.filter(data => data && data.peopleNm); 
+
+    calculateAndRender();
+}
+
+// 4. 공식 계산 엔진
+function computeScore(actor, type) {
+    let score = 0;
+    const filmos = actor.filmos || [];
+    const N = filmos.length;
+    if (N === 0) return 0;
+
+    let hitCount = 0;
+
+    filmos.forEach(f => {
+        const A_i = safeParseInt(f.audiAcc);
+        const year = f.openDt.slice(0,4);
+        
+        // C_i: 영화 상세 페이지에 등록된 배우 수 (최소 1 보장)
+        const C_i = Math.max(1, (f.baseInfo.actors || []).length);
+        
+        // W_role: 상위 33% 내에 위치하면 주연급(1.0), 아니면 조연급(0.5)
+        let W_role = 0.5;
+        if (f.baseInfo.actors) {
+            const myIndex = f.baseInfo.actors.findIndex(a => a.name === actor.peopleNm);
+            const threshold = Math.ceil(C_i / 3);
+            if (myIndex !== -1 && myIndex < threshold) W_role = 1.0;
+        }
+
+        // W_time: 최신작일수록 높은 점수 (2000년 기준), 최소 0.1 보장
+        const W_time = Math.max(0.1, (parseInt(year) - 2000) / 10);
+        
+        // Total_Y: 해당 연도 전체 관객수
+        const Total_Y = YEAR_TOTALS[year] || A_i;
+
+        if (type === 'SP1') {
+            score += A_i * (W_role / Math.sqrt(C_i)) * W_time;
+        } 
+        else if (type === 'SP2') {
+            score += (A_i / Total_Y) * 1000;
+        } 
+        else if (type === 'SP3') {
+            if (A_i > GLOBAL_AVG) hitCount++;
+        }
+        else if (type === 'SP_FINAL') {
+            score += (A_i / Total_Y) * (W_role / Math.sqrt(C_i)) * W_time * 10000;
+        }
+    });
+
+    if (type === 'SP3') {
+        score = (hitCount / N) * 100; // 백분율(%)
+    }
+
+    return parseFloat(score.toFixed(2));
+}
+
+// 5. 렌더링 (차트 및 테이블)
+function calculateAndRender() {
+    const selectedType = document.querySelector('input[name="formulaType"]:checked').value;
+    
+    // 계산 수행
+    const results = actorsData.map(actor => {
+        const totalAudi = actor.filmos.reduce((sum, f) => sum + safeParseInt(f.audiAcc), 0);
+        return {
+            name: actor.peopleNm,
+            movieCount: actor.filmos.length,
+            totalAudi: totalAudi,
+            score: computeScore(actor, selectedType)
+        };
+    });
+
+    // 점수 기준 내림차순 정렬
+    results.sort((a, b) => b.score - a.score);
+
+    // 차트 그리기
+    const ctx = document.getElementById('spChart').getContext('2d');
+    if (spChartInstance) spChartInstance.destroy();
+
+    spChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: results.map(r => r.name),
+            datasets: [{
+                label: '계산된 스타 파워 (Score)',
+                data: results.map(r => r.score),
+                backgroundColor: results.map((_, i) => COLORS[i % COLORS.length]),
+                borderRadius: 6,
+                barPercentage: 0.6
+            }]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            scales: { y: { beginAtZero: true } },
+            plugins: { legend: { display: false } }
+        }
+    });
+
+    // 테이블 렌더링
+    const tbody = document.getElementById('tableBody');
+    tbody.innerHTML = '';
+    
+    results.forEach((r, idx) => {
+        const tr = document.createElement('tr');
+        if (idx === 0) tr.style.backgroundColor = '#fefce8'; // 1등 강조
+        tr.innerHTML = `
+            <td><b>${idx + 1}위</b></td>
+            <td><b>${r.name}</b></td>
+            <td>${r.movieCount}편</td>
+            <td>${fmtNum(r.totalAudi)}명</td>
+            <td class="score-cell">${fmtNum(r.score)}${selectedType === 'SP3' ? '%' : '점'}</td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+
+main();
+</script>
+</body>
+</html>
