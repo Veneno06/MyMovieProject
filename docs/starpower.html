@@ -42,7 +42,7 @@
     <a href="saved.html" class="btn">🔙 저장 목록</a>
   </div>
 
-  <h1>🌟 스타 파워 (Star Power) 정밀 분석</h1>
+  <h1> 스타 파워 (Star Power) 정밀 분석</h1>
   <div class="subtitle">배우의 흥행력, 점유율, 기여도를 계산하여 비교합니다.</div>
 
   <div class="formula-selector">
@@ -58,7 +58,7 @@
           <input type="radio" name="formulaType" value="SP2" onchange="calculateAndRender()">
           <div>
               <div class="formula-title">공식 2: 시대 보정 </div>
-              <div class="formula-desc">해당 영화 개봉 연도의 전체 극장 관객수 총합(Total_Y) 대비 이 영화가 차지한 파이(%)를 누적 합산합니다. 코로나 시기나 비수기의 흥행을 높게 평가합니다.</div>
+              <div class="formula-desc">해당 영화 개봉 연도의 전체 극장 관객수 총합(Total_Y) 대비 이 영화가 차지한 파이(%)를 누적 합산합니다. </div>
               <div class="formula-desc" style="margin-top:5px;"><span class="math-text">Σ ( A_i / Total_Y(i) ) × 1000</span></div>
           </div>
       </label>
@@ -66,15 +66,15 @@
           <input type="radio" name="formulaType" value="SP3" onchange="calculateAndRender()">
           <div>
               <div class="formula-title">공식 3: 흥행 비율</div>
-              <div class="formula-desc">배우의 전체 필모그래피 중, 사이트 내 모든 영화의 평균 관객수(Avg_site)를 뛰어넘은 '흥행 성공작'의 비율(%)을 나타냅니다. 안정성을 평가합니다.</div>
+              <div class="formula-desc">배우의 전체 필모그래피 중, 사이트 내 모든 영화의 평균 관객수(Avg_site)를 뛰어넘은 '흥행 성공작'의 비율(%)을 나타냅니다. </div>
               <div class="formula-desc" style="margin-top:5px;"><span class="math-text">( Hit_Count / N ) × 100</span></div>
           </div>
       </label>
       <label class="formula-option">
           <input type="radio" name="formulaType" value="SP_FINAL" onchange="calculateAndRender()">
           <div>
-              <div class="formula-title">🌟 최종 통합 스타 파워 (SP_Final)</div>
-              <div class="formula-desc">시대 보정(점유율), 개인의 배역 기여도, 그리고 시계열 가중치를 모두 융합하여 단일 스코어로 산출하는 마스터 공식입니다.</div>
+              <div class="formula-title"> 최종 통합 스타 파워 </div>
+              <div class="formula-desc">시대 보정(점유율), 개인의 배역 기여도, 그리고 시계열 가중치를 모두 융합하여 단일 스코어로 산출하는 공식입니다.</div>
               <div class="formula-desc" style="margin-top:5px; color:#2563eb;"><span class="math-text" style="background:#dbeafe;">Σ ( (A_i / Total_Y(i)) × (W_role / √C_i) × W_time ) × 10000</span></div>
           </div>
       </label>
