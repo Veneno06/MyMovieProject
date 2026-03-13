@@ -43,13 +43,13 @@
   </div>
 
   <h1>🌟 스타 파워 (Star Power) 정밀 분석</h1>
-  <div class="subtitle">배우의 흥행력, 점유율, 기여도, 타율을 과학적인 지표로 계산하여 비교합니다.</div>
+  <div class="subtitle">배우의 흥행력, 점유율, 기여도를 계산하여 비교합니다.</div>
 
   <div class="formula-selector">
       <label class="formula-option">
           <input type="radio" name="formulaType" value="SP1" checked onchange="calculateAndRender()">
           <div>
-              <div class="formula-title">공식 1: 기여도 및 최신성 모델 (SP_Contribution)</div>
+              <div class="formula-title">공식 1: 기여도 및 최신성 </div>
               <div class="formula-desc">개별 영화의 관객수를 배역 비중(W_role)과 출연진 수 분산(√C_i)으로 나누어 개인의 기여도를 도출하고, 최신작일수록 높은 가중치(W_time)를 부여합니다.</div>
               <div class="formula-desc" style="margin-top:5px;"><span class="math-text">Σ ( A_i × (W_role / √C_i) × W_time )</span></div>
           </div>
@@ -57,7 +57,7 @@
       <label class="formula-option">
           <input type="radio" name="formulaType" value="SP2" onchange="calculateAndRender()">
           <div>
-              <div class="formula-title">공식 2: 거시경제 시대 보정 모델 (SP_Market)</div>
+              <div class="formula-title">공식 2: 시대 보정 </div>
               <div class="formula-desc">해당 영화 개봉 연도의 전체 극장 관객수 총합(Total_Y) 대비 이 영화가 차지한 파이(%)를 누적 합산합니다. 코로나 시기나 비수기의 흥행을 높게 평가합니다.</div>
               <div class="formula-desc" style="margin-top:5px;"><span class="math-text">Σ ( A_i / Total_Y(i) ) × 1000</span></div>
           </div>
@@ -65,7 +65,7 @@
       <label class="formula-option">
           <input type="radio" name="formulaType" value="SP3" onchange="calculateAndRender()">
           <div>
-              <div class="formula-title">공식 3: 흥행 타율 모델 (SP_HitRatio)</div>
+              <div class="formula-title">공식 3: 흥행 비율</div>
               <div class="formula-desc">배우의 전체 필모그래피 중, 사이트 내 모든 영화의 평균 관객수(Avg_site)를 뛰어넘은 '흥행 성공작'의 비율(%)을 나타냅니다. 안정성을 평가합니다.</div>
               <div class="formula-desc" style="margin-top:5px;"><span class="math-text">( Hit_Count / N ) × 100</span></div>
           </div>
