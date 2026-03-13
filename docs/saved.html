@@ -7,47 +7,21 @@
   <link rel="stylesheet" href="assets/style.css">
   <script src="assets/translator.js" defer></script>
   <style>
-    .actor-card {
-      border: 1px solid #e6e6e6;
-      padding: 12px;
-      border-radius: 8px;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      background: #fff;
-    }
+    .actor-card { border: 1px solid #e6e6e6; padding: 12px; border-radius: 8px; margin-bottom: 10px; display: flex; align-items: center; gap: 15px; background: #fff; }
     .actor-info { flex-grow: 1; }
-    .compare-section { 
-        margin-top: 20px; padding-top: 15px; border-top: 1px solid #eee; 
-        display:flex; justify-content: center; align-items: center; flex-direction: column; gap: 10px; 
-    }
+    .compare-section { margin-top: 20px; padding-top: 15px; border-top: 1px solid #eee; display:flex; justify-content: center; align-items: center; flex-direction: column; gap: 10px; }
     .muted { color:#6b7280; font-size: 0.9rem; }
-    #compareBtn {
-        background-color: #2563eb; color: white; border: none; font-weight: bold; padding: 10px 20px; font-size: 16px;
-    }
+    
+    .btn-group { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+    #compareBtn { background-color: #374151; color: white; border: none; font-weight: bold; padding: 10px 20px; font-size: 15px; }
     #compareBtn:disabled { background-color: #ccc; cursor: not-allowed; }
     
-    /* [3번 요청] 우측 하단 모델 비교 임시 버튼 스타일 */
-    .floating-model-btn {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        background-color: #111827;
-        color: #fff !important;
-        padding: 14px 24px;
-        border-radius: 50px;
-        font-weight: bold;
-        font-size: 15px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        text-decoration: none;
-        z-index: 1000;
-        transition: transform 0.2s ease;
-    }
-    .floating-model-btn:hover {
-        transform: translateY(-3px);
-        text-decoration: none;
-    }
+    /* [추가됨] 스타 파워 분석 버튼 전용 스타일 */
+    #starPowerBtn { background-color: #2563eb; color: white; border: none; font-weight: bold; padding: 10px 20px; font-size: 15px; }
+    #starPowerBtn:disabled { background-color: #ccc; cursor: not-allowed; }
+    
+    .floating-model-btn { position: fixed; bottom: 30px; right: 30px; background-color: #111827; color: #fff !important; padding: 14px 24px; border-radius: 50px; font-weight: bold; font-size: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); text-decoration: none; z-index: 1000; transition: transform 0.2s ease; }
+    .floating-model-btn:hover { transform: translateY(-3px); text-decoration: none; }
   </style>
 </head>
 <body>
@@ -62,21 +36,24 @@
   </div>
 
   <h1 data-i18n-key="savedListTitle">저장 목록</h1>
-
   <div id="savedPeopleList" class="grid"></div>
 
   <div class="compare-section">
-    <button class="btn" id="compareBtn" disabled>배우 관객수 비교 (2~4명 선택)</button>
+    <div class="btn-group">
+        <button class="btn" id="compareBtn" disabled>배우 관객수 단순 비교</button>
+        <button class="btn" id="starPowerBtn" disabled>🌟 스타 파워(Star Power) 정밀 분석</button>
+    </div>
     <div id="selectionMsg" class="muted">비교할 배우를 2명에서 4명까지 선택해주세요.</div>
     <div id="emptyMsg" class="muted" style="display:none;">저장된 배우가 없습니다.</div>
   </div>
 </div>
 
-<a href="model-compare.html" class="floating-model-btn">🔬 모델 성능 비교 (임시)</a>
+<a href="model-compare.html" class="floating-model-btn">🔬 AI 모델 성능 비교 (임시)</a>
 
 <script>
 const LIST_BOX = document.getElementById('savedPeopleList');
 const COMPARE_BTN = document.getElementById('compareBtn');
+const STAR_POWER_BTN = document.getElementById('starPowerBtn');
 const EMPTY_MSG = document.getElementById('emptyMsg');
 const SELECTION_MSG = document.getElementById('selectionMsg');
 
@@ -84,16 +61,10 @@ function getSavedPeople() {
   try { return JSON.parse(localStorage.getItem('savedPeople') || '{}'); }
   catch { return {}; }
 }
-function setSavedPeople(obj) {
-  localStorage.setItem('savedPeople', JSON.stringify(obj));
-}
-
+function setSavedPeople(obj) { localStorage.setItem('savedPeople', JSON.stringify(obj)); }
 function removeSaved(id) {
   const saved = getSavedPeople();
-  if (saved[id]) {
-    delete saved[id];
-    setSavedPeople(saved);
-  }
+  if (saved[id]) { delete saved[id]; setSavedPeople(saved); }
   render();
 }
 
@@ -101,14 +72,14 @@ function updateCompareButtons() {
   const picked = document.querySelectorAll('.actor-checkbox:checked').length;
   if (picked >= 2 && picked <= 4) {
       COMPARE_BTN.disabled = false;
-      SELECTION_MSG.textContent = `${picked}명이 선택되었습니다.`;
+      STAR_POWER_BTN.disabled = false;
+      SELECTION_MSG.innerHTML = `<b>${picked}명</b>이 선택되었습니다.`;
       SELECTION_MSG.style.color = "#2563eb";
-      SELECTION_MSG.style.fontWeight = "bold";
   } else {
       COMPARE_BTN.disabled = true;
+      STAR_POWER_BTN.disabled = true;
       SELECTION_MSG.textContent = "비교할 배우를 2명에서 4명까지 선택해주세요.";
       SELECTION_MSG.style.color = "#6b7280";
-      SELECTION_MSG.style.fontWeight = "normal";
   }
 }
 
@@ -118,46 +89,37 @@ function render() {
 
   LIST_BOX.innerHTML = '';
   if (savedKeys.length === 0) {
-    EMPTY_MSG.style.display = 'block';
-    COMPARE_BTN.style.display = 'none';
-    SELECTION_MSG.style.display = 'none';
+    EMPTY_MSG.style.display = 'block'; COMPARE_BTN.style.display = 'none'; STAR_POWER_BTN.style.display = 'none'; SELECTION_MSG.style.display = 'none';
     return;
   }
-  
-  EMPTY_MSG.style.display = 'none';
-  COMPARE_BTN.style.display = 'block';
-  SELECTION_MSG.style.display = 'block';
+  EMPTY_MSG.style.display = 'none'; COMPARE_BTN.style.display = 'block'; STAR_POWER_BTN.style.display = 'block'; SELECTION_MSG.style.display = 'block';
 
   const list = savedKeys.map(k => ({ id: k, name: saved[k].name })).sort((a,b) => a.name.localeCompare(b.name, 'ko'));
-
   for (const person of list) {
-    const card = document.createElement('div');
-    card.className = 'actor-card';
-    card.innerHTML = `
-      <input type="checkbox" class="actor-checkbox" value="${person.id}" style="transform: scale(1.2);">
-      <div class="actor-info">
-        <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
-          <a href="person.html?id=${encodeURIComponent(person.id)}&name=${encodeURIComponent(person.name)}">
-            <strong>${person.name}</strong>
-          </a>
+    const card = document.createElement('div'); card.className = 'actor-card';
+    card.innerHTML = `<input type="checkbox" class="actor-checkbox" value="${person.id}" style="transform: scale(1.2);">
+      <div class="actor-info"><div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+          <a href="person.html?id=${encodeURIComponent(person.id)}&name=${encodeURIComponent(person.name)}"><strong>${person.name}</strong></a>
           <button class="btn" style="font-size:11px; padding:2px 6px;" onclick="removeSaved('${person.id}')">삭제</button>
-        </div>
-      </div>
-    `;
+        </div></div>`;
     LIST_BOX.appendChild(card);
   }
-
-  document.querySelectorAll('.actor-checkbox').forEach(cb => {
-    cb.addEventListener('change', updateCompareButtons);
-  });
+  document.querySelectorAll('.actor-checkbox').forEach(cb => { cb.addEventListener('change', updateCompareButtons); });
   updateCompareButtons();
 }
 
 COMPARE_BTN.addEventListener('click', () => {
   const picked = [...document.querySelectorAll('.actor-checkbox:checked')].map(x=>x.value);
   if (picked.length >= 2 && picked.length <= 4) {
-      const queryParams = picked.map((id, idx) => `p${idx+1}=${encodeURIComponent(id)}`).join('&');
-      location.href = `compare.html?${queryParams}`;
+      location.href = `compare.html?${picked.map((id, idx) => `p${idx+1}=${encodeURIComponent(id)}`).join('&')}`;
+  }
+});
+
+// [추가됨] 스타파워 페이지로 이동
+STAR_POWER_BTN.addEventListener('click', () => {
+  const picked = [...document.querySelectorAll('.actor-checkbox:checked')].map(x=>x.value);
+  if (picked.length >= 2 && picked.length <= 4) {
+      location.href = `starpower.html?${picked.map((id, idx) => `p${idx+1}=${encodeURIComponent(id)}`).join('&')}`;
   }
 });
 
