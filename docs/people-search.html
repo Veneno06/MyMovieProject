@@ -2,23 +2,23 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title data-i18n-key="peopleSearchTitle">배우 검색</title>
+<title>배우/감독 검색 – K-Movie A Archive</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="assets/style.css">
 <script src="assets/translator.js" defer></script>
 <style>
-body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple SD Gothic Neo, Noto Sans KR, 'Malgun Gothic', sans-serif; line-height:1.6; }
-.wrap { max-width:980px; margin:24px auto; padding:0 12px; }
-h1 { font-size:28px; margin:0 0 16px; }
-.ctrls { display:flex; gap:8px; margin-bottom:12px; }
-.ctrls a { padding:6px 10px; border:1px solid #e5e7eb; border-radius:8px; background:#fff; text-decoration:none; color:#111827; }
-.note { color:#6b7280; }
-ul.list { list-style:none; padding:0; margin:12px 0; }
-li { padding:6px 0; border-bottom:1px dashed #e5e7eb; }
-label { margin-right:8px; }
-.box { background:#f6f7f9; border:1px solid #e5e7eb; border-radius:8px; padding:12px; }
-/* [추가] 코드 스타일 */
-.code-badge { font-family: monospace; font-size: 0.85em; color: #666; margin-right: 4px; }
+  .search-box { background: #f9fafb; padding: 20px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #e5e7eb; display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
+  .search-input { padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 15px; width: 250px; }
+  .btn-search { background-color: #2563eb; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+  .result-count { font-size: 13px; color: #6b7280; margin-bottom: 10px; }
+  .result-list { list-style: none; padding: 0; margin: 0; }
+  .result-item { border-bottom: 1px dashed #e5e7eb; padding: 15px 0; display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px; }
+  .name-link { color: #2563eb; font-weight: bold; text-decoration: none; font-size: 16px; }
+  .name-link:hover { text-decoration: underline; }
+  .code { color: #6b7280; font-size: 13px; }
+  .dynamic-info { font-size: 14px; }
+  .role-badge { color: #4b5563; font-weight: bold; }
+  .movies { color: #6b7280; font-size: 13px; margin-left: 5px; }
 </style>
 </head>
 <body>
@@ -27,134 +27,173 @@ label { margin-right:8px; }
     <a href="index.html" class="btn" data-i18n-key="home">홈</a>
     <a href="title-search.html" class="btn" data-i18n-key="movieTitleSearch">영화 검색 (제목)</a>
     <a href="search.html" class="btn" data-i18n-key="movieSearchPeriod">영화 검색 (기간)</a>
-    <a href="people-search.html" class="btn" data-i18n-key="peopleSearch">배우 검색</a>
+    <a href="people-search.html" class="btn active" data-i18n-key="peopleSearch">배우/감독 검색</a>
     <a href="costar-search.html" class="btn" data-i18n-key="costarSearch">공동 출연 검색</a>
     <a href="saved.html" class="btn" data-i18n-key="savedList">저장 목록</a>
   </div>
 
-  <h1 data-i18n-key="peopleSearchTitle">배우/감독 검색</h1>
+  <h1 style="margin-bottom: 20px;">배우/감독 검색</h1>
 
-  <form id="f" class="box">
-    <span data-i18n-key="nameLabel">이름:</span> <input type="text" name="q" value="">
-    <label><input type="checkbox" name="actorOnly" checked> <span data-i18n-key="actorOnly">배우만</span></label>
-    <button type="submit" class="btn" data-i18n-key="searchBtn">검색</button>
-  </form>
+  <div class="search-box">
+      <label style="font-weight:bold;">이름:</label>
+      <input type="text" id="keyword" class="search-input" placeholder="예: 이병헌, 박지환" onkeypress="if(event.key==='Enter') doSearch()">
+      <label style="cursor:pointer; display:flex; align-items:center; gap:5px;">
+          <input type="checkbox" id="onlyActor" checked style="transform:scale(1.2);"> 배우만
+      </label>
+      <button class="btn-search" onclick="doSearch()">검색</button>
+  </div>
 
-  <div id="total" class="note"></div>
-  <ul id="out" class="list"></ul>
+  <div id="count" class="result-count"></div>
+  <ul id="results" class="result-list"></ul>
 </div>
 
 <script>
 const TS = Date.now();
-const PATHS = [`docs/data/search_index.json?v=${TS}`, `data/search_index.json?v=${TS}`];
-let PEOPLE_DB = [];
+const PATHS_INDEX = [`docs/data/search_index.json?v=${TS}`, `data/search_index.json?v=${TS}`];
+const PATHS_DETAILS = [`docs/data/people/`, `data/people/`];
 
-async function loadIndex(){
-  for (const path of PATHS) {
-      try {
-          const r = await fetch(path);
-          if (r.ok) {
-              const data = await r.json();
-              processData(data);
-              return;
-          }
-      } catch(e) {}
-  }
-  document.getElementById('total').textContent = '데이터를 불러올 수 없습니다.';
-}
+let SEARCH_INDEX = [];
 
-function processData(movies) {
-    const peopleMap = new Map();
-    
-    movies.forEach(m => {
-        // 배우 처리
-        if (m.actors) {
-            m.actors.forEach(a => {
-                const id = (a.id && a.id.trim()) ? a.id : `name:${a.name}`;
-                
-                if (!peopleMap.has(id)) {
-                    peopleMap.set(id, { 
-                        personKey: id, 
-                        peopleNm: a.name, 
-                        repRoleNm: '배우', 
-                        filmos: [],
-                        sex: a.gender || ''
-                    });
-                }
-                const p = peopleMap.get(id);
-                if (!p.filmos.includes(m.movieNm)) {
-                     if (p.filmos.length < 4) p.filmos.push(m.movieNm); 
-                }
-            });
-        }
-        // 감독 처리
-        if (m.directors) {
-            m.directors.forEach(d => {
-                const id = (d.id && d.id.trim()) ? d.id : `name:${d.name}`;
-                if (!peopleMap.has(id)) {
-                     peopleMap.set(id, { personKey: id, peopleNm: d.name, repRoleNm: '감독', filmos: [], sex: '' });
-                }
-                const p = peopleMap.get(id);
-                if (!p.filmos.includes(m.movieNm) && p.filmos.length < 4) p.filmos.push(m.movieNm);
-            });
-        }
-    });
-    PEOPLE_DB = Array.from(peopleMap.values());
-}
-
-function search(){
-  const f = new FormData(document.getElementById('f'));
-  const q = (f.get('q')||'').trim().toLowerCase();
-  if (!q) { document.getElementById('out').innerHTML=''; return; }
-
-  let list = PEOPLE_DB.filter(p => (p.peopleNm||'').toLowerCase().includes(q));
-  if (f.get('actorOnly')) list = list.filter(p => p.repRoleNm === '배우');
-  
-  list.sort((a, b) => b.filmos.length - a.filmos.length);
-  list = list.slice(0, 200);
-
-  document.getElementById('total').textContent = `총 ${list.length}명 검색됨`;
-  const ul = document.getElementById('out');
-  ul.innerHTML = '';
-  
-  for (const p of list) {
-    const href = `person.html?id=${encodeURIComponent(p.personKey)}&name=${encodeURIComponent(p.peopleNm)}`;
-    const filmoStr = p.filmos.length > 0 ? `(${p.filmos.join(', ')} 등)` : '';
-    
-    // 성별 표시
-    let genderBadge = '';
-    if (p.sex === '남자' || p.sex === '남') genderBadge = ' <span style="color:blue;font-size:0.8em;">(남)</span>';
-    else if (p.sex === '여자' || p.sex === '여') genderBadge = ' <span style="color:red;font-size:0.8em;">(여)</span>';
-
-    // [수정] 코드 표시 로직 (1번 요청 반영)
-    let codeStr = '';
-    if (!p.personKey.startsWith('name:')) {
-        // 코드가 있는 경우 (예: 20137049) -> (20137049) 형태로 표시
-        codeStr = ` <span class="code-badge">(${p.personKey})</span>`;
-    } else {
-        // 코드가 없는 경우 -> (코드없음)
-        codeStr = ` <span class="code-badge" style="color:#aaa;">(코드없음)</span>`;
+// 1. 기초 데이터 로드
+async function loadIndex() {
+    for (const p of PATHS_INDEX) {
+        try {
+            const res = await fetch(p);
+            if (res.ok) { SEARCH_INDEX = await res.json(); return; }
+        } catch(e) {}
     }
-    
-    const li = document.createElement('li');
-    // 순서: 이름 + [코드] + [성별] + [직업/필모]
-    li.innerHTML = `<a href="${href}"><strong>${p.peopleNm}</strong></a>${codeStr}${genderBadge} <span class="note">${p.repRoleNm} ${filmoStr}</span>`;
-    ul.appendChild(li);
-  }
+}
+loadIndex();
+
+// 2. 상세 정보 동적 페치 함수 (직종 확인용)
+async function fetchPersonInfo(id) {
+    if (!id) return null;
+    for (const prefix of PATHS_DETAILS) {
+        try {
+            const res = await fetch(prefix + `${id}.json?v=${TS}`);
+            if (res.ok) {
+                const data = await res.json();
+                return data.peopleInfoResult?.peopleInfo || data;
+            }
+        } catch(e) {}
+    }
+    return null;
 }
 
-(async function main(){
-  await loadIndex();
-  document.getElementById('f').addEventListener('submit', (e)=>{ e.preventDefault(); search(); });
-  
-  const q = new URLSearchParams(location.search).get('q');
-  if(q) {
-      document.querySelector('input[name=q]').value = q;
-      const check = setInterval(() => {
-          if(PEOPLE_DB.length > 0) { clearInterval(check); search(); }
-      }, 100);
-  }
-})();
+// 3. 메인 검색 로직
+async function doSearch() {
+    if (SEARCH_INDEX.length === 0) await loadIndex();
+    
+    const keyword = document.getElementById('keyword').value.trim();
+    const onlyActor = document.getElementById('onlyActor').checked;
+    
+    if (!keyword) {
+        alert("이름을 입력해주세요.");
+        return;
+    }
+
+    const out = document.getElementById('results');
+    out.innerHTML = '<li style="color:#666;">검색 중...</li>';
+    
+    const peopleMap = new Map();
+
+    // 데이터 순회 및 병합 (코드없음 분리 로직 적용)
+    SEARCH_INDEX.forEach(m => {
+        const movieTitle = m.movieNm;
+
+        // 배우 처리
+        (m.actors || []).forEach(a => {
+            if (a.name.includes(keyword)) {
+                const id = a.id || "";
+                // [해결포인트 1] 코드가 없으면 이름과 '역할(배우)'을 결합하여 고유키 생성 (분리 효과)
+                const key = id ? id : `name:${a.name}:actor`; 
+                
+                if (!peopleMap.has(key)) {
+                    peopleMap.set(key, { id: id, name: a.name, sourceRole: '배우', movies: new Set() });
+                }
+                peopleMap.get(key).movies.add(movieTitle);
+            }
+        });
+
+        // 감독 처리
+        (m.directors || []).forEach(d => {
+            if (d.name.includes(keyword)) {
+                const id = d.id || "";
+                // [해결포인트 1] 코드가 없으면 이름과 '역할(감독)'을 결합하여 고유키 생성 (분리 효과)
+                const key = id ? id : `name:${d.name}:director`; 
+                
+                if (!peopleMap.has(key)) {
+                    peopleMap.set(key, { id: id, name: d.name, sourceRole: '감독', movies: new Set() });
+                }
+                peopleMap.get(key).movies.add(movieTitle);
+            }
+        });
+    });
+
+    let resultsArray = Array.from(peopleMap.values());
+    
+    // 초기 렌더링
+    out.innerHTML = '';
+    let visibleCount = resultsArray.length;
+    document.getElementById('count').innerText = `총 ${visibleCount}건 검색됨`;
+
+    if (visibleCount === 0) {
+        out.innerHTML = '<li style="color:#ef4444;">검색 결과가 없습니다.</li>';
+        return;
+    }
+
+    for (const r of resultsArray) {
+        const li = document.createElement('li');
+        li.className = 'result-item';
+        
+        const displayId = r.id ? r.id : "코드없음";
+        const linkId = r.id ? r.id : `name:${r.name}`;
+        
+        // 임시 HTML 구조 생성 (동적 데이터 페치 후 채워짐)
+        li.innerHTML = `
+            <a href="person.html?id=${encodeURIComponent(linkId)}&name=${encodeURIComponent(r.name)}" class="name-link" target="_blank">${r.name}</a>
+            <span class="code">(${displayId})</span>
+            <span class="dynamic-info" id="info-${r.id || linkId.replace(/:/g,'-')}">
+                <span class="role-badge">${r.sourceRole}</span>
+            </span>
+            <span class="movies">(${Array.from(r.movies).slice(0, 5).join(', ')}${r.movies.size > 5 ? ' 등' : ''})</span>
+        `;
+        out.appendChild(li);
+
+        // [해결포인트 2 & 3] 상세 정보 실시간 페치 및 2차 필터링 (광고대행 분리)
+        if (r.id) {
+            fetchPersonInfo(r.id).then(info => {
+                if (info) {
+                    const infoSpan = document.getElementById(`info-${r.id}`);
+                    // KOFIC 상세 정보의 '대표 직종'을 우선적으로 가져옴
+                    let trueRole = info.repRoleNm || r.sourceRole; 
+                    
+                    // 성별 뱃지
+                    let sexBadge = "";
+                    if (info.sex === "남자" || info.sex === "남") sexBadge = `<span style="color:#2563eb; margin-right:4px;">(남)</span>`;
+                    if (info.sex === "여자" || info.sex === "여") sexBadge = `<span style="color:#ef4444; margin-right:4px;">(여)</span>`;
+
+                    // "배우만" 필터 로직: KOFIC에서 추출한 진짜 직업이 '배우'가 아니면 즉시 숨김
+                    if (onlyActor && trueRole !== '배우' && !trueRole.includes('배우')) {
+                        li.style.display = 'none';
+                        visibleCount--;
+                        document.getElementById('count').innerText = `총 ${visibleCount}건 검색됨`;
+                    } else {
+                        // 정확한 성별과 진짜 직업으로 UI 업데이트
+                        infoSpan.innerHTML = `${sexBadge}<span class="role-badge">${trueRole}</span>`;
+                    }
+                }
+            });
+        } else {
+            // 코드 없는 사람의 경우 (페치할 상세 정보가 없음)
+            if (onlyActor && r.sourceRole !== '배우') {
+                li.style.display = 'none';
+                visibleCount--;
+                document.getElementById('count').innerText = `총 ${visibleCount}건 검색됨`;
+            }
+        }
+    }
+}
 </script>
 </body>
 </html>
