@@ -286,23 +286,20 @@ async function render(){
         const audiStr = audiNum ? ` / <span style="font-weight:bold; color:#333;">누적 ${fmtNum(audiNum)}명</span>` : '';
         const partStr = f.moviePartNm ? `<span style="color:#2563eb; font-weight:bold; font-size:12px; margin-right:4px;">[${f.moviePartNm}]</span>` : '';
 
-        // --- [실수 복구] 동료 배우 링크 생성 로직 다시 살림 ---
         let castStr = "";
         if (f.actors && Array.isArray(f.actors)) {
             const d = f.actors.slice(0, 7).map(a => {
                 if (a.name === currentName) return `<b>${a.name}</b>`;
                 const pid = (a.id && a.id.trim()) ? a.id : `name:${a.name}`;
-                // 기존처럼 클릭 가능한 a 태그로 렌더링
-                return `<a href="person.html?id=${encodeURIComponent(pid)}&name=${encodeURIComponent(a.name)}" style="color:#555; text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${a.name}</a>`;
+                // [수정됨] target="_blank" 추가하여 동료 배우 클릭 시 새 탭에서 열림
+                return `<a href="person.html?id=${encodeURIComponent(pid)}&name=${encodeURIComponent(a.name)}" target="_blank" style="color:#555; text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${a.name}</a>`;
             });
             castStr = ` · 배우: ${d.join(', ')}`;
         }
-        // -----------------------------------------------------
 
         const li = document.createElement('li');
         li.style.borderBottom = "1px dashed #e5e7eb"; li.style.padding = "8px 0";
-        // 복구된 castStr 변수를 리스트 내부(HTML)에 삽입
-        li.innerHTML = `${partStr}<a href="detail.html?movieCd=${encodeURIComponent(f.movieCd)}" style="font-weight:bold;">${f.movieNm}</a>
+        li.innerHTML = `${partStr}<a href="detail.html?movieCd=${encodeURIComponent(f.movieCd)}" target="_blank" style="font-weight:bold;">${f.movieNm}</a>
           <span class="note">(${f.openDt}${audiStr}<span style="font-size:13px; color:#666; margin-left:5px;">${castStr}</span>)</span>`;
         
         out.appendChild(li);
