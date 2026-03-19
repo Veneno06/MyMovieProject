@@ -6,20 +6,6 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="assets/style.css">
 <script src="assets/translator.js" defer></script>
-<style>
-  .search-box { background: #f9fafb; padding: 20px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #e5e7eb; display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
-  .search-input { padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 15px; width: 250px; }
-  .btn-search { background-color: #2563eb; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: bold; }
-  .result-count { font-size: 13px; color: #6b7280; margin-bottom: 10px; }
-  .result-list { list-style: none; padding: 0; margin: 0; }
-  .result-item { border-bottom: 1px dashed #e5e7eb; padding: 15px 0; display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px; }
-  .name-link { color: #2563eb; font-weight: bold; text-decoration: none; font-size: 16px; }
-  .name-link:hover { text-decoration: underline; }
-  .code { color: #6b7280; font-size: 13px; }
-  .dynamic-info { font-size: 14px; }
-  .role-badge { color: #4b5563; font-weight: bold; }
-  .movies { color: #6b7280; font-size: 13px; margin-left: 5px; }
-</style>
 </head>
 <body>
 <div class="wrap">
@@ -32,19 +18,35 @@
     <a href="saved.html" class="btn" data-i18n-key="savedList">저장 목록</a>
   </div>
 
-  <h1 style="margin-bottom: 20px;">배우/감독 검색</h1>
+  <h1>배우/감독 검색</h1>
 
-  <div class="search-box">
-      <label style="font-weight:bold;">이름:</label>
-      <input type="text" id="keyword" class="search-input" placeholder="예: 이병헌, 박지환" onkeypress="if(event.key==='Enter') doSearch()">
-      <label style="cursor:pointer; display:flex; align-items:center; gap:5px;">
-          <input type="checkbox" id="onlyActor" checked style="transform:scale(1.2);"> 배우만
-      </label>
-      <button class="btn-search" onclick="doSearch()">검색</button>
+  <div style="background:#f9f9f9; padding:15px; border-radius:8px; border:1px solid #ddd; margin-bottom:20px;">
+      <label>이름: <input type="text" id="keyword" onkeypress="if(event.key==='Enter') doSearch()" style="width:200px;"></label>
+      <label style="margin-left:10px;"><input type="checkbox" id="onlyActor" checked> 배우만</label>
+      <button class="btn" onclick="doSearch()" style="margin-left:10px;">검색</button>
   </div>
 
-  <div id="count" class="result-count"></div>
-  <ul id="results" class="result-list"></ul>
+  <div id="count" class="note" style="margin-bottom: 10px;"></div>
+  <ul id="results" class="list"></ul>
+
+  <div id="rankingContainer" style="margin-top: 40px; padding-top: 20px; border-top: 2px dashed #ddd; display: none;">
+      <h2>🏆 실시간 스타 파워 (SP_Final) TOP 10</h2>
+      <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+          <div style="flex: 1; min-width: 250px; background: #fff; padding: 15px; border: 1px solid #eee; border-radius: 8px;">
+              <h3 style="color: #111827; border-bottom: 2px solid #2563eb; padding-bottom: 5px;">🔥 통합 랭킹</h3>
+              <ul id="rankOverall" style="list-style: decimal; margin-left: 20px; line-height: 1.8;"></ul>
+          </div>
+          <div style="flex: 1; min-width: 250px; background: #fff; padding: 15px; border: 1px solid #eee; border-radius: 8px;">
+              <h3 style="color: #2563eb; border-bottom: 2px solid #2563eb; padding-bottom: 5px;">👨 남우 랭킹</h3>
+              <ul id="rankMale" style="list-style: decimal; margin-left: 20px; line-height: 1.8;"></ul>
+          </div>
+          <div style="flex: 1; min-width: 250px; background: #fff; padding: 15px; border: 1px solid #eee; border-radius: 8px;">
+              <h3 style="color: #ef4444; border-bottom: 2px solid #ef4444; padding-bottom: 5px;">👩 여우 랭킹</h3>
+              <ul id="rankFemale" style="list-style: decimal; margin-left: 20px; line-height: 1.8;"></ul>
+          </div>
+      </div>
+  </div>
+
 </div>
 
 <script>
@@ -54,18 +56,20 @@ const PATHS_DETAILS = [`docs/data/people/`, `data/people/`];
 
 let SEARCH_INDEX = [];
 
-// 1. 기초 데이터 로드
 async function loadIndex() {
     for (const p of PATHS_INDEX) {
         try {
             const res = await fetch(p);
-            if (res.ok) { SEARCH_INDEX = await res.json(); return; }
+            if (res.ok) { 
+                SEARCH_INDEX = await res.json(); 
+                calculateGlobalRankings(); // 인덱스 로딩 직후 랭킹 즉시 계산
+                return; 
+            }
         } catch(e) {}
     }
 }
 loadIndex();
 
-// 2. 상세 정보 동적 페치 함수 (직종 확인용)
 async function fetchPersonInfo(id) {
     if (!id) return null;
     for (const prefix of PATHS_DETAILS) {
@@ -80,119 +84,153 @@ async function fetchPersonInfo(id) {
     return null;
 }
 
-// 3. 메인 검색 로직
+// === [해결: 검색 로직] ===
 async function doSearch() {
     if (SEARCH_INDEX.length === 0) await loadIndex();
     
     const keyword = document.getElementById('keyword').value.trim();
     const onlyActor = document.getElementById('onlyActor').checked;
     
-    if (!keyword) {
-        alert("이름을 입력해주세요.");
-        return;
-    }
+    if (!keyword) { alert("이름을 입력해주세요."); return; }
 
     const out = document.getElementById('results');
-    out.innerHTML = '<li style="color:#666;">검색 중...</li>';
+    out.innerHTML = '<li class="note">검색 중...</li>';
     
     const peopleMap = new Map();
 
-    // 데이터 순회 및 병합 (코드없음 분리 로직 적용)
     SEARCH_INDEX.forEach(m => {
         const movieTitle = m.movieNm;
-
-        // 배우 처리
         (m.actors || []).forEach(a => {
             if (a.name.includes(keyword)) {
                 const id = a.id || "";
-                // [해결포인트 1] 코드가 없으면 이름과 '역할(배우)'을 결합하여 고유키 생성 (분리 효과)
                 const key = id ? id : `name:${a.name}:actor`; 
-                
-                if (!peopleMap.has(key)) {
-                    peopleMap.set(key, { id: id, name: a.name, sourceRole: '배우', movies: new Set() });
-                }
+                if (!peopleMap.has(key)) peopleMap.set(key, { id: id, name: a.name, sourceRole: '배우', movies: new Set() });
                 peopleMap.get(key).movies.add(movieTitle);
             }
         });
-
-        // 감독 처리
         (m.directors || []).forEach(d => {
             if (d.name.includes(keyword)) {
                 const id = d.id || "";
-                // [해결포인트 1] 코드가 없으면 이름과 '역할(감독)'을 결합하여 고유키 생성 (분리 효과)
                 const key = id ? id : `name:${d.name}:director`; 
-                
-                if (!peopleMap.has(key)) {
-                    peopleMap.set(key, { id: id, name: d.name, sourceRole: '감독', movies: new Set() });
-                }
+                if (!peopleMap.has(key)) peopleMap.set(key, { id: id, name: d.name, sourceRole: '감독', movies: new Set() });
                 peopleMap.get(key).movies.add(movieTitle);
             }
         });
     });
 
     let resultsArray = Array.from(peopleMap.values());
-    
-    // 초기 렌더링
     out.innerHTML = '';
-    let visibleCount = resultsArray.length;
-    document.getElementById('count').innerText = `총 ${visibleCount}건 검색됨`;
-
-    if (visibleCount === 0) {
-        out.innerHTML = '<li style="color:#ef4444;">검색 결과가 없습니다.</li>';
-        return;
-    }
+    let visibleCount = 0; // 실제 표시되는 인원수
 
     for (const r of resultsArray) {
+        // [해결요청 2] "코드없음" 데이터는 화면에 아예 그리지 않고 무시 (데이터는 보존됨)
+        if (!r.id) continue;
+
         const li = document.createElement('li');
-        li.className = 'result-item';
+        li.style.borderBottom = "1px dashed #e5e7eb"; li.style.padding = "8px 0";
         
-        const displayId = r.id ? r.id : "코드없음";
-        const linkId = r.id ? r.id : `name:${r.name}`;
-        
-        // 임시 HTML 구조 생성 (동적 데이터 페치 후 채워짐)
+        // 동적으로 채워질 뼈대 HTML
         li.innerHTML = `
-            <a href="person.html?id=${encodeURIComponent(linkId)}&name=${encodeURIComponent(r.name)}" class="name-link" target="_blank">${r.name}</a>
-            <span class="code">(${displayId})</span>
-            <span class="dynamic-info" id="info-${r.id || linkId.replace(/:/g,'-')}">
-                <span class="role-badge">${r.sourceRole}</span>
-            </span>
-            <span class="movies">(${Array.from(r.movies).slice(0, 5).join(', ')}${r.movies.size > 5 ? ' 등' : ''})</span>
+            <a href="person.html?id=${r.id}&name=${encodeURIComponent(r.name)}" style="font-weight:bold; color:#2563eb;">${r.name}</a>
+            <span class="note">(${r.id})</span>
+            <span id="info-${r.id}" style="font-size:13px; font-weight:bold; color:#555;">[${r.sourceRole}]</span>
+            <span class="note" style="font-size:13px;">(${Array.from(r.movies).slice(0, 5).join(', ')}${r.movies.size > 5 ? ' 등' : ''})</span>
         `;
-        out.appendChild(li);
+        
+        // [해결요청 3] 실시간으로 상세 데이터를 열어 진짜 직종(repRoleNm)을 가져와 반영
+        fetchPersonInfo(r.id).then(info => {
+            if (info) {
+                const infoSpan = document.getElementById(`info-${r.id}`);
+                let trueRole = info.repRoleNm || r.sourceRole; // API 제공 진짜 직업
+                
+                let sexBadge = "";
+                if (info.sex === "남자" || info.sex === "남") sexBadge = `<span style="color:#2563eb;">(남)</span>`;
+                if (info.sex === "여자" || info.sex === "여") sexBadge = `<span style="color:#ef4444;">(여)</span>`;
 
-        // [해결포인트 2 & 3] 상세 정보 실시간 페치 및 2차 필터링 (광고대행 분리)
-        if (r.id) {
-            fetchPersonInfo(r.id).then(info => {
-                if (info) {
-                    const infoSpan = document.getElementById(`info-${r.id}`);
-                    // KOFIC 상세 정보의 '대표 직종'을 우선적으로 가져옴
-                    let trueRole = info.repRoleNm || r.sourceRole; 
-                    
-                    // 성별 뱃지
-                    let sexBadge = "";
-                    if (info.sex === "남자" || info.sex === "남") sexBadge = `<span style="color:#2563eb; margin-right:4px;">(남)</span>`;
-                    if (info.sex === "여자" || info.sex === "여") sexBadge = `<span style="color:#ef4444; margin-right:4px;">(여)</span>`;
-
-                    // "배우만" 필터 로직: KOFIC에서 추출한 진짜 직업이 '배우'가 아니면 즉시 숨김
-                    if (onlyActor && trueRole !== '배우' && !trueRole.includes('배우')) {
-                        li.style.display = 'none';
-                        visibleCount--;
-                        document.getElementById('count').innerText = `총 ${visibleCount}건 검색됨`;
-                    } else {
-                        // 정확한 성별과 진짜 직업으로 UI 업데이트
-                        infoSpan.innerHTML = `${sexBadge}<span class="role-badge">${trueRole}</span>`;
-                    }
+                if (onlyActor && trueRole !== '배우' && !trueRole.includes('배우')) {
+                    // 배우만 체크했는데 진짜 직업이 광고대행 등이라면 화면에서 숨기고 카운트 차감
+                    li.style.display = 'none';
+                    visibleCount--;
+                    document.getElementById('count').innerText = `총 ${visibleCount}건 검색됨`;
+                } else {
+                    infoSpan.innerHTML = `${sexBadge} [${trueRole}]`;
                 }
-            });
-        } else {
-            // 코드 없는 사람의 경우 (페치할 상세 정보가 없음)
-            if (onlyActor && r.sourceRole !== '배우') {
-                li.style.display = 'none';
-                visibleCount--;
-                document.getElementById('count').innerText = `총 ${visibleCount}건 검색됨`;
             }
+        });
+
+        out.appendChild(li);
+        visibleCount++;
+    }
+
+    document.getElementById('count').innerText = `총 ${visibleCount}건 검색됨`;
+    if (visibleCount === 0) out.innerHTML = '<li class="note" style="color:red;">검색 결과가 없습니다.</li>';
+}
+
+// === [해결요청 4] 실시간 스타 파워(SP_Final) 전체 랭킹 계산 ===
+async function calculateGlobalRankings() {
+    const YEAR_TOTALS = {};
+    const ACTOR_SCORES = new Map();
+
+    // 1차 순회: 연도별 총 관객수(Total_Y) 계산
+    SEARCH_INDEX.forEach(m => {
+        const audi = parseInt(String(m.audiAcc).replace(/,/g, '') || '0', 10);
+        const year = (m.openDt || '').slice(0,4) || String(m.prdtYear);
+        if (year && audi > 0) YEAR_TOTALS[year] = (YEAR_TOTALS[year] || 0) + audi;
+    });
+
+    // 2차 순회: SP_Final 공식 적용
+    SEARCH_INDEX.forEach(m => {
+        const A_i = parseInt(String(m.audiAcc).replace(/,/g, '') || '0', 10);
+        const year = (m.openDt || '').slice(0,4) || String(m.prdtYear);
+        if (!year || A_i <= 0) return;
+        
+        const Total_Y = YEAR_TOTALS[year];
+        const W_time = Math.max(0.1, (parseInt(year) - 2000) / 10);
+        const C_i = Math.max(1, (m.actors || []).length);
+
+        (m.actors || []).forEach((a, idx) => {
+            if (!a.id) return; // 코드 없으면 랭킹에서 제외
+            const W_role = (idx < Math.ceil(C_i / 3)) ? 1.0 : 0.5;
+            const score_i = (A_i / Total_Y) * (W_role / Math.sqrt(C_i)) * W_time * 10000;
+
+            if (!ACTOR_SCORES.has(a.id)) ACTOR_SCORES.set(a.id, { id: a.id, name: a.name, score: 0 });
+            ACTOR_SCORES.get(a.id).score += score_i;
+        });
+    });
+
+    // 통합 랭킹 정렬
+    const rankedAll = Array.from(ACTOR_SCORES.values()).sort((a,b) => b.score - a.score);
+    
+    // 남/녀 분리 추출 (상위권 인물만 fetch하여 성별 확인 - 속도 최적화)
+    let topMale = [], topFemale = [];
+    for (const actor of rankedAll) {
+        if (topMale.length >= 10 && topFemale.length >= 10) break;
+        const info = await fetchPersonInfo(actor.id);
+        if (info && info.sex) {
+            const s = info.sex.trim();
+            if ((s === '남자' || s === '남') && topMale.length < 10) topMale.push(actor);
+            if ((s === '여자' || s === '여') && topFemale.length < 10) topFemale.push(actor);
         }
     }
+
+    // UI 렌더링
+    document.getElementById('rankingContainer').style.display = 'block';
+    
+    const renderList = (elementId, list) => {
+        const el = document.getElementById(elementId);
+        el.innerHTML = '';
+        list.slice(0, 10).forEach(a => {
+            el.innerHTML += `<li>
+                <a href="person.html?id=${a.id}&name=${encodeURIComponent(a.name)}" style="color:#333; text-decoration:none;">
+                    <b>${a.name}</b> <span style="font-size:12px; color:#888;">(${Math.round(a.score).toLocaleString()}점)</span>
+                </a>
+            </li>`;
+        });
+    };
+
+    renderList('rankOverall', rankedAll);
+    renderList('rankMale', topMale);
+    renderList('rankFemale', topFemale);
 }
 </script>
 </body>
