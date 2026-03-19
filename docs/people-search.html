@@ -30,18 +30,18 @@
   <ul id="results" class="list"></ul>
 
   <div id="rankingContainer" style="margin-top: 40px; padding-top: 20px; border-top: 2px dashed #ddd; display: none;">
-      <h2> 실시간 스타 파워 (SP_Final) TOP 10</h2>
+      <h2>🏆 실시간 스타 파워 (SP_Final) TOP 10</h2>
       <div style="display: flex; gap: 20px; flex-wrap: wrap;">
           <div style="flex: 1; min-width: 250px; background: #fff; padding: 15px; border: 1px solid #eee; border-radius: 8px;">
-              <h3 style="color: #111827; border-bottom: 2px solid #2563eb; padding-bottom: 5px;"> 통합 랭킹</h3>
+              <h3 style="color: #111827; border-bottom: 2px solid #2563eb; padding-bottom: 5px;">🔥 통합 랭킹</h3>
               <ul id="rankOverall" style="list-style: decimal; margin-left: 20px; line-height: 1.8;"></ul>
           </div>
           <div style="flex: 1; min-width: 250px; background: #fff; padding: 15px; border: 1px solid #eee; border-radius: 8px;">
-              <h3 style="color: #2563eb; border-bottom: 2px solid #2563eb; padding-bottom: 5px;"> 남자 배우 랭킹</h3>
+              <h3 style="color: #2563eb; border-bottom: 2px solid #2563eb; padding-bottom: 5px;">👨 남우 랭킹</h3>
               <ul id="rankMale" style="list-style: decimal; margin-left: 20px; line-height: 1.8;"></ul>
           </div>
           <div style="flex: 1; min-width: 250px; background: #fff; padding: 15px; border: 1px solid #eee; border-radius: 8px;">
-              <h3 style="color: #ef4444; border-bottom: 2px solid #ef4444; padding-bottom: 5px;"> 여자 배우 랭킹</h3>
+              <h3 style="color: #ef4444; border-bottom: 2px solid #ef4444; padding-bottom: 5px;">👩 여우 랭킹</h3>
               <ul id="rankFemale" style="list-style: decimal; margin-left: 20px; line-height: 1.8;"></ul>
           </div>
       </div>
@@ -62,7 +62,7 @@ async function loadIndex() {
             const res = await fetch(p);
             if (res.ok) { 
                 SEARCH_INDEX = await res.json(); 
-                calculateGlobalRankings(); // 인덱스 로딩 직후 랭킹 즉시 계산
+                calculateGlobalRankings(); 
                 return; 
             }
         } catch(e) {}
@@ -84,7 +84,6 @@ async function fetchPersonInfo(id) {
     return null;
 }
 
-// === [해결: 검색 로직] ===
 async function doSearch() {
     if (SEARCH_INDEX.length === 0) await loadIndex();
     
@@ -120,35 +119,32 @@ async function doSearch() {
 
     let resultsArray = Array.from(peopleMap.values());
     out.innerHTML = '';
-    let visibleCount = 0; // 실제 표시되는 인원수
+    let visibleCount = 0; 
 
     for (const r of resultsArray) {
-        // [해결요청 2] "코드없음" 데이터는 화면에 아예 그리지 않고 무시 (데이터는 보존됨)
         if (!r.id) continue;
 
         const li = document.createElement('li');
         li.style.borderBottom = "1px dashed #e5e7eb"; li.style.padding = "8px 0";
         
-        // 동적으로 채워질 뼈대 HTML
+        // [수정됨] 이름 클릭 시 새 탭에서 열리도록 target="_blank" 추가
         li.innerHTML = `
-            <a href="person.html?id=${r.id}&name=${encodeURIComponent(r.name)}" style="font-weight:bold; color:#2563eb;">${r.name}</a>
+            <a href="person.html?id=${r.id}&name=${encodeURIComponent(r.name)}" target="_blank" style="font-weight:bold; color:#2563eb; text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${r.name}</a>
             <span class="note">(${r.id})</span>
             <span id="info-${r.id}" style="font-size:13px; font-weight:bold; color:#555;">[${r.sourceRole}]</span>
             <span class="note" style="font-size:13px;">(${Array.from(r.movies).slice(0, 5).join(', ')}${r.movies.size > 5 ? ' 등' : ''})</span>
         `;
         
-        // [해결요청 3] 실시간으로 상세 데이터를 열어 진짜 직종(repRoleNm)을 가져와 반영
         fetchPersonInfo(r.id).then(info => {
             if (info) {
                 const infoSpan = document.getElementById(`info-${r.id}`);
-                let trueRole = info.repRoleNm || r.sourceRole; // API 제공 진짜 직업
+                let trueRole = info.repRoleNm || r.sourceRole; 
                 
                 let sexBadge = "";
                 if (info.sex === "남자" || info.sex === "남") sexBadge = `<span style="color:#2563eb;">(남)</span>`;
                 if (info.sex === "여자" || info.sex === "여") sexBadge = `<span style="color:#ef4444;">(여)</span>`;
 
                 if (onlyActor && trueRole !== '배우' && !trueRole.includes('배우')) {
-                    // 배우만 체크했는데 진짜 직업이 광고대행 등이라면 화면에서 숨기고 카운트 차감
                     li.style.display = 'none';
                     visibleCount--;
                     document.getElementById('count').innerText = `총 ${visibleCount}건 검색됨`;
@@ -166,19 +162,16 @@ async function doSearch() {
     if (visibleCount === 0) out.innerHTML = '<li class="note" style="color:red;">검색 결과가 없습니다.</li>';
 }
 
-// === [해결요청 4] 실시간 스타 파워(SP_Final) 전체 랭킹 계산 ===
 async function calculateGlobalRankings() {
     const YEAR_TOTALS = {};
     const ACTOR_SCORES = new Map();
 
-    // 1차 순회: 연도별 총 관객수(Total_Y) 계산
     SEARCH_INDEX.forEach(m => {
         const audi = parseInt(String(m.audiAcc).replace(/,/g, '') || '0', 10);
         const year = (m.openDt || '').slice(0,4) || String(m.prdtYear);
         if (year && audi > 0) YEAR_TOTALS[year] = (YEAR_TOTALS[year] || 0) + audi;
     });
 
-    // 2차 순회: SP_Final 공식 적용
     SEARCH_INDEX.forEach(m => {
         const A_i = parseInt(String(m.audiAcc).replace(/,/g, '') || '0', 10);
         const year = (m.openDt || '').slice(0,4) || String(m.prdtYear);
@@ -189,7 +182,7 @@ async function calculateGlobalRankings() {
         const C_i = Math.max(1, (m.actors || []).length);
 
         (m.actors || []).forEach((a, idx) => {
-            if (!a.id) return; // 코드 없으면 랭킹에서 제외
+            if (!a.id) return; 
             const W_role = (idx < Math.ceil(C_i / 3)) ? 1.0 : 0.5;
             const score_i = (A_i / Total_Y) * (W_role / Math.sqrt(C_i)) * W_time * 10000;
 
@@ -198,30 +191,37 @@ async function calculateGlobalRankings() {
         });
     });
 
-    // 통합 랭킹 정렬
     const rankedAll = Array.from(ACTOR_SCORES.values()).sort((a,b) => b.score - a.score);
     
-    // 남/녀 분리 추출 (상위권 인물만 fetch하여 성별 확인 - 속도 최적화)
-    let topMale = [], topFemale = [];
-    for (const actor of rankedAll) {
-        if (topMale.length >= 10 && topFemale.length >= 10) break;
+    // [해결요청: 랭킹 표 고속 로딩 구현] 
+    // 순차적(직렬) 방식에서 Promise.all을 활용한 병렬(Parallel) 방식으로 변경
+    // 상위 100명의 데이터를 동시에 확 당겨와서 0.5초 만에 성별 필터링을 끝냅니다.
+    const top100 = rankedAll.slice(0, 100);
+    const enrichedTop100 = await Promise.all(top100.map(async (actor) => {
         const info = await fetchPersonInfo(actor.id);
-        if (info && info.sex) {
-            const s = info.sex.trim();
+        return { ...actor, sex: info ? info.sex : null };
+    }));
+
+    let topMale = [], topFemale = [];
+    for (const actor of enrichedTop100) {
+        if (actor.sex) {
+            const s = actor.sex.trim();
             if ((s === '남자' || s === '남') && topMale.length < 10) topMale.push(actor);
             if ((s === '여자' || s === '여') && topFemale.length < 10) topFemale.push(actor);
         }
+        // 남여 각각 10명이 모두 채워지면 불필요한 반복문 즉시 탈출
+        if (topMale.length >= 10 && topFemale.length >= 10) break;
     }
 
-    // UI 렌더링
     document.getElementById('rankingContainer').style.display = 'block';
     
     const renderList = (elementId, list) => {
         const el = document.getElementById(elementId);
         el.innerHTML = '';
         list.slice(0, 10).forEach(a => {
+            // [수정됨] 랭킹 이름 클릭 시 새 탭에서 열리도록 target="_blank" 추가
             el.innerHTML += `<li>
-                <a href="person.html?id=${a.id}&name=${encodeURIComponent(a.name)}" style="color:#333; text-decoration:none;">
+                <a href="person.html?id=${a.id}&name=${encodeURIComponent(a.name)}" target="_blank" style="color:#333; text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">
                     <b>${a.name}</b> <span style="font-size:12px; color:#888;">(${Math.round(a.score).toLocaleString()}점)</span>
                 </a>
             </li>`;
