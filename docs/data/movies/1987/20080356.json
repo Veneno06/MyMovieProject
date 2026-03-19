@@ -1,0 +1,99 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20080356",
+      "movieNm": "파리, 텍사스",
+      "movieNmEn": "Paris,Texas",
+      "movieNmOg": "",
+      "showTm": "145",
+      "prdtYear": "1983",
+      "openDt": "19870829",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "독일"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "빔 벤더스",
+          "peopleNmEn": "Wim Wenders"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "해리 딘 스탠튼",
+          "peopleNmEn": "Harry Dean Stanton",
+          "cast": "트래비스 헨더슨 ",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "나스타샤 킨스키",
+          "peopleNmEn": "Nastassja Kinski",
+          "cast": "제인 헨더슨",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "헌터 카슨",
+          "peopleNmEn": "Hunter Carson",
+          "cast": "헌터 헨더슨",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20103130",
+          "companyNm": "돈 심슨/제리부룩하이머 필름",
+          "companyNmEn": "Don Simpson/Jerry Bruckheimer Films",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20104469",
+          "companyNm": "파라마운트 픽쳐스",
+          "companyNmEn": "Paramount Pictures",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20254262",
+          "companyNm": "(주)에무필름즈",
+          "companyNmEn": "",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20254262",
+          "companyNm": "(주)에무필름즈",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "87-148",
+          "watchGradeNm": "미성년자관람불가"
+        },
+        {
+          "auditNo": "2008-F96",
+          "watchGradeNm": "15세이상관람가"
+        }
+      ],
+      "staffs": []
+    },
+    "source": "영화진흥위원회"
+  }
+}
