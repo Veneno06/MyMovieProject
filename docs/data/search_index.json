@@ -773,6 +773,41 @@
     ]
   },
   {
+    "movieCd": "20080356",
+    "movieNm": "파리, 텍사스",
+    "movieNmEn": "Paris,Texas",
+    "prdtYear": "1983",
+    "openDt": "19870829",
+    "audiAcc": 8941,
+    "nation": "독일",
+    "directors": [
+      {
+        "name": "빔 벤더스",
+        "id": ""
+      }
+    ],
+    "actors": [
+      {
+        "name": "해리 딘 스탠튼",
+        "id": "",
+        "gender": "",
+        "cast": "트래비스 헨더슨"
+      },
+      {
+        "name": "나스타샤 킨스키",
+        "id": "",
+        "gender": "",
+        "cast": "제인 헨더슨"
+      },
+      {
+        "name": "헌터 카슨",
+        "id": "",
+        "gender": "",
+        "cast": "헌터 헨더슨"
+      }
+    ]
+  },
+  {
     "movieCd": "19888116",
     "movieNm": "거룩한 술꾼의 전설",
     "movieNmEn": "The Legend of the Holy Drinker",
@@ -1073,6 +1108,35 @@
         "id": "20377631",
         "gender": "여자",
         "cast": "막내(길녀의 딸)"
+      }
+    ]
+  },
+  {
+    "movieCd": "19950084",
+    "movieNm": "쇼생크 탈출",
+    "movieNmEn": "The Shawshank Redemption",
+    "prdtYear": "1994",
+    "openDt": "19950204",
+    "audiAcc": 59591,
+    "nation": "미국",
+    "directors": [
+      {
+        "name": "프랭크 다라본트",
+        "id": ""
+      }
+    ],
+    "actors": [
+      {
+        "name": "팀 로빈스",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      },
+      {
+        "name": "모건 프리먼",
+        "id": "",
+        "gender": "",
+        "cast": ""
       }
     ]
   },
@@ -39960,7 +40024,7 @@
     "movieNmEn": "Pride & Prejudice, 2005",
     "prdtYear": "2005",
     "openDt": "20060324",
-    "audiAcc": 900792,
+    "audiAcc": 902878,
     "nation": "미국",
     "directors": [
       {
@@ -988848,7 +988912,7 @@
     "movieNmEn": "Samakdo",
     "prdtYear": "2025",
     "openDt": "20260311",
-    "audiAcc": 68112,
+    "audiAcc": 70655,
     "nation": "한국",
     "directors": [
       {
@@ -989078,7 +989142,7 @@
     "movieNmEn": "METHOD ACTING",
     "prdtYear": "2024",
     "openDt": "20260318",
-    "audiAcc": 11857,
+    "audiAcc": 18847,
     "nation": "한국",
     "directors": [
       {
@@ -989137,7 +989201,7 @@
     "movieNmEn": "The King's Warden",
     "prdtYear": "2025",
     "openDt": "20260204",
-    "audiAcc": 13846263,
+    "audiAcc": 13953452,
     "nation": "한국",
     "directors": [
       {
@@ -990085,7 +990149,7 @@
     "movieNmEn": "HOPPERS",
     "prdtYear": "2026",
     "openDt": "20260304",
-    "audiAcc": 553025,
+    "audiAcc": 557646,
     "nation": "미국",
     "directors": [
       {
@@ -990663,6 +990727,35 @@
     "actors": []
   },
   {
+    "movieCd": "20261437",
+    "movieNm": "녹나무의 파수꾼",
+    "movieNmEn": "The Keeper of the Camphor Tree",
+    "prdtYear": "2026",
+    "openDt": "20260318",
+    "audiAcc": 2668,
+    "nation": "일본",
+    "directors": [
+      {
+        "name": "이토 토모히코",
+        "id": ""
+      }
+    ],
+    "actors": [
+      {
+        "name": "타카하시 후미야",
+        "id": "",
+        "gender": "",
+        "cast": "나오이 레이토"
+      },
+      {
+        "name": "아마미 유키",
+        "id": "",
+        "gender": "",
+        "cast": "야나기사와 치후네"
+      }
+    ]
+  },
+  {
     "movieCd": "20261439",
     "movieNm": "2024.12.03 그날 조작된 내란, 감춰진 진실",
     "movieNmEn": "",
@@ -990763,7 +990856,7 @@
     "movieNmEn": "TWS VR CONCERT : RUSH ROAD",
     "prdtYear": "2026",
     "openDt": "20260304",
-    "audiAcc": 14226,
+    "audiAcc": 16720,
     "nation": "한국",
     "directors": [
       {
@@ -990772,6 +990865,76 @@
       }
     ],
     "actors": []
+  },
+  {
+    "movieCd": "20261782",
+    "movieNm": "프로젝트 헤일메리",
+    "movieNmEn": "PROJECT HAIL MARY",
+    "prdtYear": "2026",
+    "openDt": "20260318",
+    "audiAcc": 131281,
+    "nation": "미국",
+    "directors": [
+      {
+        "name": "필 로드",
+        "id": ""
+      }
+    ],
+    "actors": [
+      {
+        "name": "라이언 고슬링",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      },
+      {
+        "name": "산드라 휠러",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      }
+    ]
+  },
+  {
+    "movieCd": "20261804",
+    "movieNm": "폭탄",
+    "movieNmEn": "Bakudan",
+    "prdtYear": "2025",
+    "openDt": "20260318",
+    "audiAcc": 8349,
+    "nation": "일본",
+    "directors": [
+      {
+        "name": "나가이 아키라",
+        "id": ""
+      }
+    ],
+    "actors": [
+      {
+        "name": "사토 지로",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      },
+      {
+        "name": "야마다 유키",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      },
+      {
+        "name": "소메타니 쇼타",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      },
+      {
+        "name": "와타베 아츠로",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      }
+    ]
   },
   {
     "movieCd": "20261927",
