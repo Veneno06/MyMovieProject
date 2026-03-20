@@ -61,7 +61,7 @@ const PATHS_DETAILS = [`docs/data/people/`, `data/people/`];
 
 let MOVIES = [];
 let PEOPLE_MAP = {}; 
-let GLOBAL_RANKS = new Map(); // 🌟 스타파워 글로벌 랭킹 저장소
+let GLOBAL_RANKS = new Map(); 
 let myChart = null;
 
 const safeParseInt = (v) => {
@@ -72,19 +72,17 @@ const safeParseInt = (v) => {
 };
 const fmtNum = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-// 인덱스 로드
 async function loadIndex(){
   for (const p of PATHS_INDEX) {
       try { const r = await fetch(p); if(r.ok) {
           MOVIES = await r.json();
           buildPeopleMap();
-          calculateGlobalRankings(); // 🌟 데이터 로드 직후 랭킹 즉시 계산
+          calculateGlobalRankings(); 
           return;
       }} catch(e){}
   }
 }
 
-// 🌟 [추가됨] SP_Final 공식 기반 글로벌 랭킹 계산 함수
 function calculateGlobalRankings() {
     const YEAR_TOTALS = {};
     const ACTOR_SCORES = new Map();
@@ -232,12 +230,11 @@ async function search(){
             if(a.gender === "남자" || a.gender === "남") badge = " <span style='color:blue;font-size:0.8em'>(남)</span>";
             else if(a.gender === "여자" || a.gender === "여") badge = " <span style='color:red;font-size:0.8em'>(여)</span>";
             
-            // 🌟 [추가됨] 글로벌 랭킹이 있을 경우 뱃지 추가
+            // 트로피 문양 제거됨
             let rankBadge = "";
             if (a.id && GLOBAL_RANKS.has(a.id)) {
                 const rInfo = GLOBAL_RANKS.get(a.id);
-                // 마우스 오버(Hover) 시 점수를 보여주는 타이틀 속성 추가
-                rankBadge = ` <span style="font-size:11px; color:#d97706; font-weight:bold; cursor:help;" title="SP_Final 점수: ${fmtNum(rInfo.score)}점">[🏆 ${rInfo.rank}위]</span>`;
+                rankBadge = ` <span style="font-size:11px; color:#d97706; font-weight:bold; cursor:help;" title="SP_Final 점수: ${fmtNum(rInfo.score)}점">[${rInfo.rank}위]</span>`;
             }
 
             return `<a href="${href}" target="_blank" style="${style}">${a.name}</a>${badge}${rankBadge}`;
