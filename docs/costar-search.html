@@ -31,7 +31,7 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
     <a href="title-search.html" class="btn" data-i18n-key="movieTitleSearch">영화 검색 (제목)</a>
     <a href="search.html" class="btn" data-i18n-key="movieSearchPeriod">영화 검색 (기간)</a>
     <a href="people-search.html" class="btn" data-i18n-key="peopleSearch">배우 검색</a>
-    <a href="costar-search.html" class="btn" data-i18n-key="costarSearch">공동 출연 검색</a>
+    <a href="costar-search.html" class="btn active" data-i18n-key="costarSearch">공동 출연 검색</a>
     <a href="saved.html" class="btn" data-i18n-key="savedList">저장 목록</a>
   </div>
 
@@ -60,7 +60,8 @@ const PATHS_INDEX = [`docs/data/search_index.json?v=${TS}`, `data/search_index.j
 const PATHS_DETAILS = [`docs/data/people/`, `data/people/`]; 
 
 let MOVIES = [];
-let PEOPLE_MAP = {}; // Name -> {id, filmoCount}
+let PEOPLE_MAP = {}; 
+let GLOBAL_RANKS = new Map(); // 🌟 스타파워 글로벌 랭킹 저장소
 let myChart = null;
 
 const safeParseInt = (v) => {
@@ -77,12 +78,48 @@ async function loadIndex(){
       try { const r = await fetch(p); if(r.ok) {
           MOVIES = await r.json();
           buildPeopleMap();
+          calculateGlobalRankings(); // 🌟 데이터 로드 직후 랭킹 즉시 계산
           return;
       }} catch(e){}
   }
 }
 
-// 이름 검색을 위한 맵 생성
+// 🌟 [추가됨] SP_Final 공식 기반 글로벌 랭킹 계산 함수
+function calculateGlobalRankings() {
+    const YEAR_TOTALS = {};
+    const ACTOR_SCORES = new Map();
+
+    MOVIES.forEach(m => {
+        const audi = safeParseInt(m.audiAcc);
+        const year = (m.openDt || '').slice(0,4) || String(m.prdtYear);
+        if (year && audi > 0) YEAR_TOTALS[year] = (YEAR_TOTALS[year] || 0) + audi;
+    });
+
+    MOVIES.forEach(m => {
+        const A_i = safeParseInt(m.audiAcc);
+        const year = (m.openDt || '').slice(0,4) || String(m.prdtYear);
+        if (!year || A_i <= 0) return;
+        
+        const Total_Y = YEAR_TOTALS[year];
+        const W_time = Math.max(0.1, (parseInt(year) - 2000) / 10);
+        const C_i = Math.max(1, (m.actors || []).length);
+
+        (m.actors || []).forEach((a, idx) => {
+            if (!a.id) return;
+            const W_role = (idx < Math.ceil(C_i / 3)) ? 1.0 : 0.5;
+            const score_i = (A_i / Total_Y) * (W_role / Math.sqrt(C_i)) * W_time * 10000;
+            
+            if (!ACTOR_SCORES.has(a.id)) ACTOR_SCORES.set(a.id, 0);
+            ACTOR_SCORES.set(a.id, ACTOR_SCORES.get(a.id) + score_i);
+        });
+    });
+
+    const rankedArray = Array.from(ACTOR_SCORES.entries()).sort((a,b) => b[1] - a[1]);
+    rankedArray.forEach((item, index) => {
+        GLOBAL_RANKS.set(item[0], { score: Math.round(item[1]), rank: index + 1 });
+    });
+}
+
 function buildPeopleMap() {
     MOVIES.forEach(m => {
         const list = [...(m.actors||[]), ...(m.directors||[])];
@@ -90,22 +127,18 @@ function buildPeopleMap() {
             const id = (p.id && p.id.trim()) ? p.id : `name:${p.name}`;
             if (!PEOPLE_MAP[p.name]) PEOPLE_MAP[p.name] = [];
             
-            // 중복 방지 (같은 ID가 이미 있으면 skip)
             if (!PEOPLE_MAP[p.name].some(x => x.id === id)) {
                 PEOPLE_MAP[p.name].push({ id: id, count: 0 });
             }
-            // 출연 횟수 증가 (유명도 판별용)
             const entry = PEOPLE_MAP[p.name].find(x => x.id === id);
             entry.count++;
         });
     });
-    // 출연작 많은 순 정렬
     for (const k in PEOPLE_MAP) {
         PEOPLE_MAP[k].sort((a,b) => b.count - a.count);
     }
 }
 
-// [핵심] 특정 배우의 상세 파일(people/XXXX.json)을 가져와 관객수 정보 확보
 async function fetchPersonFilmos(id) {
     if (!id || id.startsWith('name:')) return null;
     const fname = `${id}.json?v=${TS}`;
@@ -115,7 +148,7 @@ async function fetchPersonFilmos(id) {
             if(r.ok) {
                 const data = await r.json();
                 const info = (data.peopleInfoResult && data.peopleInfoResult.peopleInfo) ? data.peopleInfoResult.peopleInfo : data;
-                return info.filmos || []; // 관객수가 들어있는 필모 리스트 반환
+                return info.filmos || []; 
             }
         } catch(e){}
     }
@@ -135,7 +168,6 @@ async function search(){
 
   if (MOVIES.length === 0) await loadIndex();
 
-  // 1. 이름 -> ID 변환
   const targetIds = [];
   const displayNames = [];
   
@@ -145,15 +177,12 @@ async function search(){
           document.getElementById('msg').textContent = `'${name}' 배우를 찾을 수 없습니다.`;
           return;
       }
-      // 가장 유명한(출연작 많은) 배우 자동 선택
       targetIds.push(candidates[0].id);
       displayNames.push(name);
   }
 
-  // 2. 교집합 영화 찾기
   let commonMovies = MOVIES.filter(m => {
       const cast = [...(m.actors||[]), ...(m.directors||[])];
-      // 모든 타겟 ID가 cast 목록에 있어야 함
       return targetIds.every(tid => {
           if (tid.startsWith('name:')) {
               const tName = tid.replace('name:', '');
@@ -164,8 +193,6 @@ async function search(){
       });
   });
 
-  // [핵심 Patch] 첫 번째 배우의 상세 정보를 가져와서 관객수 데이터를 보정
-  // (search_index에는 없지만 person.json에는 있는 최신 관객수를 덮어씌움)
   const firstRealId = targetIds.find(id => !id.startsWith('name:'));
   if (firstRealId) {
       const detailedFilmos = await fetchPersonFilmos(firstRealId);
@@ -173,7 +200,6 @@ async function search(){
           commonMovies = commonMovies.map(m => {
               const match = detailedFilmos.find(df => df.movieCd === m.movieCd);
               if (match && match.audiAcc) {
-                  // 관객수 업데이트!
                   return { ...m, audiAcc: match.audiAcc };
               }
               return m;
@@ -181,15 +207,13 @@ async function search(){
       }
   }
 
-  // 개봉일 순 정렬
   commonMovies.sort((a,b) => (b.openDt || '').localeCompare(a.openDt || ''));
 
-  // 3. 렌더링
   const out = document.getElementById('out');
   out.innerHTML = '';
   document.getElementById('msg').textContent = `총 ${commonMovies.length}편 검색됨`;
 
-  const validMovies = []; // 차트용
+  const validMovies = []; 
 
   for (const m of commonMovies) {
       const audiNum = safeParseInt(m.audiAcc);
@@ -198,19 +222,25 @@ async function search(){
       let castStr = "";
       if (m.actors) {
           const d = m.actors.slice(0, 10).map(a => {
-            const isTarget = names.includes(a.name); // 검색된 배우 강조
+            const isTarget = names.includes(a.name); 
             const style = isTarget ? 'font-weight:bold; color:#000;' : '';
             
-            // 링크 생성
             const pid = (a.id && a.id.trim()) ? a.id : `name:${a.name}`;
             const href = `person.html?id=${encodeURIComponent(pid)}&name=${encodeURIComponent(a.name)}`;
             
-            // 성별 뱃지
             let badge = "";
             if(a.gender === "남자" || a.gender === "남") badge = " <span style='color:blue;font-size:0.8em'>(남)</span>";
             else if(a.gender === "여자" || a.gender === "여") badge = " <span style='color:red;font-size:0.8em'>(여)</span>";
             
-            return `<a href="${href}" target="_blank" style="${style}">${a.name}</a>${badge}`;
+            // 🌟 [추가됨] 글로벌 랭킹이 있을 경우 뱃지 추가
+            let rankBadge = "";
+            if (a.id && GLOBAL_RANKS.has(a.id)) {
+                const rInfo = GLOBAL_RANKS.get(a.id);
+                // 마우스 오버(Hover) 시 점수를 보여주는 타이틀 속성 추가
+                rankBadge = ` <span style="font-size:11px; color:#d97706; font-weight:bold; cursor:help;" title="SP_Final 점수: ${fmtNum(rInfo.score)}점">[🏆 ${rInfo.rank}위]</span>`;
+            }
+
+            return `<a href="${href}" target="_blank" style="${style}">${a.name}</a>${badge}${rankBadge}`;
           });
           castStr = ` · 배우: ${d.join(', ')}`;
       }
@@ -224,7 +254,6 @@ async function search(){
       if (m.openDt) validMovies.push({ ...m, audiAcc: audiNum });
   }
 
-  // 4. 차트 그리기
   drawChart(validMovies);
 }
 
@@ -240,7 +269,6 @@ function drawChart(movies) {
 
     if (myChart) myChart.destroy();
 
-    // 날짜 오름차순 정렬
     const sorted = [...movies].sort((a,b) => (a.openDt||'').localeCompare(b.openDt||''));
 
     const labels = sorted.map(m => m.openDt);
@@ -268,7 +296,6 @@ function drawChart(movies) {
             plugins: {
                 tooltip: {
                     callbacks: {
-                        // [핵심 요청사항 반영] 툴팁 제목을 '날짜'가 아닌 '영화 제목'으로 변경
                         title: (tooltipItems) => {
                             const index = tooltipItems[0].dataIndex;
                             return sorted[index].movieNm; 
@@ -293,7 +320,6 @@ function drawChart(movies) {
     await loadIndex();
     document.getElementById('f').addEventListener('submit', (e)=>{ e.preventDefault(); search(); });
     
-    // URL 파라미터 자동 검색
     const q = new URLSearchParams(location.search).get('q');
     if(q) {
         document.querySelector('input[name=q]').value = q;
