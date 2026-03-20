@@ -21,7 +21,7 @@ const STRINGS = {
         'peopleSearchTitle': "배우/감독 검색",
         'costarSearchTitle': "공동 출연 검색",
         'savedListTitle': "저장 목록",
-        'compareTitle': "스타 파워 비교",
+        'compareTitle': "배우 관객수 비교",
         'movieDetailTitle': "영화 상세 정보",
         'actorProfileTitle': "배우 프로필",
 
@@ -96,7 +96,7 @@ const STRINGS = {
         'peopleSearchTitle': "Actor/Director Search",
         'costarSearchTitle': "Co-star Search",
         'savedListTitle': "Saved List",
-        'compareTitle': "Star Power Compare",
+        'compareTitle': "Actor Audience Comparison",
         'movieDetailTitle': "Movie Details",
         'actorProfileTitle': "Actor Profile",
 
