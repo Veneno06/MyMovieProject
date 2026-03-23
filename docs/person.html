@@ -198,7 +198,7 @@ function calculateAndDisplayMyRank(allMovies, myId) {
     
     if (myRankIndex !== -1) {
         const rankBadge = document.getElementById('rankBadge');
-        rankBadge.textContent = ` 스타 파워 전체 ${myRankIndex + 1}위`;
+        rankBadge.textContent = `🏆 스타 파워 전체 ${myRankIndex + 1}위`;
         rankBadge.style.display = 'inline-block';
     }
 }
@@ -207,11 +207,29 @@ async function render(){
   currentId = getParam('id') || getParam('personKey');
   currentName = getParam('name') || "이름 없음";
   if (!currentId) { document.getElementById('msg').textContent = '잘못된 접근'; return; }
-  document.getElementById('title').textContent = currentName;
-  if (!currentId.startsWith('name:')) document.getElementById('codeDisplay').textContent = `(${currentId})`;
-  renderSaveBtn();
 
   const allMovies = await fetchIndex() || [];
+
+  // 🌟 [핵심 수정 포인트] URL 파라미터가 name:유해진 형식일 경우, 고유 코드로 실시간 변환
+  if (currentId.startsWith('name:')) {
+      const targetName = currentId.replace('name:', '');
+      for (const m of allMovies) {
+          const cast = [...(m.actors || []), ...(m.directors || [])];
+          const target = cast.find(p => p.name === targetName && p.id);
+          if (target) {
+              currentId = target.id;
+              break;
+          }
+      }
+  }
+
+  document.getElementById('title').textContent = currentName;
+  if (!currentId.startsWith('name:')) {
+      document.getElementById('codeDisplay').textContent = `(${currentId})`;
+  } else {
+      document.getElementById('codeDisplay').textContent = `(코드없음)`;
+  }
+  renderSaveBtn();
   
   if(currentId && !currentId.startsWith('name:')) {
       calculateAndDisplayMyRank(allMovies, currentId);
@@ -291,7 +309,6 @@ async function render(){
             const d = f.actors.slice(0, 7).map(a => {
                 if (a.name === currentName) return `<b>${a.name}</b>`;
                 const pid = (a.id && a.id.trim()) ? a.id : `name:${a.name}`;
-                // [수정됨] target="_blank" 추가하여 동료 배우 클릭 시 새 탭에서 열림
                 return `<a href="person.html?id=${encodeURIComponent(pid)}&name=${encodeURIComponent(a.name)}" target="_blank" style="color:#555; text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${a.name}</a>`;
             });
             castStr = ` · 배우: ${d.join(', ')}`;
