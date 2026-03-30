@@ -89,12 +89,14 @@
     
     <div id="sentiment-sources-container" style="margin-top: 20px; display: none;">
         <h3 style="font-size: 15px; color: #374151; margin-bottom: 10px;">📺 여론 분석 데이터 수집 출처</h3>
-        <div style="overflow-y: auto; max-height: 200px; border: 1px solid #e5e7eb; border-radius: 8px; background: #fff;">
+        <div style="overflow-y: auto; max-height: 250px; border: 1px solid #e5e7eb; border-radius: 8px; background: #fff;">
             <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 13px;">
                 <thead style="position: sticky; top: 0; background: #f9fafb;">
                     <tr>
+                        <th style="padding: 8px; border-bottom: 1px solid #e5e7eb;">영상 업로드 시기</th>
                         <th style="padding: 8px; border-bottom: 1px solid #e5e7eb;">채널명</th>
                         <th style="padding: 8px; border-bottom: 1px solid #e5e7eb;">영상 제목</th>
+                        <th style="padding: 8px; border-bottom: 1px solid #e5e7eb;">추출된 여론 (댓글 수)</th>
                     </tr>
                 </thead>
                 <tbody id="sentiment-sources-body">
@@ -550,29 +552,28 @@ function drawSentimentChart(minDate, maxDate, tUnit, tFormats) {
         }
     });
 
-    // 🌟 [추가됨] 유튜브 수집 출처 표 렌더링 로직
+    // 🌟 유튜브 수집 출처 표 렌더링 로직 (칼럼 추가 적용)
     const sourcesContainer = document.getElementById('sentiment-sources-container');
     const sourcesBody = document.getElementById('sentiment-sources-body');
     
     if (rawSentimentData.sources && rawSentimentData.sources.length > 0) {
         sourcesBody.innerHTML = '';
         
-        // 중복 영상 제거 로직 (같은 영상이 여러 해에 걸쳐 수집되었을 경우 방지)
-        const uniqueSources = [];
-        const seenVids = new Set();
         rawSentimentData.sources.forEach(s => {
-            if(!seenVids.has(s.videoId)) {
-                seenVids.add(s.videoId);
-                uniqueSources.push(s);
-            }
-        });
-        
-        uniqueSources.forEach(s => {
+            const dateStr = s.publishedAt ? s.publishedAt.substring(0, 10).replace(/-/g, '.') : '알 수 없음';
+            const pos = s.pos_count || 0;
+            const neg = s.neg_count || 0;
+
             sourcesBody.innerHTML += `
                 <tr>
+                    <td style="padding: 8px; border-bottom: 1px solid #e5e7eb; color: #6b7280; font-size: 12px;">${dateStr}</td>
                     <td style="padding: 8px; border-bottom: 1px solid #e5e7eb; font-weight: bold; color: #4b5563;">${s.channel}</td>
                     <td style="padding: 8px; border-bottom: 1px solid #e5e7eb;">
                         <a href="https://www.youtube.com/watch?v=${s.videoId}" target="_blank" style="color: #2563eb; text-decoration: none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${s.title}</a>
+                    </td>
+                    <td style="padding: 8px; border-bottom: 1px solid #e5e7eb; font-size: 12px;">
+                        <span style="color:#3b82f6; font-weight:bold;">긍정 ${pos}</span> /
+                        <span style="color:#ef4444; font-weight:bold;">부정 ${neg}</span>
                     </td>
                 </tr>
             `;
