@@ -86,6 +86,22 @@
         <canvas id="sentimentChart"></canvas>
     </div>
     <div id="sentimentSummary" style="text-align: right; font-size: 13px; color: #666; margin-top: 8px;"></div>
+    
+    <div id="sentiment-sources-container" style="margin-top: 20px; display: none;">
+        <h3 style="font-size: 15px; color: #374151; margin-bottom: 10px;">📺 여론 분석 데이터 수집 출처</h3>
+        <div style="overflow-y: auto; max-height: 200px; border: 1px solid #e5e7eb; border-radius: 8px; background: #fff;">
+            <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 13px;">
+                <thead style="position: sticky; top: 0; background: #f9fafb;">
+                    <tr>
+                        <th style="padding: 8px; border-bottom: 1px solid #e5e7eb;">채널명</th>
+                        <th style="padding: 8px; border-bottom: 1px solid #e5e7eb;">영상 제목</th>
+                    </tr>
+                </thead>
+                <tbody id="sentiment-sources-body">
+                </tbody>
+            </table>
+        </div>
+    </div>
   </div>
 
 </div>
@@ -198,7 +214,7 @@ function calculateAndDisplayMyRank(allMovies, myId) {
     
     if (myRankIndex !== -1) {
         const rankBadge = document.getElementById('rankBadge');
-        rankBadge.textContent = ` 스타 파워 전체 ${myRankIndex + 1}위`;
+        rankBadge.textContent = `🏆 스타 파워 전체 ${myRankIndex + 1}위`;
         rankBadge.style.display = 'inline-block';
     }
 }
@@ -210,7 +226,6 @@ async function render(){
 
   const allMovies = await fetchIndex() || [];
 
-  // 🌟 [핵심 수정 포인트] URL 파라미터가 name:유해진 형식일 경우, 고유 코드로 실시간 변환
   if (currentId.startsWith('name:')) {
       const targetName = currentId.replace('name:', '');
       for (const m of allMovies) {
@@ -534,6 +549,38 @@ function drawSentimentChart(minDate, maxDate, tUnit, tFormats) {
             }
         }
     });
+
+    // 🌟 [추가됨] 유튜브 수집 출처 표 렌더링 로직
+    const sourcesContainer = document.getElementById('sentiment-sources-container');
+    const sourcesBody = document.getElementById('sentiment-sources-body');
+    
+    if (rawSentimentData.sources && rawSentimentData.sources.length > 0) {
+        sourcesBody.innerHTML = '';
+        
+        // 중복 영상 제거 로직 (같은 영상이 여러 해에 걸쳐 수집되었을 경우 방지)
+        const uniqueSources = [];
+        const seenVids = new Set();
+        rawSentimentData.sources.forEach(s => {
+            if(!seenVids.has(s.videoId)) {
+                seenVids.add(s.videoId);
+                uniqueSources.push(s);
+            }
+        });
+        
+        uniqueSources.forEach(s => {
+            sourcesBody.innerHTML += `
+                <tr>
+                    <td style="padding: 8px; border-bottom: 1px solid #e5e7eb; font-weight: bold; color: #4b5563;">${s.channel}</td>
+                    <td style="padding: 8px; border-bottom: 1px solid #e5e7eb;">
+                        <a href="https://www.youtube.com/watch?v=${s.videoId}" target="_blank" style="color: #2563eb; text-decoration: none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${s.title}</a>
+                    </td>
+                </tr>
+            `;
+        });
+        sourcesContainer.style.display = 'block';
+    } else {
+        sourcesContainer.style.display = 'none';
+    }
 }
 
 (async function main(){ await render(); })();
