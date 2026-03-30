@@ -21,7 +21,7 @@ SEARCH_INDEX_PATH = ROOT / "docs" / "data" / "search_index.json"
 SENTIMENT_DIR = ROOT / "docs" / "data" / "sentiment"
 SENTIMENT_DIR.mkdir(parents=True, exist_ok=True)
 
-# 1번부터 10번까지 등록된 모든 유튜브 API 키를 자동으로 긁어옵니다 (현재 5개 등록됨)
+# 1번부터 10번까지 등록된 모든 유튜브 API 키 로딩
 API_KEYS = []
 for key_name in ["YOUTUBE_API_KEY"] + [f"YOUTUBE_API_KEY_{i}" for i in range(2, 11)]:
     val = os.environ.get(key_name)
@@ -63,9 +63,10 @@ def get_youtube_comments(actor_name):
     
     if not API_KEYS:
         print("❌ [오류] 등록된 YOUTUBE_API_KEY가 없습니다.")
-        return []
+        return [], []
 
     all_comments = []
+    collected_sources = [] # 🌟 [수정됨] 출처(채널, 제목)를 담을 리스트 추가
     current_year = datetime.now().year
     start_year = 2005 
 
@@ -112,13 +113,15 @@ def get_youtube_comments(actor_name):
                 valid_videos = []
                 for item in stats_response.get('items', []):
                     stats = item.get('statistics', {})
+                    snippet = item.get('snippet', {})
                     view_count = int(stats.get('viewCount', 0))
                     comment_count = int(stats.get('commentCount', 0))
                     
                     if view_count >= 5000 and comment_count > 0:
                         valid_videos.append({
                             'id': item['id'],
-                            'title': item['snippet']['title'],
+                            'title': snippet.get('title', '제목 없음'), # 🌟 영상 제목 추출
+                            'channelTitle': snippet.get('channelTitle', '채널명 없음'), # 🌟 채널명 추출
                             'comment_count': comment_count
                         })
 
@@ -140,6 +143,7 @@ def get_youtube_comments(actor_name):
                             order='relevance'
                         ).execute()
 
+                        added_source = False
                         for item in comment_response.get('items', []):
                             comment_snippet = item['snippet']['topLevelComment']['snippet']
                             text = comment_snippet['textOriginal']
@@ -148,6 +152,14 @@ def get_youtube_comments(actor_name):
                             if len(text) > 3 and "http" not in text:
                                 all_comments.append({"text": text, "date": date})
                                 year_comments += 1
+                                if not added_source:
+                                    # 🌟 댓글이 1개라도 유효하게 추출되면 해당 영상을 출처에 등록
+                                    collected_sources.append({
+                                        "videoId": video['id'],
+                                        "title": video['title'],
+                                        "channel": video['channelTitle']
+                                    })
+                                    added_source = True
                                 
                     except HttpError as e:
                         continue
@@ -163,7 +175,7 @@ def get_youtube_comments(actor_name):
                         print(f"🔄 다음 키({CURRENT_KEY_INDEX+1}번)로 교체하여 {target_year}년 이어서 시도합니다...")
                     else:
                         print("🚨 모든 키가 소진되었습니다.")
-                        return all_comments
+                        return all_comments, collected_sources
                 else:
                     print(f"❌ API 통신 오류: {e}")
                     success_for_year = True 
@@ -172,7 +184,7 @@ def get_youtube_comments(actor_name):
                 success_for_year = True
 
     print(f"💬 총 누적 {len(all_comments)}개 댓글 데이터 확보 완료.")
-    return all_comments
+    return all_comments, collected_sources
 
 def analyze_sentiment(comments):
     if not comments: return {}
@@ -218,7 +230,7 @@ def run_single(actor_name):
     print(f"========================================")
     
     save_path = SENTIMENT_DIR / f"{actor_name}.json"
-    comments = get_youtube_comments(actor_name)
+    comments, sources = get_youtube_comments(actor_name) # 🌟 출처 리스트 함께 받기
     new_timeline_data = analyze_sentiment(comments)
     
     if not new_timeline_data:
@@ -228,7 +240,8 @@ def run_single(actor_name):
     final_data = {
         "actor_name": actor_name,
         "last_updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        "timeline": new_timeline_data
+        "timeline": new_timeline_data,
+        "sources": sources # 🌟 JSON 구조에 sources 항목 새롭게 추가
     }
 
     with open(save_path, 'w', encoding='utf-8') as f:
@@ -258,31 +271,22 @@ def run_auto():
     for name in famous_actors:
         if not name: continue
         save_path = SENTIMENT_DIR / f"{name}.json"
-        
-        # 파일이 존재하면 무조건 스킵 (한 바퀴 완주 보장)
-        if save_path.exists():
-            continue
-            
+        if save_path.exists(): continue
         target_actors.append(name)
 
     print(f"-> 1000만 흥행작 출연 배우 중 미완료(작업 대상) 전체 배우: {len(target_actors)}명")
-
     if not target_actors:
         print("✅ 모든 천만 배우의 여론 분석이 완료되었습니다!")
         return
 
     success_count = 0
-    # [수정] 5개 키 분량에 맞춰 하루 20명으로 제한 상향
     for idx, actor in enumerate(target_actors[:20]): 
         if run_single(actor): success_count += 1
-        
         global CURRENT_KEY_INDEX
         if CURRENT_KEY_INDEX >= len(API_KEYS):
             print("🚨 모든 API 키가 소진되어 오늘의 자동 수집을 종료합니다.")
             break
-
     print(f"\n🎉 오늘의 자동 수집 완료! (성공: {success_count}명)")
-
 
 def run_pattern(pattern):
     target_initial = get_initial_sound(pattern[0]) if pattern else None
@@ -290,7 +294,6 @@ def run_pattern(pattern):
 
     MIN_AUDIENCE = 10000000 
     famous_actors = set()
-    
     if SEARCH_INDEX_PATH.exists():
         with open(SEARCH_INDEX_PATH, 'r', encoding='utf-8') as f:
             movies = json.load(f)
@@ -313,26 +316,21 @@ def run_pattern(pattern):
     target_actors = []
     for name in candidate_actors:
         save_path = SENTIMENT_DIR / f"{name}.json"
-        if save_path.exists():
-            continue
+        if save_path.exists(): continue
         target_actors.append(name)
 
     print(f"-> 1000만 흥행작 출연 & 대상 초성 배우 중 미완료(작업 대상): {len(target_actors)}명")
-
     if not target_actors:
         print("✅ 해당 초성의 모든 배우 분석이 완료되었습니다.")
         return
 
     success_count = 0
-    # [수정] 자음 검색 시에도 20명으로 상향
     for idx, actor in enumerate(target_actors[:20]): 
         if run_single(actor): success_count += 1
-        
         global CURRENT_KEY_INDEX
         if CURRENT_KEY_INDEX >= len(API_KEYS):
             print("🚨 모든 API 키가 소진되어 종료합니다.")
             break
-
     print(f"\n🎉 작업 완료! (성공: {success_count}명)")
 
 if __name__ == "__main__":
@@ -350,12 +348,10 @@ if __name__ == "__main__":
     elif args.actor:
         actors = [x.strip() for x in args.actor.split(',') if x.strip()]
         print(f"📋 입력된 배우 목록: {actors}")
-        
         success = 0
         for name in actors:
             if run_single(name): success += 1
             if CURRENT_KEY_INDEX >= len(API_KEYS):
                 print("🚨 모든 API 키 소진으로 작업을 중단합니다.")
                 break
-                
         print(f"\n🎉 전체 작업 종료 (처리: {success}/{len(actors)})")
