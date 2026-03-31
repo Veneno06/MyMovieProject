@@ -21,7 +21,6 @@ SEARCH_INDEX_PATH = ROOT / "docs" / "data" / "search_index.json"
 SENTIMENT_DIR = ROOT / "docs" / "data" / "sentiment"
 SENTIMENT_DIR.mkdir(parents=True, exist_ok=True)
 
-# 1번부터 10번까지 등록된 모든 유튜브 API 키 로딩
 API_KEYS = []
 for key_name in ["YOUTUBE_API_KEY"] + [f"YOUTUBE_API_KEY_{i}" for i in range(2, 11)]:
     val = os.environ.get(key_name)
@@ -60,13 +59,12 @@ def get_initial_sound(char):
 
 def get_youtube_comments(actor_name):
     global CURRENT_KEY_INDEX
-    
     if not API_KEYS:
         print("❌ [오류] 등록된 YOUTUBE_API_KEY가 없습니다.")
-        return [], []
+        return [], {}
 
     all_comments = []
-    collected_sources = [] # 🌟 [수정됨] 출처(채널, 제목)를 담을 리스트 추가
+    sources_dict = {} # 🌟 영상의 메타데이터를 저장할 딕셔너리
     current_year = datetime.now().year
     start_year = 2005 
 
@@ -88,8 +86,11 @@ def get_youtube_comments(actor_name):
             try:
                 print(f" 📅 [{target_year}년] 영상 검색 중... (Key {CURRENT_KEY_INDEX + 1} 사용)")
                 
+                # 🌟 [해결 3] 강력한 OR(|) 스마트 필터링: 공식 예고편은 살리고 일반인은 죽인다!
+                search_query = f"{actor_name} 영화 | {actor_name} 예고편 | {actor_name} 인터뷰 | {actor_name} 무대인사 | {actor_name} 리뷰"
+                
                 search_response = youtube.search().list(
-                    q=actor_name,
+                    q=search_query,
                     part='id',
                     maxResults=10, 
                     type='video',
@@ -98,7 +99,7 @@ def get_youtube_comments(actor_name):
                     publishedBefore=published_before
                 ).execute()
 
-                candidate_ids = [item['id']['videoId'] for item in search_response.get('items', [])]
+                candidate_ids = [item['id']['videoId'] for item in search_response.get('items', []) if item['id'].get('videoId')]
                 
                 if not candidate_ids:
                     print(f"   -> 검색 결과 없음.")
@@ -120,8 +121,9 @@ def get_youtube_comments(actor_name):
                     if view_count >= 5000 and comment_count > 0:
                         valid_videos.append({
                             'id': item['id'],
-                            'title': snippet.get('title', '제목 없음'), # 🌟 영상 제목 추출
-                            'channelTitle': snippet.get('channelTitle', '채널명 없음'), # 🌟 채널명 추출
+                            'title': snippet.get('title', '제목 없음'),
+                            'channelTitle': snippet.get('channelTitle', '채널명 없음'),
+                            'publishedAt': snippet.get('publishedAt', ''), # 🌟 업로드 시기 추출
                             'comment_count': comment_count
                         })
 
@@ -135,6 +137,14 @@ def get_youtube_comments(actor_name):
 
                 year_comments = 0
                 for video in target_videos:
+                    # 메타데이터 사전에 저장
+                    sources_dict[video['id']] = {
+                        "videoId": video['id'],
+                        "title": video['title'],
+                        "channel": video['channelTitle'],
+                        "publishedAt": video['publishedAt']
+                    }
+
                     try:
                         comment_response = youtube.commentThreads().list(
                             videoId=video['id'], 
@@ -143,23 +153,15 @@ def get_youtube_comments(actor_name):
                             order='relevance'
                         ).execute()
 
-                        added_source = False
                         for item in comment_response.get('items', []):
                             comment_snippet = item['snippet']['topLevelComment']['snippet']
                             text = comment_snippet['textOriginal']
                             date = comment_snippet['publishedAt'] 
                             
                             if len(text) > 3 and "http" not in text:
-                                all_comments.append({"text": text, "date": date})
+                                # 🌟 어느 영상에서 온 댓글인지 꼬리표(videoId) 부착
+                                all_comments.append({"text": text, "date": date, "videoId": video['id']})
                                 year_comments += 1
-                                if not added_source:
-                                    # 🌟 댓글이 1개라도 유효하게 추출되면 해당 영상을 출처에 등록
-                                    collected_sources.append({
-                                        "videoId": video['id'],
-                                        "title": video['title'],
-                                        "channel": video['channelTitle']
-                                    })
-                                    added_source = True
                                 
                     except HttpError as e:
                         continue
@@ -175,7 +177,7 @@ def get_youtube_comments(actor_name):
                         print(f"🔄 다음 키({CURRENT_KEY_INDEX+1}번)로 교체하여 {target_year}년 이어서 시도합니다...")
                     else:
                         print("🚨 모든 키가 소진되었습니다.")
-                        return all_comments, collected_sources
+                        return all_comments, sources_dict
                 else:
                     print(f"❌ API 통신 오류: {e}")
                     success_for_year = True 
@@ -184,12 +186,13 @@ def get_youtube_comments(actor_name):
                 success_for_year = True
 
     print(f"💬 총 누적 {len(all_comments)}개 댓글 데이터 확보 완료.")
-    return all_comments, collected_sources
+    return all_comments, sources_dict
 
 def analyze_sentiment(comments):
-    if not comments: return {}
+    if not comments: return {}, {}
     classifier = load_ai_model()
     timeline_data = {}
+    video_sentiment = {} # 🌟 영상별 긍정/부정 카운터
 
     print(f"📊 수집된 댓글 {len(comments)}개 감성 분석 시작 (KoELECTRA 적용)...")
     
@@ -202,27 +205,29 @@ def analyze_sentiment(comments):
             label = str(result['label']).lower()
             score = result['score'] 
             
-            if score < 0.6:
-                continue
+            if score < 0.6: continue
 
-            if '1' in label or 'positive' in label:
-                sentiment = "positive"
-            elif '0' in label or 'negative' in label:
-                sentiment = "negative"
-            else:
-                continue 
+            if '1' in label or 'positive' in label: sentiment = "positive"
+            elif '0' in label or 'negative' in label: sentiment = "negative"
+            else: continue 
 
+            # 타임라인 업데이트
             week_str = get_week_string(comment["date"])
-            if not week_str: continue
+            if week_str:
+                if week_str not in timeline_data: timeline_data[week_str] = {"positive": 0, "negative": 0}
+                timeline_data[week_str][sentiment] += 1
             
-            if week_str not in timeline_data: timeline_data[week_str] = {"positive": 0, "negative": 0}
-            timeline_data[week_str][sentiment] += 1
-            
+            # 🌟 영상별 스코어 업데이트
+            vid = comment.get("videoId")
+            if vid:
+                if vid not in video_sentiment: video_sentiment[vid] = {'pos': 0, 'neg': 0}
+                video_sentiment[vid][sentiment] += 1
+
             if (i+1) % 100 == 0:
                 print(f"   -> {i+1}개 분석 완료...")
         except: continue
 
-    return timeline_data
+    return timeline_data, video_sentiment
 
 def run_single(actor_name):
     print(f"\n========================================")
@@ -230,18 +235,31 @@ def run_single(actor_name):
     print(f"========================================")
     
     save_path = SENTIMENT_DIR / f"{actor_name}.json"
-    comments, sources = get_youtube_comments(actor_name) # 🌟 출처 리스트 함께 받기
-    new_timeline_data = analyze_sentiment(comments)
+    comments, sources_dict = get_youtube_comments(actor_name) 
+    new_timeline_data, video_sentiment = analyze_sentiment(comments)
     
     if not new_timeline_data:
         print(f"❌ 유효한 데이터가 없어 저장을 생략합니다.")
         return False
 
+    # 🌟 수집된 소스 중 실제로 긍정/부정 결과가 1개라도 나온 영상만 최종 명단에 포함
+    final_sources = []
+    for vid, counts in video_sentiment.items():
+        if counts['pos'] > 0 or counts['neg'] > 0:
+            if vid in sources_dict:
+                src = sources_dict[vid]
+                src['pos_count'] = counts['pos']
+                src['neg_count'] = counts['neg']
+                final_sources.append(src)
+
+    # 영상 업로드 최신순으로 정렬
+    final_sources.sort(key=lambda x: x.get('publishedAt', ''), reverse=True)
+
     final_data = {
         "actor_name": actor_name,
         "last_updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "timeline": new_timeline_data,
-        "sources": sources # 🌟 JSON 구조에 sources 항목 새롭게 추가
+        "sources": final_sources 
     }
 
     with open(save_path, 'w', encoding='utf-8') as f:
@@ -263,9 +281,7 @@ def run_auto():
                 if audi_num >= MIN_AUDIENCE:
                     for actor in m.get('actors', []):
                         famous_actors.add(actor.get('name', '').strip())
-    else:
-        print("⚠️ search_index.json 파일이 없습니다.")
-        return
+    else: return
 
     target_actors = []
     for name in famous_actors:
@@ -274,7 +290,6 @@ def run_auto():
         if save_path.exists(): continue
         target_actors.append(name)
 
-    print(f"-> 1000만 흥행작 출연 배우 중 미완료(작업 대상) 전체 배우: {len(target_actors)}명")
     if not target_actors:
         print("✅ 모든 천만 배우의 여론 분석이 완료되었습니다!")
         return
@@ -310,8 +325,7 @@ def run_pattern(pattern):
         if target_initial:
             if get_initial_sound(name[0]).upper() == target_initial.upper():
                 candidate_actors.append(name)
-        else:
-            candidate_actors.append(name)
+        else: candidate_actors.append(name)
 
     target_actors = []
     for name in candidate_actors:
@@ -319,7 +333,6 @@ def run_pattern(pattern):
         if save_path.exists(): continue
         target_actors.append(name)
 
-    print(f"-> 1000만 흥행작 출연 & 대상 초성 배우 중 미완료(작업 대상): {len(target_actors)}명")
     if not target_actors:
         print("✅ 해당 초성의 모든 배우 분석이 완료되었습니다.")
         return
@@ -341,17 +354,12 @@ if __name__ == "__main__":
     parser.add_argument("--auto", action="store_true", help="전체 미완료 배우 대상 자동 수집")
     args = parser.parse_args()
 
-    if args.auto:
-        run_auto()
-    elif args.pattern:
-        run_pattern(args.pattern)
+    if args.auto: run_auto()
+    elif args.pattern: run_pattern(args.pattern)
     elif args.actor:
         actors = [x.strip() for x in args.actor.split(',') if x.strip()]
-        print(f"📋 입력된 배우 목록: {actors}")
         success = 0
         for name in actors:
             if run_single(name): success += 1
-            if CURRENT_KEY_INDEX >= len(API_KEYS):
-                print("🚨 모든 API 키 소진으로 작업을 중단합니다.")
-                break
+            if CURRENT_KEY_INDEX >= len(API_KEYS): break
         print(f"\n🎉 전체 작업 종료 (처리: {success}/{len(actors)})")
