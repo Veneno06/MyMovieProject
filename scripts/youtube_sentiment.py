@@ -68,8 +68,10 @@ def get_youtube_comments(actor_name):
     current_year = datetime.now().year
     start_year = 2005 
 
-    print(f"🔍 '{actor_name}' 연도별({start_year}~{current_year}) 유튜브 영상 분할 수집 시작...")
-    print(f"🛡️ [필터링 기준] 영상 조회수 50만 이상 OR 채널 구독자 50만 이상")
+    print(f"\n🔍 '{actor_name}' 연도별({start_year}~{current_year}) 유튜브 3중 필터링 수집 시작...")
+    print(f"🛡️ [1차 필터] 검색어 확장 (영화|예고편|인터뷰|무대인사|리뷰|예능|연기)")
+    print(f"🛡️ [2차 필터] 제목/설명/태그/댓글 내 '{actor_name}' 언급 필수 (없으면 즉시 폐기)")
+    print(f"🛡️ [3차 필터] 영상 조회수 10만 이상 OR 채널 구독자 10만 이상")
 
     for target_year in range(start_year, current_year + 1):
         if CURRENT_KEY_INDEX >= len(API_KEYS):
@@ -85,13 +87,15 @@ def get_youtube_comments(actor_name):
             youtube = build('youtube', 'v3', developerKey=current_key)
             
             try:
-                print(f" 📅 [{target_year}년] 영상 검색 중... (Key {CURRENT_KEY_INDEX + 1} 사용)")
+                print(f"\n 📅 [{target_year}년] 영상 검색 중... (Key {CURRENT_KEY_INDEX + 1})")
                 
-                # 🌟 [요청 반영] 3월 29일자 버전처럼 검색어는 이름만 심플하게 롤백
+                # 🌟 [1차 필터링] 요청하신 확장된 OR 검색 쿼리 적용
+                search_query = f"{actor_name} 영화 | {actor_name} 예고편 | {actor_name} 인터뷰 | {actor_name} 무대인사 | {actor_name} 리뷰 | {actor_name} 예능 | {actor_name} 연기"
+                
                 search_response = youtube.search().list(
-                    q=actor_name,
+                    q=search_query,
                     part='id',
-                    maxResults=15, # 필터링 탈락을 대비해 검색 모수를 살짝 늘림
+                    maxResults=15, # 넉넉히 가져와서 필터링으로 걸러냄
                     type='video',
                     order='relevance', 
                     publishedAfter=published_after,
@@ -101,11 +105,11 @@ def get_youtube_comments(actor_name):
                 candidate_ids = [item['id']['videoId'] for item in search_response.get('items', []) if item['id'].get('videoId')]
                 
                 if not candidate_ids:
-                    print(f"   -> 검색 결과 없음.")
+                    print(f"   -> 검색 결과 없음. 다음 연도로 스킵합니다.")
                     success_for_year = True 
                     continue
 
-                # 1. 영상 메타데이터(조회수, 채널ID) 가져오기
+                # 영상 메타데이터 가져오기
                 stats_response = youtube.videos().list(
                     part='statistics,snippet', 
                     id=','.join(candidate_ids)
@@ -117,7 +121,7 @@ def get_youtube_comments(actor_name):
                     videos_info.append(item)
                     channel_ids.add(item['snippet']['channelId'])
 
-                # 2. 채널 메타데이터(구독자수) 가져오기
+                # 채널 구독자 수 가져오기
                 channel_subs = {}
                 if channel_ids:
                     channels_response = youtube.channels().list(
@@ -138,32 +142,38 @@ def get_youtube_comments(actor_name):
                     channel_id = snippet.get('channelId', '')
                     subs_count = channel_subs.get(channel_id, 0)
                     
-                    # 🌟 [핵심 로직] 조회수 50만 이상 OR 구독자 50만 이상만 통과
-                    if (view_count >= 500000 or subs_count >= 500000) and comment_count > 0:
+                    title = snippet.get('title', '')
+                    description = snippet.get('description', '')
+                    tags = snippet.get('tags', [])
+                    
+                    # 🌟 [3차 필터링] 조회수 10만 OR 구독자 10만
+                    if (view_count >= 100000 or subs_count >= 100000) and comment_count > 0:
+                        
+                        # 🌟 [2차 필터링 전반부] 제목/설명/태그에 이름이 있는지 사전 검사
+                        has_name_in_meta = (actor_name in title) or (actor_name in description) or any(actor_name in t for t in tags)
+                        
                         valid_videos.append({
                             'id': item['id'],
-                            'title': snippet.get('title', '제목 없음'),
+                            'title': title,
                             'channelTitle': snippet.get('channelTitle', '채널명 없음'),
                             'publishedAt': snippet.get('publishedAt', ''), 
-                            'comment_count': comment_count
+                            'comment_count': comment_count,
+                            'has_name_in_meta': has_name_in_meta
                         })
 
+                # 댓글 수 기준으로 정렬하여 최대 3개까지만 타겟으로 선정
                 valid_videos.sort(key=lambda x: x['comment_count'], reverse=True)
                 target_videos = valid_videos[:3] 
 
                 if not target_videos:
-                    print(f"   -> 유효한(기준 통과) 영상 없음. 다음 연도로 넘어갑니다.")
+                    print(f"   -> 10만/10만 기준 통과 영상 없음. 스킵합니다.")
                     success_for_year = True
                     continue
 
                 year_comments = 0
                 for video in target_videos:
-                    sources_dict[video['id']] = {
-                        "videoId": video['id'],
-                        "title": video['title'],
-                        "channel": video['channelTitle'],
-                        "publishedAt": video['publishedAt']
-                    }
+                    video_comments_temp = []
+                    has_name_in_comments = False
 
                     try:
                         comment_response = youtube.commentThreads().list(
@@ -179,13 +189,30 @@ def get_youtube_comments(actor_name):
                             date = comment_snippet['publishedAt'] 
                             
                             if len(text) > 3 and "http" not in text:
-                                all_comments.append({"text": text, "date": date, "videoId": video['id']})
-                                year_comments += 1
+                                video_comments_temp.append({"text": text, "date": date, "videoId": video['id']})
+                                # 🌟 [2차 필터링 후반부] 수집된 댓글 내용 중 이름이 있는지 검사
+                                if actor_name in text:
+                                    has_name_in_comments = True
                                 
                     except HttpError as e:
                         continue
+                    
+                    # 🌟 [최종 차단 로직] 메타데이터(제목/설명/태그)에도 없고, 수집된 댓글 100개 중에도 이름이 없다면 무조건 쓰레기 데이터!
+                    if not video['has_name_in_meta'] and not has_name_in_comments:
+                        print(f"   🚫 [차단됨] '{video['title']}' (배우 이름 전혀 언급 안 됨)")
+                        continue # 이 영상의 댓글은 all_comments에 넣지 않고 영구 폐기
+                    
+                    # 모든 검문을 통과한 '진짜 데이터'만 최종 반영
+                    sources_dict[video['id']] = {
+                        "videoId": video['id'],
+                        "title": video['title'],
+                        "channel": video['channelTitle'],
+                        "publishedAt": video['publishedAt']
+                    }
+                    all_comments.extend(video_comments_temp)
+                    year_comments += len(video_comments_temp)
                         
-                print(f"   -> {len(target_videos)}개 영상에서 댓글 {year_comments}개 수집 완료.")
+                print(f"   -> 최종 합격: 영상 {len(target_videos)}개 중 댓글 {year_comments}개 수집 완료.")
                 success_for_year = True
 
             except HttpError as e:
@@ -193,7 +220,7 @@ def get_youtube_comments(actor_name):
                     print(f"⚠️ API Key {CURRENT_KEY_INDEX+1} 할당량 초과!")
                     CURRENT_KEY_INDEX += 1
                     if CURRENT_KEY_INDEX < len(API_KEYS):
-                        print(f"🔄 다음 키({CURRENT_KEY_INDEX+1}번)로 교체하여 이어서 시도합니다...")
+                        print(f"🔄 다음 키({CURRENT_KEY_INDEX+1}번)로 교체합니다...")
                     else:
                         print("🚨 모든 키가 소진되었습니다.")
                         return all_comments, sources_dict
@@ -204,7 +231,7 @@ def get_youtube_comments(actor_name):
                 print(f"❌ 알 수 없는 오류: {e}")
                 success_for_year = True
 
-    print(f"💬 총 누적 {len(all_comments)}개 댓글 데이터 확보 완료.")
+    print(f"\n💬 총 누적 {len(all_comments)}개 정예 댓글 데이터 확보 완료.")
     return all_comments, sources_dict
 
 def analyze_sentiment(comments):
@@ -213,7 +240,7 @@ def analyze_sentiment(comments):
     timeline_data = {}
     video_sentiment = {} 
 
-    print(f"📊 수집된 댓글 {len(comments)}개 감성 분석 시작 (KoELECTRA 적용)...")
+    print(f"📊 수집된 정예 댓글 {len(comments)}개 감성 분석 시작 (KoELECTRA 적용)...")
     
     for i, comment in enumerate(comments):
         try:
