@@ -87,7 +87,7 @@ def get_youtube_comments(actor_name):
                 print(f" 📅 [{target_year}년] 영상 검색 중... (Key {CURRENT_KEY_INDEX + 1} 사용)")
                 
                 # 🌟 강력한 OR(|) 스마트 필터링 적용 (일반인, 무관한 뮤비 방어)
-                search_query = f"{actor_name} 영화 | {actor_name} 예고편 | {actor_name} 인터뷰 | {actor_name} 무대인사 | {actor_name} 리뷰"
+                search_query = f"{actor_name} 영화 | {actor_name} 예고편 | {actor_name} 인터뷰 | {actor_name} 무대인사 | {actor_name} 리뷰 | {actor_name} 예능 | {actor_name} 연기"
                 
                 search_response = youtube.search().list(
                     q=search_query,
