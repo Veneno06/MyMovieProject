@@ -69,6 +69,7 @@ def get_youtube_comments(actor_name):
     start_year = 2005 
 
     print(f"🔍 '{actor_name}' 연도별({start_year}~{current_year}) 유튜브 영상 분할 수집 시작...")
+    print(f"🛡️ [필터링 기준] 영상 조회수 50만 이상 OR 채널 구독자 50만 이상")
 
     for target_year in range(start_year, current_year + 1):
         if CURRENT_KEY_INDEX >= len(API_KEYS):
@@ -86,13 +87,11 @@ def get_youtube_comments(actor_name):
             try:
                 print(f" 📅 [{target_year}년] 영상 검색 중... (Key {CURRENT_KEY_INDEX + 1} 사용)")
                 
-                # 🌟 강력한 OR(|) 스마트 필터링 적용 (일반인, 무관한 뮤비 방어)
-                search_query = f"{actor_name} 영화 | {actor_name} 예고편 | {actor_name} 인터뷰 | {actor_name} 무대인사 | {actor_name} 리뷰 | {actor_name} 예능 | {actor_name} 연기"
-                
+                # 🌟 [요청 반영] 3월 29일자 버전처럼 검색어는 이름만 심플하게 롤백
                 search_response = youtube.search().list(
-                    q=search_query,
+                    q=actor_name,
                     part='id',
-                    maxResults=10, 
+                    maxResults=15, # 필터링 탈락을 대비해 검색 모수를 살짝 늘림
                     type='video',
                     order='relevance', 
                     publishedAfter=published_after,
@@ -106,19 +105,41 @@ def get_youtube_comments(actor_name):
                     success_for_year = True 
                     continue
 
+                # 1. 영상 메타데이터(조회수, 채널ID) 가져오기
                 stats_response = youtube.videos().list(
                     part='statistics,snippet', 
                     id=','.join(candidate_ids)
                 ).execute()
 
-                valid_videos = []
+                videos_info = []
+                channel_ids = set()
                 for item in stats_response.get('items', []):
+                    videos_info.append(item)
+                    channel_ids.add(item['snippet']['channelId'])
+
+                # 2. 채널 메타데이터(구독자수) 가져오기
+                channel_subs = {}
+                if channel_ids:
+                    channels_response = youtube.channels().list(
+                        part='statistics',
+                        id=','.join(list(channel_ids))
+                    ).execute()
+                    
+                    for ch in channels_response.get('items', []):
+                        subs = int(ch.get('statistics', {}).get('subscriberCount', 0))
+                        channel_subs[ch['id']] = subs
+
+                valid_videos = []
+                for item in videos_info:
                     stats = item.get('statistics', {})
                     snippet = item.get('snippet', {})
                     view_count = int(stats.get('viewCount', 0))
                     comment_count = int(stats.get('commentCount', 0))
+                    channel_id = snippet.get('channelId', '')
+                    subs_count = channel_subs.get(channel_id, 0)
                     
-                    if view_count >= 5000 and comment_count > 0:
+                    # 🌟 [핵심 로직] 조회수 50만 이상 OR 구독자 50만 이상만 통과
+                    if (view_count >= 500000 or subs_count >= 500000) and comment_count > 0:
                         valid_videos.append({
                             'id': item['id'],
                             'title': snippet.get('title', '제목 없음'),
@@ -131,7 +152,7 @@ def get_youtube_comments(actor_name):
                 target_videos = valid_videos[:3] 
 
                 if not target_videos:
-                    print(f"   -> 유효한(댓글 있는) 영상 없음.")
+                    print(f"   -> 유효한(기준 통과) 영상 없음. 다음 연도로 넘어갑니다.")
                     success_for_year = True
                     continue
 
@@ -216,7 +237,6 @@ def analyze_sentiment(comments):
             
             vid = comment.get("videoId")
             if vid:
-                # 🌟 [버그 수정 완료] 오타('pos')를 'positive'로 완벽하게 일치시킴
                 if vid not in video_sentiment: video_sentiment[vid] = {'positive': 0, 'negative': 0}
                 video_sentiment[vid][sentiment] += 1
 
@@ -244,7 +264,6 @@ def run_single(actor_name):
         if counts['positive'] > 0 or counts['negative'] > 0:
             if vid in sources_dict:
                 src = sources_dict[vid]
-                # HTML과 맵핑되도록 pos_count, neg_count로 저장
                 src['pos_count'] = counts['positive']
                 src['neg_count'] = counts['negative']
                 final_sources.append(src)
