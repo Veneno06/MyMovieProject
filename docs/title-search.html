@@ -38,7 +38,8 @@ h1 { font-size:28px; margin:0 0 16px; }
 }
 .suggestions li { padding: 10px; border-bottom: 1px solid #eee; cursor: pointer; }
 .suggestions li:last-child { border-bottom: none; }
-.suggestions li:hover, .suggestions li.selected { background-color: #f0f0f0; } /* 🌟 방향키 선택 스타일 */
+/* 🌟 키보드 방향키 조작 시 하이라이트 효과 적용 (.selected) */
+.suggestions li:hover, .suggestions li.selected { background-color: #f0f0f0; } 
 .suggestions li strong { color: #2e7d32; }
 .suggestions .meta { font-size: 0.85em; color: #666; margin-left: 5px; }
 </style>
@@ -65,7 +66,7 @@ h1 { font-size:28px; margin:0 0 16px; }
 
   <div style="margin-top:20px; color:#666; font-size:0.9em;">
       * 제목을 입력하면 유사한 영화 목록이 아래에 표시됩니다.<br>
-      * 목록에서 영화를 클릭하거나 방향키로 선택 후 <strong>엔터(Enter)</strong>를 누르면 상세 페이지가 <strong>새 탭</strong>에서 열립니다.
+      * 목록에서 영화를 클릭하거나 <strong>방향키로 선택 후 엔터(Enter)</strong>를 누르면 가장 정확한 결과의 상세 페이지가 <strong>새 탭</strong>에서 열립니다.
   </div>
 </div>
 
@@ -73,7 +74,15 @@ h1 { font-size:28px; margin:0 0 16px; }
 const TS = Date.now();
 const PATHS = [`docs/data/search_index.json?v=${TS}`, `data/search_index.json?v=${TS}`];
 let MOVIES = [];
-let selectedIndex = -1; // 🌟 키보드 네비게이션용
+let selectedIndex = -1;
+
+// 🌟 어떤 타입이 들어와도 에러 없이 처리하는 안전한 숫자 변환 함수
+const safeParseInt = (v) => {
+    if (v === null || v === undefined) return 0;
+    if (typeof v === 'number') return v;
+    const n = parseInt(String(v).replace(/,/g, '').trim(), 10);
+    return isNaN(n) ? 0 : n;
+};
 
 async function loadIndex(){
   for (const path of PATHS) {
@@ -106,15 +115,14 @@ function doSearch() {
         return;
     }
 
-    selectedIndex = -1; // 검색어 바뀔 때마다 초기화
+    selectedIndex = -1; // 검색어가 바뀔 때마다 키보드 인덱스 초기화
 
-    matched.forEach((m, idx) => {
+    matched.forEach(m => {
         const li = document.createElement('li');
-        // 키보드 조작을 위해 클래스 부여
-        li.className = 'suggestion-item';
+        li.className = 'suggestion-item'; // 키보드 조작용 클래스
         
-        const audi = m.audiAcc ? parseInt(m.audiAcc).toLocaleString() : 0;
-        const audiStr = audi > 0 ? ` (누적 ${audi}명)` : '';
+        const audiNum = safeParseInt(m.audiAcc);
+        const audiStr = audiNum > 0 ? ` (누적 ${audiNum.toLocaleString()}명)` : '';
         
         li.innerHTML = `<strong>${m.movieNm}</strong> <span class="meta">${m.openDt || '미개봉'} ${audiStr}</span>`;
         
@@ -127,15 +135,11 @@ function doSearch() {
     list.style.display = 'block';
 }
 
+// 🌟 [오류 해결 완료] 에러를 뿜던 부분을 safeParseInt로 교체하여 완벽하게 정렬
 function getMatchedMovies(val) {
     if (!val) return [];
-    // 🌟 [요청 반영] 관객수(audiAcc) 내림차순으로 정렬 우선
     return MOVIES.filter(m => (m.movieNm || '').toLowerCase().includes(val))
-                 .sort((a,b) => {
-                     const audiA = a.audiAcc ? parseInt(a.audiAcc.replace(/,/g, '')) : 0;
-                     const audiB = b.audiAcc ? parseInt(b.audiAcc.replace(/,/g, '')) : 0;
-                     return audiB - audiA;
-                 })
+                 .sort((a,b) => safeParseInt(b.audiAcc) - safeParseInt(a.audiAcc)) // 관객수 내림차순
                  .slice(0, 30);
 }
 
@@ -144,16 +148,18 @@ function openDetail(movieCd) {
     window.open(url, '_blank');
 }
 
-// 🌟 [요청 반영] 키보드 이벤트 조작 로직
+// 🌟 [요청 반영] 방향키 및 엔터키 조작 로직
 inp.addEventListener('keydown', (e) => {
     const items = list.getElementsByClassName('suggestion-item');
+    
+    // 목록이 없거나 닫혀있으면 엔터 시 바로검색 로직 수행
     if (list.style.display === 'none' || items.length === 0) {
         if (e.key === 'Enter') handleDirectSearch();
         return;
     }
 
     if (e.key === 'ArrowDown') {
-        e.preventDefault(); // 커서 이동 방지
+        e.preventDefault(); 
         selectedIndex++;
         if (selectedIndex >= items.length) selectedIndex = 0;
         updateSelection(items);
@@ -165,9 +171,10 @@ inp.addEventListener('keydown', (e) => {
     } else if (e.key === 'Enter') {
         e.preventDefault();
         if (selectedIndex > -1) {
-            // 드롭다운 항목이 선택되어 있으면 클릭 발생
+            // 항목이 하이라이트 되어있으면 해당 항목 클릭
             items[selectedIndex].click();
         } else {
+            // 하이라이트가 없으면 맨 위 결과(가장 정확한/관객수 많은) 검색
             handleDirectSearch();
         }
         list.style.display = 'none';
@@ -178,14 +185,21 @@ function updateSelection(items) {
     for (let item of items) item.classList.remove('selected');
     if (selectedIndex > -1) {
         items[selectedIndex].classList.add('selected');
+        // 스크롤이 따라가도록 조치
         items[selectedIndex].scrollIntoView({ block: 'nearest' });
     }
 }
 
 function handleDirectSearch() {
     const val = inp.value.trim().toLowerCase();
-    if (!val) { alert("검색어를 입력해주세요."); return; }
-    if (MOVIES.length === 0) { alert("데이터를 로딩 중입니다. 잠시 후 다시 시도해주세요."); return; }
+    if (!val) {
+        alert("검색어를 입력해주세요.");
+        return;
+    }
+    if (MOVIES.length === 0) {
+        alert("데이터를 로딩 중입니다. 잠시 후 다시 시도해주세요.");
+        return;
+    }
 
     const matched = getMatchedMovies(val);
     if (matched.length > 0) {
@@ -198,6 +212,7 @@ function handleDirectSearch() {
 inp.addEventListener('input', doSearch);
 btn.addEventListener('click', handleDirectSearch);
 
+// 외부 클릭 시 목록 닫기
 document.addEventListener('click', (e) => {
     if (!e.target.closest('.box')) list.style.display = 'none';
 });
