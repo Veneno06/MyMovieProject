@@ -1,232 +1,80 @@
 <!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8" />
-  <title data-i18n-key="homeTitle">K-Movie A Archive</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="assets/style.css" />
-  <script src="assets/translator.js" defer></script>
-  </head>
+<meta charset="utf-8">
+<title>K-Movie A Archive</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/translator.js" defer></script>
+<style>
+  /* 🌟 배너 스타일 추가 */
+  .link-banner { 
+      display: flex; justify-content: center; gap: 20px; 
+      margin-top: 50px; padding: 20px; background: #f9fafb; 
+      border-radius: 12px; border: 1px solid #eee;
+  }
+  .link-banner a { 
+      text-decoration: none; color: #4b5563; font-weight: bold; font-size: 14px;
+      padding: 8px 16px; border: 1px solid #ddd; border-radius: 6px; background: #fff;
+      transition: all 0.2s;
+  }
+  .link-banner a:hover { background: #374151; color: #fff; border-color: #374151; }
+</style>
+</head>
 <body>
 <div class="wrap">
-  
-  <h1 data-i18n-key="homeTitle">K-Movie A Archive</h1>
-
   <div class="ctrls">
-    <a href="index.html" class="btn" data-i18n-key="home">홈</a>
-    <a href="title-search.html" class="btn" data-i18n-key="movieTitleSearch">영화 검색 (제목)</a>
-    <a href="search.html" class="btn" data-i18n-key="movieSearchPeriod">영화 검색 (기간)</a>
-    <a href="people-search.html" class="btn" data-i18n-key="peopleSearch">배우 검색</a>
-    <a href="costar-search.html" class="btn" data-i18n-key="costarSearch">공동 출연 검색</a>
-    <a href="saved.html" class="btn" data-i18n-key="savedList">저장 목록</a>
+    <a href="index.html" class="btn active">홈</a>
+    <a href="title-search.html" class="btn">영화 검색 (제목)</a>
+    <a href="search.html" class="btn">영화 검색 (기간)</a>
+    <a href="people-search.html" class="btn">배우 검색</a>
+    <a href="costar-search.html" class="btn">공동 출연 검색</a>
+    <a href="saved.html" class="btn">저장 목록</a>
+    <button id="langBtn" class="btn">EN</button>
   </div>
 
-  <div class="pill" id="rangePill" style="display: none;">데이터 범위: 로딩 중…</div>
+  <h1>최신 일일 박스오피스 TOP 10</h1>
+  <div id="boxoffice-date" class="note">데이터 로딩 중...</div>
+  <ul id="boxoffice-list" class="list"></ul>
 
-  <h2 style="margin:20px 0 8px;" data-i18n-key="monthlyTimeline">월간 타임라인</h2>
-  <div class="monthbar">
-    <button class="btn" id="prevM" data-i18n-key="prevMonth">◀ 이전 달</button>
-    <div id="ymLabel" style="font-weight:700; font-size: 1.1em;"></div>
-    <button class="btn" id="nextM" data-i18n-key="nextMonth">다음 달 ▶</button>
+  <div class="link-banner">
+      <a href="https://cgv.co.kr/" target="_blank">🎬 CGV 바로가기</a>
+      <a href="https://www.megabox.co.kr/" target="_blank">🍿 메가박스 바로가기</a>
+      <a href="https://www.kofic.or.kr/" target="_blank">🏛️ KOFIC 바로가기</a>
   </div>
-
-  <div class="tl-bar" id="tlBar"></div>
-  
-  <div class="tl-panel" id="panel" data-i18n-key="panelDefault">날짜를 선택하면 해당 날짜의 개봉작을 보여줍니다.</div>
-  
-  <div id="boxoffice-container"></div>
 </div>
 
 <script>
-// --- 타임라인 기능 관련 스크립트 ---
-const MOVIE_INDEX_URL = 'data/search/movies.json';
+const TS = Date.now();
+const fmtNum = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-const isYmd8 = (s) => /^\d{8}$/.test(String(s||'').trim());
-
-function ymParts(ym){ return [ym.getFullYear(), ym.getMonth()+1]; }
-function pad2(n){ return String(n).padStart(2,'0'); }
-function daysInMonth(y,m){ return new Date(y, m, 0).getDate(); } // m: 1~12
-
-let MOVIES = [];
-let YM = new Date();
-
-function pickValidMovies(src){
-  if (!src || !Array.isArray(src.movies)) return [];
-  return src.movies.map(m => {
-    m.openDt_normalized = (m.openDt || '').replace(/-/g, '');
-    return m;
-  }).filter(m => isYmd8(m.openDt_normalized));
-}
-
-function computeRange(arr){
-  if (!arr.length) return null;
-  let minY = 9999, maxY = 0;
-  for (const m of arr){
-    const y = parseInt(m.openDt_normalized.slice(0,4),10);
-    if (isFinite(y)){
-      if (y < minY) minY = y;
-      if (y > maxY) maxY = y;
+async function loadBoxOffice() {
+    try {
+        const res = await fetch(`docs/data/boxoffice/latest.json?v=${TS}`);
+        const data = await res.json();
+        const dateStr = data.showRange ? data.showRange.split('~')[0] : "";
+        document.getElementById('boxoffice-date').innerText = `기준일: ${dateStr}`;
+        
+        const list = document.getElementById('boxoffice-list');
+        list.innerHTML = '';
+        
+        data.dailyBoxOfficeList.forEach(m => {
+            const li = document.createElement('li');
+            // 🌟 [요청 반영] 일일 관객수 및 총 관객수 병기
+            li.innerHTML = `
+                <strong>${m.rank}.</strong> 
+                <a href="detail.html?movieCd=${m.movieCd}"><b>${m.movieNm}</b></a>
+                <span class="note" style="margin-left:10px;">
+                    (일일 관객수: ${fmtNum(m.audiCnt)} / 총 관객수: ${fmtNum(m.audiAcc)})
+                </span>
+            `;
+            list.appendChild(li);
+        });
+    } catch(e) {
+        document.getElementById('boxoffice-date').innerText = "데이터를 불러올 수 없습니다.";
     }
-  }
-  if (minY===9999 || maxY===0) return null;
-  return {min:minY, max:maxY};
 }
-
-function groupByDay(arr, y, m){ // m: 1~12
-  const map = {};
-  for (let d=1; d<=daysInMonth(y,m); d++) map[d]=[];
-  for (const row of arr){
-    const dt = row.openDt_normalized;
-    if (!isYmd8(dt)) continue;
-    const yy = +dt.slice(0,4);
-    const mm = +dt.slice(4,6);
-    const dd = +dt.slice(6,8);
-    if (yy===y && mm===m && map[dd]) map[dd].push(row);
-  }
-  return map;
-}
-
-function renderMonth(){
-  const [y, m] = ymParts(YM);
-  document.getElementById('ymLabel').textContent = `${y}년 ${pad2(m)}월`;
-
-  const byDay = groupByDay(MOVIES, y, m);
-  const bar = document.getElementById('tlBar');
-  bar.innerHTML = '';
-
-  const last = daysInMonth(y, m);
-  for (let d=1; d<=last; d++){
-    const btn = document.createElement('div');
-    // CSS와 매칭되는 클래스명 (tl-day)
-    btn.className = 'tl-day' + (byDay[d].length ? ' hasMovies' : '');
-    btn.textContent = d;
-    btn.title = byDay[d].length ? `${byDay[d].length}편` : '개봉작 없음';
-    btn.onclick = (e)=> {
-        const currentSelected = bar.querySelector('.selected');
-        if (currentSelected) {
-            currentSelected.classList.remove('selected');
-        }
-        e.currentTarget.classList.add('selected');
-        renderPanel(y,m,d, byDay[d]);
-    };
-    bar.appendChild(btn);
-  }
-
-  // 오늘 날짜 자동 선택 로직
-  const today = new Date();
-  if (today.getFullYear()===y && (today.getMonth()+1)===m){
-     const todayBtn = bar.children[today.getDate()-1];
-     if(todayBtn) todayBtn.click(); 
-  } else {
-     // 다른 달 이동 시 패널 초기화
-     document.getElementById('panel').innerHTML = '<div class="muted">날짜를 선택하면 해당 날짜의 개봉작을 보여줍니다.</div>';
-  }
-}
-
-function renderPanel(y,m,d, list){
-  const box = document.getElementById('panel');
-  const ymd = `${y}-${pad2(m)}-${pad2(d)}`;
-  if (!list || list.length===0){
-    box.innerHTML = `<div class="muted">해당 날짜(${ymd})에는 등록된 개봉작이 없습니다.</div>`;
-    return;
-  }
-  const rows = list
-    .sort((a,b)=> (a.movieNm || '').localeCompare(b.movieNm||'', 'ko'))
-    .map(row=>{
-      const badge = row.grade ? `[${row.grade}]` : '';
-      const rn = row.repNation || '';
-      const gens = Array.isArray(row.genres) ? row.genres.join(', ') : '';
-      return `
-      <div class="row">
-        <a href="detail.html?movieCd=${encodeURIComponent(row.movieCd)}">${row.movieNm||'(제목없음)'}</a>
-        <div class="muted">${badge} ${rn} ${gens ? '· '+gens : ''}</div>
-      </div>`;
-    }).join('');
-  box.innerHTML = `<div class="note" style="font-weight:bold; margin-bottom:10px;">${ymd} 개봉작 ${list.length}편</div><div class="list">${rows}</div>`;
-}
-
-async function mainTimeline(){
-  const res = await fetch(`${MOVIE_INDEX_URL}?v=${Date.now()}`);
-  if (!res.ok){
-    document.getElementById('rangePill').textContent = '데이터 범위: 인덱스 로드 실패';
-    return;
-  }
-  const js = await res.json();
-  MOVIES = pickValidMovies(js);
-
-  const rg = computeRange(MOVIES);
-  document.getElementById('rangePill').textContent =
-    rg ? `데이터 범위: ${rg.min} – ${rg.max} (인덱스 기준)`
-       : '데이터 범위: 비어있음 / 인덱스 재생성이 필요할 수 있음';
-
-  if (MOVIES.length > 0) {
-    const latestDateStr = MOVIES.reduce((max, m) => (m.openDt_normalized > max ? m.openDt_normalized : max), '0');
-    const year = parseInt(latestDateStr.slice(0, 4), 10);
-    const month = parseInt(latestDateStr.slice(4, 6), 10) - 1;  
-    if (!isNaN(year) && !isNaN(month)) {
-        YM = new Date(year, month);
-    }
-  }
-
-  renderMonth();
-
-  document.getElementById('prevM').onclick = ()=>{
-    YM.setMonth(YM.getMonth()-1);
-    renderMonth();
-  };
-  document.getElementById('nextM').onclick = ()=>{
-    YM.setMonth(YM.getMonth()+1);
-    renderMonth();
-  };
-}
-
-// --- 박스오피스 기능 관련 스크립트 ---
-async function mainBoxoffice() {
-  const container = document.getElementById('boxoffice-container');
-  try {
-    const ts = Date.now();
-    const metaResp = await fetch(`./data/latest.json?v=${ts}`);
-    if (!metaResp.ok) throw new Error('latest.json을 찾을 수 없습니다.');
-    const meta = await metaResp.json();
-
-    const dataResp = await fetch(`${meta.url}?v=${ts}`);
-    if (!dataResp.ok) throw new Error(`데이터 파일(${meta.url})을 찾을 수 없습니다.`);
-    const data = await dataResp.json();
-
-    const list = data?.boxOfficeResult?.dailyBoxOfficeList;
-    if (Array.isArray(list) && list.length > 0) {
-      let html = `<h2 data-i18n-key="latestBoxOffice" style="margin-bottom:8px;">최신 일일 박스오피스 TOP ${Math.min(10, list.length)}</h2>`;
-      html += `<div class="note" style="margin-bottom:15px;">기준일: ${meta.date}</div>`;
-      html += '<ol style="margin:0; padding-left:20px; line-height: 1.8;">';
-      list.slice(0, 10).forEach(item => {
-        // 영화 상세 페이지 링크 연결
-        html += `<li style="padding-left: 5px;">
-                    <a href="detail.html?movieCd=${item.movieCd}" style="text-decoration:none; color:#333; font-weight:bold;">${item.movieNm}</a> 
-                    <span style="color:#666; font-size:0.9em;">- ${Number(item.audiCnt).toLocaleString()}명</span>
-                 </li>`;
-      });
-      html += '</ol>';
-      container.innerHTML = html;
-      
-      // 번역 적용
-      if (window.translatePage && typeof window.translatePage === 'function') {
-          window.translatePage(window.getCurrentLang ? window.getCurrentLang() : 'ko');
-      }
-    }
-  } catch (err) {
-    console.error('Boxoffice Error:', err);
-    container.innerHTML = `<p style="color:red;">박스오피스 정보를 불러오는 데 실패했습니다: ${err.message}</p>`;
-  }
-}
-
-// --- 스크립트 실행 ---
-mainTimeline().catch(e=>{
-  console.error('Timeline Error:', e);
-  document.getElementById('rangePill').textContent = '데이터 범위: 오류 발생';
-});
-
-mainBoxoffice();
-
+loadBoxOffice();
 </script>
 </body>
 </html>
