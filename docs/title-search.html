@@ -2,108 +2,175 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title data-i18n-key="movieTitleSearchTitle">영화 제목 검색</title>
+<title data-i18n-key="movieTitleSearch">영화 검색 (제목)</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="assets/style.css">
 <script src="assets/translator.js" defer></script>
 <style>
-  .search-container { position: relative; width: 100%; max-width: 500px; margin: 0 auto; }
-  #movieInput { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; }
-  .autocomplete-list { 
-    position: absolute; top: 100%; left: 0; right: 0; background: white; 
-    border: 1px solid #ddd; border-top: none; border-radius: 0 0 8px 8px; 
-    z-index: 1000; max-height: 300px; overflow-y: auto; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  }
-  .autocomplete-item { padding: 10px 15px; cursor: pointer; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; }
-  .autocomplete-item:hover, .autocomplete-item.selected { background-color: #f3f4f6; }
-  .movie-audi { font-size: 12px; color: #6b7280; }
+body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple SD Gothic Neo, Noto Sans KR, 'Malgun Gothic', sans-serif; line-height:1.6; }
+.wrap { max-width:980px; margin:24px auto; padding:0 12px; }
+h1 { font-size:28px; margin:0 0 16px; }
+
+/* 네비게이션 버튼 */
+.ctrls { display:flex; gap:8px; margin-bottom:12px; flex-wrap: wrap; }
+.ctrls a { padding:6px 10px; border:1px solid #e5e7eb; border-radius:8px; background:#fff; text-decoration:none; color:#111827; }
+
+/* 검색 박스 스타일 */
+.box { 
+    background:#f6f7f9; border:1px solid #e5e7eb; border-radius:8px; padding:12px; 
+    position: relative; 
+    display: flex; gap: 8px;
+}
+.search-input { 
+    flex-grow: 1; 
+    padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; 
+}
+
+/* 자동완성 드롭다운 */
+.suggestions { 
+    list-style: none; padding: 0; margin: 0; 
+    border: 1px solid #ccc; border-top: none; 
+    border-radius: 0 0 4px 4px; 
+    max-height: 300px; overflow-y: auto; 
+    background: #fff; 
+    position: absolute; left: 12px; right: 12px; top: 55px; z-index: 1000;
+    display: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.suggestions li { padding: 10px; border-bottom: 1px solid #eee; cursor: pointer; }
+.suggestions li:last-child { border-bottom: none; }
+.suggestions li:hover, .suggestions li.selected { background-color: #f0f0f0; } /* 🌟 방향키 선택 스타일 */
+.suggestions li strong { color: #2e7d32; }
+.suggestions .meta { font-size: 0.85em; color: #666; margin-left: 5px; }
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="ctrls">
     <a href="index.html" class="btn" data-i18n-key="home">홈</a>
-    <a href="title-search.html" class="btn active" data-i18n-key="movieTitleSearch">영화 검색 (제목)</a>
+    <a href="title-search.html" class="btn" style="font-weight:bold; border-color:#333;" data-i18n-key="movieTitleSearch">영화 검색 (제목)</a>
     <a href="search.html" class="btn" data-i18n-key="movieSearchPeriod">영화 검색 (기간)</a>
     <a href="people-search.html" class="btn" data-i18n-key="peopleSearch">배우 검색</a>
     <a href="costar-search.html" class="btn" data-i18n-key="costarSearch">공동 출연 검색</a>
     <a href="saved.html" class="btn" data-i18n-key="savedList">저장 목록</a>
   </div>
 
-  <h1 style="text-align: center;" data-i18n-key="movieTitleSearchTitle">영화 제목 검색</h1>
-  <div class="search-container">
-    <input type="text" id="movieInput" placeholder="영화 제목을 입력하세요..." autocomplete="off">
-    <div id="autocompleteList" class="autocomplete-list" style="display:none;"></div>
+  <h1 data-i18n-key="movieTitleSearch">영화 검색 (제목)</h1>
+
+  <div class="box">
+    <input type="text" id="q" class="search-input" placeholder="영화 제목을 입력하세요 (예: 범죄도시)" autocomplete="off">
+    <button id="searchBtn" class="btn" style="white-space: nowrap;" data-i18n-key="searchBtn">검색</button>
+    
+    <ul id="suggestions" class="suggestions"></ul>
+  </div>
+
+  <div style="margin-top:20px; color:#666; font-size:0.9em;">
+      * 제목을 입력하면 유사한 영화 목록이 아래에 표시됩니다.<br>
+      * 목록에서 영화를 클릭하거나 방향키로 선택 후 <strong>엔터(Enter)</strong>를 누르면 상세 페이지가 <strong>새 탭</strong>에서 열립니다.
   </div>
 </div>
 
 <script>
 const TS = Date.now();
-const PATHS_INDEX = [`docs/data/search_index.json?v=${TS}`, `data/search_index.json?v=${TS}`];
+const PATHS = [`docs/data/search_index.json?v=${TS}`, `data/search_index.json?v=${TS}`];
 let MOVIES = [];
-let selectedIndex = -1;
+let selectedIndex = -1; // 🌟 키보드 네비게이션용
 
-const safeParseInt = (v) => {
-    if (!v) return 0;
-    const n = parseInt(String(v).replace(/,/g, '').trim(), 10);
-    return isNaN(n) ? 0 : n;
-};
-
-async function loadIndex() {
-    for (const p of PATHS_INDEX) {
-        try {
-            const r = await fetch(p);
-            if (r.ok) { MOVIES = await r.json(); return; }
-        } catch(e) {}
-    }
+async function loadIndex(){
+  for (const path of PATHS) {
+      try {
+          const r = await fetch(path);
+          if (r.ok) {
+              MOVIES = await r.json();
+              return;
+          }
+      } catch(e) {}
+  }
 }
 
-const input = document.getElementById('movieInput');
-const list = document.getElementById('autocompleteList');
+const inp = document.getElementById('q');
+const list = document.getElementById('suggestions');
+const btn = document.getElementById('searchBtn');
 
-input.addEventListener('input', () => {
-    const val = input.value.trim();
-    if (!val) { list.style.display = 'none'; return; }
+function doSearch() {
+    const val = inp.value.trim().toLowerCase();
+    if (val.length < 1) {
+        list.style.display = 'none';
+        return;
+    }
 
-    // 🌟 [요청 반영] 관객수 높은 순으로 정렬
-    const results = MOVIES.filter(m => m.movieNm.includes(val))
-                          .sort((a, b) => safeParseInt(b.audiAcc) - safeParseInt(a.audiAcc))
-                          .slice(0, 15);
+    const matched = getMatchedMovies(val);
 
-    renderList(results);
-});
-
-function renderList(results) {
-    if (results.length === 0) { list.style.display = 'none'; return; }
-    selectedIndex = -1;
     list.innerHTML = '';
-    results.forEach((m, idx) => {
-        const item = document.createElement('div');
-        item.className = 'autocomplete-item';
-        item.innerHTML = `<span>${m.movieNm}</span><span class="movie-audi">${Number(safeParseInt(m.audiAcc)).toLocaleString()}명</span>`;
-        item.addEventListener('click', () => { location.href = `detail.html?movieCd=${m.movieCd}`; });
-        list.appendChild(item);
+    if (matched.length === 0) {
+        list.style.display = 'none';
+        return;
+    }
+
+    selectedIndex = -1; // 검색어 바뀔 때마다 초기화
+
+    matched.forEach((m, idx) => {
+        const li = document.createElement('li');
+        // 키보드 조작을 위해 클래스 부여
+        li.className = 'suggestion-item';
+        
+        const audi = m.audiAcc ? parseInt(m.audiAcc).toLocaleString() : 0;
+        const audiStr = audi > 0 ? ` (누적 ${audi}명)` : '';
+        
+        li.innerHTML = `<strong>${m.movieNm}</strong> <span class="meta">${m.openDt || '미개봉'} ${audiStr}</span>`;
+        
+        li.onclick = () => {
+            openDetail(m.movieCd);
+        };
+        list.appendChild(li);
     });
+
     list.style.display = 'block';
 }
 
-// 🌟 [요청 반영] 키보드 조작 기능 추가
-input.addEventListener('keydown', (e) => {
-    const items = list.getElementsByClassName('autocomplete-item');
-    if (list.style.display === 'none' || items.length === 0) return;
+function getMatchedMovies(val) {
+    if (!val) return [];
+    // 🌟 [요청 반영] 관객수(audiAcc) 내림차순으로 정렬 우선
+    return MOVIES.filter(m => (m.movieNm || '').toLowerCase().includes(val))
+                 .sort((a,b) => {
+                     const audiA = a.audiAcc ? parseInt(a.audiAcc.replace(/,/g, '')) : 0;
+                     const audiB = b.audiAcc ? parseInt(b.audiAcc.replace(/,/g, '')) : 0;
+                     return audiB - audiA;
+                 })
+                 .slice(0, 30);
+}
+
+function openDetail(movieCd) {
+    const url = `detail.html?movieCd=${movieCd}`;
+    window.open(url, '_blank');
+}
+
+// 🌟 [요청 반영] 키보드 이벤트 조작 로직
+inp.addEventListener('keydown', (e) => {
+    const items = list.getElementsByClassName('suggestion-item');
+    if (list.style.display === 'none' || items.length === 0) {
+        if (e.key === 'Enter') handleDirectSearch();
+        return;
+    }
 
     if (e.key === 'ArrowDown') {
+        e.preventDefault(); // 커서 이동 방지
         selectedIndex++;
         if (selectedIndex >= items.length) selectedIndex = 0;
         updateSelection(items);
     } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
         selectedIndex--;
         if (selectedIndex < 0) selectedIndex = items.length - 1;
         updateSelection(items);
     } else if (e.key === 'Enter') {
+        e.preventDefault();
         if (selectedIndex > -1) {
+            // 드롭다운 항목이 선택되어 있으면 클릭 발생
             items[selectedIndex].click();
+        } else {
+            handleDirectSearch();
         }
+        list.style.display = 'none';
     }
 });
 
@@ -115,7 +182,27 @@ function updateSelection(items) {
     }
 }
 
-loadIndex();
+function handleDirectSearch() {
+    const val = inp.value.trim().toLowerCase();
+    if (!val) { alert("검색어를 입력해주세요."); return; }
+    if (MOVIES.length === 0) { alert("데이터를 로딩 중입니다. 잠시 후 다시 시도해주세요."); return; }
+
+    const matched = getMatchedMovies(val);
+    if (matched.length > 0) {
+        openDetail(matched[0].movieCd);
+    } else {
+        alert("일치하는 영화가 없습니다.");
+    }
+}
+
+inp.addEventListener('input', doSearch);
+btn.addEventListener('click', handleDirectSearch);
+
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.box')) list.style.display = 'none';
+});
+
+(async function main(){ await loadIndex(); })();
 </script>
 </body>
 </html>
