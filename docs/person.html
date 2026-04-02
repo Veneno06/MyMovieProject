@@ -42,7 +42,7 @@
   <div id="msg" class="note"></div>
 
   <div style="margin-top:12px; display:flex; gap:8px;">
-    <button class="btn" onclick="history.back()" data-i18n-key="btnBack">🔙 뒤로</button>
+    <button class="btn" onclick="smartBack()" data-i18n-key="btnBack">🔙 뒤로</button>
     <button class="btn" id="saveBtn" style="display:none;" data-i18n-key="btnSave">☆ 인물 저장</button>
   </div>
 
@@ -88,7 +88,7 @@
     <div id="sentimentSummary" style="text-align: right; font-size: 13px; color: #666; margin-top: 8px;"></div>
     
     <div id="sentiment-sources-container" style="margin-top: 20px; display: none;">
-        <h3 style="font-size: 15px; color: #374151; margin-bottom: 10px;"> 여론 분석 데이터 수집 출처</h3>
+        <h3 style="font-size: 15px; color: #374151; margin-bottom: 10px;">📺 여론 분석 데이터 수집 출처</h3>
         <div style="overflow-y: auto; max-height: 250px; border: 1px solid #e5e7eb; border-radius: 8px; background: #fff;">
             <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 13px;">
                 <thead style="position: sticky; top: 0; background: #f9fafb;">
@@ -109,6 +109,15 @@
 </div>
 
 <script>
+// 🌟 [추가됨] 새 탭일 경우 창 닫기, 아니면 뒤로 가기
+function smartBack() {
+    if (window.history.length <= 1) {
+        window.close();
+    } else {
+        window.history.back();
+    }
+}
+
 const TS = Date.now();
 const PATHS_INDEX = [`docs/data/search_index.json?v=${TS}`, `data/search_index.json?v=${TS}`];
 const PATHS_DETAILS = [`docs/data/people/`, `data/people/`]; 
@@ -228,7 +237,6 @@ async function render(){
 
   const allMovies = await fetchIndex() || [];
 
-  // 🌟 [유지됨] URL 파라미터가 name: 형식일 경우 고유 코드로 변환하는 역추적 로직
   if (currentId.startsWith('name:')) {
       const targetName = currentId.replace('name:', '');
       for (const m of allMovies) {
@@ -553,7 +561,6 @@ function drawSentimentChart(minDate, maxDate, tUnit, tFormats) {
         }
     });
 
-    // 🌟 실수로 삭제했던 출처 표 렌더링 로직 원상 복구 및 컬럼 확장
     const sourcesContainer = document.getElementById('sentiment-sources-container');
     const sourcesBody = document.getElementById('sentiment-sources-body');
     
