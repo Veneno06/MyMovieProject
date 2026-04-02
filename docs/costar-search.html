@@ -6,6 +6,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="assets/style.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@1.0.1/dist/chartjs-adapter-moment.min.js"></script>
 <script src="assets/translator.js" defer></script>
 <style>
 body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple SD Gothic Neo, Noto Sans KR, 'Malgun Gothic', sans-serif; line-height:1.6; }
@@ -39,7 +41,7 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
 
   <form id="f" class="box">
     <span data-i18n-key="actorNamesLabel">배우 이름들:</span>
-    <input type="text" name="q" placeholder="예: 이병헌, 류승룡 (쉼표로 구분)" value="">
+    <input type="text" id="actorInput" name="q" placeholder="예: 이병헌, 류승룡 (쉼표로 구분)" value="">
     <button type="submit" class="btn" data-i18n-key="searchBtn">검색</button>
   </form>
 
@@ -52,17 +54,29 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
         <canvas id="audiChart"></canvas>
     </div>
   </div>
+
+  <div id="sentiment-compare-container" style="display:none; margin-top: 40px; padding-top: 20px; border-top: 2px dashed #ddd;">
+    <h2>📊 수집된 배우별 유튜브 여론 비교 (Net Sentiment)</h2>
+    <div class="note" style="margin-bottom: 10px;">검색된 배우들의 (긍정 - 부정) 댓글 수 차이를 시계열로 나타냅니다.</div>
+    <div style="position: relative; height:350px; width:100%">
+        <canvas id="sentimentCompareChart"></canvas>
+    </div>
+  </div>
 </div>
 
 <script>
 const TS = Date.now();
 const PATHS_INDEX = [`docs/data/search_index.json?v=${TS}`, `data/search_index.json?v=${TS}`];
 const PATHS_DETAILS = [`docs/data/people/`, `data/people/`]; 
+const PATHS_SENTIMENT = [`docs/data/sentiment/`, `data/sentiment/`];
 
 let MOVIES = [];
 let PEOPLE_MAP = {}; 
 let GLOBAL_RANKS = new Map(); 
 let myChart = null;
+let sentimentCompareChart = null;
+
+const COLORS = ['#2563eb', '#dc2626', '#16a34a', '#9333ea', '#ea580c'];
 
 const safeParseInt = (v) => {
     if (v === null || v === undefined) return 0;
@@ -86,32 +100,26 @@ async function loadIndex(){
 function calculateGlobalRankings() {
     const YEAR_TOTALS = {};
     const ACTOR_SCORES = new Map();
-
     MOVIES.forEach(m => {
         const audi = safeParseInt(m.audiAcc);
         const year = (m.openDt || '').slice(0,4) || String(m.prdtYear);
         if (year && audi > 0) YEAR_TOTALS[year] = (YEAR_TOTALS[year] || 0) + audi;
     });
-
     MOVIES.forEach(m => {
         const A_i = safeParseInt(m.audiAcc);
         const year = (m.openDt || '').slice(0,4) || String(m.prdtYear);
         if (!year || A_i <= 0) return;
-        
         const Total_Y = YEAR_TOTALS[year];
         const W_time = Math.max(0.1, (parseInt(year) - 2000) / 10);
         const C_i = Math.max(1, (m.actors || []).length);
-
         (m.actors || []).forEach((a, idx) => {
             if (!a.id) return;
             const W_role = (idx < Math.ceil(C_i / 3)) ? 1.0 : 0.5;
             const score_i = (A_i / Total_Y) * (W_role / Math.sqrt(C_i)) * W_time * 10000;
-            
             if (!ACTOR_SCORES.has(a.id)) ACTOR_SCORES.set(a.id, 0);
             ACTOR_SCORES.set(a.id, ACTOR_SCORES.get(a.id) + score_i);
         });
     });
-
     const rankedArray = Array.from(ACTOR_SCORES.entries()).sort((a,b) => b[1] - a[1]);
     rankedArray.forEach((item, index) => {
         GLOBAL_RANKS.set(item[0], { score: Math.round(item[1]), rank: index + 1 });
@@ -124,31 +132,20 @@ function buildPeopleMap() {
         list.forEach(p => {
             const id = (p.id && p.id.trim()) ? p.id : `name:${p.name}`;
             if (!PEOPLE_MAP[p.name]) PEOPLE_MAP[p.name] = [];
-            
-            if (!PEOPLE_MAP[p.name].some(x => x.id === id)) {
-                PEOPLE_MAP[p.name].push({ id: id, count: 0 });
-            }
+            if (!PEOPLE_MAP[p.name].some(x => x.id === id)) PEOPLE_MAP[p.name].push({ id: id, count: 0 });
             const entry = PEOPLE_MAP[p.name].find(x => x.id === id);
             entry.count++;
         });
     });
-    for (const k in PEOPLE_MAP) {
-        PEOPLE_MAP[k].sort((a,b) => b.count - a.count);
-    }
+    for (const k in PEOPLE_MAP) { PEOPLE_MAP[k].sort((a,b) => b.count - a.count); }
 }
 
-async function fetchPersonFilmos(id) {
-    if (!id || id.startsWith('name:')) return null;
-    const fname = `${id}.json?v=${TS}`;
-    for (const prefix of PATHS_DETAILS) {
-        try { 
-            const r = await fetch(prefix + fname); 
-            if(r.ok) {
-                const data = await r.json();
-                const info = (data.peopleInfoResult && data.peopleInfoResult.peopleInfo) ? data.peopleInfoResult.peopleInfo : data;
-                return info.filmos || []; 
-            }
-        } catch(e){}
+async function fetchSentimentData(name) {
+    for (const prefix of PATHS_SENTIMENT) {
+        try {
+            const r = await fetch(prefix + `${name}.json?v=${TS}`);
+            if (r.ok) return await r.json();
+        } catch(e) {}
     }
     return null;
 }
@@ -167,8 +164,6 @@ async function search(){
   if (MOVIES.length === 0) await loadIndex();
 
   const targetIds = [];
-  const displayNames = [];
-  
   for (const name of names) {
       const candidates = PEOPLE_MAP[name];
       if (!candidates || candidates.length === 0) {
@@ -176,7 +171,6 @@ async function search(){
           return;
       }
       targetIds.push(candidates[0].id);
-      displayNames.push(name);
   }
 
   let commonMovies = MOVIES.filter(m => {
@@ -191,20 +185,6 @@ async function search(){
       });
   });
 
-  const firstRealId = targetIds.find(id => !id.startsWith('name:'));
-  if (firstRealId) {
-      const detailedFilmos = await fetchPersonFilmos(firstRealId);
-      if (detailedFilmos) {
-          commonMovies = commonMovies.map(m => {
-              const match = detailedFilmos.find(df => df.movieCd === m.movieCd);
-              if (match && match.audiAcc) {
-                  return { ...m, audiAcc: match.audiAcc };
-              }
-              return m;
-          });
-      }
-  }
-
   commonMovies.sort((a,b) => (b.openDt || '').localeCompare(a.openDt || ''));
 
   const out = document.getElementById('out');
@@ -212,103 +192,107 @@ async function search(){
   document.getElementById('msg').textContent = `총 ${commonMovies.length}편 검색됨`;
 
   const validMovies = []; 
-
   for (const m of commonMovies) {
       const audiNum = safeParseInt(m.audiAcc);
       const audiStr = audiNum ? ` / <span class="audi">누적 ${fmtNum(audiNum)}명</span>` : '';
-
       let castStr = "";
       if (m.actors) {
           const d = m.actors.slice(0, 10).map(a => {
             const isTarget = names.includes(a.name); 
             const style = isTarget ? 'font-weight:bold; color:#000;' : '';
-            
             const pid = (a.id && a.id.trim()) ? a.id : `name:${a.name}`;
             const href = `person.html?id=${encodeURIComponent(pid)}&name=${encodeURIComponent(a.name)}`;
-            
-            let badge = "";
-            if(a.gender === "남자" || a.gender === "남") badge = " <span style='color:blue;font-size:0.8em'>(남)</span>";
-            else if(a.gender === "여자" || a.gender === "여") badge = " <span style='color:red;font-size:0.8em'>(여)</span>";
-            
-            // 트로피 문양 제거됨
-            let rankBadge = "";
-            if (a.id && GLOBAL_RANKS.has(a.id)) {
-                const rInfo = GLOBAL_RANKS.get(a.id);
-                rankBadge = ` <span style="font-size:11px; color:#d97706; font-weight:bold; cursor:help;" title="SP_Final 점수: ${fmtNum(rInfo.score)}점">[${rInfo.rank}위]</span>`;
-            }
-
+            let badge = (a.gender === "남자" || a.gender === "남") ? " <span style='color:blue;font-size:0.8em'>(남)</span>" : (a.gender === "여자" || a.gender === "여") ? " <span style='color:red;font-size:0.8em'>(여)</span>" : "";
+            let rankBadge = (a.id && GLOBAL_RANKS.has(a.id)) ? ` <span style="font-size:11px; color:#d97706; font-weight:bold; cursor:help;" title="점수: ${fmtNum(GLOBAL_RANKS.get(a.id).score)}점">[${GLOBAL_RANKS.get(a.id).rank}위]</span>` : "";
             return `<a href="${href}" target="_blank" style="${style}">${a.name}</a>${badge}${rankBadge}`;
           });
           castStr = ` · 배우: ${d.join(', ')}`;
       }
-
       const li = document.createElement('li');
-      li.innerHTML = `<a href="detail.html?movieCd=${encodeURIComponent(m.movieCd)}"><strong>${m.movieNm}</strong></a> 
-          <span class="note">(${m.openDt}${audiStr})</span><br>
-          <span class="cast-list">${castStr}</span>`;
+      li.innerHTML = `<a href="detail.html?movieCd=${encodeURIComponent(m.movieCd)}"><strong>${m.movieNm}</strong></a> <span class="note">(${m.openDt}${audiStr})</span><br><span class="cast-list">${castStr}</span>`;
       out.appendChild(li);
-
       if (m.openDt) validMovies.push({ ...m, audiAcc: audiNum });
   }
 
   drawChart(validMovies);
+  
+  // 🌟 여론 비교 차트 실행
+  drawSentimentCompare(names, validMovies);
+}
+
+// 여론 비교 그래프 그리기
+async function drawSentimentCompare(names, movies) {
+    const container = document.getElementById('sentiment-compare-container');
+    const ctx = document.getElementById('sentimentCompareChart');
+    if (sentimentCompareChart) sentimentCompareChart.destroy();
+
+    const sentimentResults = await Promise.all(names.map(name => fetchSentimentData(name)));
+    const datasets = [];
+
+    sentimentResults.forEach((data, i) => {
+        if (!data || !data.timeline) return;
+        const points = [];
+        const sortedWeeks = Object.keys(data.timeline).sort();
+        sortedWeeks.forEach(w => {
+            const year = parseInt(w.split('-W')[0]);
+            const week = parseInt(w.split('-W')[1]);
+            const dateObj = moment().year(year).isoWeek(week).startOf('isoWeek').toDate();
+            const netVal = (data.timeline[w].positive || 0) - (data.timeline[w].negative || 0);
+            points.push({ x: dateObj, y: netVal });
+        });
+        datasets.push({
+            label: names[i],
+            data: points,
+            borderColor: COLORS[i % COLORS.length],
+            backgroundColor: COLORS[i % COLORS.length],
+            borderWidth: 2,
+            tension: 0.3,
+            pointRadius: 2
+        });
+    });
+
+    if (datasets.length > 0) {
+        container.style.display = 'block';
+        const minDate = movies.length > 0 ? moment(movies[0].openDt).startOf('year').toDate() : undefined;
+        const maxDate = moment().toDate();
+
+        sentimentCompareChart = new Chart(ctx, {
+            type: 'line',
+            data: { datasets },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                scales: {
+                    x: { type: 'time', time: { unit: 'year' }, min: minDate, max: maxDate, grid: { display: false } },
+                    y: { title: { display: true, text: '여론 지수 (긍정-부정)' } }
+                },
+                plugins: { legend: { position: 'top' } }
+            }
+        });
+    } else { container.style.display = 'none'; }
 }
 
 function drawChart(movies) {
     const ctx = document.getElementById('audiChart');
     const container = document.getElementById('chart-container');
-    
-    if (movies.length === 0) {
-        container.style.display = 'none';
-        return;
-    }
+    if (movies.length === 0) { container.style.display = 'none'; return; }
     container.style.display = 'block';
-
     if (myChart) myChart.destroy();
-
     const sorted = [...movies].sort((a,b) => (a.openDt||'').localeCompare(b.openDt||''));
-
-    const labels = sorted.map(m => m.openDt);
-    const data = sorted.map(m => safeParseInt(m.audiAcc));
-
     myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: labels,
+            labels: sorted.map(m => m.openDt),
             datasets: [{
                 label: '관객수',
-                data: data,
-                borderColor: 'var(--accent, #009688)',
-                backgroundColor: 'rgba(0, 150, 136, 0.1)',
-                borderWidth: 2,
-                fill: true,
-                tension: 0.3,
-                pointRadius: 5,
-                pointHoverRadius: 7
+                data: sorted.map(m => safeParseInt(m.audiAcc)),
+                borderColor: '#009688', backgroundColor: 'rgba(0, 150, 136, 0.1)',
+                borderWidth: 2, fill: true, tension: 0.3, pointRadius: 5
             }]
         },
         options: {
-            maintainAspectRatio: false,
-            responsive: true,
-            plugins: {
-                tooltip: {
-                    callbacks: {
-                        title: (tooltipItems) => {
-                            const index = tooltipItems[0].dataIndex;
-                            return sorted[index].movieNm; 
-                        },
-                        label: (context) => {
-                             return ` 개봉: ${context.label} / 관객수: ${fmtNum(context.raw)}명`;
-                        }
-                    }
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: { callback: v => v.toLocaleString() }
-                }
-            }
+            maintainAspectRatio: false, responsive: true,
+            plugins: { tooltip: { callbacks: { title: (tt) => sorted[tt[0].dataIndex].movieNm } } },
+            scales: { y: { beginAtZero: true, ticks: { callback: v => v.toLocaleString() } } }
         }
     });
 }
@@ -316,12 +300,8 @@ function drawChart(movies) {
 (async function main(){
     await loadIndex();
     document.getElementById('f').addEventListener('submit', (e)=>{ e.preventDefault(); search(); });
-    
     const q = new URLSearchParams(location.search).get('q');
-    if(q) {
-        document.querySelector('input[name=q]').value = q;
-        search();
-    }
+    if(q) { document.getElementById('actorInput').value = q; search(); }
 })();
 </script>
 </body>
