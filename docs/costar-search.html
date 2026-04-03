@@ -76,7 +76,7 @@ let GLOBAL_RANKS = new Map();
 let myChart = null;
 let sentimentCompareChart = null;
 
-// 🌟 [핵심 오류 해결] 어떤 포맷의 날짜가 들어와도 숫자만 추출하여 안전하게 변환
+// 어떤 형태의 날짜 데이터가 들어와도 안전하게 변환
 function parseSafeDate(str) {
     if (!str) return moment().toDate();
     const numStr = String(str).replace(/[^0-9]/g, '');
@@ -101,12 +101,12 @@ const safeParseInt = (v) => {
 };
 const fmtNum = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-// 배우별 고정 색상 팔레트 (프로필 페이지와 동일한 양식)
+// 배우별 고정 색상 팔레트 (긍정: 파랑계열, 부정: 빨강계열)
 const ACTOR_COLORS = [
-    { pos: '#3b82f6', neg: '#ef4444' }, // 배우 1: 파랑 / 빨강
-    { pos: '#14b8a6', neg: '#f97316' }, // 배우 2: 청록 / 주황
-    { pos: '#8b5cf6', neg: '#eab308' }, // 배우 3: 보라 / 노랑
-    { pos: '#22c55e', neg: '#ec4899' }  // 배우 4: 초록 / 핑크
+    { pos: '#3b82f6', neg: '#ef4444' }, // Blue / Red
+    { pos: '#14b8a6', neg: '#f97316' }, // Teal / Orange
+    { pos: '#8b5cf6', neg: '#eab308' }, // Purple / Yellow
+    { pos: '#22c55e', neg: '#ec4899' }  // Green / Pink
 ];
 
 async function loadIndex(){
@@ -190,7 +190,6 @@ async function fetchPersonFilmos(id) {
     return null;
 }
 
-// 🌟 유튜브 여론 데이터 페치 
 async function fetchSentimentData(name) {
     for (const prefix of PATHS_SENTIMENT) {
         try {
@@ -298,30 +297,32 @@ async function search(){
       if (m.openDt) validMovies.push({ ...m, audiAcc: audiNum });
   }
 
-  // 🌟 두 그래프의 X축을 완벽하게 고정하기 위한 minDate, maxDate 도출 (영화 개봉일 기준)
+  // 🌟 [핵심 수정] 잘리지 않는 무적의 X축 동기화 로직
   let minDate = undefined;
-  let maxDate = undefined;
+  let maxDate = moment().toDate(); // 종료일은 무조건 '현재(오늘)'로 설정하여 최신 여론 데이터가 다 나오게 함
 
   if (validMovies.length > 0) {
-      // 튼튼한 날짜 파서 적용
       const dates = validMovies.map(m => parseSafeDate(m.openDt).getTime());
       const minTime = Math.min(...dates);
-      const maxTime = Math.max(...dates);
+      const maxMovieTime = Math.max(...dates);
       
-      // 양 옆에 약 3개월의 여백(Padding)을 주어 차트 양끝이 잘리지 않게 보호
+      // 시작일은 첫 영화 개봉일보다 3개월 앞
       minDate = moment(minTime).subtract(3, 'months').toDate();
-      maxDate = moment(maxTime).add(3, 'months').toDate();
+      
+      // 만약 개봉 예정작이 오늘보다 미래라면, maxDate를 그 영화 날짜 너머로 확장
+      if (maxMovieTime > maxDate.getTime()) {
+          maxDate = moment(maxMovieTime).add(3, 'months').toDate();
+      }
   } else {
       minDate = moment().subtract(1, 'years').toDate();
-      maxDate = moment().toDate();
   }
 
-  // 동일한 기준점을 두 함수에 주입
+  // 완벽하게 동기화된 날짜를 두 그래프에 주입
   drawChart(validMovies, minDate, maxDate);
   drawSentimentCompare(names, minDate, maxDate);
 }
 
-// 🌟 관객수 차트
+// 🌟 관객수 차트 (동기화된 minDate, maxDate 적용)
 function drawChart(movies, minDate, maxDate) {
     const ctx = document.getElementById('audiChart');
     const container = document.getElementById('chart-container');
@@ -336,7 +337,6 @@ function drawChart(movies, minDate, maxDate) {
 
     const sorted = [...movies].sort((a,b) => (a.openDt||'').localeCompare(b.openDt||''));
 
-    // 카테고리 스케일이 아닌 Time 스케일을 위한 x, y 좌표화
     const dataPoints = sorted.map(m => ({
         x: parseSafeDate(m.openDt),
         y: safeParseInt(m.audiAcc),
@@ -373,8 +373,8 @@ function drawChart(movies, minDate, maxDate) {
                 x: {
                     type: 'time',
                     time: { unit: 'year', displayFormats: { year: 'YYYY' } },
-                    min: minDate,  // 영화 기준 시작일 고정
-                    max: maxDate,  // 영화 기준 종료일 고정
+                    min: minDate,  // 🌟 고정 시작일
+                    max: maxDate,  // 🌟 고정 종료일 (현재)
                     grid: { display: false }
                 },
                 y: {
@@ -386,7 +386,7 @@ function drawChart(movies, minDate, maxDate) {
     });
 }
 
-// 🌟 유튜브 여론 차트
+// 🌟 여론 차트 (관객수 차트와 100% 동일한 시작/종료일 강제 적용)
 async function drawSentimentCompare(names, minDate, maxDate) {
     const container = document.getElementById('sentiment-compare-container');
     const ctx = document.getElementById('sentimentCompareChart');
@@ -410,7 +410,7 @@ async function drawSentimentCompare(names, minDate, maxDate) {
                 negPoints.push({ x: dateObj, y: -(Math.abs(negVal)) });
             });
 
-            // 시간 순 정렬 방어 로직
+            // 시간 순 정렬
             posPoints.sort((a,b) => a.x - b.x);
             negPoints.sort((a,b) => a.x - b.x);
 
@@ -445,8 +445,8 @@ async function drawSentimentCompare(names, minDate, maxDate) {
                         x: { 
                             type: 'time', 
                             time: { unit: 'year', displayFormats: { year: 'YYYY' } }, 
-                            min: minDate, // 🌟 관객수 그래프와 100% 동일한 시작일 강제 할당
-                            max: maxDate, // 🌟 관객수 그래프와 100% 동일한 종료일 강제 할당
+                            min: minDate, // 🌟 관객수 그래프와 동일한 시작일
+                            max: maxDate, // 🌟 관객수 그래프와 동일한 종료일
                             grid: { display: false } 
                         },
                         y: { 
