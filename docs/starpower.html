@@ -55,29 +55,29 @@
     <a href="saved.html" class="btn">🔙 저장 목록</a>
   </div>
 
-  <h1> 스타 파워 (Star Power) 다차원 분석</h1>
+  <h1> 스타 파워 (Star Power) 비교</h1>
   <div class="subtitle">배우의 흥행력, 여론, 점유율, 다작 활동성이 개봉 시기별로 어떻게 변화하는지 꺾은선 그래프로 비교합니다.</div>
 
   <div class="formula-selector">
       <label class="formula-option">
           <input type="radio" name="formulaType" value="SP1" checked onchange="calculateAndRender()">
           <div>
-              <div class="formula-title">공식 1: 기여도 및 최신성 (개별 변동성 모델)</div>
+              <div class="formula-title">공식 1: 기여도 및 최신성 </div>
               <div class="formula-desc">영화 한 편마다 배역 비중과 출연진 수를 계산하여 개별 작품의 기여도 점수를 산출합니다.</div>
           </div>
       </label>
       <label class="formula-option">
           <input type="radio" name="formulaType" value="SP2" onchange="calculateAndRender()">
           <div>
-              <div class="formula-title">공식 2: 거시경제 시대 보정 (개별 변동성 모델)</div>
+              <div class="formula-title">공식 2: 거시경제 시대 보정 </div>
               <div class="formula-desc">해당 영화가 개봉 연도의 전체 극장 파이에서 차지한 비율(%)을 통해 시장 지배력을 측정합니다.</div>
           </div>
       </label>
       <label class="formula-option">
           <input type="radio" name="formulaType" value="SP3" onchange="calculateAndRender()">
           <div>
-              <div class="formula-title">공식 3: 흥행 타율 변동 모델 (이동 평균)</div>
-              <div class="formula-desc">전체 필모그래피 중, 평균을 뛰어넘은 '흥행 성공작'의 비율 변화 추이를 보여줍니다.</div>
+              <div class="formula-title">공식 3: 흥행 타율 변동 모델 </div>
+              <div class="formula-desc">전체 필모그래피 중, 평균을 뛰어넘은 흥행 성공작의 비율 변화 추이를 보여줍니다.</div>
           </div>
       </label>
       <label class="formula-option">
@@ -152,7 +152,7 @@ const safeParseInt = (v) => {
 const fmtNum = n => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
 const formulaDetails = {
-    'SP1': `<h4>공식 1: 기여도 및 최신성 (개별 변동성 모델)</h4>
+    'SP1': `<h4>공식 1: 기여도 및 최신성 </h4>
             <div class="math-formula">SP₁ = A_i × (W_role / √C_i) × W_time</div>
             <ul>
                 <li><b>A_i (영화 관객수):</b> 해당 개별 영화가 동원한 관객수</li>
@@ -160,29 +160,29 @@ const formulaDetails = {
                 <li><b>√C_i (희석 계수):</b> 출연진 수의 제곱근으로 나누어 멀티 캐스팅 거품 방지</li>
                 <li><b>W_time (최신성 가중치):</b> 최신 개봉작일수록 높은 가중치 부여 ((개봉연도-2000)/10)</li>
             </ul>`,
-    'SP2': `<h4>공식 2: 거시경제 시대 보정 (개별 변동성 모델)</h4>
+    'SP2': `<h4>공식 2: 거시경제 시대 보정 </h4>
             <div class="math-formula">SP₂ = (A_i / Total_Y) × 1000</div>
             <ul>
                 <li><b>A_i (영화 관객수):</b> 해당 개별 영화가 동원한 관객수</li>
                 <li><b>Total_Y (해당 연도 총 관객수):</b> 영화 개봉 연도의 전체 극장 관객수 총합 (시대적 파이 보정)</li>
             </ul>`,
-    'SP3': `<h4>공식 3: 흥행 타율 변동 모델 (이동 평균)</h4>
+    'SP3': `<h4>공식 3: 흥행 타율 변동 </h4>
             <div class="math-formula">SP₃ = (누적 흥행 성공작 수 / 누적 전체 개봉작 수 N) × 100</div>
             <ul>
                 <li><b>흥행 성공작:</b> 사이트 내 전체 영화의 평균 관객수(Avg_site)를 뛰어넘은 작품</li>
                 <li><b>N:</b> 해당 시점까지 개봉한 배우의 총 누적 영화 수 (성공 비율의 변화를 측정합니다.)</li>
             </ul>`,
-    'SP4': `<h4>유튜브 여론 차이 분석 (SP_Sentiment)</h4>
+    'SP4': `<h4>유튜브 여론 차이 분석 </h4>
             <div class="math-formula">SP₄ = 해당 연도 긍정 댓글 수(+) - 해당 연도 부정 댓글 수(-)</div>
             <ul>
                 <li>KoELECTRA AI 모델이 판별한 개봉 연도의 유튜브 댓글 감성 지표입니다. 부정 여론이 우세할 경우 음수(-)가 될 수 있습니다.</li>
             </ul>`,
-    'SP5': `<h4>연도별 다작 활동성 모델</h4>
+    'SP5': `<h4>연도별 다작 활동성 </h4>
             <div class="math-formula">SP₅ = Count(해당 연도 개봉 영화 수)</div>
             <ul>
                 <li>해당 연도에 개봉한 출연작의 순수 개수를 집계하여 배우의 활동 밀도를 파악합니다.</li>
             </ul>`,
-    'SP_FINAL': `<h4>🌟 최종 통합 스타 파워 (SP_Final - 개별 변동성 모델)</h4>
+    'SP_FINAL': `<h4> 최종 통합 스타 파워 (Final)</h4>
             <div class="math-formula" style="color:#2563eb; background:#eff6ff; border-color:#93c5fd;">SP_Final_Point = [ (A_i / Total_Y) × (W_role / √C_i) × W_time ] × 10000</div>
             <ul>
                 <li>1번과 2번 공식의 변수들을 통합하여 **개별 영화가 배우의 스타 파워에 기여한 독립적인 수치**를 측정합니다.</li>
