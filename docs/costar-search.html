@@ -57,7 +57,7 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
 
   <div id="sentiment-compare-container" style="display:none; margin-top: 40px; padding-top: 20px; border-top: 2px dashed #e5e7eb;">
     <h2>유튜브 여론 분석 (긍정/부정) 비교</h2>
-    <div class="note" style="margin-bottom: 10px;">검색된 배우들의 긍정 댓글(+)과 부정 댓글(-) 추이를 함께 비교합니다.</div>
+    <div class="note" style="margin-bottom: 10px;">검색된 배우들의 긍정 댓글(+)과 부정 댓글(-) 추이를 개봉 시기에 맞춰 함께 비교합니다.</div>
     <div style="position: relative; height:450px; width:100%">
         <canvas id="sentimentCompareChart"></canvas>
     </div>
@@ -165,7 +165,6 @@ async function fetchPersonFilmos(id) {
     return null;
 }
 
-// 🌟 유튜브 여론 데이터 페치 함수 추가
 async function fetchSentimentData(name) {
     for (const prefix of PATHS_SENTIMENT) {
         try {
@@ -273,99 +272,25 @@ async function search(){
       if (m.openDt) validMovies.push({ ...m, audiAcc: audiNum });
   }
 
-  drawChart(validMovies);
-  
-  // 🌟 [기능 추가] 여론 비교 차트 그리기 실행
-  drawSentimentCompare(names, validMovies);
+  // 🌟 핵심 수정: X축의 범위를 오직 "개봉 시기별 관객수 추이(영화 개봉일)"로 강제 고정
+  let minDate = undefined;
+  let maxDate = undefined;
+  if (validMovies.length > 0) {
+      const firstMovieDate = moment(validMovies[0].openDt, "YYYYMMDD");
+      const lastMovieDate = moment(validMovies[validMovies.length - 1].openDt, "YYYYMMDD");
+      
+      // 양 끝단 점이 화면 밖으로 짤리지 않도록 2개월씩 여백(Padding)을 줍니다.
+      minDate = firstMovieDate.clone().subtract(2, 'months').toDate();
+      maxDate = lastMovieDate.clone().add(2, 'months').toDate();
+  }
+
+  // 영화 개봉일 기준으로 생성된 minDate, maxDate를 두 그래프에 공통으로 전달
+  drawChart(validMovies, minDate, maxDate);
+  drawSentimentCompare(names, minDate, maxDate);
 }
 
-// 🌟 [기능 추가] 긍정/부정 분리형 다중 여론 비교 차트 로직
-async function drawSentimentCompare(names, movies) {
-    const container = document.getElementById('sentiment-compare-container');
-    const ctx = document.getElementById('sentimentCompareChart');
-    if (sentimentCompareChart) sentimentCompareChart.destroy();
-
-    const sentimentResults = await Promise.all(names.map(name => fetchSentimentData(name)));
-    const datasets = [];
-
-    // 배우별 색상 (긍정: 파랑계열, 부정: 빨강계열)
-    const posColors = ['#3b82f6', '#14b8a6', '#8b5cf6', '#22c55e'];
-    const negColors = ['#ef4444', '#f97316', '#ec4899', '#eab308'];
-
-    sentimentResults.forEach((data, i) => {
-        if (!data || !data.timeline) return;
-        const posPoints = [];
-        const negPoints = [];
-        const sortedWeeks = Object.keys(data.timeline).sort();
-
-        sortedWeeks.forEach(w => {
-            const year = parseInt(w.split('-W')[0]);
-            const week = parseInt(w.split('-W')[1]);
-            const dateObj = moment().year(year).isoWeek(week).startOf('isoWeek').toDate();
-            
-            const posVal = data.timeline[w].positive || 0;
-            const negVal = data.timeline[w].negative || 0;
-            
-            posPoints.push({ x: dateObj, y: posVal });
-            negPoints.push({ x: dateObj, y: -(Math.abs(negVal)) });
-        });
-
-        // 긍정 데이터셋 추가
-        datasets.push({
-            label: `${names[i]} 긍정(+)`,
-            data: posPoints,
-            borderColor: posColors[i % posColors.length],
-            backgroundColor: posColors[i % posColors.length],
-            borderWidth: 2, tension: 0.1, pointRadius: 3
-        });
-        
-        // 부정 데이터셋 추가
-        datasets.push({
-            label: `${names[i]} 부정(-)`,
-            data: negPoints,
-            borderColor: negColors[i % negColors.length],
-            backgroundColor: negColors[i % negColors.length],
-            borderWidth: 2, tension: 0.1, pointRadius: 3
-        });
-    });
-
-    if (datasets.length > 0) {
-        container.style.display = 'block';
-        
-        // 관객수 차트와 X축 맞추기 (movies는 내림차순 정렬되어 있으므로 마지막 배열 요소가 가장 과거임)
-        let minDate = undefined;
-        if (movies.length > 0) {
-            const oldestMovieYear = movies[movies.length - 1].openDt.substring(0, 4);
-            minDate = moment(`${oldestMovieYear}-01-01`).toDate();
-        }
-        const maxDate = moment().toDate();
-
-        sentimentCompareChart = new Chart(ctx, {
-            type: 'line',
-            data: { datasets },
-            options: {
-                responsive: true, maintainAspectRatio: false,
-                scales: {
-                    x: { type: 'time', time: { unit: 'year' }, min: minDate, max: maxDate, grid: { display: false } },
-                    y: { 
-                        title: { display: true, text: '댓글 수' },
-                        grid: { color: (ctx) => ctx.tick.value === 0 ? '#000000' : '#e5e7eb', lineWidth: (ctx) => ctx.tick.value === 0 ? 2 : 1 }
-                    }
-                },
-                plugins: { 
-                    legend: { position: 'top' },
-                    tooltip: {
-                        callbacks: {
-                            label: (ctx) => ` ${ctx.dataset.label}: ${Math.abs(ctx.parsed.y)}개`
-                        }
-                    }
-                }
-            }
-        });
-    } else { container.style.display = 'none'; }
-}
-
-function drawChart(movies) {
+// 🌟 관객수 차트에 Date 범위를 적용
+function drawChart(movies, minDate, maxDate) {
     const ctx = document.getElementById('audiChart');
     const container = document.getElementById('chart-container');
     
@@ -379,16 +304,19 @@ function drawChart(movies) {
 
     const sorted = [...movies].sort((a,b) => (a.openDt||'').localeCompare(b.openDt||''));
 
-    const labels = sorted.map(m => m.openDt);
-    const data = sorted.map(m => safeParseInt(m.audiAcc));
+    // 점을 찍기 위해 시간 객체로 변환
+    const dataPoints = sorted.map(m => ({
+        x: moment(m.openDt, "YYYYMMDD").toDate(),
+        y: safeParseInt(m.audiAcc),
+        movieNm: m.movieNm
+    }));
 
     myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: labels,
             datasets: [{
                 label: '관객수',
-                data: data,
+                data: dataPoints,
                 borderColor: 'var(--accent, #009688)',
                 backgroundColor: 'rgba(0, 150, 136, 0.1)',
                 borderWidth: 2,
@@ -405,21 +333,111 @@ function drawChart(movies) {
                 tooltip: {
                     callbacks: {
                         title: (tooltipItems) => {
-                            const index = tooltipItems[0].dataIndex;
-                            return sorted[index].movieNm; 
+                            return tooltipItems[0].raw.movieNm; 
                         },
                         label: (context) => {
-                             return ` 개봉: ${context.label} / 관객수: ${fmtNum(context.raw)}명`;
+                             return ` 개봉: ${moment(context.raw.x).format('YYYY.MM.DD')} / 관객수: ${fmtNum(context.raw.y)}명`;
                         }
                     }
                 }
             },
             scales: {
+                x: {
+                    type: 'time',
+                    time: { unit: 'year' },
+                    min: minDate,
+                    max: maxDate,
+                    grid: { display: false }
+                },
                 y: {
                     beginAtZero: true,
                     ticks: { callback: v => v.toLocaleString() }
                 }
             }
+        }
+    });
+}
+
+// 🌟 유튜브 여론 차트에도 동일한 Date 범위를 강제 주입
+function drawSentimentCompare(names, minDate, maxDate) {
+    const container = document.getElementById('sentiment-compare-container');
+    const ctx = document.getElementById('sentimentCompareChart');
+    if (sentimentCompareChart) sentimentCompareChart.destroy();
+
+    Promise.all(names.map(name => fetchSentimentData(name))).then(sentimentResults => {
+        const datasets = [];
+        
+        const posColors = ['#3b82f6', '#14b8a6', '#8b5cf6', '#22c55e'];
+        const negColors = ['#ef4444', '#f97316', '#ec4899', '#eab308'];
+
+        sentimentResults.forEach((data, i) => {
+            if (!data || !data.timeline) return;
+            const posPoints = [];
+            const negPoints = [];
+            const sortedWeeks = Object.keys(data.timeline).sort();
+
+            sortedWeeks.forEach(w => {
+                const year = parseInt(w.split('-W')[0]);
+                const week = parseInt(w.split('-W')[1]);
+                const dateObj = moment().year(year).isoWeek(week).startOf('isoWeek').toDate();
+                
+                const posVal = data.timeline[w].positive || 0;
+                const negVal = data.timeline[w].negative || 0;
+                
+                posPoints.push({ x: dateObj, y: posVal });
+                negPoints.push({ x: dateObj, y: -(Math.abs(negVal)) });
+            });
+
+            datasets.push({
+                label: `${names[i]} 긍정(+)`,
+                data: posPoints,
+                borderColor: posColors[i % posColors.length],
+                backgroundColor: posColors[i % posColors.length],
+                borderWidth: 2, tension: 0.1, pointRadius: 3
+            });
+            
+            datasets.push({
+                label: `${names[i]} 부정(-)`,
+                data: negPoints,
+                borderColor: negColors[i % negColors.length],
+                backgroundColor: negColors[i % negColors.length],
+                borderWidth: 2, tension: 0.1, pointRadius: 3
+            });
+        });
+
+        if (datasets.length > 0) {
+            container.style.display = 'block';
+
+            sentimentCompareChart = new Chart(ctx, {
+                type: 'line',
+                data: { datasets },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    scales: {
+                        x: { 
+                            type: 'time', 
+                            time: { unit: 'year' }, 
+                            min: minDate, // 🌟 관객수 그래프의 시작일 적용
+                            max: maxDate, // 🌟 관객수 그래프의 종료일 적용
+                            grid: { display: false } 
+                        },
+                        y: { 
+                            title: { display: true, text: '댓글 수' },
+                            grid: { color: (ctx) => ctx.tick.value === 0 ? '#000000' : '#e5e7eb', lineWidth: (ctx) => ctx.tick.value === 0 ? 2 : 1 }
+                        }
+                    },
+                    plugins: { 
+                        legend: { position: 'top' },
+                        tooltip: {
+                            callbacks: {
+                                label: (ctx) => ` ${ctx.dataset.label}: ${Math.abs(ctx.parsed.y)}개`
+                            }
+                        }
+                    }
+                }
+            });
+        } else {
+            container.style.display = 'none';
         }
     });
 }
