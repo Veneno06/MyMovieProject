@@ -30,7 +30,6 @@
       border-radius: 12px; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.05); margin-bottom: 20px;
   }
 
-  /* 🌟 새로 추가된 공식 해설 박스 스타일 */
   .formula-detail-box {
       background: #ffffff; border-left: 4px solid #2563eb; padding: 20px;
       border-radius: 4px; margin-bottom: 30px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);
@@ -56,50 +55,50 @@
     <a href="saved.html" class="btn">🔙 저장 목록</a>
   </div>
 
-  <h1> 스타 파워 (Star Power) 다차원 분석</h1>
-  <div class="subtitle">배우의 흥행력, 여론, 점유율, 다작 활동성이 개봉 시기별로 어떻게 변화하고 누적되는지 꺾은선 그래프로 비교합니다.</div>
+  <h1>🌟 스타 파워 (Star Power) 다차원 분석</h1>
+  <div class="subtitle">배우의 흥행력, 여론, 점유율, 다작 활동성이 개봉 시기별로 어떻게 변화하는지 꺾은선 그래프로 비교합니다.</div>
 
   <div class="formula-selector">
       <label class="formula-option">
           <input type="radio" name="formulaType" value="SP1" checked onchange="calculateAndRender()">
           <div>
               <div class="formula-title">공식 1: 기여도 및 최신성 (개별 변동성 모델)</div>
-              <div class="formula-desc">영화 한 편마다 배역 비중과 출연진 수를 계산하여 개별 작품의 기여도 점수. </div>
+              <div class="formula-desc">영화 한 편마다 배역 비중과 출연진 수를 계산하여 개별 작품의 기여도 점수를 산출합니다.</div>
           </div>
       </label>
       <label class="formula-option">
           <input type="radio" name="formulaType" value="SP2" onchange="calculateAndRender()">
           <div>
               <div class="formula-title">공식 2: 거시경제 시대 보정 (개별 변동성 모델)</div>
-              <div class="formula-desc">해당 영화가 개봉 연도의 전체 극장 파이에서 몇 %를 차지했는지 단일 작품의 시장 지배력. </div>
+              <div class="formula-desc">해당 영화가 개봉 연도의 전체 극장 파이에서 차지한 비율(%)을 통해 시장 지배력을 측정합니다.</div>
           </div>
       </label>
       <label class="formula-option">
           <input type="radio" name="formulaType" value="SP3" onchange="calculateAndRender()">
           <div>
               <div class="formula-title">공식 3: 흥행 타율 변동 모델 (이동 평균)</div>
-              <div class="formula-desc">해당 시점까지의 필모그래피 중, 평균을 뛰어넘은 '흥행 성공작'의 누적 비율(%) 변화 추이.</div>
+              <div class="formula-desc">전체 필모그래피 중, 평균을 뛰어넘은 '흥행 성공작'의 비율 변화 추이를 보여줍니다.</div>
           </div>
       </label>
       <label class="formula-option">
           <input type="radio" name="formulaType" value="SP4" onchange="calculateAndRender()">
           <div>
-              <div class="formula-title">유튜브 여론 차이 분석</div>
-              <div class="formula-desc">영화 개봉 연도의 유튜브 댓글 여론(긍정 댓글 수 - 부정 댓글 수)(임시).</div>
+              <div class="formula-title">유튜브 여론 차이 분석 (변동성 모델)</div>
+              <div class="formula-desc">개봉 시기의 유튜브 댓글 여론(긍정 - 부정) 흐름을 나타냅니다. (임시)</div>
           </div>
       </label>
       <label class="formula-option">
           <input type="radio" name="formulaType" value="SP5" onchange="calculateAndRender()">
           <div>
-              <div class="formula-title">연도별 다작 활동성</div>
-              <div class="formula-desc">배우가 해당 연도에 개봉한 영화의 순수 개수를 보여주어 활동성과 휴식기 파악(임시).</div>
+              <div class="formula-title">연도별 다작 활동성 (변동성 모델)</div>
+              <div class="formula-desc">배우가 연도별로 개봉한 영화의 개수를 집계하여 활동 주기를 파악합니다. (임시)</div>
           </div>
       </label>
       <label class="formula-option">
           <input type="radio" name="formulaType" value="SP_FINAL" onchange="calculateAndRender()">
           <div>
-              <div class="formula-title"> 최종 통합 스타 파워 (SP_Final - 누적 성장)</div>
-              <div class="formula-desc">시대 보정(점유율), 개인 기여도, 시계열 가중치를 융합하여 배우의 최종 영향력이 성장하는 누적 곡선을 그립니다.</div>
+              <div class="formula-title">🌟 최종 통합 스타 파워 (SP_Final - 개별 변동성 모델)</div>
+              <div class="formula-desc">시대 보정, 개인 기여도, 최신 가중치를 융합하여 각 작품별 최종 파급력을 꺾은선으로 비교합니다.</div>
           </div>
       </label>
   </div>
@@ -152,7 +151,6 @@ const safeParseInt = (v) => {
 };
 const fmtNum = n => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-// 공식 해설 데이터 (발표용)
 const formulaDetails = {
     'SP1': `<h4>공식 1: 기여도 및 최신성 (개별 변동성 모델)</h4>
             <div class="math-formula">SP₁ = A_i × (W_role / √C_i) × W_time</div>
@@ -166,32 +164,31 @@ const formulaDetails = {
             <div class="math-formula">SP₂ = (A_i / Total_Y) × 1000</div>
             <ul>
                 <li><b>A_i (영화 관객수):</b> 해당 개별 영화가 동원한 관객수</li>
-                <li><b>Total_Y (해당 연도 총 관객수):</b> 영화 개봉 연도의 전체 극장 관객수 총합 (코로나, 비수기 등 시대적 파이 보정)</li>
+                <li><b>Total_Y (해당 연도 총 관객수):</b> 영화 개봉 연도의 전체 극장 관객수 총합 (시대적 파이 보정)</li>
             </ul>`,
     'SP3': `<h4>공식 3: 흥행 타율 변동 모델 (이동 평균)</h4>
             <div class="math-formula">SP₃ = (누적 흥행 성공작 수 / 누적 전체 개봉작 수 N) × 100</div>
             <ul>
                 <li><b>흥행 성공작:</b> 사이트 내 전체 영화의 평균 관객수(Avg_site)를 뛰어넘은 작품</li>
-                <li><b>N:</b> 해당 시점까지 개봉한 배우의 총 누적 영화 수 (야구의 타율 변동처럼 오르락내리락 합니다.)</li>
+                <li><b>N:</b> 해당 시점까지 개봉한 배우의 총 누적 영화 수 (성공 비율의 변화를 측정합니다.)</li>
             </ul>`,
-    'SP4': `<h4>임시 공식 4: 유튜브 여론 분석 (SP_Sentiment)</h4>
+    'SP4': `<h4>유튜브 여론 차이 분석 (SP_Sentiment)</h4>
             <div class="math-formula">SP₄ = 해당 연도 긍정 댓글 수(+) - 해당 연도 부정 댓글 수(-)</div>
             <ul>
-                <li><b>KoELECTRA AI 모델</b>이 판별한 개봉 연도의 유튜브 댓글 감성 지표입니다. 부정 여론이 우세할 경우 차트가 0 밑으로(음수) 내려갈 수 있습니다.</li>
+                <li>KoELECTRA AI 모델이 판별한 개봉 연도의 유튜브 댓글 감성 지표입니다. 부정 여론이 우세할 경우 음수(-)가 될 수 있습니다.</li>
             </ul>`,
-    'SP5': `<h4>공식 5: 연도별 다작 활동성 모델</h4>
+    'SP5': `<h4>연도별 다작 활동성 모델</h4>
             <div class="math-formula">SP₅ = Count(해당 연도 개봉 영화 수)</div>
             <ul>
-                <li>해당 연도에 개봉한 출연작의 순수 개수를 집계합니다. 배우의 왕성한 활동 시기와 휴식기를 직관적으로 파악하는 지표입니다.</li>
+                <li>해당 연도에 개봉한 출연작의 순수 개수를 집계하여 배우의 활동 밀도를 파악합니다.</li>
             </ul>`,
-    'SP_FINAL': `<h4> 최종 통합 스타 파워 (SP_Final - 누적 성장)</h4>
-            <div class="math-formula" style="color:#2563eb; background:#eff6ff; border-color:#93c5fd;">SP_Final = Σ [ (A_i / Total_Y) × (W_role / √C_i) × W_time ] × 10000</div>
+    'SP_FINAL': `<h4>🌟 최종 통합 스타 파워 (SP_Final - 개별 변동성 모델)</h4>
+            <div class="math-formula" style="color:#2563eb; background:#eff6ff; border-color:#93c5fd;">SP_Final_Point = [ (A_i / Total_Y) × (W_role / √C_i) × W_time ] × 10000</div>
             <ul>
-                <li>1번과 2번 공식의 장점(관객수, 시대 점유율, 배역 기여도, 최신 트렌드)을 모두 곱한 후, 데뷔작부터 현재까지 <b>누적 합산(Σ)</b>합니다.</li>
-                <li>오직 우상향하며 배우의 전체 경력을 관통하는 '최종 영향력 성장 곡선'을 그립니다.</li>
+                <li>1번과 2번 공식의 변수들을 통합하여 **개별 영화가 배우의 스타 파워에 기여한 독립적인 수치**를 측정합니다.</li>
+                <li>이제 누적이 아닌 변동성 그래프로 나타나며, 전작 대비 흥행 파급력의 상승과 하락을 직관적으로 확인할 수 있습니다.</li>
             </ul>`
 };
-
 
 async function fetchSentimentData(name) {
     const url = `data/sentiment/${name}.json?v=${TS}`;
@@ -211,19 +208,16 @@ async function loadSearchIndex() {
                 SEARCH_INDEX = await r.json();
                 let totalAudiAll = 0;
                 let validMovieCount = 0;
-
                 SEARCH_INDEX.forEach(m => { 
                     MOVIE_MAP[m.movieCd] = m; 
                     const audi = safeParseInt(m.audiAcc);
                     const year = (m.openDt || '').slice(0,4) || String(m.prdtYear);
-                    
                     if (year && audi > 0) {
                         YEAR_TOTALS[year] = (YEAR_TOTALS[year] || 0) + audi;
                         totalAudiAll += audi;
                         validMovieCount++;
                     }
                 });
-                
                 GLOBAL_AVG = validMovieCount > 0 ? (totalAudiAll / validMovieCount) : 0;
                 return;
             }
@@ -234,12 +228,10 @@ async function loadSearchIndex() {
 async function resolveAndFetch(key) {
     if (!key) return null;
     let targetId = key;
-
     if (!/^\d+$/.test(key)) {
         await loadSearchIndex(); 
         let namePart = key.startsWith('name:') ? key.split(':')[1] : key;
         namePart = decodeURIComponent(namePart);
-
         let foundId = null;
         for (const m of SEARCH_INDEX) {
             const cast = [...(m.actors || []), ...(m.directors || [])];
@@ -249,7 +241,6 @@ async function resolveAndFetch(key) {
         if (foundId) targetId = foundId;
         else return { peopleNm: namePart, filmos: [] };
     }
-
     const fname = `${targetId}.json?v=${TS}`;
     let rawData = null;
     for (const prefix of PATHS_DETAILS) {
@@ -262,21 +253,13 @@ async function resolveAndFetch(key) {
             }
         } catch(e){}
     }
-
     if (rawData && rawData.filmos) {
         await loadSearchIndex(); 
         rawData.filmos = rawData.filmos.map(f => {
             const baseInfo = MOVIE_MAP[f.movieCd] || {};
-            return {
-                ...f, 
-                openDt: baseInfo.openDt || f.openDt || '', 
-                movieNm: f.movieNm || baseInfo.movieNm,
-                baseInfo: baseInfo
-            };
+            return { ...f, openDt: baseInfo.openDt || f.openDt || '', movieNm: f.movieNm || baseInfo.movieNm, baseInfo: baseInfo };
         }).filter(f => f.openDt.length >= 4 && safeParseInt(f.audiAcc) > 0);
-        
         rawData.filmos.sort((a,b) => a.openDt.localeCompare(b.openDt));
-        
         rawData.sentiment = await fetchSentimentData(rawData.peopleNm);
     }
     return rawData;
@@ -287,13 +270,11 @@ async function main() {
     const ids = [getParam('p1'), getParam('p2'), getParam('p3'), getParam('p4')].filter(Boolean);
     const results = await Promise.all(ids.map(id => resolveAndFetch(id)));
     actorsData = results.filter(data => data && data.peopleNm); 
-
     calculateAndRender();
 }
 
 function computeTimeSeriesData(actor, type) {
     const filmos = actor.filmos || [];
-    let cumulativeScore = 0;
     let hitCount = 0;
     let timeSeriesPoints = [];
     let sumForAverage = 0;
@@ -308,48 +289,34 @@ function computeTimeSeriesData(actor, type) {
         }
     }
 
-    //  공식 5: 연도별 개봉작 카운트 분기 처리
     if (type === 'SP5') {
         let yearlyCounts = {};
-        let moviesByYear = {};
-        
         filmos.forEach(f => {
             const year = f.openDt.slice(0,4);
             yearlyCounts[year] = (yearlyCounts[year] || 0) + 1;
-            if(!moviesByYear[year]) moviesByYear[year] = [];
-            moviesByYear[year].push(f.movieNm);
         });
-        
         for (const year in yearlyCounts) {
             let count = yearlyCounts[year];
-            timeSeriesPoints.push({
-                x: moment(`${year}-12-31`).toDate(), // 연도 말일로 통일
-                y: count,
-                movieNm: `${year}년 개봉작 (총 ${count}편)` // 툴팁용
-            });
+            timeSeriesPoints.push({ x: moment(`${year}-12-31`).toDate(), y: count, movieNm: `${year}년 개봉작 (총 ${count}편)` });
             sumForAverage += count;
         }
         timeSeriesPoints.sort((a,b) => a.x - b.x);
     } 
-    // 공식 1, 2, 3, 4, FINAL 로직
     else {
         filmos.forEach((f, idx) => {
             const A_i = safeParseInt(f.audiAcc);
             const year = f.openDt.slice(0,4);
             const C_i = Math.max(1, (f.baseInfo.actors || []).length);
-            
             let W_role = 0.5;
             if (f.baseInfo.actors) {
                 const myIndex = f.baseInfo.actors.findIndex(a => a.name === actor.peopleNm);
                 const threshold = Math.ceil(C_i / 3);
                 if (myIndex !== -1 && myIndex < threshold) W_role = 1.0;
             }
-
             const W_time = Math.max(0.1, (parseInt(year) - 2000) / 10);
             const Total_Y = YEAR_TOTALS[year] || A_i;
 
             let currentPointScore = 0;
-
             if (type === 'SP1') {
                 currentPointScore = A_i * (W_role / Math.sqrt(C_i)) * W_time; 
             } 
@@ -365,46 +332,35 @@ function computeTimeSeriesData(actor, type) {
                 currentPointScore = sent.pos - sent.neg; 
             }
             else if (type === 'SP_FINAL') {
-                cumulativeScore += (A_i / Total_Y) * (W_role / Math.sqrt(C_i)) * W_time * 10000;
-                currentPointScore = cumulativeScore; 
+                // 🌟 [수정됨] 누적(Σ) 로직을 제거하고 개별 영화의 포인트만 계산
+                currentPointScore = (A_i / Total_Y) * (W_role / Math.sqrt(C_i)) * W_time * 10000;
             }
 
             sumForAverage += currentPointScore;
-
-            timeSeriesPoints.push({
-                x: moment(f.openDt).toDate(),
-                y: parseFloat(currentPointScore.toFixed(2)),
-                movieNm: f.movieNm
-            });
+            timeSeriesPoints.push({ x: moment(f.openDt).toDate(), y: parseFloat(currentPointScore.toFixed(2)), movieNm: f.movieNm });
         });
     }
 
-    // 테이블에 표시할 기준 점수
     let tableScore = 0;
     if (timeSeriesPoints.length > 0) {
-        if (['SP1', 'SP2', 'SP4', 'SP5'].includes(type)) {
-            tableScore = sumForAverage / timeSeriesPoints.length; // 비누적은 평균값
+        // 🌟 [수정됨] SP_FINAL도 변동형이므로 테이블에는 평균값 표시
+        if (['SP1', 'SP2', 'SP4', 'SP5', 'SP_FINAL'].includes(type)) {
+            tableScore = sumForAverage / timeSeriesPoints.length;
         } else {
-            tableScore = timeSeriesPoints[timeSeriesPoints.length - 1].y; // 누적(Final/SP3)은 최종값
+            tableScore = timeSeriesPoints[timeSeriesPoints.length - 1].y; 
         }
     }
-
-    return {
-        points: timeSeriesPoints,
-        finalScore: parseFloat(tableScore.toFixed(2))
-    };
+    return { points: timeSeriesPoints, finalScore: parseFloat(tableScore.toFixed(2)) };
 }
 
 function calculateAndRender() {
     const selectedType = document.querySelector('input[name="formulaType"]:checked').value;
-    
-    // 🌟 공식 상세 해설 UI 업데이트
     document.getElementById('formulaDetailBox').innerHTML = formulaDetails[selectedType];
     document.getElementById('formulaDetailBox').style.display = 'block';
 
-    // 테이블 헤더 텍스트 동적 변경
     const headerEl = document.getElementById('tableScoreHeader');
-    if (['SP1', 'SP2', 'SP4', 'SP5'].includes(selectedType)) {
+    // 🌟 [수정됨] SP_FINAL 선택 시에도 '평균 점수' 헤더 노출
+    if (['SP1', 'SP2', 'SP4', 'SP5', 'SP_FINAL'].includes(selectedType)) {
         headerEl.textContent = '평균 점수 (Average)';
     } else {
         headerEl.textContent = '최종 점수 (Score)';
@@ -412,24 +368,17 @@ function calculateAndRender() {
 
     let chartDatasets = [];
     let tableResults = [];
-
     let minDate = null;
     let maxDate = moment();
-    
     let yMinValue = 0; 
 
     actorsData.forEach((actor, i) => {
         const tsData = computeTimeSeriesData(actor, selectedType);
-        
         if (tsData.points.length > 0) {
             const firstMovieDate = moment(tsData.points[0].x);
             if (!minDate || firstMovieDate.isBefore(minDate)) minDate = firstMovieDate;
-            
-            tsData.points.forEach(pt => {
-                if (pt.y < yMinValue) yMinValue = pt.y;
-            });
+            tsData.points.forEach(pt => { if (pt.y < yMinValue) yMinValue = pt.y; });
         }
-
         chartDatasets.push({
             label: actor.peopleNm,
             data: tsData.points,
@@ -441,7 +390,6 @@ function calculateAndRender() {
             fill: false,
             tension: 0.2
         });
-
         tableResults.push({
             name: actor.peopleNm,
             movieCount: actor.filmos.length,
@@ -469,11 +417,9 @@ function calculateAndRender() {
                     grid: { display: false }
                 },
                 y: { 
-                    beginAtZero: selectedType === 'SP5', // 공식 5(개수)는 항상 0부터 시작
-                    min: selectedType === 'SP4' && yMinValue < 0 ? yMinValue * 1.1 : undefined,
-                    ticks: {
-                        stepSize: selectedType === 'SP5' ? 1 : undefined // 공식 5는 소수점 없이 정수로만 눈금
-                    }
+                    beginAtZero: ['SP5', 'SP_FINAL'].includes(selectedType), 
+                    min: (selectedType === 'SP4' && yMinValue < 0) ? yMinValue * 1.1 : undefined,
+                    ticks: { stepSize: selectedType === 'SP5' ? 1 : undefined }
                 }
             },
             plugins: {
@@ -499,15 +445,12 @@ function calculateAndRender() {
 
     const tbody = document.getElementById('tableBody');
     tbody.innerHTML = '';
-    
     tableResults.forEach((r, idx) => {
         const tr = document.createElement('tr');
         if (idx === 0) tr.style.backgroundColor = '#fefce8';
-        
         let unit = '점';
         if (selectedType === 'SP3') unit = '%';
-        else if (selectedType === 'SP5') unit = ' 편/년'; // SP5 평균은 1년에 몇편인지
-        
+        else if (selectedType === 'SP5') unit = ' 편/년';
         tr.innerHTML = `
             <td><b>${idx + 1}위</b></td>
             <td><b>${r.name}</b></td>
