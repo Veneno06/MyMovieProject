@@ -26,11 +26,20 @@
 
   <div id="movieDetail" class="grid"></div>
   <div style="margin-top:12px; display:flex; gap:8px;">
-    <button class="btn" onclick="history.back()" data-i18n-key="btnBack">🔙 뒤로</button>
+    <button class="btn" onclick="smartBack()" data-i18n-key="btnBack">🔙 뒤로</button>
   </div>
 </div>
 
 <script>
+/* 🌟 [추가됨] 새 탭이면 창 닫기, 아니면 이전 페이지로 */
+function smartBack() {
+    if (window.history.length <= 1) {
+        window.close();
+    } else {
+        window.history.back();
+    }
+}
+
 /* ================= 공통 ================= */
 const params = new URLSearchParams(location.search);
 const movieCd = params.get('movieCd') || '';
@@ -131,7 +140,6 @@ function pickMovieInfo(json){
     const pid = actor.cd ? actor.cd : `name:${actor.nm}`;
     
     // 2. URL 생성: person.html이 기대하는 id와 name 파라미터 사용
-    // 주의: 기존 코드는 peopleNm을 썼지만, person.html은 name을 읽음
     const href = `person.html?id=${encodeURIComponent(pid)}&name=${encodeURIComponent(actor.nm)}`;
     
     // 3. 새 탭 열기 추가 (target="_blank")
