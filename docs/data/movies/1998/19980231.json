@@ -1,0 +1,105 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "19980231",
+      "movieNm": "트루먼 쇼",
+      "movieNmEn": "The Truman Show",
+      "movieNmOg": "",
+      "showTm": "102",
+      "prdtYear": "1998",
+      "openDt": "19981024",
+      "prdtStatNm": "개봉",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "드라마"
+        },
+        {
+          "genreNm": "코미디"
+        },
+        {
+          "genreNm": "판타지"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "피터 위어",
+          "peopleNmEn": "Peter Weir"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "짐 캐리",
+          "peopleNmEn": "Jim Carrey",
+          "cast": "",
+          "castEn": ""
+        },
+        {
+          "peopleNm": "에드 해리스",
+          "peopleNmEn": "Ed Harris",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "필름",
+          "showTypeNm": "필름"
+        },
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20104469",
+          "companyNm": "파라마운트 픽쳐스",
+          "companyNmEn": "Paramount Pictures",
+          "companyPartNm": "제작사"
+        },
+        {
+          "companyCd": "20230987",
+          "companyNm": "롯데컬처웍스(주)롯데시네마",
+          "companyNmEn": "",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20175001",
+          "companyNm": "주식회사 해리슨앤컴퍼니",
+          "companyNmEn": "Harrison & Company",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20230987",
+          "companyNm": "롯데컬처웍스(주)롯데시네마",
+          "companyNmEn": "",
+          "companyPartNm": "수입사"
+        },
+        {
+          "companyCd": "20175001",
+          "companyNm": "주식회사 해리슨앤컴퍼니",
+          "companyNmEn": "Harrison & Company",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "K98-114",
+          "watchGradeNm": "15세 미만인 자는 관람할 수 없는 등급 "
+        },
+        {
+          "auditNo": "2018-MF00689",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": []
+    },
+    "source": "영화진흥위원회"
+  }
+}
