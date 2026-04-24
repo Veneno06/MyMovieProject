@@ -989152,7 +989152,7 @@
     "movieNmEn": "Audition 109",
     "prdtYear": "2025",
     "openDt": "20260422",
-    "audiAcc": 31893,
+    "audiAcc": 52532,
     "nation": "한국",
     "directors": [
       {
@@ -989404,7 +989404,7 @@
     "movieNmEn": "The King's Warden",
     "prdtYear": "2025",
     "openDt": "20260204",
-    "audiAcc": 16628380,
+    "audiAcc": 16639661,
     "nation": "한국",
     "directors": [
       {
@@ -989510,7 +989510,7 @@
     "movieNmEn": "My Name",
     "prdtYear": "2025",
     "openDt": "20260415",
-    "audiAcc": 126986,
+    "audiAcc": 134075,
     "nation": "한국",
     "directors": [
       {
@@ -990412,7 +990412,7 @@
     "movieNmEn": "Salmokji : Whispering Water",
     "prdtYear": "2025",
     "openDt": "20260408",
-    "audiAcc": 1591904,
+    "audiAcc": 1640307,
     "nation": "한국",
     "directors": [
       {
@@ -991343,7 +991343,7 @@
     "movieNmEn": "PROJECT HAIL MARY",
     "prdtYear": "2026",
     "openDt": "20260318",
-    "audiAcc": 2346697,
+    "audiAcc": 2361920,
     "nation": "미국",
     "directors": [
       {
@@ -991632,7 +991632,7 @@
     "movieNmEn": "NORMAL",
     "prdtYear": "2025",
     "openDt": "20260417",
-    "audiAcc": 10439,
+    "audiAcc": 13827,
     "nation": "미국",
     "directors": [
       {
@@ -991717,6 +991717,108 @@
         "id": "",
         "gender": "",
         "cast": ""
+      }
+    ]
+  },
+  {
+    "movieCd": "20262657",
+    "movieNm": "리 크로닌의 미이라",
+    "movieNmEn": "Lee Cronin's The Mummy",
+    "prdtYear": "2026",
+    "openDt": "20260422",
+    "audiAcc": 12111,
+    "nation": "미국",
+    "directors": [
+      {
+        "name": "리 크로닌",
+        "id": ""
+      }
+    ],
+    "actors": [
+      {
+        "name": "잭 레이너",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      },
+      {
+        "name": "라이아 코스타",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      }
+    ]
+  },
+  {
+    "movieCd": "20262685",
+    "movieNm": "란 12.3",
+    "movieNmEn": "RAN 12.3",
+    "prdtYear": "2026",
+    "openDt": "20260422",
+    "audiAcc": 55309,
+    "nation": "한국",
+    "directors": [
+      {
+        "name": "이명세",
+        "id": ""
+      }
+    ],
+    "actors": []
+  },
+  {
+    "movieCd": "20262775",
+    "movieNm": "기동전사 건담: 섬광의 하사웨이 키르케의 마녀",
+    "movieNmEn": "MOBILE SUIT GUNDAM HATHAWAY The Sorcery of Nymph Circe",
+    "prdtYear": "2026",
+    "openDt": "20260422",
+    "audiAcc": 7619,
+    "nation": "일본",
+    "directors": [
+      {
+        "name": "무라세 슈코",
+        "id": ""
+      }
+    ],
+    "actors": []
+  },
+  {
+    "movieCd": "20262776",
+    "movieNm": "르누아르",
+    "movieNmEn": "RENOIR",
+    "prdtYear": "2025",
+    "openDt": "20260422",
+    "audiAcc": 4209,
+    "nation": "일본",
+    "directors": [
+      {
+        "name": "하야카와 치에",
+        "id": ""
+      }
+    ],
+    "actors": [
+      {
+        "name": "스즈키 유이",
+        "id": "",
+        "gender": "",
+        "cast": "후키"
+      },
+      {
+        "name": "이시다 히카리",
+        "id": "",
+        "gender": "",
+        "cast": "우타코"
+      },
+      {
+        "name": "릴리 프랭키",
+        "id": "",
+        "gender": "",
+        "cast": "케이지"
+      },
+      {
+        "name": "카와이 유미",
+        "id": "",
+        "gender": "",
+        "cast": "이웃"
       }
     ]
   },
