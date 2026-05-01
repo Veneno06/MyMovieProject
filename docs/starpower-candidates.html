@@ -83,7 +83,7 @@
       <label class="formula-option">
           <input type="radio" name="formulaType" value="C4" onchange="calculateAndRender()">
           <div>
-              <div class="formula-title">후보 4: 타석 대비 장타율 (Movie Percentage)</div>
+              <div class="formula-title">후보 4: 평균 타율 (Movie Average Percentage)</div>
               <div class="formula-desc">단순 타율(성공 횟수)을 넘어, 해당 시점까지의 평균 관객 동원력이 전체 영화 평균의 몇 배인지 나타냅니다.</div>
           </div>
       </label>
@@ -167,7 +167,7 @@ const formulaDetails = {
                 <li><b>감독 파워:</b> 사이트 내 해당 감독이 동원한 전체 작품의 평균 관객수</li>
                 <li><b>특징:</b> 검증된 대형 흥행 감독의 텐트폴 영화에 출연하여 높은 점유율을 획득했을 때의 화제성을 측정합니다.</li>
             </ul>`,
-    'C4': `<h4>후보 4: 타석 대비 장타율 (Slugging Percentage Model)</h4>
+    'C4': `<h4>후보 4: 평균 타율 (Movie Average Percentage)</h4>
             <div class="math-formula">Score = (현재까지의 누적 관객수 / 현재 개봉작 수) / Avg_site × 100</div>
             <ul>
                 <li><b>Avg_site:</b> K-Movie A Archive 전체 영화의 평균 관객수</li>
