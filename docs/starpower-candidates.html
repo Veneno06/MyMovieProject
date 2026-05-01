@@ -147,7 +147,7 @@ const fmtNum = n => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',
 
 // 🌟 5가지 신규 공식 설명 텍스트
 const formulaDetails = {
-    'C1': `<h4>후보 1: 장르 확장성 모델 (Genre Versatility Index)</h4>
+    'C1': `<h4>후보 1: 장르 확장 (Genre Versatility Index)</h4>
             <div class="math-formula">Score = (A_i / Total_Y) × (1 + (누적 장르 수 / 10)) × 1000</div>
             <ul>
                 <li><b>A_i / Total_Y:</b> 연도별 시장 점유율</li>
@@ -173,7 +173,7 @@ const formulaDetails = {
                 <li><b>Avg_site:</b> K-Movie A Archive 전체 영화의 평균 관객수</li>
                 <li><b>특징:</b> 기존 공식3(성공 횟수 타율)과 달리, 천만 영화와 백만 영화의 가치 차이를 반영합니다. (100% = 시장 평균)</li>
             </ul>`,
-    'C5': `<h4>후보 5: 감독-배우 시너지 지수 (Director-Actor Synergy)</h4>
+    'C5': `<h4>후보 5: 감독-배우 관계 (Director-Actor Relation)</h4>
             <div class="math-formula">Score = (A_i / 10000) × [ 1 + (감독과의 누적 작업 횟수 - 1) × 0.2 ]</div>
             <ul>
                 <li><b>특징:</b> 흥행에 성공했을 때, 그 감독과 이전에 함께 작업했던 횟수가 많을수록(페르소나) '안정적인 캐시카우'로서 보너스를 받습니다.</li>
