@@ -16,9 +16,13 @@
     #compareBtn { background-color: #374151; color: white; border: none; font-weight: bold; padding: 10px 20px; font-size: 15px; }
     #compareBtn:disabled { background-color: #ccc; cursor: not-allowed; }
     
-    /* [추가됨] 스타 파워 분석 버튼 전용 스타일 */
+    /* 스타 파워 분석 버튼 스타일 */
     #starPowerBtn { background-color: #2563eb; color: white; border: none; font-weight: bold; padding: 10px 20px; font-size: 15px; }
     #starPowerBtn:disabled { background-color: #ccc; cursor: not-allowed; }
+
+    /* 🌟 [추가됨] 스타 파워 후보 테스트 버튼 스타일 */
+    #starPowerCandidateBtn { background-color: #4f46e5; color: white; border: none; font-weight: bold; padding: 10px 20px; font-size: 15px; }
+    #starPowerCandidateBtn:disabled { background-color: #ccc; cursor: not-allowed; }
     
     .floating-model-btn { position: fixed; bottom: 30px; right: 30px; background-color: #111827; color: #fff !important; padding: 14px 24px; border-radius: 50px; font-weight: bold; font-size: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); text-decoration: none; z-index: 1000; transition: transform 0.2s ease; }
     .floating-model-btn:hover { transform: translateY(-3px); text-decoration: none; }
@@ -42,6 +46,8 @@
     <div class="btn-group">
         <button class="btn" id="compareBtn" disabled>배우 관객수 비교</button>
         <button class="btn" id="starPowerBtn" disabled> 스타 파워(Star Power) 비교</button>
+        <!-- 🌟 [추가됨] 후보 공식 테스트 버튼 -->
+        <button class="btn" id="starPowerCandidateBtn" disabled>🧪 스타 파워(Star Power) 후보</button>
     </div>
     <div id="selectionMsg" class="muted">비교할 배우를 2명에서 4명까지 선택해주세요.</div>
     <div id="emptyMsg" class="muted" style="display:none;">저장된 배우가 없습니다.</div>
@@ -54,6 +60,7 @@
 const LIST_BOX = document.getElementById('savedPeopleList');
 const COMPARE_BTN = document.getElementById('compareBtn');
 const STAR_POWER_BTN = document.getElementById('starPowerBtn');
+const STAR_POWER_CANDIDATE_BTN = document.getElementById('starPowerCandidateBtn'); // 🌟 변수 추가
 const EMPTY_MSG = document.getElementById('emptyMsg');
 const SELECTION_MSG = document.getElementById('selectionMsg');
 
@@ -73,11 +80,13 @@ function updateCompareButtons() {
   if (picked >= 2 && picked <= 4) {
       COMPARE_BTN.disabled = false;
       STAR_POWER_BTN.disabled = false;
+      STAR_POWER_CANDIDATE_BTN.disabled = false; // 🌟 후보 버튼 활성화
       SELECTION_MSG.innerHTML = `<b>${picked}명</b>이 선택되었습니다.`;
       SELECTION_MSG.style.color = "#2563eb";
   } else {
       COMPARE_BTN.disabled = true;
       STAR_POWER_BTN.disabled = true;
+      STAR_POWER_CANDIDATE_BTN.disabled = true; // 🌟 후보 버튼 비활성화
       SELECTION_MSG.textContent = "비교할 배우를 2명에서 4명까지 선택해주세요.";
       SELECTION_MSG.style.color = "#6b7280";
   }
@@ -89,10 +98,18 @@ function render() {
 
   LIST_BOX.innerHTML = '';
   if (savedKeys.length === 0) {
-    EMPTY_MSG.style.display = 'block'; COMPARE_BTN.style.display = 'none'; STAR_POWER_BTN.style.display = 'none'; SELECTION_MSG.style.display = 'none';
+    EMPTY_MSG.style.display = 'block'; 
+    COMPARE_BTN.style.display = 'none'; 
+    STAR_POWER_BTN.style.display = 'none'; 
+    STAR_POWER_CANDIDATE_BTN.style.display = 'none'; // 🌟 0명일 때 숨김
+    SELECTION_MSG.style.display = 'none';
     return;
   }
-  EMPTY_MSG.style.display = 'none'; COMPARE_BTN.style.display = 'block'; STAR_POWER_BTN.style.display = 'block'; SELECTION_MSG.style.display = 'block';
+  EMPTY_MSG.style.display = 'none'; 
+  COMPARE_BTN.style.display = 'block'; 
+  STAR_POWER_BTN.style.display = 'block'; 
+  STAR_POWER_CANDIDATE_BTN.style.display = 'block'; // 🌟 배우가 있을 때 노출
+  SELECTION_MSG.style.display = 'block';
 
   const list = savedKeys.map(k => ({ id: k, name: saved[k].name })).sort((a,b) => a.name.localeCompare(b.name, 'ko'));
   for (const person of list) {
@@ -115,11 +132,18 @@ COMPARE_BTN.addEventListener('click', () => {
   }
 });
 
-// [추가됨] 스타파워 페이지로 이동
 STAR_POWER_BTN.addEventListener('click', () => {
   const picked = [...document.querySelectorAll('.actor-checkbox:checked')].map(x=>x.value);
   if (picked.length >= 2 && picked.length <= 4) {
       location.href = `starpower.html?${picked.map((id, idx) => `p${idx+1}=${encodeURIComponent(id)}`).join('&')}`;
+  }
+});
+
+// 🌟 [추가됨] 후보 공식 테스트 페이지로 이동하는 로직
+STAR_POWER_CANDIDATE_BTN.addEventListener('click', () => {
+  const picked = [...document.querySelectorAll('.actor-checkbox:checked')].map(x=>x.value);
+  if (picked.length >= 2 && picked.length <= 4) {
+      location.href = `starpower-candidates.html?${picked.map((id, idx) => `p${idx+1}=${encodeURIComponent(id)}`).join('&')}`;
   }
 });
 
