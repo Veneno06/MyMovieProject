@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>스타 파워(후보) 시계열 분석 – K-Movie A Archive</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="assets/style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@1.0.1/dist/chartjs-adapter-moment.min.js"></script>
+<style>
+  h1 { text-align: center; margin-bottom: 5px; }
+  .subtitle { text-align: center; color: #6b7280; margin-bottom: 30px; font-size: 14px; }
+  
+  .formula-selector {
+      background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 20px;
+      margin-bottom: 30px; display: flex; flex-direction: column; gap: 15px;
+  }
+  .formula-option {
+      display: flex; align-items: flex-start; gap: 10px; cursor: pointer;
+      padding: 10px; border-radius: 6px; transition: background 0.2s;
+  }
+  .formula-option:hover { background: #f3f4f6; }
+  .formula-option input[type="radio"] { margin-top: 4px; transform: scale(1.2); cursor: pointer; }
+  .formula-title { font-weight: bold; font-size: 16px; color: #111827; }
+  .formula-desc { font-size: 13px; color: #4b5563; margin-top: 4px; }
+
+  .chart-container {
+      width: 100%; height: 450px; padding: 15px; border: 1px solid #e5e7eb; 
+      border-radius: 12px; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.05); margin-bottom: 20px;
+  }
+
+  .formula-detail-box {
+      background: #ffffff; border-left: 4px solid #2563eb; padding: 20px;
+      border-radius: 4px; margin-bottom: 30px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  .formula-detail-box h4 { margin: 0 0 10px 0; color: #1f2937; }
+  .math-formula { 
+      font-family: 'Courier New', Courier, monospace; background: #f3f4f6; 
+      padding: 10px; border-radius: 4px; font-weight: bold; color: #111827; margin-bottom: 10px; 
+      font-size: 15px; text-align: center; border: 1px solid #e5e7eb;
+  }
+  .formula-detail-box ul { margin: 0; padding-left: 20px; color: #4b5563; font-size: 14px; line-height: 1.6; }
+  
+  table { width: 100%; border-collapse: collapse; text-align: center; font-size: 14px; }
+  th, td { padding: 12px; border-bottom: 1px solid #e5e7eb; }
+  th { background-color: #f9fafb; font-weight: bold; color: #374151; }
+  .score-cell { font-weight: bold; color: #2563eb; font-size: 16px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="ctrls">
+    <a href="index.html" class="btn">홈</a>
+    <a href="saved.html" class="btn">🔙 저장 목록</a>
+  </div>
+
+  <h1>🧪 스타 파워 (Star Power) 공식 후보 테스트</h1>
+  <div class="subtitle">새롭게 고안된 5가지 스타 파워 공식 후보들을 실제 데이터에 적용하여 비교해 보는 테스트 페이지입니다.</div>
+
+  <div class="formula-selector">
+      <label class="formula-option">
+          <input type="radio" name="formulaType" value="C1" checked onchange="calculateAndRender()">
+          <div>
+              <div class="formula-title">후보 1: 장르 확장성 모델 (Genre Versatility Index)</div>
+              <div class="formula-desc">배우가 특정 장르에 국한되지 않고 새로운 장르에서 흥행할수록 누적 보너스를 부여합니다.</div>
+          </div>
+      </label>
+      <label class="formula-option">
+          <input type="radio" name="formulaType" value="C2" onchange="calculateAndRender()">
+          <div>
+              <div class="formula-title">후보 2: 리뷰 순도 기반 여론 파급력 (Sentiment Purity Score)</div>
+              <div class="formula-desc">단순 긍-부정 차이가 아닌, 여론의 질(긍정 비율)과 양(로그 스케일), 실제 관객수를 융합합니다.</div>
+          </div>
+      </label>
+      <label class="formula-option">
+          <input type="radio" name="formulaType" value="C3" onchange="calculateAndRender()">
+          <div>
+              <div class="formula-title">후보 3: 초기 흥행 폭발력 (Opening Impact Factor)</div>
+              <div class="formula-desc">영화가 지닌 기본 파워(해당 감독의 역대 평균 관객수)와 결합하여 배우의 초기 화제성을 추정합니다.</div>
+          </div>
+      </label>
+      <label class="formula-option">
+          <input type="radio" name="formulaType" value="C4" onchange="calculateAndRender()">
+          <div>
+              <div class="formula-title">후보 4: 타석 대비 장타율 (Slugging Percentage Model)</div>
+              <div class="formula-desc">단순 타율(성공 횟수)을 넘어, 해당 시점까지의 평균 관객 동원력이 전체 영화 평균의 몇 배인지 나타냅니다.</div>
+          </div>
+      </label>
+      <label class="formula-option">
+          <input type="radio" name="formulaType" value="C5" onchange="calculateAndRender()">
+          <div>
+              <div class="formula-title">후보 5: 감독-배우 시너지 지수 (Director-Actor Synergy)</div>
+              <div class="formula-desc">특정 감독과 여러 번 반복해서 작업하며 안정적인 흥행을 이끌어내는 '페르소나' 효과를 측정합니다.</div>
+          </div>
+      </label>
+  </div>
+
+  <div class="chart-container">
+      <canvas id="spChart"></canvas>
+  </div>
+
+  <div id="formulaDetailBox" class="formula-detail-box"></div>
+
+  <div style="overflow-x: auto; border: 1px solid #e5e7eb; border-radius: 8px; background: #fff;">
+      <table id="resultTable">
+          <thead>
+              <tr>
+                  <th>순위 (현재 기준)</th>
+                  <th>배우 이름</th>
+                  <th>분석된 영화 수</th>
+                  <th>누적 관객수 합계</th>
+                  <th id="tableScoreHeader">평균 점수 (Average)</th>
+              </tr>
+          </thead>
+          <tbody id="tableBody">
+              <tr><td colspan="5" style="padding: 30px;">데이터를 분석 중입니다...</td></tr>
+          </tbody>
+      </table>
+  </div>
+</div>
+
+<script>
+const TS = Date.now();
+const PATHS_INDEX = [`docs/data/search_index.json?v=${TS}`, `data/search_index.json?v=${TS}`];
+const PATHS_DETAILS = [`docs/data/people/`, `data/people/`]; 
+
+let SEARCH_INDEX = [];
+let MOVIE_MAP = {}; 
+let YEAR_TOTALS = {}; 
+let GLOBAL_AVG = 0;   
+let DIRECTOR_STATS = {}; // 🌟 후보 3을 위한 감독별 누적 통계
+
+let actorsData = [];
+let spChartInstance = null;
+
+const COLORS = ['#2563eb', '#dc2626', '#16a34a', '#9333ea'];
+
+function getParam(k){ return new URLSearchParams(location.search).get(k); }
+const safeParseInt = (v) => {
+    if (!v) return 0;
+    if (typeof v === 'number') return v;
+    const n = parseInt(String(v).replace(/,/g, '').trim(), 10);
+    return isNaN(n) ? 0 : n;
+};
+const fmtNum = n => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+// 🌟 5가지 신규 공식 설명 텍스트
+const formulaDetails = {
+    'C1': `<h4>후보 1: 장르 확장성 모델 (Genre Versatility Index)</h4>
+            <div class="math-formula">Score = (A_i / Total_Y) × (1 + (누적 장르 수 / 10)) × 1000</div>
+            <ul>
+                <li><b>A_i / Total_Y:</b> 연도별 시장 점유율</li>
+                <li><b>누적 장르 수:</b> 배우가 이전 작품부터 현재까지 소화해 낸 서로 다른 장르의 개수</li>
+                <li><b>특징:</b> 멜로, 액션, 코미디 등 다양한 장르에 도전하여 흥행시킬수록 가중치가 지속적으로 우상향합니다.</li>
+            </ul>`,
+    'C2': `<h4>후보 2: 리뷰 순도 기반 여론 파급력 (Sentiment Purity Score)</h4>
+            <div class="math-formula">Score = [ 긍정 / (전체 댓글+1) ] × ln(전체 댓글+1) × (A_i / Avg_site) × 100</div>
+            <ul>
+                <li><b>여론의 순도:</b> 전체 댓글 중 긍정 댓글이 차지하는 비율</li>
+                <li><b>여론의 양(ln):</b> 관심도(댓글 수)를 로그 함수로 완만하게 반영</li>
+                <li><b>특징:</b> 긍정 비율이 높으면서 관객수도 많은(실제 파급력) 작품일수록 점수가 폭발적으로 상승합니다.</li>
+            </ul>`,
+    'C3': `<h4>후보 3: 초기 흥행 폭발력 (Opening Impact Factor)</h4>
+            <div class="math-formula">Score = (A_i / Total_Y) × (해당 감독의 역대 평균 관객수 / Avg_site) × 1000</div>
+            <ul>
+                <li><b>감독 파워:</b> 사이트 내 해당 감독이 동원한 전체 작품의 평균 관객수</li>
+                <li><b>특징:</b> 검증된 대형 흥행 감독의 텐트폴 영화에 출연하여 높은 점유율을 획득했을 때의 화제성을 측정합니다.</li>
+            </ul>`,
+    'C4': `<h4>후보 4: 타석 대비 장타율 (Slugging Percentage Model)</h4>
+            <div class="math-formula">Score = (현재까지의 누적 관객수 / 현재 개봉작 수) / Avg_site × 100</div>
+            <ul>
+                <li><b>Avg_site:</b> K-Movie A Archive 전체 영화의 평균 관객수</li>
+                <li><b>특징:</b> 기존 공식3(성공 횟수 타율)과 달리, 천만 영화와 백만 영화의 가치 차이를 반영합니다. (100% = 시장 평균)</li>
+            </ul>`,
+    'C5': `<h4>후보 5: 감독-배우 시너지 지수 (Director-Actor Synergy)</h4>
+            <div class="math-formula">Score = (A_i / 10000) × [ 1 + (감독과의 누적 작업 횟수 - 1) × 0.2 ]</div>
+            <ul>
+                <li><b>특징:</b> 흥행에 성공했을 때, 그 감독과 이전에 함께 작업했던 횟수가 많을수록(페르소나) '안정적인 캐시카우'로서 보너스를 받습니다.</li>
+            </ul>`
+};
+
+async function fetchSentimentData(name) {
+    const url = `data/sentiment/${name}.json?v=${TS}`;
+    const url2 = `docs/data/sentiment/${name}.json?v=${TS}`;
+    for (const p of [url, url2]) {
+        try { const r = await fetch(p); if (r.ok) return await r.json(); } catch(e) {}
+    }
+    return null;
+}
+
+async function loadSearchIndex() {
+    if (SEARCH_INDEX.length > 0) return;
+    for (const path of PATHS_INDEX) {
+        try {
+            const r = await fetch(path);
+            if (r.ok) {
+                SEARCH_INDEX = await r.json();
+                let totalAudiAll = 0;
+                let validMovieCount = 0;
+                
+                SEARCH_INDEX.forEach(m => { 
+                    MOVIE_MAP[m.movieCd] = m; 
+                    const audi = safeParseInt(m.audiAcc);
+                    const year = (m.openDt || '').slice(0,4) || String(m.prdtYear);
+                    
+                    if (year && audi > 0) {
+                        YEAR_TOTALS[year] = (YEAR_TOTALS[year] || 0) + audi;
+                        totalAudiAll += audi;
+                        validMovieCount++;
+                        
+                        // 🌟 후보 3을 위한 감독별 통계 사전 집계
+                        if (m.directors) {
+                            m.directors.forEach(d => {
+                                const dNm = d.peopleNm || d.name;
+                                if(dNm) {
+                                    if(!DIRECTOR_STATS[dNm]) DIRECTOR_STATS[dNm] = { audi: 0, count: 0 };
+                                    DIRECTOR_STATS[dNm].audi += audi;
+                                    DIRECTOR_STATS[dNm].count += 1;
+                                }
+                            });
+                        }
+                    }
+                });
+                GLOBAL_AVG = validMovieCount > 0 ? (totalAudiAll / validMovieCount) : 0;
+                return;
+            }
+        } catch(e) {}
+    }
+}
+
+async function resolveAndFetch(key) {
+    if (!key) return null;
+    let targetId = key;
+    if (!/^\d+$/.test(key)) {
+        await loadSearchIndex(); 
+        let namePart = key.startsWith('name:') ? key.split(':')[1] : key;
+        namePart = decodeURIComponent(namePart);
+        let foundId = null;
+        for (const m of SEARCH_INDEX) {
+            const cast = [...(m.actors || []), ...(m.directors || [])];
+            const target = cast.find(p => p.name === namePart && p.id);
+            if (target) { foundId = target.id; break; }
+        }
+        if (foundId) targetId = foundId;
+        else return { peopleNm: namePart, filmos: [] };
+    }
+    const fname = `${targetId}.json?v=${TS}`;
+    let rawData = null;
+    for (const prefix of PATHS_DETAILS) {
+        try { 
+            const r = await fetch(prefix + fname); 
+            if(r.ok) {
+                const json = await r.json();
+                rawData = (json.peopleInfoResult && json.peopleInfoResult.peopleInfo) ? json.peopleInfoResult.peopleInfo : json;
+                break;
+            }
+        } catch(e){}
+    }
+    if (rawData && rawData.filmos) {
+        await loadSearchIndex(); 
+        rawData.filmos = rawData.filmos.map(f => {
+            const baseInfo = MOVIE_MAP[f.movieCd] || {};
+            return { ...f, openDt: baseInfo.openDt || f.openDt || '', movieNm: f.movieNm || baseInfo.movieNm, baseInfo: baseInfo };
+        }).filter(f => f.openDt.length >= 4 && safeParseInt(f.audiAcc) > 0);
+        rawData.filmos.sort((a,b) => a.openDt.localeCompare(b.openDt));
+        rawData.sentiment = await fetchSentimentData(rawData.peopleNm);
+    }
+    return rawData;
+}
+
+async function main() {
+    await loadSearchIndex();
+    const ids = [getParam('p1'), getParam('p2'), getParam('p3'), getParam('p4')].filter(Boolean);
+    const results = await Promise.all(ids.map(id => resolveAndFetch(id)));
+    actorsData = results.filter(data => data && data.peopleNm); 
+    calculateAndRender();
+}
+
+function computeTimeSeriesData(actor, type) {
+    const filmos = actor.filmos || [];
+    let timeSeriesPoints = [];
+    let sumForAverage = 0;
+
+    // 후보군 계산을 위한 누적 상태 변수들
+    let seenGenres = new Set();
+    let accAudi = 0;
+    let directorCollabCount = {};
+
+    // 여론 데이터 정제
+    let yearlySentiment = {};
+    if (actor.sentiment && actor.sentiment.timeline) {
+        for (const week in actor.sentiment.timeline) {
+            const year = week.split('-')[0];
+            if (!yearlySentiment[year]) yearlySentiment[year] = { pos: 0, neg: 0 };
+            yearlySentiment[year].pos += actor.sentiment.timeline[week].positive || 0;
+            yearlySentiment[year].neg += actor.sentiment.timeline[week].negative || 0;
+        }
+    }
+
+    filmos.forEach((f, idx) => {
+        const A_i = safeParseInt(f.audiAcc);
+        const year = f.openDt.slice(0,4);
+        const Total_Y = YEAR_TOTALS[year] || A_i;
+
+        let currentPointScore = 0;
+
+        // 🌟 후보 1: 장르 확장성
+        if (type === 'C1') {
+            const genres = f.baseInfo.genres || [];
+            genres.forEach(g => seenGenres.add(g.genreNm || g));
+            currentPointScore = (A_i / Total_Y) * (1 + (seenGenres.size / 10)) * 1000;
+        } 
+        // 🌟 후보 2: 여론 순도
+        else if (type === 'C2') {
+            const sent = yearlySentiment[year] || { pos: 0, neg: 0 };
+            const totalSent = sent.pos + sent.neg;
+            const purity = totalSent > 0 ? (sent.pos / totalSent) : 0;
+            currentPointScore = purity * Math.log(totalSent + 1) * (A_i / GLOBAL_AVG) * 100;
+        } 
+        // 🌟 후보 3: 초기 폭발력 (감독 가중치)
+        else if (type === 'C3') {
+            const dirs = f.baseInfo.directors || [];
+            let dirAvgSum = 0;
+            let dirValidCnt = 0;
+            dirs.forEach(d => {
+                const nm = d.peopleNm || d.name;
+                if(nm && DIRECTOR_STATS[nm]) {
+                    dirAvgSum += (DIRECTOR_STATS[nm].audi / DIRECTOR_STATS[nm].count);
+                    dirValidCnt++;
+                }
+            });
+            const dirAvg = dirValidCnt > 0 ? (dirAvgSum / dirValidCnt) : GLOBAL_AVG;
+            currentPointScore = (A_i / Total_Y) * (dirAvg / GLOBAL_AVG) * 1000;
+        }
+        // 🌟 후보 4: 장타율 (Slugging)
+        else if (type === 'C4') {
+            accAudi += A_i;
+            const rollingAvg = accAudi / (idx + 1);
+            currentPointScore = (rollingAvg / GLOBAL_AVG) * 100; 
+        }
+        // 🌟 후보 5: 감독 시너지
+        else if (type === 'C5') {
+            const dirs = f.baseInfo.directors || [];
+            let maxCollab = 1;
+            dirs.forEach(d => {
+                const nm = d.peopleNm || d.name;
+                if(nm) {
+                    directorCollabCount[nm] = (directorCollabCount[nm] || 0) + 1;
+                    if(directorCollabCount[nm] > maxCollab) maxCollab = directorCollabCount[nm];
+                }
+            });
+            currentPointScore = (A_i / 10000) * (1 + ((maxCollab - 1) * 0.2));
+        }
+
+        sumForAverage += currentPointScore;
+        timeSeriesPoints.push({ x: moment(f.openDt).toDate(), y: parseFloat(currentPointScore.toFixed(2)), movieNm: f.movieNm });
+    });
+
+    let tableScore = timeSeriesPoints.length > 0 ? (sumForAverage / timeSeriesPoints.length) : 0;
+    
+    return { points: timeSeriesPoints, finalScore: parseFloat(tableScore.toFixed(2)) };
+}
+
+function calculateAndRender() {
+    const selectedType = document.querySelector('input[name="formulaType"]:checked').value;
+    document.getElementById('formulaDetailBox').innerHTML = formulaDetails[selectedType];
+
+    let chartDatasets = [];
+    let tableResults = [];
+    let minDate = null;
+    let maxDate = moment();
+    let yMinValue = 0; 
+
+    actorsData.forEach((actor, i) => {
+        const tsData = computeTimeSeriesData(actor, selectedType);
+        if (tsData.points.length > 0) {
+            const firstMovieDate = moment(tsData.points[0].x);
+            if (!minDate || firstMovieDate.isBefore(minDate)) minDate = firstMovieDate;
+            tsData.points.forEach(pt => { if (pt.y < yMinValue) yMinValue = pt.y; });
+        }
+        chartDatasets.push({
+            label: actor.peopleNm,
+            data: tsData.points,
+            borderColor: COLORS[i % COLORS.length],
+            backgroundColor: COLORS[i % COLORS.length],
+            borderWidth: 2,
+            pointRadius: 5,
+            pointHoverRadius: 8,
+            fill: false,
+            tension: 0.2
+        });
+        tableResults.push({
+            name: actor.peopleNm,
+            movieCount: actor.filmos.length,
+            totalAudi: actor.filmos.reduce((sum, f) => sum + safeParseInt(f.audiAcc), 0),
+            score: tsData.finalScore
+        });
+    });
+
+    tableResults.sort((a, b) => b.score - a.score);
+
+    const ctx = document.getElementById('spChart').getContext('2d');
+    if (spChartInstance) spChartInstance.destroy();
+
+    spChartInstance = new Chart(ctx, {
+        type: 'line',
+        data: { datasets: chartDatasets },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            scales: {
+                x: {
+                    type: 'time',
+                    time: { unit: 'year', displayFormats: { year: 'YYYY' } },
+                    min: minDate ? minDate.toDate() : undefined,
+                    max: maxDate.toDate(),
+                    grid: { display: false }
+                },
+                y: { 
+                    beginAtZero: true, 
+                    min: yMinValue < 0 ? yMinValue * 1.1 : undefined
+                }
+            },
+            plugins: {
+                legend: { position: 'top' },
+                tooltip: {
+                    callbacks: {
+                        title: (tt) => tt[0].raw.movieNm + " (" + moment(tt[0].raw.x).format('YYYY.MM.DD') + ")",
+                        label: (ctx) => {
+                            let unit = '점';
+                            if (selectedType === 'C4') unit = '% (전체평균 대비)';
+                            return ` ${ctx.dataset.label}: ${fmtNum(ctx.raw.y)}${unit}`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    const tbody = document.getElementById('tableBody');
+    tbody.innerHTML = '';
+    tableResults.forEach((r, idx) => {
+        const tr = document.createElement('tr');
+        if (idx === 0) tr.style.backgroundColor = '#fefce8';
+        let unit = '점';
+        if (selectedType === 'C4') unit = '%';
+        tr.innerHTML = `
+            <td><b>${idx + 1}위</b></td>
+            <td><b>${r.name}</b></td>
+            <td>${r.movieCount}편</td>
+            <td>${fmtNum(r.totalAudi)}명</td>
+            <td class="score-cell">${fmtNum(r.score)}${unit}</td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+
+main();
+</script>
+</body>
+</html>
