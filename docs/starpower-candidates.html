@@ -144,7 +144,6 @@ const safeParseInt = (v) => {
 };
 const fmtNum = n => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-// 🌟 [수정됨] 모든 영어 변수에 대한 직관적인 설명 완벽 추가
 const formulaDetails = {
     'C1': `<h4>후보 1: 장르 확장성 (Genre Versatility Index)</h4>
             <div class="math-formula">Score = (A_i / Total_Y) × (1 + (G_acc / 10)) × 1000</div>
@@ -175,7 +174,7 @@ const formulaDetails = {
             <div class="math-formula">Score = (A_i / 10000) × [ 1 + (D_cnt - 1) × 0.2 ]</div>
             <ul>
                 <li><b>A_i (영화 관객수):</b> 평가 시점의 해당 영화가 동원한 관객수</li>
-                <li><b>D_cnt (감독 협업 횟수):</b> 해당 시점까지 특정 감독과 함께 영화를 작업한 누적 횟수</li>
+                <li><b>D_cnt (감독 협업 횟수):</b> 해당 시점까지 특정 감독과 함께 영화 작업한 누적 횟수</li>
                 <li><b>특징:</b> 흥행에 성공했을 때, 그 감독과 이전에 함께 작업했던 횟수가 많을수록(페르소나) 보너스 가중치를 받음.</li>
             </ul>`,
     'C5': `<h4>후보 5: 연도별 타석 효율성(Annual Efficiency)</h4>
@@ -291,7 +290,6 @@ function computeTimeSeriesData(actor, type) {
         }
     }
 
-    // 🌟 새로운 후보 5 로직 추가 (연도별 타석 효율성)
     if (type === 'C5') {
         let yearlyCounts = {};
         let yearlyAudi = {};
@@ -305,11 +303,11 @@ function computeTimeSeriesData(actor, type) {
         for (const year in yearlyCounts) {
             let count = yearlyCounts[year];
             let totalAudi = yearlyAudi[year];
-            // 요청하신 수식: {(그 해 관객 합) / (그 해 영화 수 + 1)} * 0.001
             let score = (totalAudi / (count + 1)) * 0.001;
             
             timeSeriesPoints.push({ 
-                x: moment(`${year}-12-31`).toDate(), 
+                // 🌟 [핵심 수정 부분] 12-31 대신 01-01을 사용하여 Chart.js의 눈금선(Tick)에 정확히 안착시킴
+                x: moment(`${year}-01-01`).toDate(), 
                 y: parseFloat(score.toFixed(2)), 
                 movieNm: `${year}년 개봉작 (총 ${count}편)` 
             });
@@ -336,7 +334,6 @@ function computeTimeSeriesData(actor, type) {
                 const purity = totalSent > 0 ? (sent.pos / totalSent) : 0;
                 currentPointScore = purity * Math.log(totalSent + 1) * (A_i / GLOBAL_AVG) * 100;
             } 
-            // C3 삭제 후 한 칸씩 땡김
             else if (type === 'C3') {
                 accAudi += A_i;
                 const rollingAvg = accAudi / (idx + 1);
@@ -428,7 +425,7 @@ function calculateAndRender() {
                 tooltip: {
                     callbacks: {
                         title: (tt) => {
-                            if (selectedType === 'C5') return tt[0].raw.movieNm; // 연도 데이터 툴팁
+                            if (selectedType === 'C5') return tt[0].raw.movieNm; 
                             return tt[0].raw.movieNm + " (" + moment(tt[0].raw.x).format('YYYY.MM.DD') + ")";
                         },
                         label: (ctx) => {
