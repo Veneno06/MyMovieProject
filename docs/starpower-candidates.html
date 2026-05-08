@@ -69,7 +69,7 @@
       <label class="formula-option">
           <input type="radio" name="formulaType" value="C2" onchange="calculateAndRender()">
           <div>
-              <div class="formula-title">후보 2: 여론 기반 파급력 (Comment)</div>
+              <div class="formula-title">후보 2: 여론 기반 파급력 (Sentiment)</div>
               <div class="formula-desc">여론의 질(긍정 비율)과 양(로그 스케일), 실제 관객수를 융합하여 실질적 파급력을 계산</div>
           </div>
       </label>
@@ -153,10 +153,10 @@ const formulaDetails = {
                 <li><b>G_acc (누적 장르 수):</b> 배우가 첫 작품부터 해당 시점까지 소화해 낸 서로 다른 장르의 고유 개수</li>
                 <li><b>특징:</b> 멜로, 액션, 코미디 등 새로운 장르에 도전하여 흥행시킬수록 가중치(G_acc)가 지속적으로 커짐</li>
             </ul>`,
-    'C2': `<h4>후보 2: 여론 기반 파급력 (Comment)</h4>
+    'C2': `<h4>후보 2: 여론 기반 파급력 (Sentiment)</h4>
             <div class="math-formula">Score = [ Pos / (Sent_all + 1) ] × ln(Sent_all + 1) × (A_i / Avg_site) × 100</div>
             <ul>
-                <li><b>Pos (긍정 댓글 수):</b> AI가 판별한 해당 연도의 긍정적 유튜브 댓글 수</li>
+                <li><b>Pos (긍정 댓글 수):</b> 판별한 해당 연도의 긍정적 유튜브 댓글 수</li>
                 <li><b>Sent_all (전체 댓글 수):</b> 긍정과 부정을 모두 합친 전체 댓글 수 (관심도)</li>
                 <li><b>A_i (영화 관객수):</b> 평가 시점의 해당 영화가 동원한 관객수</li>
                 <li><b>Avg_site (전체 영화 평균):</b> DB에 등록된 모든 영화의 평균 관객수</li>
@@ -167,7 +167,7 @@ const formulaDetails = {
             <ul>
                 <li><b>A_acc (누적 관객수):</b> 첫 작품부터 현재 시점까지 배우가 동원한 관객수 총합</li>
                 <li><b>N_movies (누적 영화 수):</b> 현재 시점까지 배우가 개봉시킨 영화의 총 편수</li>
-                <li><b>Avg_site (전체 영화 평균):</b> DB에 등록된 모든 영화의 평균 관객수</li>
+                <li><b>Avg_site (전체 영화 평균):</b> 모든 영화의 평균 관객수</li>
                 <li><b>특징:</b> 배우가 가진 '타율(평균 동원력)'이 전체 시장 평균 대비 몇 배의 가치를 지니는지 %로 표시</li>
             </ul>`,
     'C4': `<h4>후보 4: 감독-배우 (Director-Actor)</h4>
