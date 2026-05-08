@@ -90,7 +90,7 @@
       <label class="formula-option">
           <input type="radio" name="formulaType" value="C5" onchange="calculateAndRender()">
           <div>
-              <div class="formula-title">후보 5: 연도별 타율 (Annual Efficiency)</div>
+              <div class="formula-title">후보 5: 연도별 관객수 변형 (Annual Efficiency)</div>
               <div class="formula-desc">해당 연도에 동원한 총 관객수를 다작(출연 횟수) 비율로 나누어 그 해의 흥행 비율을 산출</div>
           </div>
       </label>
@@ -145,7 +145,7 @@ const safeParseInt = (v) => {
 const fmtNum = n => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
 const formulaDetails = {
-    'C1': `<h4>후보 1: 장르 확장성 (Genre Versatility Index)</h4>
+    'C1': `<h4>후보 1: 장르 확장성 (Genre)</h4>
             <div class="math-formula">Score = (A_i / Total_Y) × (1 + (G_acc / 10)) × 1000</div>
             <ul>
                 <li><b>A_i (영화 관객수):</b> 평가 시점의 해당 영화가 동원한 관객수</li>
@@ -153,7 +153,7 @@ const formulaDetails = {
                 <li><b>G_acc (누적 장르 수):</b> 배우가 첫 작품부터 해당 시점까지 소화해 낸 서로 다른 장르의 고유 개수</li>
                 <li><b>특징:</b> 멜로, 액션, 코미디 등 새로운 장르에 도전하여 흥행시킬수록 가중치(G_acc)가 지속적으로 커짐</li>
             </ul>`,
-    'C2': `<h4>후보 2: 리뷰 순도 기반 여론 파급력 (Sentiment Purity Score)</h4>
+    'C2': `<h4>후보 2: 여론 기반 파급력 (Comment)</h4>
             <div class="math-formula">Score = [ Pos / (Sent_all + 1) ] × ln(Sent_all + 1) × (A_i / Avg_site) × 100</div>
             <ul>
                 <li><b>Pos (긍정 댓글 수):</b> AI가 판별한 해당 연도의 긍정적 유튜브 댓글 수</li>
@@ -162,7 +162,7 @@ const formulaDetails = {
                 <li><b>Avg_site (전체 영화 평균):</b> DB에 등록된 모든 영화의 평균 관객수</li>
                 <li><b>특징:</b> 긍정 비율이 높으면서 관심도(ln)도 높고, 실제 관객수(A_i)까지 터졌을 때 점수가 폭발적으로 상승</li>
             </ul>`,
-    'C3': `<h4>후보 3: 타석 대비 장타율 (Slugging Percentage Model)</h4>
+    'C3': `<h4>후보 3: 출연 대비 타율 (Percentage)</h4>
             <div class="math-formula">Score = (A_acc / N_movies) / Avg_site × 100</div>
             <ul>
                 <li><b>A_acc (누적 관객수):</b> 첫 작품부터 현재 시점까지 배우가 동원한 관객수 총합</li>
@@ -170,19 +170,19 @@ const formulaDetails = {
                 <li><b>Avg_site (전체 영화 평균):</b> DB에 등록된 모든 영화의 평균 관객수</li>
                 <li><b>특징:</b> 배우가 가진 '타율(평균 동원력)'이 전체 시장 평균 대비 몇 배의 가치를 지니는지 %로 표시</li>
             </ul>`,
-    'C4': `<h4>후보 4: 감독-배우 시너지 지수 (Director-Actor Synergy)</h4>
+    'C4': `<h4>후보 4: 감독-배우 (Director-Actor)</h4>
             <div class="math-formula">Score = (A_i / 10000) × [ 1 + (D_cnt - 1) × 0.2 ]</div>
             <ul>
                 <li><b>A_i (영화 관객수):</b> 평가 시점의 해당 영화가 동원한 관객수</li>
                 <li><b>D_cnt (감독 협업 횟수):</b> 해당 시점까지 특정 감독과 함께 영화 작업한 누적 횟수</li>
                 <li><b>특징:</b> 흥행에 성공했을 때, 그 감독과 이전에 함께 작업했던 횟수가 많을수록(페르소나) 보너스 가중치를 받음.</li>
             </ul>`,
-    'C5': `<h4>후보 5: 연도별 타석 효율성(Annual Efficiency)</h4>
+    'C5': `<h4>후보 5: 연도별 관객수 변형 (Annual Efficiency)</h4>
             <div class="math-formula">Score = [ A_year / (N_year + 1) ] × 0.001</div>
             <ul>
                 <li><b>A_year (연간 관객 합계):</b> 해당 연도에 배우가 출연한 모든 영화의 관객수 총합</li>
                 <li><b>N_year (연간 다작 횟수):</b> 해당 연도에 개봉한 배우의 영화 편수</li>
-                <li><b>특징:</b> 무리한 다작(N_year 증가)으로 분모가 커지는 것을 페널티로 삼아, 적은 작품으로 큰 흥행을 이끌어낸 타석 효율성을 평가</li>
+                <li><b>특징:</b> 무리한 다작(N_year 증가)으로 분모가 커지는 것을 조정, 연간 출연한 작품 수에 대한 흥행 비율 측정</li>
             </ul>`
 };
 
