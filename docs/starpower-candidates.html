@@ -83,7 +83,7 @@
       <label class="formula-option">
           <input type="radio" name="formulaType" value="C4" onchange="calculateAndRender()">
           <div>
-              <div class="formula-title">후보 4: 감독-배우 시너지 지수 (Director-Actor)</div>
+              <div class="formula-title">후보 4: 감독-배우 (Director-Actor)</div>
               <div class="formula-desc">특정 감독과 여러 번 반복해서 작업하며 안정적인 흥행을 이끌어내는 페르소나 효과</div>
           </div>
       </label>
@@ -159,7 +159,7 @@ const formulaDetails = {
                 <li><b>Pos (긍정 댓글 수):</b> 판별한 해당 연도의 긍정적 유튜브 댓글 수</li>
                 <li><b>Sent_all (전체 댓글 수):</b> 긍정과 부정을 모두 합친 전체 댓글 수 (관심도)</li>
                 <li><b>A_i (영화 관객수):</b> 평가 시점의 해당 영화가 동원한 관객수</li>
-                <li><b>Avg_site (전체 영화 평균):</b> DB에 등록된 모든 영화의 평균 관객수</li>
+                <li><b>Avg_site (전체 영화 평균):</b> 모든 영화의 평균 관객수</li>
                 <li><b>특징:</b> 긍정 비율이 높으면서 관심도(ln)도 높고, 실제 관객수(A_i)까지 터졌을 때 점수가 폭발적으로 상승</li>
             </ul>`,
     'C3': `<h4>후보 3: 출연 대비 타율 (Percentage)</h4>
