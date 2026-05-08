@@ -55,14 +55,14 @@
     <a href="saved.html" class="btn">🔙 저장 목록</a>
   </div>
 
-  <h1> 스타 파워 (Star Power) 공식 후보 테스트</h1>
-  <div class="subtitle"> 스타 파워 공식 후보들을 테스트하는 페이지</div>
+  <h1>🧪 스타 파워 (Star Power) 공식 후보 테스트</h1>
+  <div class="subtitle">새롭게 고안된 5가지 스타 파워 공식 후보들을 실제 데이터에 적용하여 비교해 보는 테스트 페이지입니다.</div>
 
   <div class="formula-selector">
       <label class="formula-option">
           <input type="radio" name="formulaType" value="C1" checked onchange="calculateAndRender()">
           <div>
-              <div class="formula-title">후보 1: 장르 확장 (Genre Versatility Index)</div>
+              <div class="formula-title">후보 1: 장르 확장성 모델 (Genre Versatility Index)</div>
               <div class="formula-desc">배우가 특정 장르에 국한되지 않고 새로운 장르에서 흥행할수록 누적 보너스를 부여합니다.</div>
           </div>
       </label>
@@ -70,28 +70,28 @@
           <input type="radio" name="formulaType" value="C2" onchange="calculateAndRender()">
           <div>
               <div class="formula-title">후보 2: 리뷰 순도 기반 여론 파급력 (Sentiment Purity Score)</div>
-              <div class="formula-desc">단순 긍-부정 차이가 아닌, 여론의 질(긍정 비율)과 양(로그 스케일), 실제 관객수를 융합합니다.</div>
+              <div class="formula-desc">여론의 질(긍정 비율)과 양(로그 스케일), 실제 관객수를 융합하여 실질적 파급력을 계산합니다.</div>
           </div>
       </label>
       <label class="formula-option">
           <input type="radio" name="formulaType" value="C3" onchange="calculateAndRender()">
           <div>
-              <div class="formula-title">후보 3: 초기 흥행 폭발력 (Opening Impact Factor)</div>
-              <div class="formula-desc">영화가 지닌 기본 파워(해당 감독의 역대 평균 관객수)와 결합하여 배우의 초기 화제성을 추정합니다.</div>
+              <div class="formula-title">후보 3: 타석 대비 장타율 (Slugging Percentage Model)</div>
+              <div class="formula-desc">해당 시점까지의 평균 관객 동원력이 전체 영화 평균의 몇 배인지 나타냅니다.</div>
           </div>
       </label>
       <label class="formula-option">
           <input type="radio" name="formulaType" value="C4" onchange="calculateAndRender()">
           <div>
-              <div class="formula-title">후보 4: 평균 타율 (Movie Average Percentage)</div>
-              <div class="formula-desc">단순 타율(성공 횟수)을 넘어, 해당 시점까지의 평균 관객 동원력이 전체 영화 평균의 몇 배인지 나타냅니다.</div>
+              <div class="formula-title">후보 4: 감독-배우 시너지 지수 (Director-Actor Synergy)</div>
+              <div class="formula-desc">특정 감독과 여러 번 반복해서 작업하며 안정적인 흥행을 이끌어내는 '페르소나' 효과를 측정합니다.</div>
           </div>
       </label>
       <label class="formula-option">
           <input type="radio" name="formulaType" value="C5" onchange="calculateAndRender()">
           <div>
-              <div class="formula-title">후보 5: 감독-배우 관계 (Director-Actor Relation)</div>
-              <div class="formula-desc">특정 감독과 여러 번 반복해서 작업하며 안정적인 흥행을 이끌어내는 '페르소나' 효과를 측정합니다.</div>
+              <div class="formula-title">후보 5: 연도별 타석 효율성 모델 (Annual Efficiency)</div>
+              <div class="formula-desc">해당 연도에 동원한 총 관객수를 다작(출연 횟수) 비율로 나누어 그 해의 흥행 타율을 산출합니다.</div>
           </div>
       </label>
   </div>
@@ -129,7 +129,6 @@ let SEARCH_INDEX = [];
 let MOVIE_MAP = {}; 
 let YEAR_TOTALS = {}; 
 let GLOBAL_AVG = 0;   
-let DIRECTOR_STATS = {}; // 🌟 후보 3을 위한 감독별 누적 통계
 
 let actorsData = [];
 let spChartInstance = null;
@@ -145,38 +144,46 @@ const safeParseInt = (v) => {
 };
 const fmtNum = n => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-// 🌟 5가지 신규 공식 설명 텍스트
+// 🌟 [수정됨] 모든 영어 변수에 대한 직관적인 설명 완벽 추가
 const formulaDetails = {
-    'C1': `<h4>후보 1: 장르 확장 (Genre Versatility Index)</h4>
-            <div class="math-formula">Score = (A_i / Total_Y) × (1 + (누적 장르 수 / 10)) × 1000</div>
+    'C1': `<h4>후보 1: 장르 확장성 모델 (Genre Versatility Index)</h4>
+            <div class="math-formula">Score = (A_i / Total_Y) × (1 + (G_acc / 10)) × 1000</div>
             <ul>
-                <li><b>A_i / Total_Y:</b> 연도별 시장 점유율</li>
-                <li><b>누적 장르 수:</b> 배우가 이전 작품부터 현재까지 소화해 낸 서로 다른 장르의 개수</li>
-                <li><b>특징:</b> 멜로, 액션, 코미디 등 다양한 장르에 도전하여 흥행시킬수록 가중치가 지속적으로 우상향합니다.</li>
+                <li><b>A_i (영화 관객수):</b> 평가 시점의 해당 영화가 동원한 관객수</li>
+                <li><b>Total_Y (연도별 총 관객수):</b> 해당 영화 개봉 연도의 극장 전체 관객수 총합</li>
+                <li><b>G_acc (누적 장르 수):</b> 배우가 첫 작품부터 해당 시점까지 소화해 낸 서로 다른 장르의 고유 개수</li>
+                <li><b>특징:</b> 멜로, 액션, 코미디 등 새로운 장르에 도전하여 흥행시킬수록 가중치(G_acc)가 지속적으로 커집니다.</li>
             </ul>`,
     'C2': `<h4>후보 2: 리뷰 순도 기반 여론 파급력 (Sentiment Purity Score)</h4>
-            <div class="math-formula">Score = [ 긍정 / (전체 댓글+1) ] × ln(전체 댓글+1) × (A_i / Avg_site) × 100</div>
+            <div class="math-formula">Score = [ Pos / (Sent_all + 1) ] × ln(Sent_all + 1) × (A_i / Avg_site) × 100</div>
             <ul>
-                <li><b>여론의 순도:</b> 전체 댓글 중 긍정 댓글이 차지하는 비율</li>
-                <li><b>여론의 양(ln):</b> 관심도(댓글 수)를 로그 함수로 완만하게 반영</li>
-                <li><b>특징:</b> 긍정 비율이 높으면서 관객수도 많은(실제 파급력) 작품일수록 점수가 폭발적으로 상승합니다.</li>
+                <li><b>Pos (긍정 댓글 수):</b> AI가 판별한 해당 연도의 긍정적 유튜브 댓글 수</li>
+                <li><b>Sent_all (전체 댓글 수):</b> 긍정과 부정을 모두 합친 전체 댓글 수 (관심도)</li>
+                <li><b>A_i (영화 관객수):</b> 평가 시점의 해당 영화가 동원한 관객수</li>
+                <li><b>Avg_site (전체 영화 평균):</b> DB에 등록된 모든 영화의 평균 관객수</li>
+                <li><b>특징:</b> 긍정 비율이 높으면서 관심도(ln)도 높고, 실제 관객수(A_i)까지 터졌을 때 점수가 폭발적으로 상승합니다.</li>
             </ul>`,
-    'C3': `<h4>후보 3: 초기 흥행 폭발력 (Opening Impact Factor)</h4>
-            <div class="math-formula">Score = (A_i / Total_Y) × (해당 감독의 역대 평균 관객수 / Avg_site) × 1000</div>
+    'C3': `<h4>후보 3: 타석 대비 장타율 (Slugging Percentage Model)</h4>
+            <div class="math-formula">Score = (A_acc / N_movies) / Avg_site × 100</div>
             <ul>
-                <li><b>감독 파워:</b> 사이트 내 해당 감독이 동원한 전체 작품의 평균 관객수</li>
-                <li><b>특징:</b> 검증된 대형 흥행 감독의 텐트폴 영화에 출연하여 높은 점유율을 획득했을 때의 화제성을 측정합니다.</li>
+                <li><b>A_acc (누적 관객수):</b> 첫 작품부터 현재 시점까지 배우가 동원한 관객수 총합</li>
+                <li><b>N_movies (누적 영화 수):</b> 현재 시점까지 배우가 개봉시킨 영화의 총 편수</li>
+                <li><b>Avg_site (전체 영화 평균):</b> DB에 등록된 모든 영화의 평균 관객수</li>
+                <li><b>특징:</b> 배우가 가진 '타율(평균 동원력)'이 전체 시장 평균 대비 몇 배의 가치를 지니는지 100분율(%)로 나타냅니다.</li>
             </ul>`,
-    'C4': `<h4>후보 4: 평균 타율 (Movie Average Percentage)</h4>
-            <div class="math-formula">Score = (현재까지의 누적 관객수 / 현재 개봉작 수) / Avg_site × 100</div>
+    'C4': `<h4>후보 4: 감독-배우 시너지 지수 (Director-Actor Synergy)</h4>
+            <div class="math-formula">Score = (A_i / 10000) × [ 1 + (D_cnt - 1) × 0.2 ]</div>
             <ul>
-                <li><b>Avg_site:</b> K-Movie A Archive 전체 영화의 평균 관객수</li>
-                <li><b>특징:</b> 기존 공식3(성공 횟수 타율)과 달리, 천만 영화와 백만 영화의 가치 차이를 반영합니다. </li>
+                <li><b>A_i (영화 관객수):</b> 평가 시점의 해당 영화가 동원한 관객수</li>
+                <li><b>D_cnt (감독 협업 횟수):</b> 해당 시점까지 특정 감독과 함께 영화를 작업한 누적 횟수</li>
+                <li><b>특징:</b> 흥행에 성공했을 때, 그 감독과 이전에 함께 작업했던 횟수가 많을수록(페르소나) 보너스 가중치를 부여받습니다.</li>
             </ul>`,
-    'C5': `<h4>후보 5: 감독-배우 관계 (Director-Actor Relation)</h4>
-            <div class="math-formula">Score = (A_i / 10000) × [ 1 + (감독과의 누적 작업 횟수 - 1) × 0.2 ]</div>
+    'C5': `<h4>후보 5: 연도별 타석 효율성 모델 (Annual Efficiency)</h4>
+            <div class="math-formula">Score = [ A_year / (N_year + 1) ] × 0.001</div>
             <ul>
-                <li><b>특징:</b> 흥행에 성공했을 때, 그 감독과 이전에 함께 작업했던 횟수가 많을수록(페르소나) '안정적인 캐시카우'로서 보너스를 받습니다.</li>
+                <li><b>A_year (연간 관객 합계):</b> 해당 연도에 배우가 출연한 모든 영화의 관객수 총합</li>
+                <li><b>N_year (연간 다작 횟수):</b> 해당 연도에 개봉한 배우의 영화 편수</li>
+                <li><b>특징:</b> 무리한 다작(N_year 증가)으로 분모가 커지는 것을 페널티로 삼아, 적은 작품으로 큰 흥행을 이끌어낸 '타석 효율성'을 평가합니다.</li>
             </ul>`
 };
 
@@ -208,18 +215,6 @@ async function loadSearchIndex() {
                         YEAR_TOTALS[year] = (YEAR_TOTALS[year] || 0) + audi;
                         totalAudiAll += audi;
                         validMovieCount++;
-                        
-                        // 🌟 후보 3을 위한 감독별 통계 사전 집계
-                        if (m.directors) {
-                            m.directors.forEach(d => {
-                                const dNm = d.peopleNm || d.name;
-                                if(dNm) {
-                                    if(!DIRECTOR_STATS[dNm]) DIRECTOR_STATS[dNm] = { audi: 0, count: 0 };
-                                    DIRECTOR_STATS[dNm].audi += audi;
-                                    DIRECTOR_STATS[dNm].count += 1;
-                                }
-                            });
-                        }
                     }
                 });
                 GLOBAL_AVG = validMovieCount > 0 ? (totalAudiAll / validMovieCount) : 0;
@@ -282,12 +277,10 @@ function computeTimeSeriesData(actor, type) {
     let timeSeriesPoints = [];
     let sumForAverage = 0;
 
-    // 후보군 계산을 위한 누적 상태 변수들
     let seenGenres = new Set();
     let accAudi = 0;
     let directorCollabCount = {};
 
-    // 여론 데이터 정제
     let yearlySentiment = {};
     if (actor.sentiment && actor.sentiment.timeline) {
         for (const week in actor.sentiment.timeline) {
@@ -298,67 +291,76 @@ function computeTimeSeriesData(actor, type) {
         }
     }
 
-    filmos.forEach((f, idx) => {
-        const A_i = safeParseInt(f.audiAcc);
-        const year = f.openDt.slice(0,4);
-        const Total_Y = YEAR_TOTALS[year] || A_i;
-
-        let currentPointScore = 0;
-
-        // 🌟 후보 1: 장르 확장성
-        if (type === 'C1') {
-            const genres = f.baseInfo.genres || [];
-            genres.forEach(g => seenGenres.add(g.genreNm || g));
-            currentPointScore = (A_i / Total_Y) * (1 + (seenGenres.size / 10)) * 1000;
-        } 
-        // 🌟 후보 2: 여론 순도
-        else if (type === 'C2') {
-            const sent = yearlySentiment[year] || { pos: 0, neg: 0 };
-            const totalSent = sent.pos + sent.neg;
-            const purity = totalSent > 0 ? (sent.pos / totalSent) : 0;
-            currentPointScore = purity * Math.log(totalSent + 1) * (A_i / GLOBAL_AVG) * 100;
-        } 
-        // 🌟 후보 3: 초기 폭발력 (감독 가중치)
-        else if (type === 'C3') {
-            const dirs = f.baseInfo.directors || [];
-            let dirAvgSum = 0;
-            let dirValidCnt = 0;
-            dirs.forEach(d => {
-                const nm = d.peopleNm || d.name;
-                if(nm && DIRECTOR_STATS[nm]) {
-                    dirAvgSum += (DIRECTOR_STATS[nm].audi / DIRECTOR_STATS[nm].count);
-                    dirValidCnt++;
-                }
+    // 🌟 새로운 후보 5 로직 추가 (연도별 타석 효율성)
+    if (type === 'C5') {
+        let yearlyCounts = {};
+        let yearlyAudi = {};
+        
+        filmos.forEach(f => {
+            const year = f.openDt.slice(0,4);
+            yearlyCounts[year] = (yearlyCounts[year] || 0) + 1;
+            yearlyAudi[year] = (yearlyAudi[year] || 0) + safeParseInt(f.audiAcc);
+        });
+        
+        for (const year in yearlyCounts) {
+            let count = yearlyCounts[year];
+            let totalAudi = yearlyAudi[year];
+            // 요청하신 수식: {(그 해 관객 합) / (그 해 영화 수 + 1)} * 0.001
+            let score = (totalAudi / (count + 1)) * 0.001;
+            
+            timeSeriesPoints.push({ 
+                x: moment(`${year}-12-31`).toDate(), 
+                y: parseFloat(score.toFixed(2)), 
+                movieNm: `${year}년 개봉작 (총 ${count}편)` 
             });
-            const dirAvg = dirValidCnt > 0 ? (dirAvgSum / dirValidCnt) : GLOBAL_AVG;
-            currentPointScore = (A_i / Total_Y) * (dirAvg / GLOBAL_AVG) * 1000;
+            sumForAverage += score;
         }
-        // 🌟 후보 4: 장타율 (Slugging)
-        else if (type === 'C4') {
-            accAudi += A_i;
-            const rollingAvg = accAudi / (idx + 1);
-            currentPointScore = (rollingAvg / GLOBAL_AVG) * 100; 
-        }
-        // 🌟 후보 5: 감독 시너지
-        else if (type === 'C5') {
-            const dirs = f.baseInfo.directors || [];
-            let maxCollab = 1;
-            dirs.forEach(d => {
-                const nm = d.peopleNm || d.name;
-                if(nm) {
-                    directorCollabCount[nm] = (directorCollabCount[nm] || 0) + 1;
-                    if(directorCollabCount[nm] > maxCollab) maxCollab = directorCollabCount[nm];
-                }
-            });
-            currentPointScore = (A_i / 10000) * (1 + ((maxCollab - 1) * 0.2));
-        }
+        timeSeriesPoints.sort((a,b) => a.x - b.x);
+    } 
+    else {
+        filmos.forEach((f, idx) => {
+            const A_i = safeParseInt(f.audiAcc);
+            const year = f.openDt.slice(0,4);
+            const Total_Y = YEAR_TOTALS[year] || A_i;
 
-        sumForAverage += currentPointScore;
-        timeSeriesPoints.push({ x: moment(f.openDt).toDate(), y: parseFloat(currentPointScore.toFixed(2)), movieNm: f.movieNm });
-    });
+            let currentPointScore = 0;
+
+            if (type === 'C1') {
+                const genres = f.baseInfo.genres || [];
+                genres.forEach(g => seenGenres.add(g.genreNm || g));
+                currentPointScore = (A_i / Total_Y) * (1 + (seenGenres.size / 10)) * 1000;
+            } 
+            else if (type === 'C2') {
+                const sent = yearlySentiment[year] || { pos: 0, neg: 0 };
+                const totalSent = sent.pos + sent.neg;
+                const purity = totalSent > 0 ? (sent.pos / totalSent) : 0;
+                currentPointScore = purity * Math.log(totalSent + 1) * (A_i / GLOBAL_AVG) * 100;
+            } 
+            // C3 삭제 후 한 칸씩 땡김
+            else if (type === 'C3') {
+                accAudi += A_i;
+                const rollingAvg = accAudi / (idx + 1);
+                currentPointScore = (rollingAvg / GLOBAL_AVG) * 100; 
+            }
+            else if (type === 'C4') {
+                const dirs = f.baseInfo.directors || [];
+                let maxCollab = 1;
+                dirs.forEach(d => {
+                    const nm = d.peopleNm || d.name;
+                    if(nm) {
+                        directorCollabCount[nm] = (directorCollabCount[nm] || 0) + 1;
+                        if(directorCollabCount[nm] > maxCollab) maxCollab = directorCollabCount[nm];
+                    }
+                });
+                currentPointScore = (A_i / 10000) * (1 + ((maxCollab - 1) * 0.2));
+            }
+
+            sumForAverage += currentPointScore;
+            timeSeriesPoints.push({ x: moment(f.openDt).toDate(), y: parseFloat(currentPointScore.toFixed(2)), movieNm: f.movieNm });
+        });
+    }
 
     let tableScore = timeSeriesPoints.length > 0 ? (sumForAverage / timeSeriesPoints.length) : 0;
-    
     return { points: timeSeriesPoints, finalScore: parseFloat(tableScore.toFixed(2)) };
 }
 
@@ -425,10 +427,13 @@ function calculateAndRender() {
                 legend: { position: 'top' },
                 tooltip: {
                     callbacks: {
-                        title: (tt) => tt[0].raw.movieNm + " (" + moment(tt[0].raw.x).format('YYYY.MM.DD') + ")",
+                        title: (tt) => {
+                            if (selectedType === 'C5') return tt[0].raw.movieNm; // 연도 데이터 툴팁
+                            return tt[0].raw.movieNm + " (" + moment(tt[0].raw.x).format('YYYY.MM.DD') + ")";
+                        },
                         label: (ctx) => {
                             let unit = '점';
-                            if (selectedType === 'C4') unit = '% (전체평균 대비)';
+                            if (selectedType === 'C3') unit = '% (시장평균 대비)';
                             return ` ${ctx.dataset.label}: ${fmtNum(ctx.raw.y)}${unit}`;
                         }
                     }
@@ -443,7 +448,7 @@ function calculateAndRender() {
         const tr = document.createElement('tr');
         if (idx === 0) tr.style.backgroundColor = '#fefce8';
         let unit = '점';
-        if (selectedType === 'C4') unit = '%';
+        if (selectedType === 'C3') unit = '%';
         tr.innerHTML = `
             <td><b>${idx + 1}위</b></td>
             <td><b>${r.name}</b></td>
