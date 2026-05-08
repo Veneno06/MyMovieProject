@@ -31,7 +31,7 @@
 </div>
 
 <script>
-/* 🌟 [추가됨] 새 탭이면 창 닫기, 아니면 이전 페이지로 */
+/* 🌟 새 탭이면 창 닫기, 아니면 이전 페이지로 */
 function smartBack() {
     if (window.history.length <= 1) {
         window.close();
@@ -94,7 +94,6 @@ function pickMovieInfo(json){
     box.textContent = '영화 코드가 없습니다.'; return;
   }
 
-  // [수정] PEOPLE_URL 로딩은 유지하되, 링크 생성 로직은 단순화
   const index = await tryFetchJson(INDEX_URL);
   const list = index?.movies || [];
   const idxEntry = list.find(m => m.movieCd === movieCd);
@@ -134,15 +133,9 @@ function pickMovieInfo(json){
     nm: a.peopleNm || '',
   }));
 
-  // [핵심 수정] 링크 생성 로직 단순화 및 오류 수정
   const getPersonLink = (actor) => {
-    // 1. ID 결정: 코드가 있으면 사용, 없으면 name:이름
     const pid = actor.cd ? actor.cd : `name:${actor.nm}`;
-    
-    // 2. URL 생성: person.html이 기대하는 id와 name 파라미터 사용
     const href = `person.html?id=${encodeURIComponent(pid)}&name=${encodeURIComponent(actor.nm)}`;
-    
-    // 3. 새 탭 열기 추가 (target="_blank")
     return `<a href="${href}" class="actor-link" target="_blank">${actor.nm}</a>`;
   };
 
@@ -151,6 +144,10 @@ function pickMovieInfo(json){
 
   const audiAcc = (raw.audiAcc != null ? raw.audiAcc : idxEntry?.audiAcc);
   const audiText = (audiAcc != null) ? `${fmtNum(audiAcc)}명` : '집계 데이터 없음';
+
+  // 🌟 [추가됨] 파이썬 스크립트가 저장해 줄 'audiWeek1' 데이터를 불러와서 화면에 출력
+  const audiWeek1 = raw.audiWeek1;
+  const audiWeek1Text = (audiWeek1 != null && audiWeek1 > 0) ? `${fmtNum(audiWeek1)}명` : '<span class="muted" style="font-size:12px;">데이터 없음 (Top 10 미진입 등)</span>';
 
   box.innerHTML = `
     <div><strong data-i18n-key="titleLabel">제목:</strong> ${title} ${prdtYear?`<span class="muted">(${prdtYear})</span>`:''}</div>
@@ -166,8 +163,10 @@ function pickMovieInfo(json){
       ${actorArr.length>5 ? ` <a href="#" id="actorsMore" data-i18n-key="btnMore">더보기</a>
       <span id="actorsAll" style="display:none">${actorLinksAll}</span>` : ''}
     </div>
+    <div><strong style="color:#2563eb;">개봉 첫 주 관객수:</strong> <span style="font-weight:bold; color:#111827;">${audiWeek1Text}</span></div>
     <div><strong data-i18n-key="audiAccLabel">관객수(누적):</strong> <span id="audiAccText">${audiText}</span></div>
-    <div class="muted">영화코드: ${movieCd} · <span title="사용한 캐시 경로">${usedUrl || '캐시'}</span></div>
+    
+    <div class="muted" style="margin-top:10px;">영화코드: ${movieCd} · <span title="사용한 캐시 경로">${usedUrl || '캐시'}</span></div>
   `;
 
   if (actorArr.length>5){
