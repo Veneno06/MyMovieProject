@@ -415856,7 +415856,7 @@
     "movieNmEn": "Sing Street",
     "prdtYear": "2016",
     "openDt": "20160519",
-    "audiAcc": 578687,
+    "audiAcc": 581159,
     "nation": "아일랜드",
     "directors": [
       {
@@ -989610,7 +989610,7 @@
     "movieNmEn": "Wild Sing",
     "prdtYear": "2025",
     "openDt": "20260603",
-    "audiAcc": 637946,
+    "audiAcc": 664620,
     "nation": "한국",
     "directors": [
       {
@@ -990252,6 +990252,53 @@
     ]
   },
   {
+    "movieCd": "20250655",
+    "movieNm": "디스클로저 데이",
+    "movieNmEn": "Disclosure Day",
+    "prdtYear": "2026",
+    "openDt": "20260610",
+    "audiAcc": 82282,
+    "nation": "미국",
+    "directors": [
+      {
+        "name": "스티븐 스필버그",
+        "id": ""
+      }
+    ],
+    "actors": [
+      {
+        "name": "에밀리 블런트",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      },
+      {
+        "name": "조쉬 오코너",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      },
+      {
+        "name": "콜린 퍼스",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      },
+      {
+        "name": "이브 휴슨",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      },
+      {
+        "name": "콜먼 도밍고",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      }
+    ]
+  },
+  {
     "movieCd": "20250686",
     "movieNm": "하우스메이드",
     "movieNmEn": "The Housemaid",
@@ -990482,7 +990529,7 @@
     "movieNmEn": "COLONY",
     "prdtYear": "2025",
     "openDt": "20260521",
-    "audiAcc": 4871161,
+    "audiAcc": 4911772,
     "nation": "한국",
     "directors": [
       {
@@ -990881,7 +990928,7 @@
     "movieNmEn": "STAR WARS: THE MANDALORIAN AND GROGU",
     "prdtYear": "2026",
     "openDt": "20260527",
-    "audiAcc": 197960,
+    "audiAcc": 199702,
     "nation": "미국",
     "directors": [
       {
@@ -991258,7 +991305,7 @@
     "movieNmEn": "Michael",
     "prdtYear": "2026",
     "openDt": "20260513",
-    "audiAcc": 1557440,
+    "audiAcc": 1561970,
     "nation": "미국",
     "directors": [
       {
@@ -991729,7 +991776,7 @@
     "movieNmEn": "Sheep in The Box",
     "prdtYear": "2025",
     "openDt": "20260610",
-    "audiAcc": 20229,
+    "audiAcc": 25905,
     "nation": "일본",
     "directors": [
       {
@@ -992396,7 +992443,7 @@
     "movieNmEn": "Backrooms",
     "prdtYear": "2026",
     "openDt": "20260527",
-    "audiAcc": 851365,
+    "audiAcc": 867337,
     "nation": "미국",
     "directors": [
       {
@@ -992762,5 +992809,21 @@
         "cast": ""
       }
     ]
+  },
+  {
+    "movieCd": "20264226",
+    "movieNm": "쏜애플 '나의 세기' 익스텐디드 플레이 필름",
+    "movieNmEn": "THORNAPPLE 'My Century' Extended Play Film",
+    "prdtYear": "2026",
+    "openDt": "",
+    "audiAcc": 2000,
+    "nation": "한국",
+    "directors": [
+      {
+        "name": "금강산",
+        "id": ""
+      }
+    ],
+    "actors": []
   }
 ]
