@@ -1,0 +1,74 @@
+{
+  "movieInfoResult": {
+    "movieInfo": {
+      "movieCd": "20263948",
+      "movieNm": "에픽: 엘비스 프레슬리 콘서트",
+      "movieNmEn": "EPiC: Elvis Presley in Concert",
+      "movieNmOg": "",
+      "showTm": "96",
+      "prdtYear": "2026",
+      "openDt": "20260701",
+      "prdtStatNm": "개봉예정",
+      "typeNm": "장편",
+      "nations": [
+        {
+          "nationNm": "미국"
+        }
+      ],
+      "genres": [
+        {
+          "genreNm": "공연"
+        },
+        {
+          "genreNm": "다큐멘터리"
+        }
+      ],
+      "directors": [
+        {
+          "peopleNm": "바즈 루어만",
+          "peopleNmEn": "Baz Luhrmann"
+        }
+      ],
+      "actors": [
+        {
+          "peopleNm": "엘비스 프레슬리",
+          "peopleNmEn": "Elvis Presley",
+          "cast": "",
+          "castEn": ""
+        }
+      ],
+      "showTypes": [
+        {
+          "showTypeGroupNm": "2D",
+          "showTypeNm": "디지털"
+        },
+        {
+          "showTypeGroupNm": "IMAX",
+          "showTypeNm": "IMAX"
+        }
+      ],
+      "companys": [
+        {
+          "companyCd": "20100603",
+          "companyNm": "유니버설픽쳐스인터내셔널 코리아(유)",
+          "companyNmEn": "Universal Pictures International Korea",
+          "companyPartNm": "배급사"
+        },
+        {
+          "companyCd": "20100603",
+          "companyNm": "유니버설픽쳐스인터내셔널 코리아(유)",
+          "companyNmEn": "Universal Pictures International Korea",
+          "companyPartNm": "수입사"
+        }
+      ],
+      "audits": [
+        {
+          "auditNo": "2026-MF01303",
+          "watchGradeNm": "12세이상관람가"
+        }
+      ],
+      "staffs": []
+    },
+    "source": "영화진흥위원회"
+  }
+}
