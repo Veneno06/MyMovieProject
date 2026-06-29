@@ -26,6 +26,34 @@
       <button class="btn" onclick="doSearch()" style="margin-left:10px;">검색</button>
   </div>
 
+  <div style="background:#f9f9f9; padding:15px; border-radius:8px; border:1px solid #ddd; margin-bottom:20px;">
+      <h3 style="margin-top:0; color:#111827; font-size:16px;">📊 데이터베이스 전체 통계</h3>
+      <div style="display:flex; gap:20px; font-size:14px; color:#4b5563;">
+          <div><b>배우:</b> 국내 <span id="statActorDom" style="font-weight:bold; color:#2563eb;">0</span>명 / 해외 <span id="statActorInt" style="font-weight:bold; color:#ef4444;">0</span>명</div>
+          <div><b>감독:</b> 국내 <span id="statDirDom" style="font-weight:bold; color:#2563eb;">0</span>명 / 해외 <span id="statDirInt" style="font-weight:bold; color:#ef4444;">0</span>명</div>
+      </div>
+  </div>
+
+  <div style="background:#f9f9f9; padding:15px; border-radius:8px; border:1px solid #ddd; margin-bottom:20px;">
+      <h3 style="margin-top:0; color:#111827; font-size:16px;">🔍 유튜브 여론 심층 필터링
+          <span style="font-size:13px; font-weight:normal; color:#2563eb; margin-left:15px;" id="sentimentScanStatus">여론 데이터 스캔 준비...</span>
+      </h3>
+      <div style="display:flex; flex-direction:column; gap:12px; font-size:14px; color:#374151;">
+          <label>1. 부정 댓글 총합: 
+              <input type="number" id="filterNegTotal" placeholder="예: 200" style="width:120px; margin-left:5px; padding:4px;"> 개 이상
+          </label>
+          <label>2. 부정 댓글 비율: 
+              <input type="number" id="filterNegRatio" placeholder="0 ~ 100" style="width:120px; margin-left:5px; padding:4px;" min="0" max="100"> % 이상
+          </label>
+          <label>3. 부정 댓글 최대 급증/급락폭(기울기): 
+              <input type="number" id="filterNegSlope" placeholder="스캔 중..." style="width:180px; margin-left:5px; padding:4px;"> 개/주 이상
+          </label>
+          <div style="margin-top:5px;">
+              <button class="btn" onclick="applySentimentFilter()" style="background:#4f46e5; color:white; border:none; padding:8px 16px;">위 조건으로 여론 기반 검색</button>
+          </div>
+      </div>
+  </div>
+
   <div id="count" class="note" style="margin-bottom: 10px;"></div>
   <ul id="results" class="list"></ul>
 
@@ -53,8 +81,12 @@
 const TS = Date.now();
 const PATHS_INDEX = [`docs/data/search_index.json?v=${TS}`, `data/search_index.json?v=${TS}`];
 const PATHS_DETAILS = [`docs/data/people/`, `data/people/`];
+const PATHS_SENTIMENT = [`docs/data/sentiment/`, `data/sentiment/`];
 
 let SEARCH_INDEX = [];
+let GLOBAL_RANKED_ALL = []; // 스캔을 위해 전체 랭킹 데이터 전역 보관
+let VALID_SENTIMENT_ACTORS = []; // 여론 데이터가 있는 배우들 목록
+let GLOBAL_MAX_SLOPE = 0; // 발견된 최대 기울기(절댓값)
 
 async function loadIndex() {
     for (const p of PATHS_INDEX) {
@@ -84,6 +116,150 @@ async function fetchPersonInfo(id) {
     return null;
 }
 
+// 🌟 [추가 기능 1] 데이터베이스 통계 (국내/해외) 산출
+function calculateDbStats() {
+    const actorsSetDomestic = new Set();
+    const actorsSetIntl = new Set();
+    const directorsSetDomestic = new Set();
+    const directorsSetIntl = new Set();
+
+    // 이름에 한글이 하나라도 포함되어 있으면 국내로 분류 (휴리스틱 판단)
+    const isDomestic = (name) => /[가-힣]/.test(name);
+
+    SEARCH_INDEX.forEach(m => {
+        (m.actors || []).forEach(a => {
+            if (a.id) {
+                if (isDomestic(a.name)) actorsSetDomestic.add(a.id);
+                else actorsSetIntl.add(a.id);
+            }
+        });
+        (m.directors || []).forEach(d => {
+            if (d.id) {
+                if (isDomestic(d.name)) directorsSetDomestic.add(d.id);
+                else directorsSetIntl.add(d.id);
+            }
+        });
+    });
+
+    document.getElementById('statActorDom').innerText = actorsSetDomestic.size.toLocaleString();
+    document.getElementById('statActorInt').innerText = actorsSetIntl.size.toLocaleString();
+    document.getElementById('statDirDom').innerText = directorsSetDomestic.size.toLocaleString();
+    document.getElementById('statDirInt').innerText = directorsSetIntl.size.toLocaleString();
+}
+
+// 여론 데이터 단일 호출 함수
+async function tryFetchSentiment(name) {
+    for (const prefix of PATHS_SENTIMENT) {
+        try {
+            const res = await fetch(prefix + `${name}.json?v=${TS}`);
+            if (res.ok) return await res.json();
+        } catch(e) {}
+    }
+    return null;
+}
+
+// 🌟 [추가 기능 2-1] 여론 데이터 백그라운드 스캔 (병렬)
+async function startSentimentScan() {
+    const statusEl = document.getElementById('sentimentScanStatus');
+    const slopeInput = document.getElementById('filterNegSlope');
+    statusEl.innerText = `검색 가능한 배우의 수: 0명 (스타 파워 랭킹 기반 스캔 중...)`;
+
+    const uniqueActors = GLOBAL_RANKED_ALL; 
+    const batchSize = 10; // 네트워크 과부하 방지 청크 단위
+    let foundCount = 0;
+
+    for (let i = 0; i < uniqueActors.length; i += batchSize) {
+        const batch = uniqueActors.slice(i, i + batchSize);
+        await Promise.all(batch.map(async (actor) => {
+            const data = await tryFetchSentiment(actor.name);
+            if (data && data.timeline) {
+                let totalPos = 0, totalNeg = 0, maxSlope = 0;
+                let prevNeg = null;
+                const weeks = Object.keys(data.timeline).sort();
+
+                weeks.forEach(w => {
+                    const p = data.timeline[w].positive || 0;
+                    const n = Math.abs(data.timeline[w].negative || 0); // 항상 양수로 환산
+                    totalPos += p;
+                    totalNeg += n;
+
+                    if (prevNeg !== null) {
+                        const slope = Math.abs(n - prevNeg);
+                        if (slope > maxSlope) maxSlope = slope;
+                    }
+                    prevNeg = n;
+                });
+
+                if (maxSlope > GLOBAL_MAX_SLOPE) GLOBAL_MAX_SLOPE = maxSlope;
+
+                const totalComments = totalPos + totalNeg;
+                const negRatio = totalComments > 0 ? (totalNeg / totalComments) * 100 : 0;
+
+                VALID_SENTIMENT_ACTORS.push({
+                    id: actor.id,
+                    name: actor.name,
+                    score: actor.score,
+                    negTotal: totalNeg,
+                    negRatio: negRatio,
+                    maxSlope: maxSlope
+                });
+                foundCount++;
+            }
+        }));
+
+        // UI 갱신
+        statusEl.innerHTML = `검색 가능한 배우의 수: <b>${foundCount}명</b> <span style="color:#888;">(스캔 진행 중... ${Math.min(i + batchSize, uniqueActors.length)}/${uniqueActors.length})</span>`;
+        slopeInput.placeholder = `0 ~ 최대 ${GLOBAL_MAX_SLOPE} 사이 입력`;
+
+        // UI 스레드가 멈추지 않도록 짧은 휴식 부여
+        await new Promise(r => setTimeout(r, 15));
+    }
+    
+    statusEl.innerHTML = `검색 가능한 배우의 수: <b>${foundCount}명</b> <span style="color:#16a34a;">(스캔 완료 ✅)</span>`;
+    // 스타파워 순 내림차순 정렬
+    VALID_SENTIMENT_ACTORS.sort((a, b) => b.score - a.score);
+}
+
+// 🌟 [추가 기능 2-2] 필터 적용 버튼 로직
+function applySentimentFilter() {
+    const minNegTotal = parseInt(document.getElementById('filterNegTotal').value, 10) || 0;
+    const minNegRatio = parseFloat(document.getElementById('filterNegRatio').value) || 0;
+    const minNegSlope = parseInt(document.getElementById('filterNegSlope').value, 10) || 0;
+
+    const filtered = VALID_SENTIMENT_ACTORS.filter(a => {
+        return a.negTotal >= minNegTotal &&
+               a.negRatio >= minNegRatio &&
+               a.maxSlope >= minNegSlope;
+    });
+
+    const out = document.getElementById('results');
+    out.innerHTML = '';
+    document.getElementById('count').innerText = `여론 필터링 결과: 총 ${filtered.length}명 검색됨`;
+
+    if (filtered.length === 0) {
+        out.innerHTML = '<li class="note" style="color:#ef4444;">해당 조건에 부합하는 여론 분석 대상 배우가 없습니다.</li>';
+        return;
+    }
+
+    filtered.forEach(r => {
+        const li = document.createElement('li');
+        li.style.borderBottom = "1px dashed #e5e7eb"; li.style.padding = "10px 0";
+        
+        li.innerHTML = `
+            <a href="person.html?id=${r.id}&name=${encodeURIComponent(r.name)}" target="_blank" style="font-weight:bold; color:#2563eb; text-decoration:none; font-size:15px;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${r.name}</a>
+            <span class="note">(${r.id})</span>
+            <span style="font-size:13px; font-weight:bold; color:#d97706; margin-left:8px;">[스타파워: ${Math.round(r.score).toLocaleString()}점]</span>
+            <div style="font-size:13px; color:#4b5563; margin-top:6px; background:#f3f4f6; padding:8px; border-radius:4px; display:inline-block;">
+                • 부정 댓글 총합: <b style="color:#ef4444;">${r.negTotal.toLocaleString()}개</b> &nbsp;|&nbsp; 
+                • 부정 비율: <b style="color:#ef4444;">${r.negRatio.toFixed(1)}%</b> &nbsp;|&nbsp; 
+                • 최대 급증/급락폭(기울기): <b style="color:#ef4444;">${r.maxSlope.toLocaleString()}개/주</b>
+            </div>
+        `;
+        out.appendChild(li);
+    });
+}
+
+// 기존 일반 검색 기능
 async function doSearch() {
     if (SEARCH_INDEX.length === 0) await loadIndex();
     
@@ -127,7 +303,6 @@ async function doSearch() {
         const li = document.createElement('li');
         li.style.borderBottom = "1px dashed #e5e7eb"; li.style.padding = "8px 0";
         
-        // [수정됨] 이름 클릭 시 새 탭에서 열리도록 target="_blank" 추가
         li.innerHTML = `
             <a href="person.html?id=${r.id}&name=${encodeURIComponent(r.name)}" target="_blank" style="font-weight:bold; color:#2563eb; text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${r.name}</a>
             <span class="note">(${r.id})</span>
@@ -147,7 +322,7 @@ async function doSearch() {
                 if (onlyActor && trueRole !== '배우' && !trueRole.includes('배우')) {
                     li.style.display = 'none';
                     visibleCount--;
-                    document.getElementById('count').innerText = `총 ${visibleCount}건 검색됨`;
+                    document.getElementById('count').innerText = `일반 검색 결과: 총 ${visibleCount}건 검색됨`;
                 } else {
                     infoSpan.innerHTML = `${sexBadge} [${trueRole}]`;
                 }
@@ -158,7 +333,7 @@ async function doSearch() {
         visibleCount++;
     }
 
-    document.getElementById('count').innerText = `총 ${visibleCount}건 검색됨`;
+    document.getElementById('count').innerText = `일반 검색 결과: 총 ${visibleCount}건 검색됨`;
     if (visibleCount === 0) out.innerHTML = '<li class="note" style="color:red;">검색 결과가 없습니다.</li>';
 }
 
@@ -192,10 +367,12 @@ async function calculateGlobalRankings() {
     });
 
     const rankedAll = Array.from(ACTOR_SCORES.values()).sort((a,b) => b.score - a.score);
+    GLOBAL_RANKED_ALL = rankedAll; // 🌟 전역 변수 저장 (스캔용)
     
-    // [해결요청: 랭킹 표 고속 로딩 구현] 
-    // 순차적(직렬) 방식에서 Promise.all을 활용한 병렬(Parallel) 방식으로 변경
-    // 상위 100명의 데이터를 동시에 확 당겨와서 0.5초 만에 성별 필터링을 끝냅니다.
+    // 추가 지시 기능 실행
+    calculateDbStats();
+    startSentimentScan();
+
     const top100 = rankedAll.slice(0, 100);
     const enrichedTop100 = await Promise.all(top100.map(async (actor) => {
         const info = await fetchPersonInfo(actor.id);
@@ -209,7 +386,6 @@ async function calculateGlobalRankings() {
             if ((s === '남자' || s === '남') && topMale.length < 10) topMale.push(actor);
             if ((s === '여자' || s === '여') && topFemale.length < 10) topFemale.push(actor);
         }
-        // 남여 각각 10명이 모두 채워지면 불필요한 반복문 즉시 탈출
         if (topMale.length >= 10 && topFemale.length >= 10) break;
     }
 
@@ -219,7 +395,6 @@ async function calculateGlobalRankings() {
         const el = document.getElementById(elementId);
         el.innerHTML = '';
         list.slice(0, 10).forEach(a => {
-            // [수정됨] 랭킹 이름 클릭 시 새 탭에서 열리도록 target="_blank" 추가
             el.innerHTML += `<li>
                 <a href="person.html?id=${a.id}&name=${encodeURIComponent(a.name)}" target="_blank" style="color:#333; text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">
                     <b>${a.name}</b> <span style="font-size:12px; color:#888;">(${Math.round(a.score).toLocaleString()}점)</span>
