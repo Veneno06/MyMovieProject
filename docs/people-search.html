@@ -27,7 +27,7 @@
   </div>
 
   <div style="background:#f9f9f9; padding:15px; border-radius:8px; border:1px solid #ddd; margin-bottom:20px;">
-      <h3 style="margin-top:0; color:#111827; font-size:16px;"> 데이터베이스 전체 통계</h3>
+      <h3 style="margin-top:0; color:#111827; font-size:16px;">📊 데이터베이스 전체 통계</h3>
       <div style="display:flex; gap:20px; font-size:14px; color:#4b5563;">
           <div><b>배우:</b> 국내 <span id="statActorDom" style="font-weight:bold; color:#2563eb;">0</span>명 / 해외 <span id="statActorInt" style="font-weight:bold; color:#ef4444;">0</span>명</div>
           <div><b>감독:</b> 국내 <span id="statDirDom" style="font-weight:bold; color:#2563eb;">0</span>명 / 해외 <span id="statDirInt" style="font-weight:bold; color:#ef4444;">0</span>명</div>
@@ -35,7 +35,7 @@
   </div>
 
   <div style="background:#f9f9f9; padding:15px; border-radius:8px; border:1px solid #ddd; margin-bottom:20px;">
-      <h3 style="margin-top:0; color:#111827; font-size:16px;"> 유튜브 여론 심층 필터링
+      <h3 style="margin-top:0; color:#111827; font-size:16px;">🔍 유튜브 여론 심층 필터링
           <span style="font-size:13px; font-weight:normal; color:#2563eb; margin-left:15px;" id="sentimentScanStatus">여론 데이터 스캔 준비...</span>
       </h3>
       <div style="display:flex; flex-direction:column; gap:12px; font-size:14px; color:#374151;">
@@ -46,10 +46,22 @@
               <input type="number" id="filterNegRatio" placeholder="0 ~ 100" style="width:120px; margin-left:5px; padding:4px;" min="0" max="100"> % 이상
           </label>
           <label>3. 부정 댓글 최대 급증/급락폭(기울기): 
-              <input type="number" id="filterNegSlope" placeholder="스캔 중..." style="width:180px; margin-left:5px; padding:4px;"> (댓글 수 차이/1주) 이상
+              <input type="number" id="filterNegSlope" placeholder="스캔 중..." style="width:180px; margin-left:5px; padding:4px;"> 개/주 이상
           </label>
-          <div style="margin-top:5px;">
+          
+          <hr style="border:0; border-top:1px solid #e5e7eb; margin:5px 0;">
+          
+          <div style="background:#fff; padding:12px; border:1px solid #e5e7eb; border-radius:6px;">
+              <h4 style="margin:0 0 8px 0; color:#4f46e5; font-size:14px;">🔬 논문 가설 검증 데이터 추출 (Colab 연동)</h4>
+              <label>연구 대상 사건 발생일 설정: 
+                  <input type="text" id="filterMilestoneDate" placeholder="예: 20230515 (비워두면 여론 피크일 기준)" style="width:200px; padding:4px;">
+              </label>
+              <p style="font-size:12px; color:#6b7280; margin:4px 0 0 0;">※ 입력한 날짜를 기준으로 가설 검증용 데이터의 Pre/Post 구간이 자동 분리됩니다.</p>
+          </div>
+
+          <div style="display:flex; gap:10px; margin-top:5px;">
               <button class="btn" onclick="applySentimentFilter()" style="background:#4f46e5; color:white; border:none; padding:8px 16px;">위 조건으로 여론 기반 검색</button>
+              <button class="btn" onclick="exportFilterResultsToCSV()" style="background:#10b981; color:white; border:none; padding:8px 16px;">📊 Colab용 h1_data.csv 다운로드</button>
           </div>
       </div>
   </div>
@@ -84,9 +96,10 @@ const PATHS_DETAILS = [`docs/data/people/`, `data/people/`];
 const PATHS_SENTIMENT = [`docs/data/sentiment/`, `data/sentiment/`];
 
 let SEARCH_INDEX = [];
-let GLOBAL_RANKED_ALL = []; // 스캔을 위해 전체 랭킹 데이터 전역 보관
-let VALID_SENTIMENT_ACTORS = []; // 여론 데이터가 있는 배우들 목록
-let GLOBAL_MAX_SLOPE = 0; // 발견된 최대 기울기(절댓값)
+let GLOBAL_RANKED_ALL = []; 
+let VALID_SENTIMENT_ACTORS = []; 
+let GLOBAL_MAX_SLOPE = 0; 
+let YEAR_TOTALS = {}; // 전역 연도별 관객 총합 보관
 
 async function loadIndex() {
     for (const p of PATHS_INDEX) {
@@ -116,14 +129,12 @@ async function fetchPersonInfo(id) {
     return null;
 }
 
-// 🌟 [추가 기능 1] 데이터베이스 통계 (국내/해외) 산출
 function calculateDbStats() {
     const actorsSetDomestic = new Set();
     const actorsSetIntl = new Set();
     const directorsSetDomestic = new Set();
     const directorsSetIntl = new Set();
 
-    // 이름에 한글이 하나라도 포함되어 있으면 국내로 분류 (휴리스틱 판단)
     const isDomestic = (name) => /[가-힣]/.test(name);
 
     SEARCH_INDEX.forEach(m => {
@@ -147,7 +158,6 @@ function calculateDbStats() {
     document.getElementById('statDirInt').innerText = directorsSetIntl.size.toLocaleString();
 }
 
-// 여론 데이터 단일 호출 함수
 async function tryFetchSentiment(name) {
     for (const prefix of PATHS_SENTIMENT) {
         try {
@@ -158,14 +168,13 @@ async function tryFetchSentiment(name) {
     return null;
 }
 
-// 🌟 [추가 기능 2-1] 여론 데이터 백그라운드 스캔 (병렬)
 async function startSentimentScan() {
     const statusEl = document.getElementById('sentimentScanStatus');
     const slopeInput = document.getElementById('filterNegSlope');
     statusEl.innerText = `검색 가능한 배우의 수: 0명 (스타 파워 랭킹 기반 스캔 중...)`;
 
     const uniqueActors = GLOBAL_RANKED_ALL; 
-    const batchSize = 10; // 네트워크 과부하 방지 청크 단위
+    const batchSize = 10; 
     let foundCount = 0;
 
     for (let i = 0; i < uniqueActors.length; i += batchSize) {
@@ -175,21 +184,29 @@ async function startSentimentScan() {
             if (data && data.timeline) {
                 let totalPos = 0, totalNeg = 0, maxSlope = 0;
                 let prevNeg = null;
+                let peakWeekDate = "";
+                let tempMaxSlope = 0;
                 const weeks = Object.keys(data.timeline).sort();
 
                 weeks.forEach(w => {
                     const p = data.timeline[w].positive || 0;
-                    const n = Math.abs(data.timeline[w].negative || 0); // 항상 양수로 환산
+                    const n = Math.abs(data.timeline[w].negative || 0); 
                     totalPos += p;
                     totalNeg += n;
 
                     if (prevNeg !== null) {
                         const slope = Math.abs(n - prevNeg);
-                        if (slope > maxSlope) maxSlope = slope;
+                        if (slope > tempMaxSlope) {
+                            tempMaxSlope = slope;
+                            // 기울기가 가장 가파른 주차의 대략적인 날짜 추정치 기록
+                            const parts = w.split('-W');
+                            peakWeekDate = parts[0] + "0601"; // 연도 기반 디폴트 마일스톤 백업
+                        }
                     }
                     prevNeg = n;
                 });
 
+                maxSlope = tempMaxSlope;
                 if (maxSlope > GLOBAL_MAX_SLOPE) GLOBAL_MAX_SLOPE = maxSlope;
 
                 const totalComments = totalPos + totalNeg;
@@ -201,35 +218,122 @@ async function startSentimentScan() {
                     score: actor.score,
                     negTotal: totalNeg,
                     negRatio: negRatio,
-                    maxSlope: maxSlope
+                    maxSlope: maxSlope,
+                    peakDate: peakWeekDate, // 백업용 마일스톤
+                    rawTimeline: data.timeline // 🌟 CSV 다운로드 연동을 위한 타임라인 캐싱
                 });
                 foundCount++;
             }
         }));
 
-        // UI 갱신
         statusEl.innerHTML = `검색 가능한 배우의 수: <b>${foundCount}명</b> <span style="color:#888;">(스캔 진행 중... ${Math.min(i + batchSize, uniqueActors.length)}/${uniqueActors.length})</span>`;
         slopeInput.placeholder = `0 ~ 최대 ${GLOBAL_MAX_SLOPE} 사이 입력`;
 
-        // UI 스레드가 멈추지 않도록 짧은 휴식 부여
         await new Promise(r => setTimeout(r, 15));
     }
     
     statusEl.innerHTML = `검색 가능한 배우의 수: <b>${foundCount}명</b> <span style="color:#16a34a;">(스캔 완료 ✅)</span>`;
-    // 스타파워 순 내림차순 정렬
     VALID_SENTIMENT_ACTORS.sort((a, b) => b.score - a.score);
 }
 
-// 🌟 [추가 기능 2-2] 필터 적용 버튼 로직
+// 🌟 [추가 기능] 가설 검증용 CSV 패키징 및 내보내기 엔진
+function exportFilterResultsToCSV() {
+    const minNegTotal = parseInt(document.getElementById('filterNegTotal').value, 10) || 0;
+    const minNegRatio = parseFloat(document.getElementById('filterNegRatio').value) || 0;
+    const minNegSlope = parseInt(document.getElementById('filterNegSlope').value, 10) || 0;
+    const userMilestone = document.getElementById('filterMilestoneDate').value.trim().replace(/[^0-9]/g, '');
+
+    // 현재 화면 조건에 부합하는 타겟 배우 추출
+    const targets = VALID_SENTIMENT_ACTORS.filter(a => {
+        return a.negTotal >= minNegTotal && a.negRatio >= minNegRatio && a.maxSlope >= minNegSlope;
+    });
+
+    if (targets.length === 0) {
+        alert("다운로드할 데이터가 없습니다. 필터링 조건을 확인해 주세요.");
+        return;
+    }
+
+    // CSV 헤더 배열 정의 (Colab 가설 1 연산 로직과 100% 매칭)
+    let csvContent = "actor_name,movie_nm,open_dt,period,audience,total_y,role_weight,core_actors,time_weight,pos_count,neg_count\n";
+
+    targets.forEach(actor => {
+        // 전역 인덱스에서 이 배우가 출연한 모든 영화 정보를 추출
+        const myMovies = SEARCH_INDEX.filter(m => {
+            return (m.actors || []).some(a => a.id === actor.id || a.name === actor.name);
+        });
+
+        myMovies.forEach(m => {
+            const openDtRaw = (m.openDt || '').replace(/[^0-9]/g, '');
+            if (openDtRaw.length < 4) return; // 개봉일 불명 제외
+
+            const movieYear = openDtRaw.slice(0, 4);
+            const audience = parseInt(String(m.audiAcc).replace(/,/g, '') || '0', 10);
+            if (audience <= 0) return;
+
+            const total_y = YEAR_TOTALS[movieYear] || audience;
+            const core_actors = Math.max(1, (m.actors || []).length);
+            
+            // 주연/조연 비중 산출
+            const myIdx = m.actors.findIndex(a => a.id === actor.id || a.name === actor.name);
+            const role_weight = (myIdx !== -1 && myIdx < Math.ceil(core_actors / 3)) ? 1.0 : 0.5;
+            const time_weight = Math.max(0.1, (parseInt(movieYear) - 2000) / 10);
+
+            // Pre / Post 기간 판정 로직
+            let period = "pre";
+            const milestone = userMilestone ? userMilestone : actor.peakDate;
+            if (openDtRaw >= milestone) {
+                period = "post";
+            }
+
+            // 영화 개봉 연도에 매칭되는 유튜브 여론 통계 산출
+            let pos_count = 0;
+            let neg_count = 0;
+            if (actor.rawTimeline) {
+                Object.keys(actor.rawTimeline).forEach(w => {
+                    if (w.startsWith(movieYear)) {
+                        pos_count += (actor.rawTimeline[w].positive || 0);
+                        neg_count += Math.abs(actor.rawTimeline[w].negative || 0);
+                    }
+                });
+            }
+
+            // CSV 데이터 열 추가
+            const row = [
+                `"${actor.name}"`,
+                `"${m.movieNm.replace(/"/g, '""')}"`,
+                openDtRaw,
+                period,
+                audience,
+                total_y,
+                role_weight,
+                core_actors,
+                time_weight,
+                pos_count,
+                neg_count
+            ];
+            csvContent += row.join(",") + "\n";
+        });
+    });
+
+    // 다운로드 브라우저 트리거 작동
+    const blob = new Blob(["\uFEFF" + csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement("a");
+    const url = URL.createObjectURL(blob);
+    link.setAttribute("href", url);
+    link.setAttribute("download", `h1_data.csv`);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
 function applySentimentFilter() {
     const minNegTotal = parseInt(document.getElementById('filterNegTotal').value, 10) || 0;
     const minNegRatio = parseFloat(document.getElementById('filterNegRatio').value) || 0;
     const minNegSlope = parseInt(document.getElementById('filterNegSlope').value, 10) || 0;
 
     const filtered = VALID_SENTIMENT_ACTORS.filter(a => {
-        return a.negTotal >= minNegTotal &&
-               a.negRatio >= minNegRatio &&
-               a.maxSlope >= minNegSlope;
+        return a.negTotal >= minNegTotal && a.negRatio >= minNegRatio && a.maxSlope >= minNegSlope;
     });
 
     const out = document.getElementById('results');
@@ -259,7 +363,6 @@ function applySentimentFilter() {
     });
 }
 
-// 기존 일반 검색 기능
 async function doSearch() {
     if (SEARCH_INDEX.length === 0) await loadIndex();
     
@@ -338,8 +441,7 @@ async function doSearch() {
 }
 
 async function calculateGlobalRankings() {
-    const YEAR_TOTALS = {};
-    const ACTOR_SCORES = new Map();
+    ACTOR_SCORES = new Map();
 
     SEARCH_INDEX.forEach(m => {
         const audi = parseInt(String(m.audiAcc).replace(/,/g, '') || '0', 10);
@@ -367,9 +469,8 @@ async function calculateGlobalRankings() {
     });
 
     const rankedAll = Array.from(ACTOR_SCORES.values()).sort((a,b) => b.score - a.score);
-    GLOBAL_RANKED_ALL = rankedAll; // 🌟 전역 변수 저장 (스캔용)
+    GLOBAL_RANKED_ALL = rankedAll; 
     
-    // 추가 지시 기능 실행
     calculateDbStats();
     startSentimentScan();
 
