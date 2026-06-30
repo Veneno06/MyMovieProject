@@ -61,13 +61,13 @@
 
           <div style="display:flex; gap:10px; margin-top:5px;">
               <button class="btn" onclick="applySentimentFilter()" style="background:#4f46e5; color:white; border:none; padding:8px 16px;">위 조건으로 여론 기반 검색</button>
-              <button class="btn" onclick="exportFilterResultsToCSV()" style="background:#10b981; color:white; border:none; padding:8px 16px;"> Colab용 h1_data.csv 다운로드</button>
+              <button class="btn" onclick="exportFilterResultsToCSV()" style="background:#10b981; color:white; border:none; padding:8px 16px;"> Colab용 h1_data.csv 다운로드 (선택 항목만)</button>
           </div>
       </div>
   </div>
 
   <div id="count" class="note" style="margin-bottom: 10px;"></div>
-  <ul id="results" class="list"></ul>
+  <ul id="results" class="list" style="padding-left: 0;"></ul>
 
   <div id="rankingContainer" style="margin-top: 40px; padding-top: 20px; border-top: 2px dashed #ddd; display: none;">
       <h2> 실시간 스타 파워 (SP_Final) TOP 10</h2>
@@ -99,7 +99,7 @@ let SEARCH_INDEX = [];
 let GLOBAL_RANKED_ALL = []; 
 let VALID_SENTIMENT_ACTORS = []; 
 let GLOBAL_MAX_SLOPE = 0; 
-let YEAR_TOTALS = {}; // 전역 연도별 관객 총합 보관
+let YEAR_TOTALS = {}; 
 
 async function loadIndex() {
     for (const p of PATHS_INDEX) {
@@ -198,9 +198,8 @@ async function startSentimentScan() {
                         const slope = Math.abs(n - prevNeg);
                         if (slope > tempMaxSlope) {
                             tempMaxSlope = slope;
-                            // 기울기가 가장 가파른 주차의 대략적인 날짜 추정치 기록
                             const parts = w.split('-W');
-                            peakWeekDate = parts[0] + "0601"; // 연도 기반 디폴트 마일스톤 백업
+                            peakWeekDate = parts[0] + "0601"; 
                         }
                     }
                     prevNeg = n;
@@ -219,8 +218,8 @@ async function startSentimentScan() {
                     negTotal: totalNeg,
                     negRatio: negRatio,
                     maxSlope: maxSlope,
-                    peakDate: peakWeekDate, // 백업용 마일스톤
-                    rawTimeline: data.timeline // 🌟 CSV 다운로드 연동을 위한 타임라인 캐싱
+                    peakDate: peakWeekDate,
+                    rawTimeline: data.timeline 
                 });
                 foundCount++;
             }
@@ -236,35 +235,35 @@ async function startSentimentScan() {
     VALID_SENTIMENT_ACTORS.sort((a, b) => b.score - a.score);
 }
 
-// 🌟 [추가 기능] 가설 검증용 CSV 패키징 및 내보내기 엔진
+// 🌟 전체 선택/해제 토글 함수
+function toggleAllActors(source) {
+    const checkboxes = document.querySelectorAll('.actor-checkbox');
+    checkboxes.forEach(cb => cb.checked = source.checked);
+}
+
+// 🌟 다운로드 함수 (체크된 항목만 추출하도록 수정)
 function exportFilterResultsToCSV() {
-    const minNegTotal = parseInt(document.getElementById('filterNegTotal').value, 10) || 0;
-    const minNegRatio = parseFloat(document.getElementById('filterNegRatio').value) || 0;
-    const minNegSlope = parseInt(document.getElementById('filterNegSlope').value, 10) || 0;
-    const userMilestone = document.getElementById('filterMilestoneDate').value.trim().replace(/[^0-9]/g, '');
-
-    // 현재 화면 조건에 부합하는 타겟 배우 추출
-    const targets = VALID_SENTIMENT_ACTORS.filter(a => {
-        return a.negTotal >= minNegTotal && a.negRatio >= minNegRatio && a.maxSlope >= minNegSlope;
-    });
-
-    if (targets.length === 0) {
-        alert("다운로드할 데이터가 없습니다. 필터링 조건을 확인해 주세요.");
+    const checkedBoxes = document.querySelectorAll('.actor-checkbox:checked');
+    
+    if (checkedBoxes.length === 0) {
+        alert("다운로드할 배우를 최소 한 명 이상 선택해주세요.");
         return;
     }
 
-    // CSV 헤더 배열 정의 (Colab 가설 1 연산 로직과 100% 매칭)
+    // 체크된 배우 데이터 복원
+    const targets = Array.from(checkedBoxes).map(cb => JSON.parse(cb.value));
+    const userMilestone = document.getElementById('filterMilestoneDate').value.trim().replace(/[^0-9]/g, '');
+
     let csvContent = "actor_name,movie_nm,open_dt,period,audience,total_y,role_weight,core_actors,time_weight,pos_count,neg_count\n";
 
     targets.forEach(actor => {
-        // 전역 인덱스에서 이 배우가 출연한 모든 영화 정보를 추출
         const myMovies = SEARCH_INDEX.filter(m => {
             return (m.actors || []).some(a => a.id === actor.id || a.name === actor.name);
         });
 
         myMovies.forEach(m => {
             const openDtRaw = (m.openDt || '').replace(/[^0-9]/g, '');
-            if (openDtRaw.length < 4) return; // 개봉일 불명 제외
+            if (openDtRaw.length < 4) return; 
 
             const movieYear = openDtRaw.slice(0, 4);
             const audience = parseInt(String(m.audiAcc).replace(/,/g, '') || '0', 10);
@@ -273,19 +272,16 @@ function exportFilterResultsToCSV() {
             const total_y = YEAR_TOTALS[movieYear] || audience;
             const core_actors = Math.max(1, (m.actors || []).length);
             
-            // 주연/조연 비중 산출
             const myIdx = m.actors.findIndex(a => a.id === actor.id || a.name === actor.name);
             const role_weight = (myIdx !== -1 && myIdx < Math.ceil(core_actors / 3)) ? 1.0 : 0.5;
             const time_weight = Math.max(0.1, (parseInt(movieYear) - 2000) / 10);
 
-            // Pre / Post 기간 판정 로직
             let period = "pre";
             const milestone = userMilestone ? userMilestone : actor.peakDate;
             if (openDtRaw >= milestone) {
                 period = "post";
             }
 
-            // 영화 개봉 연도에 매칭되는 유튜브 여론 통계 산출
             let pos_count = 0;
             let neg_count = 0;
             if (actor.rawTimeline) {
@@ -297,7 +293,6 @@ function exportFilterResultsToCSV() {
                 });
             }
 
-            // CSV 데이터 열 추가
             const row = [
                 `"${actor.name}"`,
                 `"${m.movieNm.replace(/"/g, '""')}"`,
@@ -315,7 +310,6 @@ function exportFilterResultsToCSV() {
         });
     });
 
-    // 다운로드 브라우저 트리거 작동
     const blob = new Blob(["\uFEFF" + csvContent], { type: 'text/csv;charset=utf-8;' });
     const link = document.createElement("a");
     const url = URL.createObjectURL(blob);
@@ -327,6 +321,7 @@ function exportFilterResultsToCSV() {
     document.body.removeChild(link);
 }
 
+// 🌟 렌더링 함수 수정 (체크박스 및 전체선택 UI 주입)
 function applySentimentFilter() {
     const minNegTotal = parseInt(document.getElementById('filterNegTotal').value, 10) || 0;
     const minNegRatio = parseFloat(document.getElementById('filterNegRatio').value) || 0;
@@ -341,22 +336,47 @@ function applySentimentFilter() {
     document.getElementById('count').innerText = `여론 필터링 결과: 총 ${filtered.length}명 검색됨`;
 
     if (filtered.length === 0) {
-        out.innerHTML = '<li class="note" style="color:#ef4444;">해당 조건에 부합하는 여론 분석 대상 배우가 없습니다.</li>';
+        out.innerHTML = '<li class="note" style="color:#ef4444; list-style:none;">해당 조건에 부합하는 여론 분석 대상 배우가 없습니다.</li>';
         return;
     }
 
+    // 전체 선택/해제 UI 삽입
+    const selectAllDiv = document.createElement('div');
+    selectAllDiv.style.padding = "10px 0";
+    selectAllDiv.style.borderBottom = "2px solid #e5e7eb";
+    selectAllDiv.style.marginBottom = "10px";
+    selectAllDiv.innerHTML = `
+        <label style="cursor:pointer; font-weight:bold; color:#111827; display:flex; align-items:center;">
+            <input type="checkbox" id="selectAllActors" onclick="toggleAllActors(this)" checked style="transform: scale(1.2); margin-right:10px;"> 
+            <span>전체 선택/해제</span>
+        </label>
+    `;
+    out.appendChild(selectAllDiv);
+
     filtered.forEach(r => {
         const li = document.createElement('li');
-        li.style.borderBottom = "1px dashed #e5e7eb"; li.style.padding = "10px 0";
+        li.style.borderBottom = "1px dashed #e5e7eb"; 
+        li.style.padding = "10px 0";
+        li.style.display = "flex";
+        li.style.alignItems = "flex-start";
+        li.style.listStyle = "none";
         
+        // 체크박스에 담길 데이터에서 따옴표 충돌을 막기 위해 문자열 변환
+        const safeData = JSON.stringify(r).replace(/'/g, "&#39;");
+
         li.innerHTML = `
-            <a href="person.html?id=${r.id}&name=${encodeURIComponent(r.name)}" target="_blank" style="font-weight:bold; color:#2563eb; text-decoration:none; font-size:15px;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${r.name}</a>
-            <span class="note">(${r.id})</span>
-            <span style="font-size:13px; font-weight:bold; color:#d97706; margin-left:8px;">[스타파워: ${Math.round(r.score).toLocaleString()}점]</span>
-            <div style="font-size:13px; color:#4b5563; margin-top:6px; background:#f3f4f6; padding:8px; border-radius:4px; display:inline-block;">
-                • 부정 댓글 총합: <b style="color:#ef4444;">${r.negTotal.toLocaleString()}개</b> &nbsp;|&nbsp; 
-                • 부정 비율: <b style="color:#ef4444;">${r.negRatio.toFixed(1)}%</b> &nbsp;|&nbsp; 
-                • 최대 급증/급락폭(기울기): <b style="color:#ef4444;">${r.maxSlope.toLocaleString()}개/주</b>
+            <div style="margin-top: 2px; margin-right: 12px;">
+                <input type="checkbox" class="actor-checkbox" value='${safeData}' checked style="transform: scale(1.2); cursor:pointer;">
+            </div>
+            <div style="flex: 1;">
+                <a href="person.html?id=${r.id}&name=${encodeURIComponent(r.name)}" target="_blank" style="font-weight:bold; color:#2563eb; text-decoration:none; font-size:15px;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${r.name}</a>
+                <span class="note">(${r.id})</span>
+                <span style="font-size:13px; font-weight:bold; color:#d97706; margin-left:8px;">[스타파워: ${Math.round(r.score).toLocaleString()}점]</span>
+                <div style="font-size:13px; color:#4b5563; margin-top:6px; background:#f3f4f6; padding:8px; border-radius:4px; display:inline-block;">
+                    • 부정 댓글 총합: <b style="color:#ef4444;">${r.negTotal.toLocaleString()}개</b> &nbsp;|&nbsp; 
+                    • 부정 비율: <b style="color:#ef4444;">${r.negRatio.toFixed(1)}%</b> &nbsp;|&nbsp; 
+                    • 최대 급증/급락폭(기울기): <b style="color:#ef4444;">${r.maxSlope.toLocaleString()}개/주</b>
+                </div>
             </div>
         `;
         out.appendChild(li);
@@ -372,7 +392,7 @@ async function doSearch() {
     if (!keyword) { alert("이름을 입력해주세요."); return; }
 
     const out = document.getElementById('results');
-    out.innerHTML = '<li class="note">검색 중...</li>';
+    out.innerHTML = '<li class="note" style="list-style:none;">검색 중...</li>';
     
     const peopleMap = new Map();
 
@@ -404,7 +424,7 @@ async function doSearch() {
         if (!r.id) continue;
 
         const li = document.createElement('li');
-        li.style.borderBottom = "1px dashed #e5e7eb"; li.style.padding = "8px 0";
+        li.style.borderBottom = "1px dashed #e5e7eb"; li.style.padding = "8px 0"; li.style.listStyle = "none";
         
         li.innerHTML = `
             <a href="person.html?id=${r.id}&name=${encodeURIComponent(r.name)}" target="_blank" style="font-weight:bold; color:#2563eb; text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${r.name}</a>
@@ -437,7 +457,7 @@ async function doSearch() {
     }
 
     document.getElementById('count').innerText = `일반 검색 결과: 총 ${visibleCount}건 검색됨`;
-    if (visibleCount === 0) out.innerHTML = '<li class="note" style="color:red;">검색 결과가 없습니다.</li>';
+    if (visibleCount === 0) out.innerHTML = '<li class="note" style="color:red; list-style:none;">검색 결과가 없습니다.</li>';
 }
 
 async function calculateGlobalRankings() {
