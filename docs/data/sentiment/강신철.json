@@ -1,166 +1,460 @@
 {
   "actor_name": "강신철",
-  "last_updated": "2026-02-26 06:23:53",
+  "last_updated": "2026-07-01 05:48:17",
   "timeline": {
-    "2025-W36": {
+    "2016-W20": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2018-W31": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2015-W32": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2019-W28": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2014-W30": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2017-W48": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2015-W53": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2013-W40": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2018-W35": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2019-W41": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2017-W52": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2018-W03": {
       "positive": 3,
-      "negative": 12
+      "negative": 2
     },
-    "2025-W43": {
-      "positive": 2,
-      "negative": 7
-    },
-    "2025-W49": {
-      "positive": 0,
-      "negative": 1
-    },
-    "2025-W35": {
-      "positive": 2,
-      "negative": 14
-    },
-    "2026-W04": {
-      "positive": 4,
-      "negative": 14
-    },
-    "2026-W06": {
-      "positive": 15,
-      "negative": 8
-    },
-    "2025-W45": {
-      "positive": 0,
-      "negative": 7
-    },
-    "2026-W08": {
-      "positive": 4,
-      "negative": 7
-    },
-    "2026-W07": {
-      "positive": 8,
-      "negative": 4
-    },
-    "2025-W44": {
-      "positive": 0,
-      "negative": 1
-    },
-    "2025-W38": {
-      "positive": 0,
-      "negative": 3
-    },
-    "2025-W50": {
-      "positive": 1,
-      "negative": 1
-    },
-    "2025-W42": {
-      "positive": 0,
-      "negative": 1
-    },
-    "2025-W52": {
-      "positive": 0,
-      "negative": 1
-    },
-    "2025-W41": {
-      "positive": 1,
-      "negative": 0
-    },
-    "2025-W39": {
+    "2013-W39": {
       "positive": 0,
       "negative": 2
     },
-    "2026-W09": {
-      "positive": 4,
-      "negative": 2
-    },
-    "2025-W40": {
-      "positive": 0,
-      "negative": 3
-    },
-    "2026-W03": {
-      "positive": 27,
-      "negative": 30
-    },
-    "2025-W37": {
-      "positive": 0,
-      "negative": 1
-    },
-    "2026-W05": {
-      "positive": 9,
-      "negative": 10
-    },
-    "2024-W33": {
+    "2015-W43": {
       "positive": 1,
       "negative": 0
     },
-    "2025-W03": {
+    "2015-W30": {
       "positive": 2,
       "negative": 0
     },
-    "2022-W44": {
+    "2018-W29": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2015-W34": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2021-W27": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2019-W27": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2019-W49": {
+      "positive": 2,
+      "negative": 1
+    },
+    "2013-W44": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2020-W02": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2019-W33": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2015-W41": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2022-W40": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2021-W10": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2020-W34": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2018-W01": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2013-W31": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2018-W24": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2018-W07": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2019-W35": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2020-W20": {
+      "positive": 2,
+      "negative": 1
+    },
+    "2021-W04": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2017-W28": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2018-W48": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2018-W04": {
+      "positive": 2,
+      "negative": 1
+    },
+    "2020-W17": {
+      "positive": 1,
+      "negative": 2
+    },
+    "2018-W52": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2016-W27": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2017-W07": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2015-W52": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2019-W06": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2018-W32": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2015-W40": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2019-W15": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2018-W08": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2020-W41": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2016-W10": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2020-W13": {
+      "positive": 2,
+      "negative": 2
+    },
+    "2013-W52": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2020-W22": {
+      "positive": 2,
+      "negative": 1
+    },
+    "2018-W34": {
+      "positive": 3,
+      "negative": 1
+    },
+    "2018-W27": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2019-W02": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2016-W43": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2018-W26": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2018-W28": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2016-W07": {
+      "positive": 0,
+      "negative": 2
+    },
+    "2018-W06": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2020-W19": {
+      "positive": 2,
+      "negative": 2
+    },
+    "2018-W40": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2021-W15": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2015-W47": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2020-W38": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2022-W17": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2019-W26": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2019-W37": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2018-W02": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2020-W10": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2019-W16": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2019-W30": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2019-W01": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2020-W26": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2019-W07": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2018-W05": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2016-W13": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2017-W13": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2020-W07": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2019-W04": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2019-W46": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2014-W22": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2020-W40": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2018-W30": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2020-W11": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2018-W49": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2019-W32": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2020-W14": {
+      "positive": 0,
+      "negative": 2
+    },
+    "2020-W47": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2016-W08": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2020-W24": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2017-W01": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2014-W45": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2019-W19": {
       "positive": 5,
-      "negative": 4
+      "negative": 3
     },
-    "2025-W04": {
+    "2021-W14": {
       "positive": 1,
       "negative": 0
     },
-    "2022-W45": {
+    "2019-W20": {
       "positive": 0,
-      "negative": 1
+      "negative": 2
     },
     "2022-W52": {
-      "positive": 1,
-      "negative": 2
-    },
-    "2023-W46": {
-      "positive": 1,
-      "negative": 0
-    },
-    "2022-W46": {
-      "positive": 1,
-      "negative": 1
-    },
-    "2023-W52": {
-      "positive": 0,
-      "negative": 1
-    },
-    "2023-W47": {
-      "positive": 0,
-      "negative": 2
-    },
-    "2024-W10": {
-      "positive": 1,
-      "negative": 0
-    },
-    "2023-W50": {
-      "positive": 0,
-      "negative": 1
-    },
-    "2023-W20": {
-      "positive": 0,
-      "negative": 1
-    },
-    "2023-W17": {
-      "positive": 0,
-      "negative": 1
-    },
-    "2023-W16": {
-      "positive": 1,
-      "negative": 0
-    },
-    "2024-W05": {
-      "positive": 0,
-      "negative": 1
-    },
-    "2024-W26": {
-      "positive": 0,
-      "negative": 1
-    },
-    "2024-W04": {
-      "positive": 0,
-      "negative": 1
-    },
-    "2024-W20": {
-      "positive": 1,
-      "negative": 0
+      "positive": 30,
+      "negative": 67
     }
-  }
+  },
+  "sources": [
+    {
+      "videoId": "LuIkJFAoy2Q",
+      "title": "군 \"격추 못 해 송구\", 대통령실 촬영 가능성에는… / 연합뉴스 (Yonhapnews)",
+      "channel": "연합뉴스 Yonhapnews",
+      "publishedAt": "2022-12-27T09:15:03Z",
+      "pos_count": 30,
+      "neg_count": 67
+    },
+    {
+      "videoId": "_XGegW3I_Qk",
+      "title": "승용차 돌진에 '날벼락'...1명 사망·12명 부상 / YTN",
+      "channel": " YTN",
+      "publishedAt": "2019-05-12T12:57:20Z",
+      "pos_count": 3,
+      "neg_count": 1
+    },
+    {
+      "videoId": "XuFePfDFZUE",
+      "title": "승용차 돌진에 '날벼락'...1명 사망·12명 부상 / YTN",
+      "channel": " YTN",
+      "publishedAt": "2019-05-12T10:57:59Z",
+      "pos_count": 3,
+      "neg_count": 4
+    },
+    {
+      "videoId": "b9v6xiS8Ov8",
+      "title": "[TF영상] '거인' 유연석-찬성-박서준, '8등신 훈남들이 모임'",
+      "channel": "더팩트",
+      "publishedAt": "2014-11-06T12:47:51Z",
+      "pos_count": 1,
+      "neg_count": 0
+    },
+    {
+      "videoId": "f9TjBQ3mfnM",
+      "title": "하정우 부라더스 - 정경호 울리기 몰카! 열연하는 배우들!",
+      "channel": "CJ ENM",
+      "publishedAt": "2013-10-16T07:43:41Z",
+      "pos_count": 32,
+      "neg_count": 25
+    },
+    {
+      "videoId": "3AdUuBEOBXQ",
+      "title": "하정우 부라더스 - 정경호 몰카의 끝은?",
+      "channel": "CJ ENM",
+      "publishedAt": "2013-10-16T07:43:32Z",
+      "pos_count": 19,
+      "neg_count": 16
+    },
+    {
+      "videoId": "li5xKPhhzLQ",
+      "title": "[눈TV] '577프로젝트' 공효진 \"로맨스? 걷다보니 다 동성 되더라\"",
+      "channel": "뉴스1TV",
+      "publishedAt": "2012-08-21T07:44:46Z",
+      "pos_count": 4,
+      "neg_count": 0
+    },
+    {
+      "videoId": "h5rCiobC_Tc",
+      "title": "[눈TV] 공효진 \"하정우와의 열애설, 너무 가혹하다\"",
+      "channel": "뉴스1TV",
+      "publishedAt": "2012-08-20T11:32:33Z",
+      "pos_count": 24,
+      "neg_count": 11
+    }
+  ]
 }
