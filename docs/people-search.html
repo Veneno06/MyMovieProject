@@ -34,38 +34,6 @@
       </div>
   </div>
 
-  <div style="background:#f9f9f9; padding:15px; border-radius:8px; border:1px solid #ddd; margin-bottom:20px;">
-      <h3 style="margin-top:0; color:#111827; font-size:16px;"> 유튜브 여론 심층 필터링
-          <span style="font-size:13px; font-weight:normal; color:#2563eb; margin-left:15px;" id="sentimentScanStatus">여론 데이터 스캔 준비...</span>
-      </h3>
-      <div style="display:flex; flex-direction:column; gap:12px; font-size:14px; color:#374151;">
-          <label>1. 부정 댓글 총합: 
-              <input type="number" id="filterNegTotal" placeholder="예: 200" style="width:120px; margin-left:5px; padding:4px;"> 개 이상
-          </label>
-          <label>2. 부정 댓글 비율: 
-              <input type="number" id="filterNegRatio" placeholder="0 ~ 100" style="width:120px; margin-left:5px; padding:4px;" min="0" max="100"> % 이상
-          </label>
-          <label>3. 부정 댓글 최대 급증/급락폭(기울기): 
-              <input type="number" id="filterNegSlope" placeholder="스캔 중..." style="width:180px; margin-left:5px; padding:4px;"> 개/주 이상
-          </label>
-          
-          <hr style="border:0; border-top:1px solid #e5e7eb; margin:5px 0;">
-          
-          <div style="background:#fff; padding:12px; border:1px solid #e5e7eb; border-radius:6px;">
-              <h4 style="margin:0 0 8px 0; color:#4f46e5; font-size:14px;"> 데이터 추출 (Colab 연동)</h4>
-              <label>연구 대상 사건 발생일 설정: 
-                  <input type="text" id="filterMilestoneDate" placeholder="예: 20230515 (비워두면 여론 피크일 기준)" style="width:200px; padding:4px;">
-              </label>
-              <p style="font-size:12px; color:#6b7280; margin:4px 0 0 0;">※ 입력한 날짜를 기준으로 데이터의 Pre/Post 구간이 자동 분리</p>
-          </div>
-
-          <div style="display:flex; gap:10px; margin-top:5px;">
-              <button class="btn" onclick="applySentimentFilter()" style="background:#4f46e5; color:white; border:none; padding:8px 16px;">위 조건으로 여론 기반 검색</button>
-              <button class="btn" onclick="exportFilterResultsToCSV()" style="background:#10b981; color:white; border:none; padding:8px 16px;"> Colab용 h1_data.csv 다운로드 (선택 항목만)</button>
-          </div>
-      </div>
-  </div>
-
   <div id="count" class="note" style="margin-bottom: 10px;"></div>
   <ul id="results" class="list" style="padding-left: 0;"></ul>
 
@@ -86,6 +54,50 @@
           </div>
       </div>
   </div>
+
+
+  <div style="margin: 80px 0;"></div>
+
+
+  <h2 style="color:#2563eb; border-bottom: 2px solid #2563eb; padding-bottom:8px; margin-bottom:20px;">배우 프로필 여론 필터링</h2>
+
+  <div style="background:#f9f9f9; padding:15px; border-radius:8px; border:1px solid #ddd; margin-bottom:20px;">
+      <h3 style="margin-top:0; color:#111827; font-size:16px;"> 유튜브 여론 심층 필터링
+          <span style="font-size:13px; font-weight:normal; color:#2563eb; margin-left:15px;" id="sentimentScanStatus">여론 데이터 스캔 준비...</span>
+      </h3>
+      <div style="display:flex; flex-direction:column; gap:12px; font-size:14px; color:#374151;">
+          <label>1. 부정 댓글 총합: 
+              <input type="number" id="filterNegTotalMin" placeholder="최소(예:10)" style="width:100px; margin-left:5px; padding:4px;"> 개 이상 ~
+              <input type="number" id="filterNegTotalMax" placeholder="최대" style="width:100px; margin-left:5px; padding:4px;"> 개 이하
+          </label>
+          <label>2. 부정 댓글 비율: 
+              <input type="number" id="filterNegRatioMin" placeholder="최소(예:5)" style="width:100px; margin-left:5px; padding:4px;" min="0" max="100"> % 이상 ~
+              <input type="number" id="filterNegRatioMax" placeholder="최대" style="width:100px; margin-left:5px; padding:4px;" min="0" max="100"> % 이하
+          </label>
+          <label>3. 부정 댓글 최대 급증/급락폭(기울기): 
+              <input type="number" id="filterNegSlopeMin" placeholder="최소" style="width:100px; margin-left:5px; padding:4px;"> 개/주 이상 ~
+              <input type="number" id="filterNegSlopeMax" placeholder="최대" style="width:100px; margin-left:5px; padding:4px;"> 개/주 이하
+          </label>
+          
+          <hr style="border:0; border-top:1px solid #e5e7eb; margin:5px 0;">
+          
+          <div style="background:#fff; padding:12px; border:1px solid #e5e7eb; border-radius:6px;">
+              <h4 style="margin:0 0 8px 0; color:#4f46e5; font-size:14px;"> 데이터 추출 (Colab 연동)</h4>
+              <label>연구 대상 사건 발생일 설정: 
+                  <input type="text" id="filterMilestoneDate" placeholder="예: 20230515 (비워두면 여론 피크일 기준)" style="width:200px; padding:4px;">
+              </label>
+              <p style="font-size:12px; color:#6b7280; margin:4px 0 0 0;">※ 입력한 날짜를 기준으로 데이터의 Pre/Post 구간이 자동 분리</p>
+          </div>
+
+          <div style="display:flex; gap:10px; margin-top:5px;">
+              <button class="btn" onclick="applySentimentFilter()" style="background:#4f46e5; color:white; border:none; padding:8px 16px;">위 조건으로 여론 기반 검색</button>
+              <button class="btn" onclick="exportFilterResultsToCSV()" style="background:#10b981; color:white; border:none; padding:8px 16px;"> Colab용 h1_data.csv 다운로드 (선택 항목만)</button>
+          </div>
+      </div>
+  </div>
+
+  <div id="filterCount" class="note" style="margin-bottom: 10px;"></div>
+  <ul id="filterResults" class="list" style="padding-left: 0;"></ul>
 
 </div>
 
@@ -170,11 +182,10 @@ async function tryFetchSentiment(name) {
 
 async function startSentimentScan() {
     const statusEl = document.getElementById('sentimentScanStatus');
-    const slopeInput = document.getElementById('filterNegSlope');
-    statusEl.innerText = `검색 가능한 배우의 수: 0명 (스타 파워 랭킹 기반 스캔 중...)`;
+    statusEl.innerText = `스캔 시작 중...`;
 
     const uniqueActors = GLOBAL_RANKED_ALL; 
-    const batchSize = 10; 
+    const batchSize = 50; // 병렬 처리량 대폭 증가 (속도 최적화)
     let foundCount = 0;
 
     for (let i = 0; i < uniqueActors.length; i += batchSize) {
@@ -225,13 +236,14 @@ async function startSentimentScan() {
             }
         }));
 
-        statusEl.innerHTML = `검색 가능한 배우의 수: <b>${foundCount}명</b> <span style="color:#888;">(스캔 진행 중... ${Math.min(i + batchSize, uniqueActors.length)}/${uniqueActors.length})</span>`;
-        slopeInput.placeholder = `0 ~ 최대 ${GLOBAL_MAX_SLOPE} 사이 입력`;
-
-        await new Promise(r => setTimeout(r, 15));
+        // 사용자 오해를 풀기 위한 직관적인 텍스트로 변경
+        statusEl.innerHTML = `여론 데이터 보유 배우: <b>${foundCount}명 찾음</b> <span style="color:#888;">(전체 DB ${Math.min(i + batchSize, uniqueActors.length)}/${uniqueActors.length} 스캔 중...)</span>`;
+        
+        // UI 멈춤 방지를 위한 최소 딜레이만 부여
+        await new Promise(r => setTimeout(r, 1));
     }
     
-    statusEl.innerHTML = `검색 가능한 배우의 수: <b>${foundCount}명</b> <span style="color:#16a34a;">(스캔 완료 ✅)</span>`;
+    statusEl.innerHTML = `여론 데이터 보유 배우: <b>${foundCount}명 찾음</b> <span style="color:#16a34a;">(전체 DB ${uniqueActors.length}명 스캔 완료 ✅)</span>`;
     VALID_SENTIMENT_ACTORS.sort((a, b) => b.score - a.score);
 }
 
@@ -250,7 +262,6 @@ function exportFilterResultsToCSV() {
         return;
     }
 
-    // 체크된 배우 데이터 복원
     const targets = Array.from(checkedBoxes).map(cb => JSON.parse(cb.value));
     const userMilestone = document.getElementById('filterMilestoneDate').value.trim().replace(/[^0-9]/g, '');
 
@@ -321,19 +332,27 @@ function exportFilterResultsToCSV() {
     document.body.removeChild(link);
 }
 
-// 🌟 렌더링 함수 수정 (체크박스 및 전체선택 UI 주입)
+// 🌟 렌더링 함수 수정 (이상/이하 범위 필터링 적용)
 function applySentimentFilter() {
-    const minNegTotal = parseInt(document.getElementById('filterNegTotal').value, 10) || 0;
-    const minNegRatio = parseFloat(document.getElementById('filterNegRatio').value) || 0;
-    const minNegSlope = parseInt(document.getElementById('filterNegSlope').value, 10) || 0;
+    // 최소, 최대 입력값을 가져옴 (비어있으면 기본값 적용)
+    const minNegTotal = parseInt(document.getElementById('filterNegTotalMin').value, 10) || 0;
+    const maxNegTotal = parseInt(document.getElementById('filterNegTotalMax').value, 10) || Infinity;
+    
+    const minNegRatio = parseFloat(document.getElementById('filterNegRatioMin').value) || 0;
+    const maxNegRatio = parseFloat(document.getElementById('filterNegRatioMax').value) || Infinity;
+    
+    const minNegSlope = parseInt(document.getElementById('filterNegSlopeMin').value, 10) || 0;
+    const maxNegSlope = parseInt(document.getElementById('filterNegSlopeMax').value, 10) || Infinity;
 
     const filtered = VALID_SENTIMENT_ACTORS.filter(a => {
-        return a.negTotal >= minNegTotal && a.negRatio >= minNegRatio && a.maxSlope >= minNegSlope;
+        return (a.negTotal >= minNegTotal && a.negTotal <= maxNegTotal) &&
+               (a.negRatio >= minNegRatio && a.negRatio <= maxNegRatio) &&
+               (a.maxSlope >= minNegSlope && a.maxSlope <= maxNegSlope);
     });
 
-    const out = document.getElementById('results');
+    const out = document.getElementById('filterResults');
     out.innerHTML = '';
-    document.getElementById('count').innerText = `여론 필터링 결과: 총 ${filtered.length}명 검색됨`;
+    document.getElementById('filterCount').innerText = `여론 필터링 결과: 총 ${filtered.length}명 검색됨`;
 
     if (filtered.length === 0) {
         out.innerHTML = '<li class="note" style="color:#ef4444; list-style:none;">해당 조건에 부합하는 여론 분석 대상 배우가 없습니다.</li>';
@@ -361,7 +380,6 @@ function applySentimentFilter() {
         li.style.alignItems = "flex-start";
         li.style.listStyle = "none";
         
-        // 체크박스에 담길 데이터에서 따옴표 충돌을 막기 위해 문자열 변환
         const safeData = JSON.stringify(r).replace(/'/g, "&#39;");
 
         li.innerHTML = `
