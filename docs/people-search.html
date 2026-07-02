@@ -20,17 +20,25 @@
 
   <h1>배우/감독 검색</h1>
 
+  <!-- 1. 배우 프로필 검색 영역 -->
   <div style="background:#f9f9f9; padding:15px; border-radius:8px; border:1px solid #ddd; margin-bottom:20px;">
       <label>이름: <input type="text" id="keyword" onkeypress="if(event.key==='Enter') doSearch()" style="width:200px;"></label>
       <label style="margin-left:10px;"><input type="checkbox" id="onlyActor" checked> 배우만</label>
       <button class="btn" onclick="doSearch()" style="margin-left:10px;">검색</button>
   </div>
 
+  <!-- 2. 정확한 데이터베이스 통계 영역 -->
   <div style="background:#f9f9f9; padding:15px; border-radius:8px; border:1px solid #ddd; margin-bottom:20px;">
       <h3 style="margin-top:0; color:#111827; font-size:16px;"> 데이터베이스 전체 통계</h3>
-      <div style="display:flex; gap:20px; font-size:14px; color:#4b5563;">
-          <div><b>배우:</b> 국내 <span id="statActorDom" style="font-weight:bold; color:#2563eb;">0</span>명 / 해외 <span id="statActorInt" style="font-weight:bold; color:#ef4444;">0</span>명</div>
-          <div><b>감독:</b> 국내 <span id="statDirDom" style="font-weight:bold; color:#2563eb;">0</span>명 / 해외 <span id="statDirInt" style="font-weight:bold; color:#ef4444;">0</span>명</div>
+      <div style="display:flex; gap:20px; font-size:14px; color:#4b5563; flex-wrap:wrap; line-height:1.8;">
+          <div style="width:100%;"><b>총 등록된 배우:</b> <span id="statActorTotal" style="font-weight:bold; color:#111827;">0</span>명</div>
+          <div><b>국내 배우:</b> <span id="statActorDom" style="font-weight:bold; color:#2563eb;">0</span>명 
+              <span style="font-size:12px; color:#888;">(남: <span id="statActorDomMale">0</span>명 / 여: <span id="statActorDomFemale">0</span>명)</span>
+          </div>
+          <div><b>해외 배우:</b> <span id="statActorInt" style="font-weight:bold; color:#ef4444;">0</span>명</div>
+          <div style="width:100%; border-top:1px dashed #ccc; margin-top:5px; padding-top:5px;"></div>
+          <div><b>국내 감독:</b> <span id="statDirDom" style="font-weight:bold; color:#2563eb;">0</span>명</div>
+          <div><b>해외 감독:</b> <span id="statDirInt" style="font-weight:bold; color:#ef4444;">0</span>명</div>
       </div>
   </div>
 
@@ -55,10 +63,10 @@
       </div>
   </div>
 
-
+  <!-- 공간 띄우기 (6~7줄 분량의 여백) -->
   <div style="margin: 80px 0;"></div>
 
-
+  <!-- 3. 여론 필터링 영역 (분리됨) -->
   <h2 style="color:#2563eb; border-bottom: 2px solid #2563eb; padding-bottom:8px; margin-bottom:20px;">배우 프로필 여론 필터링</h2>
 
   <div style="background:#f9f9f9; padding:15px; border-radius:8px; border:1px solid #ddd; margin-bottom:20px;">
@@ -103,160 +111,95 @@
 
 <script>
 const TS = Date.now();
-const PATHS_INDEX = [`docs/data/search_index.json?v=${TS}`, `data/search_index.json?v=${TS}`];
-const PATHS_DETAILS = [`docs/data/people/`, `data/people/`];
-const PATHS_SENTIMENT = [`docs/data/sentiment/`, `data/sentiment/`];
+const INDEX_URL = `data/search_index.json?v=${TS}`;
+const SUMMARY_URL = `data/db_summary.json?v=${TS}`;
 
 let SEARCH_INDEX = [];
-let GLOBAL_RANKED_ALL = []; 
+let DB_SUMMARY = null;
 let VALID_SENTIMENT_ACTORS = []; 
-let GLOBAL_MAX_SLOPE = 0; 
-let YEAR_TOTALS = {}; 
 
-async function loadIndex() {
-    for (const p of PATHS_INDEX) {
-        try {
-            const res = await fetch(p);
-            if (res.ok) { 
-                SEARCH_INDEX = await res.json(); 
-                calculateGlobalRankings(); 
-                return; 
-            }
-        } catch(e) {}
-    }
-}
-loadIndex();
-
-async function fetchPersonInfo(id) {
-    if (!id) return null;
-    for (const prefix of PATHS_DETAILS) {
-        try {
-            const res = await fetch(prefix + `${id}.json?v=${TS}`);
-            if (res.ok) {
-                const data = await res.json();
-                return data.peopleInfoResult?.peopleInfo || data;
-            }
-        } catch(e) {}
-    }
-    return null;
-}
-
-function calculateDbStats() {
-    const actorsSetDomestic = new Set();
-    const actorsSetIntl = new Set();
-    const directorsSetDomestic = new Set();
-    const directorsSetIntl = new Set();
-
-    const isDomestic = (name) => /[가-힣]/.test(name);
-
-    SEARCH_INDEX.forEach(m => {
-        (m.actors || []).forEach(a => {
-            if (a.id) {
-                if (isDomestic(a.name)) actorsSetDomestic.add(a.id);
-                else actorsSetIntl.add(a.id);
-            }
-        });
-        (m.directors || []).forEach(d => {
-            if (d.id) {
-                if (isDomestic(d.name)) directorsSetDomestic.add(d.id);
-                else directorsSetIntl.add(d.id);
-            }
-        });
-    });
-
-    document.getElementById('statActorDom').innerText = actorsSetDomestic.size.toLocaleString();
-    document.getElementById('statActorInt').innerText = actorsSetIntl.size.toLocaleString();
-    document.getElementById('statDirDom').innerText = directorsSetDomestic.size.toLocaleString();
-    document.getElementById('statDirInt').innerText = directorsSetIntl.size.toLocaleString();
-}
-
-async function tryFetchSentiment(name) {
-    for (const prefix of PATHS_SENTIMENT) {
-        try {
-            const res = await fetch(prefix + `${name}.json?v=${TS}`);
-            if (res.ok) return await res.json();
-        } catch(e) {}
-    }
-    return null;
-}
-
-async function startSentimentScan() {
-    const statusEl = document.getElementById('sentimentScanStatus');
-    statusEl.innerText = `스캔 시작 중...`;
-
-    const uniqueActors = GLOBAL_RANKED_ALL; 
-    const batchSize = 50; // 병렬 처리량 대폭 증가 (속도 최적화)
-    let foundCount = 0;
-
-    for (let i = 0; i < uniqueActors.length; i += batchSize) {
-        const batch = uniqueActors.slice(i, i + batchSize);
-        await Promise.all(batch.map(async (actor) => {
-            const data = await tryFetchSentiment(actor.name);
-            if (data && data.timeline) {
-                let totalPos = 0, totalNeg = 0, maxSlope = 0;
-                let prevNeg = null;
-                let peakWeekDate = "";
-                let tempMaxSlope = 0;
-                const weeks = Object.keys(data.timeline).sort();
-
-                weeks.forEach(w => {
-                    const p = data.timeline[w].positive || 0;
-                    const n = Math.abs(data.timeline[w].negative || 0); 
-                    totalPos += p;
-                    totalNeg += n;
-
-                    if (prevNeg !== null) {
-                        const slope = Math.abs(n - prevNeg);
-                        if (slope > tempMaxSlope) {
-                            tempMaxSlope = slope;
-                            const parts = w.split('-W');
-                            peakWeekDate = parts[0] + "0601"; 
-                        }
-                    }
-                    prevNeg = n;
-                });
-
-                maxSlope = tempMaxSlope;
-                if (maxSlope > GLOBAL_MAX_SLOPE) GLOBAL_MAX_SLOPE = maxSlope;
-
-                const totalComments = totalPos + totalNeg;
-                const negRatio = totalComments > 0 ? (totalNeg / totalComments) * 100 : 0;
-
-                VALID_SENTIMENT_ACTORS.push({
-                    id: actor.id,
-                    name: actor.name,
-                    score: actor.score,
-                    negTotal: totalNeg,
-                    negRatio: negRatio,
-                    maxSlope: maxSlope,
-                    peakDate: peakWeekDate,
-                    rawTimeline: data.timeline 
-                });
-                foundCount++;
-            }
-        }));
-
-        // 사용자 오해를 풀기 위한 직관적인 텍스트로 변경
-        statusEl.innerHTML = `여론 데이터 보유 배우: <b>${foundCount}명 찾음</b> <span style="color:#888;">(전체 DB ${Math.min(i + batchSize, uniqueActors.length)}/${uniqueActors.length} 스캔 중...)</span>`;
+async function loadData() {
+    try {
+        const [indexRes, summaryRes] = await Promise.all([
+            fetch(INDEX_URL),
+            fetch(SUMMARY_URL)
+        ]);
         
-        // UI 멈춤 방지를 위한 최소 딜레이만 부여
-        await new Promise(r => setTimeout(r, 1));
+        if (indexRes.ok) SEARCH_INDEX = await indexRes.json();
+        
+        if (summaryRes.ok) {
+            DB_SUMMARY = await summaryRes.json();
+            renderDbStats();
+            renderRankings();
+            VALID_SENTIMENT_ACTORS = DB_SUMMARY.sentiment_actors || [];
+            
+            // 즉시 스캔 완료 처리
+            const statusEl = document.getElementById('sentimentScanStatus');
+            statusEl.innerHTML = `여론 데이터 보유 배우: <b>${VALID_SENTIMENT_ACTORS.length}명 확인</b> <span style="color:#16a34a;">(서버 연산 데이터베이스 동기화 완료 ✅)</span>`;
+            document.getElementById('filterNegSlopeMax').placeholder = `최대 ${DB_SUMMARY.global_max_slope} 사이`;
+        } else {
+            document.getElementById('sentimentScanStatus').innerText = "요약 데이터를 찾을 수 없습니다. GitHub Actions를 실행해주세요.";
+        }
+    } catch(e) {
+        console.error(e);
     }
-    
-    statusEl.innerHTML = `여론 데이터 보유 배우: <b>${foundCount}명 찾음</b> <span style="color:#16a34a;">(전체 DB ${uniqueActors.length}명 스캔 완료 ✅)</span>`;
-    VALID_SENTIMENT_ACTORS.sort((a, b) => b.score - a.score);
+}
+loadData();
+
+function renderDbStats() {
+    if(!DB_SUMMARY) return;
+    const s = DB_SUMMARY.db_stats;
+    document.getElementById('statActorTotal').innerText = s.actors.total.toLocaleString();
+    document.getElementById('statActorDom').innerText = s.actors.domestic.toLocaleString();
+    document.getElementById('statActorDomMale').innerText = s.actors.dom_male.toLocaleString();
+    document.getElementById('statActorDomFemale').innerText = s.actors.dom_female.toLocaleString();
+    document.getElementById('statActorInt').innerText = s.actors.foreign.toLocaleString();
+    document.getElementById('statDirDom').innerText = s.directors.domestic.toLocaleString();
+    document.getElementById('statDirInt').innerText = s.directors.foreign.toLocaleString();
 }
 
-// 🌟 전체 선택/해제 토글 함수
+function renderRankings() {
+    if(!DB_SUMMARY) return;
+    const rankedAll = DB_SUMMARY.rankings_all || [];
+    
+    let topMale = [], topFemale = [];
+    for (const actor of rankedAll) {
+        if (actor.sex) {
+            const s = actor.sex.trim();
+            if ((s === '남자' || s === '남') && topMale.length < 10) topMale.push(actor);
+            if ((s === '여자' || s === '여') && topFemale.length < 10) topFemale.push(actor);
+        }
+        if (topMale.length >= 10 && topFemale.length >= 10) break;
+    }
+
+    document.getElementById('rankingContainer').style.display = 'block';
+    
+    const renderList = (elementId, list) => {
+        const el = document.getElementById(elementId);
+        el.innerHTML = '';
+        list.slice(0, 10).forEach(a => {
+            el.innerHTML += `<li>
+                <a href="person.html?id=${a.id}&name=${encodeURIComponent(a.name)}" target="_blank" style="color:#333; text-decoration:none;">
+                    <b>${a.name}</b> <span style="font-size:12px; color:#888;">(${Math.round(a.score).toLocaleString()}점)</span>
+                </a>
+            </li>`;
+        });
+    };
+
+    renderList('rankOverall', rankedAll);
+    renderList('rankMale', topMale);
+    renderList('rankFemale', topFemale);
+}
+
+// 전체 선택/해제 토글 함수
 function toggleAllActors(source) {
     const checkboxes = document.querySelectorAll('.actor-checkbox');
     checkboxes.forEach(cb => cb.checked = source.checked);
 }
 
-// 🌟 다운로드 함수 (체크된 항목만 추출하도록 수정)
+// 다운로드 함수
 function exportFilterResultsToCSV() {
     const checkedBoxes = document.querySelectorAll('.actor-checkbox:checked');
-    
     if (checkedBoxes.length === 0) {
         alert("다운로드할 배우를 최소 한 명 이상 선택해주세요.");
         return;
@@ -280,7 +223,7 @@ function exportFilterResultsToCSV() {
             const audience = parseInt(String(m.audiAcc).replace(/,/g, '') || '0', 10);
             if (audience <= 0) return;
 
-            const total_y = YEAR_TOTALS[movieYear] || audience;
+            const total_y = DB_SUMMARY.year_totals[movieYear] || audience;
             const core_actors = Math.max(1, (m.actors || []).length);
             
             const myIdx = m.actors.findIndex(a => a.id === actor.id || a.name === actor.name);
@@ -332,15 +275,12 @@ function exportFilterResultsToCSV() {
     document.body.removeChild(link);
 }
 
-// 🌟 렌더링 함수 수정 (이상/이하 범위 필터링 적용)
+// 렌더링 함수
 function applySentimentFilter() {
-    // 최소, 최대 입력값을 가져옴 (비어있으면 기본값 적용)
     const minNegTotal = parseInt(document.getElementById('filterNegTotalMin').value, 10) || 0;
     const maxNegTotal = parseInt(document.getElementById('filterNegTotalMax').value, 10) || Infinity;
-    
     const minNegRatio = parseFloat(document.getElementById('filterNegRatioMin').value) || 0;
     const maxNegRatio = parseFloat(document.getElementById('filterNegRatioMax').value) || Infinity;
-    
     const minNegSlope = parseInt(document.getElementById('filterNegSlopeMin').value, 10) || 0;
     const maxNegSlope = parseInt(document.getElementById('filterNegSlopeMax').value, 10) || Infinity;
 
@@ -355,11 +295,10 @@ function applySentimentFilter() {
     document.getElementById('filterCount').innerText = `여론 필터링 결과: 총 ${filtered.length}명 검색됨`;
 
     if (filtered.length === 0) {
-        out.innerHTML = '<li class="note" style="color:#ef4444; list-style:none;">해당 조건에 부합하는 여론 분석 대상 배우가 없습니다.</li>';
+        out.innerHTML = '<li class="note" style="color:#ef4444; list-style:none;">조건에 부합하는 배우가 없습니다.</li>';
         return;
     }
 
-    // 전체 선택/해제 UI 삽입
     const selectAllDiv = document.createElement('div');
     selectAllDiv.style.padding = "10px 0";
     selectAllDiv.style.borderBottom = "2px solid #e5e7eb";
@@ -387,13 +326,13 @@ function applySentimentFilter() {
                 <input type="checkbox" class="actor-checkbox" value='${safeData}' checked style="transform: scale(1.2); cursor:pointer;">
             </div>
             <div style="flex: 1;">
-                <a href="person.html?id=${r.id}&name=${encodeURIComponent(r.name)}" target="_blank" style="font-weight:bold; color:#2563eb; text-decoration:none; font-size:15px;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${r.name}</a>
+                <a href="person.html?id=${r.id}&name=${encodeURIComponent(r.name)}" target="_blank" style="font-weight:bold; color:#2563eb; text-decoration:none;">${r.name}</a>
                 <span class="note">(${r.id})</span>
                 <span style="font-size:13px; font-weight:bold; color:#d97706; margin-left:8px;">[스타파워: ${Math.round(r.score).toLocaleString()}점]</span>
                 <div style="font-size:13px; color:#4b5563; margin-top:6px; background:#f3f4f6; padding:8px; border-radius:4px; display:inline-block;">
-                    • 부정 댓글 총합: <b style="color:#ef4444;">${r.negTotal.toLocaleString()}개</b> &nbsp;|&nbsp; 
+                    • 부정 댓글: <b style="color:#ef4444;">${r.negTotal.toLocaleString()}개</b> &nbsp;|&nbsp; 
                     • 부정 비율: <b style="color:#ef4444;">${r.negRatio.toFixed(1)}%</b> &nbsp;|&nbsp; 
-                    • 최대 급증/급락폭(기울기): <b style="color:#ef4444;">${r.maxSlope.toLocaleString()}개/주</b>
+                    • 최대 기울기: <b style="color:#ef4444;">${r.maxSlope.toLocaleString()}개/주</b>
                 </div>
             </div>
         `;
@@ -401,17 +340,12 @@ function applySentimentFilter() {
     });
 }
 
-async function doSearch() {
-    if (SEARCH_INDEX.length === 0) await loadIndex();
-    
+function doSearch() {
     const keyword = document.getElementById('keyword').value.trim();
     const onlyActor = document.getElementById('onlyActor').checked;
-    
     if (!keyword) { alert("이름을 입력해주세요."); return; }
 
     const out = document.getElementById('results');
-    out.innerHTML = '<li class="note" style="list-style:none;">검색 중...</li>';
-    
     const peopleMap = new Map();
 
     SEARCH_INDEX.forEach(m => {
@@ -420,7 +354,7 @@ async function doSearch() {
             if (a.name.includes(keyword)) {
                 const id = a.id || "";
                 const key = id ? id : `name:${a.name}:actor`; 
-                if (!peopleMap.has(key)) peopleMap.set(key, { id: id, name: a.name, sourceRole: '배우', movies: new Set() });
+                if (!peopleMap.has(key)) peopleMap.set(key, { id: id, name: a.name, sourceRole: '배우', sex: a.gender, movies: new Set() });
                 peopleMap.get(key).movies.add(movieTitle);
             }
         });
@@ -428,7 +362,7 @@ async function doSearch() {
             if (d.name.includes(keyword)) {
                 const id = d.id || "";
                 const key = id ? id : `name:${d.name}:director`; 
-                if (!peopleMap.has(key)) peopleMap.set(key, { id: id, name: d.name, sourceRole: '감독', movies: new Set() });
+                if (!peopleMap.has(key)) peopleMap.set(key, { id: id, name: d.name, sourceRole: '감독', sex: '', movies: new Set() });
                 peopleMap.get(key).movies.add(movieTitle);
             }
         });
@@ -440,111 +374,26 @@ async function doSearch() {
 
     for (const r of resultsArray) {
         if (!r.id) continue;
+        
+        let sexBadge = "";
+        if (r.sex === "남자" || r.sex === "남") sexBadge = `<span style="color:#2563eb;">(남)</span>`;
+        if (r.sex === "여자" || r.sex === "여") sexBadge = `<span style="color:#ef4444;">(여)</span>`;
+
+        if (onlyActor && r.sourceRole !== '배우') continue;
 
         const li = document.createElement('li');
         li.style.borderBottom = "1px dashed #e5e7eb"; li.style.padding = "8px 0"; li.style.listStyle = "none";
-        
         li.innerHTML = `
-            <a href="person.html?id=${r.id}&name=${encodeURIComponent(r.name)}" target="_blank" style="font-weight:bold; color:#2563eb; text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${r.name}</a>
+            <a href="person.html?id=${r.id}&name=${encodeURIComponent(r.name)}" target="_blank" style="font-weight:bold; color:#2563eb; text-decoration:none;">${r.name}</a>
             <span class="note">(${r.id})</span>
-            <span id="info-${r.id}" style="font-size:13px; font-weight:bold; color:#555;">[${r.sourceRole}]</span>
+            <span style="font-size:13px; font-weight:bold; color:#555;">${sexBadge} [${r.sourceRole}]</span>
             <span class="note" style="font-size:13px;">(${Array.from(r.movies).slice(0, 5).join(', ')}${r.movies.size > 5 ? ' 등' : ''})</span>
         `;
-        
-        fetchPersonInfo(r.id).then(info => {
-            if (info) {
-                const infoSpan = document.getElementById(`info-${r.id}`);
-                let trueRole = info.repRoleNm || r.sourceRole; 
-                
-                let sexBadge = "";
-                if (info.sex === "남자" || info.sex === "남") sexBadge = `<span style="color:#2563eb;">(남)</span>`;
-                if (info.sex === "여자" || info.sex === "여") sexBadge = `<span style="color:#ef4444;">(여)</span>`;
-
-                if (onlyActor && trueRole !== '배우' && !trueRole.includes('배우')) {
-                    li.style.display = 'none';
-                    visibleCount--;
-                    document.getElementById('count').innerText = `일반 검색 결과: 총 ${visibleCount}건 검색됨`;
-                } else {
-                    infoSpan.innerHTML = `${sexBadge} [${trueRole}]`;
-                }
-            }
-        });
-
         out.appendChild(li);
         visibleCount++;
     }
-
     document.getElementById('count').innerText = `일반 검색 결과: 총 ${visibleCount}건 검색됨`;
     if (visibleCount === 0) out.innerHTML = '<li class="note" style="color:red; list-style:none;">검색 결과가 없습니다.</li>';
-}
-
-async function calculateGlobalRankings() {
-    ACTOR_SCORES = new Map();
-
-    SEARCH_INDEX.forEach(m => {
-        const audi = parseInt(String(m.audiAcc).replace(/,/g, '') || '0', 10);
-        const year = (m.openDt || '').slice(0,4) || String(m.prdtYear);
-        if (year && audi > 0) YEAR_TOTALS[year] = (YEAR_TOTALS[year] || 0) + audi;
-    });
-
-    SEARCH_INDEX.forEach(m => {
-        const A_i = parseInt(String(m.audiAcc).replace(/,/g, '') || '0', 10);
-        const year = (m.openDt || '').slice(0,4) || String(m.prdtYear);
-        if (!year || A_i <= 0) return;
-        
-        const Total_Y = YEAR_TOTALS[year];
-        const W_time = Math.max(0.1, (parseInt(year) - 2000) / 10);
-        const C_i = Math.max(1, (m.actors || []).length);
-
-        (m.actors || []).forEach((a, idx) => {
-            if (!a.id) return; 
-            const W_role = (idx < Math.ceil(C_i / 3)) ? 1.0 : 0.5;
-            const score_i = (A_i / Total_Y) * (W_role / Math.sqrt(C_i)) * W_time * 10000;
-
-            if (!ACTOR_SCORES.has(a.id)) ACTOR_SCORES.set(a.id, { id: a.id, name: a.name, score: 0 });
-            ACTOR_SCORES.get(a.id).score += score_i;
-        });
-    });
-
-    const rankedAll = Array.from(ACTOR_SCORES.values()).sort((a,b) => b.score - a.score);
-    GLOBAL_RANKED_ALL = rankedAll; 
-    
-    calculateDbStats();
-    startSentimentScan();
-
-    const top100 = rankedAll.slice(0, 100);
-    const enrichedTop100 = await Promise.all(top100.map(async (actor) => {
-        const info = await fetchPersonInfo(actor.id);
-        return { ...actor, sex: info ? info.sex : null };
-    }));
-
-    let topMale = [], topFemale = [];
-    for (const actor of enrichedTop100) {
-        if (actor.sex) {
-            const s = actor.sex.trim();
-            if ((s === '남자' || s === '남') && topMale.length < 10) topMale.push(actor);
-            if ((s === '여자' || s === '여') && topFemale.length < 10) topFemale.push(actor);
-        }
-        if (topMale.length >= 10 && topFemale.length >= 10) break;
-    }
-
-    document.getElementById('rankingContainer').style.display = 'block';
-    
-    const renderList = (elementId, list) => {
-        const el = document.getElementById(elementId);
-        el.innerHTML = '';
-        list.slice(0, 10).forEach(a => {
-            el.innerHTML += `<li>
-                <a href="person.html?id=${a.id}&name=${encodeURIComponent(a.name)}" target="_blank" style="color:#333; text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">
-                    <b>${a.name}</b> <span style="font-size:12px; color:#888;">(${Math.round(a.score).toLocaleString()}점)</span>
-                </a>
-            </li>`;
-        });
-    };
-
-    renderList('rankOverall', rankedAll);
-    renderList('rankMale', topMale);
-    renderList('rankFemale', topFemale);
 }
 </script>
 </body>
