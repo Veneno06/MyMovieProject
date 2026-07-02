@@ -1,0 +1,32 @@
+name: Build DB Summary (Weekly)
+
+on:
+  schedule:
+    - cron: "0 15 * * 0" # 매주 일요일 UTC 15:00 (한국 시간 월요일 00:00)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-summary:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Generate DB Summary
+        run: python scripts/build_db_summary.py
+
+      - name: Commit and Push
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add docs/data/db_summary.json
+          git commit -m "📊 Auto update: db_summary.json" || echo "No changes to commit"
+          git push
