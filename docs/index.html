@@ -29,14 +29,16 @@
     .stat-overview p { font-size: 15px; color: #4b5563; margin: 5px 0; }
     .stat-overview span { font-weight: bold; color: #2563eb; }
     
+    /* 🌟 상하 배치를 위해 flex-direction: column 적용 */
     .main-charts-container {
-        display: flex; gap: 20px; margin-top: 20px; flex-wrap: wrap;
+        display: flex; flex-direction: column; gap: 40px; margin-top: 20px;
     }
     .main-chart-box {
-        flex: 1; min-width: 300px; padding: 15px; background: #fff; 
+        width: 100%; padding: 15px; background: #fff; 
         border: 1px solid #e5e7eb; border-radius: 8px;
     }
     .main-chart-box h4 { text-align: center; margin-top: 0; color: #374151; }
+    .total-count-label { text-align: center; font-size: 13px; color: #6b7280; margin-top: 10px; }
   </style>
 </head>
 <body>
@@ -67,25 +69,29 @@
   
   <div id="boxoffice-container"></div>
 
+  <!-- 🌟 공간 여백 추가 -->
+  <div style="margin: 60px 0;"></div>
+
   <!-- 4. 아카이브 전체 통계 및 차트 영역 -->
   <div id="archive-stats" style="display: none;">
       <div class="stat-overview">
-          <h3>아카이브 통합 데이터 통계</h3>
+          <h3>영화 통합 데이터 통계</h3>
           <p>등록된 전체 영화 수: <span id="idxTotalMovies">0</span>편</p>
           <p>국내 영화 수: <span id="idxDomMovies">0</span>편 / 국외 영화 수: <span id="idxForMovies">0</span>편</p>
-          <p>누적 총 관객 수 (<span id="idxStartYear">0</span>년~현재): <span id="idxTotalAudi">0</span>명</p>
+          <p>누적 총 관객 수 (~현재): <span id="idxTotalAudi">0</span>명</p>
       </div>
 
       <div class="main-charts-container">
           <div class="main-chart-box">
               <h4>연도별 영화 개봉 편수</h4>
-              <div style="position: relative; height: 300px; width: 100%;">
+              <div style="position: relative; height: 350px; width: 100%;">
                   <canvas id="chartMovieCount"></canvas>
               </div>
+              <div class="total-count-label" id="labelTotalMovies"></div>
           </div>
           <div class="main-chart-box">
               <h4>연도별 누적 관객수 (단위: 천 명)</h4>
-              <div style="position: relative; height: 300px; width: 100%;">
+              <div style="position: relative; height: 350px; width: 100%;">
                   <canvas id="chartAudience"></canvas>
               </div>
           </div>
@@ -101,7 +107,7 @@
 </div>
 
 <script>
-// --- 기존 타임라인 및 박스오피스 기능 유지 (생략 없이 원본 그대로 포함) ---
+// --- 타임라인 및 박스오피스 유지 ---
 const MOVIE_INDEX_URL = 'data/search_index.json';
 
 const isYmd8 = (s) => /^\d{8}$/.test(String(s||'').trim());
@@ -245,7 +251,7 @@ async function mainBoxoffice() {
   } catch (err) {}
 }
 
-// 🌟 신규: 아카이브 전체 통계 및 차트 렌더링 (db_summary.json 연동)
+// 🌟 아카이브 전체 통계 렌더링
 async function renderArchiveStats() {
     try {
         const res = await fetch(`data/db_summary.json?v=${Date.now()}`);
@@ -254,26 +260,28 @@ async function renderArchiveStats() {
         
         document.getElementById('archive-stats').style.display = 'block';
         
-        // 텍스트 통계 업데이트
+        // 텍스트 통계
         const stats = data.db_stats;
         document.getElementById('idxTotalMovies').textContent = stats.total_movies.toLocaleString();
         document.getElementById('idxDomMovies').textContent = stats.total_dom_movies.toLocaleString();
         document.getElementById('idxForMovies').textContent = stats.total_for_movies.toLocaleString();
         document.getElementById('idxTotalAudi').textContent = stats.cumulative_audience.toLocaleString();
         
-        const years = Object.keys(data.yearly_stats).sort();
-        if(years.length > 0) document.getElementById('idxStartYear').textContent = years[0];
+        document.getElementById('labelTotalMovies').textContent = `* 국내 영화 총 ${stats.total_dom_movies.toLocaleString()}편 / 해외 영화 총 ${stats.total_for_movies.toLocaleString()}편`;
 
-        // 차트 데이터 구성
-        const labels = years;
+        // 🌟 2002년 이후 데이터만 필터링
+        const allYears = Object.keys(data.yearly_stats).sort();
+        const filteredYears = allYears.filter(y => parseInt(y, 10) >= 2002);
+
+        const labels = filteredYears;
         const domCount = [], forCount = [];
         const totalAudi = [], domAudi = [], forAudi = [];
 
-        years.forEach(y => {
+        filteredYears.forEach(y => {
             const yData = data.yearly_stats[y];
             domCount.push(yData.dom_movies);
             forCount.push(yData.for_movies);
-            // 관객수는 1,000 단위로 버림 처리 (Math.floor)
+            // 관객수는 1,000 단위 버림
             totalAudi.push(Math.floor((yData.dom_audi + yData.for_audi) / 1000));
             domAudi.push(Math.floor(yData.dom_audi / 1000));
             forAudi.push(Math.floor(yData.for_audi / 1000));
@@ -291,7 +299,13 @@ async function renderArchiveStats() {
             },
             options: {
                 responsive: true, maintainAspectRatio: false,
-                scales: { x: { grid: { display: false } }, y: { beginAtZero: true } }
+                scales: { 
+                    x: { 
+                        grid: { display: false },
+                        ticks: { autoSkip: false, maxRotation: 45, minRotation: 45 } // 🌟 1년 단위 강제 출력
+                    }, 
+                    y: { beginAtZero: true } 
+                }
             }
         });
 
@@ -316,7 +330,10 @@ async function renderArchiveStats() {
                     }
                 },
                 scales: { 
-                    x: { grid: { display: false } }, 
+                    x: { 
+                        grid: { display: false },
+                        ticks: { autoSkip: false, maxRotation: 45, minRotation: 45 } // 🌟 1년 단위 강제 출력
+                    }, 
                     y: { beginAtZero: true, ticks: { callback: v => v.toLocaleString() } } 
                 }
             }
