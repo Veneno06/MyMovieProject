@@ -63,10 +63,9 @@
       </div>
   </div>
 
-  <!-- 공간 띄우기 (6~7줄 분량의 여백) -->
   <div style="margin: 80px 0;"></div>
 
-  <!-- 3. 여론 필터링 영역 (분리됨) -->
+  <!-- 3. 여론 필터링 영역 -->
   <h2 style="color:#2563eb; border-bottom: 2px solid #2563eb; padding-bottom:8px; margin-bottom:20px;">배우 프로필 여론 필터링</h2>
 
   <div style="background:#f9f9f9; padding:15px; border-radius:8px; border:1px solid #ddd; margin-bottom:20px;">
@@ -92,9 +91,9 @@
           <div style="background:#fff; padding:12px; border:1px solid #e5e7eb; border-radius:6px;">
               <h4 style="margin:0 0 8px 0; color:#4f46e5; font-size:14px;"> 데이터 추출 (Colab 연동)</h4>
               <label>연구 대상 사건 발생일 설정: 
-                  <input type="text" id="filterMilestoneDate" placeholder="예: 20230515 (비워두면 여론 피크일 기준)" style="width:200px; padding:4px;">
+                  <input type="text" id="filterMilestoneDate" placeholder="예: 20230515 (비워두면 자동 피크일 지정)" style="width:250px; padding:4px;">
               </label>
-              <p style="font-size:12px; color:#6b7280; margin:4px 0 0 0;">※ 입력한 날짜를 기준으로 데이터의 Pre/Post 구간이 자동 분리</p>
+              <p style="font-size:12px; color:#6b7280; margin:4px 0 0 0;">※ 날짜를 비워두고 다운로드하면 시스템이 계산한 가장 가파른 여론 급락 지점을 사건일로 자동 지정합니다.</p>
           </div>
 
           <div style="display:flex; gap:10px; margin-top:5px;">
@@ -133,16 +132,13 @@ async function loadData() {
             renderRankings();
             VALID_SENTIMENT_ACTORS = DB_SUMMARY.sentiment_actors || [];
             
-            // 즉시 스캔 완료 처리
             const statusEl = document.getElementById('sentimentScanStatus');
             statusEl.innerHTML = `여론 데이터 보유 배우: <b>${VALID_SENTIMENT_ACTORS.length}명 확인</b> <span style="color:#16a34a;">(서버 연산 데이터베이스 동기화 완료 ✅)</span>`;
             document.getElementById('filterNegSlopeMax').placeholder = `최대 ${DB_SUMMARY.global_max_slope} 사이`;
         } else {
             document.getElementById('sentimentScanStatus').innerText = "요약 데이터를 찾을 수 없습니다. GitHub Actions를 실행해주세요.";
         }
-    } catch(e) {
-        console.error(e);
-    }
+    } catch(e) { console.error(e); }
 }
 loadData();
 
@@ -191,13 +187,12 @@ function renderRankings() {
     renderList('rankFemale', topFemale);
 }
 
-// 전체 선택/해제 토글 함수
 function toggleAllActors(source) {
     const checkboxes = document.querySelectorAll('.actor-checkbox');
     checkboxes.forEach(cb => cb.checked = source.checked);
 }
 
-// 다운로드 함수
+// 🌟 [수정됨] CSV 다운로드 함수에 'milestone' 데이터 컬럼 추가
 function exportFilterResultsToCSV() {
     const checkedBoxes = document.querySelectorAll('.actor-checkbox:checked');
     if (checkedBoxes.length === 0) {
@@ -208,7 +203,8 @@ function exportFilterResultsToCSV() {
     const targets = Array.from(checkedBoxes).map(cb => JSON.parse(cb.value));
     const userMilestone = document.getElementById('filterMilestoneDate').value.trim().replace(/[^0-9]/g, '');
 
-    let csvContent = "actor_name,movie_nm,open_dt,period,audience,total_y,role_weight,core_actors,time_weight,pos_count,neg_count\n";
+    // milestone 헤더 추가
+    let csvContent = "actor_name,movie_nm,open_dt,period,audience,total_y,role_weight,core_actors,time_weight,pos_count,neg_count,milestone\n";
 
     targets.forEach(actor => {
         const myMovies = SEARCH_INDEX.filter(m => {
@@ -231,7 +227,8 @@ function exportFilterResultsToCSV() {
             const time_weight = Math.max(0.1, (parseInt(movieYear) - 2000) / 10);
 
             let period = "pre";
-            const milestone = userMilestone ? userMilestone : actor.peakDate;
+            // 사용자가 입력 안 했으면 자동 지정된 peakDate를 기점으로 삼음
+            const milestone = userMilestone ? userMilestone : (actor.peakDate || '20000101');
             if (openDtRaw >= milestone) {
                 period = "post";
             }
@@ -258,7 +255,8 @@ function exportFilterResultsToCSV() {
                 core_actors,
                 time_weight,
                 pos_count,
-                neg_count
+                neg_count,
+                milestone // 🌟 Colab을 위해 넘겨줌
             ];
             csvContent += row.join(",") + "\n";
         });
@@ -275,7 +273,6 @@ function exportFilterResultsToCSV() {
     document.body.removeChild(link);
 }
 
-// 렌더링 함수
 function applySentimentFilter() {
     const minNegTotal = parseInt(document.getElementById('filterNegTotalMin').value, 10) || 0;
     const maxNegTotal = parseInt(document.getElementById('filterNegTotalMax').value, 10) || Infinity;
@@ -374,7 +371,6 @@ function doSearch() {
 
     for (const r of resultsArray) {
         if (!r.id) continue;
-        
         let sexBadge = "";
         if (r.sex === "남자" || r.sex === "남") sexBadge = `<span style="color:#2563eb;">(남)</span>`;
         if (r.sex === "여자" || r.sex === "여") sexBadge = `<span style="color:#ef4444;">(여)</span>`;
