@@ -6,6 +6,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="assets/style.css">
 <script src="assets/translator.js" defer></script>
+<!-- 🌟 차트 렌더링을 위해 Chart.js 라이브러리 추가 -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 <div class="wrap">
@@ -27,42 +29,56 @@
       <button class="btn" onclick="doSearch()" style="margin-left:10px;">검색</button>
   </div>
 
-  <!-- 2. 정확한 데이터베이스 통계 영역 -->
-  <div style="background:#f9f9f9; padding:15px; border-radius:8px; border:1px solid #ddd; margin-bottom:20px;">
-      <h3 style="margin-top:0; color:#111827; font-size:16px;"> 데이터베이스 전체 통계</h3>
-      <div style="display:flex; gap:20px; font-size:14px; color:#4b5563; flex-wrap:wrap; line-height:1.8;">
-          <div style="width:100%;"><b>총 등록된 배우:</b> <span id="statActorTotal" style="font-weight:bold; color:#111827;">0</span>명</div>
-          <div><b>국내 배우:</b> <span id="statActorDom" style="font-weight:bold; color:#2563eb;">0</span>명 
-              <span style="font-size:12px; color:#888;">(남: <span id="statActorDomMale">0</span>명 / 여: <span id="statActorDomFemale">0</span>명)</span>
+  <!-- 2. 고도화된 데이터베이스 전체 통계 영역 -->
+  <div style="background:#f9f9f9; padding:20px; border-radius:8px; border:1px solid #ddd; margin-bottom:20px;">
+      <h3 style="margin-top:0; color:#111827; font-size:17px; border-bottom: 2px solid #2563eb; padding-bottom: 8px;">데이터베이스 전체 통계</h3>
+      <div style="display:flex; flex-direction:column; gap:10px; font-size:14.5px; color:#374151; line-height:1.6;">
+          
+          <div><b>총 등록된 배우:</b> <span id="statActorTotal" style="font-weight:bold; color:#111827;">0</span>명</div>
+          
+          <!-- 🌟 점선 없이 바로 이어지는 구조 -->
+          <div>
+              <b>국내 배우:</b> <span id="statActorDom" style="font-weight:bold; color:#2563eb;">0</span>명 
+              <span style="font-size:13px; color:#6b7280;">(남: <span id="statActorDomMale">0</span>명 / 여: <span id="statActorDomFemale">0</span>명)</span> 
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <b>해외 배우:</b> <span id="statActorInt" style="font-weight:bold; color:#ef4444;">0</span>명
           </div>
-          <div><b>해외 배우:</b> <span id="statActorInt" style="font-weight:bold; color:#ef4444;">0</span>명</div>
-          <div style="width:100%; border-top:1px dashed #ccc; margin-top:5px; padding-top:5px;"></div>
-          <div><b>국내 감독:</b> <span id="statDirDom" style="font-weight:bold; color:#2563eb;">0</span>명</div>
-          <div><b>해외 감독:</b> <span id="statDirInt" style="font-weight:bold; color:#ef4444;">0</span>명</div>
+          
+          <div>
+              <b>국내 감독:</b> <span id="statDirDom" style="font-weight:bold; color:#2563eb;">0</span>명 
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <b>해외 감독:</b> <span id="statDirInt" style="font-weight:bold; color:#ef4444;">0</span>명
+          </div>
+
+          <div style="display:flex; align-items:center; gap:15px; margin-top: 5px;">
+              <b>국내 배우 성비:</b> <span id="statGenderRatioText" style="font-weight:bold; color:#4b5563;"></span>
+              <div style="width: 70px; height: 70px; position:relative;">
+                  <canvas id="genderPieChart"></canvas>
+              </div>
+          </div>
+          
+          <!-- 🌟 스타 파워 분석 구분선 -->
+          <hr style="border:0; border-top:1px dashed #cbd5e1; margin:15px 0;">
+          
+          <div><b>스타 파워 랭킹 총 인원:</b> <span id="statSpTotal" style="font-weight:bold; color:#111827;">0</span>명 <span style="font-size:12px; color:#888;">(점수 산출이 가능한 배우 기준)</span></div>
+          <div><b>스타 파워 평균:</b> <span id="statSpAvg" style="font-weight:bold; color:#d97706;">0</span>점</div>
+          
+          <div style="display:flex; gap:30px; flex-wrap:wrap; margin-top: 5px;">
+              <div><b>스타 파워 최고점:</b> <span id="statSpMax"></span></div>
+              <div><b>스타 파워 최저점:</b> <span id="statSpMin"></span></div>
+          </div>
+
+          <div style="margin-top: 15px;">
+              <b>스타 파워 분포:</b>
+              <div style="position: relative; height: 300px; width: 100%; margin-top: 10px; border: 1px solid #e5e7eb; background: #fff; border-radius: 8px; padding: 10px;">
+                  <canvas id="spDistChart"></canvas>
+              </div>
+          </div>
+
       </div>
   </div>
 
-  <div id="count" class="note" style="margin-bottom: 10px;"></div>
-  <ul id="results" class="list" style="padding-left: 0;"></ul>
-
-  <div id="rankingContainer" style="margin-top: 40px; padding-top: 20px; border-top: 2px dashed #ddd; display: none;">
-      <h2> 실시간 스타 파워 (SP_Final) TOP 10</h2>
-      <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-          <div style="flex: 1; min-width: 250px; background: #fff; padding: 15px; border: 1px solid #eee; border-radius: 8px;">
-              <h3 style="color: #111827; border-bottom: 2px solid #2563eb; padding-bottom: 5px;"> 통합 랭킹</h3>
-              <ul id="rankOverall" style="list-style: decimal; margin-left: 20px; line-height: 1.8;"></ul>
-          </div>
-          <div style="flex: 1; min-width: 250px; background: #fff; padding: 15px; border: 1px solid #eee; border-radius: 8px;">
-              <h3 style="color: #2563eb; border-bottom: 2px solid #2563eb; padding-bottom: 5px;"> 남자 배우 랭킹</h3>
-              <ul id="rankMale" style="list-style: decimal; margin-left: 20px; line-height: 1.8;"></ul>
-          </div>
-          <div style="flex: 1; min-width: 250px; background: #fff; padding: 15px; border: 1px solid #eee; border-radius: 8px;">
-              <h3 style="color: #ef4444; border-bottom: 2px solid #ef4444; padding-bottom: 5px;"> 여자 배우 랭킹</h3>
-              <ul id="rankFemale" style="list-style: decimal; margin-left: 20px; line-height: 1.8;"></ul>
-          </div>
-      </div>
-  </div>
-
+  <!-- 공간 띄우기 -->
   <div style="margin: 80px 0;"></div>
 
   <!-- 3. 여론 필터링 영역 -->
@@ -91,7 +107,7 @@
           <div style="background:#fff; padding:12px; border:1px solid #e5e7eb; border-radius:6px;">
               <h4 style="margin:0 0 8px 0; color:#4f46e5; font-size:14px;"> 데이터 추출 (Colab 연동)</h4>
               <label>연구 대상 사건 발생일 설정: 
-                  <input type="text" id="filterMilestoneDate" placeholder="예: 20230515 (비워두면 자동으로 지정)" style="width:250px; padding:4px;">
+                  <input type="text" id="filterMilestoneDate" placeholder="예: 20230515 (비워두면 자동 피크일 지정)" style="width:250px; padding:4px;">
               </label>
               <p style="font-size:12px; color:#6b7280; margin:4px 0 0 0;">※ 날짜를 비워두고 다운로드하면 시스템이 계산한 가장 가파른 여론 급락 지점을 사건일로 자동 지정합니다.</p>
           </div>
@@ -105,6 +121,25 @@
 
   <div id="filterCount" class="note" style="margin-bottom: 10px;"></div>
   <ul id="filterResults" class="list" style="padding-left: 0;"></ul>
+
+  <!-- 4. 스타 파워 랭킹 출력 영역 -->
+  <div id="rankingContainer" style="margin-top: 40px; padding-top: 20px; border-top: 2px dashed #ddd; display: none;">
+      <h2> 실시간 스타 파워 (SP_Final) TOP 10</h2>
+      <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+          <div style="flex: 1; min-width: 250px; background: #fff; padding: 15px; border: 1px solid #eee; border-radius: 8px;">
+              <h3 style="color: #111827; border-bottom: 2px solid #2563eb; padding-bottom: 5px;"> 통합 랭킹</h3>
+              <ul id="rankOverall" style="list-style: decimal; margin-left: 20px; line-height: 1.8;"></ul>
+          </div>
+          <div style="flex: 1; min-width: 250px; background: #fff; padding: 15px; border: 1px solid #eee; border-radius: 8px;">
+              <h3 style="color: #2563eb; border-bottom: 2px solid #2563eb; padding-bottom: 5px;"> 남자 배우 랭킹</h3>
+              <ul id="rankMale" style="list-style: decimal; margin-left: 20px; line-height: 1.8;"></ul>
+          </div>
+          <div style="flex: 1; min-width: 250px; background: #fff; padding: 15px; border: 1px solid #eee; border-radius: 8px;">
+              <h3 style="color: #ef4444; border-bottom: 2px solid #ef4444; padding-bottom: 5px;"> 여자 배우 랭킹</h3>
+              <ul id="rankFemale" style="list-style: decimal; margin-left: 20px; line-height: 1.8;"></ul>
+          </div>
+      </div>
+  </div>
 
 </div>
 
@@ -128,7 +163,7 @@ async function loadData() {
         
         if (summaryRes.ok) {
             DB_SUMMARY = await summaryRes.json();
-            renderDbStats();
+            renderDbStats(); // 🌟 새로운 데이터베이스 통계 렌더링 호출
             renderRankings();
             VALID_SENTIMENT_ACTORS = DB_SUMMARY.sentiment_actors || [];
             
@@ -142,9 +177,12 @@ async function loadData() {
 }
 loadData();
 
+// 🌟 고도화된 통계 및 차트 렌더링 함수
 function renderDbStats() {
     if(!DB_SUMMARY) return;
     const s = DB_SUMMARY.db_stats;
+    
+    // 1. 기초 텍스트 렌더링
     document.getElementById('statActorTotal').innerText = s.actors.total.toLocaleString();
     document.getElementById('statActorDom').innerText = s.actors.domestic.toLocaleString();
     document.getElementById('statActorDomMale').innerText = s.actors.dom_male.toLocaleString();
@@ -152,6 +190,104 @@ function renderDbStats() {
     document.getElementById('statActorInt').innerText = s.actors.foreign.toLocaleString();
     document.getElementById('statDirDom').innerText = s.directors.domestic.toLocaleString();
     document.getElementById('statDirInt').innerText = s.directors.foreign.toLocaleString();
+
+    // 2. 성비 계산 및 파이 차트 렌더링
+    const totalGender = s.actors.dom_male + s.actors.dom_female;
+    const maleRatio = totalGender > 0 ? ((s.actors.dom_male / totalGender) * 100).toFixed(1) : 0;
+    const femaleRatio = totalGender > 0 ? ((s.actors.dom_female / totalGender) * 100).toFixed(1) : 0;
+    document.getElementById('statGenderRatioText').innerText = `남: ${maleRatio}% / 여: ${femaleRatio}%`;
+
+    new Chart(document.getElementById('genderPieChart'), {
+        type: 'pie',
+        data: {
+            labels: ['남성', '여성'],
+            datasets: [{
+                data: [s.actors.dom_male, s.actors.dom_female],
+                backgroundColor: ['#2563eb', '#ef4444'],
+                borderWidth: 1
+            }]
+        },
+        options: { 
+            responsive: true, 
+            maintainAspectRatio: false, 
+            plugins: { legend: { display: false } } // 범례 숨김 (크기 최소화)
+        }
+    });
+
+    // 3. 스타 파워 랭킹 분석 및 분포 차트
+    const rankings = DB_SUMMARY.rankings_all || [];
+    if (rankings.length > 0) {
+        document.getElementById('statSpTotal').innerText = rankings.length.toLocaleString();
+        
+        // 평균 산출
+        const totalScore = rankings.reduce((sum, r) => sum + r.score, 0);
+        const avgScore = totalScore / rankings.length;
+        document.getElementById('statSpAvg').innerText = Math.round(avgScore).toLocaleString();
+
+        // 최고/최저점 및 기준일
+        const maxActor = rankings[0];
+        const minActor = rankings[rankings.length - 1];
+        
+        const genDate = new Date(DB_SUMMARY.generatedAt);
+        const dateStr = isNaN(genDate) ? "최근 갱신일" : `${genDate.getFullYear()}.${String(genDate.getMonth()+1).padStart(2,'0')}.${String(genDate.getDate()).padStart(2,'0')} 기준`;
+
+        document.getElementById('statSpMax').innerHTML = `<a href="person.html?id=${maxActor.id}&name=${encodeURIComponent(maxActor.name)}" target="_blank" style="color:#2563eb; text-decoration:none; font-weight:bold;">${maxActor.name}</a> <span style="font-size:13px; color:#555;">(${Math.round(maxActor.score).toLocaleString()}점, ${dateStr})</span>`;
+        document.getElementById('statSpMin').innerHTML = `<a href="person.html?id=${minActor.id}&name=${encodeURIComponent(minActor.name)}" target="_blank" style="color:#ef4444; text-decoration:none; font-weight:bold;">${minActor.name}</a> <span style="font-size:13px; color:#555;">(${Math.round(minActor.score).toLocaleString()}점, ${dateStr})</span>`;
+
+        // 분포 데이터 그룹화 (100점 단위 Bin)
+        const bins = {};
+        let maxBin = 0;
+        rankings.forEach(r => {
+            const bin = Math.floor(r.score / 100) * 100;
+            bins[bin] = (bins[bin] || 0) + 1;
+            if (bin > maxBin) maxBin = bin;
+        });
+
+        // 차트 라벨 및 데이터 배열 생성 (빈 구간도 0으로 채움)
+        const labels = [];
+        const dataBar = [];
+        for (let i = 0; i <= maxBin; i += 100) {
+            labels.push(`${i}~${i+99}`);
+            dataBar.push(bins[i] || 0);
+        }
+
+        // 혼합 차트 렌더링 (막대 + 산점도 역할의 라인)
+        new Chart(document.getElementById('spDistChart'), {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        type: 'bar',
+                        label: '해당 구간 배우 수 (막대)',
+                        data: dataBar,
+                        backgroundColor: 'rgba(55, 65, 81, 0.4)',
+                        borderColor: '#374151',
+                        borderWidth: 1
+                    },
+                    {
+                        type: 'line', // showLine: false로 산점도 효과 구현 (범주형 X축 호환용)
+                        label: '해당 구간 배우 수 (분포점)',
+                        data: dataBar,
+                        backgroundColor: '#9333ea',
+                        borderColor: '#9333ea',
+                        pointRadius: 5,
+                        pointHoverRadius: 7,
+                        showLine: false 
+                    }
+                ]
+            },
+            options: {
+                responsive: true, 
+                maintainAspectRatio: false,
+                interaction: { mode: 'index', intersect: false },
+                scales: {
+                    x: { ticks: { maxRotation: 45, minRotation: 45 } },
+                    y: { beginAtZero: true, title: { display: true, text: '배우 수 (명)' } }
+                }
+            }
+        });
+    }
 }
 
 function renderRankings() {
@@ -192,7 +328,6 @@ function toggleAllActors(source) {
     checkboxes.forEach(cb => cb.checked = source.checked);
 }
 
-// 🌟 [수정됨] CSV 다운로드 함수에 'milestone' 데이터 컬럼 추가
 function exportFilterResultsToCSV() {
     const checkedBoxes = document.querySelectorAll('.actor-checkbox:checked');
     if (checkedBoxes.length === 0) {
@@ -203,7 +338,6 @@ function exportFilterResultsToCSV() {
     const targets = Array.from(checkedBoxes).map(cb => JSON.parse(cb.value));
     const userMilestone = document.getElementById('filterMilestoneDate').value.trim().replace(/[^0-9]/g, '');
 
-    // milestone 헤더 추가
     let csvContent = "actor_name,movie_nm,open_dt,period,audience,total_y,role_weight,core_actors,time_weight,pos_count,neg_count,milestone\n";
 
     targets.forEach(actor => {
@@ -227,7 +361,6 @@ function exportFilterResultsToCSV() {
             const time_weight = Math.max(0.1, (parseInt(movieYear) - 2000) / 10);
 
             let period = "pre";
-            // 사용자가 입력 안 했으면 자동 지정된 peakDate를 기점으로 삼음
             const milestone = userMilestone ? userMilestone : (actor.peakDate || '20000101');
             if (openDtRaw >= milestone) {
                 period = "post";
@@ -256,7 +389,7 @@ function exportFilterResultsToCSV() {
                 time_weight,
                 pos_count,
                 neg_count,
-                milestone // 🌟 Colab을 위해 넘겨줌
+                milestone
             ];
             csvContent += row.join(",") + "\n";
         });
