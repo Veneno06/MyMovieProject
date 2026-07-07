@@ -6,8 +6,18 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="assets/style.css">
 <script src="assets/translator.js" defer></script>
-<!-- 🌟 차트 렌더링을 위해 Chart.js 라이브러리 추가 -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+  /* 분포 그래프 2종 좌우 나란히 배치를 위한 스타일 flex 조절 */
+  .dist-charts-container {
+      display: flex; gap: 15px; margin-top: 15px; flex-wrap: wrap;
+  }
+  .dist-chart-box {
+      flex: 1; min-width: 300px; height: 320px; background: #fff; 
+      border: 1px solid #e5e7eb; border-radius: 8px; padding: 12px;
+  }
+  .dist-chart-box h4 { text-align: center; margin: 0 0 8px 0; color: #4b5563; font-size: 13.5px; }
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -22,21 +32,18 @@
 
   <h1>배우/감독 검색</h1>
 
-  <!-- 1. 배우 프로필 검색 영역 -->
   <div style="background:#f9f9f9; padding:15px; border-radius:8px; border:1px solid #ddd; margin-bottom:20px;">
       <label>이름: <input type="text" id="keyword" onkeypress="if(event.key==='Enter') doSearch()" style="width:200px;"></label>
       <label style="margin-left:10px;"><input type="checkbox" id="onlyActor" checked> 배우만</label>
       <button class="btn" onclick="doSearch()" style="margin-left:10px;">검색</button>
   </div>
 
-  <!-- 2. 고도화된 데이터베이스 전체 통계 영역 -->
   <div style="background:#f9f9f9; padding:20px; border-radius:8px; border:1px solid #ddd; margin-bottom:20px;">
       <h3 style="margin-top:0; color:#111827; font-size:17px; border-bottom: 2px solid #2563eb; padding-bottom: 8px;">데이터베이스 전체 통계</h3>
       <div style="display:flex; flex-direction:column; gap:10px; font-size:14.5px; color:#374151; line-height:1.6;">
           
           <div><b>총 등록된 배우:</b> <span id="statActorTotal" style="font-weight:bold; color:#111827;">0</span>명</div>
           
-          <!-- 🌟 점선 없이 바로 이어지는 구조 -->
           <div>
               <b>국내 배우:</b> <span id="statActorDom" style="font-weight:bold; color:#2563eb;">0</span>명 
               <span style="font-size:13px; color:#6b7280;">(남: <span id="statActorDomMale">0</span>명 / 여: <span id="statActorDomFemale">0</span>명)</span> 
@@ -50,38 +57,41 @@
               <b>해외 감독:</b> <span id="statDirInt" style="font-weight:bold; color:#ef4444;">0</span>명
           </div>
 
-          <div style="display:flex; align-items:center; gap:15px; margin-top: 5px;">
+          <div style="display:flex; align-items:center; gap:15px; margin-top: 2px;">
               <b>국내 배우 성비:</b> <span id="statGenderRatioText" style="font-weight:bold; color:#4b5563;"></span>
-              <div style="width: 70px; height: 70px; position:relative;">
+              <div style="width: 60px; height: 60px; position:relative;">
                   <canvas id="genderPieChart"></canvas>
               </div>
           </div>
           
-          <!-- 🌟 스타 파워 분석 구분선 -->
-          <hr style="border:0; border-top:1px dashed #cbd5e1; margin:15px 0;">
-          
           <div><b>스타 파워 랭킹 총 인원:</b> <span id="statSpTotal" style="font-weight:bold; color:#111827;">0</span>명 <span style="font-size:12px; color:#888;">(점수 산출이 가능한 배우 기준)</span></div>
           <div><b>스타 파워 평균:</b> <span id="statSpAvg" style="font-weight:bold; color:#d97706;">0</span>점</div>
           
-          <div style="display:flex; gap:30px; flex-wrap:wrap; margin-top: 5px;">
+          <div style="display:flex; gap:30px; flex-wrap:wrap; margin-top: 2px;">
               <div><b>스타 파워 최고점:</b> <span id="statSpMax"></span></div>
               <div><b>스타 파워 최저점:</b> <span id="statSpMin"></span></div>
           </div>
 
-          <div style="margin-top: 15px;">
-              <b>스타 파워 분포:</b>
-              <div style="position: relative; height: 300px; width: 100%; margin-top: 10px; border: 1px solid #e5e7eb; background: #fff; border-radius: 8px; padding: 10px;">
-                  <canvas id="spDistChart"></canvas>
+          <div class="dist-charts-container">
+              <div class="dist-chart-box">
+                  <h4>5-1. 스타 파워 구간별 인원 분포 (막대형 - 200점 단위)</h4>
+                  <div style="position: relative; height: 260px; width: 100%;">
+                      <canvas id="spBarChart"></canvas>
+                  </div>
+              </div>
+              <div class="dist-chart-box">
+                  <h4>5-2. 순수 배우 스타 파워 분포 (산점도형 - 오직 배우만)</h4>
+                  <div style="position: relative; height: 260px; width: 100%;">
+                      <canvas id="spScatterChart"></canvas>
+                  </div>
               </div>
           </div>
 
       </div>
   </div>
 
-  <!-- 공간 띄우기 -->
   <div style="margin: 80px 0;"></div>
 
-  <!-- 3. 여론 필터링 영역 -->
   <h2 style="color:#2563eb; border-bottom: 2px solid #2563eb; padding-bottom:8px; margin-bottom:20px;">배우 프로필 여론 필터링</h2>
 
   <div style="background:#f9f9f9; padding:15px; border-radius:8px; border:1px solid #ddd; margin-bottom:20px;">
@@ -122,7 +132,6 @@
   <div id="filterCount" class="note" style="margin-bottom: 10px;"></div>
   <ul id="filterResults" class="list" style="padding-left: 0;"></ul>
 
-  <!-- 4. 스타 파워 랭킹 출력 영역 -->
   <div id="rankingContainer" style="margin-top: 40px; padding-top: 20px; border-top: 2px dashed #ddd; display: none;">
       <h2> 실시간 스타 파워 (SP_Final) TOP 10</h2>
       <div style="display: flex; gap: 20px; flex-wrap: wrap;">
@@ -163,7 +172,7 @@ async function loadData() {
         
         if (summaryRes.ok) {
             DB_SUMMARY = await summaryRes.json();
-            renderDbStats(); // 🌟 새로운 데이터베이스 통계 렌더링 호출
+            renderDbStats(); 
             renderRankings();
             VALID_SENTIMENT_ACTORS = DB_SUMMARY.sentiment_actors || [];
             
@@ -177,12 +186,10 @@ async function loadData() {
 }
 loadData();
 
-// 🌟 고도화된 통계 및 차트 렌더링 함수
 function renderDbStats() {
     if(!DB_SUMMARY) return;
     const s = DB_SUMMARY.db_stats;
     
-    // 1. 기초 텍스트 렌더링
     document.getElementById('statActorTotal').innerText = s.actors.total.toLocaleString();
     document.getElementById('statActorDom').innerText = s.actors.domestic.toLocaleString();
     document.getElementById('statActorDomMale').innerText = s.actors.dom_male.toLocaleString();
@@ -191,7 +198,6 @@ function renderDbStats() {
     document.getElementById('statDirDom').innerText = s.directors.domestic.toLocaleString();
     document.getElementById('statDirInt').innerText = s.directors.foreign.toLocaleString();
 
-    // 2. 성비 계산 및 파이 차트 렌더링
     const totalGender = s.actors.dom_male + s.actors.dom_female;
     const maleRatio = totalGender > 0 ? ((s.actors.dom_male / totalGender) * 100).toFixed(1) : 0;
     const femaleRatio = totalGender > 0 ? ((s.actors.dom_female / totalGender) * 100).toFixed(1) : 0;
@@ -210,21 +216,18 @@ function renderDbStats() {
         options: { 
             responsive: true, 
             maintainAspectRatio: false, 
-            plugins: { legend: { display: false } } // 범례 숨김 (크기 최소화)
+            plugins: { legend: { display: false } }
         }
     });
 
-    // 3. 스타 파워 랭킹 분석 및 분포 차트
     const rankings = DB_SUMMARY.rankings_all || [];
     if (rankings.length > 0) {
         document.getElementById('statSpTotal').innerText = rankings.length.toLocaleString();
         
-        // 평균 산출
         const totalScore = rankings.reduce((sum, r) => sum + r.score, 0);
         const avgScore = totalScore / rankings.length;
         document.getElementById('statSpAvg').innerText = Math.round(avgScore).toLocaleString();
 
-        // 최고/최저점 및 기준일
         const maxActor = rankings[0];
         const minActor = rankings[rankings.length - 1];
         
@@ -234,56 +237,65 @@ function renderDbStats() {
         document.getElementById('statSpMax').innerHTML = `<a href="person.html?id=${maxActor.id}&name=${encodeURIComponent(maxActor.name)}" target="_blank" style="color:#2563eb; text-decoration:none; font-weight:bold;">${maxActor.name}</a> <span style="font-size:13px; color:#555;">(${Math.round(maxActor.score).toLocaleString()}점, ${dateStr})</span>`;
         document.getElementById('statSpMin').innerHTML = `<a href="person.html?id=${minActor.id}&name=${encodeURIComponent(minActor.name)}" target="_blank" style="color:#ef4444; text-decoration:none; font-weight:bold;">${minActor.name}</a> <span style="font-size:13px; color:#555;">(${Math.round(minActor.score).toLocaleString()}점, ${dateStr})</span>`;
 
-        // 분포 데이터 그룹화 (100점 단위 Bin)
-        const bins = {};
-        let maxBin = 0;
+        // 🌟 [5-1 차트] 막대그래프: x축 200점 단위 Bin 그룹화 로직 적용
+        const barBins = {};
+        let maxBarBin = 0;
         rankings.forEach(r => {
-            const bin = Math.floor(r.score / 100) * 100;
-            bins[bin] = (bins[bin] || 0) + 1;
-            if (bin > maxBin) maxBin = bin;
+            const bin = Math.floor(r.score / 200) * 200;
+            barBins[bin] = (barBins[bin] || 0) + 1;
+            if (bin > maxBarBin) maxBarBin = bin;
         });
 
-        // 차트 라벨 및 데이터 배열 생성 (빈 구간도 0으로 채움)
-        const labels = [];
-        const dataBar = [];
-        for (let i = 0; i <= maxBin; i += 100) {
-            labels.push(`${i}~${i+99}`);
-            dataBar.push(bins[i] || 0);
+        const barLabels = [];
+        const barDataPoints = [];
+        for (let i = 0; i <= maxBarBin; i += 200) {
+            barLabels.push(`${i}~${i+199}`);
+            barDataPoints.push(barBins[i] || 0);
         }
 
-        // 혼합 차트 렌더링 (막대 + 산점도 역할의 라인)
-        new Chart(document.getElementById('spDistChart'), {
+        new Chart(document.getElementById('spBarChart'), {
             type: 'bar',
             data: {
-                labels: labels,
-                datasets: [
-                    {
-                        type: 'bar',
-                        label: '해당 구간 배우 수 (막대)',
-                        data: dataBar,
-                        backgroundColor: 'rgba(55, 65, 81, 0.4)',
-                        borderColor: '#374151',
-                        borderWidth: 1
-                    },
-                    {
-                        type: 'line', // showLine: false로 산점도 효과 구현 (범주형 X축 호환용)
-                        label: '해당 구간 배우 수 (분포점)',
-                        data: dataBar,
-                        backgroundColor: '#9333ea',
-                        borderColor: '#9333ea',
-                        pointRadius: 5,
-                        pointHoverRadius: 7,
-                        showLine: false 
-                    }
-                ]
+                labels: barLabels,
+                datasets: [{
+                    label: '구간별 배우 수 (명)',
+                    data: barDataPoints,
+                    backgroundColor: 'rgba(37, 99, 235, 0.75)',
+                    borderColor: '#2563eb',
+                    borderWidth: 1
+                }]
             },
             options: {
-                responsive: true, 
-                maintainAspectRatio: false,
-                interaction: { mode: 'index', intersect: false },
+                responsive: true, maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
                 scales: {
                     x: { ticks: { maxRotation: 45, minRotation: 45 } },
-                    y: { beginAtZero: true, title: { display: true, text: '배우 수 (명)' } }
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
+        // 🌟 [5-2 차트] 산점도 그래프: 오직 배우들만 매핑 (X축: 구간 라벨 매칭용, Y축: 인원수)
+        new Chart(document.getElementById('spScatterChart'), {
+            type: 'line',
+            data: {
+                labels: barLabels,
+                datasets: [{
+                    label: '배우 분포점',
+                    data: barDataPoints,
+                    backgroundColor: '#9333ea',
+                    borderColor: '#9333ea',
+                    pointRadius: 5,
+                    pointHoverRadius: 7,
+                    showLine: false // 꺾은선 제거하여 순수 산점도 형태로 가공
+                }]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    x: { ticks: { maxRotation: 45, minRotation: 45 } },
+                    y: { beginAtZero: true }
                 }
             }
         });
@@ -470,51 +482,59 @@ function applySentimentFilter() {
     });
 }
 
+// 🌟 [오류 완벽 복구] doSearch 내부에서 데이터 구조 불일치 및 차단 현상 완벽 제거
 function doSearch() {
     const keyword = document.getElementById('keyword').value.trim();
     const onlyActor = document.getElementById('onlyActor').checked;
     if (!keyword) { alert("이름을 입력해주세요."); return; }
 
     const out = document.getElementById('results');
+    out.innerHTML = '';
     const peopleMap = new Map();
 
     SEARCH_INDEX.forEach(m => {
         const movieTitle = m.movieNm;
         (m.actors || []).forEach(a => {
-            if (a.name.includes(keyword)) {
+            if (a.name && a.name.includes(keyword)) {
                 const id = a.id || "";
                 const key = id ? id : `name:${a.name}:actor`; 
-                if (!peopleMap.has(key)) peopleMap.set(key, { id: id, name: a.name, sourceRole: '배우', sex: a.gender, movies: new Set() });
+                if (!peopleMap.has(key)) {
+                    peopleMap.set(key, { id: id, name: a.name, sourceRole: '배우', sex: a.gender || '', movies: new Set() });
+                }
                 peopleMap.get(key).movies.add(movieTitle);
             }
         });
         (m.directors || []).forEach(d => {
-            if (d.name.includes(keyword)) {
+            if (d.name && d.name.includes(keyword)) {
                 const id = d.id || "";
                 const key = id ? id : `name:${d.name}:director`; 
-                if (!peopleMap.has(key)) peopleMap.set(key, { id: id, name: d.name, sourceRole: '감독', sex: '', movies: new Set() });
+                if (!peopleMap.has(key)) {
+                    peopleMap.set(key, { id: id, name: d.name, sourceRole: '감독', sex: '', movies: new Set() });
+                }
                 peopleMap.get(key).movies.add(movieTitle);
             }
         });
     });
 
     let resultsArray = Array.from(peopleMap.values());
-    out.innerHTML = '';
     let visibleCount = 0; 
 
     for (const r of resultsArray) {
-        if (!r.id) continue;
+        if (onlyActor && r.sourceRole !== '배우') continue;
+
         let sexBadge = "";
         if (r.sex === "남자" || r.sex === "남") sexBadge = `<span style="color:#2563eb;">(남)</span>`;
         if (r.sex === "여자" || r.sex === "여") sexBadge = `<span style="color:#ef4444;">(여)</span>`;
 
-        if (onlyActor && r.sourceRole !== '배우') continue;
-
         const li = document.createElement('li');
         li.style.borderBottom = "1px dashed #e5e7eb"; li.style.padding = "8px 0"; li.style.listStyle = "none";
+        
+        // 정적 식별 코드 복구
+        const finalId = r.id ? r.id : `name:${r.name}`;
+        
         li.innerHTML = `
-            <a href="person.html?id=${r.id}&name=${encodeURIComponent(r.name)}" target="_blank" style="font-weight:bold; color:#2563eb; text-decoration:none;">${r.name}</a>
-            <span class="note">(${r.id})</span>
+            <a href="person.html?id=${encodeURIComponent(finalId)}&name=${encodeURIComponent(r.name)}" target="_blank" style="font-weight:bold; color:#2563eb; text-decoration:none;">${r.name}</a>
+            <span class="note">(${r.id || '코드 없음'})</span>
             <span style="font-size:13px; font-weight:bold; color:#555;">${sexBadge} [${r.sourceRole}]</span>
             <span class="note" style="font-size:13px;">(${Array.from(r.movies).slice(0, 5).join(', ')}${r.movies.size > 5 ? ' 등' : ''})</span>
         `;
