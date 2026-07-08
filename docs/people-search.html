@@ -15,7 +15,14 @@
       flex: 1; min-width: 300px; height: 320px; background: #fff; 
       border: 1px solid #e5e7eb; border-radius: 8px; padding: 12px;
   }
-  .dist-chart-box h4 { text-align: center; margin: 0 0 8px 0; color: #4b5563; font-size: 14.5px; }
+  .dist-chart-box h4 { text-align: center; margin: 0 0 8px 0; color: #4b5563; font-size: 13.5px; }
+  
+  /* 검색 결과 리스트 스타일 개선 */
+  .search-result-item {
+      border-bottom: 1px dashed #e5e7eb; 
+      padding: 12px 0; 
+      list-style: none;
+  }
 </style>
 </head>
 <body>
@@ -31,14 +38,16 @@
 
   <h1>배우/감독 검색</h1>
 
-  <!-- 1. 배우 프로필 검색 영역 -->
   <div style="background:#f9f9f9; padding:15px; border-radius:8px; border:1px solid #ddd; margin-bottom:20px;">
       <label>이름: <input type="text" id="keyword" onkeypress="if(event.key==='Enter') doSearch()" style="width:200px;"></label>
       <label style="margin-left:10px;"><input type="checkbox" id="onlyActor" checked> 배우만</label>
       <button class="btn" onclick="doSearch()" style="margin-left:10px;">검색</button>
   </div>
 
-  <!-- 2. 고도화된 데이터베이스 전체 통계 영역 -->
+  <div id="count" class="note" style="margin-bottom: 10px; font-weight: bold; color: #2563eb;"></div>
+  <ul id="results" class="list" style="padding-left: 0; margin-bottom: 30px;"></ul>
+
+
   <div style="background:#f9f9f9; padding:20px; border-radius:8px; border:1px solid #ddd; margin-bottom:20px;">
       <h3 style="margin-top:0; color:#111827; font-size:17px; border-bottom: 2px solid #2563eb; padding-bottom: 8px;">데이터베이스 전체 통계 <span style="font-size:12px; color:#888; font-weight:normal;">(2003년 통합전산망 출범 이후 기준)</span></h3>
       <div style="display:flex; flex-direction:column; gap:10px; font-size:14.5px; color:#374151; line-height:1.6;">
@@ -73,7 +82,6 @@
               <div><b>스타 파워 최저점:</b> <span id="statSpMin"></span></div>
           </div>
 
-          <!-- 🌟 차트 이름 및 형태 수정 반영 -->
           <div class="dist-charts-container">
               <div class="dist-chart-box">
                   <h4>스타 파워 구간별 인원 분포 (막대형 - 200점 단위)</h4>
@@ -93,7 +101,6 @@
 
   <div style="margin: 80px 0;"></div>
 
-  <!-- 3. 여론 필터링 영역 -->
   <h2 style="color:#2563eb; border-bottom: 2px solid #2563eb; padding-bottom:8px; margin-bottom:20px;">배우 프로필 여론 필터링</h2>
 
   <div style="background:#f9f9f9; padding:15px; border-radius:8px; border:1px solid #ddd; margin-bottom:20px;">
@@ -133,7 +140,6 @@
   <div id="filterCount" class="note" style="margin-bottom: 10px;"></div>
   <ul id="filterResults" class="list" style="padding-left: 0;"></ul>
 
-  <!-- 4. 스타 파워 랭킹 출력 영역 -->
   <div id="rankingContainer" style="margin-top: 40px; padding-top: 20px; border-top: 2px dashed #ddd; display: none;">
       <h2> 실시간 스타 파워 (SP_Final) TOP 10</h2>
       <div style="display: flex; gap: 20px; flex-wrap: wrap;">
@@ -229,7 +235,6 @@ function renderDbStats() {
         document.getElementById('statSpMax').innerHTML = `<a href="person.html?id=${maxActor.id}&name=${encodeURIComponent(maxActor.name)}" target="_blank" style="color:#2563eb; text-decoration:none; font-weight:bold;">${maxActor.name}</a> <span style="font-size:13px; color:#555;">(${Math.round(maxActor.score).toLocaleString()}점, ${dateStr})</span>`;
         document.getElementById('statSpMin').innerHTML = `<a href="person.html?id=${minActor.id}&name=${encodeURIComponent(minActor.name)}" target="_blank" style="color:#ef4444; text-decoration:none; font-weight:bold;">${minActor.name}</a> <span style="font-size:13px; color:#555;">(${Math.round(minActor.score).toLocaleString()}점, ${dateStr})</span>`;
 
-        // 🌟 [막대그래프] 스타 파워 구간별 인원 분포 (200점 단위)
         const barBins = {};
         let maxBarBin = 0;
         rankings.forEach(r => {
@@ -257,7 +262,6 @@ function renderDbStats() {
             }
         });
 
-        // 🌟 [산점도 그래프] 개별 배우 완벽 매핑 (X축: 누적 관객수, Y축: 스타 파워)
         const scatterData = rankings.map(r => ({
             x: r.total_audi || 0,
             y: r.score,
@@ -292,7 +296,7 @@ function renderDbStats() {
                 scales: {
                     x: {
                         title: { display: true, text: '누적 관객수 (명)' },
-                        ticks: { callback: v => (v / 10000).toLocaleString() + '만' } // X축 단위를 보기 좋게 '만 명'으로 변환
+                        ticks: { callback: v => (v / 10000).toLocaleString() + '만' }
                     },
                     y: {
                         title: { display: true, text: '스타 파워 점수' },
@@ -361,7 +365,7 @@ function exportFilterResultsToCSV() {
 
         myMovies.forEach(m => {
             const openDtRaw = (m.openDt || '').replace(/[^0-9]/g, '');
-            if (openDtRaw.length < 4) return; 
+            if (openDtRaw.length < 4 || parseInt(openDtRaw.slice(0, 4), 10) < 2003) return; // 🌟 2003년 이전 차단 방어막 추가
 
             const movieYear = openDtRaw.slice(0, 4);
             const audience = parseInt(String(m.audiAcc).replace(/,/g, '') || '0', 10);
@@ -470,16 +474,20 @@ function applySentimentFilter() {
     });
 }
 
-// 🌟 [검색 먹통 완벽 해결] loadIndex() 함수 호출 오류 제거 및 로직 보완
+// 🌟 [핵심 복구 완료] 일반 검색 로직 정상화 및 출력 텍스트 가독성 개선
 async function doSearch() {
-    if (SEARCH_INDEX.length === 0) await loadData(); 
-    
     const keyword = document.getElementById('keyword').value.trim();
     const onlyActor = document.getElementById('onlyActor').checked;
     if (!keyword) { alert("이름을 입력해주세요."); return; }
 
     const out = document.getElementById('results');
-    out.innerHTML = '';
+    const countEl = document.getElementById('count');
+    
+    out.innerHTML = '<li class="note" style="list-style:none;">검색 중...</li>';
+    countEl.innerText = '';
+
+    if (SEARCH_INDEX.length === 0) await loadData(); 
+
     const peopleMap = new Map();
 
     SEARCH_INDEX.forEach(m => {
@@ -507,6 +515,7 @@ async function doSearch() {
     });
 
     let resultsArray = Array.from(peopleMap.values());
+    out.innerHTML = '';
     let visibleCount = 0; 
 
     for (const r of resultsArray) {
@@ -517,20 +526,20 @@ async function doSearch() {
         if (r.sex === "여자" || r.sex === "여") sexBadge = `<span style="color:#ef4444;">(여)</span>`;
 
         const li = document.createElement('li');
-        li.style.borderBottom = "1px dashed #e5e7eb"; li.style.padding = "8px 0"; li.style.listStyle = "none";
+        li.className = "search-result-item";
         
         const finalId = r.id ? r.id : `name:${r.name}`;
         
         li.innerHTML = `
-            <a href="person.html?id=${encodeURIComponent(finalId)}&name=${encodeURIComponent(r.name)}" target="_blank" style="font-weight:bold; color:#2563eb; text-decoration:none;">${r.name}</a>
-            <span class="note">(${r.id || '코드 없음'})</span>
-            <span style="font-size:13px; font-weight:bold; color:#555;">${sexBadge} [${r.sourceRole}]</span>
-            <span class="note" style="font-size:13px;">(${Array.from(r.movies).slice(0, 5).join(', ')}${r.movies.size > 5 ? ' 등' : ''})</span>
+            <a href="person.html?id=${encodeURIComponent(finalId)}&name=${encodeURIComponent(r.name)}" target="_blank" style="font-weight:bold; color:#2563eb; text-decoration:none; font-size:16px;">${r.name}</a>
+            <span class="note" style="margin-left:5px;">(${r.id || '코드 없음'})</span>
+            <span style="font-size:13px; font-weight:bold; color:#555; margin-left:5px;">${sexBadge} [${r.sourceRole}]</span>
+            <div class="note" style="font-size:13px; margin-top:4px;">출연/연출작: ${Array.from(r.movies).slice(0, 10).join(', ')}${r.movies.size > 10 ? ' 등' : ''}</div>
         `;
         out.appendChild(li);
         visibleCount++;
     }
-    document.getElementById('count').innerText = `일반 검색 결과: 총 ${visibleCount}건 검색됨`;
+    countEl.innerText = `일반 검색 결과: 총 ${visibleCount}건 검색됨`;
     if (visibleCount === 0) out.innerHTML = '<li class="note" style="color:red; list-style:none;">검색 결과가 없습니다.</li>';
 }
 </script>
