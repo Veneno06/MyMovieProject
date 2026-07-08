@@ -8,7 +8,6 @@
 <script src="assets/translator.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
-  /* 분포 그래프 2종 좌우 나란히 배치를 위한 스타일 flex 조절 */
   .dist-charts-container {
       display: flex; gap: 15px; margin-top: 15px; flex-wrap: wrap;
   }
@@ -16,7 +15,7 @@
       flex: 1; min-width: 300px; height: 320px; background: #fff; 
       border: 1px solid #e5e7eb; border-radius: 8px; padding: 12px;
   }
-  .dist-chart-box h4 { text-align: center; margin: 0 0 8px 0; color: #4b5563; font-size: 13.5px; }
+  .dist-chart-box h4 { text-align: center; margin: 0 0 8px 0; color: #4b5563; font-size: 14.5px; }
 </style>
 </head>
 <body>
@@ -32,25 +31,25 @@
 
   <h1>배우/감독 검색</h1>
 
+  <!-- 1. 배우 프로필 검색 영역 -->
   <div style="background:#f9f9f9; padding:15px; border-radius:8px; border:1px solid #ddd; margin-bottom:20px;">
       <label>이름: <input type="text" id="keyword" onkeypress="if(event.key==='Enter') doSearch()" style="width:200px;"></label>
       <label style="margin-left:10px;"><input type="checkbox" id="onlyActor" checked> 배우만</label>
       <button class="btn" onclick="doSearch()" style="margin-left:10px;">검색</button>
   </div>
 
+  <!-- 2. 고도화된 데이터베이스 전체 통계 영역 -->
   <div style="background:#f9f9f9; padding:20px; border-radius:8px; border:1px solid #ddd; margin-bottom:20px;">
-      <h3 style="margin-top:0; color:#111827; font-size:17px; border-bottom: 2px solid #2563eb; padding-bottom: 8px;">데이터베이스 전체 통계</h3>
+      <h3 style="margin-top:0; color:#111827; font-size:17px; border-bottom: 2px solid #2563eb; padding-bottom: 8px;">데이터베이스 전체 통계 <span style="font-size:12px; color:#888; font-weight:normal;">(2003년 통합전산망 출범 이후 기준)</span></h3>
       <div style="display:flex; flex-direction:column; gap:10px; font-size:14.5px; color:#374151; line-height:1.6;">
           
           <div><b>총 등록된 배우:</b> <span id="statActorTotal" style="font-weight:bold; color:#111827;">0</span>명</div>
-          
           <div>
               <b>국내 배우:</b> <span id="statActorDom" style="font-weight:bold; color:#2563eb;">0</span>명 
               <span style="font-size:13px; color:#6b7280;">(남: <span id="statActorDomMale">0</span>명 / 여: <span id="statActorDomFemale">0</span>명)</span> 
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <b>해외 배우:</b> <span id="statActorInt" style="font-weight:bold; color:#ef4444;">0</span>명
           </div>
-          
           <div>
               <b>국내 감독:</b> <span id="statDirDom" style="font-weight:bold; color:#2563eb;">0</span>명 
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -64,6 +63,8 @@
               </div>
           </div>
           
+          <hr style="border:0; border-top:1px dashed #cbd5e1; margin:15px 0;">
+          
           <div><b>스타 파워 랭킹 총 인원:</b> <span id="statSpTotal" style="font-weight:bold; color:#111827;">0</span>명 <span style="font-size:12px; color:#888;">(점수 산출이 가능한 배우 기준)</span></div>
           <div><b>스타 파워 평균:</b> <span id="statSpAvg" style="font-weight:bold; color:#d97706;">0</span>점</div>
           
@@ -72,26 +73,27 @@
               <div><b>스타 파워 최저점:</b> <span id="statSpMin"></span></div>
           </div>
 
+          <!-- 🌟 차트 이름 및 형태 수정 반영 -->
           <div class="dist-charts-container">
               <div class="dist-chart-box">
-                  <h4>5-1. 스타 파워 구간별 인원 분포 (막대형 - 200점 단위)</h4>
+                  <h4>스타 파워 구간별 인원 분포 (막대형 - 200점 단위)</h4>
                   <div style="position: relative; height: 260px; width: 100%;">
                       <canvas id="spBarChart"></canvas>
                   </div>
               </div>
               <div class="dist-chart-box">
-                  <h4>5-2. 순수 배우 스타 파워 분포 (산점도형 - 오직 배우만)</h4>
+                  <h4>배우 스타 파워 분포 (산점도)</h4>
                   <div style="position: relative; height: 260px; width: 100%;">
                       <canvas id="spScatterChart"></canvas>
                   </div>
               </div>
           </div>
-
       </div>
   </div>
 
   <div style="margin: 80px 0;"></div>
 
+  <!-- 3. 여론 필터링 영역 -->
   <h2 style="color:#2563eb; border-bottom: 2px solid #2563eb; padding-bottom:8px; margin-bottom:20px;">배우 프로필 여론 필터링</h2>
 
   <div style="background:#f9f9f9; padding:15px; border-radius:8px; border:1px solid #ddd; margin-bottom:20px;">
@@ -119,12 +121,11 @@
               <label>연구 대상 사건 발생일 설정: 
                   <input type="text" id="filterMilestoneDate" placeholder="예: 20230515 (비워두면 자동 피크일 지정)" style="width:250px; padding:4px;">
               </label>
-              <p style="font-size:12px; color:#6b7280; margin:4px 0 0 0;">※ 날짜를 비워두고 다운로드하면 시스템이 계산한 가장 가파른 여론 급락 지점을 사건일로 자동 지정합니다.</p>
           </div>
 
           <div style="display:flex; gap:10px; margin-top:5px;">
               <button class="btn" onclick="applySentimentFilter()" style="background:#4f46e5; color:white; border:none; padding:8px 16px;">위 조건으로 여론 기반 검색</button>
-              <button class="btn" onclick="exportFilterResultsToCSV()" style="background:#10b981; color:white; border:none; padding:8px 16px;"> Colab용 h1_data.csv 다운로드 (선택 항목만)</button>
+              <button class="btn" onclick="exportFilterResultsToCSV()" style="background:#10b981; color:white; border:none; padding:8px 16px;"> Colab용 h1_data.csv 다운로드</button>
           </div>
       </div>
   </div>
@@ -132,6 +133,7 @@
   <div id="filterCount" class="note" style="margin-bottom: 10px;"></div>
   <ul id="filterResults" class="list" style="padding-left: 0;"></ul>
 
+  <!-- 4. 스타 파워 랭킹 출력 영역 -->
   <div id="rankingContainer" style="margin-top: 40px; padding-top: 20px; border-top: 2px dashed #ddd; display: none;">
       <h2> 실시간 스타 파워 (SP_Final) TOP 10</h2>
       <div style="display: flex; gap: 20px; flex-wrap: wrap;">
@@ -177,10 +179,8 @@ async function loadData() {
             VALID_SENTIMENT_ACTORS = DB_SUMMARY.sentiment_actors || [];
             
             const statusEl = document.getElementById('sentimentScanStatus');
-            statusEl.innerHTML = `여론 데이터 보유 배우: <b>${VALID_SENTIMENT_ACTORS.length}명 확인</b> <span style="color:#16a34a;">(서버 연산 데이터베이스 동기화 완료 ✅)</span>`;
+            statusEl.innerHTML = `여론 데이터 보유 배우: <b>${VALID_SENTIMENT_ACTORS.length}명 확인</b> <span style="color:#16a34a;">(서버 연산 동기화 완료 ✅)</span>`;
             document.getElementById('filterNegSlopeMax').placeholder = `최대 ${DB_SUMMARY.global_max_slope} 사이`;
-        } else {
-            document.getElementById('sentimentScanStatus').innerText = "요약 데이터를 찾을 수 없습니다. GitHub Actions를 실행해주세요.";
         }
     } catch(e) { console.error(e); }
 }
@@ -207,17 +207,9 @@ function renderDbStats() {
         type: 'pie',
         data: {
             labels: ['남성', '여성'],
-            datasets: [{
-                data: [s.actors.dom_male, s.actors.dom_female],
-                backgroundColor: ['#2563eb', '#ef4444'],
-                borderWidth: 1
-            }]
+            datasets: [{ data: [s.actors.dom_male, s.actors.dom_female], backgroundColor: ['#2563eb', '#ef4444'], borderWidth: 1 }]
         },
-        options: { 
-            responsive: true, 
-            maintainAspectRatio: false, 
-            plugins: { legend: { display: false } }
-        }
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
     });
 
     const rankings = DB_SUMMARY.rankings_all || [];
@@ -237,7 +229,7 @@ function renderDbStats() {
         document.getElementById('statSpMax').innerHTML = `<a href="person.html?id=${maxActor.id}&name=${encodeURIComponent(maxActor.name)}" target="_blank" style="color:#2563eb; text-decoration:none; font-weight:bold;">${maxActor.name}</a> <span style="font-size:13px; color:#555;">(${Math.round(maxActor.score).toLocaleString()}점, ${dateStr})</span>`;
         document.getElementById('statSpMin').innerHTML = `<a href="person.html?id=${minActor.id}&name=${encodeURIComponent(minActor.name)}" target="_blank" style="color:#ef4444; text-decoration:none; font-weight:bold;">${minActor.name}</a> <span style="font-size:13px; color:#555;">(${Math.round(minActor.score).toLocaleString()}점, ${dateStr})</span>`;
 
-        // 🌟 [5-1 차트] 막대그래프: x축 200점 단위 Bin 그룹화 로직 적용
+        // 🌟 [막대그래프] 스타 파워 구간별 인원 분포 (200점 단위)
         const barBins = {};
         let maxBarBin = 0;
         rankings.forEach(r => {
@@ -257,45 +249,55 @@ function renderDbStats() {
             type: 'bar',
             data: {
                 labels: barLabels,
-                datasets: [{
-                    label: '구간별 배우 수 (명)',
-                    data: barDataPoints,
-                    backgroundColor: 'rgba(37, 99, 235, 0.75)',
-                    borderColor: '#2563eb',
-                    borderWidth: 1
-                }]
+                datasets: [{ label: '해당 구간 배우 수 (명)', data: barDataPoints, backgroundColor: 'rgba(37, 99, 235, 0.7)', borderWidth: 0 }]
             },
             options: {
-                responsive: true, maintainAspectRatio: false,
-                plugins: { legend: { display: false } },
-                scales: {
-                    x: { ticks: { maxRotation: 45, minRotation: 45 } },
-                    y: { beginAtZero: true }
-                }
+                responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } },
+                scales: { x: { ticks: { maxRotation: 45, minRotation: 45 } }, y: { beginAtZero: true } }
             }
         });
 
-        // 🌟 [5-2 차트] 산점도 그래프: 오직 배우들만 매핑 (X축: 구간 라벨 매칭용, Y축: 인원수)
+        // 🌟 [산점도 그래프] 개별 배우 완벽 매핑 (X축: 누적 관객수, Y축: 스타 파워)
+        const scatterData = rankings.map(r => ({
+            x: r.total_audi || 0,
+            y: r.score,
+            name: r.name
+        }));
+
         new Chart(document.getElementById('spScatterChart'), {
-            type: 'line',
+            type: 'scatter',
             data: {
-                labels: barLabels,
                 datasets: [{
-                    label: '배우 분포점',
-                    data: barDataPoints,
-                    backgroundColor: '#9333ea',
+                    label: '배우 스타 파워',
+                    data: scatterData,
+                    backgroundColor: 'rgba(147, 51, 234, 0.5)',
                     borderColor: '#9333ea',
-                    pointRadius: 5,
-                    pointHoverRadius: 7,
-                    showLine: false // 꺾은선 제거하여 순수 산점도 형태로 가공
+                    pointRadius: 4,
+                    pointHoverRadius: 7
                 }]
             },
             options: {
                 responsive: true, maintainAspectRatio: false,
-                plugins: { legend: { display: false } },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: (ctx) => {
+                                const d = ctx.raw;
+                                return ` ${d.name}: 관객 ${d.x.toLocaleString()}명 / SP ${Math.round(d.y).toLocaleString()}점`;
+                            }
+                        }
+                    }
+                },
                 scales: {
-                    x: { ticks: { maxRotation: 45, minRotation: 45 } },
-                    y: { beginAtZero: true }
+                    x: {
+                        title: { display: true, text: '누적 관객수 (명)' },
+                        ticks: { callback: v => (v / 10000).toLocaleString() + '만' } // X축 단위를 보기 좋게 '만 명'으로 변환
+                    },
+                    y: {
+                        title: { display: true, text: '스타 파워 점수' },
+                        beginAtZero: true
+                    }
                 }
             }
         });
@@ -374,12 +376,9 @@ function exportFilterResultsToCSV() {
 
             let period = "pre";
             const milestone = userMilestone ? userMilestone : (actor.peakDate || '20000101');
-            if (openDtRaw >= milestone) {
-                period = "post";
-            }
+            if (openDtRaw >= milestone) { period = "post"; }
 
-            let pos_count = 0;
-            let neg_count = 0;
+            let pos_count = 0, neg_count = 0;
             if (actor.rawTimeline) {
                 Object.keys(actor.rawTimeline).forEach(w => {
                     if (w.startsWith(movieYear)) {
@@ -390,18 +389,8 @@ function exportFilterResultsToCSV() {
             }
 
             const row = [
-                `"${actor.name}"`,
-                `"${m.movieNm.replace(/"/g, '""')}"`,
-                openDtRaw,
-                period,
-                audience,
-                total_y,
-                role_weight,
-                core_actors,
-                time_weight,
-                pos_count,
-                neg_count,
-                milestone
+                `"${actor.name}"`, `"${m.movieNm.replace(/"/g, '""')}"`,
+                openDtRaw, period, audience, total_y, role_weight, core_actors, time_weight, pos_count, neg_count, milestone
             ];
             csvContent += row.join(",") + "\n";
         });
@@ -409,10 +398,9 @@ function exportFilterResultsToCSV() {
 
     const blob = new Blob(["\uFEFF" + csvContent], { type: 'text/csv;charset=utf-8;' });
     const link = document.createElement("a");
-    const url = URL.createObjectURL(blob);
-    link.setAttribute("href", url);
-    link.setAttribute("download", `h1_data.csv`);
-    link.style.visibility = 'hidden';
+    link.href = URL.createObjectURL(blob);
+    link.download = `h1_data.csv`;
+    link.style.display = 'none';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -482,8 +470,10 @@ function applySentimentFilter() {
     });
 }
 
-// 🌟 [오류 완벽 복구] doSearch 내부에서 데이터 구조 불일치 및 차단 현상 완벽 제거
-function doSearch() {
+// 🌟 [검색 먹통 완벽 해결] loadIndex() 함수 호출 오류 제거 및 로직 보완
+async function doSearch() {
+    if (SEARCH_INDEX.length === 0) await loadData(); 
+    
     const keyword = document.getElementById('keyword').value.trim();
     const onlyActor = document.getElementById('onlyActor').checked;
     if (!keyword) { alert("이름을 입력해주세요."); return; }
@@ -529,7 +519,6 @@ function doSearch() {
         const li = document.createElement('li');
         li.style.borderBottom = "1px dashed #e5e7eb"; li.style.padding = "8px 0"; li.style.listStyle = "none";
         
-        // 정적 식별 코드 복구
         const finalId = r.id ? r.id : `name:${r.name}`;
         
         li.innerHTML = `
