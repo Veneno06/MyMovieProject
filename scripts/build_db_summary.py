@@ -1,4 +1,3 @@
-# scripts/build_db_summary.py
 import os
 import json
 import glob
@@ -12,50 +11,48 @@ OUTPUT_PATH = ROOT / "docs" / "data" / "db_summary.json"
 
 def main():
     if not SEARCH_INDEX_PATH.exists():
-        print("[Error] search_index.json이 존재하지 않습니다.")
         return
 
     with open(SEARCH_INDEX_PATH, 'r', encoding='utf-8') as f:
         movies = json.load(f)
 
-    # 1. 기초 통계 및 연도별 집계 초기화
     yearly_stats = {}
-    total_movies = 0
-    total_dom_movies, total_for_movies = 0, 0
+    total_movies, total_dom_movies, total_for_movies = 0, 0, 0
     cumulative_audience = 0
-
-    dom_actors, for_actors = set(), set()
-    dom_male, dom_female = set(), set()
+    dom_actors, for_actors, dom_male, dom_female = set(), set(), set(), set()
     dom_directors, for_directors = set(), set()
-
     YEAR_TOTALS = {}
 
-    # 2. 영화 순회하며 통계 수집
+    # 1. 영화 순회 및 2003년 필터링 (강제 적용)
     for m in movies:
-        y = m.get('openDt', '')[:4] or str(m.get('prdtYear', ''))
+        y_str = m.get('openDt', '')[:4] or str(m.get('prdtYear', ''))
+        
+        # 🌟 핵심: 2003년 이전 데이터이거나 연도가 없는 데이터는 철저히 배제
+        if not y_str or not y_str.isdigit() or int(y_str) < 2003:
+            continue
+            
+        y = y_str
         audi = int(str(m.get('audiAcc', 0)).replace(',', ''))
         is_k = (m.get('nation') == '한국' or m.get('repNation') == 'K')
 
-        if y and audi > 0:
+        if audi > 0:
             YEAR_TOTALS[y] = YEAR_TOTALS.get(y, 0) + audi
 
-        if y and y.isdigit():
-            if y not in yearly_stats:
-                yearly_stats[y] = {"dom_movies": 0, "for_movies": 0, "dom_audi": 0, "for_audi": 0}
+        if y not in yearly_stats:
+            yearly_stats[y] = {"dom_movies": 0, "for_movies": 0, "dom_audi": 0, "for_audi": 0}
             
-            if is_k:
-                yearly_stats[y]["dom_movies"] += 1
-                yearly_stats[y]["dom_audi"] += audi
-                total_dom_movies += 1
-            else:
-                yearly_stats[y]["for_movies"] += 1
-                yearly_stats[y]["for_audi"] += audi
-                total_for_movies += 1
+        if is_k:
+            yearly_stats[y]["dom_movies"] += 1
+            yearly_stats[y]["dom_audi"] += audi
+            total_dom_movies += 1
+        else:
+            yearly_stats[y]["for_movies"] += 1
+            yearly_stats[y]["for_audi"] += audi
+            total_for_movies += 1
 
-            total_movies += 1
-            cumulative_audience += audi
+        total_movies += 1
+        cumulative_audience += audi
 
-        # 배우/감독 국적 및 성별 분류 (출연한 영화의 국적을 기준)
         for a in m.get('actors', []):
             aid = a.get('id') or a.get('name')
             gender = a.get('gender', '').strip()
@@ -71,16 +68,19 @@ def main():
             if is_k: dom_directors.add(did)
             else: for_directors.add(did)
 
-    # 교집합(국내와 해외 모두 출연)인 경우 국내 배우로 우선 편입 처리
     for_actors = for_actors - dom_actors
     for_directors = for_directors - dom_directors
 
-    # 3. 스타 파워 랭킹(SP_Final) 사전 계산
+    # 2. 스타 파워 랭킹(SP_Final) 계산 (2003년 이후 데이터만)
     ACTOR_SCORES = {}
     for m in movies:
-        y = m.get('openDt', '')[:4] or str(m.get('prdtYear', ''))
+        y_str = m.get('openDt', '')[:4] or str(m.get('prdtYear', ''))
+        if not y_str or not y_str.isdigit() or int(y_str) < 2003:
+            continue
+            
+        y = y_str
         audi = int(str(m.get('audiAcc', 0)).replace(',', ''))
-        if not y or audi <= 0: continue
+        if audi <= 0: continue
         
         total_y = YEAR_TOTALS[y]
         w_time = max(0.1, (int(y) - 2000) / 10)
@@ -96,12 +96,14 @@ def main():
             score_i = (audi / total_y) * (w_role / math.sqrt(c_i)) * w_time * 10000
 
             if aid not in ACTOR_SCORES:
-                ACTOR_SCORES[aid] = {'id': aid, 'name': aname, 'score': 0, 'sex': a.get('gender')}
+                # 🌟 산점도(Scatter) X축 구성을 위해 total_audi(누적 관객수) 필드 추가
+                ACTOR_SCORES[aid] = {'id': aid, 'name': aname, 'score': 0, 'sex': a.get('gender'), 'total_audi': 0}
             ACTOR_SCORES[aid]['score'] += score_i
+            ACTOR_SCORES[aid]['total_audi'] += audi
 
     ranked_all = sorted(ACTOR_SCORES.values(), key=lambda x: x['score'], reverse=True)
 
-    # 4. 여론 데이터 스캔 사전 집계 (파일 폭격 방지)
+    # 3. 여론 데이터 스캔
     sentiment_actors = []
     global_max_slope = 0
     
@@ -112,7 +114,6 @@ def main():
             name = s_data.get('actor_name')
             timeline = s_data.get('timeline', {})
             
-            # 해당하는 배우의 랭킹 정보 매칭
             actor_rank_info = next((item for item in ranked_all if item["name"] == name), None)
             if not actor_rank_info or not timeline: continue
 
@@ -152,7 +153,7 @@ def main():
             
     sentiment_actors.sort(key=lambda x: x['score'], reverse=True)
 
-    # 5. 최종 JSON 출력
+    # 4. 최종 JSON 출력
     summary_data = {
         "generatedAt": os.popen("date -u +'%Y-%m-%dT%H:%M:%SZ'").read().strip() if os.name != 'nt' else "",
         "db_stats": {
@@ -181,8 +182,6 @@ def main():
 
     with open(OUTPUT_PATH, 'w', encoding='utf-8') as f:
         json.dump(summary_data, f, ensure_ascii=False, indent=2)
-
-    print(f"✅ db_summary.json 생성 완료! (통합 영화: {total_movies}편 / 배우: {len(dom_actors)+len(for_actors)}명)")
 
 if __name__ == "__main__":
     main()
