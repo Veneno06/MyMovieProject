@@ -1,18 +1,14 @@
 {
   "actor_name": "정인기",
-  "last_updated": "2026-04-03 08:45:29",
+  "last_updated": "2026-07-08 04:40:04",
   "timeline": {
-    "2012-W50": {
-      "positive": 1,
-      "negative": 0
-    },
-    "2013-W06": {
-      "positive": 1,
-      "negative": 0
-    },
     "2013-W05": {
       "positive": 1,
       "negative": 1
+    },
+    "2012-W50": {
+      "positive": 1,
+      "negative": 0
     },
     "2013-W02": {
       "positive": 1,
@@ -22,11 +18,23 @@
       "positive": 0,
       "negative": 1
     },
+    "2013-W06": {
+      "positive": 1,
+      "negative": 0
+    },
     "2013-W03": {
       "positive": 1,
       "negative": 0
     },
     "2013-W09": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2017-W49": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2015-W45": {
       "positive": 1,
       "negative": 0
     },
@@ -39,20 +47,40 @@
       "negative": 0
     },
     "2014-W44": {
-      "positive": 11,
-      "negative": 9
+      "positive": 22,
+      "negative": 17
+    },
+    "2014-W45": {
+      "positive": 3,
+      "negative": 3
     },
     "2018-W11": {
       "positive": 1,
-      "negative": 1
+      "negative": 0
     },
-    "2014-W45": {
+    "2014-W51": {
       "positive": 2,
       "negative": 2
     },
-    "2014-W51": {
+    "2018-W13": {
       "positive": 1,
       "negative": 0
+    },
+    "2025-W46": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2025-W48": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2025-W49": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2014-W49": {
+      "positive": 2,
+      "negative": 3
     },
     "2021-W40": {
       "positive": 1,
@@ -74,6 +102,14 @@
       "positive": 2,
       "negative": 2
     },
+    "2016-W08": {
+      "positive": 20,
+      "negative": 10
+    },
+    "2016-W09": {
+      "positive": 7,
+      "negative": 8
+    },
     "2016-W07": {
       "positive": 2,
       "negative": 3
@@ -82,23 +118,7 @@
       "positive": 2,
       "negative": 2
     },
-    "2016-W08": {
-      "positive": 21,
-      "negative": 9
-    },
-    "2016-W09": {
-      "positive": 7,
-      "negative": 8
-    },
     "2020-W36": {
-      "positive": 1,
-      "negative": 0
-    },
-    "2021-W33": {
-      "positive": 1,
-      "negative": 0
-    },
-    "2017-W13": {
       "positive": 1,
       "negative": 0
     },
@@ -106,15 +126,11 @@
       "positive": 1,
       "negative": 0
     },
-    "2017-W22": {
-      "positive": 1,
-      "negative": 0
-    },
     "2016-W34": {
       "positive": 0,
       "negative": 1
     },
-    "2019-W13": {
+    "2017-W13": {
       "positive": 1,
       "negative": 0
     },
@@ -122,15 +138,31 @@
       "positive": 1,
       "negative": 0
     },
-    "2020-W21": {
+    "2021-W33": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2016-W14": {
       "positive": 0,
       "negative": 1
+    },
+    "2017-W22": {
+      "positive": 1,
+      "negative": 0
     },
     "2016-W17": {
       "positive": 1,
       "negative": 0
     },
+    "2019-W13": {
+      "positive": 1,
+      "negative": 0
+    },
     "2016-W30": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2020-W21": {
       "positive": 0,
       "negative": 1
     },
@@ -140,21 +172,13 @@
     },
     "2016-W11": {
       "positive": 1,
-      "negative": 5
-    },
-    "2016-W14": {
-      "positive": 0,
-      "negative": 1
-    },
-    "2019-W26": {
-      "positive": 0,
-      "negative": 1
+      "negative": 4
     },
     "2016-W12": {
       "positive": 1,
       "negative": 0
     },
-    "2017-W27": {
+    "2019-W26": {
       "positive": 0,
       "negative": 1
     },
@@ -162,97 +186,137 @@
       "positive": 1,
       "negative": 1
     },
-    "2017-W45": {
-      "positive": 0,
-      "negative": 1
-    },
     "2020-W05": {
       "positive": 1,
       "negative": 0
+    },
+    "2017-W27": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2017-W17": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2017-W45": {
+      "positive": 0,
+      "negative": 1
     },
     "2016-W29": {
       "positive": 2,
       "negative": 1
     },
-    "2017-W36": {
+    "2018-W36": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2021-W08": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2020-W26": {
       "positive": 3,
+      "negative": 0
+    },
+    "2020-W51": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2020-W37": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2020-W20": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2021-W23": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2021-W01": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2020-W33": {
+      "positive": 1,
       "negative": 1
     },
-    "2018-W13": {
+    "2020-W28": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2023-W05": {
       "positive": 1,
       "negative": 0
     },
-    "2017-W35": {
+    "2022-W38": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2020-W24": {
+      "positive": 2,
+      "negative": 3
+    },
+    "2020-W31": {
       "positive": 1,
       "negative": 0
+    },
+    "2020-W48": {
+      "positive": 0,
+      "negative": 1
     },
     "2022-W26": {
       "positive": 0,
       "negative": 1
     },
-    "2021-W31": {
+    "2020-W32": {
       "positive": 0,
       "negative": 1
     },
-    "2017-W37": {
+    "2020-W19": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2020-W18": {
       "positive": 0,
       "negative": 1
     },
-    "2017-W20": {
-      "positive": 2,
-      "negative": 0
-    },
-    "2019-W48": {
-      "positive": 1,
-      "negative": 0
-    },
-    "2018-W36": {
-      "positive": 1,
-      "negative": 0
-    },
-    "2020-W24": {
-      "positive": 1,
-      "negative": 3
+    "2022-W08": {
+      "positive": 0,
+      "negative": 1
     },
     "2020-W23": {
       "positive": 7,
       "negative": 1
     },
-    "2020-W26": {
-      "positive": 2,
-      "negative": 0
+    "2020-W45": {
+      "positive": 1,
+      "negative": 1
     },
     "2020-W27": {
       "positive": 2,
       "negative": 0
     },
-    "2020-W45": {
-      "positive": 1,
-      "negative": 1
-    },
     "2024-W16": {
       "positive": 0,
       "negative": 1
-    },
-    "2020-W30": {
-      "positive": 2,
-      "negative": 0
-    },
-    "2020-W42": {
-      "positive": 1,
-      "negative": 0
     },
     "2020-W25": {
       "positive": 2,
       "negative": 2
     },
-    "2023-W36": {
-      "positive": 11,
-      "negative": 5
-    },
-    "2020-W28": {
+    "2020-W42": {
       "positive": 1,
       "negative": 0
+    },
+    "2020-W30": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2023-W36": {
+      "positive": 3,
+      "negative": 4
     },
     "2020-W38": {
       "positive": 1,
@@ -262,24 +326,24 @@
       "positive": 0,
       "negative": 1
     },
-    "2021-W45": {
-      "positive": 2,
-      "negative": 1
-    },
     "2023-W07": {
       "positive": 1,
       "negative": 0
+    },
+    "2021-W45": {
+      "positive": 2,
+      "negative": 1
     },
     "2021-W44": {
       "positive": 22,
       "negative": 8
     },
     "2024-W20": {
-      "positive": 1,
+      "positive": 6,
       "negative": 1
     },
     "2024-W06": {
-      "positive": 1,
+      "positive": 5,
       "negative": 0
     },
     "2022-W23": {
@@ -287,12 +351,12 @@
       "negative": 1
     },
     "2023-W35": {
-      "positive": 4,
-      "negative": 3
+      "positive": 0,
+      "negative": 1
     },
     "2025-W14": {
       "positive": 0,
-      "negative": 1
+      "negative": 2
     },
     "2021-W35": {
       "positive": 10,
@@ -303,16 +367,8 @@
       "negative": 2
     },
     "2021-W36": {
-      "positive": 5,
+      "positive": 4,
       "negative": 1
-    },
-    "2021-W47": {
-      "positive": 1,
-      "negative": 0
-    },
-    "2023-W12": {
-      "positive": 1,
-      "negative": 0
     },
     "2021-W38": {
       "positive": 0,
@@ -326,7 +382,11 @@
       "positive": 1,
       "negative": 0
     },
-    "2021-W46": {
+    "2023-W12": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2021-W47": {
       "positive": 1,
       "negative": 0
     },
@@ -334,19 +394,23 @@
       "positive": 1,
       "negative": 0
     },
-    "2021-W42": {
+    "2021-W46": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2023-W28": {
       "positive": 1,
       "negative": 0
     },
     "2024-W17": {
-      "positive": 3,
+      "positive": 1,
       "negative": 1
     },
     "2021-W41": {
-      "positive": 3,
-      "negative": 1
+      "positive": 5,
+      "negative": 2
     },
-    "2023-W28": {
+    "2021-W42": {
       "positive": 1,
       "negative": 0
     },
@@ -362,167 +426,135 @@
       "positive": 0,
       "negative": 1
     },
+    "2024-W21": {
+      "positive": 1,
+      "negative": 3
+    },
     "2022-W41": {
       "positive": 1,
       "negative": 2
     },
-    "2023-W34": {
-      "positive": 0,
-      "negative": 4
+    "2024-W07": {
+      "positive": 10,
+      "negative": 5
     },
-    "2023-W40": {
-      "positive": 2,
-      "negative": 0
-    },
-    "2024-W34": {
-      "positive": 3,
-      "negative": 4
-    },
-    "2023-W37": {
-      "positive": 2,
-      "negative": 2
-    },
-    "2024-W19": {
+    "2023-W50": {
       "positive": 1,
-      "negative": 0
-    },
-    "2024-W31": {
-      "positive": 0,
       "negative": 1
     },
-    "2023-W52": {
-      "positive": 2,
-      "negative": 1
-    },
-    "2024-W35": {
-      "positive": 1,
+    "2024-W08": {
+      "positive": 7,
       "negative": 3
     },
-    "2024-W14": {
-      "positive": 2,
-      "negative": 4
+    "2024-W10": {
+      "positive": 8,
+      "negative": 5
     },
-    "2023-W44": {
+    "2024-W01": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2024-W04": {
       "positive": 1,
-      "negative": 0
+      "negative": 2
     },
-    "2024-W24": {
-      "positive": 2,
+    "2024-W02": {
+      "positive": 1,
       "negative": 1
     },
     "2024-W09": {
-      "positive": 2,
-      "negative": 3
-    },
-    "2024-W23": {
-      "positive": 3,
-      "negative": 0
-    },
-    "2024-W37": {
-      "positive": 1,
-      "negative": 0
-    },
-    "2023-W39": {
-      "positive": 3,
-      "negative": 0
-    },
-    "2024-W25": {
-      "positive": 3,
+      "positive": 6,
       "negative": 1
-    },
-    "2025-W30": {
-      "positive": 1,
-      "negative": 0
-    },
-    "2025-W22": {
-      "positive": 0,
-      "negative": 1
-    },
-    "2025-W17": {
-      "positive": 0,
-      "negative": 1
-    },
-    "2025-W44": {
-      "positive": 0,
-      "negative": 1
-    },
-    "2024-W33": {
-      "positive": 2,
-      "negative": 1
-    },
-    "2024-W13": {
-      "positive": 1,
-      "negative": 3
-    },
-    "2024-W18": {
-      "positive": 1,
-      "negative": 0
-    },
-    "2024-W10": {
-      "positive": 2,
-      "negative": 0
-    },
-    "2024-W40": {
-      "positive": 0,
-      "negative": 1
-    },
-    "2024-W21": {
-      "positive": 0,
-      "negative": 1
-    },
-    "2024-W29": {
-      "positive": 1,
-      "negative": 0
-    },
-    "2024-W26": {
-      "positive": 1,
-      "negative": 0
     },
     "2024-W12": {
+      "positive": 6,
+      "negative": 1
+    },
+    "2024-W03": {
+      "positive": 2,
+      "negative": 1
+    },
+    "2023-W39": {
       "positive": 0,
       "negative": 1
     },
-    "2023-W38": {
-      "positive": 0,
+    "2024-W19": {
+      "positive": 7,
       "negative": 1
     },
-    "2026-W11": {
-      "positive": 0,
+    "2024-W18": {
+      "positive": 3,
       "negative": 1
     },
-    "2023-W41": {
-      "positive": 1,
-      "negative": 0
-    },
-    "2024-W08": {
-      "positive": 1,
-      "negative": 0
-    },
-    "2024-W27": {
+    "2026-W02": {
       "positive": 1,
       "negative": 0
     },
     "2024-W05": {
+      "positive": 3,
+      "negative": 1
+    },
+    "2024-W11": {
+      "positive": 2,
+      "negative": 1
+    },
+    "2024-W37": {
+      "positive": 44,
+      "negative": 33
+    },
+    "2024-W39": {
+      "positive": 2,
+      "negative": 1
+    },
+    "2024-W38": {
+      "positive": 3,
+      "negative": 2
+    },
+    "2025-W06": {
+      "positive": 3,
+      "negative": 1
+    },
+    "2026-W14": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2026-W23": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2025-W41": {
       "positive": 1,
       "negative": 0
     },
-    "2024-W01": {
+    "2025-W05": {
       "positive": 1,
       "negative": 0
     },
-    "2023-W48": {
+    "2025-W07": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2026-W20": {
       "positive": 1,
       "negative": 0
     }
   },
   "sources": [
     {
-      "videoId": "FHMKTQmEFUc",
-      "title": "보고서 때문에 빡친 반장 #범죄도시",
+      "videoId": "csGtdZmNb_U",
+      "title": "애 학교도 안보내고 룸싸롱 청소 시키는 마담 #담보 명장면",
+      "channel": "왓칭무비",
+      "publishedAt": "2024-09-08T05:00:31Z",
+      "pos_count": 56,
+      "neg_count": 40
+    },
+    {
+      "videoId": "YPywjm57Vkg",
+      "title": "남의 돈으로 생색내고 팁까지주는 마동석 #범죄도시",
       "channel": "차보남 [ 차트보는남자 ]",
-      "publishedAt": "2023-08-25T09:03:00Z",
-      "pos_count": 57,
-      "neg_count": 41
+      "publishedAt": "2023-09-25T09:03:00Z",
+      "pos_count": 67,
+      "neg_count": 31
     },
     {
       "videoId": "yVfT494f5d4",
@@ -541,11 +573,19 @@
       "neg_count": 12
     },
     {
+      "videoId": "3Pr6Mz4indc",
+      "title": "“다 당신 때문이야” 이하늬, 정인기에 울분 토하며 눈물ㅣ원 더 우먼 (one the woman)ㅣSBS DRAMA",
+      "channel": "SBS 스브스 Drama",
+      "publishedAt": "2021-10-15T13:09:35Z",
+      "pos_count": 3,
+      "neg_count": 1
+    },
+    {
       "videoId": "gXml0oW_Mr8",
       "title": "얼굴은 아는데 이름을 모르는 명품 조연 배우들 2탄 (연기력 폭발하는 조연 배우들의 명장면 모음 - 한국 영화편)",
       "channel": "문 필름 -영화 이야기",
       "publishedAt": "2021-09-01T08:28:18Z",
-      "pos_count": 32,
+      "pos_count": 31,
       "neg_count": 6
     },
     {
@@ -557,28 +597,20 @@
       "neg_count": 13
     },
     {
+      "videoId": "qvOn5-0zX2o",
+      "title": "“덕 좀 갖춰” 김남길, 은혜로운 비주얼로 독설 작렬! 《Fiery Priest》 열혈사제 EP14",
+      "channel": "SBS 스브스 Drama",
+      "publishedAt": "2019-03-30T15:23:21Z",
+      "pos_count": 12,
+      "neg_count": 9
+    },
+    {
       "videoId": "7jeuNgOuSQE",
       "title": "180629 대한민국연극제 토크콘서트 정인기배우 2편@제3회대한민국연극제",
       "channel": "OJIK(오직)",
       "publishedAt": "2018-06-30T06:04:05Z",
       "pos_count": 1,
       "neg_count": 0
-    },
-    {
-      "videoId": "hQMofp9lhvw",
-      "title": "2017 드라마 스페셜 - 채수빈, 혼자 남아기다리는 장동윤 바라보며 ’눈물’ ㅣ KBS방송",
-      "channel": "KBS Drama Classic",
-      "publishedAt": "2017-09-03T15:17:51Z",
-      "pos_count": 5,
-      "neg_count": 4
-    },
-    {
-      "videoId": "q9FPUnB8PqU",
-      "title": "추리의 여왕 - 최강희X전수진, 박준금 누명 풀기 위해 ‘추리 시작’. 20170517 ㅣ KBS방송",
-      "channel": "KBS Drama Classic",
-      "publishedAt": "2017-05-17T14:42:13Z",
-      "pos_count": 3,
-      "neg_count": 1
     },
     {
       "videoId": "jclFZQnx2es",
@@ -613,6 +645,14 @@
       "neg_count": 0
     },
     {
+      "videoId": "6bSBlMkbS1U",
+      "title": "SBS [피노키오] - 기자간담회 '이종석 김영광 촬영비하인드'",
+      "channel": "SBS ",
+      "publishedAt": "2014-12-04T07:49:38Z",
+      "pos_count": 7,
+      "neg_count": 5
+    },
+    {
       "videoId": "yLkMkEuJMic",
       "title": "SBS [피노키오] - 2차 티저",
       "channel": "SBS ",
@@ -621,12 +661,28 @@
       "neg_count": 11
     },
     {
+      "videoId": "_xrNYceZkI8",
+      "title": "SBS [피노키오] - 1차 티저",
+      "channel": "SBS ",
+      "publishedAt": "2014-10-27T00:21:51Z",
+      "pos_count": 13,
+      "neg_count": 9
+    },
+    {
       "videoId": "_wnoVQn-KyA",
       "title": "[눈TV] '더 파이브' 김선아, \"흥행작 별로 없다\"는 말에 `발끈`",
       "channel": "뉴스1TV",
       "publishedAt": "2013-10-18T05:25:05Z",
       "pos_count": 1,
       "neg_count": 1
+    },
+    {
+      "videoId": "k4h5tdGEcVw",
+      "title": "[SSTV] '더 파이브' 이청아 \"이기우와 열애 후? 반사판 없어지더라\"",
+      "channel": "뉴스인사이드",
+      "publishedAt": "2013-10-15T07:30:57Z",
+      "pos_count": 2,
+      "neg_count": 0
     },
     {
       "videoId": "dMmTE-eqfeo",
