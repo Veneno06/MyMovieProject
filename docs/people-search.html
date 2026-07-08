@@ -17,7 +17,6 @@
   }
   .dist-chart-box h4 { text-align: center; margin: 0 0 8px 0; color: #4b5563; font-size: 13.5px; }
   
-  /* 검색 결과 리스트 스타일 개선 */
   .search-result-item {
       border-bottom: 1px dashed #e5e7eb; 
       padding: 12px 0; 
@@ -38,6 +37,7 @@
 
   <h1>배우/감독 검색</h1>
 
+  <!-- 1. 배우 프로필 검색 영역 -->
   <div style="background:#f9f9f9; padding:15px; border-radius:8px; border:1px solid #ddd; margin-bottom:20px;">
       <label>이름: <input type="text" id="keyword" onkeypress="if(event.key==='Enter') doSearch()" style="width:200px;"></label>
       <label style="margin-left:10px;"><input type="checkbox" id="onlyActor" checked> 배우만</label>
@@ -48,6 +48,7 @@
   <ul id="results" class="list" style="padding-left: 0; margin-bottom: 30px;"></ul>
 
 
+  <!-- 2. 고도화된 데이터베이스 전체 통계 영역 -->
   <div style="background:#f9f9f9; padding:20px; border-radius:8px; border:1px solid #ddd; margin-bottom:20px;">
       <h3 style="margin-top:0; color:#111827; font-size:17px; border-bottom: 2px solid #2563eb; padding-bottom: 8px;">데이터베이스 전체 통계 <span style="font-size:12px; color:#888; font-weight:normal;">(2003년 통합전산망 출범 이후 기준)</span></h3>
       <div style="display:flex; flex-direction:column; gap:10px; font-size:14.5px; color:#374151; line-height:1.6;">
@@ -84,13 +85,13 @@
 
           <div class="dist-charts-container">
               <div class="dist-chart-box">
-                  <h4>스타 파워 구간별 인원 분포 (막대형 - 200점 단위)</h4>
+                  <h4>5-1. 스타 파워 구간별 인원 분포 (막대형 - 200점 단위)</h4>
                   <div style="position: relative; height: 260px; width: 100%;">
                       <canvas id="spBarChart"></canvas>
                   </div>
               </div>
               <div class="dist-chart-box">
-                  <h4>배우 스타 파워 분포 (산점도)</h4>
+                  <h4>5-2. 배우 스타 파워 분포 (산점도)</h4>
                   <div style="position: relative; height: 260px; width: 100%;">
                       <canvas id="spScatterChart"></canvas>
                   </div>
@@ -101,6 +102,7 @@
 
   <div style="margin: 80px 0;"></div>
 
+  <!-- 3. 여론 필터링 영역 -->
   <h2 style="color:#2563eb; border-bottom: 2px solid #2563eb; padding-bottom:8px; margin-bottom:20px;">배우 프로필 여론 필터링</h2>
 
   <div style="background:#f9f9f9; padding:15px; border-radius:8px; border:1px solid #ddd; margin-bottom:20px;">
@@ -140,6 +142,7 @@
   <div id="filterCount" class="note" style="margin-bottom: 10px;"></div>
   <ul id="filterResults" class="list" style="padding-left: 0;"></ul>
 
+  <!-- 4. 스타 파워 랭킹 출력 영역 -->
   <div id="rankingContainer" style="margin-top: 40px; padding-top: 20px; border-top: 2px dashed #ddd; display: none;">
       <h2> 실시간 스타 파워 (SP_Final) TOP 10</h2>
       <div style="display: flex; gap: 20px; flex-wrap: wrap;">
@@ -227,7 +230,16 @@ function renderDbStats() {
         document.getElementById('statSpAvg').innerText = Math.round(avgScore).toLocaleString();
 
         const maxActor = rankings[0];
-        const minActor = rankings[rankings.length - 1];
+        
+        // 🌟 [수정됨] 0점이 아닌 유효한 최저점을 찾기 위한 로직 추가
+        let minActor = null;
+        for (let i = rankings.length - 1; i >= 0; i--) {
+            if (Math.round(rankings[i].score) > 0) {
+                minActor = rankings[i];
+                break;
+            }
+        }
+        if (!minActor) minActor = rankings[0]; // 안전 장치
         
         const genDate = new Date(DB_SUMMARY.generatedAt);
         const dateStr = isNaN(genDate) ? "최근 갱신일" : `${genDate.getFullYear()}.${String(genDate.getMonth()+1).padStart(2,'0')}.${String(genDate.getDate()).padStart(2,'0')} 기준`;
@@ -235,6 +247,7 @@ function renderDbStats() {
         document.getElementById('statSpMax').innerHTML = `<a href="person.html?id=${maxActor.id}&name=${encodeURIComponent(maxActor.name)}" target="_blank" style="color:#2563eb; text-decoration:none; font-weight:bold;">${maxActor.name}</a> <span style="font-size:13px; color:#555;">(${Math.round(maxActor.score).toLocaleString()}점, ${dateStr})</span>`;
         document.getElementById('statSpMin').innerHTML = `<a href="person.html?id=${minActor.id}&name=${encodeURIComponent(minActor.name)}" target="_blank" style="color:#ef4444; text-decoration:none; font-weight:bold;">${minActor.name}</a> <span style="font-size:13px; color:#555;">(${Math.round(minActor.score).toLocaleString()}점, ${dateStr})</span>`;
 
+        // [5-1 차트] 막대그래프
         const barBins = {};
         let maxBarBin = 0;
         rankings.forEach(r => {
@@ -262,9 +275,10 @@ function renderDbStats() {
             }
         });
 
+        // 🌟 [5-2 차트 수정됨] X축: 스타파워 점수, Y축: 누적 관객수로 완벽 변경
         const scatterData = rankings.map(r => ({
-            x: r.total_audi || 0,
-            y: r.score,
+            x: r.score,
+            y: r.total_audi || 0,
             name: r.name
         }));
 
@@ -288,18 +302,19 @@ function renderDbStats() {
                         callbacks: {
                             label: (ctx) => {
                                 const d = ctx.raw;
-                                return ` ${d.name}: 관객 ${d.x.toLocaleString()}명 / SP ${Math.round(d.y).toLocaleString()}점`;
+                                return ` ${d.name}: SP ${Math.round(d.x).toLocaleString()}점 / 관객 ${d.y.toLocaleString()}명`;
                             }
                         }
                     }
                 },
                 scales: {
                     x: {
-                        title: { display: true, text: '누적 관객수 (명)' },
-                        ticks: { callback: v => (v / 10000).toLocaleString() + '만' }
+                        title: { display: true, text: '스타 파워 점수' },
+                        beginAtZero: true
                     },
                     y: {
-                        title: { display: true, text: '스타 파워 점수' },
+                        title: { display: true, text: '누적 관객수 (명)' },
+                        ticks: { callback: v => (v / 10000).toLocaleString() + '만' },
                         beginAtZero: true
                     }
                 }
@@ -365,7 +380,7 @@ function exportFilterResultsToCSV() {
 
         myMovies.forEach(m => {
             const openDtRaw = (m.openDt || '').replace(/[^0-9]/g, '');
-            if (openDtRaw.length < 4 || parseInt(openDtRaw.slice(0, 4), 10) < 2003) return; // 🌟 2003년 이전 차단 방어막 추가
+            if (openDtRaw.length < 4 || parseInt(openDtRaw.slice(0, 4), 10) < 2003) return; 
 
             const movieYear = openDtRaw.slice(0, 4);
             const audience = parseInt(String(m.audiAcc).replace(/,/g, '') || '0', 10);
@@ -474,8 +489,10 @@ function applySentimentFilter() {
     });
 }
 
-// 🌟 [핵심 복구 완료] 일반 검색 로직 정상화 및 출력 텍스트 가독성 개선
+// 🌟 [수정됨] 본업(주 직책) 자동 판별 로직 추가 및 출력 위치 원상복구 완료
 async function doSearch() {
+    if (SEARCH_INDEX.length === 0) await loadData(); 
+    
     const keyword = document.getElementById('keyword').value.trim();
     const onlyActor = document.getElementById('onlyActor').checked;
     if (!keyword) { alert("이름을 입력해주세요."); return; }
@@ -486,29 +503,33 @@ async function doSearch() {
     out.innerHTML = '<li class="note" style="list-style:none;">검색 중...</li>';
     countEl.innerText = '';
 
-    if (SEARCH_INDEX.length === 0) await loadData(); 
-
     const peopleMap = new Map();
 
+    // 배우/감독 출현 횟수 카운팅을 통한 본업 판별 로직
     SEARCH_INDEX.forEach(m => {
         const movieTitle = m.movieNm;
+        
         (m.actors || []).forEach(a => {
             if (a.name && a.name.includes(keyword)) {
                 const id = a.id || "";
-                const key = id ? id : `name:${a.name}:actor`; 
+                const key = id ? id : `name:${a.name}`; 
                 if (!peopleMap.has(key)) {
-                    peopleMap.set(key, { id: id, name: a.name, sourceRole: '배우', sex: a.gender || '', movies: new Set() });
+                    peopleMap.set(key, { id: id, name: a.name, actorCnt: 0, directorCnt: 0, sex: a.gender || '', movies: new Set() });
                 }
+                peopleMap.get(key).actorCnt += 1;
                 peopleMap.get(key).movies.add(movieTitle);
+                if (!peopleMap.get(key).sex && a.gender) peopleMap.get(key).sex = a.gender;
             }
         });
+        
         (m.directors || []).forEach(d => {
             if (d.name && d.name.includes(keyword)) {
                 const id = d.id || "";
-                const key = id ? id : `name:${d.name}:director`; 
+                const key = id ? id : `name:${d.name}`; 
                 if (!peopleMap.has(key)) {
-                    peopleMap.set(key, { id: id, name: d.name, sourceRole: '감독', sex: '', movies: new Set() });
+                    peopleMap.set(key, { id: id, name: d.name, actorCnt: 0, directorCnt: 0, sex: '', movies: new Set() });
                 }
+                peopleMap.get(key).directorCnt += 1;
                 peopleMap.get(key).movies.add(movieTitle);
             }
         });
@@ -519,7 +540,11 @@ async function doSearch() {
     let visibleCount = 0; 
 
     for (const r of resultsArray) {
-        if (onlyActor && r.sourceRole !== '배우') continue;
+        // 본업 판별: 배우로서 더 많이 참여했으면 '배우', 아니면 '감독'
+        r.primaryRole = r.actorCnt >= r.directorCnt ? '배우' : '감독';
+
+        // '배우만' 옵션 적용 시 본업이 감독인 사람 필터링
+        if (onlyActor && r.primaryRole !== '배우') continue;
 
         let sexBadge = "";
         if (r.sex === "남자" || r.sex === "남") sexBadge = `<span style="color:#2563eb;">(남)</span>`;
@@ -533,7 +558,7 @@ async function doSearch() {
         li.innerHTML = `
             <a href="person.html?id=${encodeURIComponent(finalId)}&name=${encodeURIComponent(r.name)}" target="_blank" style="font-weight:bold; color:#2563eb; text-decoration:none; font-size:16px;">${r.name}</a>
             <span class="note" style="margin-left:5px;">(${r.id || '코드 없음'})</span>
-            <span style="font-size:13px; font-weight:bold; color:#555; margin-left:5px;">${sexBadge} [${r.sourceRole}]</span>
+            <span style="font-size:13px; font-weight:bold; color:#555; margin-left:5px;">${sexBadge} [${r.primaryRole}]</span>
             <div class="note" style="font-size:13px; margin-top:4px;">출연/연출작: ${Array.from(r.movies).slice(0, 10).join(', ')}${r.movies.size > 10 ? ' 등' : ''}</div>
         `;
         out.appendChild(li);
