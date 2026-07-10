@@ -989433,7 +989433,7 @@
     "movieNmEn": "THE  EYES",
     "prdtYear": "2025",
     "openDt": "20260624",
-    "audiAcc": 981328,
+    "audiAcc": 1019447,
     "nation": "한국",
     "directors": [
       {
@@ -989680,7 +989680,7 @@
     "movieNmEn": "Wild Sing",
     "prdtYear": "2025",
     "openDt": "20260603",
-    "audiAcc": 1317270,
+    "audiAcc": 1320912,
     "nation": "한국",
     "directors": [
       {
@@ -990634,7 +990634,7 @@
     "movieNmEn": "COLONY",
     "prdtYear": "2025",
     "openDt": "20260521",
-    "audiAcc": 5869936,
+    "audiAcc": 5877314,
     "nation": "한국",
     "directors": [
       {
@@ -991615,7 +991615,7 @@
     "movieNmEn": "Toy Story 5",
     "prdtYear": "2026",
     "openDt": "20260617",
-    "audiAcc": 2317174,
+    "audiAcc": 2341803,
     "nation": "미국",
     "directors": [
       {
@@ -991685,6 +991685,35 @@
       },
       {
         "name": "스탠리 투치",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      }
+    ]
+  },
+  {
+    "movieCd": "20259946",
+    "movieNm": "모아나",
+    "movieNmEn": "Moana",
+    "prdtYear": "2026",
+    "openDt": "20260708",
+    "audiAcc": 107256,
+    "nation": "미국",
+    "directors": [
+      {
+        "name": "토마스 케일",
+        "id": ""
+      }
+    ],
+    "actors": [
+      {
+        "name": "드웨인 존슨",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      },
+      {
+        "name": "캐서린 라가이아",
         "id": "",
         "gender": "",
         "cast": ""
@@ -991773,6 +991802,35 @@
     "actors": []
   },
   {
+    "movieCd": "20261410",
+    "movieNm": "키퍼",
+    "movieNmEn": "Keeper",
+    "prdtYear": "2025",
+    "openDt": "20260708",
+    "audiAcc": 3439,
+    "nation": "캐나다",
+    "directors": [
+      {
+        "name": "오즈 퍼킨스",
+        "id": ""
+      }
+    ],
+    "actors": [
+      {
+        "name": "타티아나 마스래니",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      },
+      {
+        "name": "로지프 서덜랜드",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      }
+    ]
+  },
+  {
     "movieCd": "20261437",
     "movieNm": "녹나무의 파수꾼",
     "movieNmEn": "The Keeper of the Camphor Tree",
@@ -991846,6 +991904,22 @@
         "cast": "시은"
       }
     ]
+  },
+  {
+    "movieCd": "20261467",
+    "movieNm": "시크릿 에이전트",
+    "movieNmEn": "The Secret Agent",
+    "prdtYear": "2025",
+    "openDt": "20260708",
+    "audiAcc": 2779,
+    "nation": "브라질",
+    "directors": [
+      {
+        "name": "클레베르 멘돈사 필류",
+        "id": ""
+      }
+    ],
+    "actors": []
   },
   {
     "movieCd": "20261524",
@@ -992442,6 +992516,119 @@
     ]
   },
   {
+    "movieCd": "20262651",
+    "movieNm": "하나 코리아",
+    "movieNmEn": "Hana Korea",
+    "prdtYear": "2025",
+    "openDt": "20260708",
+    "audiAcc": 6265,
+    "nation": "한국",
+    "directors": [
+      {
+        "name": "프레드릭 쇨베르",
+        "id": ""
+      }
+    ],
+    "actors": [
+      {
+        "name": "김민하",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      },
+      {
+        "name": "김주령",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      },
+      {
+        "name": "안서현",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      },
+      {
+        "name": "조승연",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      },
+      {
+        "name": "김금순",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      },
+      {
+        "name": "김비비",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      },
+      {
+        "name": "정찬호",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      },
+      {
+        "name": "이택근",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      },
+      {
+        "name": "심우현",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      },
+      {
+        "name": "김한상",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      },
+      {
+        "name": "김유진",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      },
+      {
+        "name": "이주미",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      },
+      {
+        "name": "손성찬",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      },
+      {
+        "name": "이종은",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      },
+      {
+        "name": "이채림",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      },
+      {
+        "name": "강주희",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      }
+    ]
+  },
+  {
     "movieCd": "20262657",
     "movieNm": "리 크로닌의 미이라",
     "movieNmEn": "Lee Cronin's The Mummy",
@@ -992759,7 +992946,7 @@
     "movieNmEn": "Backrooms",
     "prdtYear": "2026",
     "openDt": "20260527",
-    "audiAcc": 1199563,
+    "audiAcc": 1200882,
     "nation": "미국",
     "directors": [
       {
@@ -992981,7 +993168,7 @@
     "movieNmEn": "Marty Supreme",
     "prdtYear": "2025",
     "openDt": "20260701",
-    "audiAcc": 85068,
+    "audiAcc": 87805,
     "nation": "미국",
     "directors": [
       {
@@ -993197,7 +993384,7 @@
     "movieNmEn": "Greenland: Migration",
     "prdtYear": "2026",
     "openDt": "20260701",
-    "audiAcc": 41200,
+    "audiAcc": 45715,
     "nation": "영국",
     "directors": [
       {
