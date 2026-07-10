@@ -27,7 +27,7 @@ ul.list li { padding:6px 0; border-bottom:1px dashed #e5e7eb; }
   <div class="ctrls">
     <a href="index.html" class="btn" data-i18n-key="home">홈</a>
     <a href="title-search.html" class="btn" data-i18n-key="movieTitleSearch">영화 검색 (제목)</a>
-    <a href="search.html" class="btn" data-i18n-key="movieSearchPeriod">영화 검색 (기간)</a>
+    <a href="search.html" class="btn active" data-i18n-key="movieSearchPeriod">영화 검색 (기간)</a>
     <a href="people-search.html" class="btn" data-i18n-key="peopleSearch">배우 검색</a>
     <a href="costar-search.html" class="btn" data-i18n-key="costarSearch">공동 출연 검색</a>
     <a href="saved.html" class="btn" data-i18n-key="savedList">저장 목록</a>
@@ -35,7 +35,7 @@ ul.list li { padding:6px 0; border-bottom:1px dashed #e5e7eb; }
 
   <h1 data-i18n-key="movieSearchTitle">영화 검색(기간)</h1>
 
-  <div id="dataRange" class="note">데이터 범위: 확인 중… (인덱스 기준)</div>
+  <div id="dataRange" class="note" style="margin-bottom: 10px;">데이터 범위: 2003년 ~ 현재 (인덱스 기준)</div>
 
   <div class="box">
     <form id="f">
@@ -60,8 +60,19 @@ ul.list li { padding:6px 0; border-bottom:1px dashed #e5e7eb; }
     </form>
   </div>
 
+  <div style="display: flex; justify-content: space-between; align-items: center; margin: 20px 0 8px 0; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px;">
+      <div id="msg" class="note" style="margin: 0; font-weight: bold; color: #2563eb; font-size: 15px;">검색 대기 중...</div>
+      <div style="font-size: 14px; color: #374151;">
+          <label style="margin-right: 12px; cursor: pointer;">
+              <input type="radio" name="sortOrder" value="desc" checked onchange="applySort()"> 최신순
+          </label>
+          <label style="cursor: pointer;">
+              <input type="radio" name="sortOrder" value="asc" onchange="applySort()"> 오래된 순
+          </label>
+      </div>
+  </div>
+
   <ul id="out" class="list"></ul>
-  <div id="msg" class="note"></div>
 </div>
 
 <script>
@@ -69,7 +80,7 @@ const BASE = location.pathname.replace(/\/[^\/]*$/, '');
 const MOVIES_URL = `${BASE}/data/search/movies.json?v=${Date.now()}`;
 
 let MOVIES = [];
-let rangeMin = '99991231', rangeMax = '00000000';
+let currentFilteredList = []; // 🌟 정렬을 위해 필터링된 배열을 별도 저장
 
 function ymd(s) { return (s||'').replace(/-/g,''); }
 function between(d, a, b){ return (!a || d>=a) && (!b || d<=b); }
@@ -81,33 +92,14 @@ function formatDate(s){
   return s.replace(/-/g,'.');
 }
 
-function setDataRange() {
-  const y1 = rangeMin.slice(0,4), y2 = rangeMax.slice(0,4);
-  const el = document.getElementById('dataRange');
-  if (MOVIES.length) {
-    el.textContent = `데이터 범위: ${y1} ~ ${y2} (인덱스 기준)`;
-  } else {
-    el.textContent = `데이터 범위: 알 수 없음 (인덱스 기준)`;
-  }
-}
-
 async function loadIndex() {
   try {
     const r = await fetch(MOVIES_URL);
     if (!r.ok) throw new Error(r.status);
     const j = await r.json();
     MOVIES = (j.movies || []);
-    for (const m of MOVIES) {
-      const openDtNorm = ymd(m.openDt);
-      if (openDtNorm) {
-        if (openDtNorm < rangeMin) rangeMin = openDtNorm;
-        if (openDtNorm > rangeMax) rangeMax = openDtNorm;
-      }
-    }
-    setDataRange();
   } catch(e) {
     MOVIES = [];
-    setDataRange();
     document.getElementById('msg').innerHTML =
       `문제가 있나요? <b>인덱스를 재생</b>해 주세요 (Actions → <i>Build Search Indexes (only)</i>).`;
   }
@@ -130,8 +122,12 @@ function filter() {
     ...(gR ?['청소년관람불가','청소년 관람불가']:[]),
   ]);
 
-  let list = MOVIES.filter(m => {
+  currentFilteredList = MOVIES.filter(m => {
     const movieOpenDt = ymd(m.openDt);
+    
+    // 🌟 2003년 이전 개봉작 강제 배제 로직 추가
+    if (!movieOpenDt || movieOpenDt < '20030101') return false; 
+    
     if (movieOpenDt && !between(movieOpenDt, from, to)) return false;
     if (allowGrade.size && !allowGrade.has(m.grade||'')) return false;
     if (nation !== 'all') {
@@ -140,22 +136,36 @@ function filter() {
     return true;
   });
 
-  list.sort((a,b) => (ymd(a.openDt)||'99999999') > (ymd(b.openDt)||'99999999') ? 1 : -1);
+  applySort(); // 필터링이 끝나면 즉시 정렬 및 화면 출력 함수 호출
+}
+
+// 🌟 새로고침 없이 즉각 정렬 및 출력을 담당하는 함수
+function applySort() {
+  const sortOrder = document.querySelector('input[name="sortOrder"]:checked').value;
+  
+  currentFilteredList.sort((a,b) => {
+      const dateA = ymd(a.openDt) || '00000000';
+      const dateB = ymd(b.openDt) || '00000000';
+      if (sortOrder === 'desc') {
+          return dateA < dateB ? 1 : -1; // 최신순
+      } else {
+          return dateA > dateB ? 1 : -1; // 오래된 순
+      }
+  });
 
   const ul = document.getElementById('out');
   ul.innerHTML = '';
-  for (const m of list) {
+  for (const m of currentFilteredList) {
     const li = document.createElement('li');
     const dateText = formatDate(m.openDt);
-    li.innerHTML = `<a href="detail.html?movieCd=${encodeURIComponent(m.movieCd)}">${m.movieNm}</a>
+    li.innerHTML = `<a href="detail.html?movieCd=${encodeURIComponent(m.movieCd)}" style="font-weight:bold; color:#111827; text-decoration:none;">${m.movieNm}</a>
       <span class="badge">(${dateText})</span>
-      <span class="badge">[${m.grade||'등급미상'}]</span>`;
+      <span class="badge" style="color:#d97706;">[${m.grade||'등급미상'}]</span>`;
     ul.appendChild(li);
   }
 
   document.getElementById('msg').textContent =
-    list.length ? `총 ${list.length}개의 영화를 찾았습니다.` :
-    `조건에 맞는 결과가 없습니다. (데이터 범위: ${MOVIES.length? (rangeMin.slice(0,4)+'~'+rangeMax.slice(0,4)):'알 수 없음'} / 인덱스 기준)`;
+    currentFilteredList.length ? `총 ${currentFilteredList.length.toLocaleString()}개의 영화를 찾았습니다.` : `조건에 맞는 결과가 없습니다.`;
 }
 
 (async function main(){
