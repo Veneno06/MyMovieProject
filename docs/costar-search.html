@@ -16,7 +16,6 @@ h1 { font-size:28px; margin:0 0 16px; }
 .ctrls { display:flex; gap:8px; margin-bottom:12px; }
 .ctrls a { padding:6px 10px; border:1px solid #e5e7eb; border-radius:8px; background:#fff; text-decoration:none; color:#111827; }
 .box { background:#f6f7f9; border:1px solid #e5e7eb; border-radius:8px; padding:12px; display:flex; gap:8px; flex-wrap:wrap; }
-.box input { flex:1; padding:6px; }
 .note { color:#6b7280; }
 ul.list { list-style:none; padding:0; margin:12px 0; }
 li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
@@ -25,9 +24,15 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
 .cast-list a { color: #555; text-decoration: none; }
 .cast-list a:hover { text-decoration: underline; color: #000; }
 
-/* 🌟 자동완성 드롭다운을 위한 신규 CSS (기존 디자인을 해치지 않음) */
-.search-container { position: relative; flex: 1; }
-.dropdown { position: absolute; top: 100%; left: 0; width: 100%; background: #fff; border: 1px solid #ddd; border-top: none; border-radius: 0 0 8px 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 100; display: none; max-height: 250px; overflow-y: auto; margin: 0; padding: 0; list-style: none; }
+/* 🌟 입력창 폭 3배 확장 및 드롭다운 UI 스타일 추가 */
+.search-wrapper { position: relative; flex: 3; min-width: 60%; }
+.actor-input { width: 100%; box-sizing: border-box; padding: 10px 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 15px; }
+.dropdown {
+    position: absolute; top: 100%; left: 0; width: 100%; background: #fff;
+    border: 1px solid #ddd; border-top: none; border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 100; display: none;
+    max-height: 250px; overflow-y: auto; margin: 0; padding: 0; list-style: none;
+}
 .dropdown li { padding: 10px 12px; cursor: pointer; border-bottom: 1px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center; }
 .dropdown li:hover, .dropdown li.active { background: #eff6ff; color: #2563eb; font-weight: bold; }
 .dropdown li .cnt { font-size: 12px; color: #6b7280; font-weight: normal; }
@@ -46,14 +51,14 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
 
   <h1 data-i18n-key="costarSearchTitle">공동 출연 검색</h1>
 
-  <!-- 🌟 자동완성 기능이 적용된 폼 구조로 안전하게 변경 -->
-  <form id="f" class="box" style="position:relative; align-items: center;">
+  <!-- 🌟 확장된 검색 컨테이너 적용 -->
+  <form id="f" class="box" style="align-items: center;">
     <span data-i18n-key="actorNamesLabel" style="white-space: nowrap;">배우 이름들:</span>
-    <div class="search-container">
-      <input type="text" name="q" id="actorInput" placeholder="예: 이병헌, 류승룡 (쉼표로 구분)" value="" autocomplete="off">
+    <div class="search-wrapper">
+      <input type="text" name="q" id="actorInput" class="actor-input" placeholder="예: 이병헌, 류승룡 (쉼표로 구분)" value="" autocomplete="off">
       <ul id="autocompleteList" class="dropdown"></ul>
     </div>
-    <button type="submit" class="btn" data-i18n-key="searchBtn">검색</button>
+    <button type="submit" class="btn" data-i18n-key="searchBtn" style="padding: 10px 20px;">검색</button>
   </form>
 
   <div id="msg" class="note" style="margin-top:10px;"></div>
@@ -112,10 +117,10 @@ const safeParseInt = (v) => {
 const fmtNum = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
 const ACTOR_COLORS = [
-    { pos: '#3b82f6', neg: '#ef4444' },
-    { pos: '#14b8a6', neg: '#f97316' },
-    { pos: '#8b5cf6', neg: '#eab308' },
-    { pos: '#22c55e', neg: '#ec4899' } 
+    { pos: '#3b82f6', neg: '#ef4444' }, 
+    { pos: '#14b8a6', neg: '#f97316' }, 
+    { pos: '#8b5cf6', neg: '#eab308' }, 
+    { pos: '#22c55e', neg: '#ec4899' }  
 ];
 
 async function loadIndex(){
@@ -208,6 +213,118 @@ async function fetchSentimentData(name) {
     }
     return null;
 }
+
+// ==========================================
+// 🌟 드롭다운 자동완성 로직
+// ==========================================
+const inputEl = document.getElementById('actorInput');
+const dropdownEl = document.getElementById('autocompleteList');
+let currentFocus = -1;
+
+inputEl.addEventListener('input', function() {
+    const rawVal = this.value;
+    const parts = rawVal.split(',').map(s => s.trim());
+    let currentTyping = parts.pop();
+    let lockedActors = parts.filter(s => s.length > 0);
+
+    // 🌟 핵심 로직: 쉼표를 안 쳤더라도 DB에 완벽히 일치하는 이름(예: 이병헌)이 완성되면, 
+    // 본인을 배제하고 즉시 '이병헌과 함께 출연한 동료'를 찾도록 강제 잠금(Lock) 처리합니다.
+    if (lockedActors.length === 0 && currentTyping.length > 0) {
+        if (PEOPLE_MAP[currentTyping]) {
+            lockedActors.push(currentTyping);
+            currentTyping = ""; // 현재 타이핑 문자를 비움으로써 모든 파트너가 노출되게 유도
+        }
+    }
+
+    closeDropdown();
+    if (!currentTyping && lockedActors.length === 0) return;
+
+    let candidatesMap = new Map();
+
+    if (lockedActors.length === 0) {
+        MOVIES.forEach(m => {
+            (m.actors || []).forEach(a => {
+                if (a.name.includes(currentTyping)) {
+                    candidatesMap.set(a.name, (candidatesMap.get(a.name) || 0) + 1);
+                }
+            });
+        });
+    } else {
+        const coMovies = MOVIES.filter(m => {
+            const movieActors = (m.actors || []).map(a => a.name);
+            return lockedActors.every(locked => movieActors.includes(locked));
+        });
+
+        coMovies.forEach(m => {
+            (m.actors || []).forEach(a => {
+                if (!lockedActors.includes(a.name) && a.name.includes(currentTyping)) {
+                    candidatesMap.set(a.name, (candidatesMap.get(a.name) || 0) + 1);
+                }
+            });
+        });
+    }
+
+    const sortedCandidates = Array.from(candidatesMap.entries())
+                                  .sort((a, b) => b[1] - a[1])
+                                  .slice(0, 10);
+
+    if (sortedCandidates.length === 0) return;
+
+    currentFocus = -1;
+    dropdownEl.style.display = 'block';
+    dropdownEl.innerHTML = '';
+
+    sortedCandidates.forEach(cand => {
+        const li = document.createElement('li');
+        li.innerHTML = `<span>${cand[0]}</span> <span class="cnt">같이 한 작품: ${cand[1]}편</span>`;
+        li.addEventListener('click', function() {
+            addActorToInput(cand[0], lockedActors);
+        });
+        dropdownEl.appendChild(li);
+    });
+});
+
+function addActorToInput(selectedName, lockedActors) {
+    lockedActors.push(selectedName);
+    inputEl.value = lockedActors.join(', ') + ', ';
+    closeDropdown();
+    inputEl.focus();
+}
+
+inputEl.addEventListener('keydown', function(e) {
+    let items = dropdownEl.getElementsByTagName('li');
+    if (e.key === "ArrowDown") {
+        currentFocus++;
+        addActive(items);
+    } else if (e.key === "ArrowUp") {
+        currentFocus--;
+        addActive(items);
+    } else if (e.key === "Enter") {
+        if (dropdownEl.style.display === 'block') {
+            e.preventDefault();
+            if (currentFocus > -1 && items.length > 0) {
+                items[currentFocus].click();
+            }
+        }
+    }
+});
+
+function addActive(items) {
+    if (!items || items.length === 0) return;
+    removeActive(items);
+    if (currentFocus >= items.length) currentFocus = 0;
+    if (currentFocus < 0) currentFocus = items.length - 1;
+    items[currentFocus].classList.add("active");
+    items[currentFocus].scrollIntoView({ block: 'nearest' });
+}
+
+function removeActive(items) {
+    for (let i = 0; i < items.length; i++) items[i].classList.remove("active");
+}
+
+function closeDropdown() { dropdownEl.style.display = 'none'; }
+document.addEventListener('click', function(e) { if (e.target !== inputEl) closeDropdown(); });
+
 
 async function search(){
   const f = new FormData(document.getElementById('f'));
@@ -471,106 +588,6 @@ async function drawSentimentCompare(names, minDate, maxDate) {
         }
     });
 }
-
-// 🌟 자동완성 및 키보드 조작 로직 삽입 완료
-const inputEl = document.getElementById('actorInput');
-const dropdownEl = document.getElementById('autocompleteList');
-let currentFocus = -1;
-
-inputEl.addEventListener('input', function() {
-    const rawVal = this.value;
-    const parts = rawVal.split(',').map(s => s.trim());
-    const currentTyping = parts.pop();
-    const lockedActors = parts.filter(s => s.length > 0);
-
-    closeDropdown();
-    if (!currentTyping && lockedActors.length === 0) return;
-
-    let candidatesMap = new Map();
-
-    if (lockedActors.length === 0) {
-        MOVIES.forEach(m => {
-            (m.actors || []).forEach(a => {
-                if (a.name.includes(currentTyping)) {
-                    candidatesMap.set(a.name, (candidatesMap.get(a.name) || 0) + 1);
-                }
-            });
-        });
-    } else {
-        const coMovies = MOVIES.filter(m => {
-            const movieActors = (m.actors || []).map(a => a.name);
-            return lockedActors.every(locked => movieActors.includes(locked));
-        });
-
-        coMovies.forEach(m => {
-            (m.actors || []).forEach(a => {
-                if (!lockedActors.includes(a.name) && a.name.includes(currentTyping)) {
-                    candidatesMap.set(a.name, (candidatesMap.get(a.name) || 0) + 1);
-                }
-            });
-        });
-    }
-
-    const sortedCandidates = Array.from(candidatesMap.entries())
-                                  .sort((a, b) => b[1] - a[1])
-                                  .slice(0, 10);
-
-    if (sortedCandidates.length === 0) return;
-
-    currentFocus = -1;
-    dropdownEl.style.display = 'block';
-    dropdownEl.innerHTML = '';
-
-    sortedCandidates.forEach(cand => {
-        const li = document.createElement('li');
-        li.innerHTML = `<span>${cand[0]}</span> <span class="cnt">같이 한 작품: ${cand[1]}편</span>`;
-        li.addEventListener('click', function() {
-            addActorToInput(cand[0], lockedActors);
-        });
-        dropdownEl.appendChild(li);
-    });
-});
-
-function addActorToInput(selectedName, lockedActors) {
-    lockedActors.push(selectedName);
-    inputEl.value = lockedActors.join(', ') + ', ';
-    closeDropdown();
-    inputEl.focus();
-}
-
-inputEl.addEventListener('keydown', function(e) {
-    let items = dropdownEl.getElementsByTagName('li');
-    if (e.key === "ArrowDown") {
-        currentFocus++;
-        addActive(items);
-    } else if (e.key === "ArrowUp") {
-        currentFocus--;
-        addActive(items);
-    } else if (e.key === "Enter") {
-        if (dropdownEl.style.display === 'block') {
-            e.preventDefault();
-            if (currentFocus > -1 && items.length > 0) {
-                items[currentFocus].click();
-            }
-        }
-    }
-});
-
-function addActive(items) {
-    if (!items || items.length === 0) return;
-    removeActive(items);
-    if (currentFocus >= items.length) currentFocus = 0;
-    if (currentFocus < 0) currentFocus = items.length - 1;
-    items[currentFocus].classList.add("active");
-    items[currentFocus].scrollIntoView({ block: 'nearest' });
-}
-
-function removeActive(items) {
-    for (let i = 0; i < items.length; i++) items[i].classList.remove("active");
-}
-
-function closeDropdown() { dropdownEl.style.display = 'none'; }
-document.addEventListener('click', function(e) { if (e.target !== inputEl) closeDropdown(); });
 
 (async function main(){
   await loadIndex();
