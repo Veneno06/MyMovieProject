@@ -2,83 +2,493 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title data-i18n-key="costarSearch">공동 출연 검색 – K-Movie A Archive</title>
+<title data-i18n-key="costarSearchTitle">공동 출연 검색</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="assets/style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@1.0.1/dist/chartjs-adapter-moment.min.js"></script>
 <script src="assets/translator.js" defer></script>
 <style>
-  /* 🌟 자동완성 드롭다운을 위한 신규 UI 스타일 (기존 사이트 테마에 맞게 융합) */
-  .search-container { position: relative; width: 100%; max-width: 600px; margin-bottom: 15px; }
-  .actor-input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 15px; box-sizing: border-box; }
-  .dropdown { 
-      position: absolute; top: 100%; left: 0; width: 100%; background: #fff; 
-      border: 1px solid #ddd; border-top: none; border-radius: 0 0 6px 6px; 
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 10; display: none; max-height: 250px; overflow-y: auto; list-style: none; padding: 0; margin: 0; 
-  }
-  .dropdown li { padding: 10px 15px; cursor: pointer; border-bottom: 1px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center; }
-  .dropdown li:hover, .dropdown li.active { background: #eff6ff; color: #2563eb; font-weight: bold; }
-  .dropdown li .cnt { font-size: 12px; color: #6b7280; font-weight: normal; }
-  .result-item { border-bottom: 1px dashed #e5e7eb; padding: 10px 0; list-style: none; }
+body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple SD Gothic Neo, Noto Sans KR, 'Malgun Gothic', sans-serif; line-height:1.6; }
+.wrap { max-width:980px; margin:24px auto; padding:0 12px; }
+h1 { font-size:28px; margin:0 0 16px; }
+.ctrls { display:flex; gap:8px; margin-bottom:12px; }
+.ctrls a { padding:6px 10px; border:1px solid #e5e7eb; border-radius:8px; background:#fff; text-decoration:none; color:#111827; }
+.box { background:#f6f7f9; border:1px solid #e5e7eb; border-radius:8px; padding:12px; display:flex; gap:8px; flex-wrap:wrap; }
+.box input { flex:1; padding:6px; }
+.note { color:#6b7280; }
+ul.list { list-style:none; padding:0; margin:12px 0; }
+li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
+.audi { font-size: 14px; color: #333; font-weight: bold; }
+.cast-list { font-size: 13px; color: #555; margin-left: 4px; }
+.cast-list a { color: #555; text-decoration: none; }
+.cast-list a:hover { text-decoration: underline; color: #000; }
+
+/* 🌟 자동완성 드롭다운을 위한 신규 CSS (기존 디자인을 해치지 않음) */
+.search-container { position: relative; flex: 1; }
+.dropdown { position: absolute; top: 100%; left: 0; width: 100%; background: #fff; border: 1px solid #ddd; border-top: none; border-radius: 0 0 8px 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 100; display: none; max-height: 250px; overflow-y: auto; margin: 0; padding: 0; list-style: none; }
+.dropdown li { padding: 10px 12px; cursor: pointer; border-bottom: 1px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center; }
+.dropdown li:hover, .dropdown li.active { background: #eff6ff; color: #2563eb; font-weight: bold; }
+.dropdown li .cnt { font-size: 12px; color: #6b7280; font-weight: normal; }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="ctrls" style="margin-bottom:20px;">
+  <div class="ctrls">
     <a href="index.html" class="btn" data-i18n-key="home">홈</a>
     <a href="title-search.html" class="btn" data-i18n-key="movieTitleSearch">영화 검색 (제목)</a>
     <a href="search.html" class="btn" data-i18n-key="movieSearchPeriod">영화 검색 (기간)</a>
-    <a href="people-search.html" class="btn" data-i18n-key="peopleSearch">배우/감독 검색</a>
+    <a href="people-search.html" class="btn" data-i18n-key="peopleSearch">배우 검색</a>
     <a href="costar-search.html" class="btn active" data-i18n-key="costarSearch">공동 출연 검색</a>
     <a href="saved.html" class="btn" data-i18n-key="savedList">저장 목록</a>
   </div>
 
-  <h1 data-i18n-key="costarSearch">공동 출연 검색</h1>
-  <p class="note" style="margin-bottom: 20px;">여러 배우가 함께 출연한 영화를 검색합니다. <br>(이름을 입력하면 가장 많이 함께 작업한 공동 출연자가 자동으로 추천됩니다.)</p>
+  <h1 data-i18n-key="costarSearchTitle">공동 출연 검색</h1>
 
-  <div style="background:#f9f9f9; padding:20px; border-radius:8px; border:1px solid #ddd; margin-bottom:20px;">
-      <div class="search-container">
-          <input type="text" id="actorInput" class="actor-input" placeholder="배우 이름을 쉼표(,)로 구분하여 입력 (예: 송강호, 김혜수)" autocomplete="off">
-          <ul id="autocompleteList" class="dropdown"></ul>
-      </div>
-      
-      <button class="btn" onclick="executeCostarSearch()" style="background:#2563eb; color:#fff; border:none; padding:10px 20px; font-size:15px; border-radius:6px; cursor: pointer;">검색</button>
+  <!-- 🌟 자동완성 기능이 적용된 폼 구조로 안전하게 변경 -->
+  <form id="f" class="box" style="position:relative; align-items: center;">
+    <span data-i18n-key="actorNamesLabel" style="white-space: nowrap;">배우 이름들:</span>
+    <div class="search-container">
+      <input type="text" name="q" id="actorInput" placeholder="예: 이병헌, 류승룡 (쉼표로 구분)" value="" autocomplete="off">
+      <ul id="autocompleteList" class="dropdown"></ul>
+    </div>
+    <button type="submit" class="btn" data-i18n-key="searchBtn">검색</button>
+  </form>
+
+  <div id="msg" class="note" style="margin-top:10px;"></div>
+  <ul id="out" class="list"></ul>
+
+  <div id="chart-container" style="display:none; margin-top: 40px;">
+    <h2 data-i18n-key="audiTrend">개봉 시기별 관객수 추이</h2>
+    <div style="position: relative; height:300px; width:100%">
+        <canvas id="audiChart"></canvas>
+    </div>
   </div>
 
-  <h3 style="margin-top:30px; border-bottom:2px solid #2563eb; padding-bottom:8px;">검색 결과</h3>
-  <ul id="costarResults" class="list" style="padding:0;"></ul>
+  <div id="sentiment-compare-container" style="display:none; margin-top: 40px; padding-top: 20px; border-top: 2px dashed #e5e7eb;">
+    <h2>유튜브 여론 분석 (긍정/부정) 비교</h2>
+    <div class="note" style="margin-bottom: 10px;">검색된 배우들의 긍정 댓글(+)과 부정 댓글(-) 추이를 개봉 시기에 맞춰 함께 비교합니다.</div>
+    <div style="position: relative; height:450px; width:100%">
+        <canvas id="sentimentCompareChart"></canvas>
+    </div>
+  </div>
 </div>
 
 <script>
+const TS = Date.now();
+const PATHS_INDEX = [`docs/data/search_index.json?v=${TS}`, `data/search_index.json?v=${TS}`];
+const PATHS_DETAILS = [`docs/data/people/`, `data/people/`]; 
+const PATHS_SENTIMENT = [`docs/data/sentiment/`, `data/sentiment/`];
+
 let MOVIES = [];
-let currentFocus = -1;
+let PEOPLE_MAP = {}; 
+let GLOBAL_RANKS = new Map(); 
+let myChart = null;
+let sentimentCompareChart = null;
 
-async function init() {
-    try {
-        // API 요청 없이 로컬 index.json 즉각 로드 (서버 부하 0%)
-        const res = await fetch('data/search_index.json');
-        MOVIES = await res.json();
-    } catch(e) { console.error("데이터 로드 실패"); }
+function parseSafeDate(str) {
+    if (!str) return moment().toDate();
+    const numStr = String(str).replace(/[^0-9]/g, '');
+    if (numStr.length >= 8) {
+        return moment(numStr.substring(0,8), "YYYYMMDD").toDate();
+    }
+    return moment().toDate();
 }
-init();
 
+function ISOWeekToDate(weekStr) {
+    const parts = weekStr.split('-W');
+    const year = parseInt(parts[0], 10);
+    const week = parseInt(parts[1], 10);
+    return moment().year(year).isoWeek(week).startOf('isoWeek').toDate();
+}
+
+const safeParseInt = (v) => {
+    if (v === null || v === undefined) return 0;
+    if (typeof v === 'number') return v;
+    const n = parseInt(String(v).replace(/,/g, '').trim(), 10);
+    return isNaN(n) ? 0 : n;
+};
+const fmtNum = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+const ACTOR_COLORS = [
+    { pos: '#3b82f6', neg: '#ef4444' },
+    { pos: '#14b8a6', neg: '#f97316' },
+    { pos: '#8b5cf6', neg: '#eab308' },
+    { pos: '#22c55e', neg: '#ec4899' } 
+];
+
+async function loadIndex(){
+  for (const p of PATHS_INDEX) {
+      try { const r = await fetch(p); if(r.ok) {
+          MOVIES = await r.json();
+          buildPeopleMap();
+          calculateGlobalRankings(); 
+          return;
+      }} catch(e){}
+  }
+}
+
+function calculateGlobalRankings() {
+    const YEAR_TOTALS = {};
+    const ACTOR_SCORES = new Map();
+
+    MOVIES.forEach(m => {
+        const audi = safeParseInt(m.audiAcc);
+        const year = (m.openDt || '').slice(0,4) || String(m.prdtYear);
+        if (year && audi > 0) YEAR_TOTALS[year] = (YEAR_TOTALS[year] || 0) + audi;
+    });
+
+    MOVIES.forEach(m => {
+        const A_i = safeParseInt(m.audiAcc);
+        const year = (m.openDt || '').slice(0,4) || String(m.prdtYear);
+        if (!year || A_i <= 0) return;
+        
+        const Total_Y = YEAR_TOTALS[year];
+        const W_time = Math.max(0.1, (parseInt(year) - 2000) / 10);
+        const C_i = Math.max(1, (m.actors || []).length);
+
+        (m.actors || []).forEach((a, idx) => {
+            if (!a.id) return;
+            const W_role = (idx < Math.ceil(C_i / 3)) ? 1.0 : 0.5;
+            const score_i = (A_i / Total_Y) * (W_role / Math.sqrt(C_i)) * W_time * 10000;
+            
+            if (!ACTOR_SCORES.has(a.id)) ACTOR_SCORES.set(a.id, 0);
+            ACTOR_SCORES.set(a.id, ACTOR_SCORES.get(a.id) + score_i);
+        });
+    });
+
+    const rankedArray = Array.from(ACTOR_SCORES.entries()).sort((a,b) => b[1] - a[1]);
+    rankedArray.forEach((item, index) => {
+        GLOBAL_RANKS.set(item[0], { score: Math.round(item[1]), rank: index + 1 });
+    });
+}
+
+function buildPeopleMap() {
+    MOVIES.forEach(m => {
+        const list = [...(m.actors||[]), ...(m.directors||[])];
+        list.forEach(p => {
+            const id = (p.id && p.id.trim()) ? p.id : `name:${p.name}`;
+            if (!PEOPLE_MAP[p.name]) PEOPLE_MAP[p.name] = [];
+            
+            if (!PEOPLE_MAP[p.name].some(x => x.id === id)) {
+                PEOPLE_MAP[p.name].push({ id: id, count: 0 });
+            }
+            const entry = PEOPLE_MAP[p.name].find(x => x.id === id);
+            entry.count++;
+        });
+    });
+    for (const k in PEOPLE_MAP) {
+        PEOPLE_MAP[k].sort((a,b) => b.count - a.count);
+    }
+}
+
+async function fetchPersonFilmos(id) {
+    if (!id || id.startsWith('name:')) return null;
+    const fname = `${id}.json?v=${TS}`;
+    for (const prefix of PATHS_DETAILS) {
+        try { 
+            const r = await fetch(prefix + fname); 
+            if(r.ok) {
+                const data = await r.json();
+                const info = (data.peopleInfoResult && data.peopleInfoResult.peopleInfo) ? data.peopleInfoResult.peopleInfo : data;
+                return info.filmos || []; 
+            }
+        } catch(e){}
+    }
+    return null;
+}
+
+async function fetchSentimentData(name) {
+    for (const prefix of PATHS_SENTIMENT) {
+        try {
+            const r = await fetch(prefix + `${name}.json?v=${TS}`);
+            if (r.ok) return await r.json();
+        } catch(e) {}
+    }
+    return null;
+}
+
+async function search(){
+  const f = new FormData(document.getElementById('f'));
+  const qRaw = f.get('q');
+  if (!qRaw) return;
+
+  const names = qRaw.split(',').map(s => s.trim()).filter(s => s);
+  if (names.length < 2) {
+      document.getElementById('msg').textContent = "두 명 이상의 배우 이름을 입력해주세요.";
+      return;
+  }
+
+  if (MOVIES.length === 0) await loadIndex();
+
+  const targetIds = [];
+  const displayNames = [];
+  
+  for (const name of names) {
+      const candidates = PEOPLE_MAP[name];
+      if (!candidates || candidates.length === 0) {
+          document.getElementById('msg').textContent = `'${name}' 배우를 찾을 수 없습니다.`;
+          return;
+      }
+      targetIds.push(candidates[0].id);
+      displayNames.push(name);
+  }
+
+  let commonMovies = MOVIES.filter(m => {
+      const cast = [...(m.actors||[]), ...(m.directors||[])];
+      return targetIds.every(tid => {
+          if (tid.startsWith('name:')) {
+              const tName = tid.replace('name:', '');
+              return cast.some(c => c.name === tName);
+          } else {
+              return cast.some(c => c.id === tid);
+          }
+      });
+  });
+
+  const firstRealId = targetIds.find(id => !id.startsWith('name:'));
+  if (firstRealId) {
+      const detailedFilmos = await fetchPersonFilmos(firstRealId);
+      if (detailedFilmos) {
+          commonMovies = commonMovies.map(m => {
+              const match = detailedFilmos.find(df => df.movieCd === m.movieCd);
+              if (match && match.audiAcc) {
+                  return { ...m, audiAcc: match.audiAcc };
+              }
+              return m;
+          });
+      }
+  }
+
+  commonMovies.sort((a,b) => (b.openDt || '').localeCompare(a.openDt || ''));
+
+  const out = document.getElementById('out');
+  out.innerHTML = '';
+  document.getElementById('msg').textContent = `총 ${commonMovies.length}편 검색됨`;
+
+  const validMovies = []; 
+
+  for (const m of commonMovies) {
+      const audiNum = safeParseInt(m.audiAcc);
+      const audiStr = audiNum ? ` / <span class="audi">누적 ${fmtNum(audiNum)}명</span>` : '';
+
+      let castStr = "";
+      if (m.actors) {
+          const d = m.actors.slice(0, 10).map(a => {
+            const isTarget = names.includes(a.name); 
+            const style = isTarget ? 'font-weight:bold; color:#000;' : '';
+            
+            const pid = (a.id && a.id.trim()) ? a.id : `name:${a.name}`;
+            const href = `person.html?id=${encodeURIComponent(pid)}&name=${encodeURIComponent(a.name)}`;
+            
+            let badge = "";
+            if(a.gender === "남자" || a.gender === "남") badge = " <span style='color:blue;font-size:0.8em'>(남)</span>";
+            else if(a.gender === "여자" || a.gender === "여") badge = " <span style='color:red;font-size:0.8em'>(여)</span>";
+            
+            let rankBadge = "";
+            if (a.id && GLOBAL_RANKS.has(a.id)) {
+                const rInfo = GLOBAL_RANKS.get(a.id);
+                rankBadge = ` <span style="font-size:11px; color:#d97706; font-weight:bold; cursor:help;" title="SP_Final 점수: ${fmtNum(rInfo.score)}점">[${rInfo.rank}위]</span>`;
+            }
+
+            return `<a href="${href}" target="_blank" style="${style}">${a.name}</a>${badge}${rankBadge}`;
+          });
+          castStr = ` · 배우: ${d.join(', ')}`;
+      }
+
+      const li = document.createElement('li');
+      li.innerHTML = `<a href="detail.html?movieCd=${encodeURIComponent(m.movieCd)}"><strong>${m.movieNm}</strong></a> 
+          <span class="note">(${m.openDt}${audiStr})</span><br>
+          <span class="cast-list">${castStr}</span>`;
+      out.appendChild(li);
+
+      if (m.openDt) validMovies.push({ ...m, audiAcc: audiNum });
+  }
+
+  let minDate = undefined;
+  let maxDate = moment().toDate(); 
+
+  if (validMovies.length > 0) {
+      const dates = validMovies.map(m => parseSafeDate(m.openDt).getTime());
+      const minTime = Math.min(...dates);
+      const maxMovieTime = Math.max(...dates);
+      
+      minDate = moment(minTime).subtract(3, 'months').toDate();
+      
+      if (maxMovieTime > maxDate.getTime()) {
+          maxDate = moment(maxMovieTime).add(3, 'months').toDate();
+      }
+  } else {
+      minDate = moment().subtract(1, 'years').toDate();
+  }
+
+  drawChart(validMovies, minDate, maxDate);
+  drawSentimentCompare(names, minDate, maxDate);
+}
+
+function drawChart(movies, minDate, maxDate) {
+    const ctx = document.getElementById('audiChart');
+    const container = document.getElementById('chart-container');
+    
+    if (movies.length === 0) {
+        container.style.display = 'none';
+        return;
+    }
+    container.style.display = 'block';
+
+    if (myChart) myChart.destroy();
+
+    const sorted = [...movies].sort((a,b) => (a.openDt||'').localeCompare(b.openDt||''));
+
+    const dataPoints = sorted.map(m => ({
+        x: parseSafeDate(m.openDt),
+        y: safeParseInt(m.audiAcc),
+        movieNm: m.movieNm
+    }));
+
+    myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            datasets: [{
+                label: '관객수',
+                data: dataPoints,
+                borderColor: 'var(--accent, #009688)',
+                backgroundColor: 'rgba(0, 150, 136, 0.1)',
+                borderWidth: 2,
+                fill: true,
+                tension: 0.3,
+                pointRadius: 5,
+                pointHoverRadius: 7
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            responsive: true,
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: (tooltipItems) => tooltipItems[0].raw.movieNm,
+                        label: (context) => ` 개봉: ${moment(context.raw.x).format('YYYY.MM.DD')} / 관객수: ${fmtNum(context.raw.y)}명`
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    type: 'time',
+                    time: { unit: 'year', displayFormats: { year: 'YYYY' } },
+                    min: minDate,  
+                    max: maxDate,  
+                    grid: { display: false }
+                },
+                y: {
+                    beginAtZero: true,
+                    ticks: { callback: v => v.toLocaleString() }
+                }
+            }
+        }
+    });
+}
+
+async function drawSentimentCompare(names, minDate, maxDate) {
+    const container = document.getElementById('sentiment-compare-container');
+    const ctx = document.getElementById('sentimentCompareChart');
+    if (sentimentCompareChart) sentimentCompareChart.destroy();
+
+    Promise.all(names.map(name => fetchSentimentData(name))).then(sentimentResults => {
+        const datasets = [];
+
+        sentimentResults.forEach((data, i) => {
+            if (!data || !data.timeline) return;
+            const posPoints = [];
+            const negPoints = [];
+            const sortedWeeks = Object.keys(data.timeline).sort();
+
+            sortedWeeks.forEach(w => {
+                const dateObj = ISOWeekToDate(w);
+                const posVal = data.timeline[w].positive || 0;
+                const negVal = data.timeline[w].negative || 0;
+                
+                posPoints.push({ x: dateObj, y: posVal });
+                negPoints.push({ x: dateObj, y: -(Math.abs(negVal)) });
+            });
+
+            posPoints.sort((a,b) => a.x - b.x);
+            negPoints.sort((a,b) => a.x - b.x);
+
+            const colors = ACTOR_COLORS[i % ACTOR_COLORS.length];
+
+            datasets.push({
+                label: `${names[i]} 긍정(+)`,
+                data: posPoints,
+                borderColor: colors.pos,
+                backgroundColor: colors.pos,
+                borderWidth: 2, tension: 0.1, pointRadius: 3
+            });
+            
+            datasets.push({
+                label: `${names[i]} 부정(-)`,
+                data: negPoints,
+                borderColor: colors.neg,
+                backgroundColor: colors.neg,
+                borderWidth: 2, tension: 0.1, pointRadius: 3
+            });
+        });
+
+        if (datasets.length > 0) {
+            container.style.display = 'block';
+
+            sentimentCompareChart = new Chart(ctx, {
+                type: 'line',
+                data: { datasets },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    scales: {
+                        x: { 
+                            type: 'time', 
+                            time: { unit: 'year', displayFormats: { year: 'YYYY' } }, 
+                            min: minDate, 
+                            max: maxDate, 
+                            grid: { display: false } 
+                        },
+                        y: { 
+                            title: { display: true, text: '댓글 수' },
+                            grid: { color: (ctx) => ctx.tick.value === 0 ? '#000000' : '#e5e7eb', lineWidth: (ctx) => ctx.tick.value === 0 ? 2 : 1 }
+                        }
+                    },
+                    plugins: { 
+                        legend: { position: 'top' },
+                        tooltip: {
+                            callbacks: {
+                                label: (ctx) => ` ${ctx.dataset.label}: ${Math.abs(ctx.parsed.y)}개`
+                            }
+                        }
+                    }
+                }
+            });
+        } else {
+            container.style.display = 'none';
+        }
+    });
+}
+
+// 🌟 자동완성 및 키보드 조작 로직 삽입 완료
 const inputEl = document.getElementById('actorInput');
 const dropdownEl = document.getElementById('autocompleteList');
+let currentFocus = -1;
 
-// 🌟 드롭다운 및 자동완성 핵심 로직
 inputEl.addEventListener('input', function() {
     const rawVal = this.value;
     const parts = rawVal.split(',').map(s => s.trim());
-    const currentTyping = parts.pop(); // 사용자가 현재 타이핑 중인 마지막 텍스트
-    const lockedActors = parts.filter(s => s.length > 0); // 이미 쉼표(,)로 확정된 앞선 배우들
+    const currentTyping = parts.pop();
+    const lockedActors = parts.filter(s => s.length > 0);
 
     closeDropdown();
-    // 아무것도 입력하지 않았을 때는 드롭다운을 열지 않음
     if (!currentTyping && lockedActors.length === 0) return;
 
-    let candidatesMap = new Map(); // name -> count 저장용
+    let candidatesMap = new Map();
 
     if (lockedActors.length === 0) {
-        // 1. 단일 배우 검색 중일 때: 전체 영화에서 해당 글자가 포함된 배우 카운팅
         MOVIES.forEach(m => {
             (m.actors || []).forEach(a => {
                 if (a.name.includes(currentTyping)) {
@@ -87,13 +497,11 @@ inputEl.addEventListener('input', function() {
             });
         });
     } else {
-        // 2. 공동 출연자(2번째 이후) 검색 중일 때: 확정된 배우들이 모두 포함된 영화만 필터링
         const coMovies = MOVIES.filter(m => {
             const movieActors = (m.actors || []).map(a => a.name);
             return lockedActors.every(locked => movieActors.includes(locked));
         });
 
-        // 필터링된 영화 안에서 타이핑 중인 글자가 포함된 다른 배우들 카운팅
         coMovies.forEach(m => {
             (m.actors || []).forEach(a => {
                 if (!lockedActors.includes(a.name) && a.name.includes(currentTyping)) {
@@ -103,7 +511,6 @@ inputEl.addEventListener('input', function() {
         });
     }
 
-    // 카운트 수(같이 한 작품 수) 기준 내림차순 정렬 후 Top 10 자르기
     const sortedCandidates = Array.from(candidatesMap.entries())
                                   .sort((a, b) => b[1] - a[1])
                                   .slice(0, 10);
@@ -126,12 +533,11 @@ inputEl.addEventListener('input', function() {
 
 function addActorToInput(selectedName, lockedActors) {
     lockedActors.push(selectedName);
-    inputEl.value = lockedActors.join(', ') + ', '; // 확정 후 쉼표와 공백 추가
+    inputEl.value = lockedActors.join(', ') + ', ';
     closeDropdown();
-    inputEl.focus(); // 스페이스바 치면 다음 배우 바로 입력 가능하도록 포커스 유지
+    inputEl.focus();
 }
 
-// 🌟 키보드 방향키 및 엔터 제어
 inputEl.addEventListener('keydown', function(e) {
     let items = dropdownEl.getElementsByTagName('li');
     if (e.key === "ArrowDown") {
@@ -141,11 +547,11 @@ inputEl.addEventListener('keydown', function(e) {
         currentFocus--;
         addActive(items);
     } else if (e.key === "Enter") {
-        e.preventDefault();
-        if (currentFocus > -1 && items.length > 0 && dropdownEl.style.display === 'block') {
-            items[currentFocus].click(); // 드롭다운 아이템 선택
-        } else if (dropdownEl.style.display !== 'block' || items.length === 0) {
-            executeCostarSearch(); // 드롭다운이 안 보일 때 엔터 누르면 최종 검색 실행
+        if (dropdownEl.style.display === 'block') {
+            e.preventDefault();
+            if (currentFocus > -1 && items.length > 0) {
+                items[currentFocus].click();
+            }
         }
     }
 });
@@ -166,44 +572,16 @@ function removeActive(items) {
 function closeDropdown() { dropdownEl.style.display = 'none'; }
 document.addEventListener('click', function(e) { if (e.target !== inputEl) closeDropdown(); });
 
-// 🌟 최종 공동 출연 검색 결과 출력 (기존 디자인 유지)
-function executeCostarSearch() {
-    closeDropdown();
-    const rawVal = inputEl.value;
-    const targetActors = rawVal.split(',').map(s => s.trim()).filter(s => s.length > 0);
-    const out = document.getElementById('costarResults');
-    out.innerHTML = '';
-
-    if (targetActors.length < 2) {
-        out.innerHTML = '<li class="note" style="color:red; list-style:none;">공동 출연을 검색하려면 2명 이상의 배우를 입력해주세요.</li>';
-        return;
-    }
-
-    const matchedMovies = MOVIES.filter(m => {
-        if (!m.actors) return false;
-        const movieActors = m.actors.map(a => a.name);
-        return targetActors.every(target => movieActors.includes(target));
-    });
-
-    if (matchedMovies.length === 0) {
-        out.innerHTML = `<li class="note" style="list-style:none;">[<b>${targetActors.join(', ')}</b>] 배우들이 모두 함께 출연한 영화가 없습니다.</li>`;
-        return;
-    }
-
-    out.innerHTML = `<li class="note" style="list-style:none; font-weight:bold; color:#2563eb; margin-bottom:10px;">총 ${matchedMovies.length}편의 공동 출연작을 찾았습니다.</li>`;
-    
-    // 개봉일 최신순 정렬 출력
-    matchedMovies.sort((a,b) => (b.openDt || '00000000') > (a.openDt || '00000000') ? 1 : -1).forEach(m => {
-        const li = document.createElement('li');
-        li.className = "result-item";
-        li.innerHTML = `
-            <a href="detail.html?movieCd=${encodeURIComponent(m.movieCd)}" target="_blank" style="font-weight:bold; color:#111827; text-decoration:none; font-size:16px;">${m.movieNm}</a>
-            <span style="font-size:12px; color:#6b7280; margin-left:8px;">(${m.openDt.replace(/-/g,'.')})</span>
-            <div style="font-size:13px; color:#4b5563; margin-top:6px;"><b>출연진:</b> ${m.actors.map(a=>a.name).slice(0,8).join(', ')}${m.actors.length > 8 ? ' 등' : ''}</div>
-        `;
-        out.appendChild(li);
-    });
-}
+(async function main(){
+  await loadIndex();
+  document.getElementById('f').addEventListener('submit', (e)=>{ e.preventDefault(); search(); });
+  
+  const q = new URLSearchParams(location.search).get('q');
+  if(q) {
+      document.querySelector('input[name=q]').value = q;
+      search();
+  }
+})();
 </script>
 </body>
 </html>
