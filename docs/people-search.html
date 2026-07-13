@@ -37,7 +37,6 @@
 
   <h1>배우/감독 검색</h1>
 
-  <!-- 1. 배우 프로필 검색 영역 -->
   <div style="background:#f9f9f9; padding:15px; border-radius:8px; border:1px solid #ddd; margin-bottom:20px;">
       <label>이름: <input type="text" id="keyword" onkeypress="if(event.key==='Enter') doSearch()" style="width:200px;"></label>
       <label style="margin-left:10px;"><input type="checkbox" id="onlyActor" checked> 배우만</label>
@@ -47,8 +46,6 @@
   <div id="count" class="note" style="margin-bottom: 10px; font-weight: bold; color: #2563eb;"></div>
   <ul id="results" class="list" style="padding-left: 0; margin-bottom: 30px;"></ul>
 
-
-  <!-- 2. 고도화된 데이터베이스 전체 통계 영역 -->
   <div style="background:#f9f9f9; padding:20px; border-radius:8px; border:1px solid #ddd; margin-bottom:20px;">
       <h3 style="margin-top:0; color:#111827; font-size:17px; border-bottom: 2px solid #2563eb; padding-bottom: 8px;">데이터베이스 전체 통계 <span style="font-size:12px; color:#888; font-weight:normal;">(2003년 통합전산망 출범 이후 기준)</span></h3>
       <div style="display:flex; flex-direction:column; gap:10px; font-size:14.5px; color:#374151; line-height:1.6;">
@@ -85,13 +82,13 @@
 
           <div class="dist-charts-container">
               <div class="dist-chart-box">
-                  <h4>5-1. 국내 스타 파워 구간별 인원 분포 (막대형 - 200점 단위)</h4>
+                  <h4>국내 스타 파워 구간별 인원 분포 (막대형)</h4>
                   <div style="position: relative; height: 400px; width: 100%;">
                       <canvas id="spBarChart"></canvas>
                   </div>
               </div>
               <div class="dist-chart-box">
-                  <h4>5-2. 국내 배우 스타 파워 분포 (산점도)</h4>
+                  <h4>국내 배우 스타 파워 분포 (산점도)</h4>
                   <div style="position: relative; height: 400px; width: 100%;">
                       <canvas id="spScatterChart"></canvas>
                   </div>
@@ -102,7 +99,6 @@
 
   <div style="margin: 80px 0;"></div>
 
-  <!-- 3. 여론 필터링 영역 -->
   <h2 style="color:#2563eb; border-bottom: 2px solid #2563eb; padding-bottom:8px; margin-bottom:20px;">배우 프로필 여론 필터링</h2>
 
   <div style="background:#f9f9f9; padding:15px; border-radius:8px; border:1px solid #ddd; margin-bottom:20px;">
@@ -142,7 +138,6 @@
   <div id="filterCount" class="note" style="margin-bottom: 10px;"></div>
   <ul id="filterResults" class="list" style="padding-left: 0;"></ul>
 
-  <!-- 4. 스타 파워 랭킹 출력 영역 -->
   <div id="rankingContainer" style="margin-top: 40px; padding-top: 20px; border-top: 2px dashed #ddd; display: none;">
       <h2> 실시간 스타 파워 (SP_Final) TOP 10</h2>
       <div style="display: flex; gap: 20px; flex-wrap: wrap;">
@@ -486,7 +481,7 @@ function applySentimentFilter() {
     });
 }
 
-// 🌟 [수정됨] 이름을 고유 키로 사용하여 동일 인물의 다중 직책(배우+감독) 완벽 병합
+// 🌟 이름을 고유 키로 사용하여 동일 인물의 다중 직책(배우+감독) 완벽 병합 로직 삽입 완료
 async function doSearch() {
     if (SEARCH_INDEX.length === 0) await loadData(); 
     
@@ -507,7 +502,7 @@ async function doSearch() {
         
         (m.actors || []).forEach(a => {
             if (a.name && a.name.includes(keyword)) {
-                const key = a.name.trim(); // ID가 아닌 '이름'으로 묶음
+                const key = a.name.trim(); 
                 if (!peopleMap.has(key)) {
                     peopleMap.set(key, { id: a.id || "", name: a.name, actorCnt: 0, directorCnt: 0, sex: a.gender || '', movies: new Set() });
                 } else {
@@ -521,7 +516,7 @@ async function doSearch() {
         
         (m.directors || []).forEach(d => {
             if (d.name && d.name.includes(keyword)) {
-                const key = d.name.trim(); // ID가 아닌 '이름'으로 묶음
+                const key = d.name.trim(); 
                 if (!peopleMap.has(key)) {
                     peopleMap.set(key, { id: d.id || "", name: d.name, actorCnt: 0, directorCnt: 0, sex: '', movies: new Set() });
                 } else {
@@ -538,9 +533,7 @@ async function doSearch() {
     let visibleCount = 0; 
 
     for (const r of resultsArray) {
-        // 본업 판별: 감독 이력이 1번이라도 있으면(혹은 배우보다 많으면) 감독으로 표시
         r.primaryRole = r.directorCnt > 0 ? '감독' : '배우';
-
         if (onlyActor && r.primaryRole !== '배우') continue;
 
         let sexBadge = "";
