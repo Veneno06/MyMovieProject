@@ -15,7 +15,6 @@ def fetch_opening_week():
     with open(SEARCH_INDEX_PATH, 'r', encoding='utf-8') as f:
         movies = json.load(f)
 
-    # 기존 데이터 로드 (API 중복 호출 방지)
     opening_data = {}
     if os.path.exists(OUTPUT_PATH):
         with open(OUTPUT_PATH, 'r', encoding='utf-8') as f:
@@ -28,18 +27,16 @@ def fetch_opening_week():
         movie_cd = m.get('movieCd')
         open_dt = str(m.get('openDt', '')).replace('-', '')
         
-        # 2003년 이전이거나 이미 수집된 영화는 패스
         if not open_dt or len(open_dt) < 8 or int(open_dt[:4]) < 2003 or movie_cd in opening_data:
             continue
 
         try:
             start_date = datetime.strptime(open_dt, '%Y%m%d')
-            target_date = (start_date + timedelta(days=6)).strftime('%Y%m%d') # 개봉 7일차(첫 주)
+            target_date = (start_date + timedelta(days=6)).strftime('%Y%m%d')
             
             url = f"http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key={API_KEYS[key_idx]}&targetDt={target_date}"
             res = requests.get(url, timeout=10).json()
             
-            # API 제한 도달 시 키 교체
             if 'faultInfo' in res:
                 key_idx += 1
                 if key_idx >= len(API_KEYS): break
@@ -49,13 +46,12 @@ def fetch_opening_week():
             target_movie = next((item for item in daily_list if item['movieCd'] == movie_cd), None)
             
             if target_movie:
-                # audiAcc는 해당 날짜(개봉 7일차)까지의 누적 관객수 = 개봉 첫 주 관객수
                 opening_data[movie_cd] = int(target_movie.get('audiAcc', 0))
             else:
-                opening_data[movie_cd] = 0 # 7일차에 박스오피스 아웃된 경우 0 또는 미상 처리
+                opening_data[movie_cd] = 0
                 
             updates += 1
-            if updates >= 40: break # 하루 API 할당량 조절 (안전치)
+            if updates >= 40: break # API 일일 할당량 보호
 
         except Exception as e:
             continue
