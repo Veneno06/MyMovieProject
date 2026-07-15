@@ -23,10 +23,11 @@ def main():
     dom_directors, for_directors = set(), set()
     YEAR_TOTALS = {}
 
-    # 1. 영화 순회 및 2003년 필터링
+    # 1. 영화 순회 및 2003년 필터링 (강제 적용)
     for m in movies:
         y_str = m.get('openDt', '')[:4] or str(m.get('prdtYear', ''))
         
+        # 🌟 핵심: 2003년 이전 데이터이거나 연도가 없는 데이터는 철저히 배제
         if not y_str or not y_str.isdigit() or int(y_str) < 2003:
             continue
             
@@ -70,7 +71,7 @@ def main():
     for_actors = for_actors - dom_actors
     for_directors = for_directors - dom_directors
 
-    # 2. 스타 파워 랭킹(SP_Final) 계산
+    # 2. 스타 파워 랭킹(SP_Final) 계산 (2003년 이후 데이터만)
     ACTOR_SCORES = {}
     for m in movies:
         y_str = m.get('openDt', '')[:4] or str(m.get('prdtYear', ''))
@@ -95,19 +96,16 @@ def main():
             score_i = (audi / total_y) * (w_role / math.sqrt(c_i)) * w_time * 10000
 
             if aid not in ACTOR_SCORES:
+                # 🌟 산점도(Scatter) X축 구성을 위해 total_audi(누적 관객수) 필드 추가
                 ACTOR_SCORES[aid] = {'id': aid, 'name': aname, 'score': 0, 'sex': a.get('gender'), 'total_audi': 0}
             ACTOR_SCORES[aid]['score'] += score_i
             ACTOR_SCORES[aid]['total_audi'] += audi
 
     ranked_all = sorted(ACTOR_SCORES.values(), key=lambda x: x['score'], reverse=True)
 
-    # 3. 여론 데이터 스캔 및 글로벌 평균 계산 추가
+    # 3. 여론 데이터 스캔
     sentiment_actors = []
     global_max_slope = 0
-    
-    total_pos_all = 0
-    total_neg_all = 0
-    valid_sentiment_count = 0
     
     sentiment_files = glob.glob(str(SENTIMENT_DIR / "*.json"))
     for pf in sentiment_files:
@@ -142,10 +140,6 @@ def main():
             total_comments = total_pos + total_neg
             neg_ratio = (total_neg / total_comments * 100) if total_comments > 0 else 0
             
-            total_pos_all += total_pos
-            total_neg_all += total_neg
-            valid_sentiment_count += 1
-            
             sentiment_actors.append({
                 "id": actor_rank_info['id'],
                 "name": name,
@@ -158,23 +152,6 @@ def main():
             })
             
     sentiment_actors.sort(key=lambda x: x['score'], reverse=True)
-
-    # 전체 평균 통계 연산
-    avg_pos = total_pos_all / valid_sentiment_count if valid_sentiment_count > 0 else 0
-    avg_neg = total_neg_all / valid_sentiment_count if valid_sentiment_count > 0 else 0
-    avg_total_comments = avg_pos + avg_neg
-    avg_neg_ratio = (avg_neg / avg_total_comments * 100) if avg_total_comments > 0 else 0
-    
-    # 비율 표기용 (예: 65 : 35)
-    ratio_pos_str = f"{(avg_pos / avg_total_comments * 100):.1f}" if avg_total_comments > 0 else "0"
-    ratio_neg_str = f"{avg_neg_ratio:.1f}"
-
-    sentiment_global_stats = {
-        "avg_pos": round(avg_pos),
-        "avg_neg": round(avg_neg),
-        "avg_neg_ratio": round(avg_neg_ratio, 1),
-        "ratio_str": f"{ratio_pos_str} : {ratio_neg_str}"
-    }
 
     # 4. 최종 JSON 출력
     summary_data = {
@@ -200,8 +177,7 @@ def main():
         "year_totals": YEAR_TOTALS,
         "rankings_all": ranked_all,
         "sentiment_actors": sentiment_actors,
-        "global_max_slope": global_max_slope,
-        "sentiment_global_stats": sentiment_global_stats # 🌟 프론트엔드로 전달할 평균 통계 추가
+        "global_max_slope": global_max_slope
     }
 
     with open(OUTPUT_PATH, 'w', encoding='utf-8') as f:
