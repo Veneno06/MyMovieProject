@@ -105,6 +105,13 @@
       <h3 style="margin-top:0; color:#111827; font-size:16px;"> 유튜브 여론 심층 필터링
           <span style="font-size:13px; font-weight:normal; color:#2563eb; margin-left:15px;" id="sentimentScanStatus">여론 데이터 스캔 준비...</span>
       </h3>
+      
+      <div id="sentimentGlobalStats" style="margin: 25px 0; padding: 20px; background: #fff; border: 1px solid #cbd5e1; border-radius: 8px; display: none;">
+          <div style="font-size: 15px; color: #111827; margin-bottom: 10px;"><b>긍정 댓글 : 부정 댓글 평균 비율</b> ➔ <span id="glbRatio" style="color:#2563eb; font-weight:bold;"></span></div>
+          <div style="font-size: 14px; color: #374151; margin-bottom: 6px;">긍정 댓글 평균 개수: <b id="glbPos" style="color:#2563eb;">0</b>개 &nbsp;&nbsp;|&nbsp;&nbsp; 부정 댓글 평균 개수: <b id="glbNeg" style="color:#ef4444;">0</b>개</div>
+          <div style="font-size: 14px; color: #374151;">부정 댓글 평균 비율: <b id="glbNegRatio" style="color:#ef4444;">0</b>%</div>
+      </div>
+
       <div style="display:flex; flex-direction:column; gap:12px; font-size:14px; color:#374151;">
           <label>1. 부정 댓글 총합: 
               <input type="number" id="filterNegTotalMin" placeholder="최소(예:10)" style="width:100px; margin-left:5px; padding:4px;"> 개 이상 ~
@@ -185,6 +192,15 @@ async function loadData() {
             const statusEl = document.getElementById('sentimentScanStatus');
             statusEl.innerHTML = `여론 데이터 보유 배우: <b>${VALID_SENTIMENT_ACTORS.length}명 확인</b> <span style="color:#16a34a;">(서버 연산 동기화 완료 ✅)</span>`;
             document.getElementById('filterNegSlopeMax').placeholder = `최대 ${DB_SUMMARY.global_max_slope} 사이`;
+
+            const gStats = DB_SUMMARY.sentiment_global_stats;
+            if (gStats) {
+                document.getElementById('glbRatio').innerText = gStats.ratio_str;
+                document.getElementById('glbPos').innerText = gStats.avg_pos.toLocaleString();
+                document.getElementById('glbNeg').innerText = gStats.avg_neg.toLocaleString();
+                document.getElementById('glbNegRatio').innerText = gStats.avg_neg_ratio;
+                document.getElementById('sentimentGlobalStats').style.display = 'block';
+            }
         }
     } catch(e) { console.error(e); }
 }
@@ -481,7 +497,6 @@ function applySentimentFilter() {
     });
 }
 
-// 🌟 이름을 고유 키로 사용하여 동일 인물의 다중 직책(배우+감독) 완벽 병합 로직 삽입 완료
 async function doSearch() {
     if (SEARCH_INDEX.length === 0) await loadData(); 
     
