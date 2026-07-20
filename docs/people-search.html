@@ -135,9 +135,19 @@
               </label>
           </div>
 
-          <div style="display:flex; gap:10px; margin-top:5px;">
+          <div style="display:flex; gap:10px; margin-top:5px; align-items:center; flex-wrap:wrap;">
               <button class="btn" onclick="applySentimentFilter()" style="background:#4f46e5; color:white; border:none; padding:8px 16px;">위 조건으로 여론 기반 검색</button>
-              <button class="btn" onclick="exportFilterResultsToCSV()" style="background:#10b981; color:white; border:none; padding:8px 16px;"> Colab용 h1_data.csv 다운로드</button>
+              
+              <!-- 🌟 새로 추가된 인원 자동 선택 UI -->
+              <div style="display:flex; align-items:center; gap:6px; background:#e0f2fe; padding:6px 12px; border-radius:6px; border:1px solid #bfdbfe;">
+                  <select id="autoSelectType" style="padding:4px; border:1px solid #ccc; border-radius:4px;">
+                      <option value="top">위에서부터</option>
+                      <option value="bottom">아래에서부터</option>
+                  </select>
+                  <input type="number" id="autoSelectCount" placeholder="인원(명)" style="width:70px; padding:4px; border:1px solid #ccc; border-radius:4px;">
+                  <span style="font-size:13px; color:#1e3a8a; font-weight:bold;">명 자동 선택 후 ➔</span>
+                  <button class="btn" onclick="exportFilterResultsToCSV()" style="background:#10b981; color:white; border:none; padding:8px 16px;">Colab용 h1_data.csv 다운로드</button>
+              </div>
           </div>
       </div>
   </div>
@@ -370,6 +380,25 @@ function toggleAllActors(source) {
 }
 
 function exportFilterResultsToCSV() {
+    const countInput = parseInt(document.getElementById('autoSelectCount').value, 10);
+    const selectType = document.getElementById('autoSelectType').value;
+    const checkboxes = Array.from(document.querySelectorAll('.actor-checkbox'));
+
+    // 🌟 자동 선택 로직
+    if (!isNaN(countInput) && countInput > 0) {
+        checkboxes.forEach(cb => cb.checked = false); // 먼저 전체 선택 해제
+        
+        if (selectType === 'top') {
+            for (let i = 0; i < Math.min(countInput, checkboxes.length); i++) {
+                checkboxes[i].checked = true;
+            }
+        } else {
+            for (let i = Math.max(0, checkboxes.length - countInput); i < checkboxes.length; i++) {
+                checkboxes[i].checked = true;
+            }
+        }
+    }
+
     const checkedBoxes = document.querySelectorAll('.actor-checkbox:checked');
     if (checkedBoxes.length === 0) {
         alert("다운로드할 배우를 최소 한 명 이상 선택해주세요.");
@@ -548,7 +577,8 @@ async function doSearch() {
     let visibleCount = 0; 
 
     for (const r of resultsArray) {
-        r.primaryRole = r.directorCnt > 0 ? '감독' : '배우';
+        // 🌟 [본업 판별 수정] 감독 참여작이 전체 참여작의 50% 이상일 때만 '감독'으로 표기
+        r.primaryRole = (r.directorCnt >= r.actorCnt && r.directorCnt > 0) ? '감독' : '배우';
         if (onlyActor && r.primaryRole !== '배우') continue;
 
         let sexBadge = "";
