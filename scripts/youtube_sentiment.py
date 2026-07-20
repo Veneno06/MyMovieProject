@@ -18,9 +18,11 @@ HERE = Path(__file__).resolve()
 ROOT = HERE.parents[1] if HERE.parents[1].name == "MyMovieProject" else HERE.parents[2]
 PEOPLE_DIR = ROOT / "docs" / "data" / "people"
 SEARCH_INDEX_PATH = ROOT / "docs" / "data" / "search_index.json"
+DB_SUMMARY_PATH = ROOT / "docs" / "data" / "db_summary.json"
 SENTIMENT_DIR = ROOT / "docs" / "data" / "sentiment"
 SENTIMENT_DIR.mkdir(parents=True, exist_ok=True)
 
+# 1번부터 10번 키까지 유연하게 로드
 API_KEYS = []
 for key_name in ["YOUTUBE_API_KEY"] + [f"YOUTUBE_API_KEY_{i}" for i in range(2, 11)]:
     val = os.environ.get(key_name)
@@ -70,8 +72,11 @@ def get_youtube_comments(actor_name):
 
     print(f"\n🔍 '{actor_name}' 연도별({start_year}~{current_year}) 유튜브 3중 필터링 수집 시작...")
     print(f"🛡️ [1차 필터] 검색어 확장 (영화|예고편|인터뷰|무대인사|리뷰|예능|연기)")
-    print(f"🛡️ [2차 필터] 제목/설명/태그/댓글 내 '{actor_name}' 언급 필수 (없으면 즉시 폐기)")
+    print(f"🛡️ [2차 필터] 제목/설명/태그/댓글 내 '{actor_name}' 및 필수 키워드 1개 이상 포함 필수")
     print(f"🛡️ [3차 필터] 영상 조회수 10만 이상 OR 채널 구독자 10만 이상")
+
+    # 영상 및 댓글 내에 반드시 존재해야 하는 필수 키워드
+    REQUIRED_KEYWORDS = ['배우', '영화', '예고편', '인터뷰', '무대인사', '리뷰', '예능', '연기']
 
     for target_year in range(start_year, current_year + 1):
         if CURRENT_KEY_INDEX >= len(API_KEYS):
@@ -89,13 +94,12 @@ def get_youtube_comments(actor_name):
             try:
                 print(f"\n 📅 [{target_year}년] 영상 검색 중... (Key {CURRENT_KEY_INDEX + 1})")
                 
-                # 🌟 [1차 필터링] 요청하신 확장된 OR 검색 쿼리 적용
                 search_query = f"{actor_name} 영화 | {actor_name} 예고편 | {actor_name} 인터뷰 | {actor_name} 무대인사 | {actor_name} 리뷰 | {actor_name} 예능 | {actor_name} 연기"
                 
                 search_response = youtube.search().list(
                     q=search_query,
                     part='id',
-                    maxResults=15, # 넉넉히 가져와서 필터링으로 걸러냄
+                    maxResults=15, 
                     type='video',
                     order='relevance', 
                     publishedAfter=published_after,
@@ -109,7 +113,6 @@ def get_youtube_comments(actor_name):
                     success_for_year = True 
                     continue
 
-                # 영상 메타데이터 가져오기
                 stats_response = youtube.videos().list(
                     part='statistics,snippet', 
                     id=','.join(candidate_ids)
@@ -121,7 +124,6 @@ def get_youtube_comments(actor_name):
                     videos_info.append(item)
                     channel_ids.add(item['snippet']['channelId'])
 
-                # 채널 구독자 수 가져오기
                 channel_subs = {}
                 if channel_ids:
                     channels_response = youtube.channels().list(
@@ -146,11 +148,13 @@ def get_youtube_comments(actor_name):
                     description = snippet.get('description', '')
                     tags = snippet.get('tags', [])
                     
-                    # 🌟 [3차 필터링] 조회수 10만 OR 구독자 10만
+                    # 🌟 [3차 필터링] 기존의 10만 기준 엄격히 유지
                     if (view_count >= 100000 or subs_count >= 100000) and comment_count > 0:
                         
-                        # 🌟 [2차 필터링 전반부] 제목/설명/태그에 이름이 있는지 사전 검사
-                        has_name_in_meta = (actor_name in title) or (actor_name in description) or any(actor_name in t for t in tags)
+                        # 필수 키워드가 메타데이터에 있는지 확인
+                        title_desc_tags = title + " " + description + " " + " ".join(tags)
+                        has_req_keyword_meta = any(k in title_desc_tags for k in REQUIRED_KEYWORDS)
+                        has_name_in_meta = (actor_name in title_desc_tags)
                         
                         valid_videos.append({
                             'id': item['id'],
@@ -158,10 +162,10 @@ def get_youtube_comments(actor_name):
                             'channelTitle': snippet.get('channelTitle', '채널명 없음'),
                             'publishedAt': snippet.get('publishedAt', ''), 
                             'comment_count': comment_count,
-                            'has_name_in_meta': has_name_in_meta
+                            'has_name_in_meta': has_name_in_meta,
+                            'has_req_keyword_meta': has_req_keyword_meta
                         })
 
-                # 댓글 수 기준으로 정렬하여 최대 3개까지만 타겟으로 선정
                 valid_videos.sort(key=lambda x: x['comment_count'], reverse=True)
                 target_videos = valid_videos[:3] 
 
@@ -174,6 +178,7 @@ def get_youtube_comments(actor_name):
                 for video in target_videos:
                     video_comments_temp = []
                     has_name_in_comments = False
+                    has_req_keyword_comments = False
 
                     try:
                         comment_response = youtube.commentThreads().list(
@@ -190,19 +195,25 @@ def get_youtube_comments(actor_name):
                             
                             if len(text) > 3 and "http" not in text:
                                 video_comments_temp.append({"text": text, "date": date, "videoId": video['id']})
-                                # 🌟 [2차 필터링 후반부] 수집된 댓글 내용 중 이름이 있는지 검사
+                                
                                 if actor_name in text:
                                     has_name_in_comments = True
+                                if any(k in text for k in REQUIRED_KEYWORDS):
+                                    has_req_keyword_comments = True
                                 
                     except HttpError as e:
                         continue
                     
-                    # 🌟 [최종 차단 로직] 메타데이터(제목/설명/태그)에도 없고, 수집된 댓글 100개 중에도 이름이 없다면 무조건 쓰레기 데이터!
+                    # 배우 이름 존재 유무 확인
                     if not video['has_name_in_meta'] and not has_name_in_comments:
                         print(f"   🚫 [차단됨] '{video['title']}' (배우 이름 전혀 언급 안 됨)")
-                        continue # 이 영상의 댓글은 all_comments에 넣지 않고 영구 폐기
+                        continue
+                        
+                    # 🌟 [신규 필수 키워드 확인] 영상 메타정보와 댓글을 모두 뒤져도 영화/배우 관련 키워드가 단 하나도 없으면 영구 차단
+                    if not video['has_req_keyword_meta'] and not has_req_keyword_comments:
+                        print(f"   🚫 [차단됨] '{video['title']}' (영화, 배우 등 필수 키워드 전혀 없음)")
+                        continue
                     
-                    # 모든 검문을 통과한 '진짜 데이터'만 최종 반영
                     sources_dict[video['id']] = {
                         "videoId": video['id'],
                         "title": video['title'],
@@ -310,39 +321,61 @@ def run_single(actor_name):
     return True
 
 def run_auto():
-    print(f"🎬 [자동 수집 모드] 1000만 관객 이상 흥행작 배우 자동 추출 및 분석 시작...")
-    MIN_AUDIENCE = 10000000 
-    famous_actors = set()
+    print(f"🎬 [자동 수집 모드] 스타 파워 랭킹 기준 누락 데이터 자동 분석 시작...")
     
-    if SEARCH_INDEX_PATH.exists():
-        with open(SEARCH_INDEX_PATH, 'r', encoding='utf-8') as f:
-            movies = json.load(f)
-            for m in movies:
-                audi_str = str(m.get('audiAcc', '0')).replace(',', '')
-                audi_num = int(audi_str) if audi_str.isdigit() else 0
-                if audi_num >= MIN_AUDIENCE:
-                    for actor in m.get('actors', []):
-                        famous_actors.add(actor.get('name', '').strip())
-    else: return
-
-    target_actors = []
-    for name in famous_actors:
-        if not name: continue
-        save_path = SENTIMENT_DIR / f"{name}.json"
-        if save_path.exists(): continue
-        target_actors.append(name)
-
-    if not target_actors:
-        print("✅ 모든 천만 배우의 여론 분석이 완료되었습니다!")
+    if not DB_SUMMARY_PATH.exists():
+        print("❌ db_summary.json 파일이 없습니다. 먼저 DB 요약을 생성해주세요.")
+        return
+        
+    with open(DB_SUMMARY_PATH, 'r', encoding='utf-8') as f:
+        db_summary = json.load(f)
+        
+    rankings = db_summary.get("rankings_all", [])
+    if not rankings:
+        print("❌ 스타 파워 랭킹 데이터가 없습니다.")
         return
 
+    # 🌟 3가지 조건(파일 유무, timeline, sources) 중 하나라도 부족한 배우만 필터링
+    target_actors = []
+    for actor_info in rankings:
+        name = actor_info.get("name")
+        if not name: continue
+        
+        save_path = SENTIMENT_DIR / f"{name}.json"
+        needs_update = True
+        
+        if save_path.exists():
+            try:
+                with open(save_path, 'r', encoding='utf-8') as sf:
+                    s_data = json.load(sf)
+                    tl = s_data.get("timeline")
+                    src = s_data.get("sources")
+                    # 데이터가 모두 멀쩡하게 존재하면 업데이트 건너뜀
+                    if tl and (src is not None) and len(src) > 0:
+                        needs_update = False
+            except:
+                pass
+                
+        if needs_update:
+            target_actors.append(name)
+
+    if not target_actors:
+        print("✅ 모든 스타 파워 랭킹 배우의 여론 분석이 완벽하게 완료되었습니다!")
+        return
+
+    print(f"🔍 업데이트가 필요한 타겟 배우: 총 {len(target_actors)}명")
+
     success_count = 0
-    for idx, actor in enumerate(target_actors[:20]): 
-        if run_single(actor): success_count += 1
+    for idx, actor in enumerate(target_actors): 
+        if run_single(actor): 
+            success_count += 1
+            
         global CURRENT_KEY_INDEX
-        if CURRENT_KEY_INDEX >= len(API_KEYS):
-            print("🚨 모든 API 키가 소진되어 오늘의 자동 수집을 종료합니다.")
+        # 🌟 6번째 키(인덱스 5)까지는 자유롭게 쓰다가, 7번째 키(인덱스 6)에 진입하면 이번 배우까지만 완료하고 안전 종료
+        if CURRENT_KEY_INDEX >= 6:
+            print(f"\n🚨 7번째 API 키(YOUTUBE_API_KEY_7 이상)를 사용했으므로, '{actor}' 배우를 마지막으로 오늘의 자동 수집을 종료합니다.")
             break
+            
     print(f"\n🎉 오늘의 자동 수집 완료! (성공: {success_count}명)")
 
 def run_pattern(pattern):
