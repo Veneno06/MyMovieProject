@@ -44,6 +44,9 @@ jobs:
           YOUTUBE_API_KEY_4: ${{ secrets.YOUTUBE_API_KEY_4 }}
           YOUTUBE_API_KEY_5: ${{ secrets.YOUTUBE_API_KEY_5 }}
           YOUTUBE_API_KEY_6: ${{ secrets.YOUTUBE_API_KEY_6 }}
+          YOUTUBE_API_KEY_7: ${{ secrets.YOUTUBE_API_KEY_7 }}
+          YOUTUBE_API_KEY_8: ${{ secrets.YOUTUBE_API_KEY_8 }}
+          YOUTUBE_API_KEY_9: ${{ secrets.YOUTUBE_API_KEY_9 }}
         run: python scripts/youtube_sentiment.py --pattern "${{ github.event.inputs.pattern }}"
 
       # B. 지정 배우 실행 (수동)
@@ -56,9 +59,12 @@ jobs:
           YOUTUBE_API_KEY_4: ${{ secrets.YOUTUBE_API_KEY_4 }}
           YOUTUBE_API_KEY_5: ${{ secrets.YOUTUBE_API_KEY_5 }}
           YOUTUBE_API_KEY_6: ${{ secrets.YOUTUBE_API_KEY_6 }}
+          YOUTUBE_API_KEY_7: ${{ secrets.YOUTUBE_API_KEY_7 }}
+          YOUTUBE_API_KEY_8: ${{ secrets.YOUTUBE_API_KEY_8 }}
+          YOUTUBE_API_KEY_9: ${{ secrets.YOUTUBE_API_KEY_9 }}
         run: python scripts/youtube_sentiment.py --actor "${{ github.event.inputs.actor_name }}"
 
-      # C. [이 부분이 아까 누락되었던 핵심 코드입니다!] 매일 새벽 자동 실행 (Auto Mode)
+      # C. 매일 새벽 자동 실행 (Auto Mode)
       - name: Run AI Sentiment Analysis (Auto Daily)
         if: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && github.event.inputs.pattern == '' && github.event.inputs.actor_name == '') }}
         env:
@@ -68,6 +74,9 @@ jobs:
           YOUTUBE_API_KEY_4: ${{ secrets.YOUTUBE_API_KEY_4 }}
           YOUTUBE_API_KEY_5: ${{ secrets.YOUTUBE_API_KEY_5 }}
           YOUTUBE_API_KEY_6: ${{ secrets.YOUTUBE_API_KEY_6 }}
+          YOUTUBE_API_KEY_7: ${{ secrets.YOUTUBE_API_KEY_7 }}
+          YOUTUBE_API_KEY_8: ${{ secrets.YOUTUBE_API_KEY_8 }}
+          YOUTUBE_API_KEY_9: ${{ secrets.YOUTUBE_API_KEY_9 }}
         run: python scripts/youtube_sentiment.py --auto
 
       - name: Commit and Push Data
