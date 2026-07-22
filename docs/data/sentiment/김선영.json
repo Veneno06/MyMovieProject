@@ -1,198 +1,1980 @@
 {
   "actor_name": "김선영",
-  "last_updated": "2026-02-27 02:32:49",
+  "last_updated": "2026-07-22 20:25:19",
   "timeline": {
-    "2025-W36": {
-      "positive": 10,
-      "negative": 8
+    "2016-W15": {
+      "positive": 2,
+      "negative": 1
     },
-    "2025-W35": {
-      "positive": 4,
-      "negative": 11
-    },
-    "2025-W37": {
-      "positive": 5,
-      "negative": 4
-    },
-    "2025-W47": {
+    "2020-W31": {
       "positive": 3,
-      "negative": 6
+      "negative": 2
     },
-    "2025-W38": {
+    "2019-W43": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2016-W14": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2017-W32": {
+      "positive": 4,
+      "negative": 1
+    },
+    "2018-W38": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2016-W17": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2017-W48": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2016-W26": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2015-W06": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2012-W27": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2017-W06": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2021-W12": {
+      "positive": 7,
+      "negative": 2
+    },
+    "2021-W11": {
+      "positive": 2,
+      "negative": 3
+    },
+    "2020-W34": {
+      "positive": 2,
+      "negative": 2
+    },
+    "2017-W19": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2017-W28": {
+      "positive": 3,
+      "negative": 0
+    },
+    "2020-W41": {
+      "positive": 0,
+      "negative": 3
+    },
+    "2014-W51": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2018-W40": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2016-W21": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2020-W13": {
+      "positive": 4,
+      "negative": 2
+    },
+    "2019-W22": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2020-W37": {
+      "positive": 8,
+      "negative": 5
+    },
+    "2019-W32": {
+      "positive": 5,
+      "negative": 3
+    },
+    "2021-W03": {
+      "positive": 65,
+      "negative": 12
+    },
+    "2020-W30": {
+      "positive": 3,
+      "negative": 0
+    },
+    "2020-W17": {
+      "positive": 4,
+      "negative": 0
+    },
+    "2020-W43": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2016-W11": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2020-W10": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2017-W24": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2012-W49": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2015-W12": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2018-W18": {
+      "positive": 2,
+      "negative": 1
+    },
+    "2012-W45": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2015-W52": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2018-W47": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2023-W10": {
+      "positive": 9,
+      "negative": 2
+    },
+    "2018-W31": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2012-W50": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2020-W40": {
+      "positive": 2,
+      "negative": 1
+    },
+    "2020-W47": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2018-W20": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2025-W01": {
+      "positive": 2,
+      "negative": 1
+    },
+    "2020-W15": {
+      "positive": 4,
+      "negative": 0
+    },
+    "2021-W16": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2020-W29": {
+      "positive": 4,
+      "negative": 1
+    },
+    "2018-W50": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2024-W44": {
+      "positive": 3,
+      "negative": 1
+    },
+    "2020-W38": {
+      "positive": 11,
+      "negative": 13
+    },
+    "2022-W39": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2020-W48": {
+      "positive": 5,
+      "negative": 0
+    },
+    "2019-W05": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2018-W26": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2020-W44": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2022-W26": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2022-W04": {
+      "positive": 9,
+      "negative": 5
+    },
+    "2021-W28": {
+      "positive": 4,
+      "negative": 1
+    },
+    "2020-W53": {
+      "positive": 3,
+      "negative": 1
+    },
+    "2019-W27": {
+      "positive": 5,
+      "negative": 1
+    },
+    "2023-W24": {
+      "positive": 3,
+      "negative": 2
+    },
+    "2013-W12": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2019-W48": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2020-W36": {
+      "positive": 6,
+      "negative": 1
+    },
+    "2021-W35": {
+      "positive": 3,
+      "negative": 0
+    },
+    "2020-W35": {
+      "positive": 6,
+      "negative": 2
+    },
+    "2018-W21": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2013-W05": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2020-W51": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2019-W26": {
+      "positive": 8,
+      "negative": 1
+    },
+    "2021-W21": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2022-W07": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2021-W22": {
+      "positive": 2,
+      "negative": 3
+    },
+    "2021-W50": {
+      "positive": 4,
+      "negative": 1
+    },
+    "2021-W02": {
+      "positive": 57,
+      "negative": 12
+    },
+    "2025-W31": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2019-W39": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2013-W27": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2012-W36": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2012-W38": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2019-W28": {
+      "positive": 10,
+      "negative": 2
+    },
+    "2020-W06": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2016-W30": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2020-W46": {
+      "positive": 2,
+      "negative": 1
+    },
+    "2014-W26": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2016-W16": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2021-W20": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2018-W11": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2017-W22": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2015-W15": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2015-W26": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2022-W27": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2019-W35": {
+      "positive": 3,
+      "negative": 0
+    },
+    "2023-W46": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2019-W09": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2021-W13": {
       "positive": 1,
       "negative": 2
     },
-    "2026-W09": {
+    "2018-W27": {
       "positive": 1,
       "negative": 0
     },
-    "2025-W51": {
-      "positive": 0,
+    "2017-W18": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2019-W45": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2017-W12": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2015-W40": {
+      "positive": 9,
       "negative": 4
     },
-    "2025-W40": {
+    "2020-W12": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2020-W07": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2023-W08": {
+      "positive": 45,
+      "negative": 8
+    },
+    "2014-W05": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2019-W46": {
+      "positive": 3,
+      "negative": 0
+    },
+    "2016-W07": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2022-W30": {
       "positive": 0,
       "negative": 1
     },
-    "2026-W08": {
+    "2025-W11": {
+      "positive": 7,
+      "negative": 3
+    },
+    "2019-W49": {
+      "positive": 5,
+      "negative": 1
+    },
+    "2025-W14": {
+      "positive": 6,
+      "negative": 0
+    },
+    "2013-W44": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2025-W49": {
+      "positive": 0,
+      "negative": 2
+    },
+    "2019-W31": {
+      "positive": 3,
+      "negative": 0
+    },
+    "2019-W24": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2024-W09": {
+      "positive": 6,
+      "negative": 1
+    },
+    "2018-W16": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2018-W42": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2021-W44": {
+      "positive": 2,
+      "negative": 1
+    },
+    "2022-W18": {
+      "positive": 4,
+      "negative": 0
+    },
+    "2023-W30": {
       "positive": 0,
       "negative": 1
     },
-    "2026-W03": {
+    "2023-W41": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2020-W24": {
+      "positive": 57,
+      "negative": 8
+    },
+    "2022-W24": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2015-W39": {
+      "positive": 7,
+      "negative": 3
+    },
+    "2014-W40": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2020-W22": {
       "positive": 2,
       "negative": 0
     },
-    "2026-W04": {
+    "2019-W44": {
       "positive": 2,
       "negative": 0
     },
-    "2025-W52": {
+    "2022-W25": {
+      "positive": 3,
+      "negative": 0
+    },
+    "2014-W48": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2025-W28": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2020-W33": {
+      "positive": 5,
+      "negative": 0
+    },
+    "2025-W10": {
+      "positive": 6,
+      "negative": 5
+    },
+    "2021-W15": {
+      "positive": 11,
+      "negative": 0
+    },
+    "2016-W52": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2026-W09": {
+      "positive": 3,
+      "negative": 0
+    },
+    "2026-W24": {
+      "positive": 1,
+      "negative": 2
+    },
+    "2022-W02": {
+      "positive": 6,
+      "negative": 2
+    },
+    "2024-W52": {
+      "positive": 7,
+      "negative": 1
+    },
+    "2015-W04": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2017-W47": {
+      "positive": 3,
+      "negative": 0
+    },
+    "2026-W11": {
+      "positive": 4,
+      "negative": 0
+    },
+    "2021-W46": {
       "positive": 0,
       "negative": 1
     },
-    "2025-W46": {
+    "2015-W08": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2022-W16": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2024-W29": {
+      "positive": 9,
+      "negative": 2
+    },
+    "2017-W16": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2017-W34": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2014-W12": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2017-W10": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2019-W52": {
+      "positive": 3,
+      "negative": 0
+    },
+    "2025-W50": {
+      "positive": 2,
+      "negative": 1
+    },
+    "2020-W18": {
+      "positive": 2,
+      "negative": 1
+    },
+    "2015-W07": {
+      "positive": 8,
+      "negative": 4
+    },
+    "2021-W06": {
+      "positive": 6,
+      "negative": 1
+    },
+    "2020-W21": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2021-W48": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2016-W02": {
+      "positive": 7,
+      "negative": 2
+    },
+    "2021-W52": {
+      "positive": 3,
+      "negative": 1
+    },
+    "2021-W01": {
+      "positive": 5,
+      "negative": 3
+    },
+    "2022-W40": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2021-W51": {
+      "positive": 3,
+      "negative": 0
+    },
+    "2022-W42": {
+      "positive": 3,
+      "negative": 1
+    },
+    "2022-W01": {
+      "positive": 5,
+      "negative": 1
+    },
+    "2021-W24": {
+      "positive": 3,
+      "negative": 0
+    },
+    "2022-W11": {
+      "positive": 6,
+      "negative": 2
+    },
+    "2023-W35": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2021-W14": {
+      "positive": 4,
+      "negative": 4
+    },
+    "2022-W47": {
+      "positive": 6,
+      "negative": 8
+    },
+    "2019-W02": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2022-W43": {
+      "positive": 3,
+      "negative": 0
+    },
+    "2022-W44": {
+      "positive": 4,
+      "negative": 1
+    },
+    "2024-W01": {
+      "positive": 8,
+      "negative": 1
+    },
+    "2024-W19": {
+      "positive": 4,
+      "negative": 0
+    },
+    "2024-W46": {
+      "positive": 4,
+      "negative": 2
+    },
+    "2022-W06": {
+      "positive": 3,
+      "negative": 0
+    },
+    "2024-W36": {
+      "positive": 5,
+      "negative": 1
+    },
+    "2021-W41": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2022-W05": {
+      "positive": 4,
+      "negative": 0
+    },
+    "2024-W30": {
+      "positive": 10,
+      "negative": 2
+    },
+    "2024-W39": {
+      "positive": 3,
+      "negative": 2
+    },
+    "2021-W49": {
+      "positive": 2,
+      "negative": 2
+    },
+    "2022-W29": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2024-W43": {
+      "positive": 4,
+      "negative": 1
+    },
+    "2024-W11": {
+      "positive": 4,
+      "negative": 0
+    },
+    "2021-W43": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2022-W45": {
+      "positive": 15,
+      "negative": 13
+    },
+    "2022-W46": {
+      "positive": 20,
+      "negative": 28
+    },
+    "2021-W27": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2023-W52": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2022-W14": {
+      "positive": 8,
+      "negative": 0
+    },
+    "2022-W10": {
+      "positive": 6,
+      "negative": 1
+    },
+    "2022-W12": {
+      "positive": 11,
+      "negative": 3
+    },
+    "2020-W45": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2022-W17": {
+      "positive": 6,
+      "negative": 2
+    },
+    "2020-W49": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2024-W31": {
+      "positive": 21,
+      "negative": 2
+    },
+    "2023-W02": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2022-W13": {
+      "positive": 13,
+      "negative": 0
+    },
+    "2024-W14": {
+      "positive": 2,
+      "negative": 2
+    },
+    "2024-W03": {
+      "positive": 2,
+      "negative": 1
+    },
+    "2020-W32": {
+      "positive": 4,
+      "negative": 0
+    },
+    "2023-W05": {
+      "positive": 2,
+      "negative": 3
+    },
+    "2021-W10": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2023-W09": {
+      "positive": 15,
+      "negative": 2
+    },
+    "2020-W50": {
+      "positive": 4,
+      "negative": 1
+    },
+    "2023-W23": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2020-W03": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2026-W17": {
+      "positive": 2,
+      "negative": 3
+    },
+    "2017-W38": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2017-W40": {
+      "positive": 3,
+      "negative": 2
+    },
+    "2026-W12": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2022-W35": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2023-W25": {
+      "positive": 3,
+      "negative": 0
+    },
+    "2018-W08": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2022-W22": {
+      "positive": 4,
+      "negative": 0
+    },
+    "2019-W41": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2018-W33": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2026-W13": {
+      "positive": 48,
+      "negative": 27
+    },
+    "2019-W23": {
+      "positive": 0,
+      "negative": 2
+    },
+    "2017-W30": {
+      "positive": 17,
+      "negative": 0
+    },
+    "2026-W18": {
+      "positive": 2,
+      "negative": 1
+    },
+    "2022-W08": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2017-W46": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2020-W05": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2019-W30": {
+      "positive": 4,
+      "negative": 0
+    },
+    "2020-W02": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2017-W33": {
+      "positive": 3,
+      "negative": 1
+    },
+    "2017-W39": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2020-W23": {
+      "positive": 3,
+      "negative": 0
+    },
+    "2017-W43": {
+      "positive": 2,
+      "negative": 1
+    },
+    "2022-W41": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2019-W08": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2024-W45": {
       "positive": 3,
       "negative": 3
     },
-    "2025-W41": {
+    "2018-W34": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2017-W36": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2017-W45": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2017-W35": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2021-W26": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2017-W37": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2025-W18": {
+      "positive": 5,
+      "negative": 0
+    },
+    "2023-W18": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2017-W31": {
+      "positive": 3,
+      "negative": 0
+    },
+    "2019-W40": {
+      "positive": 2,
+      "negative": 1
+    },
+    "2018-W12": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2020-W26": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2025-W34": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2023-W19": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2020-W27": {
+      "positive": 3,
+      "negative": 0
+    },
+    "2022-W49": {
+      "positive": 3,
+      "negative": 1
+    },
+    "2026-W20": {
+      "positive": 5,
+      "negative": 5
+    },
+    "2025-W32": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2021-W05": {
+      "positive": 3,
+      "negative": 1
+    },
+    "2023-W49": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2023-W20": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2021-W34": {
+      "positive": 1,
+      "negative": 2
+    },
+    "2021-W04": {
+      "positive": 10,
+      "negative": 6
+    },
+    "2019-W29": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2020-W28": {
+      "positive": 1,
+      "negative": 2
+    },
+    "2023-W43": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2024-W42": {
+      "positive": 2,
+      "negative": 1
+    },
+    "2026-W23": {
+      "positive": 1,
+      "negative": 2
+    },
+    "2021-W40": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2023-W51": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2019-W33": {
+      "positive": 4,
+      "negative": 1
+    },
+    "2020-W42": {
+      "positive": 3,
+      "negative": 0
+    },
+    "2024-W06": {
+      "positive": 4,
+      "negative": 1
+    },
+    "2021-W25": {
+      "positive": 3,
+      "negative": 0
+    },
+    "2023-W48": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2023-W27": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2024-W27": {
+      "positive": 5,
+      "negative": 1
+    },
+    "2024-W38": {
+      "positive": 8,
+      "negative": 0
+    },
+    "2024-W24": {
+      "positive": 6,
+      "negative": 1
+    },
+    "2025-W24": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2024-W20": {
+      "positive": 8,
+      "negative": 1
+    },
+    "2025-W15": {
+      "positive": 4,
+      "negative": 1
+    },
+    "2026-W03": {
+      "positive": 9,
+      "negative": 1
+    },
+    "2024-W34": {
+      "positive": 5,
+      "negative": 0
+    },
+    "2025-W16": {
+      "positive": 7,
+      "negative": 0
+    },
+    "2025-W51": {
+      "positive": 69,
+      "negative": 25
+    },
+    "2024-W50": {
+      "positive": 3,
+      "negative": 2
+    },
+    "2024-W17": {
+      "positive": 9,
+      "negative": 0
+    },
+    "2026-W02": {
+      "positive": 12,
+      "negative": 3
+    },
+    "2025-W40": {
+      "positive": 38,
+      "negative": 11
+    },
+    "2025-W05": {
+      "positive": 4,
+      "negative": 2
+    },
+    "2025-W04": {
+      "positive": 1,
+      "negative": 3
+    },
+    "2024-W26": {
+      "positive": 4,
+      "negative": 2
+    },
+    "2023-W31": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2019-W10": {
+      "positive": 5,
+      "negative": 2
+    },
+    "2019-W13": {
+      "positive": 26,
+      "negative": 2
+    },
+    "2019-W12": {
+      "positive": 14,
+      "negative": 1
+    },
+    "2019-W11": {
+      "positive": 0,
+      "negative": 2
+    },
+    "2019-W15": {
+      "positive": 3,
+      "negative": 0
+    },
+    "2019-W50": {
+      "positive": 4,
+      "negative": 1
+    },
+    "2019-W34": {
       "positive": 1,
       "negative": 1
     },
-    "2025-W43": {
+    "2019-W14": {
+      "positive": 5,
+      "negative": 0
+    },
+    "2020-W16": {
       "positive": 2,
+      "negative": 0
+    },
+    "2019-W18": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2019-W25": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2021-W08": {
+      "positive": 0,
+      "negative": 2
+    },
+    "2019-W17": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2020-W52": {
+      "positive": 7,
+      "negative": 0
+    },
+    "2019-W20": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2019-W37": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2020-W08": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2023-W26": {
+      "positive": 3,
+      "negative": 0
+    },
+    "2026-W22": {
+      "positive": 3,
+      "negative": 2
+    },
+    "2021-W29": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2019-W38": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2021-W32": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2020-W09": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2024-W08": {
+      "positive": 9,
+      "negative": 1
+    },
+    "2025-W22": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2026-W19": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2025-W23": {
+      "positive": 4,
+      "negative": 1
+    },
+    "2023-W33": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2022-W03": {
+      "positive": 7,
+      "negative": 1
+    },
+    "2024-W49": {
+      "positive": 4,
+      "negative": 2
+    },
+    "2022-W52": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2023-W45": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2023-W17": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2020-W04": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2023-W34": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2019-W47": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2023-W39": {
+      "positive": 3,
+      "negative": 0
+    },
+    "2021-W17": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2020-W14": {
+      "positive": 9,
+      "negative": 4
+    },
+    "2022-W15": {
+      "positive": 2,
+      "negative": 2
+    },
+    "2023-W37": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2020-W39": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2023-W06": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2024-W33": {
+      "positive": 20,
+      "negative": 5
+    },
+    "2022-W20": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2025-W42": {
+      "positive": 41,
+      "negative": 10
+    },
+    "2021-W36": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2023-W50": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2020-W25": {
+      "positive": 20,
+      "negative": 1
+    },
+    "2020-W20": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2025-W06": {
+      "positive": 10,
+      "negative": 1
+    },
+    "2024-W02": {
+      "positive": 7,
+      "negative": 0
+    },
+    "2023-W04": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2021-W33": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2021-W19": {
+      "positive": 3,
+      "negative": 0
+    },
+    "2022-W21": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2021-W38": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2026-W01": {
+      "positive": 19,
+      "negative": 9
+    },
+    "2023-W29": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2024-W10": {
+      "positive": 4,
+      "negative": 2
+    },
+    "2024-W48": {
+      "positive": 3,
+      "negative": 1
+    },
+    "2022-W19": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2022-W23": {
+      "positive": 1,
       "negative": 0
     },
     "2025-W44": {
       "positive": 2,
+      "negative": 0
+    },
+    "2024-W47": {
+      "positive": 5,
+      "negative": 2
+    },
+    "2024-W21": {
+      "positive": 24,
       "negative": 3
     },
-    "2024-W30": {
-      "positive": 1,
+    "2025-W13": {
+      "positive": 5,
+      "negative": 0
+    },
+    "2025-W26": {
+      "positive": 0,
       "negative": 1
     },
-    "2025-W22": {
+    "2025-W07": {
       "positive": 3,
-      "negative": 0
-    },
-    "2024-W29": {
-      "positive": 1,
-      "negative": 1
-    },
-    "2024-W25": {
-      "positive": 2,
-      "negative": 0
-    },
-    "2024-W33": {
-      "positive": 1,
-      "negative": 1
-    },
-    "2026-W02": {
-      "positive": 1,
       "negative": 3
-    },
-    "2026-W01": {
-      "positive": 2,
-      "negative": 0
     },
     "2024-W28": {
       "positive": 3,
       "negative": 2
     },
-    "2024-W31": {
+    "2026-W30": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2024-W40": {
       "positive": 1,
       "negative": 1
     },
-    "2025-W06": {
+    "2024-W51": {
+      "positive": 5,
+      "negative": 1
+    },
+    "2025-W03": {
+      "positive": 5,
+      "negative": 0
+    },
+    "2025-W02": {
+      "positive": 3,
+      "negative": 1
+    },
+    "2023-W38": {
       "positive": 1,
       "negative": 0
+    },
+    "2023-W42": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2025-W08": {
+      "positive": 1,
+      "negative": 3
+    },
+    "2024-W22": {
+      "positive": 40,
+      "negative": 8
+    },
+    "2021-W37": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2021-W18": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2021-W07": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2023-W36": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2024-W35": {
+      "positive": 4,
+      "negative": 0
+    },
+    "2025-W25": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2025-W27": {
+      "positive": 3,
+      "negative": 0
+    },
+    "2025-W35": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2022-W48": {
+      "positive": 5,
+      "negative": 5
+    },
+    "2022-W50": {
+      "positive": 0,
+      "negative": 2
+    },
+    "2024-W05": {
+      "positive": 5,
+      "negative": 0
+    },
+    "2024-W13": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2023-W47": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2024-W32": {
+      "positive": 23,
+      "negative": 1
+    },
+    "2025-W17": {
+      "positive": 3,
+      "negative": 0
+    },
+    "2025-W39": {
+      "positive": 37,
+      "negative": 10
+    },
+    "2025-W37": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2025-W52": {
+      "positive": 8,
+      "negative": 1
+    },
+    "2026-W14": {
+      "positive": 15,
+      "negative": 9
+    },
+    "2026-W04": {
+      "positive": 3,
+      "negative": 0
+    },
+    "2023-W13": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2025-W36": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2025-W43": {
+      "positive": 5,
+      "negative": 1
+    },
+    "2025-W48": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2023-W11": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2023-W14": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2024-W25": {
+      "positive": 4,
+      "negative": 4
+    },
+    "2025-W09": {
+      "positive": 4,
+      "negative": 2
+    },
+    "2024-W23": {
+      "positive": 8,
+      "negative": 1
+    },
+    "2025-W19": {
+      "positive": 3,
+      "negative": 0
+    },
+    "2025-W41": {
+      "positive": 41,
+      "negative": 10
+    },
+    "2024-W37": {
+      "positive": 2,
+      "negative": 1
+    },
+    "2026-W08": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2024-W07": {
+      "positive": 4,
+      "negative": 1
+    },
+    "2024-W04": {
+      "positive": 4,
+      "negative": 1
+    },
+    "2025-W47": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2025-W21": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2024-W12": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2026-W21": {
+      "positive": 54,
+      "negative": 37
     },
     "2024-W41": {
       "positive": 1,
       "negative": 0
     },
-    "2026-W07": {
+    "2025-W20": {
       "positive": 1,
-      "negative": 1
+      "negative": 0
+    },
+    "2024-W18": {
+      "positive": 2,
+      "negative": 0
     },
     "2026-W05": {
-      "positive": 0,
-      "negative": 1
-    },
-    "2024-W27": {
-      "positive": 0,
-      "negative": 1
-    },
-    "2025-W48": {
       "positive": 2,
-      "negative": 4
+      "negative": 1
     },
-    "2025-W07": {
+    "2025-W12": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2026-W10": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2026-W06": {
       "positive": 2,
-      "negative": 2
+      "negative": 0
     },
-    "2025-W45": {
-      "positive": 3,
-      "negative": 2
-    },
-    "2024-W51": {
+    "2025-W46": {
       "positive": 0,
       "negative": 1
     },
-    "2025-W05": {
+    "2026-W25": {
       "positive": 1,
       "negative": 0
     },
-    "2024-W35": {
+    "2026-W07": {
       "positive": 1,
       "negative": 0
     },
-    "2025-W04": {
-      "positive": 1,
-      "negative": 0
+    "2026-W16": {
+      "positive": 4,
+      "negative": 5
     },
-    "2025-W08": {
-      "positive": 0,
-      "negative": 1
-    },
-    "2025-W49": {
-      "positive": 1,
-      "negative": 0
-    },
-    "2025-W02": {
-      "positive": 0,
-      "negative": 1
-    },
-    "2025-W26": {
-      "positive": 0,
-      "negative": 2
-    },
-    "2025-W24": {
-      "positive": 0,
-      "negative": 1
-    },
-    "2025-W25": {
-      "positive": 0,
-      "negative": 1
-    },
-    "2024-W43": {
-      "positive": 1,
-      "negative": 0
-    },
-    "2024-W03": {
-      "positive": 0,
-      "negative": 1
-    },
-    "2024-W23": {
-      "positive": 1,
-      "negative": 0
-    },
-    "2025-W03": {
-      "positive": 1,
-      "negative": 0
-    },
-    "2025-W15": {
-      "positive": 0,
-      "negative": 1
+    "2026-W15": {
+      "positive": 13,
+      "negative": 6
     }
-  }
+  },
+  "sources": [
+    {
+      "videoId": "yDq9kB_VlXM",
+      "title": "평생을 참아오며 살던 큰언니의 절규",
+      "channel": "필모극장",
+      "publishedAt": "2026-05-17T12:01:32Z",
+      "pos_count": 57,
+      "neg_count": 41
+    },
+    {
+      "videoId": "f0yo3z6zuxQ",
+      "title": "단역시절부터 연기차력쇼 보여주는 김선영 #김선영 #박철민",
+      "channel": "숏츠트랙",
+      "publishedAt": "2026-04-04T10:23:23Z",
+      "pos_count": 19,
+      "neg_count": 16
+    },
+    {
+      "videoId": "H1QRmmfLlsc",
+      "title": "선우엄마의 미친 연기력 ㅋㅋㅋ #영화 #영화리뷰 #김선영",
+      "channel": "끼리숏",
+      "publishedAt": "2026-03-27T15:41:41Z",
+      "pos_count": 58,
+      "neg_count": 35
+    },
+    {
+      "videoId": "E_V7zYy9ldI",
+      "title": "언니는.왜.말을.그릇케.해?나.서영자가.얼굴로.장사한다니...???",
+      "channel": "핫이슈지",
+      "publishedAt": "2025-12-16T09:00:00Z",
+      "pos_count": 75,
+      "neg_count": 25
+    },
+    {
+      "videoId": "qSm02Bhw-Io",
+      "title": "연기 잘하는 사람들이 하는 고민",
+      "channel": "학튜브",
+      "publishedAt": "2025-10-12T03:01:03Z",
+      "pos_count": 76,
+      "neg_count": 24
+    },
+    {
+      "videoId": "bo1iOm0RvRM",
+      "title": "배우 김선영이 댓글 보고 열폭했던 이유",
+      "channel": "Oh_FILM1",
+      "publishedAt": "2025-09-25T12:59:49Z",
+      "pos_count": 78,
+      "neg_count": 20
+    },
+    {
+      "videoId": "IdFX7ueuYt8",
+      "title": "남편에게 맞고살던 특전사 아내의 통쾌한 복수!",
+      "channel": "와무비:WA! movie (영화리뷰)",
+      "publishedAt": "2024-05-22T05:22:29Z",
+      "pos_count": 88,
+      "neg_count": 11
+    },
+    {
+      "videoId": "BiEmOwW4Bf8",
+      "title": "양동근 태도에 분노한 김선영?      #배우반상회 #양동근 #김선영",
+      "channel": "JTBC Voyage",
+      "publishedAt": "2024-04-23T07:00:05Z",
+      "pos_count": 89,
+      "neg_count": 8
+    },
+    {
+      "videoId": "e0yPaPCg2U4",
+      "title": "경상도 남매의 친한 대화 #김선영 #미쓰백",
+      "channel": "무비콕 (Movie cok)",
+      "publishedAt": "2024-01-06T22:45:02Z",
+      "pos_count": 83,
+      "neg_count": 16
+    },
+    {
+      "videoId": "UQpXSLmVI7I",
+      "title": "\"택이 어머니 여기서 이러시면...+_+\" 배우 김선영 vol.0pen",
+      "channel": "KOREA VIBE | 코리아 바이브",
+      "publishedAt": "2023-06-29T13:47:18Z",
+      "pos_count": 89,
+      "neg_count": 9
+    },
+    {
+      "videoId": "dixmznlrl4c",
+      "title": "몸 관리를 열심히 하는 선영! 예능꾼들도 처음 접하는 선영의 노 필터 토크😅  [옥탑방의 문제아들/Problem Child in House] | KBS 230531 방송",
+      "channel": "KBS Entertain",
+      "publishedAt": "2023-05-31T12:50:39Z",
+      "pos_count": 44,
+      "neg_count": 40
+    },
+    {
+      "videoId": "Bx_m8YxVEzU",
+      "title": "[#라스+] “제가 예쁜 걸 엄청 좋아해서~💕” 대한민국 아줌마 역할 👍1인자를 넘어서서!  #김선영 편 MBC161214방송",
+      "channel": "올끌 (All of MBClassic)",
+      "publishedAt": "2023-02-21T11:00:08Z",
+      "pos_count": 87,
+      "neg_count": 11
+    },
+    {
+      "videoId": "T_RGnjNpmHk",
+      "title": "[인물] 김건희를 가장 많이 닮은 배우 김선영 😅",
+      "channel": "니꼬라지TV",
+      "publishedAt": "2022-11-12T15:05:24Z",
+      "pos_count": 43,
+      "neg_count": 55
+    },
+    {
+      "videoId": "Gn1otMGD8TY",
+      "title": "한국영화.김희원 연기 클라쓰. 표정부터 모든게 완벽함",
+      "channel": "숏컷무비",
+      "publishedAt": "2021-10-16T04:34:49Z",
+      "pos_count": 70,
+      "neg_count": 27
+    },
+    {
+      "videoId": "vuj9ExojM0g",
+      "title": "♨️핫클립♨️ ＂난 100kg 이하는 남자로 안 봐＂김선영 ⚡️무장해제⚡️ 시키는 강호동｜아는형님ㅣJTBC 210109 방송",
+      "channel": "JTBC Voyage",
+      "publishedAt": "2021-01-13T09:41:43Z",
+      "pos_count": 79,
+      "neg_count": 19
+    },
+    {
+      "videoId": "CcvWCe4lfH4",
+      "title": "김선영(Kim Sun-Young)이 7세 딸에게 들었던 충고👶 ＂좀 참아! 나도 참고 살아!＂ 아는 형님(Knowing bros) 263회｜JTBC 210109 방송",
+      "channel": "아는형님 Knowingbros",
+      "publishedAt": "2021-01-09T13:13:10Z",
+      "pos_count": 84,
+      "neg_count": 13
+    },
+    {
+      "videoId": "LpuwE0Nj5Wg",
+      "title": "김희애(Kim Hee-ae)의 첫 사투리 연기에 김선영 배우의 팩폭🔥 ＂안 되겠는데?＂ 방구석1열(movieroom) 122회 | JTBC 20200906 방송",
+      "channel": "JTBC Entertainment",
+      "publishedAt": "2020-09-06T06:47:29Z",
+      "pos_count": 71,
+      "neg_count": 28
+    },
+    {
+      "videoId": "bOxMI9qDvJE",
+      "title": "[56회 백상] TV부문 여자 조연상 - 김선영│사랑의 불시착",
+      "channel": "백상예술대상",
+      "publishedAt": "2020-06-09T07:06:33Z",
+      "pos_count": 90,
+      "neg_count": 9
+    },
+    {
+      "videoId": "khBZoyPJH1o",
+      "title": "[풀영상] 김선영, 연기자의 책임감을 말하다 / 배우연구소 / 왓챠X백은하",
+      "channel": "왓챠",
+      "publishedAt": "2020-03-29T10:00:11Z",
+      "pos_count": 53,
+      "neg_count": 7
+    },
+    {
+      "videoId": "pJ7jsn9UVaE",
+      "title": "[선공개] (취향 저격) 한국 뮤지컬 역사， 김선영 배우의 ′살짜기 옵서예′♪ 차이나는 클라스(jtbclecture) 115회",
+      "channel": "교양 Voyage",
+      "publishedAt": "2019-07-03T01:34:55Z",
+      "pos_count": 3,
+      "neg_count": 0
+    },
+    {
+      "videoId": "QTiQuF-VLeo",
+      "title": "[풀버전] 여왕의 노래! 김선영의 뮤지컬 〈레미제라블〉 중 ′I dreamed a dream′♪",
+      "channel": "교양 Voyage",
+      "publishedAt": "2019-06-26T13:54:11Z",
+      "pos_count": 69,
+      "neg_count": 23
+    },
+    {
+      "videoId": "oc1z4EZhrnY",
+      "title": "[김선영] 연기가 아니라 진짜 같은 믿고 보는 배우🥺 저도 이거 보다가 울었어요..",
+      "channel": "tvN D ENT",
+      "publishedAt": "2019-03-09T03:05:36Z",
+      "pos_count": 87,
+      "neg_count": 13
+    },
+    {
+      "videoId": "1SW3iyBZaJg",
+      "title": "\"우아하고 품격있게\"…김선영, 과감한 드레스로 시선 집중! #영화 #허스토리 #김선영 [디패짤]",
+      "channel": "디스패치 / Dispatch",
+      "publishedAt": "2018-10-07T09:00:01Z",
+      "pos_count": 5,
+      "neg_count": 0
+    },
+    {
+      "videoId": "bw1OFasLmZ4",
+      "title": "[4K]181005 허스토리의 김선영 2018 부일영화상 레드카펫 직캠 by BusanWolf",
+      "channel": "BusanWolf",
+      "publishedAt": "2018-10-06T15:37:46Z",
+      "pos_count": 23,
+      "neg_count": 4
+    },
+    {
+      "videoId": "-72mHzIWRME",
+      "title": "[#이번생은처음이라] EP5-04 정소민, 김선영의 현실 고증 백프로 모녀 싸움(손수건이 어디 있더라 훌쩍 쿨쩍😭)",
+      "channel": "tvN DRAMA",
+      "publishedAt": "2017-10-23T13:14:03Z",
+      "pos_count": 10,
+      "neg_count": 4
+    },
+    {
+      "videoId": "-dKd_qARqr8",
+      "title": "란제리 소녀시대 - 보나, 母 김선영에 ‘머리채’!. 20171002",
+      "channel": "KBS Drama",
+      "publishedAt": "2017-10-02T13:59:45Z",
+      "pos_count": 20,
+      "neg_count": 16
+    },
+    {
+      "videoId": "PJlmEDrNqNA",
+      "title": "[2017 뮤지컬 레베카]‘영원한 생명(Sie ergibt sich nicht)’MV_김선영",
+      "channel": "EMK MUSICAL",
+      "publishedAt": "2017-07-27T03:17:13Z",
+      "pos_count": 88,
+      "neg_count": 9
+    },
+    {
+      "videoId": "pGutaz4DY3A",
+      "title": "쌍문동 태티서가 뽑은 '선우엄마' 김선영의 응팔 명장면은? #택시 #EP415",
+      "channel": "tvN Joy",
+      "publishedAt": "2016-02-09T12:59:43Z",
+      "pos_count": 10,
+      "neg_count": 4
+    },
+    {
+      "videoId": "hmioznFEDWI",
+      "title": "대선배들이 선우엄마를 그렇게 칭찬한대요~ 김선영의 캐스팅 비하인드 스토리는? #택시 #EP415",
+      "channel": "tvN Joy",
+      "publishedAt": "2016-02-09T12:42:05Z",
+      "pos_count": 20,
+      "neg_count": 3
+    },
+    {
+      "videoId": "gK76jZGHVPw",
+      "title": "EP19-1 라미란, 콩깍지 씌인 김선영에 미치려면 곱게 미쳐야지 핵직구ㅋㅋㅋ [#응답하라1988]",
+      "channel": "tvN DRAMA",
+      "publishedAt": "2016-01-15T12:49:32Z",
+      "pos_count": 65,
+      "neg_count": 24
+    },
+    {
+      "videoId": "zvdGTZ4F7cw",
+      "title": "〈사도〉, ‘뒤주 비극’ 부른 왕가의 집안일 [잉여싸롱 #88]",
+      "channel": "한겨레TV",
+      "publishedAt": "2015-09-24T16:19:39Z",
+      "pos_count": 13,
+      "neg_count": 7
+    },
+    {
+      "videoId": "HQ-cCYRCyUI",
+      "title": "〈쎄시봉〉나 그대에게 모두 드리리  [잉여싸롱#61]",
+      "channel": "한겨레TV",
+      "publishedAt": "2015-02-12T17:34:52Z",
+      "pos_count": 9,
+      "neg_count": 4
+    },
+    {
+      "videoId": "qpPzotQfNZw",
+      "title": "[SS인터뷰]'용문신女' 김선영 \"클럽서 아이돌에게 대시 자주 받아요\"",
+      "channel": "더팩트",
+      "publishedAt": "2013-12-29T02:07:57Z",
+      "pos_count": 5,
+      "neg_count": 2
+    },
+    {
+      "videoId": "cQxYCjOfsLI",
+      "title": "뮤지컬여왕의 귀환 배우 김선영",
+      "channel": "조선일보",
+      "publishedAt": "2013-02-27T11:53:46Z",
+      "pos_count": 0,
+      "neg_count": 1
+    },
+    {
+      "videoId": "CxiOPJl3fXw",
+      "title": "제14회 한국 뮤지컬 대상 시상식_지킬앤하이드(Jekyll & Hyde)_Dangerous Game",
+      "channel": "jitenshanotteyo",
+      "publishedAt": "2012-06-27T18:33:11Z",
+      "pos_count": 26,
+      "neg_count": 2
+    },
+    {
+      "videoId": "MobG8jM_7xI",
+      "title": "제17회 한국 뮤지컬 대상-뮤지컬 조로 축하무대(조승우, 김선영)_2011.11.14",
+      "channel": "코토리",
+      "publishedAt": "2011-11-15T13:37:01Z",
+      "pos_count": 69,
+      "neg_count": 28
+    },
+    {
+      "videoId": "sQbE9bpA-D8",
+      "title": "맨 오브 라만차 김선영   알돈자",
+      "channel": "sofuls",
+      "publishedAt": "2011-11-10T15:10:17Z",
+      "pos_count": 34,
+      "neg_count": 20
+    }
+  ]
 }
