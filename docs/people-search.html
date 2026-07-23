@@ -138,7 +138,6 @@
           <div style="display:flex; gap:10px; margin-top:5px; align-items:center; flex-wrap:wrap;">
               <button class="btn" onclick="applySentimentFilter()" style="background:#4f46e5; color:white; border:none; padding:8px 16px;">위 조건으로 여론 기반 검색</button>
               
-              <!-- 🌟 새로 추가된 인원 자동 선택 UI -->
               <div style="display:flex; align-items:center; gap:6px; background:#e0f2fe; padding:6px 12px; border-radius:6px; border:1px solid #bfdbfe;">
                   <select id="autoSelectType" style="padding:4px; border:1px solid #ccc; border-radius:4px;">
                       <option value="top">위에서부터</option>
@@ -146,7 +145,10 @@
                   </select>
                   <input type="number" id="autoSelectCount" placeholder="인원(명)" style="width:70px; padding:4px; border:1px solid #ccc; border-radius:4px;">
                   <span style="font-size:13px; color:#1e3a8a; font-weight:bold;">명 자동 선택 후 ➔</span>
+                  
                   <button class="btn" onclick="exportFilterResultsToCSV()" style="background:#10b981; color:white; border:none; padding:8px 16px;">Colab용 h1_data.csv 다운로드</button>
+                  <!-- 🌟 신규 추가된 전체 요약본 전용 다운로드 버튼 -->
+                  <button class="btn" onclick="exportActorSummaryToCSV()" style="background:#f59e0b; color:white; border:none; padding:8px 16px; font-weight:bold;">📊 배우 전체 여론 요약 다운로드</button>
               </div>
           </div>
       </div>
@@ -379,14 +381,14 @@ function toggleAllActors(source) {
     checkboxes.forEach(cb => cb.checked = source.checked);
 }
 
+// 🌟 [기존 기능] 파트너 타격량(Hawk-Dove) 분석을 위한 영화별 CSV 다운로드 기능
 function exportFilterResultsToCSV() {
     const countInput = parseInt(document.getElementById('autoSelectCount').value, 10);
     const selectType = document.getElementById('autoSelectType').value;
     const checkboxes = Array.from(document.querySelectorAll('.actor-checkbox'));
 
-    // 🌟 자동 선택 로직
     if (!isNaN(countInput) && countInput > 0) {
-        checkboxes.forEach(cb => cb.checked = false); // 먼저 전체 선택 해제
+        checkboxes.forEach(cb => cb.checked = false); 
         
         if (selectType === 'top') {
             for (let i = 0; i < Math.min(countInput, checkboxes.length); i++) {
@@ -437,6 +439,7 @@ function exportFilterResultsToCSV() {
             let pos_count = 0, neg_count = 0;
             if (actor.rawTimeline) {
                 Object.keys(actor.rawTimeline).forEach(w => {
+                    // ⚠️ 여기가 누락 원인이었던 부분입니다 (개봉 연도와 일치하는 댓글만 카운트)
                     if (w.startsWith(movieYear)) {
                         pos_count += (actor.rawTimeline[w].positive || 0);
                         neg_count += Math.abs(actor.rawTimeline[w].negative || 0);
@@ -456,6 +459,47 @@ function exportFilterResultsToCSV() {
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
     link.download = `h1_data.csv`;
+    link.style.display = 'none';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+// 🌟 [신규 추가] 상급자 보고용 배우 전체 통계 CSV 다운로드 (데이터 누락 방지 완벽 해결)
+function exportActorSummaryToCSV() {
+    const checkedBoxes = document.querySelectorAll('.actor-checkbox:checked');
+    if (checkedBoxes.length === 0) {
+        alert("다운로드할 배우를 최소 한 명 이상 선택해주세요.");
+        return;
+    }
+
+    const targets = Array.from(checkedBoxes).map(cb => JSON.parse(cb.value));
+    let csvContent = "actor_name,pos_count,neg_count,total_comments,neg_ratio\n";
+
+    targets.forEach(actor => {
+        let pos_count = 0, neg_count = 0;
+        
+        // 연도 제약(movieYear) 없이 배우의 모든 댓글 기록을 합산
+        if (actor.rawTimeline) {
+            Object.keys(actor.rawTimeline).forEach(w => {
+                pos_count += (actor.rawTimeline[w].positive || 0);
+                neg_count += Math.abs(actor.rawTimeline[w].negative || 0);
+            });
+        }
+        
+        const total_comments = pos_count + neg_count;
+        const neg_ratio = total_comments > 0 ? ((neg_count / total_comments) * 100).toFixed(2) : 0;
+        
+        const row = [
+            `"${actor.name}"`, pos_count, neg_count, total_comments, neg_ratio
+        ];
+        csvContent += row.join(",") + "\n";
+    });
+
+    const blob = new Blob(["\uFEFF" + csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = `actor_sentiment_summary.csv`;
     link.style.display = 'none';
     document.body.appendChild(link);
     link.click();
@@ -577,7 +621,6 @@ async function doSearch() {
     let visibleCount = 0; 
 
     for (const r of resultsArray) {
-        // 🌟 [본업 판별 수정] 감독 참여작이 전체 참여작의 50% 이상일 때만 '감독'으로 표기
         r.primaryRole = (r.directorCnt >= r.actorCnt && r.directorCnt > 0) ? '감독' : '배우';
         if (onlyActor && r.primaryRole !== '배우') continue;
 
