@@ -1,54 +1,660 @@
 {
   "actor_name": "김명곤",
-  "last_updated": "2026-02-25 10:02:31",
+  "last_updated": "2026-07-24 20:27:32",
   "timeline": {
-    "2025-W46": {
-      "positive": 21,
-      "negative": 15
-    },
-    "2026-W01": {
-      "positive": 4,
-      "negative": 2
-    },
-    "2026-W04": {
+    "2024-W11": {
       "positive": 1,
       "negative": 0
     },
-    "2025-W50": {
-      "positive": 2,
-      "negative": 0
+    "2020-W18": {
+      "positive": 1,
+      "negative": 1
     },
-    "2026-W02": {
-      "positive": 5,
-      "negative": 0
-    },
-    "2026-W06": {
+    "2022-W01": {
       "positive": 0,
       "negative": 1
     },
-    "2026-W03": {
+    "2014-W34": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2014-W29": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2019-W44": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2014-W30": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2014-W32": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2014-W36": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2019-W14": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2020-W21": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2017-W39": {
       "positive": 3,
+      "negative": 7
+    },
+    "2017-W40": {
+      "positive": 1,
       "negative": 3
     },
-    "2026-W05": {
+    "2022-W40": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2018-W08": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2017-W52": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2018-W21": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2017-W35": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2018-W11": {
+      "positive": 3,
+      "negative": 2
+    },
+    "2021-W51": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2017-W51": {
+      "positive": 0,
+      "negative": 2
+    },
+    "2017-W29": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2018-W02": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2017-W21": {
+      "positive": 1,
+      "negative": 3
+    },
+    "2018-W05": {
+      "positive": 0,
+      "negative": 2
+    },
+    "2020-W14": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2019-W30": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2017-W02": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2018-W13": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2019-W09": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2018-W03": {
+      "positive": 1,
+      "negative": 3
+    },
+    "2020-W23": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2018-W18": {
+      "positive": 0,
+      "negative": 2
+    },
+    "2018-W09": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2023-W20": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2017-W34": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2023-W28": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2017-W50": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2017-W37": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2018-W12": {
+      "positive": 2,
+      "negative": 3
+    },
+    "2018-W15": {
+      "positive": 0,
+      "negative": 4
+    },
+    "2018-W04": {
+      "positive": 0,
+      "negative": 2
+    },
+    "2018-W01": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2023-W27": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2018-W06": {
+      "positive": 0,
+      "negative": 2
+    },
+    "2017-W18": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2019-W07": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2020-W06": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2020-W26": {
+      "positive": 3,
+      "negative": 0
+    },
+    "2018-W14": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2019-W37": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2019-W06": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2023-W09": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2021-W40": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2020-W34": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2020-W24": {
+      "positive": 10,
+      "negative": 9
+    },
+    "2020-W27": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2020-W44": {
+      "positive": 0,
+      "negative": 4
+    },
+    "2022-W18": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2020-W46": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2021-W20": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2022-W08": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2026-W12": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2022-W19": {
+      "positive": 38,
+      "negative": 1
+    },
+    "2021-W34": {
+      "positive": 4,
+      "negative": 1
+    },
+    "2022-W05": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2022-W25": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2024-W35": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2020-W47": {
+      "positive": 2,
+      "negative": 2
+    },
+    "2021-W27": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2020-W51": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2020-W28": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2023-W33": {
+      "positive": 3,
+      "negative": 1
+    },
+    "2020-W30": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2021-W05": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2022-W09": {
+      "positive": 0,
+      "negative": 3
+    },
+    "2021-W01": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2022-W36": {
+      "positive": 5,
+      "negative": 2
+    },
+    "2020-W42": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2021-W26": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2021-W02": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2025-W13": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2021-W04": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2020-W37": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2023-W04": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2023-W46": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2021-W35": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2020-W39": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2020-W35": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2020-W32": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2020-W25": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2023-W47": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2025-W37": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2024-W16": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2021-W06": {
+      "positive": 0,
+      "negative": 3
+    },
+    "2023-W34": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2024-W49": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2023-W03": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2024-W51": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2020-W49": {
       "positive": 2,
       "negative": 1
     },
-    "2025-W47": {
-      "positive": 5,
-      "negative": 1
-    },
-    "2025-W51": {
+    "2023-W31": {
       "positive": 1,
       "negative": 0
+    },
+    "2021-W43": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2020-W29": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2020-W33": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2020-W43": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2025-W24": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2021-W10": {
+      "positive": 14,
+      "negative": 4
+    },
+    "2021-W11": {
+      "positive": 8,
+      "negative": 0
+    },
+    "2021-W09": {
+      "positive": 2,
+      "negative": 2
+    },
+    "2022-W32": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2021-W22": {
+      "positive": 0,
+      "negative": 2
+    },
+    "2022-W51": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2022-W46": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2023-W10": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2023-W30": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2022-W28": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2023-W23": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2021-W16": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2022-W20": {
+      "positive": 14,
+      "negative": 3
+    },
+    "2025-W26": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2022-W21": {
+      "positive": 4,
+      "negative": 1
+    },
+    "2024-W20": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2022-W23": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2024-W52": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2024-W42": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2026-W17": {
+      "positive": 1,
+      "negative": 2
+    },
+    "2024-W26": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2022-W22": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2022-W26": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2023-W16": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2025-W23": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2024-W47": {
+      "positive": 1,
+      "negative": 3
+    },
+    "2023-W49": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2024-W03": {
+      "positive": 0,
+      "negative": 8
+    },
+    "2025-W50": {
+      "positive": 8,
+      "negative": 18
+    },
+    "2025-W51": {
+      "positive": 20,
+      "negative": 46
+    },
+    "2026-W03": {
+      "positive": 0,
+      "negative": 2
+    },
+    "2026-W02": {
+      "positive": 0,
+      "negative": 1
     },
     "2025-W52": {
       "positive": 1,
       "negative": 1
-    },
-    "2025-W48": {
-      "positive": 1,
-      "negative": 1
     }
-  }
+  },
+  "sources": [
+    {
+      "videoId": "j8GOTS78HFc",
+      "title": "덮으려는 가족",
+      "channel": "숏플릭스",
+      "publishedAt": "2025-12-13T14:34:59Z",
+      "pos_count": 29,
+      "neg_count": 68
+    },
+    {
+      "videoId": "EFyoey2w6LY",
+      "title": "서편제 출연 김명곤 전 문화관광부 장관, 강제 추행 혐의로 불구속 기소｜뜨는 이슈",
+      "channel": "JTBC News",
+      "publishedAt": "2024-01-19T09:39:23Z",
+      "pos_count": 0,
+      "neg_count": 8
+    },
+    {
+      "videoId": "x6VlruoOkPQ",
+      "title": "[TV 문학관] 들뻐꾸기|강수연 이원종 최선자 김명곤 김천만 김경림 이현두 안광진 박현정 KBS 1986.12.06. 방송",
+      "channel": "KBS 같이삽시다",
+      "publishedAt": "2022-05-10T12:00:26Z",
+      "pos_count": 70,
+      "neg_count": 14
+    },
+    {
+      "videoId": "XkOtw9AjWqU",
+      "title": "[명품 배우 김명곤] (3/3) [TV는 사랑을 싣고]  | KBS 210303 방송",
+      "channel": "KBS HUMAN : 뭉클티비",
+      "publishedAt": "2021-03-03T13:22:57Z",
+      "pos_count": 24,
+      "neg_count": 10
+    },
+    {
+      "videoId": "bS0zXX2N7O8",
+      "title": "[명품 배우 김명곤] (2/3) [TV는 사랑을 싣고]  | KBS 210303 방송",
+      "channel": "KBS HUMAN : 뭉클티비",
+      "publishedAt": "2021-03-03T13:22:46Z",
+      "pos_count": 1,
+      "neg_count": 3
+    },
+    {
+      "videoId": "pcq7Li8AbIs",
+      "title": "[명품 배우 김명곤] (1/3) [TV는 사랑을 싣고]  | KBS 210303 방송",
+      "channel": "KBS HUMAN : 뭉클티비",
+      "publishedAt": "2021-03-03T13:17:40Z",
+      "pos_count": 3,
+      "neg_count": 0
+    },
+    {
+      "videoId": "47bnJd8jTEk",
+      "title": "[TV문학관] 239화 들뻐꾸기 | (1986/12/06)",
+      "channel": "옛날티비 : KBS Archive",
+      "publishedAt": "2020-06-11T13:00:12Z",
+      "pos_count": 60,
+      "neg_count": 37
+    },
+    {
+      "videoId": "hHGL9EelDYQ",
+      "title": "‘서편제’ 김명곤 “지 소리에 지가 미쳐가지고 득음을 하면…” | #내인생의명대사",
+      "channel": "중앙일보",
+      "publishedAt": "2020-05-02T12:00:31Z",
+      "pos_count": 2,
+      "neg_count": 1
+    },
+    {
+      "videoId": "SKNpkrDpz14",
+      "title": "무대로 돌아온 장관들…유인촌 VS 김명곤",
+      "channel": "연합뉴스TV",
+      "publishedAt": "2015-04-19T05:10:15Z",
+      "pos_count": 25,
+      "neg_count": 57
+    },
+    {
+      "videoId": "NTWGtnKLw1I",
+      "title": "[TF영상] '명량' 최민식-류승룡-조진웅이 밝히는 '촬영 소감'",
+      "channel": "더팩트",
+      "publishedAt": "2014-07-21T10:10:28Z",
+      "pos_count": 1,
+      "neg_count": 0
+    },
+    {
+      "videoId": "9g3hnjicg2Q",
+      "title": "명량 설민석 스페셜 인강 1탄",
+      "channel": "CJ ENM",
+      "publishedAt": "2014-07-18T02:29:18Z",
+      "pos_count": 5,
+      "neg_count": 4
+    },
+    {
+      "videoId": "zwwCDKpApcA",
+      "title": "명량 설민석 스페셜 인강 1탄",
+      "channel": "코미디빅리그",
+      "publishedAt": "2014-07-18T01:52:28Z",
+      "pos_count": 1,
+      "neg_count": 1
+    }
+  ]
 }
