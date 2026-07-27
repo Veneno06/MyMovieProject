@@ -4,19 +4,17 @@ import os, json, time
 from pathlib import Path
 import requests
 import subprocess
-# [추가] 자동 재시도를 위한 라이브러리
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs" / "data"
 MOVIES = DOCS / "movies"
-SEARCH = SEARCH = DOCS / "search"
+SEARCH = DOCS / "search"
 
 API_KEY = os.environ.get("KOFIC_API_KEY","").strip()
 API_BASE = "https://www.kobis.or.kr/kobisopenapi/webservice/rest"
 
-# [추가] 자동 재시도 기능이 포함된 세션 생성
 def make_session() -> requests.Session:
     s = requests.Session()
     retries = Retry(
@@ -28,7 +26,7 @@ def make_session() -> requests.Session:
     s.mount("http://", adapter)
     return s
 
-S = make_session() # [수정] 기본 requests.Session 대신 재시도 기능이 있는 세션 사용
+S = make_session() 
 
 def load_json(p: Path, default=None):
     if not p.exists(): return default
@@ -46,7 +44,6 @@ def save_json(p: Path, data):
 def get_detail(cd):
     url = f"{API_BASE}/movie/searchMovieInfo.json"
     params = {"key": API_KEY, "movieCd": cd}
-    # [수정] timeout 기본값을 늘려 응답 지연에 더 잘 대응
     r = S.get(url, params=params, timeout=60)
     r.raise_for_status()
     return r.json()
@@ -81,8 +78,6 @@ def main():
     print("New movie codes found:", movie_cds)
 
     for cd in movie_cds:
-        # 연도를 기반으로 상세 파일 경로를 추정하고, 존재하면 건너뜀
-        # (정확한 연도는 상세 정보를 받아와야 알 수 있으므로, 여러 해를 확인)
         year_folders = [p for p in MOVIES.glob("*") if p.is_dir()]
         exists = any((p / f"{cd}.json").exists() for p in year_folders)
         
@@ -100,7 +95,6 @@ def main():
             time.sleep(0.2)
         except requests.exceptions.RequestException as e:
             print(f"Failed to fetch details for {cd} after multiple retries: {e}")
-            # 하나의 영화 실패가 전체 워크플로우를 중단시키지 않도록 계속 진행
             continue
 
     print("Updating search indexes...")
