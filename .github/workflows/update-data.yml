@@ -33,29 +33,60 @@ jobs:
 
       - name: Fetch KOFIC Daily Box Office
         env:
-          # [수정됨] 기존 키 대신 8번 키를 사용하여 일일 박스오피스를 가져옵니다.
           KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY_8 }}
         run: |
           TARGET_DT=$(TZ=Asia/Seoul date -d "yesterday" +%Y%m%d)
           TARGET_DT_FMT=$(TZ=Asia/Seoul date -d "yesterday" +%Y-%m-%d)
           DAILY_FILE="docs/data/${TARGET_DT}.json"
+          TEMP_FILE="${DAILY_FILE}.tmp"
+          
+          # HTTP 대신 안전한 HTTPS 엔드포인트 사용
+          API_URL="https://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json"
           
           echo "Fetching data for $TARGET_DT"
-          # KOFIC_API_KEY_8을 사용하여 요청
-          curl -s "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=${KOFIC_API_KEY}&targetDt=${TARGET_DT}" > "$DAILY_FILE"
+          rm -f "$TEMP_FILE"
           
-          # 데이터 유효성 검사 (목록이 비었거나 에러면 중단)
-          if ! jq -e '.boxOfficeResult.dailyBoxOfficeList[0]' "$DAILY_FILE" > /dev/null; then
-            echo "Fetched data is invalid or empty. Skipping update."
-            exit 0
+          # 강력한 재시도 및 타임아웃 방어 로직 적용
+          if ! curl \
+            --silent \
+            --show-error \
+            --fail \
+            --location \
+            --connect-timeout 20 \
+            --max-time 120 \
+            --retry 5 \
+            --retry-delay 10 \
+            --retry-max-time 600 \
+            --output "$TEMP_FILE" \
+            "${API_URL}?key=${KOFIC_API_KEY}&targetDt=${TARGET_DT}"; then
+            echo "::error::KOFIC API request failed after retries."
+            rm -f "$TEMP_FILE"
+            exit 1
           fi
           
+          # JSON 자체가 정상적인지 1차 확인
+          if ! jq empty "$TEMP_FILE" > /dev/null 2>&1; then
+            echo "::error::KOFIC response is not valid JSON."
+            rm -f "$TEMP_FILE"
+            exit 1
+          fi
+          
+          # 박스오피스 목록이 존재하는지 2차 확인
+          if ! jq -e '.boxOfficeResult.dailyBoxOfficeList[0]' "$TEMP_FILE" > /dev/null; then
+            echo "::error::KOFIC response contains no daily box office data."
+            jq -c '.faultInfo // .failInfo // .' "$TEMP_FILE" 2>/dev/null || true
+            rm -f "$TEMP_FILE"
+            exit 1
+          fi
+          
+          # 모든 검증을 통과했을 때만 실제 파일로 덮어쓰기
+          mv "$TEMP_FILE" "$DAILY_FILE"
+          
           echo "{\"url\": \"data/${TARGET_DT}.json\", \"date\": \"${TARGET_DT_FMT}\"}" > docs/data/latest.json
-          echo "Daily box office data for $TARGET_DT and latest.json saved."
+          echo "Daily box office data for $TARGET_DT and latest.json saved safely."
 
       - name: Update movie details from new daily file
         env:
-          # [수정됨] 파이썬 스크립트에도 8번 키를 전달합니다.
           KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY_8 }}
         run: |
           python scripts/update_data.py
@@ -76,9 +107,8 @@ jobs:
             echo "No new data to commit."
             exit 0
           fi
-          git commit -m "KOFIC: Daily data update (Key 8)"
+          git commit -m "KOFIC: Daily data update (Key 8) with Retry Logic"
           
-          # [유지] 원격 변경사항을 먼저 당겨와서 충돌 방지
           git pull --rebase origin "$BRANCH"
           
           git push origin "HEAD:$BRANCH"
