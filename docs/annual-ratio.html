@@ -20,73 +20,40 @@ h1 { font-size:28px; margin:0 0 16px; }
 
 /* 원형 그래프 수평 스크롤 컨테이너 */
 .pie-scroll-wrapper {
-    display: flex;
-    overflow-x: auto;
-    gap: 20px;
-    padding-bottom: 20px;
-    margin-bottom: 80px; /* 아래 섹션과 여백 6줄 정도 */
+    display: flex; overflow-x: auto; gap: 20px; padding-bottom: 20px; margin-bottom: 40px;
 }
 .pie-box {
-    flex: 0 0 320px; /* 기본 최소 너비 고정 */
-    background: #fff;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    padding: 15px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex: 0 0 320px; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px;
+    padding: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); display: flex; flex-direction: column; align-items: center;
 }
-.pie-box h3 {
-    margin-top: 0;
-    color: #111827;
-    font-size: 18px;
-    text-align: center;
+.pie-box h3 { margin-top: 0; color: #111827; font-size: 18px; text-align: center; }
+.canvas-container { position: relative; height: 250px; width: 100%; }
+.custom-legend { margin-top: 15px; width: 100%; font-size: 12px; color: #4b5563; max-height: 140px; overflow-y: auto; }
+.custom-legend table { width: 100%; border-collapse: collapse; }
+.custom-legend td { padding: 3px 0; border-bottom: 1px solid #f3f4f6; }
+.custom-legend .legend-color { width: 12px; height: 12px; display: inline-block; border-radius: 2px; margin-right: 5px; vertical-align: middle; }
+
+/* Hawk 그룹 섹션 */
+.hawk-section {
+    background: #eff6ff; border: 2px solid #bfdbfe; border-radius: 8px; padding: 20px; margin-bottom: 40px;
 }
-.canvas-container {
-    position: relative;
-    height: 250px;
-    width: 100%;
-}
-.custom-legend {
-    margin-top: 15px;
-    width: 100%;
-    font-size: 12px;
-    color: #4b5563;
-    max-height: 140px;
-    overflow-y: auto;
-}
-.custom-legend table {
-    width: 100%;
-    border-collapse: collapse;
-}
-.custom-legend td {
-    padding: 3px 0;
-    border-bottom: 1px solid #f3f4f6;
-}
-.custom-legend .legend-color {
-    width: 12px; height: 12px; display: inline-block; border-radius: 2px; margin-right: 5px; vertical-align: middle;
-}
+.hawk-header { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; margin-bottom: 15px; }
+.hawk-input { padding: 8px 12px; border: 1px solid #93c5fd; border-radius: 6px; font-size: 15px; width: 300px; }
+.hawk-result-box { background: #fff; border: 1px solid #d1d5db; border-radius: 6px; padding: 15px; max-height: 250px; overflow-y: auto; margin-bottom: 20px; }
 
 /* 통계 분포 섹션 */
-.stats-section {
-    background: #f9fafb;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    padding: 20px;
-}
-.stats-header {
-    display: flex; gap: 15px; align-items: center; flex-wrap: wrap; margin-bottom: 15px;
-}
-.year-select {
-    padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 15px; cursor: pointer;
-}
-.stats-info {
-    font-size: 15px; color: #111827;
-}
-.stats-info span {
-    font-weight: bold; color: #2563eb; margin-right: 15px;
-}
+.stats-section { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 20px; }
+.stats-header { display: flex; gap: 15px; align-items: center; flex-wrap: wrap; margin-bottom: 15px; }
+.year-select { padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 15px; cursor: pointer; }
+.stats-info { font-size: 15px; color: #111827; }
+.stats-info span { font-weight: bold; color: #2563eb; margin-right: 15px; }
+
+/* 공통 리스트 스타일 */
+.res-list { list-style: none; padding: 0; margin: 0; }
+.res-list li { padding: 8px 0; border-bottom: 1px dashed #e5e7eb; display: flex; justify-content: space-between; align-items: center;}
+.res-list li:last-child { border-bottom: none; }
+.badge-hawk { background: #ef4444; color: white; padding: 2px 6px; border-radius: 4px; font-size: 11px; font-weight: bold; }
+.badge-dove { background: #6b7280; color: white; padding: 2px 6px; border-radius: 4px; font-size: 11px; font-weight: bold; }
 </style>
 </head>
 <body>
@@ -98,10 +65,11 @@ h1 { font-size:28px; margin:0 0 16px; }
     <a href="people-search.html" class="btn" data-i18n-key="peopleSearch">배우 검색</a>
     <a href="costar-search.html" class="btn" data-i18n-key="costarSearch">공동 출연 검색</a>
     <a href="saved.html" class="btn" data-i18n-key="savedList">저장 목록</a>
-    <a href="annual-ratio.html" class="btn active" data-i18n-key="annualRatio" style="margin-left: 4px;">관객수 비율</a>
+    <button id="lang-toggle" class="btn" style="margin-left: 4px; font-weight: bold; min-width: 40px;">EN</button>
+    <a href="annual-ratio.html" class="btn active" style="margin-left: 4px;">관객수 비율</a>
   </div>
 
-  <h1 data-i18n-key="annualRatioTitle">연간 관객수 비율</h1>
+  <h1>연간 관객수 비율 <span style="font-size: 14px; color: #6b7280; font-weight: normal;">(국내 영화/국내 배우 한정, 2004년 ~ 현재)</span></h1>
   <div class="subtitle">
     각 연도별로 배우들이 차지한 시장 점유율(%)을 확인하여 Hawk/Dove 분석을 위한 시각적 기준을 탐색합니다.<br>
     ※ 본 데이터는 추가적인 API 호출 없이 저장소 내의 검색 인덱스를 로드하여 브라우저에서 안전하고 빠르게 즉시 산출됩니다.
@@ -110,22 +78,46 @@ h1 { font-size:28px; margin:0 0 16px; }
   <div id="loadingMsg" style="color:#2563eb; font-weight:bold; margin-bottom: 20px;">데이터를 스캔하고 있습니다. 잠시만 기다려주세요...</div>
 
   <!-- 1. 연도별 원형 그래프 가로 스크롤 영역 -->
-  <div class="pie-scroll-wrapper" id="pieWrapper" style="display:none;">
-      <!-- JavaScript에서 연도별 박스가 여기에 추가됩니다 -->
+  <div class="pie-scroll-wrapper" id="pieWrapper" style="display:none;"></div>
+
+  <!-- 2. Hawk 그룹 섹션 -->
+  <div class="hawk-section" id="hawkSection" style="display:none;">
+      <h2 style="margin-top: 0; color: #1e3a8a;">Hawk 그룹 (상위 1%) 추적 및 데이터 추출</h2>
+      <div style="font-size: 13px; color: #475569; margin-bottom: 15px;">※ 각 연도별 관객수 분포에서 상위 1% 이내에 속한 배우를 'Hawk'로, 그 외 영화에 출연한 배우를 'Dove'로 분류합니다.</div>
+      
+      <div class="hawk-header">
+          <span style="font-weight: bold; color: #1e3a8a;">Hawk</span>
+          <input type="text" id="hawkYearsInput" class="hawk-input" placeholder="연도의 숫자를 입력하세요 (예: 2005, 2007)">
+          <button class="btn" onclick="searchHawkYears()" style="background:#2563eb; color:white; border:none;">검색</button>
+      </div>
+      <div class="hawk-result-box" id="hawkResultBox">연도를 입력하고 검색을 누르면 해당 연도의 Hawk 그룹이 표시됩니다. (빈칸 검색 시 전체 연도)</div>
+
+      <hr style="border:0; border-top:1px dashed #93c5fd; margin:20px 0;">
+
+      <div class="hawk-header" style="margin-bottom: 10px;">
+          <label style="cursor:pointer; font-weight:bold; color:#111827; margin-right: 15px;">
+              <input type="radio" name="transitionType" value="H2D" checked style="transform: scale(1.2);"> Hawk ➔ Dove로 바뀐 배우들
+          </label>
+          <label style="cursor:pointer; font-weight:bold; color:#111827; margin-right: 15px;">
+              <input type="radio" name="transitionType" value="D2H" style="transform: scale(1.2);"> Dove ➔ Hawk로 바뀐 배우들
+          </label>
+          <button class="btn" onclick="searchTransitions()" style="background:#4f46e5; color:white; border:none;">해당 조건으로 검색</button>
+      </div>
+      
+      <div class="hawk-result-box" id="transitionResultBox" style="margin-bottom: 10px;">조건을 선택하고 검색해주세요.</div>
+      <button id="csvDownloadBtn" class="btn" style="background:#10b981; color:white; border:none; display:none;" onclick="downloadTransitionCSV()">Colab용 CSV 다운로드</button>
   </div>
 
-  <!-- 2. 분포 및 편차 통계 영역 -->
+  <!-- 3. 분포 및 편차 통계 영역 -->
   <div class="stats-section" id="statsSection" style="display:none;">
       <h2 style="margin-top: 0;">연도별 관객수 분포 및 편차 분석</h2>
       <div class="stats-header">
           <select id="yearSelect" class="year-select">
-              <option value="" disabled selected>2003년~현재 년도 중 선택하세요</option>
+              <option value="" disabled selected>2004년~현재 년도 중 선택하세요</option>
           </select>
-          <div class="stats-info" id="statsInfo">
-              <!-- 평균, 중간값 등이 여기에 출력됨 -->
-          </div>
+          <div class="stats-info" id="statsInfo"></div>
       </div>
-      <div style="position: relative; height: 400px; width: 100%; background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #e5e7eb;">
+      <div style="position: relative; height: 500px; width: 100%; background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #e5e7eb;">
           <canvas id="distChart"></canvas>
       </div>
   </div>
@@ -133,15 +125,21 @@ h1 { font-size:28px; margin:0 0 16px; }
 </div>
 
 <script>
-// Chart.js 플러그인 등록
 Chart.register(ChartDataLabels);
 
 const TS = Date.now();
 const INDEX_URL = `data/search_index.json?v=${TS}`;
+const SUMMARY_URL = `data/db_summary.json?v=${TS}`; // CSV 생성을 위한 Total_Y 조회용
 
-let yearlyData = {}; // { '2003': { '배우A': 1000000, '배우B': 500000 }, ... }
+let MOVIES = [];
+let DB_SUMMARY = {};
+let yearlyData = {}; // { '2004': { '배우A': 1000000, ... } }
+let availableYears = [];
 let distChartInstance = null;
-const availableYears = [];
+
+// Hawk-Dove 로직용 데이터
+let actorYearStatus = {}; // { '배우A': { 2004: 'Hawk', 2005: 'Dove' } }
+let currentTransitionResults = [];
 
 const safeParseInt = (v) => {
     if (!v) return 0;
@@ -151,26 +149,36 @@ const safeParseInt = (v) => {
 };
 const fmtNum = n => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-// 파스텔톤 컬러 팔레트 (Top 10 + 기타)
 const COLORS = [
     '#3b82f6', '#ef4444', '#10b981', '#f59e0b', '#8b5cf6', 
-    '#06b6d4', '#ec4899', '#84cc16', '#6366f1', '#f43f5e', '#d1d5db' // 마지막은 '기타' 용 회색
+    '#06b6d4', '#ec4899', '#84cc16', '#6366f1', '#f43f5e', '#d1d5db' 
 ];
 
 async function loadAndProcessData() {
     try {
-        const r = await fetch(INDEX_URL);
-        if (!r.ok) throw new Error("Index file not found");
-        const movies = await r.json();
+        const [idxRes, sumRes] = await Promise.all([
+            fetch(INDEX_URL),
+            fetch(SUMMARY_URL).catch(() => null)
+        ]);
+        
+        if (!idxRes.ok) throw new Error("Index file not found");
+        MOVIES = await idxRes.json();
+        if (sumRes && sumRes.ok) {
+            DB_SUMMARY = await sumRes.json();
+        }
 
-        // 데이터 분류 작업 (순수 자바스크립트 연산, API 호출 0)
-        movies.forEach(m => {
-            const openDt = str(m.openDt || '').replace(/-/g, '');
+        // 데이터 분류 작업 (국내 한정, 2004년 이후)
+        MOVIES.forEach(m => {
+            const openDt = String(m.openDt || '').replace(/-/g, '');
             if (!openDt || openDt.length < 4) return;
             
             const year = parseInt(openDt.substring(0, 4), 10);
-            if (year < 2003 || year > new Date().getFullYear()) return; // 2003 ~ 현재
+            if (year < 2004 || year > new Date().getFullYear()) return;
             
+            // 국내 영화 필터링
+            const isKorean = m.repNation === 'K' || m.nation === '한국';
+            if (!isKorean) return;
+
             const audiAcc = safeParseInt(m.audiAcc);
             if (audiAcc <= 0) return;
 
@@ -188,34 +196,48 @@ async function loadAndProcessData() {
         const sortedYears = Object.keys(yearlyData).map(Number).sort((a, b) => a - b);
         sortedYears.forEach(y => availableYears.push(y));
 
+        calculateHawkDove(); // Hawk/Dove 상태 계산
+
         document.getElementById('loadingMsg').style.display = 'none';
         
         renderPieCharts();
+        setupHawkSection();
         setupStatsSection();
 
     } catch (e) {
-        document.getElementById('loadingMsg').textContent = "데이터를 불러오는 중 오류가 발생했습니다. (search_index.json 누락)";
+        document.getElementById('loadingMsg').textContent = "데이터를 불러오는 중 오류가 발생했습니다.";
         console.error(e);
     }
 }
 
-function str(val) { return val ? String(val) : ''; }
+// 상위 1%를 기준으로 Hawk/Dove 계산
+function calculateHawkDove() {
+    availableYears.forEach(year => {
+        const actorArr = Object.entries(yearlyData[year]).map(([name, audi]) => ({name, audi}));
+        actorArr.sort((a, b) => b.audi - a.audi);
+        
+        // 상위 1% 인원 수 계산 (최소 1명)
+        const top1PercentCount = Math.max(1, Math.floor(actorArr.length * 0.01));
+        
+        actorArr.forEach((actor, index) => {
+            if (!actorYearStatus[actor.name]) actorYearStatus[actor.name] = {};
+            // 1% 이내면 Hawk, 아니면 Dove
+            actorYearStatus[actor.name][year] = (index < top1PercentCount) ? 'Hawk' : 'Dove';
+        });
+    });
+}
 
 function renderPieCharts() {
     const wrapper = document.getElementById('pieWrapper');
     wrapper.style.display = 'flex';
 
     availableYears.forEach(year => {
-        const actorsObj = yearlyData[year];
-        const actorArr = Object.entries(actorsObj).map(([name, audi]) => ({name, audi}));
-        
-        // 내림차순 정렬
+        const actorArr = Object.entries(yearlyData[year]).map(([name, audi]) => ({name, audi}));
         actorArr.sort((a, b) => b.audi - a.audi);
         
         const totalYearAudi = actorArr.reduce((sum, a) => sum + a.audi, 0);
         const totalActorsCount = actorArr.length;
 
-        // 상위 10명 추출, 나머지는 '기타'로 합산
         const top10 = actorArr.slice(0, 10);
         const others = actorArr.slice(10);
         const othersAudi = others.reduce((sum, a) => sum + a.audi, 0);
@@ -227,7 +249,6 @@ function renderPieCharts() {
             dataVals.push(othersAudi);
         }
 
-        // DOM 요소 생성
         const box = document.createElement('div');
         box.className = 'pie-box';
         
@@ -241,24 +262,17 @@ function renderPieCharts() {
         `;
         wrapper.appendChild(box);
 
-        // Chart.js 렌더링 (애니메이션 끄기 - 다수 렌더링 시 브라우저 부하 방지)
         const ctx = document.getElementById(`pie_${year}`).getContext('2d');
         new Chart(ctx, {
             type: 'pie',
             data: {
                 labels: labels,
-                datasets: [{
-                    data: dataVals,
-                    backgroundColor: COLORS,
-                    borderWidth: 1
-                }]
+                datasets: [{ data: dataVals, backgroundColor: COLORS, borderWidth: 1 }]
             },
             options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                animation: false, // 성능 향상
+                responsive: true, maintainAspectRatio: false, animation: false,
                 plugins: {
-                    legend: { display: false }, // 커스텀 레전드 사용
+                    legend: { display: false },
                     tooltip: {
                         callbacks: {
                             label: (ctx) => {
@@ -269,18 +283,16 @@ function renderPieCharts() {
                         }
                     },
                     datalabels: {
-                        color: '#fff',
-                        font: { weight: 'bold', size: 10 },
-                        formatter: (value, ctx) => {
+                        color: '#fff', font: { weight: 'bold', size: 10 },
+                        formatter: (value) => {
                             const perc = ((value / totalYearAudi) * 100).toFixed(1);
-                            return perc >= 3.0 ? `${perc}%` : ''; // 3% 이상만 라벨 표시 (가독성)
+                            return perc >= 3.0 ? `${perc}%` : ''; 
                         }
                     }
                 }
             }
         });
 
-        // 커스텀 레전드 (표 형태) 생성
         const legendDiv = document.getElementById(`legend_${year}`);
         let tableHTML = `<table><tbody>`;
         labels.forEach((label, idx) => {
@@ -300,22 +312,161 @@ function renderPieCharts() {
     });
 }
 
+function setupHawkSection() {
+    document.getElementById('hawkSection').style.display = 'block';
+}
+
+function searchHawkYears() {
+    const inputStr = document.getElementById('hawkYearsInput').value.trim();
+    let targetYears = [];
+    
+    if (inputStr === "") {
+        targetYears = availableYears;
+    } else {
+        targetYears = inputStr.split(',').map(s => parseInt(s.trim(), 10)).filter(y => availableYears.includes(y));
+    }
+
+    const box = document.getElementById('hawkResultBox');
+    box.innerHTML = '';
+
+    if (targetYears.length === 0) {
+        box.innerHTML = '<span style="color:red;">입력한 연도의 데이터가 없습니다. (2004년 이후 입력 가능)</span>';
+        return;
+    }
+
+    let html = '';
+    targetYears.forEach(year => {
+        let hawks = [];
+        for (let actor in actorYearStatus) {
+            if (actorYearStatus[actor][year] === 'Hawk') hawks.push(actor);
+        }
+        html += `<div style="margin-bottom: 10px;">
+            <strong>${year}년 Hawk 그룹 (${hawks.length}명):</strong> 
+            <span style="color:#4b5563;">${hawks.join(', ')}</span>
+        </div>`;
+    });
+    box.innerHTML = html;
+}
+
+function searchTransitions() {
+    const type = document.querySelector('input[name="transitionType"]:checked').value;
+    const box = document.getElementById('transitionResultBox');
+    const csvBtn = document.getElementById('csvDownloadBtn');
+    
+    currentTransitionResults = [];
+
+    for (let actor in actorYearStatus) {
+        const activeYears = Object.keys(actorYearStatus[actor]).map(Number).sort((a,b) => a - b);
+        let transitions = [];
+        
+        for (let i = 1; i < activeYears.length; i++) {
+            let prevY = activeYears[i-1];
+            let currY = activeYears[i];
+            let prevS = actorYearStatus[actor][prevY];
+            let currS = actorYearStatus[actor][currY];
+            
+            if (type === 'H2D' && prevS === 'Hawk' && currS === 'Dove') {
+                transitions.push(`${prevY} ➔ ${currY}`);
+            } else if (type === 'D2H' && prevS === 'Dove' && currS === 'Hawk') {
+                transitions.push(`${prevY} ➔ ${currY}`);
+            }
+        }
+        
+        if (transitions.length > 0) {
+            currentTransitionResults.push({ actor: actor, transitions: transitions });
+        }
+    }
+
+    if (currentTransitionResults.length === 0) {
+        box.innerHTML = '<span style="color:red;">해당 조건으로 그룹이 변경된 배우가 없습니다.</span>';
+        csvBtn.style.display = 'none';
+        return;
+    }
+
+    let html = `<ul class="res-list">`;
+    currentTransitionResults.forEach(res => {
+        const tString = res.transitions.join(', ');
+        html += `<li>
+            <strong style="color:#2563eb;">${res.actor}</strong>
+            <span style="color:#4b5563; font-size: 14px;">시점: <span style="font-weight:bold; color:#111827;">${tString}</span></span>
+        </li>`;
+    });
+    html += `</ul>`;
+    
+    box.innerHTML = html;
+    csvBtn.style.display = 'inline-block';
+}
+
+function downloadTransitionCSV() {
+    if (currentTransitionResults.length === 0) return;
+
+    let csvContent = "actor_name,movie_nm,open_dt,period,audience,total_y,role_weight,core_actors,time_weight,pos_count,neg_count,milestone,transition_years\n";
+    
+    const yearTotals = DB_SUMMARY.year_totals || {};
+
+    currentTransitionResults.forEach(res => {
+        const actorName = res.actor;
+        const transString = res.transitions.join(' | ');
+        // 1번째 전환 시점의 도달 연도를 milestone (기준점)으로 임시 부여
+        const firstTransitionYear = res.transitions[0].split('➔')[1].trim(); 
+        const milestone = firstTransitionYear + "0101";
+
+        const myMovies = MOVIES.filter(m => {
+            const isKorean = m.repNation === 'K' || m.nation === '한국';
+            return isKorean && (m.actors || []).some(a => a.name === actorName);
+        });
+
+        myMovies.forEach(m => {
+            const openDtRaw = String(m.openDt || '').replace(/[^0-9]/g, '');
+            if (openDtRaw.length < 4 || parseInt(openDtRaw.substring(0, 4), 10) < 2004) return;
+
+            const movieYear = openDtRaw.substring(0, 4);
+            const audience = safeParseInt(m.audiAcc);
+            if (audience <= 0) return;
+
+            const total_y = yearTotals[movieYear] || audience;
+            const core_actors = Math.max(1, (m.actors || []).length);
+            
+            const myIdx = m.actors.findIndex(a => a.name === actorName);
+            const role_weight = (myIdx !== -1 && myIdx < Math.ceil(core_actors / 3)) ? 1.0 : 0.5;
+            const time_weight = Math.max(0.1, (parseInt(movieYear) - 2000) / 10);
+
+            const period = (openDtRaw >= milestone) ? "post" : "pre";
+            
+            // CSV 전용 출력이므로 유튜브 여론 분석값은 Colab 처리 전 0으로 초기화 처리
+            const pos_count = 0; 
+            const neg_count = 0;
+
+            const row = [
+                `"${actorName}"`, `"${m.movieNm.replace(/"/g, '""')}"`,
+                openDtRaw, period, audience, total_y, role_weight, core_actors, time_weight, pos_count, neg_count, milestone, `"${transString}"`
+            ];
+            csvContent += row.join(",") + "\n";
+        });
+    });
+
+    const blob = new Blob(["\uFEFF" + csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = `hawk_dove_transition_data.csv`;
+    link.style.display = 'none';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
 function setupStatsSection() {
     const section = document.getElementById('statsSection');
     const select = document.getElementById('yearSelect');
-    
     section.style.display = 'block';
 
-    // 드롭다운 채우기
     availableYears.forEach(y => {
         const opt = document.createElement('option');
-        opt.value = y;
-        opt.textContent = `${y}년 기록 보기`;
+        opt.value = y; opt.textContent = `${y}년 기록 보기`;
         select.appendChild(opt);
     });
 
-    // 기본값은 가장 최신 전 연도 (예: 2025 데이터가 적을 수 있으므로 2024를 기본으로 할 수 있지만, 여기선 사용 가능한 최신 - 1)
-    const defaultYear = availableYears.length > 1 ? availableYears[availableYears.length - 2] : availableYears[0];
+    const defaultYear = availableYears[availableYears.length - 1]; // 최신 연도
     select.value = defaultYear;
 
     select.addEventListener('change', (e) => drawDistChart(e.target.value));
@@ -326,88 +477,87 @@ function drawDistChart(year) {
     if (!year || !yearlyData[year]) return;
 
     const actorsObj = yearlyData[year];
-    const rawData = Object.values(actorsObj).sort((a, b) => a - b); // 오름차순 정렬
+    const rawData = Object.entries(actorsObj).map(([name, audi]) => ({name, audi}));
+    rawData.sort((a, b) => a.audi - b.audi); 
     const count = rawData.length;
     if (count === 0) return;
 
-    // 평균, 중간값 계산
-    const sum = rawData.reduce((a, b) => a + b, 0);
+    const sum = rawData.reduce((a, b) => a + b.audi, 0);
     const avg = Math.round(sum / count);
     const median = count % 2 === 0 
-        ? Math.round((rawData[count / 2 - 1] + rawData[count / 2]) / 2) 
-        : rawData[Math.floor(count / 2)];
+        ? Math.round((rawData[count / 2 - 1].audi + rawData[count / 2].audi) / 2) 
+        : rawData[Math.floor(count / 2)].audi;
 
     document.getElementById('statsInfo').innerHTML = `
-        전체 배우 수: <span>${fmtNum(count)}명</span> 
+        해당 연도 총 배우 수: <span>${fmtNum(count)}명</span> 
         평균 관객수: <span>${fmtNum(avg)}명</span> 
         중간값(Median): <span>${fmtNum(median)}명</span>
     `;
 
-    // 히스토그램 Bins 설정
-    const bins = [
-        { label: '10만 미만', max: 100000, count: 0 },
-        { label: '10만~50만', max: 500000, count: 0 },
-        { label: '50만~100만', max: 1000000, count: 0 },
-        { label: '100만~300만', max: 3000000, count: 0 },
-        { label: '300만~500만', max: 5000000, count: 0 },
-        { label: '500만~1000만', max: 10000000, count: 0 },
-        { label: '1000만 이상', max: Infinity, count: 0 }
-    ];
+    // 🌟 산점도(Scatter) 형식으로 개별 배우의 정확한 관객수를 x축에 표시
+    // y축은 점들이 겹치지 않게 난수(Jitter)로 흩뿌림 처리
+    const scatterData = rawData.map(item => ({
+        x: item.audi,
+        y: Math.random(), 
+        name: item.name
+    }));
 
-    rawData.forEach(val => {
-        for (let i = 0; i < bins.length; i++) {
-            if (val <= bins[i].max) {
-                bins[i].count++;
-                break;
-            }
-        }
-    });
-
-    const labels = bins.map(b => b.label);
-    const dataVals = bins.map(b => b.count);
+    // 평균을 나타내는 수직선용 더미 데이터
+    const meanLineData = [{x: avg, y: 0}, {x: avg, y: 1}];
 
     const ctx = document.getElementById('distChart').getContext('2d');
     if (distChartInstance) distChartInstance.destroy();
 
     distChartInstance = new Chart(ctx, {
-        type: 'bar',
+        type: 'scatter',
         data: {
-            labels: labels,
-            datasets: [{
-                label: '해당 구간 배우 수 (명)',
-                data: dataVals,
-                backgroundColor: 'rgba(37, 99, 235, 0.7)',
-                borderColor: '#2563eb',
-                borderWidth: 1,
-                borderRadius: 4
-            }]
+            datasets: [
+                {
+                    label: '개별 배우',
+                    data: scatterData,
+                    backgroundColor: 'rgba(37, 99, 235, 0.4)',
+                    borderColor: 'rgba(37, 99, 235, 0.8)',
+                    pointRadius: 4,
+                    pointHoverRadius: 7
+                },
+                {
+                    type: 'line',
+                    label: '평균 관객수',
+                    data: meanLineData,
+                    borderColor: 'rgba(239, 68, 68, 0.8)',
+                    borderWidth: 2,
+                    pointRadius: 0,
+                    borderDash: [5, 5]
+                }
+            ]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
-                legend: { display: false },
-                datalabels: {
-                    anchor: 'end',
-                    align: 'top',
-                    color: '#111827',
-                    font: { weight: 'bold' },
-                    formatter: Math.round
-                },
+                legend: { position: 'top' },
+                datalabels: { display: false },
                 tooltip: {
                     callbacks: {
-                        label: (ctx) => ` ${fmtNum(ctx.raw)}명`
+                        label: (ctx) => {
+                            if (ctx.dataset.type === 'line') return ` 평균: ${fmtNum(avg)}명`;
+                            return ` ${ctx.raw.name}: ${fmtNum(ctx.raw.x)}명`;
+                        }
                     }
                 }
             },
             scales: {
                 x: {
-                    title: { display: true, text: '배우 개인의 총 관객수 범위', font: { weight: 'bold' } }
+                    type: 'linear',
+                    position: 'bottom',
+                    title: { display: true, text: '배우 개인의 연간 총 관객수 (명)', font: { weight: 'bold' } },
+                    ticks: { callback: v => (v / 10000).toLocaleString() + '만' },
+                    beginAtZero: true
                 },
                 y: {
-                    beginAtZero: true,
-                    title: { display: true, text: '배우 수 (명)', font: { weight: 'bold' } },
-                    ticks: { precision: 0 }
+                    display: false, // 난수(Jitter) 축은 숨김 처리
+                    min: -0.1,
+                    max: 1.1
                 }
             }
         }
