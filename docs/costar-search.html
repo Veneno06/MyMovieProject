@@ -24,7 +24,6 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
 .cast-list a { color: #555; text-decoration: none; }
 .cast-list a:hover { text-decoration: underline; color: #000; }
 
-/* 🌟 입력창 폭 3배 확장 및 드롭다운 UI 스타일 추가 */
 .search-wrapper { position: relative; flex: 3; min-width: 60%; }
 .actor-input { width: 100%; box-sizing: border-box; padding: 10px 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 15px; }
 .dropdown {
@@ -47,11 +46,12 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
     <a href="people-search.html" class="btn" data-i18n-key="peopleSearch">배우 검색</a>
     <a href="costar-search.html" class="btn active" data-i18n-key="costarSearch">공동 출연 검색</a>
     <a href="saved.html" class="btn" data-i18n-key="savedList">저장 목록</a>
+    <!-- 🌟 수정됨: 새 탭에서 열리는 관객수 비율 버튼 추가 (EN 버튼이 번역 스크립트를 통해 이 왼쪽으로 들어갑니다) -->
+    <a href="annual-ratio.html" class="btn" target="_blank" data-i18n-key="annualRatio" style="margin-left: 4px;">관객수 비율</a>
   </div>
 
   <h1 data-i18n-key="costarSearchTitle">공동 출연 검색</h1>
 
-  <!-- 🌟 확장된 검색 컨테이너 적용 -->
   <form id="f" class="box" style="align-items: center;">
     <span data-i18n-key="actorNamesLabel" style="white-space: nowrap;">배우 이름들:</span>
     <div class="search-wrapper">
@@ -214,9 +214,6 @@ async function fetchSentimentData(name) {
     return null;
 }
 
-// ==========================================
-// 🌟 드롭다운 자동완성 로직
-// ==========================================
 const inputEl = document.getElementById('actorInput');
 const dropdownEl = document.getElementById('autocompleteList');
 let currentFocus = -1;
@@ -227,12 +224,10 @@ inputEl.addEventListener('input', function() {
     let currentTyping = parts.pop();
     let lockedActors = parts.filter(s => s.length > 0);
 
-    // 🌟 핵심 로직: 쉼표를 안 쳤더라도 DB에 완벽히 일치하는 이름(예: 이병헌)이 완성되면, 
-    // 본인을 배제하고 즉시 '이병헌과 함께 출연한 동료'를 찾도록 강제 잠금(Lock) 처리합니다.
     if (lockedActors.length === 0 && currentTyping.length > 0) {
         if (PEOPLE_MAP[currentTyping]) {
             lockedActors.push(currentTyping);
-            currentTyping = ""; // 현재 타이핑 문자를 비움으로써 모든 파트너가 노출되게 유도
+            currentTyping = ""; 
         }
     }
 
@@ -324,7 +319,6 @@ function removeActive(items) {
 
 function closeDropdown() { dropdownEl.style.display = 'none'; }
 document.addEventListener('click', function(e) { if (e.target !== inputEl) closeDropdown(); });
-
 
 async function search(){
   const f = new FormData(document.getElementById('f'));
