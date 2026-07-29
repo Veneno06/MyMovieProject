@@ -1,6 +1,6 @@
 /**
  * K-Movie A Archive 다국어 번역 스크립트 (i18n)
- * Fix: 'movieSearchTitle' 키 추가 (페이지 제목용)
+ * Fix: 'movieSearchTitle' 키 추가 및 'annualRatio' 추가
  */
 
 // 1. 번역 문자열 (KO/EN)
@@ -14,16 +14,18 @@ const STRINGS = {
         'peopleSearch': "배우 검색",
         'costarSearch': "공동 출연 검색",
         'savedList': "저장 목록",
+        'annualRatio': "관객수 비율", // 신규 추가
         
         // --- 페이지 제목 ---
         'homeTitle': "K-Movie A Archive",
-        'movieSearchTitle': "영화 검색(기간)", // [복구됨] 이 부분이 빠져 있었습니다!
+        'movieSearchTitle': "영화 검색(기간)",
         'peopleSearchTitle': "배우/감독 검색",
         'costarSearchTitle': "공동 출연 검색",
         'savedListTitle': "저장 목록",
         'compareTitle': "배우 관객수 비교",
         'movieDetailTitle': "영화 상세 정보",
         'actorProfileTitle': "배우 프로필",
+        'annualRatioTitle': "연간 관객수 비율", // 신규 추가
 
         // --- index.html ---
         'monthlyTimeline': "월간 타임라인",
@@ -89,16 +91,18 @@ const STRINGS = {
         'peopleSearch': "People Search",
         'costarSearch': "Co-star Search",
         'savedList': "Saved List",
+        'annualRatio': "Audience Ratio", // 신규 추가
 
         // --- Page Titles ---
         'homeTitle': "K-Movie A Archive",
-        'movieSearchTitle': "Movie Search (by Date)", // [복구됨] English translation added
+        'movieSearchTitle': "Movie Search (by Date)",
         'peopleSearchTitle': "Actor/Director Search",
         'costarSearchTitle': "Co-star Search",
         'savedListTitle': "Saved List",
         'compareTitle': "Actor Audience Comparison",
         'movieDetailTitle': "Movie Details",
         'actorProfileTitle': "Actor Profile",
+        'annualRatioTitle': "Annual Audience Ratio", // 신규 추가
 
         // --- index.html ---
         'monthlyTimeline': "Monthly Timeline",
@@ -186,14 +190,12 @@ function translatePage(lang) {
         }
     });
 
-    // Title 태그 처리
     const titleEl = document.querySelector('title');
     const titleKey = titleEl ? titleEl.getAttribute('data-i18n-key') : null;
     if (titleKey && strings[titleKey]) {
         titleEl.textContent = strings[titleKey] + " – K-Movie A Archive";
     }
 
-    // 언어 버튼 텍스트 변경
     const toggleBtn = document.getElementById('lang-toggle');
     if (toggleBtn) toggleBtn.textContent = strings['langToggle'];
 }
@@ -207,7 +209,6 @@ function toggleLanguage() {
 
 // 5. 버튼 생성 및 초기화
 document.addEventListener('DOMContentLoaded', () => {
-    // 버튼 생성
     const header = document.querySelector('.ctrls') || document.querySelector('.header');
     if (header && !document.getElementById('lang-toggle')) {
         const btn = document.createElement('button');
@@ -217,8 +218,14 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.style.fontWeight = 'bold';
         btn.style.minWidth = '40px';
         btn.onclick = toggleLanguage;
-        header.appendChild(btn);
+        
+        // 🌟 수정됨: 관객수 비율 버튼의 바로 앞(왼쪽)에 EN 버튼 삽입
+        const annualBtn = document.querySelector('[data-i18n-key="annualRatio"]');
+        if (annualBtn) {
+            header.insertBefore(btn, annualBtn);
+        } else {
+            header.appendChild(btn);
+        }
     }
-    // 번역 적용
     translatePage(getCurrentLang());
 });
