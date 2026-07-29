@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title data-i18n-key="annualRatioTitle">연간 관객수 비율 – K-Movie A Archive</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/translator.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+<style>
+body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; line-height:1.6; }
+.wrap { max-width:1200px; margin:24px auto; padding:0 12px; }
+h1 { font-size:28px; margin:0 0 16px; }
+
+.ctrls { display:flex; gap:8px; margin-bottom:12px; flex-wrap: wrap; align-items: center; }
+.ctrls .btn { padding:6px 10px; border:1px solid #e5e7eb; border-radius:8px; background:#fff; text-decoration:none; color:#111827; font-size: 1rem;}
+
+.subtitle { color:#6b7280; margin-bottom:20px; font-size:14px; line-height:1.6; }
+
+/* 원형 그래프 수평 스크롤 컨테이너 */
+.pie-scroll-wrapper {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 80px; /* 아래 섹션과 여백 6줄 정도 */
+}
+.pie-box {
+    flex: 0 0 320px; /* 기본 최소 너비 고정 */
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.pie-box h3 {
+    margin-top: 0;
+    color: #111827;
+    font-size: 18px;
+    text-align: center;
+}
+.canvas-container {
+    position: relative;
+    height: 250px;
+    width: 100%;
+}
+.custom-legend {
+    margin-top: 15px;
+    width: 100%;
+    font-size: 12px;
+    color: #4b5563;
+    max-height: 140px;
+    overflow-y: auto;
+}
+.custom-legend table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.custom-legend td {
+    padding: 3px 0;
+    border-bottom: 1px solid #f3f4f6;
+}
+.custom-legend .legend-color {
+    width: 12px; height: 12px; display: inline-block; border-radius: 2px; margin-right: 5px; vertical-align: middle;
+}
+
+/* 통계 분포 섹션 */
+.stats-section {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 20px;
+}
+.stats-header {
+    display: flex; gap: 15px; align-items: center; flex-wrap: wrap; margin-bottom: 15px;
+}
+.year-select {
+    padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 15px; cursor: pointer;
+}
+.stats-info {
+    font-size: 15px; color: #111827;
+}
+.stats-info span {
+    font-weight: bold; color: #2563eb; margin-right: 15px;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="ctrls">
+    <a href="index.html" class="btn" data-i18n-key="home">홈</a>
+    <a href="title-search.html" class="btn" data-i18n-key="movieTitleSearch">영화 검색 (제목)</a>
+    <a href="search.html" class="btn" data-i18n-key="movieSearchPeriod">영화 검색 (기간)</a>
+    <a href="people-search.html" class="btn" data-i18n-key="peopleSearch">배우 검색</a>
+    <a href="costar-search.html" class="btn" data-i18n-key="costarSearch">공동 출연 검색</a>
+    <a href="saved.html" class="btn" data-i18n-key="savedList">저장 목록</a>
+    <a href="annual-ratio.html" class="btn active" data-i18n-key="annualRatio" style="margin-left: 4px;">관객수 비율</a>
+  </div>
+
+  <h1 data-i18n-key="annualRatioTitle">연간 관객수 비율</h1>
+  <div class="subtitle">
+    각 연도별로 배우들이 차지한 시장 점유율(%)을 확인하여 Hawk/Dove 분석을 위한 시각적 기준을 탐색합니다.<br>
+    ※ 본 데이터는 추가적인 API 호출 없이 저장소 내의 검색 인덱스를 로드하여 브라우저에서 안전하고 빠르게 즉시 산출됩니다.
+  </div>
+
+  <div id="loadingMsg" style="color:#2563eb; font-weight:bold; margin-bottom: 20px;">데이터를 스캔하고 있습니다. 잠시만 기다려주세요...</div>
+
+  <!-- 1. 연도별 원형 그래프 가로 스크롤 영역 -->
+  <div class="pie-scroll-wrapper" id="pieWrapper" style="display:none;">
+      <!-- JavaScript에서 연도별 박스가 여기에 추가됩니다 -->
+  </div>
+
+  <!-- 2. 분포 및 편차 통계 영역 -->
+  <div class="stats-section" id="statsSection" style="display:none;">
+      <h2 style="margin-top: 0;">연도별 관객수 분포 및 편차 분석</h2>
+      <div class="stats-header">
+          <select id="yearSelect" class="year-select">
+              <option value="" disabled selected>2003년~현재 년도 중 선택하세요</option>
+          </select>
+          <div class="stats-info" id="statsInfo">
+              <!-- 평균, 중간값 등이 여기에 출력됨 -->
+          </div>
+      </div>
+      <div style="position: relative; height: 400px; width: 100%; background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #e5e7eb;">
+          <canvas id="distChart"></canvas>
+      </div>
+  </div>
+
+</div>
+
+<script>
+// Chart.js 플러그인 등록
+Chart.register(ChartDataLabels);
+
+const TS = Date.now();
+const INDEX_URL = `data/search_index.json?v=${TS}`;
+
+let yearlyData = {}; // { '2003': { '배우A': 1000000, '배우B': 500000 }, ... }
+let distChartInstance = null;
+const availableYears = [];
+
+const safeParseInt = (v) => {
+    if (!v) return 0;
+    if (typeof v === 'number') return v;
+    const n = parseInt(String(v).replace(/,/g, '').trim(), 10);
+    return isNaN(n) ? 0 : n;
+};
+const fmtNum = n => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+// 파스텔톤 컬러 팔레트 (Top 10 + 기타)
+const COLORS = [
+    '#3b82f6', '#ef4444', '#10b981', '#f59e0b', '#8b5cf6', 
+    '#06b6d4', '#ec4899', '#84cc16', '#6366f1', '#f43f5e', '#d1d5db' // 마지막은 '기타' 용 회색
+];
+
+async function loadAndProcessData() {
+    try {
+        const r = await fetch(INDEX_URL);
+        if (!r.ok) throw new Error("Index file not found");
+        const movies = await r.json();
+
+        // 데이터 분류 작업 (순수 자바스크립트 연산, API 호출 0)
+        movies.forEach(m => {
+            const openDt = str(m.openDt || '').replace(/-/g, '');
+            if (!openDt || openDt.length < 4) return;
+            
+            const year = parseInt(openDt.substring(0, 4), 10);
+            if (year < 2003 || year > new Date().getFullYear()) return; // 2003 ~ 현재
+            
+            const audiAcc = safeParseInt(m.audiAcc);
+            if (audiAcc <= 0) return;
+
+            if (!yearlyData[year]) yearlyData[year] = {};
+
+            const actors = m.actors || [];
+            actors.forEach(a => {
+                if (a.name) {
+                    if (!yearlyData[year][a.name]) yearlyData[year][a.name] = 0;
+                    yearlyData[year][a.name] += audiAcc;
+                }
+            });
+        });
+
+        const sortedYears = Object.keys(yearlyData).map(Number).sort((a, b) => a - b);
+        sortedYears.forEach(y => availableYears.push(y));
+
+        document.getElementById('loadingMsg').style.display = 'none';
+        
+        renderPieCharts();
+        setupStatsSection();
+
+    } catch (e) {
+        document.getElementById('loadingMsg').textContent = "데이터를 불러오는 중 오류가 발생했습니다. (search_index.json 누락)";
+        console.error(e);
+    }
+}
+
+function str(val) { return val ? String(val) : ''; }
+
+function renderPieCharts() {
+    const wrapper = document.getElementById('pieWrapper');
+    wrapper.style.display = 'flex';
+
+    availableYears.forEach(year => {
+        const actorsObj = yearlyData[year];
+        const actorArr = Object.entries(actorsObj).map(([name, audi]) => ({name, audi}));
+        
+        // 내림차순 정렬
+        actorArr.sort((a, b) => b.audi - a.audi);
+        
+        const totalYearAudi = actorArr.reduce((sum, a) => sum + a.audi, 0);
+        const totalActorsCount = actorArr.length;
+
+        // 상위 10명 추출, 나머지는 '기타'로 합산
+        const top10 = actorArr.slice(0, 10);
+        const others = actorArr.slice(10);
+        const othersAudi = others.reduce((sum, a) => sum + a.audi, 0);
+
+        const labels = top10.map(a => a.name);
+        const dataVals = top10.map(a => a.audi);
+        if (othersAudi > 0) {
+            labels.push('기타');
+            dataVals.push(othersAudi);
+        }
+
+        // DOM 요소 생성
+        const box = document.createElement('div');
+        box.className = 'pie-box';
+        
+        box.innerHTML = `
+            <h3>${year}년</h3>
+            <div style="font-size:12px; color:#6b7280; margin-bottom:10px;">총 배우: ${fmtNum(totalActorsCount)}명 / 누적관객 합: ${fmtNum(totalYearAudi)}명</div>
+            <div class="canvas-container">
+                <canvas id="pie_${year}"></canvas>
+            </div>
+            <div class="custom-legend" id="legend_${year}"></div>
+        `;
+        wrapper.appendChild(box);
+
+        // Chart.js 렌더링 (애니메이션 끄기 - 다수 렌더링 시 브라우저 부하 방지)
+        const ctx = document.getElementById(`pie_${year}`).getContext('2d');
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: dataVals,
+                    backgroundColor: COLORS,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: false, // 성능 향상
+                plugins: {
+                    legend: { display: false }, // 커스텀 레전드 사용
+                    tooltip: {
+                        callbacks: {
+                            label: (ctx) => {
+                                const val = ctx.raw;
+                                const perc = ((val / totalYearAudi) * 100).toFixed(1);
+                                return ` ${fmtNum(val)}명 (${perc}%)`;
+                            }
+                        }
+                    },
+                    datalabels: {
+                        color: '#fff',
+                        font: { weight: 'bold', size: 10 },
+                        formatter: (value, ctx) => {
+                            const perc = ((value / totalYearAudi) * 100).toFixed(1);
+                            return perc >= 3.0 ? `${perc}%` : ''; // 3% 이상만 라벨 표시 (가독성)
+                        }
+                    }
+                }
+            }
+        });
+
+        // 커스텀 레전드 (표 형태) 생성
+        const legendDiv = document.getElementById(`legend_${year}`);
+        let tableHTML = `<table><tbody>`;
+        labels.forEach((label, idx) => {
+            const val = dataVals[idx];
+            const perc = ((val / totalYearAudi) * 100).toFixed(1);
+            tableHTML += `
+                <tr>
+                    <td style="width:15px;"><span class="legend-color" style="background:${COLORS[idx]}"></span></td>
+                    <td style="font-weight:bold; width: 60px;">${label}</td>
+                    <td style="text-align:right;">${fmtNum(val)}명</td>
+                    <td style="text-align:right; font-weight:bold; color:#2563eb;">${perc}%</td>
+                </tr>
+            `;
+        });
+        tableHTML += `</tbody></table>`;
+        legendDiv.innerHTML = tableHTML;
+    });
+}
+
+function setupStatsSection() {
+    const section = document.getElementById('statsSection');
+    const select = document.getElementById('yearSelect');
+    
+    section.style.display = 'block';
+
+    // 드롭다운 채우기
+    availableYears.forEach(y => {
+        const opt = document.createElement('option');
+        opt.value = y;
+        opt.textContent = `${y}년 기록 보기`;
+        select.appendChild(opt);
+    });
+
+    // 기본값은 가장 최신 전 연도 (예: 2025 데이터가 적을 수 있으므로 2024를 기본으로 할 수 있지만, 여기선 사용 가능한 최신 - 1)
+    const defaultYear = availableYears.length > 1 ? availableYears[availableYears.length - 2] : availableYears[0];
+    select.value = defaultYear;
+
+    select.addEventListener('change', (e) => drawDistChart(e.target.value));
+    drawDistChart(defaultYear);
+}
+
+function drawDistChart(year) {
+    if (!year || !yearlyData[year]) return;
+
+    const actorsObj = yearlyData[year];
+    const rawData = Object.values(actorsObj).sort((a, b) => a - b); // 오름차순 정렬
+    const count = rawData.length;
+    if (count === 0) return;
+
+    // 평균, 중간값 계산
+    const sum = rawData.reduce((a, b) => a + b, 0);
+    const avg = Math.round(sum / count);
+    const median = count % 2 === 0 
+        ? Math.round((rawData[count / 2 - 1] + rawData[count / 2]) / 2) 
+        : rawData[Math.floor(count / 2)];
+
+    document.getElementById('statsInfo').innerHTML = `
+        전체 배우 수: <span>${fmtNum(count)}명</span> 
+        평균 관객수: <span>${fmtNum(avg)}명</span> 
+        중간값(Median): <span>${fmtNum(median)}명</span>
+    `;
+
+    // 히스토그램 Bins 설정
+    const bins = [
+        { label: '10만 미만', max: 100000, count: 0 },
+        { label: '10만~50만', max: 500000, count: 0 },
+        { label: '50만~100만', max: 1000000, count: 0 },
+        { label: '100만~300만', max: 3000000, count: 0 },
+        { label: '300만~500만', max: 5000000, count: 0 },
+        { label: '500만~1000만', max: 10000000, count: 0 },
+        { label: '1000만 이상', max: Infinity, count: 0 }
+    ];
+
+    rawData.forEach(val => {
+        for (let i = 0; i < bins.length; i++) {
+            if (val <= bins[i].max) {
+                bins[i].count++;
+                break;
+            }
+        }
+    });
+
+    const labels = bins.map(b => b.label);
+    const dataVals = bins.map(b => b.count);
+
+    const ctx = document.getElementById('distChart').getContext('2d');
+    if (distChartInstance) distChartInstance.destroy();
+
+    distChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: '해당 구간 배우 수 (명)',
+                data: dataVals,
+                backgroundColor: 'rgba(37, 99, 235, 0.7)',
+                borderColor: '#2563eb',
+                borderWidth: 1,
+                borderRadius: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                datalabels: {
+                    anchor: 'end',
+                    align: 'top',
+                    color: '#111827',
+                    font: { weight: 'bold' },
+                    formatter: Math.round
+                },
+                tooltip: {
+                    callbacks: {
+                        label: (ctx) => ` ${fmtNum(ctx.raw)}명`
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    title: { display: true, text: '배우 개인의 총 관객수 범위', font: { weight: 'bold' } }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: { display: true, text: '배우 수 (명)', font: { weight: 'bold' } },
+                    ticks: { precision: 0 }
+                }
+            }
+        }
+    });
+}
+
+loadAndProcessData();
+</script>
+</body>
+</html>
