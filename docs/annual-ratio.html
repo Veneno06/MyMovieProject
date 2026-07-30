@@ -39,7 +39,7 @@ h1 { font-size:28px; margin:0 0 16px; }
 .stats-info span { font-weight: bold; color: #2563eb; margin-right: 15px; }
 
 .res-list { list-style: none; padding: 0; margin: 0; }
-.res-list li { padding: 8px 0; border-bottom: 1px dashed #e5e7eb; display: flex; justify-content: space-between; align-items: center;}
+.res-list li { padding: 8px 0; border-bottom: 1px dashed #e5e7eb; display: flex; justify-content: flex-start; align-items: center; gap: 15px;}
 .res-list li:last-child { border-bottom: none; }
 </style>
 </head>
@@ -64,10 +64,8 @@ h1 { font-size:28px; margin:0 0 16px; }
 
   <div id="loadingMsg" style="color:#2563eb; font-weight:bold; margin-bottom: 20px;">데이터를 스캔하고 있습니다. 잠시만 기다려주세요...</div>
 
-  <!-- 1. 연도별 원형 그래프 가로 스크롤 영역 -->
   <div class="pie-scroll-wrapper" id="pieWrapper" style="display:none;"></div>
 
-  <!-- 2. Hawk 그룹 섹션 -->
   <div class="hawk-section" id="hawkSection" style="display:none;">
       <h2 style="margin-top: 0; color: #1e3a8a;">Hawk 그룹 추적 및 데이터 추출</h2>
       <div style="font-size: 13px; color: #475569; margin-bottom: 15px;">※ 사용자가 설정한 상위 퍼센트 안에 <b>최소 2회 이상</b> 진입한 시점부터 공식적으로 'Hawk' 그룹으로 분류됩니다.</div>
@@ -92,6 +90,9 @@ h1 { font-size:28px; margin:0 0 16px; }
           <label style="cursor:pointer; font-weight:bold; color:#111827; margin-right: 15px;">
               <input type="radio" name="transitionType" value="D2H" style="transform: scale(1.2);"> Dove ➔ Hawk로 바뀐 배우들
           </label>
+          <span style="margin: 0 10px; color: #94a3b8;">|</span>
+          <label style="font-weight: bold; color: #111827; margin-right: 5px;">시점 필터링:</label>
+          <input type="text" id="transitionPeriodInput" class="hawk-input" style="width: 150px;" placeholder="예: 2007~2009">
           <button class="btn" onclick="searchTransitions()" style="background:#4f46e5; color:white; border:none;">해당 조건으로 검색</button>
       </div>
       
@@ -103,7 +104,6 @@ h1 { font-size:28px; margin:0 0 16px; }
       </div>
   </div>
 
-  <!-- 3. 분포 및 편차 통계 영역 -->
   <div class="stats-section" id="statsSection" style="display:none;">
       <h2 style="margin-top: 0;">연도별 관객수 분포 및 편차 분석</h2>
       <div class="stats-header">
@@ -132,7 +132,6 @@ let yearlyData = {};
 let availableYears = [];
 let distChartInstance = null;
 
-// Hawk-Dove 로직용 데이터
 let actorYearStatus = {}; 
 let currentTransitionResults = [];
 let transitionTypeFlag = "";
@@ -145,10 +144,7 @@ const safeParseInt = (v) => {
 };
 const fmtNum = n => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-const COLORS = [
-    '#3b82f6', '#ef4444', '#10b981', '#f59e0b', '#8b5cf6', 
-    '#06b6d4', '#ec4899', '#84cc16', '#6366f1', '#f43f5e', '#d1d5db' 
-];
+const COLORS = ['#3b82f6', '#ef4444', '#10b981', '#f59e0b', '#8b5cf6', '#06b6d4', '#ec4899', '#84cc16', '#6366f1', '#f43f5e', '#d1d5db'];
 
 async function loadAndProcessData() {
     try {
@@ -200,7 +196,6 @@ async function loadAndProcessData() {
     }
 }
 
-// 상위 X% + 2회 이상 진입 조건을 반영한 Hawk/Dove 계산
 function processHawkDoveLogic() {
     let percentLimit = parseFloat(document.getElementById('hawkPercentInput').value);
     if (isNaN(percentLimit) || percentLimit <= 0 || percentLimit >= 50) {
@@ -214,7 +209,6 @@ function processHawkDoveLogic() {
     availableYears.forEach(year => {
         const actorArr = Object.entries(yearlyData[year]).map(([name, audi]) => ({name, audi}));
         actorArr.sort((a, b) => b.audi - a.audi);
-        
         const topCount = Math.max(1, Math.floor(actorArr.length * (percentLimit / 100)));
         
         actorArr.forEach((actor, index) => {
@@ -222,12 +216,8 @@ function processHawkDoveLogic() {
             if (!actorYearStatus[actor.name]) actorYearStatus[actor.name] = {};
 
             let isInTopPercent = (index < topCount);
-            
-            if (isInTopPercent) {
-                appearanceCount[actor.name]++;
-            }
+            if (isInTopPercent) appearanceCount[actor.name]++;
 
-            // 조건: 상위 % 안에 들었고 AND 역대 누적 진입 횟수가 2회 이상일 때만 Hawk
             if (isInTopPercent && appearanceCount[actor.name] >= 2) {
                 actorYearStatus[actor.name][year] = 'Hawk';
             } else {
@@ -241,16 +231,13 @@ function processHawkDoveLogic() {
 
 function displayHawkYears() {
     const inputStr = document.getElementById('hawkYearsInput').value.trim();
-    let targetYears = [];
-    
-    if (inputStr === "") targetYears = availableYears;
-    else targetYears = inputStr.split(',').map(s => parseInt(s.trim(), 10)).filter(y => availableYears.includes(y));
+    let targetYears = inputStr === "" ? availableYears : inputStr.split(',').map(s => parseInt(s.trim(), 10)).filter(y => availableYears.includes(y));
 
     const box = document.getElementById('hawkResultBox');
     box.innerHTML = '';
 
     if (targetYears.length === 0) {
-        box.innerHTML = '<span style="color:red;">입력한 연도의 데이터가 없습니다. (2004년 이후 입력 가능)</span>';
+        box.innerHTML = '<span style="color:red;">입력한 연도의 데이터가 없습니다. (2004년 이후)</span>';
         return;
     }
 
@@ -268,28 +255,48 @@ function displayHawkYears() {
     box.innerHTML = html;
 }
 
+function toggleAllTransitions(source) {
+    const checkboxes = document.querySelectorAll('.trans-checkbox');
+    checkboxes.forEach(cb => cb.checked = source.checked);
+}
+
 function searchTransitions() {
     transitionTypeFlag = document.querySelector('input[name="transitionType"]:checked').value;
+    const periodStr = document.getElementById('transitionPeriodInput').value.trim();
     const box = document.getElementById('transitionResultBox');
     const csvBtn = document.getElementById('csvDownloadBtn');
     const aiBtn = document.getElementById('aiAnalysisBtn');
     
+    let filterStart = 0, filterEnd = 9999;
+    if (periodStr.includes('~')) {
+        const parts = periodStr.split('~');
+        filterStart = parseInt(parts[0].trim(), 10) || 0;
+        filterEnd = parseInt(parts[1].trim(), 10) || 9999;
+    }
+
     currentTransitionResults = [];
 
     for (let actor in actorYearStatus) {
-        const activeYears = Object.keys(actorYearStatus[actor]).map(Number).sort((a,b) => a - b);
+        let yearsActive = Object.keys(actorYearStatus[actor]).map(Number);
+        let minY = Math.min(...yearsActive);
+        let maxY = Math.max(...availableYears);
+
         let transitions = [];
-        
-        for (let i = 1; i < activeYears.length; i++) {
-            let prevY = activeYears[i-1];
-            let currY = activeYears[i];
-            let prevS = actorYearStatus[actor][prevY];
-            let currS = actorYearStatus[actor][currY];
+        // 공백기(0명)도 Dove로 판단하기 위해 모든 캘린더 연도를 연속으로 순회합니다.
+        for (let y = minY + 1; y <= maxY; y++) {
+            let prevY = y - 1;
+            let currY = y;
+            let prevS = actorYearStatus[actor][prevY] || 'Dove';
+            let currS = actorYearStatus[actor][currY] || 'Dove';
             
             if (transitionTypeFlag === 'H2D' && prevS === 'Hawk' && currS === 'Dove') {
-                transitions.push(`${prevY} ➔ ${currY}`);
+                if (currY >= filterStart && currY <= filterEnd) {
+                    transitions.push(`${prevY} ➔ ${currY}`);
+                }
             } else if (transitionTypeFlag === 'D2H' && prevS === 'Dove' && currS === 'Hawk') {
-                transitions.push(`${prevY} ➔ ${currY}`);
+                if (currY >= filterStart && currY <= filterEnd) {
+                    transitions.push(`${prevY} ➔ ${currY}`);
+                }
             }
         }
         
@@ -299,33 +306,51 @@ function searchTransitions() {
     }
 
     if (currentTransitionResults.length === 0) {
-        box.innerHTML = '<span style="color:red;">해당 조건으로 그룹이 변경된 배우가 없습니다. 퍼센트를 조절해보세요.</span>';
-        csvBtn.style.display = 'none';
-        aiBtn.style.display = 'none';
+        box.innerHTML = '<span style="color:red;">해당 조건으로 그룹이 변경된 배우가 없습니다.</span>';
+        csvBtn.style.display = 'none'; aiBtn.style.display = 'none';
         return;
     }
 
-    let html = `<ul class="res-list">`;
-    currentTransitionResults.forEach(res => {
+    let html = `<div style="margin-bottom: 10px; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px;">
+        <label style="cursor:pointer; font-weight:bold; color:#111827; display:flex; align-items:center;">
+            <input type="checkbox" onclick="toggleAllTransitions(this)" checked style="transform: scale(1.2); margin-right:10px;"> 전체 선택/해제
+        </label>
+    </div><ul class="res-list">`;
+    
+    currentTransitionResults.forEach((res, idx) => {
         const tString = res.transitions.join(', ');
         html += `<li>
-            <strong style="color:#2563eb;">${res.actor}</strong>
+            <div style="display:flex; align-items:center;">
+                <input type="checkbox" class="trans-checkbox" value="${idx}" checked style="transform: scale(1.2); margin-right: 12px; cursor:pointer;">
+                <strong style="color:#2563eb; font-size:15px;">${res.actor}</strong>
+            </div>
             <span style="color:#4b5563; font-size: 14px;">시점: <span style="font-weight:bold; color:#111827;">${tString}</span></span>
         </li>`;
     });
     html += `</ul>`;
     
     box.innerHTML = html;
-    csvBtn.style.display = 'inline-block';
-    aiBtn.style.display = 'inline-block';
+    csvBtn.style.display = 'inline-block'; aiBtn.style.display = 'inline-block';
+}
+
+function getSelectedResults() {
+    const checkedBoxes = document.querySelectorAll('.trans-checkbox:checked');
+    let selected = [];
+    checkedBoxes.forEach(cb => {
+        const idx = parseInt(cb.value, 10);
+        selected.push(currentTransitionResults[idx]);
+    });
+    return selected;
 }
 
 function downloadTransitionCSV() {
-    if (currentTransitionResults.length === 0) return;
+    const selected = getSelectedResults();
+    if (selected.length === 0) { alert("다운로드할 배우를 선택해주세요."); return; }
+
     let csvContent = "actor_name,movie_nm,open_dt,period,audience,total_y,role_weight,core_actors,time_weight,transition_years\n";
     const yearTotals = DB_SUMMARY.year_totals || {};
 
-    currentTransitionResults.forEach(res => {
+    selected.forEach(res => {
         const actorName = res.actor;
         const transString = res.transitions.join(' | ');
         const firstTransitionYear = res.transitions[0].split('➔')[1].trim(); 
@@ -351,10 +376,7 @@ function downloadTransitionCSV() {
             const time_weight = Math.max(0.1, (parseInt(movieYear) - 2000) / 10);
             const period = (openDtRaw >= milestone) ? "post" : "pre";
             
-            const row = [
-                `"${actorName}"`, `"${m.movieNm.replace(/"/g, '""')}"`,
-                openDtRaw, period, audience, total_y, role_weight, core_actors, time_weight, `"${transString}"`
-            ];
+            const row = [`"${actorName}"`, `"${m.movieNm.replace(/"/g, '""')}"`, openDtRaw, period, audience, total_y, role_weight, core_actors, time_weight, `"${transString}"`];
             csvContent += row.join(",") + "\n";
         });
     });
@@ -363,26 +385,19 @@ function downloadTransitionCSV() {
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
     link.download = `hawk_dove_base_data.csv`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    document.body.appendChild(link); link.click(); document.body.removeChild(link);
 }
 
-// [핵심] Python AI 스크립트에게 넘길 분석 지시서 JSON 다운로드 기능
 function downloadSentimentTargetJSON() {
-    if (currentTransitionResults.length === 0) return;
+    const selected = getSelectedResults();
+    if (selected.length === 0) { alert("분석할 배우를 선택해주세요."); return; }
 
-    // 파이썬 스크립트가 파싱하기 쉽게 전처리하여 제공
     const targetData = {
         "transition_type": transitionTypeFlag,
-        "targets": currentTransitionResults.map(res => {
-            // "2007 ➔ 2008" 에서 전환 도달 연도인 2008 추출
+        "targets": selected.map(res => {
             const latestTransitionStr = res.transitions[res.transitions.length - 1];
             const targetYear = parseInt(latestTransitionStr.split('➔')[1].trim(), 10);
-            return {
-                "actor_name": res.actor,
-                "target_year": targetYear // 이 연도를 기준으로 전후 3년(당해년도 제외) 수집
-            };
+            return { "actor_name": res.actor, "target_year": targetYear };
         })
     };
 
@@ -390,11 +405,8 @@ function downloadSentimentTargetJSON() {
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
     link.download = `hawk_sentiment_targets.json`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-
-    alert("AI 분석 지시서(hawk_sentiment_targets.json)가 다운로드 되었습니다.\n이 파일을 Github 저장소에 올리고 파이썬 스크립트를 실행하여 분석을 완료하세요.");
+    document.body.appendChild(link); link.click(); document.body.removeChild(link);
+    alert("AI 분석 지시서가 다운로드 되었습니다.\n이 파일을 Github에 올리고 파이썬 스크립트를 실행하여 분석을 완료하세요.");
 }
 
 function renderPieCharts() {
@@ -405,7 +417,6 @@ function renderPieCharts() {
     availableYears.forEach(year => {
         const actorArr = Object.entries(yearlyData[year]).map(([name, audi]) => ({name, audi}));
         actorArr.sort((a, b) => b.audi - a.audi);
-        
         const totalYearAudi = actorArr.reduce((sum, a) => sum + a.audi, 0);
         const totalActorsCount = actorArr.length;
 
@@ -415,19 +426,14 @@ function renderPieCharts() {
 
         const labels = top10.map(a => a.name);
         const dataVals = top10.map(a => a.audi);
-        if (othersAudi > 0) {
-            labels.push('기타');
-            dataVals.push(othersAudi);
-        }
+        if (othersAudi > 0) { labels.push('기타'); dataVals.push(othersAudi); }
 
         const box = document.createElement('div');
         box.className = 'pie-box';
         box.innerHTML = `
             <h3>${year}년</h3>
             <div style="font-size:12px; color:#6b7280; margin-bottom:10px;">총 배우: ${fmtNum(totalActorsCount)}명 / 누적관객 합: ${fmtNum(totalYearAudi)}명</div>
-            <div class="canvas-container">
-                <canvas id="pie_${year}"></canvas>
-            </div>
+            <div class="canvas-container"><canvas id="pie_${year}"></canvas></div>
             <div class="custom-legend" id="legend_${year}"></div>
         `;
         wrapper.appendChild(box);
@@ -440,22 +446,8 @@ function renderPieCharts() {
                 responsive: true, maintainAspectRatio: false, animation: false,
                 plugins: {
                     legend: { display: false },
-                    tooltip: {
-                        callbacks: {
-                            label: (ctx) => {
-                                const val = ctx.raw;
-                                const perc = ((val / totalYearAudi) * 100).toFixed(1);
-                                return ` ${fmtNum(val)}명 (${perc}%)`;
-                            }
-                        }
-                    },
-                    datalabels: {
-                        color: '#fff', font: { weight: 'bold', size: 10 },
-                        formatter: (value) => {
-                            const perc = ((value / totalYearAudi) * 100).toFixed(1);
-                            return perc >= 3.0 ? `${perc}%` : ''; 
-                        }
-                    }
+                    tooltip: { callbacks: { label: (ctx) => ` ${fmtNum(ctx.raw)}명 (${((ctx.raw / totalYearAudi) * 100).toFixed(1)}%)` } },
+                    datalabels: { color: '#fff', font: { weight: 'bold', size: 10 }, formatter: (value) => ((value / totalYearAudi) * 100).toFixed(1) >= 3.0 ? `${((value / totalYearAudi) * 100).toFixed(1)}%` : '' }
                 }
             }
         });
@@ -463,13 +455,11 @@ function renderPieCharts() {
         const legendDiv = document.getElementById(`legend_${year}`);
         let tableHTML = `<table><tbody>`;
         labels.forEach((label, idx) => {
-            const val = dataVals[idx];
-            const perc = ((val / totalYearAudi) * 100).toFixed(1);
             tableHTML += `<tr>
                 <td style="width:15px;"><span class="legend-color" style="background:${COLORS[idx]}"></span></td>
                 <td style="font-weight:bold; width: 60px;">${label}</td>
-                <td style="text-align:right;">${fmtNum(val)}명</td>
-                <td style="text-align:right; font-weight:bold; color:#2563eb;">${perc}%</td>
+                <td style="text-align:right;">${fmtNum(dataVals[idx])}명</td>
+                <td style="text-align:right; font-weight:bold; color:#2563eb;">${((dataVals[idx] / totalYearAudi) * 100).toFixed(1)}%</td>
             </tr>`;
         });
         tableHTML += `</tbody></table>`;
@@ -490,7 +480,6 @@ function setupStatsSection() {
 
     const defaultYear = availableYears[availableYears.length - 1]; 
     select.value = defaultYear;
-
     select.addEventListener('change', (e) => drawDistChart(e.target.value));
     drawDistChart(defaultYear);
 }
@@ -516,36 +505,42 @@ function drawDistChart(year) {
         중간값(Median): <span>${fmtNum(median)}명</span>
     `;
 
-    // 🌟 산점도(Scatter) 형식 대신, 동일한 관객수(x)를 가진 배우들을 빈도(y)로 그룹화하여 완벽한 밀도 시각화
-    const freqMap = {};
+    // 🌟 커널 밀도 추정(KDE)과 유사한 부드러운 곡선을 만들기 위해 히스토그램 Binning 적용
+    const maxAudi = rawData[count - 1].audi;
+    const binCount = 50; 
+    const binSize = maxAudi / binCount;
+    let bins = Array(binCount).fill(0);
+
     rawData.forEach(item => {
-        if(!freqMap[item.audi]) freqMap[item.audi] = { count: 0, names: [] };
-        freqMap[item.audi].count++;
-        freqMap[item.audi].names.push(item.name);
+        let binIndex = Math.floor(item.audi / binSize);
+        if (binIndex >= binCount) binIndex = binCount - 1;
+        bins[binIndex]++;
     });
 
-    const scatterData = Object.keys(freqMap).map(audi => ({
-        x: Number(audi),
-        y: freqMap[audi].count,
-        names: freqMap[audi].names.join(', ')
+    const smoothData = bins.map((val, idx) => ({
+        x: (idx * binSize) + (binSize / 2),
+        y: val
     }));
 
-    const meanLineData = [{x: avg, y: 0}, {x: avg, y: Math.max(...scatterData.map(d=>d.y)) + 5}];
+    const meanLineData = [{x: avg, y: 0}, {x: avg, y: Math.max(...bins) + 5}];
 
     const ctx = document.getElementById('distChart').getContext('2d');
     if (distChartInstance) distChartInstance.destroy();
 
     distChartInstance = new Chart(ctx, {
-        type: 'scatter',
+        type: 'line',
         data: {
             datasets: [
                 {
-                    label: '배우 분포도 (밀집 빈도)',
-                    data: scatterData,
-                    backgroundColor: 'rgba(37, 99, 235, 0.5)',
-                    borderColor: 'rgba(37, 99, 235, 0.9)',
-                    pointRadius: 5,
-                    pointHoverRadius: 8
+                    label: '배우 밀도 (명)',
+                    data: smoothData,
+                    backgroundColor: 'rgba(37, 99, 235, 0.2)',
+                    borderColor: 'rgba(37, 99, 235, 0.8)',
+                    borderWidth: 2,
+                    fill: 'origin', // 곡선 아래 색상 채우기
+                    tension: 0.4,   // 🌟 부드러운 곡선 적용
+                    pointRadius: 0,
+                    pointHoverRadius: 5
                 },
                 {
                     type: 'line',
@@ -566,8 +561,8 @@ function drawDistChart(year) {
                 tooltip: {
                     callbacks: {
                         label: (ctx) => {
-                            if (ctx.dataset.type === 'line') return ` 평균: ${fmtNum(avg)}명`;
-                            return ` ${fmtNum(ctx.raw.x)}명 달성: ${ctx.raw.y}명 (${ctx.raw.names})`;
+                            if (ctx.dataset.type === 'line' && ctx.dataset.label === '평균 관객수') return ` 평균: ${fmtNum(avg)}명`;
+                            return ` 이 구간 배우 수: ${ctx.raw.y}명`;
                         }
                     }
                 }
@@ -580,14 +575,18 @@ function drawDistChart(year) {
                     beginAtZero: true
                 },
                 y: {
-                    title: { display: true, text: '해당 관객수를 기록한 배우의 수 (명)', font: { weight: 'bold' } },
-                    beginAtZero: true,
-                    ticks: { precision: 0 }
+                    title: { display: true, text: '해당 구간 배우 수 (명)', font: { weight: 'bold' } },
+                    beginAtZero: true
                 }
             }
         }
     });
 }
+
+// 라디오 버튼 변경 시 즉시 검색 적용
+document.querySelectorAll('input[name="transitionType"]').forEach(radio => {
+    radio.addEventListener('change', searchTransitions);
+});
 
 loadAndProcessData();
 </script>
