@@ -100,7 +100,7 @@ h1 { font-size:28px; margin:0 0 16px; }
       
       <div style="display:flex; gap: 10px;">
           <button id="csvDownloadBtn" class="btn" style="background:#10b981; color:white; border:none; display:none;" onclick="downloadTransitionCSV()">기본 CSV 다운로드</button>
-          <button id="aiAnalysisBtn" class="btn" style="background:#dc2626; color:white; border:none; display:none;" onclick="downloadSentimentTargetJSON()">배우들 여론 분석 (AI 지시서 다운로드)</button>
+          <button id="aiAnalysisBtn" class="btn" style="background:#dc2626; color:white; border:none; display:none;" onclick="downloadSentimentTargetJSON()">배우들 여론 분석(댓글 분석용)</button>
       </div>
   </div>
 
@@ -282,7 +282,6 @@ function searchTransitions() {
         let maxY = Math.max(...availableYears);
 
         let transitions = [];
-        // 공백기(0명)도 Dove로 판단하기 위해 모든 캘린더 연도를 연속으로 순회합니다.
         for (let y = minY + 1; y <= maxY; y++) {
             let prevY = y - 1;
             let currY = y;
@@ -388,6 +387,7 @@ function downloadTransitionCSV() {
     document.body.appendChild(link); link.click(); document.body.removeChild(link);
 }
 
+// 🌟 actor_id 추가된 AI 분석 지시서 다운로드 함수
 function downloadSentimentTargetJSON() {
     const selected = getSelectedResults();
     if (selected.length === 0) { alert("분석할 배우를 선택해주세요."); return; }
@@ -397,7 +397,22 @@ function downloadSentimentTargetJSON() {
         "targets": selected.map(res => {
             const latestTransitionStr = res.transitions[res.transitions.length - 1];
             const targetYear = parseInt(latestTransitionStr.split('➔')[1].trim(), 10);
-            return { "actor_name": res.actor, "target_year": targetYear };
+            
+            // 배우 코드(actor_id) 찾기 로직 추가
+            let actorId = "";
+            for (let m of MOVIES) {
+                const actor = (m.actors || []).find(a => a.name === res.actor);
+                if (actor && actor.id) { 
+                    actorId = actor.id; 
+                    break; 
+                }
+            }
+
+            return { 
+                "actor_name": res.actor, 
+                "actor_id": actorId, 
+                "target_year": targetYear 
+            };
         })
     };
 
@@ -505,7 +520,19 @@ function drawDistChart(year) {
         중간값(Median): <span>${fmtNum(median)}명</span>
     `;
 
-    // 🌟 커널 밀도 추정(KDE)과 유사한 부드러운 곡선을 만들기 위해 히스토그램 Binning 적용
+    const freqMap = {};
+    rawData.forEach(item => {
+        if(!freqMap[item.audi]) freqMap[item.audi] = { count: 0, names: [] };
+        freqMap[item.audi].count++;
+        freqMap[item.audi].names.push(item.name);
+    });
+
+    const scatterData = Object.keys(freqMap).map(audi => ({
+        x: Number(audi),
+        y: freqMap[audi].count,
+        names: freqMap[audi].names.join(', ')
+    }));
+
     const maxAudi = rawData[count - 1].audi;
     const binCount = 50; 
     const binSize = maxAudi / binCount;
@@ -537,8 +564,8 @@ function drawDistChart(year) {
                     backgroundColor: 'rgba(37, 99, 235, 0.2)',
                     borderColor: 'rgba(37, 99, 235, 0.8)',
                     borderWidth: 2,
-                    fill: 'origin', // 곡선 아래 색상 채우기
-                    tension: 0.4,   // 🌟 부드러운 곡선 적용
+                    fill: 'origin', 
+                    tension: 0.4,   
                     pointRadius: 0,
                     pointHoverRadius: 5
                 },
@@ -583,7 +610,6 @@ function drawDistChart(year) {
     });
 }
 
-// 라디오 버튼 변경 시 즉시 검색 적용
 document.querySelectorAll('input[name="transitionType"]').forEach(radio => {
     radio.addEventListener('change', searchTransitions);
 });
