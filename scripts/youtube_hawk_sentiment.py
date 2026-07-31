@@ -65,7 +65,6 @@ def search_videos_for_year(actor_name, target_year):
 
             stats_response = youtube.videos().list(part='statistics,snippet', id=','.join(candidate_ids)).execute()
             
-            # 채널 구독자 조회를 위한 묶음 처리
             channel_ids = {item['snippet']['channelId'] for item in stats_response.get('items', [])}
             channel_subs = {}
             if channel_ids:
@@ -85,7 +84,6 @@ def search_videos_for_year(actor_name, target_year):
                 description = snippet.get('description', '')
                 tags = snippet.get('tags', [])
                 
-                # 🌟 [2단계 및 3단계 필터링 로직 엄격 적용]
                 title_desc_tags = title + " " + description + " " + " ".join(tags)
                 has_exact_name = (actor_name in title_desc_tags)
                 
@@ -97,7 +95,6 @@ def search_videos_for_year(actor_name, target_year):
                         'published_year': target_year
                     })
 
-            # 댓글 수 기준 내림차순 정렬 후 상위 3개만 확정
             valid_videos.sort(key=lambda x: x['comment_count'], reverse=True)
             return valid_videos[:3]
 
@@ -120,7 +117,6 @@ def get_comments_from_videos(videos, target_year):
         youtube = build('youtube', 'v3', developerKey=API_KEYS[CURRENT_KEY_INDEX])
         
         try:
-            # 최대 1000개 수집 로직 (nextPageToken 활용)
             comments_for_video = []
             next_page_token = None
             
@@ -137,7 +133,6 @@ def get_comments_from_videos(videos, target_year):
                     date_str = comment_snippet['publishedAt']
                     comment_year = int(date_str[:4])
                     
-                    # 🌟 [댓글 작성 연도 필터링]: 영상 연도와 댓글 연도가 일치하는 것만 통과
                     if comment_year == target_year and len(text) > 3 and "http" not in text:
                         comments_for_video.append(clean_text(text))
                 
@@ -171,19 +166,19 @@ def run_hawk_analysis(target_file_path):
 
     for idx, target in enumerate(targets):
         actor_name = target["actor_name"]
+        actor_id = target.get("actor_id", "코드없음")
         transition_year = target["target_year"]
+        
         print(f"\n========================================")
-        print(f"🎬 [{idx+1}/{len(targets)}] {actor_name} 여론 분석 (기준 연도: {transition_year})")
+        print(f"🎬 [{idx+1}/{len(targets)}] {actor_name}({actor_id}) 여론 분석 (기준 연도: {transition_year})")
         print(f"========================================")
 
-        # 전후 3년 (변경 당해 연도 제외)
         years_to_search = [transition_year - 3, transition_year - 2, transition_year - 1,
                            transition_year + 1, transition_year + 2, transition_year + 3]
         
         yearly_results = {}
         
         for yr in years_to_search:
-            # 1~3단계 필터 통과한 영상 리스트 확보
             videos = search_videos_for_year(actor_name, yr)
             if not videos:
                 print(f"   -> {yr}년: 유효한 영상이 없습니다. 스킵.")
@@ -199,7 +194,6 @@ def run_hawk_analysis(target_file_path):
             for comment in comments:
                 try:
                     res = classifier(comment[:500])[0]
-                    # 🌟 [엄격한 기준] 확신도 80% 미만은 가차없이 버림
                     if res['score'] < 0.8: continue
                     
                     label = str(res['label']).lower()
@@ -209,18 +203,22 @@ def run_hawk_analysis(target_file_path):
             
             yearly_results[str(yr)] = {"positive": pos_count, "negative": neg_count, "total_scanned": len(comments)}
 
-        # 결과 저장
-        save_path = SENTIMENT_DIR / f"hawk_analysis_{actor_name}.json"
+        # 🌟 식별 가능한 actor_id를 파일 이름에 포함하여 동명이인 데이터 덮어쓰기 방지
+        safe_id = actor_id if actor_id and actor_id != "코드없음" else "unknown"
+        save_path = SENTIMENT_DIR / f"hawk_analysis_{actor_name}_{safe_id}.json"
+        
         final_data = {
             "actor_name": actor_name,
+            "actor_id": actor_id,
             "transition_year": transition_year,
             "last_updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             "yearly_sentiment": yearly_results
         }
+        
         with open(save_path, 'w', encoding='utf-8') as f:
             json.dump(final_data, f, ensure_ascii=False, indent=2)
             
-        print(f"✅ {actor_name} 분석 완료 및 저장됨.")
+        print(f"✅ {actor_name}({actor_id}) 분석 완료 및 저장됨.")
 
     print("\n🎉 모든 분석 지시서 처리가 완료되었습니다!")
 
