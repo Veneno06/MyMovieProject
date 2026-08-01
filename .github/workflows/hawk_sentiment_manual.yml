@@ -1,0 +1,47 @@
+name: Hawk Sentiment AI Analysis (Manual)
+
+on:
+  workflow_dispatch: # 수동으로 실행 버튼을 누를 때만 작동합니다.
+
+permissions:
+  contents: write
+
+jobs:
+  run-hawk-analysis:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360 
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run Hawk Sentiment Analysis
+        env:
+          # Settings > Secrets and variables > Actions에 등록된 6개의 키를 불러옵니다.
+          YOUTUBE_HAWK_API_KEY_1: ${{ secrets.YOUTUBE_HAWK_API_KEY_1 }}
+          YOUTUBE_HAWK_API_KEY_2: ${{ secrets.YOUTUBE_HAWK_API_KEY_2 }}
+          YOUTUBE_HAWK_API_KEY_3: ${{ secrets.YOUTUBE_HAWK_API_KEY_3 }}
+          YOUTUBE_HAWK_API_KEY_4: ${{ secrets.YOUTUBE_HAWK_API_KEY_4 }}
+          YOUTUBE_HAWK_API_KEY_5: ${{ secrets.YOUTUBE_HAWK_API_KEY_5 }}
+          YOUTUBE_HAWK_API_KEY_6: ${{ secrets.YOUTUBE_HAWK_API_KEY_6 }}
+        # 다운로드해서 업로드한 지시서 파일의 경로를 지정하여 실행합니다.
+        run: python scripts/youtube_hawk_sentiment.py --file docs/data/hawk_sentiment_targets.json
+
+      - name: Commit and Push Results
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add docs/data/sentiment/hawk_analysis_*.json
+          
+          # 분석된 결과가 있을 때만 커밋하고 푸시합니다.
+          git commit -m "🤖 Add Hawk-Dove AI Sentiment Analysis results" || echo "No changes to commit"
+          git push
