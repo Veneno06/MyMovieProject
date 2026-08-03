@@ -41,6 +41,22 @@ h1 { font-size:28px; margin:0 0 16px; }
 .res-list { list-style: none; padding: 0; margin: 0; }
 .res-list li { padding: 8px 0; border-bottom: 1px dashed #e5e7eb; display: flex; justify-content: flex-start; align-items: center; gap: 15px;}
 .res-list li:last-child { border-bottom: none; }
+
+/* 🌟 결과 시각화를 위한 팝업(모달) CSS */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6); z-index: 9999;
+    display: none; align-items: center; justify-content: center;
+}
+.modal-content {
+    background: #fff; border-radius: 8px; width: 90%; max-width: 900px;
+    padding: 25px; position: relative; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+.modal-close {
+    position: absolute; right: 20px; top: 20px; background: #e5e7eb;
+    border: none; border-radius: 4px; padding: 6px 12px; cursor: pointer; font-weight: bold;
+}
+.modal-close:hover { background: #d1d5db; }
 </style>
 </head>
 <body>
@@ -119,6 +135,21 @@ h1 { font-size:28px; margin:0 0 16px; }
 
 </div>
 
+<!-- 🌟 여론 분석 결과 팝업(모달) -->
+<div class="modal-overlay" id="hawkSentimentModal">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeModal()">닫기 ✕</button>
+        <h2 style="margin-top: 0; color: #1f2937;"><span id="modalActorName" style="color: #2563eb;">배우</span> 그룹 변경 전후 유튜브 여론 추이</h2>
+        <div style="font-size: 14px; color: #4b5563; margin-bottom: 15px;">
+            그룹 전환 기준 연도: <span id="modalTargetYear" style="font-weight: bold; color: #111827;"></span>년 
+            <span style="color: #ef4444; font-size: 12px; margin-left: 10px;">(※ 변경 당해 연도는 시계열 비교를 위해 분석에서 제외됩니다.)</span>
+        </div>
+        <div style="position: relative; height: 350px; width: 100%;">
+            <canvas id="hawkSentimentChart"></canvas>
+        </div>
+    </div>
+</div>
+
 <script>
 Chart.register(ChartDataLabels);
 
@@ -131,6 +162,7 @@ let DB_SUMMARY = {};
 let yearlyData = {}; 
 let availableYears = [];
 let distChartInstance = null;
+let hawkSentimentChartInstance = null; // 모달 차트 인스턴스
 
 let actorYearStatus = {}; 
 let currentTransitionResults = [];
@@ -300,7 +332,14 @@ function searchTransitions() {
         }
         
         if (transitions.length > 0) {
-            currentTransitionResults.push({ actor: actor, transitions: transitions });
+            // 배우의 고유 ID도 여기서 찾아서 저장해둡니다 (모달 파라미터 전달용)
+            let actorId = "";
+            for (let m of MOVIES) {
+                const a = (m.actors || []).find(x => x.name === actor);
+                if (a && a.id) { actorId = a.id; break; }
+            }
+            
+            currentTransitionResults.push({ actor: actor, actorId: actorId, transitions: transitions });
         }
     }
 
@@ -318,10 +357,14 @@ function searchTransitions() {
     
     currentTransitionResults.forEach((res, idx) => {
         const tString = res.transitions.join(', ');
+        const latestTransitionStr = res.transitions[res.transitions.length - 1];
+        const targetYear = parseInt(latestTransitionStr.split('➔')[1].trim(), 10);
+
         html += `<li>
             <div style="display:flex; align-items:center;">
                 <input type="checkbox" class="trans-checkbox" value="${idx}" checked style="transform: scale(1.2); margin-right: 12px; cursor:pointer;">
-                <strong style="color:#2563eb; font-size:15px;">${res.actor}</strong>
+                <strong style="color:#2563eb; font-size:15px; margin-right: 10px;">${res.actor}</strong>
+                <button class="btn" style="padding: 2px 8px; font-size: 12px; background: #f3f4f6;" onclick="openSentimentModal('${res.actor}', '${res.actorId}', ${targetYear})">📊 여론 결과 확인</button>
             </div>
             <span style="color:#4b5563; font-size: 14px;">시점: <span style="font-weight:bold; color:#111827;">${tString}</span></span>
         </li>`;
@@ -387,7 +430,6 @@ function downloadTransitionCSV() {
     document.body.appendChild(link); link.click(); document.body.removeChild(link);
 }
 
-// 🌟 actor_id 추가된 AI 분석 지시서 다운로드 함수
 function downloadSentimentTargetJSON() {
     const selected = getSelectedResults();
     if (selected.length === 0) { alert("분석할 배우를 선택해주세요."); return; }
@@ -397,20 +439,9 @@ function downloadSentimentTargetJSON() {
         "targets": selected.map(res => {
             const latestTransitionStr = res.transitions[res.transitions.length - 1];
             const targetYear = parseInt(latestTransitionStr.split('➔')[1].trim(), 10);
-            
-            // 배우 코드(actor_id) 찾기 로직 추가
-            let actorId = "";
-            for (let m of MOVIES) {
-                const actor = (m.actors || []).find(a => a.name === res.actor);
-                if (actor && actor.id) { 
-                    actorId = actor.id; 
-                    break; 
-                }
-            }
-
             return { 
                 "actor_name": res.actor, 
-                "actor_id": actorId, 
+                "actor_id": res.actorId || "코드없음", 
                 "target_year": targetYear 
             };
         })
@@ -421,7 +452,78 @@ function downloadSentimentTargetJSON() {
     link.href = URL.createObjectURL(blob);
     link.download = `hawk_sentiment_targets.json`;
     document.body.appendChild(link); link.click(); document.body.removeChild(link);
-    alert("AI 분석 지시서가 다운로드 되었습니다.\n이 파일을 Github에 올리고 파이썬 스크립트를 실행하여 분석을 완료하세요.");
+    alert("AI 분석 지시서가 다운로드 되었습니다.\n이 파일을 GitHub에 올리고 Action을 실행하여 분석을 완료하세요.");
+}
+
+// 🌟 [추가됨] 팝업(모달) 오픈 및 여론 데이터 차트 그리기
+async function openSentimentModal(actorName, actorId, targetYear) {
+    const safeId = (actorId && actorId !== "코드없음") ? actorId : "unknown";
+    const dataUrl = `data/sentiment/hawk_analysis_${actorName}_${safeId}.json?v=${Date.now()}`;
+    
+    try {
+        const response = await fetch(dataUrl);
+        if (!response.ok) {
+            alert(`아직 분석 결과가 존재하지 않습니다.\n먼저 해당 배우를 선택하여 AI 분석 지시서를 다운받아 GitHub Actions에서 분석을 완료해주세요.`);
+            return;
+        }
+        
+        const data = await response.json();
+        const yearlySentiment = data.yearly_sentiment;
+        
+        document.getElementById('modalActorName').textContent = actorName;
+        document.getElementById('modalTargetYear').textContent = targetYear;
+        
+        const labels = Object.keys(yearlySentiment).sort((a,b) => Number(a) - Number(b));
+        const posData = labels.map(yr => yearlySentiment[yr].positive || 0);
+        const negData = labels.map(yr => -(Math.abs(yearlySentiment[yr].negative || 0)));
+
+        document.getElementById('hawkSentimentModal').style.display = 'flex';
+        const ctx = document.getElementById('hawkSentimentChart').getContext('2d');
+        
+        if (hawkSentimentChartInstance) hawkSentimentChartInstance.destroy();
+
+        hawkSentimentChartInstance = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: '긍정 댓글 (+)', data: posData,
+                        borderColor: '#3b82f6', backgroundColor: '#3b82f6', pointBackgroundColor: '#3b82f6',
+                        borderWidth: 2, tension: 0.1, pointRadius: 4
+                    },
+                    {
+                        label: '부정 댓글 (-)', data: negData,
+                        borderColor: '#ef4444', backgroundColor: '#ef4444', pointBackgroundColor: '#ef4444',
+                        borderWidth: 2, tension: 0.1, pointRadius: 4
+                    }
+                ]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        grid: { color: (ctx) => ctx.tick.value === 0 ? '#000000' : '#e5e7eb', lineWidth: (ctx) => ctx.tick.value === 0 ? 2 : 1 }
+                    }
+                },
+                plugins: {
+                    datalabels: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: (ctx) => ` ${ctx.dataset.label}: ${Math.abs(ctx.parsed.y)}개`
+                        }
+                    }
+                }
+            }
+        });
+        
+    } catch (e) {
+        alert("데이터를 불러오는 중 오류가 발생했습니다.");
+    }
+}
+
+function closeModal() {
+    document.getElementById('hawkSentimentModal').style.display = 'none';
 }
 
 function renderPieCharts() {
