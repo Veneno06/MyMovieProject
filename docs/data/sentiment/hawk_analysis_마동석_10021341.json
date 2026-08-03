@@ -2,12 +2,17 @@
   "actor_name": "마동석",
   "actor_id": "10021341",
   "transition_year": 2020,
-  "last_updated": "2026-08-03 05:33:29",
+  "last_updated": "2026-08-03 06:41:36",
   "yearly_sentiment": {
     "2017": {
       "positive": 0,
       "negative": 1,
       "total_scanned": 2
+    },
+    "2018": {
+      "positive": 410,
+      "negative": 110,
+      "total_scanned": 606
     },
     "2019": {
       "positive": 284,
@@ -25,9 +30,9 @@
       "total_scanned": 694
     },
     "2023": {
-      "positive": 80,
-      "negative": 76,
-      "total_scanned": 194
+      "positive": 83,
+      "negative": 70,
+      "total_scanned": 189
     }
   }
 }
