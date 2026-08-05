@@ -123,22 +123,24 @@ function pickMovieInfo(json){
   const genres = (raw.genres || idxEntry?.genres || []).map(g => g.genreNm || g).join(', ') || '정보 없음';
   const companies = (raw.companys || []).map(c => c.companyNm).join(', ') || '정보 없음';
 
-  const getPersonLink = (cd, nm) => {
+  // 🌟 직업(job) 파라미터를 추가하여 person.html로 넘김
+  const getPersonLink = (cd, nm, job) => {
     const pid = cd ? cd : `name:${nm}`;
-    const href = `person.html?id=${encodeURIComponent(pid)}&name=${encodeURIComponent(nm)}`;
+    const href = `person.html?id=${encodeURIComponent(pid)}&name=${encodeURIComponent(nm)}&job=${job}`;
     return `<a href="${href}" class="actor-link" target="_blank">${nm}</a>`;
   };
 
-  // 🌟 감독 링크 적용
-  const dirs = (raw.directors || []).map(d => getPersonLink(d.peopleCd, d.peopleNm)).join(', ') || '정보 없음';
+  // 🌟 감독 링크 적용 (job='director' 전달)
+  const dirs = (raw.directors || []).map(d => getPersonLink(d.peopleCd, d.peopleNm, 'director')).join(', ') || '정보 없음';
 
   const actorArr = (raw.actors || []).map(a => ({
     cd: a.peopleCd || '',
     nm: a.peopleNm || '',
   }));
 
-  const actorLinksShort = actorArr.slice(0,5).map(a => getPersonLink(a.cd, a.nm)).join(', ');
-  const actorLinksAll = actorArr.map(a => getPersonLink(a.cd, a.nm)).join(', ');
+  // 🌟 배우 링크 적용 (job='actor' 전달)
+  const actorLinksShort = actorArr.slice(0,5).map(a => getPersonLink(a.cd, a.nm, 'actor')).join(', ');
+  const actorLinksAll = actorArr.map(a => getPersonLink(a.cd, a.nm, 'actor')).join(', ');
 
   const audiAcc = (raw.audiAcc != null ? raw.audiAcc : idxEntry?.audiAcc);
   const audiText = (audiAcc != null) ? `${fmtNum(audiAcc)}명` : '집계 데이터 없음';
