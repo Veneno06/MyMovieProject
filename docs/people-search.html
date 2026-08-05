@@ -565,7 +565,18 @@ function applySentimentFilter() {
     });
 }
 
-// 🌟 [수정됨] 이름 + 직업 정보를 결합한 고유 식별 Key 적용 (동명이인/역할 완벽 분리)
+// 🌟 각 인물의 개별 프로필을 비동기로 스캔하여 진짜 대표 역할 추출 함수
+async function fetchPersonDetail(id) {
+    if(!id || id.startsWith('name:')) return null;
+    const fname = `${id}.json?v=${TS}`;
+    const PATHS = [`docs/data/people/`, `data/people/`];
+    for (const prefix of PATHS) {
+        try { const r = await fetch(prefix + fname); if(r.ok) return await r.json(); } catch(e){}
+    }
+    return null;
+}
+
+// 🌟 검색 결과 렌더링 시 진짜 대표 역할을 계산하여 표시 및 "배우만" 필터링 완벽 적용
 async function doSearch() {
     if (SEARCH_INDEX.length === 0) await loadData(); 
     
@@ -576,7 +587,7 @@ async function doSearch() {
     const out = document.getElementById('results');
     const countEl = document.getElementById('count');
     
-    out.innerHTML = '<li class="note" style="list-style:none;">검색 중...</li>';
+    out.innerHTML = '<li class="note" style="list-style:none;">검색 및 데이터 분석 중...</li>';
     countEl.innerText = '';
 
     const peopleMap = new Map();
@@ -586,7 +597,6 @@ async function doSearch() {
         
         (m.actors || []).forEach(a => {
             if (a.name && a.name.includes(keyword)) {
-                // ID가 없으면 '이름_actor'로 임시 분리
                 const key = a.id ? String(a.id) : a.name.trim() + "_actor"; 
                 if (!peopleMap.has(key)) {
                     peopleMap.set(key, { id: a.id || "", name: a.name.trim(), actorCnt: 0, directorCnt: 0, sex: a.gender || '', movies: new Set() });
@@ -601,7 +611,6 @@ async function doSearch() {
         
         (m.directors || []).forEach(d => {
             if (d.name && d.name.includes(keyword)) {
-                // ID가 없으면 '이름_director'로 임시 분리
                 const key = d.id ? String(d.id) : d.name.trim() + "_director"; 
                 if (!peopleMap.has(key)) {
                     peopleMap.set(key, { id: d.id || "", name: d.name.trim(), actorCnt: 0, directorCnt: 0, sex: '', movies: new Set() });
@@ -615,13 +624,58 @@ async function doSearch() {
     });
 
     let resultsArray = Array.from(peopleMap.values());
+
+    // 🌟 결과 배열을 순회하며 진짜 대표 역할을 계산 (비동기 처리)
+    for (let r of resultsArray) {
+        // 기본값 세팅
+        r.primaryRole = (r.directorCnt >= r.actorCnt && r.directorCnt > 0) ? '감독' : '배우';
+
+        if (r.id) {
+            const pData = await fetchPersonDetail(r.id);
+            if (pData) {
+                const pInfo = pData.peopleInfoResult?.peopleInfo || pData;
+                const filmos = pInfo.filmos || [];
+                if (filmos.length > 0) {
+                    const roleCounts = {};
+                    filmos.forEach(f => {
+                        const role = (f.moviePartNm || "").trim();
+                        if (role) roleCounts[role] = (roleCounts[role] || 0) + 1;
+                    });
+
+                    // 1. 가장 많이 한 역할 찾기
+                    let maxRole = "";
+                    let maxCount = 0;
+                    for (const [role, count] of Object.entries(roleCounts)) {
+                        if (count > maxCount) {
+                            maxCount = count;
+                            maxRole = role;
+                        }
+                    }
+
+                    // 2. 작품 수가 3개 이하라면 시기상 가장 첫 번째 역할을 대표로 사용
+                    if (filmos.length <= 3) {
+                        const sorted = [...filmos].sort((a,b) => (a.openDt||"9999").localeCompare(b.openDt||"9999"));
+                        maxRole = sorted[0].moviePartNm || maxRole;
+                    }
+
+                    if (maxRole) {
+                        r.primaryRole = maxRole;
+                    }
+                }
+            }
+        }
+    }
+
+    // 🌟 계산된 진짜 primaryRole을 기반으로 필터링 적용
+    const finalResults = resultsArray.filter(r => {
+        if (onlyActor && r.primaryRole !== '배우') return false;
+        return true;
+    });
+
     out.innerHTML = '';
     let visibleCount = 0; 
 
-    for (const r of resultsArray) {
-        r.primaryRole = (r.directorCnt >= r.actorCnt && r.directorCnt > 0) ? '감독' : '배우';
-        if (onlyActor && r.primaryRole !== '배우') continue;
-
+    for (const r of finalResults) {
         let sexBadge = "";
         if (r.sex === "남자" || r.sex === "남") sexBadge = `<span style="color:#2563eb;">(남)</span>`;
         if (r.sex === "여자" || r.sex === "여") sexBadge = `<span style="color:#ef4444;">(여)</span>`;
@@ -632,7 +686,6 @@ async function doSearch() {
         const finalId = r.id ? r.id : `name:${r.name}`;
         const finalJob = r.primaryRole === '감독' ? 'director' : 'actor';
         
-        // 🌟 person.html로 보낼 때 이 사람의 주 직업(&job=)을 명시적으로 전달
         li.innerHTML = `
             <a href="person.html?id=${encodeURIComponent(finalId)}&name=${encodeURIComponent(r.name)}&job=${finalJob}" target="_blank" style="font-weight:bold; color:#2563eb; text-decoration:none; font-size:16px;">${r.name}</a>
             <span class="note" style="margin-left:5px;">(${r.id || '코드 없음'})</span>
