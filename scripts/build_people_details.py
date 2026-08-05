@@ -38,17 +38,6 @@ def save_json(p: Path, data: dict):
     with open(p, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
-# [설정] 자음 필터링: ㅋ, ㅌ, ㅍ, ㅎ (15, 16, 17, 18)
-def is_target_consonant(name: str) -> bool:
-    if not name: return False
-    nm = unicodedata.normalize('NFC', name)
-    first_char = nm[0]
-    if not ('\uAC00' <= first_char <= '\uD7A3'): return False
-    idx = (ord(first_char) - 0xAC00) // 588
-    
-    # 15:ㅋ, 16:ㅌ, 17:ㅍ, 18:ㅎ
-    return idx in [15, 16, 17, 18]
-
 def get_next_key_session():
     global CURRENT_KEY_INDEX
     if not API_KEYS: return None, None
@@ -85,7 +74,6 @@ def fetch_people_info_smart(peopleCd):
     raise RuntimeError("All API keys exhausted.")
 
 def build_details():
-    # 1단계에서 저장된 Budget 파일 읽기
     limit_file = ROOT / "budget_limit.txt"
     budget = 2000 # 기본값
     
@@ -94,19 +82,18 @@ def build_details():
             val = limit_file.read_text(encoding="utf-8").strip()
             if val.isdigit():
                 budget = int(val)
-                print(f"[System] 사용자 입력 Budget 적용: {budget}건")
         except: pass
     
     if not API_KEYS:
         print("[build_people] No API Keys. Skipping.")
         return
 
-    # 1. 스캔
     files = sorted(glob.glob(str(MOVIE_DIR / "**" / "*.json"), recursive=True))
     people_map = {} 
 
-    print(f"[scan] 'ㅋ~ㅎ' 배우 중 성별 정보가 없는 대상을 찾습니다...")
+    print(f"[scan] 영화 파일에서 확보된 코드 중 프로필이 없는 인물을 탐색합니다...")
     
+    # 1. 존재하는 모든 코드 추출 (감독, 배우 모두)
     for p in files:
         data = load_json(Path(p))
         if not data: continue
@@ -119,25 +106,20 @@ def build_details():
                 if code and name:
                     people_map[code] = name
 
-    # 2. 필터링
+    # 2. 로컬에 프로필 json 파일이 없는 코드만 추려내기
     needed_people = []
-    
     for code in sorted(people_map.keys()):
-        name = people_map[code]
-        if not is_target_consonant(name):
-            continue
-            
         person_file = PEOPLE_DIR / f"{code}.json"
         if not (person_file.exists() and person_file.stat().st_size > 50):
             needed_people.append(code)
 
-    print(f"[info] 수집 대상: 총 {len(needed_people)}명 (이름이 ㅋ~ㅎ로 시작)")
+    print(f"[info] 프로필 수집 필요 대상: 총 {len(needed_people)}명")
     
     if not needed_people:
-        print(" -> 대상이 없습니다.")
+        print(" -> 모든 인물의 프로필이 이미 존재합니다.")
         return
 
-    # 3. API 호출
+    # 3. API 호출하여 프로필 저장
     count = 0
     for i, code in enumerate(needed_people):
         if budget > 0 and count >= budget:
@@ -162,14 +144,14 @@ def build_details():
                 
         except RuntimeError as re:
             if "All API keys exhausted" in str(re):
-                print("[STOP] 모든 키 소진. 저장을 진행합니다.")
+                print("[STOP] 모든 키 소진. 여태까지 수집한 데이터를 저장합니다.")
                 break
             print(f"[error] {code}: {re}")
         except Exception as e:
             print(f"[error] {code}: {e}")
             time.sleep(1)
 
-    print(f"[done] 배우 상세정보(성별) 신규 저장: {count}건")
+    print(f"[done] 배우/감독 상세정보 신규 저장 완료: {count}건")
 
 if __name__ == "__main__":
     build_details()
