@@ -565,7 +565,7 @@ function applySentimentFilter() {
     });
 }
 
-// 🌟 [수정됨] 이름 대신 고유 ID(peopleCd)를 Key로 사용하여 동명이인 분리
+// 🌟 [수정됨] 이름 + 직업 정보를 결합한 고유 식별 Key 적용 (동명이인/역할 완벽 분리)
 async function doSearch() {
     if (SEARCH_INDEX.length === 0) await loadData(); 
     
@@ -586,7 +586,8 @@ async function doSearch() {
         
         (m.actors || []).forEach(a => {
             if (a.name && a.name.includes(keyword)) {
-                const key = a.id ? String(a.id) : a.name.trim(); // ID 기반 분리
+                // ID가 없으면 '이름_actor'로 임시 분리
+                const key = a.id ? String(a.id) : a.name.trim() + "_actor"; 
                 if (!peopleMap.has(key)) {
                     peopleMap.set(key, { id: a.id || "", name: a.name.trim(), actorCnt: 0, directorCnt: 0, sex: a.gender || '', movies: new Set() });
                 } else {
@@ -600,7 +601,8 @@ async function doSearch() {
         
         (m.directors || []).forEach(d => {
             if (d.name && d.name.includes(keyword)) {
-                const key = d.id ? String(d.id) : d.name.trim(); // ID 기반 분리
+                // ID가 없으면 '이름_director'로 임시 분리
+                const key = d.id ? String(d.id) : d.name.trim() + "_director"; 
                 if (!peopleMap.has(key)) {
                     peopleMap.set(key, { id: d.id || "", name: d.name.trim(), actorCnt: 0, directorCnt: 0, sex: '', movies: new Set() });
                 } else {
@@ -628,9 +630,11 @@ async function doSearch() {
         li.className = "search-result-item";
         
         const finalId = r.id ? r.id : `name:${r.name}`;
+        const finalJob = r.primaryRole === '감독' ? 'director' : 'actor';
         
+        // 🌟 person.html로 보낼 때 이 사람의 주 직업(&job=)을 명시적으로 전달
         li.innerHTML = `
-            <a href="person.html?id=${encodeURIComponent(finalId)}&name=${encodeURIComponent(r.name)}" target="_blank" style="font-weight:bold; color:#2563eb; text-decoration:none; font-size:16px;">${r.name}</a>
+            <a href="person.html?id=${encodeURIComponent(finalId)}&name=${encodeURIComponent(r.name)}&job=${finalJob}" target="_blank" style="font-weight:bold; color:#2563eb; text-decoration:none; font-size:16px;">${r.name}</a>
             <span class="note" style="margin-left:5px;">(${r.id || '코드 없음'})</span>
             <span style="font-size:13px; font-weight:bold; color:#555; margin-left:5px;">${sexBadge} [${r.primaryRole}]</span>
             <div class="note" style="font-size:13px; margin-top:4px;">출연/연출작: ${Array.from(r.movies).slice(0, 10).join(', ')}${r.movies.size > 10 ? ' 등' : ''}</div>
