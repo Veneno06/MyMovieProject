@@ -109,7 +109,6 @@
 </div>
 
 <script>
-// 🌟 [추가됨] 새 탭일 경우 창 닫기, 아니면 뒤로 가기
 function smartBack() {
     if (window.history.length <= 1) {
         window.close();
@@ -237,19 +236,26 @@ async function render(){
 
   const allMovies = await fetchIndex() || [];
 
+  // 🌟 [수정됨] 이름만으로 매칭될 때, 배우 ID 우선 확보 -> 없으면 감독 ID 확보
   if (currentId.startsWith('name:')) {
       const targetName = currentId.replace('name:', '');
+      let foundId = null;
+      
       for (const m of allMovies) {
-          const cast = [...(m.actors || []), ...(m.directors || [])];
-          const target = cast.find(p => p.name === targetName && p.id);
-          if (target) {
-              currentId = target.id;
-              break;
+          const aMatch = (m.actors || []).find(p => p.name === targetName && p.id);
+          if (aMatch) { foundId = aMatch.id; break; }
+      }
+      if (!foundId) {
+          for (const m of allMovies) {
+              const dMatch = (m.directors || []).find(p => p.name === targetName && p.id);
+              if (dMatch) { foundId = dMatch.id; break; }
           }
       }
+      if (foundId) currentId = foundId;
   }
 
   document.getElementById('title').textContent = currentName;
+  // 🌟 ID가 확정된 상태이므로 여기서 코드 출력
   if (!currentId.startsWith('name:')) {
       document.getElementById('codeDisplay').textContent = `(${currentId})`;
   } else {
@@ -273,8 +279,6 @@ async function render(){
       
       if (personInfo && personInfo.repRoleNm) {
           document.getElementById('roleDisplay').textContent = personInfo.repRoleNm + ' 프로필';
-      } else {
-          document.getElementById('roleDisplay').textContent = '인물 프로필';
       }
 
       if (personInfo && personInfo.sex) {
@@ -286,25 +290,53 @@ async function render(){
       if (personInfo && personInfo.filmos) {
           myMovies = personInfo.filmos.map(filmo => {
               const baseInfo = movieMap[filmo.movieCd] || {};
-              return { ...baseInfo, ...filmo, movieNm: filmo.movieNm || baseInfo.movieNm, openDt: baseInfo.openDt || filmo.openDt };
+              // 🌟 API 상세에 없는 누적 관객수(audiAcc)를 인덱스에서 강력 병합
+              return { 
+                  ...baseInfo, 
+                  ...filmo, 
+                  movieNm: filmo.movieNm || baseInfo.movieNm, 
+                  openDt: baseInfo.openDt || filmo.openDt,
+                  audiAcc: baseInfo.audiAcc || filmo.audiAcc || 0
+              };
           });
       }
   }
 
+  // 🌟 상세 파일이 없거나 오류로 비어있을 경우 자체 인덱스를 뒤져서 강제 생성
   if (myMovies.length === 0) {
       const seen = new Set();
       allMovies.forEach(m => {
           if (seen.has(m.movieCd)) return;
-          let match = false;
+          let isAct = false, isDir = false;
+          
           const actors = m.actors || []; const directors = m.directors || [];
           if (currentId.startsWith('name:')) {
               const targetName = currentId.replace('name:', '');
-              match = actors.some(a => a.name === targetName) || directors.some(d => d.name === targetName);
+              isAct = actors.some(a => a.name === targetName);
+              isDir = directors.some(d => d.name === targetName);
           } else {
-              match = actors.some(a => a.id === currentId) || directors.some(d => d.id === currentId);
+              isAct = actors.some(a => a.id === currentId);
+              isDir = directors.some(d => d.id === currentId);
           }
-          if (match) { myMovies.push(m); seen.add(m.movieCd); }
+          
+          if (isAct || isDir) {
+              const partNm = isDir ? '감독' : '배우';
+              myMovies.push({ ...m, moviePartNm: partNm });
+              seen.add(m.movieCd);
+          }
       });
+  }
+
+  // 🌟 프로필 직업 타이틀 후처리 보정 (상세 파일이 없었을 경우)
+  if (!personInfo || !personInfo.repRoleNm) {
+      let isDir = false, isAct = false;
+      myMovies.forEach(m => { 
+          if(m.moviePartNm === '감독') isDir = true; 
+          if(m.moviePartNm === '배우') isAct = true; 
+      });
+      if (isDir && !isAct) document.getElementById('roleDisplay').textContent = '감독 프로필';
+      else if (isAct) document.getElementById('roleDisplay').textContent = '배우 프로필';
+      else document.getElementById('roleDisplay').textContent = '인물 프로필';
   }
 
   const uniqueMovies = [];
