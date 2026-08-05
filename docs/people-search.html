@@ -147,7 +147,6 @@
                   <span style="font-size:13px; color:#1e3a8a; font-weight:bold;">명 자동 선택 후 ➔</span>
                   
                   <button class="btn" onclick="exportFilterResultsToCSV()" style="background:#10b981; color:white; border:none; padding:8px 16px;">Colab용 h1_data.csv 다운로드</button>
-                  <!-- 🌟 신규 추가된 전체 요약본 전용 다운로드 버튼 -->
                   <button class="btn" onclick="exportActorSummaryToCSV()" style="background:#f59e0b; color:white; border:none; padding:8px 16px; font-weight:bold;">배우 전체 여론 요약 다운로드</button>
               </div>
           </div>
@@ -381,7 +380,6 @@ function toggleAllActors(source) {
     checkboxes.forEach(cb => cb.checked = source.checked);
 }
 
-// 🌟 [기존 기능] 파트너 타격량(Hawk-Dove) 분석을 위한 영화별 CSV 다운로드 기능
 function exportFilterResultsToCSV() {
     const countInput = parseInt(document.getElementById('autoSelectCount').value, 10);
     const selectType = document.getElementById('autoSelectType').value;
@@ -439,7 +437,6 @@ function exportFilterResultsToCSV() {
             let pos_count = 0, neg_count = 0;
             if (actor.rawTimeline) {
                 Object.keys(actor.rawTimeline).forEach(w => {
-                    // ⚠️ 여기가 누락 원인이었던 부분입니다 (개봉 연도와 일치하는 댓글만 카운트)
                     if (w.startsWith(movieYear)) {
                         pos_count += (actor.rawTimeline[w].positive || 0);
                         neg_count += Math.abs(actor.rawTimeline[w].negative || 0);
@@ -465,7 +462,6 @@ function exportFilterResultsToCSV() {
     document.body.removeChild(link);
 }
 
-// 🌟 [신규 추가] 상급자 보고용 배우 전체 통계 CSV 다운로드 (데이터 누락 방지 완벽 해결)
 function exportActorSummaryToCSV() {
     const checkedBoxes = document.querySelectorAll('.actor-checkbox:checked');
     if (checkedBoxes.length === 0) {
@@ -479,7 +475,6 @@ function exportActorSummaryToCSV() {
     targets.forEach(actor => {
         let pos_count = 0, neg_count = 0;
         
-        // 연도 제약(movieYear) 없이 배우의 모든 댓글 기록을 합산
         if (actor.rawTimeline) {
             Object.keys(actor.rawTimeline).forEach(w => {
                 pos_count += (actor.rawTimeline[w].positive || 0);
@@ -570,6 +565,7 @@ function applySentimentFilter() {
     });
 }
 
+// 🌟 [수정됨] 이름 대신 고유 ID(peopleCd)를 Key로 사용하여 동명이인 분리
 async function doSearch() {
     if (SEARCH_INDEX.length === 0) await loadData(); 
     
@@ -590,9 +586,9 @@ async function doSearch() {
         
         (m.actors || []).forEach(a => {
             if (a.name && a.name.includes(keyword)) {
-                const key = a.name.trim(); 
+                const key = a.id ? String(a.id) : a.name.trim(); // ID 기반 분리
                 if (!peopleMap.has(key)) {
-                    peopleMap.set(key, { id: a.id || "", name: a.name, actorCnt: 0, directorCnt: 0, sex: a.gender || '', movies: new Set() });
+                    peopleMap.set(key, { id: a.id || "", name: a.name.trim(), actorCnt: 0, directorCnt: 0, sex: a.gender || '', movies: new Set() });
                 } else {
                     if (!peopleMap.get(key).id && a.id) peopleMap.get(key).id = a.id; 
                     if (!peopleMap.get(key).sex && a.gender) peopleMap.get(key).sex = a.gender;
@@ -604,9 +600,9 @@ async function doSearch() {
         
         (m.directors || []).forEach(d => {
             if (d.name && d.name.includes(keyword)) {
-                const key = d.name.trim(); 
+                const key = d.id ? String(d.id) : d.name.trim(); // ID 기반 분리
                 if (!peopleMap.has(key)) {
-                    peopleMap.set(key, { id: d.id || "", name: d.name, actorCnt: 0, directorCnt: 0, sex: '', movies: new Set() });
+                    peopleMap.set(key, { id: d.id || "", name: d.name.trim(), actorCnt: 0, directorCnt: 0, sex: '', movies: new Set() });
                 } else {
                     if (!peopleMap.get(key).id && d.id) peopleMap.get(key).id = d.id;
                 }
