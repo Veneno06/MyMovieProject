@@ -130,6 +130,14 @@ const safeParseInt = (v) => {
 };
 const fmtNum = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
+// 🌟 곡성 관객수 누락 방지를 위한 영화 개별 상세 파일 스캔 함수
+async function tryFetchJson(url) {
+    try { 
+        const r = await fetch(url, {cache:'no-store'}); 
+        return r.ok ? await r.json() : null; 
+    } catch(e) { return null; }
+}
+
 let myChart = null; 
 let sentimentChartInstance = null; 
 let currentId = null, currentName = null, currentJob = null;
@@ -232,13 +240,12 @@ function calculateAndDisplayMyRank(allMovies, myId) {
 async function render(){
   currentId = getParam('id') || getParam('personKey');
   currentName = getParam('name') || "이름 없음";
-  currentJob = getParam('job') || ""; // 'actor' or 'director'
+  currentJob = getParam('job') || ""; 
 
   if (!currentId) { document.getElementById('msg').textContent = '잘못된 접근'; return; }
 
   const allMovies = await fetchIndex() || [];
 
-  // 🌟 [수정됨] 직업 교차 탐색 완전히 차단: 넘어온 job과 일치하는 직업군의 ID만 탐색
   if (currentId.startsWith('name:')) {
       const targetName = currentId.replace('name:', '');
       let foundId = null;
@@ -254,7 +261,6 @@ async function render(){
               if (aMatch) { foundId = aMatch.id; break; }
           }
       } else {
-          // job 파라미터가 아예 없을 때만 전체 탐색
           for (const m of allMovies) {
               const aMatch = (m.actors || []).find(p => p.name === targetName && p.id);
               if (aMatch) { foundId = aMatch.id; break; }
@@ -318,7 +324,6 @@ async function render(){
       }
   }
 
-  // 🌟 [수정됨] 상세 파일이 없을 경우 인덱스에서 강제 생성 시 다른 직업의 필모그래피 훔쳐오기 방지
   if (myMovies.length === 0) {
       const seen = new Set();
       allMovies.forEach(m => {
@@ -335,7 +340,6 @@ async function render(){
               isDir = directors.some(d => d.id === currentId);
           }
           
-          // 🌟 URL에서 넘어온 직업을 최우선 판단하여 철저히 분리
           if (currentJob === 'actor') { isDir = false; }
           if (currentJob === 'director') { isAct = false; }
 
@@ -347,7 +351,6 @@ async function render(){
       });
   }
 
-  // 🌟 프로필 직업 타이틀 후처리 보정
   if (!personInfo || !personInfo.repRoleNm) {
       let isDir = false, isAct = false;
       myMovies.forEach(m => { 
@@ -373,6 +376,24 @@ async function render(){
           uniqueMovies.push(m);
       }
   });
+
+  // 🌟 [수정됨] 누락된 관객수(곡성 등) 영화 상세 데이터에서 비동기로 강제 스캔
+  for (const f of uniqueMovies) {
+      if (!f.audiAcc || safeParseInt(f.audiAcc) === 0) {
+          const year = (f.openDt || f.prdtYear || "").substring(0, 4);
+          if (year) {
+              const mData = await tryFetchJson(`data/movies/${year}/${f.movieCd}.json`) || 
+                            await tryFetchJson(`docs/data/movies/${year}/${f.movieCd}.json`) ||
+                            await tryFetchJson(`data/movies/${f.movieCd}.json`);
+              if (mData) {
+                  const info = mData.movieInfoResult?.movieInfo || mData.movieInfo || mData;
+                  if (info.audiAcc) {
+                      f.audiAcc = info.audiAcc;
+                  }
+              }
+          }
+      }
+  }
 
   uniqueMovies.sort((a,b) => (b.openDt || '').localeCompare(a.openDt || ''));
   const out = document.getElementById('out');
