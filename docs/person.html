@@ -109,7 +109,6 @@
 </div>
 
 <script>
-// 새 탭일 경우 창 닫기, 아니면 뒤로 가기
 function smartBack() {
     if (window.history.length <= 1) {
         window.close();
@@ -239,7 +238,7 @@ async function render(){
 
   const allMovies = await fetchIndex() || [];
 
-  // 🌟 동명이인 필터링: job 파라미터가 있으면 해당 직업의 ID를 최우선으로 탐색
+  // 🌟 [수정됨] 직업 교차 탐색 완전히 차단: 넘어온 job과 일치하는 직업군의 ID만 탐색
   if (currentId.startsWith('name:')) {
       const targetName = currentId.replace('name:', '');
       let foundId = null;
@@ -254,22 +253,23 @@ async function render(){
               const aMatch = (m.actors || []).find(p => p.name === targetName && p.id);
               if (aMatch) { foundId = aMatch.id; break; }
           }
-      }
-
-      // job 파라미터가 없거나 못 찾았을 경우 순차적 풀스캔 (배우 최우선)
-      if (!foundId) {
+      } else {
+          // job 파라미터가 아예 없을 때만 전체 탐색
           for (const m of allMovies) {
               const aMatch = (m.actors || []).find(p => p.name === targetName && p.id);
               if (aMatch) { foundId = aMatch.id; break; }
           }
-      }
-      if (!foundId) {
-          for (const m of allMovies) {
-              const dMatch = (m.directors || []).find(p => p.name === targetName && p.id);
-              if (dMatch) { foundId = dMatch.id; break; }
+          if (!foundId) {
+              for (const m of allMovies) {
+                  const dMatch = (m.directors || []).find(p => p.name === targetName && p.id);
+                  if (dMatch) { foundId = dMatch.id; break; }
+              }
           }
       }
-      if (foundId) currentId = foundId;
+
+      if (foundId) {
+          currentId = foundId;
+      }
   }
 
   document.getElementById('title').textContent = currentName;
@@ -318,7 +318,7 @@ async function render(){
       }
   }
 
-  // 🌟 상세 파일이 없거나 오류로 비어있을 경우 인덱스에서 강제 생성 및 관객수 병합
+  // 🌟 [수정됨] 상세 파일이 없을 경우 인덱스에서 강제 생성 시 다른 직업의 필모그래피 훔쳐오기 방지
   if (myMovies.length === 0) {
       const seen = new Set();
       allMovies.forEach(m => {
@@ -335,9 +335,9 @@ async function render(){
               isDir = directors.some(d => d.id === currentId);
           }
           
-          // url에서 넘어온 직업을 최우선 판단
-          if (currentJob === 'actor' && isAct) isDir = false;
-          if (currentJob === 'director' && isDir) isAct = false;
+          // 🌟 URL에서 넘어온 직업을 최우선 판단하여 철저히 분리
+          if (currentJob === 'actor') { isDir = false; }
+          if (currentJob === 'director') { isAct = false; }
 
           if (isAct || isDir) {
               const partNm = isDir ? '감독' : '배우';
