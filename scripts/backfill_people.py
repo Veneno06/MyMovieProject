@@ -43,20 +43,6 @@ def normalize_title(title):
     if not title: return ""
     return "".join(c for c in title if c.isalnum()).lower()
 
-# [설정] 자음 필터링: ㅅ, ㅇ, ㅈ, ㅊ, ㅋ (+ ㅆ, ㅉ 포함)
-# 인덱스: 9(ㅅ), 10(ㅆ), 11(ㅇ), 12(ㅈ), 13(ㅉ), 14(ㅊ), 15(ㅋ)
-def is_target_consonant(name: str) -> bool:
-    if not name: return False
-    nm = unicodedata.normalize('NFC', name)
-    first_char = nm[0]
-    
-    if not ('\uAC00' <= first_char <= '\uD7A3'):
-        return False
-    
-    idx = (ord(first_char) - 0xAC00) // 588
-    
-    return idx in [9, 10, 11, 12, 13, 14, 15]
-
 def get_next_key_session():
     global CURRENT_KEY_INDEX
     if not API_KEYS: return None, None
@@ -92,18 +78,20 @@ def fetch_people_list_smart(peopleNm):
             time.sleep(1)
     raise RuntimeError("All API keys exhausted.")
 
-def backfill(budget: int, rate_sleep_ms: int):
-    # Budget 전달 기능
+def backfill(budget: int, rate_sleep_ms: int, target_names_input: str):
     try:
         limit_file = ROOT / "budget_limit.txt"
         limit_file.write_text(str(budget), encoding="utf-8")
-        print(f"[System] Budget {budget} 설정 완료 (성별 정보 스크립트로 전달됨)")
-    except Exception as e:
-        print(f"[Warning] Budget 전달 실패: {e}")
+    except: pass
+
+    # 수동 타겟 이름 파싱
+    manual_targets = [n.strip() for n in target_names_input.split(",") if n.strip()]
+    if manual_targets:
+        print(f"[System] 🚀 수동 타겟 지정됨: {manual_targets} (이 인물들만 최우선 스캔합니다)")
 
     files = sorted([Path(p) for p in glob.glob(str(DETAIL_DIR / "**" / "*.json"), recursive=True)], reverse=True)
     
-    print(f"[Step 1] 전체 파일({len(files)}개) 스캔 중... 'ㅅ~ㅋ' 배우 타겟팅")
+    print(f"[Step 1] 전체 파일({len(files)}개) 스캔 중... 누락된 인물 매핑")
     
     target_map = defaultdict(list)
     
@@ -118,26 +106,36 @@ def backfill(budget: int, rate_sleep_ms: int):
         if not any(n.get("nationNm") == "한국" for n in nations):
             continue
             
-        actors = info.get("actors") or []
-        for a in actors:
-            nm = a.get("peopleNm", "").strip()
-            cd = a.get("peopleCd", "").strip()
-            
-            if nm and (not cd) and is_target_consonant(nm):
-                target_map[nm].append({
-                    "path": p, "movieNm": movieNm, "cleanNm": normalize_title(movieNm)
-                })
+        # 배우와 감독 모두 스캔 (과거 코드의 감독 누락 버그 해결)
+        for role_key in ["actors", "directors"]:
+            people_list = info.get(role_key) or []
+            for a in people_list:
+                nm = a.get("peopleNm", "").strip()
+                cd = a.get("peopleCd", "").strip()
+                
+                # 코드가 없는 사람만 추려냄
+                if nm and not cd:
+                    target_map[nm].append({
+                        "path": p, "movieNm": movieNm, "cleanNm": normalize_title(movieNm), "role_key": role_key
+                    })
 
-    target_names = sorted(target_map.keys(), key=lambda k: len(target_map[k]), reverse=True)
-    print(f"[Step 1 완료] 총 {len(target_names)}명의 대상 배우(코드 미보유) 발견.")
-    if target_names: print(f" -> 주요 타겟: {target_names[:10]}")
+    # 빈도수(참여 영화 수)가 많은 사람부터 먼저 채우도록 정렬 (스마트 알고리즘 적용)
+    all_missing_names = sorted(target_map.keys(), key=lambda k: len(target_map[k]), reverse=True)
+    
+    # 만약 수동 지정된 이름이 있다면, 전체 목록 대신 지정된 이름만 사용
+    if manual_targets:
+        target_names = [n for n in manual_targets if n in target_map]
+        print(f" -> 지정된 타겟 중 누락이 확인된 인물: {target_names}")
+    else:
+        target_names = all_missing_names
+        print(f"[Step 1 완료] 총 {len(target_names)}명의 대상 인물 발견. 최다 출연 누락 타겟: {target_names[:10]}")
 
     used = 0
     updated_files_count = 0
     
     for name in target_names:
         if used >= budget:
-            print(f"[Stop] 예산 소진 ({used}회).")
+            print(f"[Stop] 예산 소진 ({used}회). 다음 업데이트를 기약합니다.")
             break
             
         occurrences = target_map[name]
@@ -159,25 +157,27 @@ def backfill(budget: int, rate_sleep_ms: int):
                 for target in occurrences:
                     if target["cleanNm"] in filmo_set:
                         f_path = target["path"]
+                        role_key = target["role_key"]
                         f_data = load_json(f_path)
                         if not f_data: continue
+                        
                         f_info = f_data if f_data.get("movieCd") else ((f_data.get("movieInfoResult") or {}).get("movieInfo") or {})
-                        actors_list = f_info.get("actors") or []
+                        people_list_in_movie = f_info.get(role_key) or []
                         
                         changed = False
-                        for ac in actors_list:
+                        for ac in people_list_in_movie:
                             if ac.get("peopleNm") == name and not ac.get("peopleCd"):
                                 ac["peopleCd"] = pid
                                 changed = True
                         
                         if changed:
-                            if f_data.get("movieCd"): f_data["actors"] = actors_list
-                            elif "movieInfoResult" in f_data: f_data["movieInfoResult"]["movieInfo"]["actors"] = actors_list
+                            if f_data.get("movieCd"): f_data[role_key] = people_list_in_movie
+                            elif "movieInfoResult" in f_data: f_data["movieInfoResult"]["movieInfo"][role_key] = people_list_in_movie
                             save_json(f_path, f_data)
                             matched += 1
                             updated_files_count += 1
             if matched > 0:
-                print(f" -> ✅ 배우 '{name}': {matched}편 업데이트 성공")
+                print(f" -> ✅ 인물 '{name}': {matched}편 업데이트 성공")
         except Exception as e:
             print(f"[Error] {name}: {e}")
             time.sleep(1)
@@ -188,8 +188,11 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--budget", type=int, default=3000)
     ap.add_argument("--rate-sleep-ms", type=int, default=100)
+    ap.add_argument("--target-names", type=str, default="")
     args, unknown = ap.parse_known_args()
+    
     if not API_KEYS:
         print("[error] No API Keys.")
         exit(1)
-    backfill(args.budget, args.rate_sleep_ms)
+        
+    backfill(args.budget, args.rate_sleep_ms, args.target_names)
