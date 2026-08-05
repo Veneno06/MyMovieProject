@@ -109,6 +109,7 @@
 </div>
 
 <script>
+// 새 탭일 경우 창 닫기, 아니면 뒤로 가기
 function smartBack() {
     if (window.history.length <= 1) {
         window.close();
@@ -132,7 +133,7 @@ const fmtNum = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
 let myChart = null; 
 let sentimentChartInstance = null; 
-let currentId = null, currentName = null;
+let currentId = null, currentName = null, currentJob = null;
 let rawSentimentData = null; 
 let filmsForChart = []; 
 let currentChartType = 'totalAudi';
@@ -232,18 +233,35 @@ function calculateAndDisplayMyRank(allMovies, myId) {
 async function render(){
   currentId = getParam('id') || getParam('personKey');
   currentName = getParam('name') || "이름 없음";
+  currentJob = getParam('job') || ""; // 'actor' or 'director'
+
   if (!currentId) { document.getElementById('msg').textContent = '잘못된 접근'; return; }
 
   const allMovies = await fetchIndex() || [];
 
-  // 🌟 [수정됨] 이름만으로 매칭될 때, 배우 ID 우선 확보 -> 없으면 감독 ID 확보
+  // 🌟 동명이인 필터링: job 파라미터가 있으면 해당 직업의 ID를 최우선으로 탐색
   if (currentId.startsWith('name:')) {
       const targetName = currentId.replace('name:', '');
       let foundId = null;
-      
-      for (const m of allMovies) {
-          const aMatch = (m.actors || []).find(p => p.name === targetName && p.id);
-          if (aMatch) { foundId = aMatch.id; break; }
+
+      if (currentJob === 'director') {
+          for (const m of allMovies) {
+              const dMatch = (m.directors || []).find(p => p.name === targetName && p.id);
+              if (dMatch) { foundId = dMatch.id; break; }
+          }
+      } else if (currentJob === 'actor') {
+          for (const m of allMovies) {
+              const aMatch = (m.actors || []).find(p => p.name === targetName && p.id);
+              if (aMatch) { foundId = aMatch.id; break; }
+          }
+      }
+
+      // job 파라미터가 없거나 못 찾았을 경우 순차적 풀스캔 (배우 최우선)
+      if (!foundId) {
+          for (const m of allMovies) {
+              const aMatch = (m.actors || []).find(p => p.name === targetName && p.id);
+              if (aMatch) { foundId = aMatch.id; break; }
+          }
       }
       if (!foundId) {
           for (const m of allMovies) {
@@ -255,7 +273,6 @@ async function render(){
   }
 
   document.getElementById('title').textContent = currentName;
-  // 🌟 ID가 확정된 상태이므로 여기서 코드 출력
   if (!currentId.startsWith('name:')) {
       document.getElementById('codeDisplay').textContent = `(${currentId})`;
   } else {
@@ -290,7 +307,6 @@ async function render(){
       if (personInfo && personInfo.filmos) {
           myMovies = personInfo.filmos.map(filmo => {
               const baseInfo = movieMap[filmo.movieCd] || {};
-              // 🌟 API 상세에 없는 누적 관객수(audiAcc)를 인덱스에서 강력 병합
               return { 
                   ...baseInfo, 
                   ...filmo, 
@@ -302,7 +318,7 @@ async function render(){
       }
   }
 
-  // 🌟 상세 파일이 없거나 오류로 비어있을 경우 자체 인덱스를 뒤져서 강제 생성
+  // 🌟 상세 파일이 없거나 오류로 비어있을 경우 인덱스에서 강제 생성 및 관객수 병합
   if (myMovies.length === 0) {
       const seen = new Set();
       allMovies.forEach(m => {
@@ -319,24 +335,33 @@ async function render(){
               isDir = directors.some(d => d.id === currentId);
           }
           
+          // url에서 넘어온 직업을 최우선 판단
+          if (currentJob === 'actor' && isAct) isDir = false;
+          if (currentJob === 'director' && isDir) isAct = false;
+
           if (isAct || isDir) {
               const partNm = isDir ? '감독' : '배우';
-              myMovies.push({ ...m, moviePartNm: partNm });
+              myMovies.push({ ...m, moviePartNm: partNm, audiAcc: m.audiAcc || 0 });
               seen.add(m.movieCd);
           }
       });
   }
 
-  // 🌟 프로필 직업 타이틀 후처리 보정 (상세 파일이 없었을 경우)
+  // 🌟 프로필 직업 타이틀 후처리 보정
   if (!personInfo || !personInfo.repRoleNm) {
       let isDir = false, isAct = false;
       myMovies.forEach(m => { 
           if(m.moviePartNm === '감독') isDir = true; 
           if(m.moviePartNm === '배우') isAct = true; 
       });
-      if (isDir && !isAct) document.getElementById('roleDisplay').textContent = '감독 프로필';
-      else if (isAct) document.getElementById('roleDisplay').textContent = '배우 프로필';
-      else document.getElementById('roleDisplay').textContent = '인물 프로필';
+      
+      if (currentJob === 'director' || (isDir && !isAct)) {
+          document.getElementById('roleDisplay').textContent = '감독 프로필';
+      } else if (currentJob === 'actor' || isAct) {
+          document.getElementById('roleDisplay').textContent = '배우 프로필';
+      } else {
+          document.getElementById('roleDisplay').textContent = '인물 프로필';
+      }
   }
 
   const uniqueMovies = [];
@@ -367,7 +392,7 @@ async function render(){
             const d = f.actors.slice(0, 7).map(a => {
                 if (a.name === currentName) return `<b>${a.name}</b>`;
                 const pid = (a.id && a.id.trim()) ? a.id : `name:${a.name}`;
-                return `<a href="person.html?id=${encodeURIComponent(pid)}&name=${encodeURIComponent(a.name)}" target="_blank" style="color:#555; text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${a.name}</a>`;
+                return `<a href="person.html?id=${encodeURIComponent(pid)}&name=${encodeURIComponent(a.name)}&job=actor" target="_blank" style="color:#555; text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${a.name}</a>`;
             });
             castStr = ` · 배우: ${d.join(', ')}`;
         }
