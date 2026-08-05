@@ -4,14 +4,17 @@ on:
   workflow_dispatch:
     inputs:
       budget:
-        description: 'Budget (Default: 3000)'
+        description: 'API 한도 예산 (기본값: 3000)'
         required: true
         default: '3000'
+      target_names:
+        description: '수동으로 강제 업데이트할 이름 (쉼표 구분, 예: 나홍진,정호연)'
+        required: false
+        default: ''
 
 jobs:
   run:
     runs-on: ubuntu-latest
-    # [수정] 7개 키 모두 로드
     env:
       KOFIC_API_KEY: ${{ secrets.KOFIC_API_KEY }}
       KOFIC_API_KEY_2: ${{ secrets.KOFIC_API_KEY_2 }}
@@ -36,14 +39,15 @@ jobs:
         run: |
           if [ -f requirements.txt ]; then pip install -r requirements.txt; else pip install requests; fi
 
-      # 1단계: 영화 데이터에 배우 ID 채워넣기 (키 자동 교체 적용)
+      # 1단계: 영화 데이터에 배우/감독 ID 채워넣기 (수동 타겟 입력값 전달)
       - name: Backfill people codes
         run: |
           python scripts/backfill_people.py \
             --budget "${{ inputs.budget }}" \
-            --rate-sleep-ms "100"
+            --rate-sleep-ms "100" \
+            --target-names "${{ inputs.target_names }}"
 
-      # 2단계: 확보된 ID를 바탕으로 성별/세부정보 다운로드 (키 자동 교체 적용)
+      # 2단계: 확보된 ID를 바탕으로 성별/세부정보 다운로드
       - name: Build people details (Gender)
         run: |
           python scripts/build_people_details.py
@@ -55,7 +59,7 @@ jobs:
 
       # 4단계: 데이터 저장 (가장 중요)
       - name: Commit updated data
-        if: always() # 스크립트가 중간에 멈춰도 저장은 무조건 시도
+        if: always()
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
@@ -66,7 +70,7 @@ jobs:
           git add docs/data/search_index.json
           git add .
           
-          git commit -m "Update movie data & indexes (Smart Rotation)" || echo "No changes to commit"
+          git commit -m "Update movie data & indexes (Smart Rotation & Targeted)" || echo "No changes to commit"
           
           git pull --rebase origin main
           git push
