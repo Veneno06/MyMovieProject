@@ -2,37 +2,147 @@
   "actor_name": "황정민",
   "actor_id": "10090290",
   "transition_year": 2016,
-  "last_updated": "2026-08-03 06:38:54",
-  "yearly_sentiment": {
-    "2013": {
-      "positive": 6,
+  "last_updated": "2026-08-05 02:58:32",
+  "timeline": {
+    "2013-Q1": {
+      "positive": 57,
+      "negative": 35,
+      "total_scanned": 94
+    },
+    "2013-Q2": {
+      "positive": 11,
       "negative": 2,
       "total_scanned": 16
     },
-    "2014": {
-      "positive": 0,
+    "2013-Q3": {
+      "positive": 261,
+      "negative": 274,
+      "total_scanned": 567
+    },
+    "2013-Q4": {
+      "positive": 3,
       "negative": 0,
-      "total_scanned": 0
+      "total_scanned": 3
     },
-    "2015": {
-      "positive": 0,
+    "2014-Q1": {
+      "positive": 18,
+      "negative": 7,
+      "total_scanned": 25
+    },
+    "2014-Q2": {
+      "positive": 10,
+      "negative": 7,
+      "total_scanned": 19
+    },
+    "2014-Q3": {
+      "positive": 116,
+      "negative": 87,
+      "total_scanned": 210
+    },
+    "2014-Q4": {
+      "positive": 2,
+      "negative": 2,
+      "total_scanned": 4
+    },
+    "2015-Q1": {
+      "positive": 113,
+      "negative": 51,
+      "total_scanned": 166
+    },
+    "2015-Q2": {
+      "positive": 1,
       "negative": 0,
-      "total_scanned": 0
-    },
-    "2017": {
-      "positive": 0,
-      "negative": 0,
-      "total_scanned": 0
-    },
-    "2018": {
-      "positive": 4,
-      "negative": 3,
-      "total_scanned": 7
-    },
-    "2019": {
-      "positive": 0,
-      "negative": 1,
       "total_scanned": 2
+    },
+    "2015-Q3": {
+      "positive": 178,
+      "negative": 58,
+      "total_scanned": 238
+    },
+    "2015-Q4": {
+      "positive": 13,
+      "negative": 11,
+      "total_scanned": 24
+    },
+    "2016-Q1": {
+      "positive": 7,
+      "negative": 4,
+      "total_scanned": 11
+    },
+    "2016-Q2": {
+      "positive": 134,
+      "negative": 114,
+      "total_scanned": 258
+    },
+    "2016-Q3": {
+      "positive": 141,
+      "negative": 81,
+      "total_scanned": 227
+    },
+    "2016-Q4": {
+      "positive": 16,
+      "negative": 7,
+      "total_scanned": 23
+    },
+    "2017-Q1": {
+      "positive": 1,
+      "negative": 0,
+      "total_scanned": 1
+    },
+    "2017-Q2": {
+      "positive": 6,
+      "negative": 0,
+      "total_scanned": 6
+    },
+    "2017-Q3": {
+      "positive": 160,
+      "negative": 49,
+      "total_scanned": 222
+    },
+    "2017-Q4": {
+      "positive": 378,
+      "negative": 157,
+      "total_scanned": 554
+    },
+    "2018-Q1": {
+      "positive": 1,
+      "negative": 0,
+      "total_scanned": 1
+    },
+    "2018-Q2": {
+      "positive": 265,
+      "negative": 332,
+      "total_scanned": 617
+    },
+    "2018-Q3": {
+      "positive": 533,
+      "negative": 277,
+      "total_scanned": 855
+    },
+    "2018-Q4": {
+      "positive": 31,
+      "negative": 22,
+      "total_scanned": 62
+    },
+    "2019-Q1": {
+      "positive": 104,
+      "negative": 61,
+      "total_scanned": 171
+    },
+    "2019-Q2": {
+      "positive": 254,
+      "negative": 340,
+      "total_scanned": 610
+    },
+    "2019-Q3": {
+      "positive": 572,
+      "negative": 334,
+      "total_scanned": 936
+    },
+    "2019-Q4": {
+      "positive": 691,
+      "negative": 344,
+      "total_scanned": 1065
     }
   }
 }

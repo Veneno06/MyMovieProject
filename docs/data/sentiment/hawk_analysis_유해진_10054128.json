@@ -2,37 +2,147 @@
   "actor_name": "유해진",
   "actor_id": "10054128",
   "transition_year": 2023,
-  "last_updated": "2026-08-03 06:38:28",
-  "yearly_sentiment": {
-    "2020": {
-      "positive": 195,
-      "negative": 36,
-      "total_scanned": 244
+  "last_updated": "2026-08-05 02:54:19",
+  "timeline": {
+    "2020-Q1": {
+      "positive": 485,
+      "negative": 207,
+      "total_scanned": 712
     },
-    "2021": {
-      "positive": 5,
+    "2020-Q2": {
+      "positive": 1106,
+      "negative": 442,
+      "total_scanned": 1577
+    },
+    "2020-Q3": {
+      "positive": 265,
+      "negative": 243,
+      "total_scanned": 526
+    },
+    "2020-Q4": {
+      "positive": 152,
+      "negative": 35,
+      "total_scanned": 194
+    },
+    "2021-Q1": {
+      "positive": 1431,
+      "negative": 431,
+      "total_scanned": 1924
+    },
+    "2021-Q2": {
+      "positive": 1175,
+      "negative": 543,
+      "total_scanned": 1763
+    },
+    "2021-Q3": {
+      "positive": 231,
+      "negative": 96,
+      "total_scanned": 342
+    },
+    "2021-Q4": {
+      "positive": 278,
+      "negative": 190,
+      "total_scanned": 488
+    },
+    "2022-Q1": {
+      "positive": 311,
+      "negative": 280,
+      "total_scanned": 615
+    },
+    "2022-Q2": {
+      "positive": 876,
+      "negative": 310,
+      "total_scanned": 1214
+    },
+    "2022-Q3": {
+      "positive": 1321,
+      "negative": 659,
+      "total_scanned": 2048
+    },
+    "2022-Q4": {
+      "positive": 1537,
+      "negative": 869,
+      "total_scanned": 2483
+    },
+    "2023-Q1": {
+      "positive": 1021,
+      "negative": 516,
+      "total_scanned": 1574
+    },
+    "2023-Q2": {
+      "positive": 1259,
+      "negative": 401,
+      "total_scanned": 1684
+    },
+    "2023-Q3": {
+      "positive": 773,
+      "negative": 255,
+      "total_scanned": 1048
+    },
+    "2023-Q4": {
+      "positive": 282,
+      "negative": 65,
+      "total_scanned": 353
+    },
+    "2024-Q1": {
+      "positive": 1873,
+      "negative": 543,
+      "total_scanned": 2476
+    },
+    "2024-Q2": {
+      "positive": 1335,
+      "negative": 501,
+      "total_scanned": 1877
+    },
+    "2024-Q3": {
+      "positive": 53,
+      "negative": 98,
+      "total_scanned": 156
+    },
+    "2024-Q4": {
+      "positive": 326,
+      "negative": 119,
+      "total_scanned": 455
+    },
+    "2025-Q1": {
+      "positive": 279,
+      "negative": 236,
+      "total_scanned": 522
+    },
+    "2025-Q2": {
+      "positive": 1263,
+      "negative": 256,
+      "total_scanned": 1559
+    },
+    "2025-Q3": {
+      "positive": 1178,
+      "negative": 555,
+      "total_scanned": 1776
+    },
+    "2025-Q4": {
+      "positive": 1168,
+      "negative": 740,
+      "total_scanned": 1984
+    },
+    "2026-Q1": {
+      "positive": 642,
+      "negative": 271,
+      "total_scanned": 938
+    },
+    "2026-Q2": {
+      "positive": 87,
+      "negative": 16,
+      "total_scanned": 103
+    },
+    "2026-Q3": {
+      "positive": 269,
+      "negative": 238,
+      "total_scanned": 518
+    },
+    "2026-Q4": {
+      "positive": 0,
       "negative": 0,
-      "total_scanned": 5
-    },
-    "2022": {
-      "positive": 446,
-      "negative": 311,
-      "total_scanned": 845
-    },
-    "2024": {
-      "positive": 899,
-      "negative": 414,
-      "total_scanned": 1494
-    },
-    "2025": {
-      "positive": 1143,
-      "negative": 204,
-      "total_scanned": 1423
-    },
-    "2026": {
-      "positive": 1882,
-      "negative": 360,
-      "total_scanned": 2370
+      "total_scanned": 0
     }
   }
 }

@@ -2,32 +2,147 @@
   "actor_name": "이준혁",
   "actor_id": "10057492",
   "transition_year": 2019,
-  "last_updated": "2026-08-03 06:39:41",
-  "yearly_sentiment": {
-    "2017": {
-      "positive": 23,
-      "negative": 4,
-      "total_scanned": 27
+  "last_updated": "2026-08-05 03:02:54",
+  "timeline": {
+    "2016-Q1": {
+      "positive": 346,
+      "negative": 297,
+      "total_scanned": 666
     },
-    "2018": {
-      "positive": 84,
-      "negative": 22,
-      "total_scanned": 128
+    "2016-Q2": {
+      "positive": 0,
+      "negative": 0,
+      "total_scanned": 0
     },
-    "2020": {
-      "positive": 205,
-      "negative": 72,
-      "total_scanned": 312
+    "2016-Q3": {
+      "positive": 0,
+      "negative": 1,
+      "total_scanned": 1
     },
-    "2021": {
-      "positive": 233,
-      "negative": 59,
-      "total_scanned": 318
+    "2016-Q4": {
+      "positive": 10,
+      "negative": 1,
+      "total_scanned": 11
     },
-    "2022": {
-      "positive": 6,
+    "2017-Q1": {
+      "positive": 53,
+      "negative": 21,
+      "total_scanned": 76
+    },
+    "2017-Q2": {
+      "positive": 3,
+      "negative": 1,
+      "total_scanned": 4
+    },
+    "2017-Q3": {
+      "positive": 59,
+      "negative": 35,
+      "total_scanned": 97
+    },
+    "2017-Q4": {
+      "positive": 41,
+      "negative": 13,
+      "total_scanned": 56
+    },
+    "2018-Q1": {
+      "positive": 168,
+      "negative": 45,
+      "total_scanned": 215
+    },
+    "2018-Q2": {
+      "positive": 201,
+      "negative": 65,
+      "total_scanned": 279
+    },
+    "2018-Q3": {
+      "positive": 22,
       "negative": 6,
-      "total_scanned": 14
+      "total_scanned": 30
+    },
+    "2018-Q4": {
+      "positive": 8,
+      "negative": 2,
+      "total_scanned": 10
+    },
+    "2019-Q1": {
+      "positive": 1,
+      "negative": 1,
+      "total_scanned": 2
+    },
+    "2019-Q2": {
+      "positive": 37,
+      "negative": 26,
+      "total_scanned": 67
+    },
+    "2019-Q3": {
+      "positive": 451,
+      "negative": 98,
+      "total_scanned": 561
+    },
+    "2019-Q4": {
+      "positive": 126,
+      "negative": 36,
+      "total_scanned": 172
+    },
+    "2020-Q1": {
+      "positive": 144,
+      "negative": 39,
+      "total_scanned": 188
+    },
+    "2020-Q2": {
+      "positive": 443,
+      "negative": 99,
+      "total_scanned": 558
+    },
+    "2020-Q3": {
+      "positive": 983,
+      "negative": 390,
+      "total_scanned": 1417
+    },
+    "2020-Q4": {
+      "positive": 198,
+      "negative": 52,
+      "total_scanned": 255
+    },
+    "2021-Q1": {
+      "positive": 37,
+      "negative": 11,
+      "total_scanned": 50
+    },
+    "2021-Q2": {
+      "positive": 120,
+      "negative": 47,
+      "total_scanned": 176
+    },
+    "2021-Q3": {
+      "positive": 838,
+      "negative": 492,
+      "total_scanned": 1388
+    },
+    "2021-Q4": {
+      "positive": 61,
+      "negative": 27,
+      "total_scanned": 91
+    },
+    "2022-Q1": {
+      "positive": 143,
+      "negative": 93,
+      "total_scanned": 242
+    },
+    "2022-Q2": {
+      "positive": 0,
+      "negative": 0,
+      "total_scanned": 0
+    },
+    "2022-Q3": {
+      "positive": 438,
+      "negative": 512,
+      "total_scanned": 975
+    },
+    "2022-Q4": {
+      "positive": 728,
+      "negative": 331,
+      "total_scanned": 1094
     }
   }
 }

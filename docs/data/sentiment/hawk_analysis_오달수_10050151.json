@@ -2,22 +2,147 @@
   "actor_name": "오달수",
   "actor_id": "10050151",
   "transition_year": 2016,
-  "last_updated": "2026-08-03 06:36:42",
-  "yearly_sentiment": {
-    "2015": {
+  "last_updated": "2026-08-05 02:46:12",
+  "timeline": {
+    "2013-Q1": {
+      "positive": 16,
+      "negative": 4,
+      "total_scanned": 21
+    },
+    "2013-Q2": {
+      "positive": 3,
+      "negative": 2,
+      "total_scanned": 6
+    },
+    "2013-Q3": {
+      "positive": 0,
+      "negative": 0,
+      "total_scanned": 0
+    },
+    "2013-Q4": {
+      "positive": 18,
+      "negative": 3,
+      "total_scanned": 21
+    },
+    "2014-Q1": {
+      "positive": 0,
+      "negative": 0,
+      "total_scanned": 0
+    },
+    "2014-Q2": {
+      "positive": 0,
+      "negative": 0,
+      "total_scanned": 0
+    },
+    "2014-Q3": {
+      "positive": 1,
+      "negative": 0,
+      "total_scanned": 1
+    },
+    "2014-Q4": {
+      "positive": 14,
+      "negative": 6,
+      "total_scanned": 21
+    },
+    "2015-Q1": {
+      "positive": 1,
+      "negative": 1,
+      "total_scanned": 2
+    },
+    "2015-Q2": {
+      "positive": 4,
+      "negative": 1,
+      "total_scanned": 5
+    },
+    "2015-Q3": {
+      "positive": 11,
+      "negative": 2,
+      "total_scanned": 13
+    },
+    "2015-Q4": {
+      "positive": 219,
+      "negative": 136,
+      "total_scanned": 374
+    },
+    "2016-Q1": {
+      "positive": 51,
+      "negative": 38,
+      "total_scanned": 93
+    },
+    "2016-Q2": {
+      "positive": 11,
+      "negative": 10,
+      "total_scanned": 21
+    },
+    "2016-Q3": {
+      "positive": 0,
+      "negative": 0,
+      "total_scanned": 0
+    },
+    "2016-Q4": {
       "positive": 2,
+      "negative": 1,
+      "total_scanned": 3
+    },
+    "2017-Q1": {
+      "positive": 0,
+      "negative": 0,
+      "total_scanned": 0
+    },
+    "2017-Q2": {
+      "positive": 3,
       "negative": 0,
       "total_scanned": 3
     },
-    "2017": {
+    "2017-Q3": {
       "positive": 0,
-      "negative": 1,
+      "negative": 0,
       "total_scanned": 1
     },
-    "2018": {
-      "positive": 8,
-      "negative": 18,
-      "total_scanned": 29
+    "2017-Q4": {
+      "positive": 5,
+      "negative": 0,
+      "total_scanned": 6
+    },
+    "2018-Q1": {
+      "positive": 67,
+      "negative": 218,
+      "total_scanned": 294
+    },
+    "2018-Q2": {
+      "positive": 57,
+      "negative": 54,
+      "total_scanned": 113
+    },
+    "2018-Q3": {
+      "positive": 1,
+      "negative": 0,
+      "total_scanned": 1
+    },
+    "2018-Q4": {
+      "positive": 10,
+      "negative": 9,
+      "total_scanned": 20
+    },
+    "2019-Q1": {
+      "positive": 0,
+      "negative": 0,
+      "total_scanned": 0
+    },
+    "2019-Q2": {
+      "positive": 725,
+      "negative": 338,
+      "total_scanned": 1094
+    },
+    "2019-Q3": {
+      "positive": 561,
+      "negative": 439,
+      "total_scanned": 1037
+    },
+    "2019-Q4": {
+      "positive": 0,
+      "negative": 0,
+      "total_scanned": 0
     }
   }
 }
