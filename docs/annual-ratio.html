@@ -85,12 +85,25 @@ h1 { font-size:28px; margin:0 0 16px; }
 
   <div class="hawk-section" id="hawkSection" style="display:none;">
       <h2 style="margin-top: 0; color: #1e3a8a;">Hawk 그룹 추적 및 데이터 추출</h2>
-      <div style="font-size: 13px; color: #475569; margin-bottom: 15px;">※ 사용자가 설정한 상위 퍼센트 안에 <b>최소 2회 이상</b> 진입한 시점부터 공식적으로 'Hawk' 그룹으로 분류됩니다.</div>
+      <div style="font-size: 13px; color: #475569; margin-bottom: 15px;">※ 사용자가 설정한 상위 퍼센트 안에 <b>지정한 횟수 이상</b> 진입한 시점부터 공식적으로 'Hawk' 그룹으로 분류됩니다.</div>
       
       <div class="hawk-header" style="background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #bfdbfe;">
           <label style="font-weight: bold; color: #1e3a8a;">Hawk 기준(상위 %): </label>
           <input type="number" id="hawkPercentInput" class="hawk-input" style="width: 100px;" value="1.0" min="0.1" max="49.9" step="0.1"> %
+          
           <span style="margin: 0 10px; color: #cbd5e1;">|</span>
+          
+          <!-- 🌟 [수정됨] 최소 진입 횟수 선택 드롭다운 추가 -->
+          <label style="font-weight: bold; color: #1e3a8a;">최소 진입 횟수: </label>
+          <select id="hawkMinCountInput" class="hawk-input" style="width: 120px;">
+              <option value="2">2회 이상</option>
+              <option value="3">3회 이상</option>
+              <option value="4">4회 이상</option>
+              <option value="5">5회 이상</option>
+          </select>
+          
+          <span style="margin: 0 10px; color: #cbd5e1;">|</span>
+          
           <label style="font-weight: bold; color: #1e3a8a;">조회 연도: </label>
           <input type="text" id="hawkYearsInput" class="hawk-input" placeholder="비워두면 전체 (예: 2005, 2007)">
           <button class="btn" onclick="processHawkDoveLogic()" style="background:#2563eb; color:white; border:none;">설정 적용 및 검색</button>
@@ -136,7 +149,7 @@ h1 { font-size:28px; margin:0 0 16px; }
 
 </div>
 
-<!-- 🌟 여론 분석 결과 팝업(모달) -->
+<!-- 🌟 대폭 강화된 여론 분석 결과 팝업(모달) -->
 <div class="modal-overlay" id="hawkSentimentModal">
     <div class="modal-content">
         <button class="modal-close" onclick="closeModal()">닫기 ✕</button>
@@ -252,6 +265,9 @@ async function loadAndProcessData() {
 
 function processHawkDoveLogic() {
     let percentLimit = parseFloat(document.getElementById('hawkPercentInput').value);
+    // 🌟 [수정됨] 드롭다운에서 사용자가 선택한 최소 진입 횟수 가져오기
+    let minAppearanceLimit = parseInt(document.getElementById('hawkMinCountInput').value, 10);
+    
     if (isNaN(percentLimit) || percentLimit <= 0 || percentLimit >= 50) {
         alert("0 초과 50 미만의 올바른 퍼센트 수치를 입력하세요.");
         return;
@@ -272,7 +288,8 @@ function processHawkDoveLogic() {
             let isInTopPercent = (index < topCount);
             if (isInTopPercent) appearanceCount[actor.name]++;
 
-            if (isInTopPercent && appearanceCount[actor.name] >= 2) {
+            // 🌟 [수정됨] 사용자가 지정한 횟수(minAppearanceLimit)를 충족해야만 Hawk로 인정
+            if (isInTopPercent && appearanceCount[actor.name] >= minAppearanceLimit) {
                 actorYearStatus[actor.name][year] = 'Hawk';
             } else {
                 actorYearStatus[actor.name][year] = 'Dove';
@@ -496,7 +513,6 @@ async function openSentimentModal(actorName, actorId, targetYear) {
         const labels = Object.keys(timeline).sort();
         const posData = labels.map(q => timeline[q].positive || 0);
         const negData = labels.map(q => -(Math.abs(timeline[q].negative || 0)));
-        
         const sumData = labels.map((q, i) => posData[i] + negData[i]);
 
         let totalPositiveCount = 0;
@@ -595,7 +611,8 @@ async function openSentimentModal(actorName, actorId, targetYear) {
         const sourcesContainer = document.getElementById('hawkSentimentSourcesContainer');
         const sourcesBody = document.getElementById('hawkSentimentSourcesBody');
         
-        if (data.sources && data.sources.length > 0) {
+        // 🌟 출처 데이터(sources)가 정상적으로 배열인지 검사
+        if (data.sources && Array.isArray(data.sources) && data.sources.length > 0) {
             sourcesBody.innerHTML = '';
             
             data.sources.forEach(s => {
