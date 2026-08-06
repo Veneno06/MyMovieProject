@@ -42,7 +42,6 @@ h1 { font-size:28px; margin:0 0 16px; }
 .res-list li { padding: 8px 0; border-bottom: 1px dashed #e5e7eb; display: flex; justify-content: flex-start; align-items: center; gap: 15px;}
 .res-list li:last-child { border-bottom: none; }
 
-/* 🌟 결과 시각화를 위한 팝업(모달) 대폭 확대 CSS */
 .modal-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0, 0, 0, 0.7); z-index: 9999;
@@ -50,8 +49,8 @@ h1 { font-size:28px; margin:0 0 16px; }
 }
 .modal-content {
     background: #fff; border-radius: 8px; 
-    width: 95%; max-width: 1200px; max-height: 90vh; /* 폭과 높이 대폭 증가 */
-    overflow-y: auto; /* 내용이 넘치면 내부 스크롤 발생 */
+    width: 95%; max-width: 1200px; max-height: 90vh; 
+    overflow-y: auto; 
     padding: 30px; position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 .modal-close {
@@ -137,7 +136,7 @@ h1 { font-size:28px; margin:0 0 16px; }
 
 </div>
 
-<!-- 🌟 대폭 강화된 여론 분석 결과 팝업(모달) -->
+<!-- 🌟 여론 분석 결과 팝업(모달) -->
 <div class="modal-overlay" id="hawkSentimentModal">
     <div class="modal-content">
         <button class="modal-close" onclick="closeModal()">닫기 ✕</button>
@@ -145,18 +144,14 @@ h1 { font-size:28px; margin:0 0 16px; }
         
         <div style="font-size: 15px; color: #4b5563; margin-bottom: 5px;">
             그룹 전환 기준 연도: <span id="modalTargetYear" style="font-weight: bold; color: #111827;"></span>년 
-            <span style="color: #ef4444; font-size: 13px; margin-left: 10px;">(※ 변경 당해 연도는 시계열 비교를 위해 분석에서 제외됩니다.)</span>
         </div>
         
-        <!-- 총 댓글 수 요약 -->
         <div id="hawkSentimentSummary" style="text-align: right; font-size: 14px; color: #4b5563; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #e5e7eb;"></div>
 
-        <!-- 🌟 그래프 크기를 기존 350px에서 500px로 대폭 확대 -->
         <div style="position: relative; height: 500px; width: 100%;">
             <canvas id="hawkSentimentChart"></canvas>
         </div>
 
-        <!-- 🌟 여론 분석 데이터 출처 표 추가 -->
         <div id="hawkSentimentSourcesContainer" style="margin-top: 30px; display: none;">
             <h3 style="font-size: 18px; color: #374151; margin-bottom: 15px;">여론 분석 데이터 수집 출처</h3>
             <div style="overflow-y: auto; max-height: 250px; border: 1px solid #e5e7eb; border-radius: 8px; background: #fff;">
@@ -189,7 +184,7 @@ let DB_SUMMARY = {};
 let yearlyData = {}; 
 let availableYears = [];
 let distChartInstance = null;
-let hawkSentimentChartInstance = null; // 모달 차트 인스턴스
+let hawkSentimentChartInstance = null; 
 
 let actorYearStatus = {}; 
 let currentTransitionResults = [];
@@ -481,7 +476,6 @@ function downloadSentimentTargetJSON() {
     alert("AI 분석 지시서가 다운로드 되었습니다.\n이 파일을 GitHub에 올리고 Action을 실행하여 분석을 완료하세요.");
 }
 
-// 🌟 [수정됨] 7년 분기별 여론 데이터 차트 그리기 (확대된 모달, 겹침 해결, 총합 선 추가)
 async function openSentimentModal(actorName, actorId, targetYear) {
     const safeId = (actorId && actorId !== "코드없음") ? actorId : "unknown";
     const dataUrl = `data/sentiment/hawk_analysis_${actorName}_${safeId}.json?v=${Date.now()}`;
@@ -499,15 +493,12 @@ async function openSentimentModal(actorName, actorId, targetYear) {
         document.getElementById('modalActorName').textContent = actorName;
         document.getElementById('modalTargetYear').textContent = targetYear;
         
-        // Q1~Q4 순서대로 정렬
         const labels = Object.keys(timeline).sort();
         const posData = labels.map(q => timeline[q].positive || 0);
         const negData = labels.map(q => -(Math.abs(timeline[q].negative || 0)));
         
-        // 🌟 [추가됨] 보라색 점수 합(긍정+부정) 데이터 생성
         const sumData = labels.map((q, i) => posData[i] + negData[i]);
 
-        // 🌟 [추가됨] 총 댓글 수 통계 요약 계산
         let totalPositiveCount = 0;
         let totalNegativeCount = 0;
         labels.forEach(q => {
@@ -518,13 +509,11 @@ async function openSentimentModal(actorName, actorId, targetYear) {
         document.getElementById('hawkSentimentSummary').innerHTML = 
             `총 분석 댓글: <b style="color:#111827;">${fmtNum(totalComments)}</b>개 (긍정: <span style="color:#3b82f6; font-weight:bold;">${fmtNum(totalPositiveCount)}</span>개 / 부정: <span style="color:#ef4444; font-weight:bold;">${fmtNum(totalNegativeCount)}</span>개)`;
 
-        // 모달 표시
         document.getElementById('hawkSentimentModal').style.display = 'flex';
         const ctx = document.getElementById('hawkSentimentChart').getContext('2d');
         
         if (hawkSentimentChartInstance) hawkSentimentChartInstance.destroy();
 
-        // 커스텀 플러그인: 그룹 전환 기준 시점(해당 연도의 Q2와 Q3 사이)에 세로선 긋기
         const transitionLinePlugin = {
             id: 'transitionLine',
             beforeDraw: (chart) => {
@@ -535,7 +524,6 @@ async function openSentimentModal(actorName, actorId, targetYear) {
                     const xAxis = chart.scales.x;
                     const yAxis = chart.scales.y;
                     
-                    // Q2와 Q3 정중앙 좌표 계산
                     const x = xAxis.getPixelForTick(index) + (xAxis.getPixelForTick(index+1) - xAxis.getPixelForTick(index)) / 2;
                     
                     ctx.save();
@@ -546,12 +534,6 @@ async function openSentimentModal(actorName, actorId, targetYear) {
                     ctx.strokeStyle = 'rgba(239, 68, 68, 0.5)';
                     ctx.setLineDash([5, 5]);
                     ctx.stroke();
-                    
-                    ctx.fillStyle = 'rgba(239, 68, 68, 0.8)';
-                    ctx.font = 'bold 12px sans-serif';
-                    ctx.textAlign = 'center';
-                    // 🌟 [수정됨] 범례 위치 변경에 맞춰 글씨 위치를 살짝 아래로 조정하여 잘리지 않게 함
-                    ctx.fillText('그룹 전환 기점 (6/30)', x, yAxis.top + 15);
                     ctx.restore();
                 }
             }
@@ -572,7 +554,6 @@ async function openSentimentModal(actorName, actorId, targetYear) {
                         borderColor: '#ef4444', backgroundColor: '#ef4444', pointBackgroundColor: '#ef4444',
                         borderWidth: 2, tension: 0.3, pointRadius: 3
                     },
-                    // 🌟 [추가됨] 점수 합 데이터셋
                     {
                         label: '점수 합', data: sumData,
                         borderColor: '#9333ea', backgroundColor: '#9333ea', pointBackgroundColor: '#9333ea',
@@ -582,13 +563,13 @@ async function openSentimentModal(actorName, actorId, targetYear) {
             },
             plugins: [transitionLinePlugin],
             options: {
-                layout: { padding: { top: 10 } }, // 범례가 하단으로 갔으므로 상단 패딩 축소
+                layout: { padding: { top: 10 } }, 
                 responsive: true, maintainAspectRatio: false,
                 scales: {
                     x: {
                         ticks: {
                             maxRotation: 45, minRotation: 45,
-                            font: { size: 11 } // 확대된 캔버스에 맞춰 폰트 사이즈 살짝 업
+                            font: { size: 11 } 
                         }
                     },
                     y: {
@@ -596,12 +577,10 @@ async function openSentimentModal(actorName, actorId, targetYear) {
                     }
                 },
                 plugins: {
-                    // 🌟 [수정됨] 범례(Legend) 겹침 방지를 위해 하단으로 배치
                     legend: { position: 'bottom', labels: { boxWidth: 15, padding: 20 } },
                     datalabels: { display: false },
                     tooltip: {
                         callbacks: {
-                            // 절대값으로 표시 (부정 댓글도 양수로 보이도록)하되, 점수 합은 원본 그대로 표시
                             label: (ctx) => {
                                 let val = ctx.parsed.y;
                                 if (ctx.dataset.label.includes('부정')) val = Math.abs(val);
@@ -613,7 +592,6 @@ async function openSentimentModal(actorName, actorId, targetYear) {
             }
         });
 
-        // 🌟 [추가됨] 여론 분석 데이터 출처 표 렌더링
         const sourcesContainer = document.getElementById('hawkSentimentSourcesContainer');
         const sourcesBody = document.getElementById('hawkSentimentSourcesBody');
         
