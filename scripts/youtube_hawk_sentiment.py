@@ -17,7 +17,6 @@ ROOT = Path(__file__).resolve().parents[1]
 SENTIMENT_DIR = ROOT / "docs" / "data" / "sentiment"
 SENTIMENT_DIR.mkdir(parents=True, exist_ok=True)
 
-# GitHub Actions 환경변수에서 HAWK 전용 6개 키 로드
 API_KEYS = []
 for i in range(1, 7):
     val = os.environ.get(f"YOUTUBE_HAWK_API_KEY_{i}")
@@ -47,8 +46,6 @@ def search_and_collect_for_period(actor_name, start_date, end_date):
 
     search_query = f"{actor_name} 영화 | {actor_name} 예고편 | {actor_name} 인터뷰 | {actor_name} 무대인사 | {actor_name} 리뷰 | {actor_name} 예능 | {actor_name} 연기"
     valid_videos_comments = []
-    
-    # 🌟 [수정됨] 출처 데이터를 담을 딕셔너리 추가
     sources_dict = {}
 
     while CURRENT_KEY_INDEX < len(API_KEYS):
@@ -124,7 +121,6 @@ def search_and_collect_for_period(actor_name, start_date, end_date):
                         for c_item in comment_response.get('items', []):
                             text = c_item['snippet']['topLevelComment']['snippet']['textOriginal']
                             if len(text) > 3 and "http" not in text:
-                                # 🌟 [수정됨] 댓글 텍스트만 저장하지 않고, 출처 추적을 위해 videoId를 함께 저장
                                 video_comments_temp.append({
                                     "text": clean_text(text),
                                     "videoId": video['id']
@@ -140,7 +136,6 @@ def search_and_collect_for_period(actor_name, start_date, end_date):
                 if not video['has_name_in_meta'] and not has_name_in_comments: continue
                 if not video['has_req_keyword_meta'] and not has_req_keyword_comments: continue
 
-                # 🌟 [수정됨] 조건을 통과한 영상은 출처 딕셔너리에 안전하게 저장
                 sources_dict[video['id']] = {
                     "videoId": video['id'],
                     "title": video['title'],
@@ -187,12 +182,20 @@ def run_hawk_analysis(target_file_path):
         actor_id = target.get("actor_id", "코드없음")
         transition_year = target["target_year"]
         
+        safe_id = actor_id if actor_id and actor_id != "코드없음" else "unknown"
+        save_path = SENTIMENT_DIR / f"hawk_analysis_{actor_name}_{safe_id}.json"
+        
         print(f"\n========================================")
         print(f"🎬 [{idx+1}/{len(targets)}] {actor_name} 여론 분석 (기준: {transition_year}년 6월 30일)")
+        
+        # 🌟 [신규 추가] 이미 분석된 결과 파일이 존재하면 API 보호를 위해 스킵
+        if save_path.exists():
+            print(f"   -> ⏭️ 이미 분석이 완료된 배우입니다. (파일 존재: {save_path.name}) API 절약을 위해 건너뜁니다.")
+            continue
+            
         print(f"   -> 수집 기간: {transition_year-3}년 1월 ~ {transition_year+3}년 12월 (총 7년)")
         
         timeline_results = {}
-        # 🌟 [수정됨] 분기별로 수집된 모든 출처를 긁어모을 거대한 딕셔너리
         global_video_sentiment = {}
         global_sources_dict = {}
         
@@ -205,7 +208,6 @@ def run_hawk_analysis(target_file_path):
                 print(f"   -> [{period_label}] 구간 탐색 중...")
                 comments, period_sources = search_and_collect_for_period(actor_name, start_dt, end_dt)
                 
-                # 🌟 [수정됨] 수집된 출처를 통합 딕셔너리에 병합
                 global_sources_dict.update(period_sources)
                 
                 pos_count, neg_count = 0, 0
@@ -223,7 +225,6 @@ def run_hawk_analysis(target_file_path):
                             neg_count += 1
                             sentiment = "negative"
                             
-                        # 🌟 [수정됨] 어떤 영상에서 긍정/부정이 나왔는지 카운트
                         if sentiment:
                             vid = comment.get("videoId")
                             if vid:
@@ -239,7 +240,6 @@ def run_hawk_analysis(target_file_path):
                     "total_scanned": len(comments)
                 }
 
-        # 🌟 [수정됨] 최종적으로 표에 들어갈 출처 배열 조립
         final_sources = []
         for vid, counts in global_video_sentiment.items():
             if counts['positive'] > 0 or counts['negative'] > 0:
@@ -249,19 +249,15 @@ def run_hawk_analysis(target_file_path):
                     src['neg_count'] = counts['negative']
                     final_sources.append(src)
 
-        # 최신 영상이 위로 오도록 날짜순 정렬
         final_sources.sort(key=lambda x: x.get('publishedAt', ''), reverse=True)
 
-        safe_id = actor_id if actor_id and actor_id != "코드없음" else "unknown"
-        save_path = SENTIMENT_DIR / f"hawk_analysis_{actor_name}_{safe_id}.json"
-        
         final_data = {
             "actor_name": actor_name,
             "actor_id": actor_id,
             "transition_year": transition_year,
             "last_updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             "timeline": timeline_results,
-            "sources": final_sources # 🌟 [수정됨] JSON 파일 최하단에 드디어 출처 표 데이터가 저장됨!
+            "sources": final_sources
         }
         
         with open(save_path, 'w', encoding='utf-8') as f:
