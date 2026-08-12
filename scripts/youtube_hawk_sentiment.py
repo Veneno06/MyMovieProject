@@ -26,7 +26,7 @@ for i in range(1, 7):
 CURRENT_KEY_INDEX = 0
 CLASSIFIER = None 
 
-# 🌟 [수정됨] 영화 배우 관련 키워드 10개로 확장 및 고정
+# 🌟 영화 배우 관련 키워드 10개로 확장 및 고정
 REQUIRED_KEYWORDS = ['배우', '영화', '예고편', '인터뷰', '무대인사', '리뷰', '예능', '연기', '작품', '캐스팅']
 
 def load_ai_model():
@@ -85,14 +85,14 @@ def search_and_collect_for_period(actor_name, start_date, end_date):
                 description = snippet.get('description', '')
                 tags = snippet.get('tags', [])
                 
-                # 🌟 [수정됨] 제목과 태그만 따로 결합하여 배우 이름 존재 여부 엄격 검사
+                # 제목과 태그만 따로 결합하여 배우 이름 존재 여부 엄격 검사
                 title_and_tags = title + " " + " ".join(tags)
                 has_name_in_title_or_tags = (actor_name in title_and_tags)
                 
                 title_desc_tags = title + " " + description + " " + " ".join(tags)
                 has_req_keyword_meta = any(k in title_desc_tags for k in REQUIRED_KEYWORDS)
                 
-                # 🌟 [수정됨] 구독자 또는 조회수 5만 이상으로 조건 하향, 제목/태그에 이름 필수 포함
+                # 구독자 또는 조회수 5만 이상으로 조건 하향, 제목/태그에 이름 필수 포함
                 if (view_count >= 50000 or subs_count >= 50000) and comment_count > 0:
                     if not has_name_in_title_or_tags:
                         continue # 제목이나 태그에 배우 이름이 없으면 동명이인 차단을 위해 가차없이 스킵
@@ -140,6 +140,9 @@ def search_and_collect_for_period(actor_name, start_date, end_date):
 
                 if not video['has_req_keyword_meta'] and not has_req_keyword_comments: continue
 
+                # 🌟 [사용자 안심 로그 추가] 필터링을 완벽하게 통과한 영상의 제목을 출력하여 수집량을 눈으로 확인 가능하게 함
+                print(f"      🎯 [수집 확정] '{video['title'][:30]}...' (댓글 {len(video_comments_temp)}개 확보)")
+
                 sources_dict[video['id']] = {
                     "videoId": video['id'],
                     "title": video['title'],
@@ -153,7 +156,6 @@ def search_and_collect_for_period(actor_name, start_date, end_date):
 
         except HttpError as e:
             if e.resp.status in [403, 429]:
-                # 🌟 [수정됨] API 한도 초과 시 명확한 로그 출력
                 print(f"   ⚠️ API Key {CURRENT_KEY_INDEX + 1} 할당량 초과! 🔄 다음 키({CURRENT_KEY_INDEX + 2}번)로 교체합니다...")
                 CURRENT_KEY_INDEX += 1
             else:
@@ -210,7 +212,6 @@ def run_hawk_analysis(target_file_path):
                 start_dt = f"{yr}-{q_start}"
                 end_dt = f"{yr}-{q_end}"
                 
-                # 🌟 [수정됨] 탐색 시점마다 현재 사용 중인 API KEY 인덱스를 로깅
                 print(f"   -> [{period_label}] 구간 탐색 중... (🔑 현재 API Key: {CURRENT_KEY_INDEX + 1} / {len(API_KEYS)})")
                 comments, period_sources = search_and_collect_for_period(actor_name, start_dt, end_dt)
                 
