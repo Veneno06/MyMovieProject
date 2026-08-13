@@ -19,12 +19,12 @@
     <a href="saved.html" class="btn">🔙 저장 목록</a>
   </div>
 
-  <h1>📐 역할 가중치(W_role) 증명</h1>
+  <h1>역할 가중치(W_role) 증명</h1>
   
   <div class="proof-card">
-      <h3 style="margin-top:0;">1. 설정 및 문제 제기</h3>
-      <p style="color:#4b5563; font-size:14.5px;">기존 모델은 출연진 상위 33% 이내면 1.0, 그 외는 0.5를 부여하는 <b>계단 함수(Step Function)</b>를 사용했습니다. 이는 출연진 규모에 따라 3번째 배우가 주연 대우를 받거나 조연 대우를 받는 논리적 모순을 발생시킵니다.</p>
-      <p style="color:#4b5563; font-size:14.5px;">이를 해결하기 위해 크레딧 순서(k)에 따라 기여도가 완만하게 감소하는 <b>로그 감소(Logarithmic Decay)</b> 모델을 제안합니다.</p>
+      <h3 style="margin-top:0;">1. 설정 및 문제</h3>
+      <p style="color:#4b5563; font-size:14.5px;">기존 모델은 출연진 상위 33% 이내면 1.0, 그 외는 0.5를 부여하는 <b>계단 함수(Step Function)</b>를 사용. 이는 출연진 규모에 따라 3번째 배우가 주연 대우를 받거나 조연 대우를 받는 논리적 모순이 발생</p>
+      <p style="color:#4b5563; font-size:14.5px;">이를 해결하기 위해 크레딧 순서(k)에 따라 기여도가 완만하게 감소하는 <b>로그 감소(Logarithmic Decay)</b> 모델 도입.</p>
       <div class="math-formula">W_role (New) = 1 / log₂(k + 1)</div>
   </div>
 
