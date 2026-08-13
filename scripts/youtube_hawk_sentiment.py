@@ -95,7 +95,7 @@ def search_and_collect_for_period(actor_name, start_date, end_date):
                 # 구독자 또는 조회수 5만 이상으로 조건 하향, 제목/태그에 이름 필수 포함
                 if (view_count >= 50000 or subs_count >= 50000) and comment_count > 0:
                     if not has_name_in_title_or_tags:
-                        continue # 제목이나 태그에 배우 이름이 없으면 동명이인 차단을 위해 가차없이 스킵
+                        continue 
                         
                     target_videos.append({
                         'id': item['id'],
@@ -140,7 +140,6 @@ def search_and_collect_for_period(actor_name, start_date, end_date):
 
                 if not video['has_req_keyword_meta'] and not has_req_keyword_comments: continue
 
-                # 🌟 [사용자 안심 로그 추가] 필터링을 완벽하게 통과한 영상의 제목을 출력하여 수집량을 눈으로 확인 가능하게 함
                 print(f"      🎯 [수집 확정] '{video['title'][:30]}...' (댓글 {len(video_comments_temp)}개 확보)")
 
                 sources_dict[video['id']] = {
@@ -205,15 +204,27 @@ def run_hawk_analysis(target_file_path):
         timeline_results = {}
         global_video_sentiment = {}
         global_sources_dict = {}
+        api_exhausted = False  # 🌟 [수정됨] API 소진 여부를 추적하는 플래그
         
         for yr in range(transition_year - 3, transition_year + 4):
+            if api_exhausted: break
+            
             for q_name, q_start, q_end in quarters:
+                if CURRENT_KEY_INDEX >= len(API_KEYS):
+                    api_exhausted = True
+                    break
+                    
                 period_label = f"{yr}-{q_name}"
                 start_dt = f"{yr}-{q_start}"
                 end_dt = f"{yr}-{q_end}"
                 
                 print(f"   -> [{period_label}] 구간 탐색 중... (🔑 현재 API Key: {CURRENT_KEY_INDEX + 1} / {len(API_KEYS)})")
                 comments, period_sources = search_and_collect_for_period(actor_name, start_dt, end_dt)
+                
+                # 🌟 [수정됨] 내부 함수 실행 후, 키가 모두 소진되었다면 즉시 탈출
+                if CURRENT_KEY_INDEX >= len(API_KEYS):
+                    api_exhausted = True
+                    break
                 
                 global_sources_dict.update(period_sources)
                 
@@ -246,6 +257,11 @@ def run_hawk_analysis(target_file_path):
                     "negative": neg_count, 
                     "total_scanned": len(comments)
                 }
+
+        # 🌟 [수정됨] API가 소진되어 중간에 끊긴 경우, 파일을 저장하지 않고 전체 루프 종료
+        if api_exhausted:
+            print(f"\n🚨 API 할당량이 완전히 소진되었습니다. '{actor_name}' 분석을 중단하며 불완전한 파일은 저장하지 않습니다.")
+            break
 
         final_sources = []
         for vid, counts in global_video_sentiment.items():
