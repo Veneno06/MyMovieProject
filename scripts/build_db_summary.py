@@ -89,8 +89,8 @@ def main():
             aname = a.get('name')
             if not aid: continue
             
-            # 🌟 [수정됨] 논리적 모순을 없앤 '로그 감소 기반 배역 가중치' 도입
-            w_role = 1.0 / math.log2((idx + 1) + 1)
+            # 🌟 로그 감소 기반 배역 가중치 적용 (W_role = 1 / log2(idx + 2))
+            w_role = 1.0 / math.log2(idx + 2)
             score_i = (audi / total_y) * (w_role / math.sqrt(c_i)) * w_time * 10000
 
             if aid not in ACTOR_SCORES:
