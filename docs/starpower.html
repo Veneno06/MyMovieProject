@@ -8,7 +8,6 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@1.0.1/dist/chartjs-adapter-moment.min.js"></script>
-<script src="assets/translator.js" defer></script>
 <style>
   h1 { text-align: center; margin-bottom: 5px; }
   .subtitle { text-align: center; color: #6b7280; margin-bottom: 30px; font-size: 14px; }
@@ -64,7 +63,7 @@
           <input type="radio" name="formulaType" value="SP1" checked onchange="calculateAndRender()">
           <div>
               <div class="formula-title">공식 1: 기여도 및 최신성 </div>
-              <div class="formula-desc">영화 한 편마다 배역 비중과 출연진 수를 계산하여 개별 작품의 기여도 점수를 산출합니다.</div>
+              <div class="formula-desc">영화 한 편마다 배역 비중(로그 감소)과 출연진 수를 계산하여 개별 작품의 기여도 점수를 산출합니다.</div>
           </div>
       </label>
       <label class="formula-option">
@@ -154,10 +153,10 @@ const fmtNum = n => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',
 
 const formulaDetails = {
     'SP1': `<h4>공식 1: 기여도 및 최신성 </h4>
-            <div class="math-formula">SP₁ = A_i × (W_role / √C_i) × W_time</div>
+            <div class="math-formula">SP₁ = A_i × (1 / log₂(k + 1)) / √C_i × W_time</div>
             <ul>
                 <li><b>A_i (영화 관객수):</b> 해당 개별 영화가 동원한 관객수</li>
-                <li><b>W_role (배역 가중치):</b> 크레딧 상위 33% 이내 주연급 1.0, 조연급 0.5</li>
+                <li><b>1 / log₂(k + 1) (배역 로그 가중치):</b> 캐스팅 순서(k)가 뒤로 갈수록 기여도가 완만하고 합리적으로 감소하는 로그 함수 적용 (1번째 1.0, 2번째 약 0.63, 3번째 0.5)</li>
                 <li><b>√C_i (희석 계수):</b> 출연진 수의 제곱근으로 나누어 멀티 캐스팅 거품 방지</li>
                 <li><b>W_time (최신성 가중치):</b> 최신 개봉작일수록 높은 가중치 부여 ((개봉연도-2000)/10)</li>
             </ul>`,
@@ -184,9 +183,9 @@ const formulaDetails = {
                 <li>해당 연도에 개봉한 출연작의 순수 개수를 집계하여 배우의 활동 밀도를 파악합니다.</li>
             </ul>`,
     'SP_FINAL': `<h4> 최종 통합 스타 파워 (Final)</h4>
-            <div class="math-formula" style="color:#2563eb; background:#eff6ff; border-color:#93c5fd;">SP_Final_Point = [ (A_i / Total_Y) × (W_role / √C_i) × W_time ] × 10000</div>
+            <div class="math-formula" style="color:#2563eb; background:#eff6ff; border-color:#93c5fd;">SP_Final_Point = [ (A_i / Total_Y) × (1 / log₂(k + 1)) / √C_i × W_time ] × 10000</div>
             <ul>
-                <li>1번과 2번 공식의 변수들을 통합하여 **개별 영화가 배우의 스타 파워에 기여한 독립적인 수치**를 측정합니다.</li>
+                <li>시대적 인플레이션 보정, 로그 기반 배역 가중치, 최신 가중치를 모두 융합하여 <b>개별 영화가 배우의 스타 파워에 기여한 독립적인 수치</b>를 측정합니다.</li>
                 <li>이제 누적이 아닌 변동성 그래프로 나타나며, 전작 대비 흥행 파급력의 상승과 하락을 직관적으로 확인할 수 있습니다.</li>
             </ul>`
 };
@@ -308,12 +307,16 @@ function computeTimeSeriesData(actor, type) {
             const A_i = safeParseInt(f.audiAcc);
             const year = f.openDt.slice(0,4);
             const C_i = Math.max(1, (f.baseInfo.actors || []).length);
+            
+            // 🌟 로그 함수를 활용한 연속적이고 부드러운 가중치 할당 적용
             let W_role = 0.5;
             if (f.baseInfo.actors) {
                 const myIndex = f.baseInfo.actors.findIndex(a => a.name === actor.peopleNm);
-                const threshold = Math.ceil(C_i / 3);
-                if (myIndex !== -1 && myIndex < threshold) W_role = 1.0;
+                if (myIndex !== -1) {
+                    W_role = 1.0 / Math.log2((myIndex + 1) + 1);
+                }
             }
+            
             const W_time = Math.max(0.1, (parseInt(year) - 2000) / 10);
             const Total_Y = YEAR_TOTALS[year] || A_i;
 
@@ -333,7 +336,6 @@ function computeTimeSeriesData(actor, type) {
                 currentPointScore = sent.pos - sent.neg; 
             }
             else if (type === 'SP_FINAL') {
-                // 🌟 [수정됨] 누적(Σ) 로직을 제거하고 개별 영화의 포인트만 계산
                 currentPointScore = (A_i / Total_Y) * (W_role / Math.sqrt(C_i)) * W_time * 10000;
             }
 
@@ -344,7 +346,6 @@ function computeTimeSeriesData(actor, type) {
 
     let tableScore = 0;
     if (timeSeriesPoints.length > 0) {
-        // 🌟 [수정됨] SP_FINAL도 변동형이므로 테이블에는 평균값 표시
         if (['SP1', 'SP2', 'SP4', 'SP5', 'SP_FINAL'].includes(type)) {
             tableScore = sumForAverage / timeSeriesPoints.length;
         } else {
@@ -360,7 +361,6 @@ function calculateAndRender() {
     document.getElementById('formulaDetailBox').style.display = 'block';
 
     const headerEl = document.getElementById('tableScoreHeader');
-    // 🌟 [수정됨] SP_FINAL 선택 시에도 '평균 점수' 헤더 노출
     if (['SP1', 'SP2', 'SP4', 'SP5', 'SP_FINAL'].includes(selectedType)) {
         headerEl.textContent = '평균 점수 (Average)';
     } else {
