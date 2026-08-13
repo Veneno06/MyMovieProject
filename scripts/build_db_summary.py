@@ -23,11 +23,9 @@ def main():
     dom_directors, for_directors = set(), set()
     YEAR_TOTALS = {}
 
-    # 1. 영화 순회 및 2003년 필터링 (강제 적용)
     for m in movies:
         y_str = m.get('openDt', '')[:4] or str(m.get('prdtYear', ''))
         
-        # 핵심: 2003년 이전 데이터이거나 연도가 없는 데이터는 철저히 배제
         if not y_str or not y_str.isdigit() or int(y_str) < 2003:
             continue
             
@@ -71,7 +69,6 @@ def main():
     for_actors = for_actors - dom_actors
     for_directors = for_directors - dom_directors
 
-    # 2. 스타 파워 랭킹(SP_Final) 계산 (2003년 이후 데이터만)
     ACTOR_SCORES = {}
     for m in movies:
         y_str = m.get('openDt', '')[:4] or str(m.get('prdtYear', ''))
@@ -92,7 +89,8 @@ def main():
             aname = a.get('name')
             if not aid: continue
             
-            w_role = 1.0 if idx < math.ceil(c_i / 3) else 0.5
+            # 🌟 [수정됨] 논리적 모순을 없앤 '로그 감소 기반 배역 가중치' 도입
+            w_role = 1.0 / math.log2((idx + 1) + 1)
             score_i = (audi / total_y) * (w_role / math.sqrt(c_i)) * w_time * 10000
 
             if aid not in ACTOR_SCORES:
@@ -102,7 +100,6 @@ def main():
 
     ranked_all = sorted(ACTOR_SCORES.values(), key=lambda x: x['score'], reverse=True)
 
-    # 3. 여론 데이터 스캔 및 글로벌 평균 통계 생성
     sentiment_actors = []
     global_max_slope = 0
     
@@ -175,7 +172,6 @@ def main():
         "ratio_str": f"{ratio_pos_str} : {ratio_neg_str}"
     }
 
-    # 4. 최종 JSON 출력
     summary_data = {
         "generatedAt": os.popen("date -u +'%Y-%m-%dT%H:%M:%SZ'").read().strip() if os.name != 'nt' else "",
         "db_stats": {
