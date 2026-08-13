@@ -19,7 +19,7 @@
     <a href="saved.html" class="btn">🔙 저장 목록</a>
   </div>
 
-  <h1> Hawk 여론 심층 통계 분석</h1>
+  <h1>🦅 Hawk 여론 심층 통계 분석</h1>
   <p class="note">그룹 전환 기준 연도의 중간일(6월 30일)을 기점으로 이전과 이후의 긍정/부정 여론 변화를 3가지 방법으로 분석합니다.</p>
 
   <div class="summary-card">
@@ -99,7 +99,6 @@ async function analyze() {
             const [pYearStr, qtr] = period.split('-');
             const pYear = parseInt(pYearStr, 10);
             
-            // 6월 30일 기준 (Q1, Q2는 Before / Q3, Q4는 After)
             const isBefore = (pYear < tYear) || (pYear === tYear && (qtr === 'Q1' || qtr === 'Q2'));
             
             if (isBefore) {
@@ -109,7 +108,6 @@ async function analyze() {
             }
         }
 
-        // 전/후 중 한 쪽이라도 데이터가 0이면 통계에서 제외
         if ((bPos + bNeg) === 0 || (aPos + aNeg) === 0) {
             excludedActors.push(t.actor_name);
         } else {
@@ -131,12 +129,12 @@ async function analyze() {
     if(excludedActors.length > 0) {
         document.getElementById('excludedList').innerHTML = excludedActors.map(n => `<span class="actor-tag">${n}</span>`).join(' ');
     } else {
-        document.getElementById('excludedList').innerHTML = "<span class="actor-tag" style='color:green;'>제외된 배우 없음</span>";
+        // 🌟 수정됨: 따옴표 충돌 문제를 해결하여 정상적으로 출력되도록 변경
+        document.getElementById('excludedList').innerHTML = "<span class='actor-tag' style='color:green;'>제외된 배우 없음</span>";
     }
 
     if (validActors.length === 0) return;
 
-    // 차트 1. 총합
     new Chart(document.getElementById('chartTotal').getContext('2d'), {
         type: 'bar',
         data: {
@@ -149,7 +147,6 @@ async function analyze() {
         options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true } } }
     });
 
-    // 차트 2. 분기 평균
     const avgQtrBPos = sumBeforePos / qtrCountBefore; const avgQtrBNeg = sumBeforeNeg / qtrCountBefore;
     const avgQtrAPos = sumAfterPos / qtrCountAfter; const avgQtrANeg = sumAfterNeg / qtrCountAfter;
 
@@ -165,7 +162,6 @@ async function analyze() {
         options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true } } }
     });
 
-    // 차트 3. 연도 평균 (분기 평균 * 4)
     const avgYrBPos = avgQtrBPos * 4; const avgYrBNeg = avgQtrBNeg * 4;
     const avgYrAPos = avgQtrAPos * 4; const avgYrANeg = avgQtrANeg * 4;
 
