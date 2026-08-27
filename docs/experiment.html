@@ -452,7 +452,7 @@
     <p class="small-note"
        style="margin-top:12px;">
 
-      MAE/RMSE/Median AE는 읽기 쉽게 Base SP 오차에 10,000을 곱해 표시. 모든 λ에 동일한 상수를 곱하므로 최적 λ의 순위에는 영향을 주지 않습니다.
+      MAE/RMSE/Median AE는 읽기 쉽게 Base SP 오차에 10,000을 곱해 표시. 모든 λ에 동일한 상수를 곱하므로 최적 λ의 순위에는 영향을 주지 않음.
 
     </p>
 
@@ -701,7 +701,6 @@ function safeNumber(value) {
 }
 
 
-
 function normalizeDate(value) {
 
   const digits =
@@ -713,7 +712,6 @@ function normalizeDate(value) {
     : '';
 
 }
-
 
 
 function actorKey(actor) {
@@ -739,12 +737,10 @@ function actorKey(actor) {
 
 
 function formatInt(value) {
-
   return Number(value || 0)
     .toLocaleString('ko-KR');
 
 }
-
 
 
 function formatMetric(
@@ -761,8 +757,6 @@ function formatMetric(
   ).toFixed(digits);
 
 }
-
-
 
 function formatDecimal(
   value,
@@ -1404,7 +1398,6 @@ function buildDataset(rawData) {
         ) {
 
           historyRows.push({
-
             pastSum:
               stat.sum,
 
@@ -1413,18 +1406,14 @@ function buildDataset(rawData) {
 
             mu:
               priorMu
-
           });
 
 
           validationRows.push({
-
             actual:
               obs.base,
-
             pastSum:
               stat.sum,
-
             n:
               stat.count,
 
@@ -1471,46 +1460,32 @@ function buildDataset(rawData) {
           count: 0
         };
 
-
       stat.sum +=
         obs.base;
 
-
       stat.count += 1;
-
 
       actorHistory.set(
         obs.actorKey,
         stat
       );
 
-
       globalPastSum +=
         obs.base;
 
-
       globalPastCount += 1;
-
     }
 
-
     pos = end;
-
   }
 
 
   return {
-
     counters,
-
     movies,
-
     observations,
-
     validationRows,
-
     historyRows,
-
     firstDate:
       observations.length
         ? observations[0]
@@ -1630,28 +1605,22 @@ function evaluateAllLambdas(
         const ae =
           Math.abs(err);
 
-
         predictions[i] =
           prediction;
-
 
         absErrors[i] =
           ae;
 
-
         absSum +=
           ae;
 
-
         sqSum +=
           err * err;
-
 
         bucketStats[
           row.bucket
         ].sum +=
           ae;
-
 
         bucketStats[
           row.bucket
@@ -1799,7 +1768,6 @@ function chooseRecommended(
             );
           }
 
-
           if (
             a.rmse !== b.rmse
           ) {
@@ -1808,7 +1776,6 @@ function chooseRecommended(
               b.rmse
             );
           }
-
 
           return (
             a.lambda -
@@ -1843,7 +1810,6 @@ function getHistoryWeights(
 
   const out = [];
 
-
   for (
     const row
     of HISTORY_ROWS
@@ -1859,11 +1825,9 @@ function getHistoryWeights(
         lambda
       );
 
-
     const ratio =
       estimate /
       row.mu;
-
 
     if (
       Number.isFinite(
@@ -2073,7 +2037,7 @@ function renderRecommendation() {
   let detail =
     `실제 사이트 데이터의 temporal validation에서 ` +
     `<b>λ=${best.lambda}</b>가 가장 낮은 MAE ` +
-    `(${formatMetric(best.mae)})를 기록했습니다.`;
+    `(${formatMetric(best.mae)})를 기록.`;
 
 
   if (
@@ -2100,8 +2064,8 @@ function renderRecommendation() {
     detail +=
       ` 차이가 매우 작으므로 ` +
       `λ=${best.lambda}를 유일한 절대 최적값이라고 ` +
-      `과장하지 말고 주변 λ에 대한 민감도 분석도 ` +
-      `함께 보고하는 것이 안전합니다.`;
+      `확정하지 말고 주변 λ에 대한 민감도 분석도 ` +
+      `같이 확인하는 것이 안전.`;
 
   }
 
@@ -2125,7 +2089,7 @@ function renderRecommendation() {
       `권장값이 λ=${best.lambda}입니다. ` +
       `현재 탐색 범위의 끝값이므로 실제 최적값이 ` +
       `범위 밖에 있을 수 있습니다. ` +
-      `논문용 확정 전에는 λ 범위를 확장해 ` +
+      `확정 전에는 λ 범위를 확장해 ` +
       `다시 검증하세요.`;
 
   } else {
@@ -3062,10 +3026,10 @@ async function main() {
       )}건. ` +
 
       `같은 개봉일의 관측치는 서로의 history와 ` +
-      `μ_B에 포함하지 않습니다. ` +
+      `μ_B에 포함하지 않음. ` +
 
       `Total_Y는 정의에 따라 해당 연도 전체 ` +
-      `사이트 DB 유효 영화 합을 사용합니다.`;
+      `사이트 DB 유효 영화 합을 사용.`;
 
 
 
