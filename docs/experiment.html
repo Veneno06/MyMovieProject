@@ -1,0 +1,3296 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>실험 – K-Movie A Archive</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/translator.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .subtitle { color:#6b7280; margin-bottom:24px; font-size:14px; }
+
+    .experiment-card {
+      background:#fff;
+      border:1px solid #e5e7eb;
+      border-radius:8px;
+      padding:20px;
+      margin-bottom:20px;
+      box-shadow:0 1px 2px rgba(0,0,0,0.04);
+    }
+
+    .experiment-card h2 {
+      font-size:20px;
+      color:#111827;
+      margin-bottom:12px;
+    }
+
+    .experiment-card h3 {
+      font-size:16px;
+      color:#111827;
+      margin:18px 0 8px;
+    }
+
+    .math-formula {
+      font-family:'Courier New', Courier, monospace;
+      background:#f3f4f6;
+      border:1px solid #e5e7eb;
+      border-radius:6px;
+      padding:12px;
+      margin:10px 0;
+      text-align:center;
+      font-weight:bold;
+      overflow-x:auto;
+      white-space:nowrap;
+    }
+
+    .small-note {
+      color:#6b7280;
+      font-size:13px;
+      line-height:1.65;
+    }
+
+    .status-grid,
+    .metric-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(165px,1fr));
+      gap:12px;
+      margin-top:15px;
+    }
+
+    .stat-box {
+      background:#f9fafb;
+      border:1px solid #e5e7eb;
+      border-radius:8px;
+      padding:14px;
+    }
+
+    .stat-label {
+      color:#6b7280;
+      font-size:12px;
+      margin-bottom:4px;
+    }
+
+    .stat-value {
+      color:#111827;
+      font-size:20px;
+      font-weight:800;
+      word-break:break-word;
+    }
+
+    .selector-row {
+      display:flex;
+      gap:12px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    .selector-row label {
+      font-weight:bold;
+      color:#374151;
+    }
+
+    .selector-row select {
+      padding:8px 12px;
+      border:1px solid #d1d5db;
+      border-radius:6px;
+      background:#fff;
+      font-size:14px;
+      min-width:100px;
+    }
+
+    .recommended-box {
+      margin-top:14px;
+      padding:14px;
+      border:1px solid #bfdbfe;
+      background:#eff6ff;
+      border-radius:8px;
+      color:#1e3a8a;
+    }
+
+    .warning-box {
+      margin-top:12px;
+      padding:12px;
+      border:1px solid #fecaca;
+      background:#fef2f2;
+      border-radius:8px;
+      color:#991b1b;
+      display:none;
+    }
+
+    .chart-container {
+      position:relative;
+      width:100%;
+      height:390px;
+      margin-top:14px;
+    }
+
+    .table-wrap {
+      overflow-x:auto;
+      margin-top:14px;
+    }
+
+    table {
+      width:100%;
+      border-collapse:collapse;
+      text-align:center;
+      font-size:13px;
+      min-width:900px;
+    }
+
+    th,
+    td {
+      padding:10px 8px;
+      border-bottom:1px solid #e5e7eb;
+    }
+
+    th {
+      background:#f9fafb;
+      color:#374151;
+      font-weight:700;
+      position:sticky;
+      top:0;
+    }
+
+    tr.recommended-row {
+      background:#eff6ff;
+    }
+
+    tr.selected-row {
+      outline:2px solid #93c5fd;
+      outline-offset:-2px;
+    }
+
+    .status-ok {
+      color:#15803d;
+      font-weight:bold;
+    }
+
+    .status-error {
+      color:#dc2626;
+      font-weight:bold;
+    }
+
+    .status-loading {
+      color:#2563eb;
+      font-weight:bold;
+    }
+
+    .method-list {
+      margin:8px 0 0 20px;
+      color:#4b5563;
+      font-size:14px;
+      line-height:1.7;
+    }
+
+    .pill-lite {
+      display:inline-block;
+      border:1px solid #e5e7eb;
+      border-radius:999px;
+      padding:3px 8px;
+      background:#f9fafb;
+    }
+
+    @media (max-width:700px) {
+      .chart-container {
+        height:320px;
+      }
+
+      .stat-value {
+        font-size:18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <div class="ctrls">
+    <a href="index.html" class="btn" data-i18n-key="home">홈</a>
+    <a href="title-search.html" class="btn" data-i18n-key="movieTitleSearch">영화 검색 (제목)</a>
+    <a href="search.html" class="btn" data-i18n-key="movieSearchPeriod">영화 검색 (기간)</a>
+    <a href="people-search.html" class="btn" data-i18n-key="peopleSearch">배우 검색</a>
+    <a href="costar-search.html" class="btn" data-i18n-key="costarSearch">공동 출연 검색</a>
+    <a href="saved.html" class="btn" data-i18n-key="savedList">저장 목록</a>
+
+    <div style="margin-left: auto; display: flex; gap: 8px;">
+      <a href="experiment.html"
+         class="btn active"
+         style="background:#2563eb; color:#fff; border:none; font-weight:bold;">
+         실험
+      </a>
+
+      <a href="hawk-stat.html"
+         class="btn"
+         target="_blank"
+         style="background:#dc2626; color:#fff; border:none; font-weight:bold;">
+         Hawk 여론 통계 분석
+      </a>
+
+      <a href="role-weight-proof.html"
+         class="btn"
+         target="_blank"
+         style="background:#9333ea; color:#fff; border:none; font-weight:bold;">
+         역할 가중치 비교
+      </a>
+    </div>
+  </div>
+
+  <h1>실험</h1>
+
+  <div class="subtitle">
+    W_history의 shrinkage parameter λ를 사이트의 실제 영화·배우 데이터로
+    1부터 10까지 검증합니다.
+    가설 결과가 아니라 시간 순서를 보존한 다음 작품 예측 오차로 λ를 결정합니다.
+  </div>
+
+
+  <div class="experiment-card">
+
+    <h2>1. 실험 목적과 공식</h2>
+
+    <p class="small-note">
+      현재 작품 이전까지의 Base Star Performance를 이용해
+      다음 작품의 Base Star Performance를 예측하고,
+      λ별 예측 오차를 비교합니다.
+      λ는 전체 평균을 얼마나 강하게 신뢰할지를 조절하는
+      shrinkage strength입니다.
+    </p>
+
+    <div class="math-formula">
+      B_im = W_market,m × W_role,im
+    </div>
+
+    <div class="math-formula">
+      B̂_history,im(λ) =
+      [Σ B_ij + λ·μ_B,&lt;t_m] / [n_im + λ]
+    </div>
+
+    <div class="math-formula">
+      W_history,im(λ) =
+      √[ B̂_history,im(λ) / μ_B,&lt;t_m ]
+    </div>
+
+    <ul class="method-list">
+      <li>
+        W_market,m = A_m / Total_Ym :
+        해당 영화 관객수 / 같은 연도 사이트 DB 유효 영화 관객수 합
+      </li>
+
+      <li>
+        W_role,im = 1 / log₂(k_im + 1) :
+        출연진 순서에 따른 로그 할인 가중치
+      </li>
+
+      <li>
+        μ_B,&lt;t_m :
+        현재 영화 개봉일보다 앞선 배우-영화 관측치의 Base SP 평균
+      </li>
+
+      <li>
+        n_im :
+        현재 영화보다 앞선 해당 배우의 유효 작품 수
+      </li>
+
+      <li>
+        λ :
+        전체 평균을 몇 개의 pseudo-observation만큼 신뢰할지 조절하는 값
+      </li>
+    </ul>
+
+  </div>
+
+
+  <div class="experiment-card">
+
+    <h2>2. 데이터 분석 상태</h2>
+
+    <div id="statusText" class="status-loading">
+      data/search_index.json을 불러오는 중입니다...
+    </div>
+
+    <div class="status-grid">
+
+      <div class="stat-box">
+        <div class="stat-label">원본 영화 수</div>
+        <div class="stat-value" id="rawMovieCount">-</div>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-label">유효 고유 영화 수</div>
+        <div class="stat-value" id="validMovieCount">-</div>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-label">배우-영화 관측치</div>
+        <div class="stat-value" id="actorMovieCount">-</div>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-label">λ 검증 관측치 (과거 ≥ 1편)</div>
+        <div class="stat-value" id="validationCount">-</div>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-label">분석 기간</div>
+        <div class="stat-value"
+             id="dateRange"
+             style="font-size:15px;">
+             -
+        </div>
+      </div>
+
+    </div>
+
+    <div id="exclusionNote"
+         class="small-note"
+         style="margin-top:12px;">
+    </div>
+
+  </div>
+
+
+  <div class="experiment-card"
+       id="resultsSection"
+       style="display:none;">
+
+    <h2>3. λ 선택 및 데이터 기반 권장값</h2>
+
+    <div class="selector-row">
+
+      <label for="lambdaSelect">
+        확인할 λ 값
+      </label>
+
+      <select id="lambdaSelect"></select>
+
+      <span class="pill-lite">
+        Primary criterion: 최소 MAE
+      </span>
+
+      <span class="pill-lite">
+        Tie-breaker: RMSE → 작은 λ
+      </span>
+
+    </div>
+
+    <div class="recommended-box"
+         id="recommendedBox">
+    </div>
+
+    <div class="warning-box"
+         id="boundaryWarning">
+    </div>
+
+    <h3>선택한 λ의 계산식</h3>
+
+    <div class="math-formula"
+         id="selectedFormula">
+         -
+    </div>
+
+
+    <div class="metric-grid">
+
+      <div class="stat-box">
+        <div class="stat-label">
+          MAE × 10,000
+        </div>
+        <div class="stat-value"
+             id="metricMae">
+             -
+        </div>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-label">
+          RMSE × 10,000
+        </div>
+        <div class="stat-value"
+             id="metricRmse">
+             -
+        </div>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-label">
+          Median AE × 10,000
+        </div>
+        <div class="stat-value"
+             id="metricMedae">
+             -
+        </div>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-label">
+          Spearman ρ
+        </div>
+        <div class="stat-value"
+             id="metricSpearman">
+             -
+        </div>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-label">
+          평균 W_history
+        </div>
+        <div class="stat-value"
+             id="metricMeanW">
+             -
+        </div>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-label">
+          W_history 표준편차
+        </div>
+        <div class="stat-value"
+             id="metricSdW">
+             -
+        </div>
+      </div>
+
+    </div>
+
+    <p class="small-note"
+       style="margin-top:12px;">
+
+      MAE/RMSE/Median AE는 읽기 쉽게
+      Base SP 오차에 10,000을 곱해 표시합니다.
+
+      모든 λ에 동일한 상수를 곱하므로
+      최적 λ의 순위에는 영향을 주지 않습니다.
+
+    </p>
+
+  </div>
+
+
+  <div class="experiment-card"
+       id="errorChartCard"
+       style="display:none;">
+
+    <h2>4. λ=1~10 예측 오차 비교</h2>
+
+    <p class="small-note">
+      MAE와 RMSE가 낮을수록
+      과거 성과의 shrinkage estimate가
+      다음 작품의 Base SP에 더 가까웠다는 뜻입니다.
+      권장 λ는 MAE 최솟값으로 결정합니다.
+    </p>
+
+    <div class="chart-container">
+      <canvas id="lambdaErrorChart"></canvas>
+    </div>
+
+  </div>
+
+
+  <div class="experiment-card"
+       id="distributionCard"
+       style="display:none;">
+
+    <h2>5. 선택한 λ의 W_history 분포</h2>
+
+    <p class="small-note">
+      W_history=1은 해당 시점의 사이트 평균 수준입니다.
+      1보다 크면 평균 이상,
+      1보다 작으면 평균 이하의 과거 흥행 신뢰도를 의미합니다.
+      λ가 커질수록 값들이 1에 더 강하게 수축하는 것이 정상입니다.
+    </p>
+
+    <div class="chart-container">
+      <canvas id="historyDistributionChart"></canvas>
+    </div>
+
+  </div>
+
+
+  <div class="experiment-card"
+       id="careerCard"
+       style="display:none;">
+
+    <h2>6. 과거 작품 수 구간별 예측 오차</h2>
+
+    <p class="small-note">
+      λ는 특히 과거 작품이 적은 배우의
+      과대·과소평가를 완화하기 위한 값입니다.
+      특정 경력 구간 하나에서만 좋은 λ인지 확인합니다.
+    </p>
+
+    <div class="chart-container">
+      <canvas id="careerMaeChart"></canvas>
+    </div>
+
+  </div>
+
+
+  <div class="experiment-card"
+       id="tableCard"
+       style="display:none;">
+
+    <h2>7. λ 전체 결과표</h2>
+
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th>λ</th>
+
+            <th>
+              MAE ×10,000
+            </th>
+
+            <th>
+              RMSE ×10,000
+            </th>
+
+            <th>
+              Median AE ×10,000
+            </th>
+
+            <th>
+              Spearman ρ
+            </th>
+
+            <th>
+              평균 W_history
+            </th>
+
+            <th>
+              W_history SD
+            </th>
+
+            <th>
+              최저 MAE 대비
+            </th>
+
+            <th>
+              판정
+            </th>
+
+          </tr>
+
+        </thead>
+
+        <tbody id="lambdaTableBody"></tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+
+  <div class="experiment-card"
+       id="decisionCard"
+       style="display:none;">
+
+    <h2>8. 최종 λ 결정 규칙</h2>
+
+    <ol class="method-list">
+
+      <li>
+        가설(H1/H2/H3),
+        사건 여부,
+        유튜브 여론은 λ 선택에 사용하지 않습니다.
+      </li>
+
+      <li>
+        λ=1~10 중
+        MAE가 가장 낮은 값을
+        1차 선택합니다.
+      </li>
+
+      <li>
+        MAE가 수치적으로 동일한 경우
+        RMSE가 더 낮은 값을 선택합니다.
+      </li>
+
+      <li>
+        MAE와 RMSE까지 동일하면
+        더 단순한 정규화를 위해
+        작은 λ를 선택합니다.
+      </li>
+
+      <li>
+        권장값이 1 또는 10이면
+        탐색 범위의 경계이므로
+        범위를 확장하기 전에는
+        최적값으로 확정하지 않습니다.
+      </li>
+
+      <li>
+        최고값과 2위 값의 MAE 차이가 매우 작으면
+        “유일한 최적값”이라고 과장하지 않고,
+        주변 λ에서도 결과가 안정적인지
+        sensitivity analysis로 확인합니다.
+      </li>
+
+      <li>
+        위 검증이 끝난 뒤에만
+        λ를 Star Power 공식의 default로 고정합니다.
+      </li>
+
+    </ol>
+
+  </div>
+
+</div>
+
+
+<script>
+
+const DATA_URL = 'data/search_index.json';
+
+const LAMBDAS =
+  Array.from(
+    { length: 10 },
+    (_, i) => i + 1
+  );
+
+const DISPLAY_SCALE = 10000;
+
+
+let VALIDATION_ROWS = [];
+
+let HISTORY_ROWS = [];
+
+let LAMBDA_RESULTS = [];
+
+let RECOMMENDED_LAMBDA = null;
+
+
+let lambdaErrorChart = null;
+
+let historyDistributionChart = null;
+
+let careerMaeChart = null;
+
+
+
+const els = {
+
+  statusText:
+    document.getElementById('statusText'),
+
+  rawMovieCount:
+    document.getElementById('rawMovieCount'),
+
+  validMovieCount:
+    document.getElementById('validMovieCount'),
+
+  actorMovieCount:
+    document.getElementById('actorMovieCount'),
+
+  validationCount:
+    document.getElementById('validationCount'),
+
+  dateRange:
+    document.getElementById('dateRange'),
+
+  exclusionNote:
+    document.getElementById('exclusionNote'),
+
+  resultsSection:
+    document.getElementById('resultsSection'),
+
+  errorChartCard:
+    document.getElementById('errorChartCard'),
+
+  distributionCard:
+    document.getElementById('distributionCard'),
+
+  careerCard:
+    document.getElementById('careerCard'),
+
+  tableCard:
+    document.getElementById('tableCard'),
+
+  decisionCard:
+    document.getElementById('decisionCard'),
+
+  lambdaSelect:
+    document.getElementById('lambdaSelect'),
+
+  recommendedBox:
+    document.getElementById('recommendedBox'),
+
+  boundaryWarning:
+    document.getElementById('boundaryWarning'),
+
+  selectedFormula:
+    document.getElementById('selectedFormula'),
+
+  metricMae:
+    document.getElementById('metricMae'),
+
+  metricRmse:
+    document.getElementById('metricRmse'),
+
+  metricMedae:
+    document.getElementById('metricMedae'),
+
+  metricSpearman:
+    document.getElementById('metricSpearman'),
+
+  metricMeanW:
+    document.getElementById('metricMeanW'),
+
+  metricSdW:
+    document.getElementById('metricSdW'),
+
+  lambdaTableBody:
+    document.getElementById('lambdaTableBody')
+
+};
+
+
+
+function safeNumber(value) {
+
+  const n =
+    Number(
+      String(value ?? '')
+        .replace(/,/g, '')
+        .trim()
+    );
+
+  return Number.isFinite(n) ? n : 0;
+
+}
+
+
+
+function normalizeDate(value) {
+
+  const digits =
+    String(value ?? '')
+      .replace(/[^0-9]/g, '');
+
+  return digits.length >= 8
+    ? digits.slice(0, 8)
+    : '';
+
+}
+
+
+
+function actorKey(actor) {
+
+  const id =
+    String(actor?.id ?? '').trim();
+
+  const name =
+    String(actor?.name ?? '').trim();
+
+  if (id) {
+    return `id:${id}`;
+  }
+
+  if (name) {
+    return `name:${name}`;
+  }
+
+  return '';
+
+}
+
+
+
+function formatInt(value) {
+
+  return Number(value || 0)
+    .toLocaleString('ko-KR');
+
+}
+
+
+
+function formatMetric(
+  value,
+  digits = 5
+) {
+
+  if (!Number.isFinite(value)) {
+    return '-';
+  }
+
+  return (
+    value * DISPLAY_SCALE
+  ).toFixed(digits);
+
+}
+
+
+
+function formatDecimal(
+  value,
+  digits = 4
+) {
+
+  if (!Number.isFinite(value)) {
+    return '-';
+  }
+
+  return value.toFixed(digits);
+
+}
+
+
+
+function mean(values) {
+
+  if (!values.length) {
+    return NaN;
+  }
+
+  let sum = 0;
+
+  for (const v of values) {
+    sum += v;
+  }
+
+  return sum / values.length;
+
+}
+
+
+
+function standardDeviation(values) {
+
+  if (!values.length) {
+    return NaN;
+  }
+
+  const m = mean(values);
+
+  let sumSq = 0;
+
+  for (const v of values) {
+    sumSq += (v - m) ** 2;
+  }
+
+  return Math.sqrt(
+    sumSq / values.length
+  );
+
+}
+
+
+
+function median(values) {
+
+  if (!values.length) {
+    return NaN;
+  }
+
+  const arr =
+    [...values]
+      .sort((a, b) => a - b);
+
+  const mid =
+    Math.floor(arr.length / 2);
+
+  if (arr.length % 2) {
+    return arr[mid];
+  }
+
+  return (
+    arr[mid - 1] + arr[mid]
+  ) / 2;
+
+}
+
+
+
+function ranks(values) {
+
+  const indexed =
+    values.map(
+      (value, index) => ({
+        value,
+        index
+      })
+    );
+
+  indexed.sort(
+    (a, b) =>
+      a.value - b.value
+  );
+
+  const out =
+    new Array(values.length);
+
+  let i = 0;
+
+  while (i < indexed.length) {
+
+    let j = i + 1;
+
+    while (
+      j < indexed.length &&
+      indexed[j].value ===
+        indexed[i].value
+    ) {
+      j++;
+    }
+
+    const averageRank =
+      (
+        (i + 1) + j
+      ) / 2;
+
+    for (
+      let k = i;
+      k < j;
+      k++
+    ) {
+      out[
+        indexed[k].index
+      ] = averageRank;
+    }
+
+    i = j;
+  }
+
+  return out;
+
+}
+
+
+
+function pearson(x, y) {
+
+  const n = x.length;
+
+  if (
+    !n ||
+    y.length !== n
+  ) {
+    return NaN;
+  }
+
+  const mx = mean(x);
+
+  const my = mean(y);
+
+  let num = 0;
+
+  let dx = 0;
+
+  let dy = 0;
+
+  for (
+    let i = 0;
+    i < n;
+    i++
+  ) {
+
+    const a =
+      x[i] - mx;
+
+    const b =
+      y[i] - my;
+
+    num += a * b;
+
+    dx += a * a;
+
+    dy += b * b;
+  }
+
+  const den =
+    Math.sqrt(dx * dy);
+
+  return den > 0
+    ? num / den
+    : NaN;
+
+}
+
+
+
+function spearmanWithActualRanks(
+  actualRanks,
+  predictedValues
+) {
+
+  return pearson(
+    actualRanks,
+    ranks(predictedValues)
+  );
+
+}
+
+
+
+function careerBucket(n) {
+
+  if (n <= 2) {
+    return '1–2편';
+  }
+
+  if (n <= 5) {
+    return '3–5편';
+  }
+
+  if (n <= 10) {
+    return '6–10편';
+  }
+
+  return '11편 이상';
+
+}
+
+
+
+function buildDataset(rawData) {
+
+  const counters = {
+
+    raw:
+      Array.isArray(rawData)
+        ? rawData.length
+        : 0,
+
+    invalidDate: 0,
+
+    invalidAudience: 0,
+
+    noActors: 0,
+
+    duplicateMovies: 0
+
+  };
+
+
+  const uniqueMovies =
+    new Map();
+
+
+  (
+    Array.isArray(rawData)
+      ? rawData
+      : []
+  ).forEach(
+    (movie, index) => {
+
+      const dateKey =
+        normalizeDate(
+          movie?.openDt
+        );
+
+
+      if (!dateKey) {
+
+        counters.invalidDate++;
+
+        return;
+
+      }
+
+
+      const audience =
+        safeNumber(
+          movie?.audiAcc
+        );
+
+
+      if (!(audience > 0)) {
+
+        counters.invalidAudience++;
+
+        return;
+
+      }
+
+
+      const actors =
+        Array.isArray(movie?.actors)
+          ? movie.actors
+          : [];
+
+
+      if (!actors.length) {
+        counters.noActors++;
+      }
+
+
+      const movieCd =
+        String(
+          movie?.movieCd ?? ''
+        ).trim();
+
+
+      const fallbackKey =
+        `${String(
+          movie?.movieNm ?? ''
+        ).trim()}|${dateKey}`;
+
+
+      const key =
+        movieCd
+          ? `cd:${movieCd}`
+          : `fb:${fallbackKey || index}`;
+
+
+      const normalized = {
+
+        key,
+
+        movieCd,
+
+        movieNm:
+          String(
+            movie?.movieNm ?? ''
+          ).trim(),
+
+        dateKey,
+
+        year:
+          dateKey.slice(0, 4),
+
+        audience,
+
+        actors
+
+      };
+
+
+      if (
+        !uniqueMovies.has(key)
+      ) {
+
+        uniqueMovies.set(
+          key,
+          normalized
+        );
+
+      } else {
+
+        counters
+          .duplicateMovies++;
+
+
+        const old =
+          uniqueMovies.get(key);
+
+
+        if (
+          normalized.audience >
+            old.audience ||
+
+          (
+            !old.actors.length &&
+            normalized.actors.length
+          )
+        ) {
+
+          uniqueMovies.set(
+            key,
+            normalized
+          );
+
+        }
+
+      }
+
+    }
+  );
+
+
+  const movies =
+    [...uniqueMovies.values()];
+
+
+  const yearTotals =
+    Object.create(null);
+
+
+  for (const movie of movies) {
+
+    yearTotals[
+      movie.year
+    ] =
+      (
+        yearTotals[
+          movie.year
+        ] || 0
+      ) +
+      movie.audience;
+
+  }
+
+
+  const observations = [];
+
+
+  for (const movie of movies) {
+
+    if (
+      !movie.actors.length
+    ) {
+      continue;
+    }
+
+
+    const totalY =
+      yearTotals[
+        movie.year
+      ];
+
+
+    if (!(totalY > 0)) {
+      continue;
+    }
+
+
+    const marketWeight =
+      movie.audience /
+      totalY;
+
+
+    const seenActors =
+      new Set();
+
+
+    movie.actors.forEach(
+      (actor, index) => {
+
+        const key =
+          actorKey(actor);
+
+
+        if (
+          !key ||
+          seenActors.has(key)
+        ) {
+          return;
+        }
+
+
+        seenActors.add(key);
+
+
+        const rank =
+          index + 1;
+
+
+        const roleWeight =
+          1 /
+          Math.log2(
+            rank + 1
+          );
+
+
+        const base =
+          marketWeight *
+          roleWeight;
+
+
+        if (
+          !Number.isFinite(base) ||
+          !(base > 0)
+        ) {
+          return;
+        }
+
+
+        observations.push({
+
+          dateKey:
+            movie.dateKey,
+
+          actorKey:
+            key,
+
+          actorName:
+            String(
+              actor?.name ?? ''
+            ).trim(),
+
+          movieCd:
+            movie.movieCd,
+
+          movieNm:
+            movie.movieNm,
+
+          base,
+
+          marketWeight,
+
+          roleWeight,
+
+          rank
+
+        });
+
+      }
+    );
+
+  }
+
+
+  observations.sort(
+    (a, b) => {
+
+      const d =
+        a.dateKey.localeCompare(
+          b.dateKey
+        );
+
+
+      if (d !== 0) {
+        return d;
+      }
+
+
+      const m =
+        String(
+          a.movieCd
+        ).localeCompare(
+          String(
+            b.movieCd
+          )
+        );
+
+
+      if (m !== 0) {
+        return m;
+      }
+
+
+      return (
+        a.actorKey
+          .localeCompare(
+            b.actorKey
+          )
+      );
+
+    }
+  );
+
+
+  const actorHistory =
+    new Map();
+
+
+  let globalPastSum = 0;
+
+  let globalPastCount = 0;
+
+
+  const validationRows = [];
+
+  const historyRows = [];
+
+
+  let pos = 0;
+
+
+  while (
+    pos < observations.length
+  ) {
+
+    const currentDate =
+      observations[
+        pos
+      ].dateKey;
+
+
+    let end =
+      pos + 1;
+
+
+    while (
+      end <
+        observations.length &&
+
+      observations[
+        end
+      ].dateKey ===
+        currentDate
+    ) {
+
+      end++;
+
+    }
+
+
+    const priorMu =
+      globalPastCount > 0
+        ? globalPastSum /
+          globalPastCount
+        : NaN;
+
+
+    if (
+      Number.isFinite(
+        priorMu
+      ) &&
+      priorMu > 0
+    ) {
+
+      for (
+        let i = pos;
+        i < end;
+        i++
+      ) {
+
+        const obs =
+          observations[i];
+
+
+        const stat =
+          actorHistory.get(
+            obs.actorKey
+          ) ||
+          {
+            sum: 0,
+            count: 0
+          };
+
+
+        /*
+          n=0인 첫 작품은
+          어떤 λ를 넣어도
+          예측값과 W_history가
+          동일하므로 λ 식별에
+          정보를 주지 않는다.
+        */
+        if (
+          stat.count >= 1
+        ) {
+
+          historyRows.push({
+
+            pastSum:
+              stat.sum,
+
+            n:
+              stat.count,
+
+            mu:
+              priorMu
+
+          });
+
+
+          validationRows.push({
+
+            actual:
+              obs.base,
+
+            pastSum:
+              stat.sum,
+
+            n:
+              stat.count,
+
+            mu:
+              priorMu,
+
+            bucket:
+              careerBucket(
+                stat.count
+              )
+
+          });
+
+        }
+
+      }
+
+    }
+
+
+    /*
+      같은 개봉일의 영화들은
+      서로의 history에 들어가지
+      않게 하기 위해
+      현재 날짜 그룹의 평가가
+      모두 끝난 후 추가한다.
+    */
+    for (
+      let i = pos;
+      i < end;
+      i++
+    ) {
+
+      const obs =
+        observations[i];
+
+
+      const stat =
+        actorHistory.get(
+          obs.actorKey
+        ) ||
+        {
+          sum: 0,
+          count: 0
+        };
+
+
+      stat.sum +=
+        obs.base;
+
+
+      stat.count += 1;
+
+
+      actorHistory.set(
+        obs.actorKey,
+        stat
+      );
+
+
+      globalPastSum +=
+        obs.base;
+
+
+      globalPastCount += 1;
+
+    }
+
+
+    pos = end;
+
+  }
+
+
+  return {
+
+    counters,
+
+    movies,
+
+    observations,
+
+    validationRows,
+
+    historyRows,
+
+    firstDate:
+      observations.length
+        ? observations[0]
+            .dateKey
+        : '',
+
+    lastDate:
+      observations.length
+        ? observations[
+            observations.length - 1
+          ].dateKey
+        : ''
+
+  };
+
+}
+
+
+
+function evaluateAllLambdas(
+  validationRows,
+  historyRows
+) {
+
+  if (
+    !validationRows.length
+  ) {
+    return [];
+  }
+
+
+  const actualValues =
+    validationRows.map(
+      r => r.actual
+    );
+
+
+  const actualRanks =
+    ranks(actualValues);
+
+
+  return LAMBDAS.map(
+    lambda => {
+
+      let absSum = 0;
+
+      let sqSum = 0;
+
+
+      const absErrors =
+        new Array(
+          validationRows.length
+        );
+
+
+      const predictions =
+        new Array(
+          validationRows.length
+        );
+
+
+      const bucketStats = {
+
+        '1–2편':
+          {
+            sum: 0,
+            count: 0
+          },
+
+        '3–5편':
+          {
+            sum: 0,
+            count: 0
+          },
+
+        '6–10편':
+          {
+            sum: 0,
+            count: 0
+          },
+
+        '11편 이상':
+          {
+            sum: 0,
+            count: 0
+          }
+
+      };
+
+
+      for (
+        let i = 0;
+        i < validationRows.length;
+        i++
+      ) {
+
+        const row =
+          validationRows[i];
+
+
+        const prediction =
+          (
+            row.pastSum +
+            lambda * row.mu
+          ) /
+          (
+            row.n +
+            lambda
+          );
+
+
+        const err =
+          row.actual -
+          prediction;
+
+
+        const ae =
+          Math.abs(err);
+
+
+        predictions[i] =
+          prediction;
+
+
+        absErrors[i] =
+          ae;
+
+
+        absSum +=
+          ae;
+
+
+        sqSum +=
+          err * err;
+
+
+        bucketStats[
+          row.bucket
+        ].sum +=
+          ae;
+
+
+        bucketStats[
+          row.bucket
+        ].count +=
+          1;
+
+      }
+
+
+      const weights = [];
+
+
+      for (
+        const row
+        of historyRows
+      ) {
+
+        const estimate =
+          (
+            row.pastSum +
+            lambda * row.mu
+          ) /
+          (
+            row.n +
+            lambda
+          );
+
+
+        const ratio =
+          estimate /
+          row.mu;
+
+
+        if (
+          Number.isFinite(
+            ratio
+          ) &&
+          ratio >= 0
+        ) {
+
+          weights.push(
+            Math.sqrt(
+              ratio
+            )
+          );
+
+        }
+
+      }
+
+
+      const bucketMae = {};
+
+
+      for (
+        const [
+          bucket,
+          stat
+        ]
+        of Object.entries(
+          bucketStats
+        )
+      ) {
+
+        bucketMae[
+          bucket
+        ] =
+          stat.count
+            ? stat.sum /
+              stat.count
+            : NaN;
+
+      }
+
+
+      return {
+
+        lambda,
+
+        mae:
+          absSum /
+          validationRows.length,
+
+        rmse:
+          Math.sqrt(
+            sqSum /
+            validationRows.length
+          ),
+
+        medae:
+          median(
+            absErrors
+          ),
+
+        spearman:
+          spearmanWithActualRanks(
+            actualRanks,
+            predictions
+          ),
+
+        meanW:
+          mean(
+            weights
+          ),
+
+        sdW:
+          standardDeviation(
+            weights
+          ),
+
+        bucketMae,
+
+        historyWeightCount:
+          weights.length
+
+      };
+
+    }
+  );
+
+}
+
+
+
+function chooseRecommended(
+  results
+) {
+
+  if (!results.length) {
+    return null;
+  }
+
+
+  const sorted =
+    [...results]
+      .sort(
+        (a, b) => {
+
+          if (
+            a.mae !== b.mae
+          ) {
+            return (
+              a.mae -
+              b.mae
+            );
+          }
+
+
+          if (
+            a.rmse !== b.rmse
+          ) {
+            return (
+              a.rmse -
+              b.rmse
+            );
+          }
+
+
+          return (
+            a.lambda -
+            b.lambda
+          );
+
+        }
+      );
+
+
+  return sorted[0];
+
+}
+
+
+
+function getResult(lambda) {
+
+  return LAMBDA_RESULTS.find(
+    r =>
+      r.lambda ===
+      Number(lambda)
+  );
+
+}
+
+
+
+function getHistoryWeights(
+  lambda
+) {
+
+  const out = [];
+
+
+  for (
+    const row
+    of HISTORY_ROWS
+  ) {
+
+    const estimate =
+      (
+        row.pastSum +
+        lambda * row.mu
+      ) /
+      (
+        row.n +
+        lambda
+      );
+
+
+    const ratio =
+      estimate /
+      row.mu;
+
+
+    if (
+      Number.isFinite(
+        ratio
+      ) &&
+      ratio >= 0
+    ) {
+
+      out.push(
+        Math.sqrt(
+          ratio
+        )
+      );
+
+    }
+
+  }
+
+
+  return out;
+
+}
+
+
+
+function buildWeightHistogram(
+  values
+) {
+
+  const bins = [
+
+    {
+      label:
+        '< 0.50',
+      min:
+        -Infinity,
+      max:
+        0.50
+    },
+
+    {
+      label:
+        '0.50–0.75',
+      min:
+        0.50,
+      max:
+        0.75
+    },
+
+    {
+      label:
+        '0.75–0.90',
+      min:
+        0.75,
+      max:
+        0.90
+    },
+
+    {
+      label:
+        '0.90–1.00',
+      min:
+        0.90,
+      max:
+        1.00
+    },
+
+    {
+      label:
+        '1.00–1.10',
+      min:
+        1.00,
+      max:
+        1.10
+    },
+
+    {
+      label:
+        '1.10–1.25',
+      min:
+        1.10,
+      max:
+        1.25
+    },
+
+    {
+      label:
+        '1.25–1.50',
+      min:
+        1.25,
+      max:
+        1.50
+    },
+
+    {
+      label:
+        '1.50–2.00',
+      min:
+        1.50,
+      max:
+        2.00
+    },
+
+    {
+      label:
+        '2.00–3.00',
+      min:
+        2.00,
+      max:
+        3.00
+    },
+
+    {
+      label:
+        '≥ 3.00',
+      min:
+        3.00,
+      max:
+        Infinity
+    }
+
+  ];
+
+
+  const counts =
+    new Array(
+      bins.length
+    ).fill(0);
+
+
+  for (
+    const v
+    of values
+  ) {
+
+    const idx =
+      bins.findIndex(
+        b =>
+          v >= b.min &&
+          v < b.max
+      );
+
+
+    if (idx >= 0) {
+      counts[idx]++;
+    }
+
+  }
+
+
+  return {
+
+    labels:
+      bins.map(
+        b => b.label
+      ),
+
+    counts
+
+  };
+
+}
+
+
+
+function renderRecommendation() {
+
+  const best =
+    getResult(
+      RECOMMENDED_LAMBDA
+    );
+
+
+  if (!best) {
+    return;
+  }
+
+
+  const sorted =
+    [...LAMBDA_RESULTS]
+      .sort(
+        (a, b) =>
+          a.mae -
+          b.mae
+      );
+
+
+  const second =
+    sorted[1];
+
+
+  const gapPct =
+    second &&
+    best.mae > 0
+
+      ? (
+          (
+            second.mae -
+            best.mae
+          ) /
+          best.mae
+        ) * 100
+
+      : NaN;
+
+
+  let detail =
+    `실제 사이트 데이터의 temporal validation에서 ` +
+    `<b>λ=${best.lambda}</b>가 가장 낮은 MAE ` +
+    `(${formatMetric(best.mae)})를 기록했습니다.`;
+
+
+  if (
+    Number.isFinite(
+      gapPct
+    )
+  ) {
+
+    detail +=
+      ` 2위 λ=${second.lambda}와의 ` +
+      `MAE 차이는 ` +
+      `<b>${gapPct.toFixed(3)}%</b>입니다.`;
+
+  }
+
+
+  if (
+    Number.isFinite(
+      gapPct
+    ) &&
+    gapPct < 0.5
+  ) {
+
+    detail +=
+      ` 차이가 매우 작으므로 ` +
+      `λ=${best.lambda}를 유일한 절대 최적값이라고 ` +
+      `과장하지 말고 주변 λ에 대한 민감도 분석도 ` +
+      `함께 보고하는 것이 안전합니다.`;
+
+  }
+
+
+  els.recommendedBox.innerHTML =
+    `<b>데이터 기반 권장값: λ=${best.lambda}</b><br>` +
+    detail;
+
+
+  if (
+    best.lambda === 1 ||
+    best.lambda === 10
+  ) {
+
+    els.boundaryWarning.style.display =
+      'block';
+
+
+    els.boundaryWarning.innerHTML =
+      `<b>경계값 경고:</b> ` +
+      `권장값이 λ=${best.lambda}입니다. ` +
+      `현재 탐색 범위의 끝값이므로 실제 최적값이 ` +
+      `범위 밖에 있을 수 있습니다. ` +
+      `논문용 확정 전에는 λ 범위를 확장해 ` +
+      `다시 검증하세요.`;
+
+  } else {
+
+    els.boundaryWarning.style.display =
+      'none';
+
+
+    els.boundaryWarning.innerHTML =
+      '';
+
+  }
+
+}
+
+
+
+function renderSelectedLambda(
+  lambda
+) {
+
+  const result =
+    getResult(lambda);
+
+
+  if (!result) {
+    return;
+  }
+
+
+  els.selectedFormula.textContent =
+    `λ=${lambda}:  ` +
+    `B̂_history = ` +
+    `(ΣB_past + ${lambda}·μ_B) / ` +
+    `(n + ${lambda})   →   ` +
+    `W_history = √(B̂_history / μ_B)`;
+
+
+  els.metricMae.textContent =
+    formatMetric(
+      result.mae
+    );
+
+
+  els.metricRmse.textContent =
+    formatMetric(
+      result.rmse
+    );
+
+
+  els.metricMedae.textContent =
+    formatMetric(
+      result.medae
+    );
+
+
+  els.metricSpearman.textContent =
+    formatDecimal(
+      result.spearman,
+      4
+    );
+
+
+  els.metricMeanW.textContent =
+    formatDecimal(
+      result.meanW,
+      4
+    );
+
+
+  els.metricSdW.textContent =
+    formatDecimal(
+      result.sdW,
+      4
+    );
+
+
+  renderLambdaErrorChart(
+    lambda
+  );
+
+
+  renderHistoryDistribution(
+    lambda
+  );
+
+
+  renderCareerChart(
+    lambda
+  );
+
+
+  renderTable(
+    lambda
+  );
+
+}
+
+
+
+function renderLambdaErrorChart(
+  selectedLambda
+) {
+
+  const ctx =
+    document.getElementById(
+      'lambdaErrorChart'
+    );
+
+
+  if (
+    lambdaErrorChart
+  ) {
+
+    lambdaErrorChart.destroy();
+
+  }
+
+
+  const labels =
+    LAMBDA_RESULTS.map(
+      r =>
+        String(
+          r.lambda
+        )
+    );
+
+
+  const maeData =
+    LAMBDA_RESULTS.map(
+      r =>
+        r.mae *
+        DISPLAY_SCALE
+    );
+
+
+  const rmseData =
+    LAMBDA_RESULTS.map(
+      r =>
+        r.rmse *
+        DISPLAY_SCALE
+    );
+
+
+  lambdaErrorChart =
+    new Chart(
+      ctx,
+      {
+
+        type:
+          'line',
+
+        data: {
+
+          labels,
+
+          datasets: [
+
+            {
+
+              label:
+                'MAE × 10,000',
+
+              data:
+                maeData,
+
+              borderColor:
+                '#2563eb',
+
+              backgroundColor:
+                'rgba(37,99,235,0.10)',
+
+              borderWidth:
+                2,
+
+              tension:
+                0.2,
+
+              pointRadius:
+                LAMBDA_RESULTS.map(
+                  r =>
+                    r.lambda ===
+                      selectedLambda ||
+                    r.lambda ===
+                      RECOMMENDED_LAMBDA
+                      ? 6
+                      : 4
+                ),
+
+              pointBackgroundColor:
+                LAMBDA_RESULTS.map(
+                  r =>
+                    r.lambda ===
+                      RECOMMENDED_LAMBDA
+                      ? '#dc2626'
+                      : '#2563eb'
+                )
+
+            },
+
+
+            {
+
+              label:
+                'RMSE × 10,000',
+
+              data:
+                rmseData,
+
+              borderColor:
+                '#7c3aed',
+
+              backgroundColor:
+                'rgba(124,58,237,0.10)',
+
+              borderWidth:
+                2,
+
+              tension:
+                0.2,
+
+              pointRadius:
+                LAMBDA_RESULTS.map(
+                  r =>
+                    r.lambda ===
+                      selectedLambda
+                      ? 6
+                      : 4
+                ),
+
+              pointBackgroundColor:
+                '#7c3aed'
+
+            }
+
+          ]
+
+        },
+
+
+        options: {
+
+          responsive:
+            true,
+
+          maintainAspectRatio:
+            false,
+
+          interaction: {
+
+            mode:
+              'index',
+
+            intersect:
+              false
+
+          },
+
+
+          scales: {
+
+            x: {
+
+              title: {
+
+                display:
+                  true,
+
+                text:
+                  'λ'
+
+              }
+
+            },
+
+
+            y: {
+
+              beginAtZero:
+                false,
+
+              title: {
+
+                display:
+                  true,
+
+                text:
+                  '예측 오차 (Base SP × 10,000)'
+
+              }
+
+            }
+
+          },
+
+
+          plugins: {
+
+            tooltip: {
+
+              callbacks: {
+
+                footer:
+                  (items) => {
+
+                    const lambda =
+                      Number(
+                        items[0]
+                          .label
+                      );
+
+
+                    if (
+                      lambda ===
+                        RECOMMENDED_LAMBDA
+                    ) {
+
+                      return (
+                        '데이터 기반 권장 λ'
+                      );
+
+                    }
+
+
+                    if (
+                      lambda ===
+                        selectedLambda
+                    ) {
+
+                      return (
+                        '현재 선택한 λ'
+                      );
+
+                    }
+
+
+                    return '';
+
+                  }
+
+              }
+
+            }
+
+          }
+
+        }
+
+      }
+    );
+
+}
+
+
+
+function renderHistoryDistribution(
+  lambda
+) {
+
+  const ctx =
+    document.getElementById(
+      'historyDistributionChart'
+    );
+
+
+  if (
+    historyDistributionChart
+  ) {
+
+    historyDistributionChart.destroy();
+
+  }
+
+
+  const histogram =
+    buildWeightHistogram(
+      getHistoryWeights(
+        lambda
+      )
+    );
+
+
+  historyDistributionChart =
+    new Chart(
+      ctx,
+      {
+
+        type:
+          'bar',
+
+        data: {
+
+          labels:
+            histogram.labels,
+
+          datasets: [
+
+            {
+
+              label:
+                `λ=${lambda} W_history 관측치 수`,
+
+              data:
+                histogram.counts,
+
+              backgroundColor:
+                'rgba(37,99,235,0.65)',
+
+              borderColor:
+                '#2563eb',
+
+              borderWidth:
+                1
+
+            }
+
+          ]
+
+        },
+
+
+        options: {
+
+          responsive:
+            true,
+
+          maintainAspectRatio:
+            false,
+
+          scales: {
+
+            x: {
+
+              title: {
+
+                display:
+                  true,
+
+                text:
+                  'W_history 구간'
+
+              }
+
+            },
+
+
+            y: {
+
+              beginAtZero:
+                true,
+
+              title: {
+
+                display:
+                  true,
+
+                text:
+                  '배우-영화 관측치 수'
+
+              }
+
+            }
+
+          }
+
+        }
+
+      }
+    );
+
+}
+
+
+
+function renderCareerChart(
+  lambda
+) {
+
+  const result =
+    getResult(lambda);
+
+
+  const ctx =
+    document.getElementById(
+      'careerMaeChart'
+    );
+
+
+  if (
+    careerMaeChart
+  ) {
+
+    careerMaeChart.destroy();
+
+  }
+
+
+  const labels = [
+
+    '1–2편',
+
+    '3–5편',
+
+    '6–10편',
+
+    '11편 이상'
+
+  ];
+
+
+  const data =
+    labels.map(
+      label =>
+
+        Number.isFinite(
+          result.bucketMae[
+            label
+          ]
+        )
+
+          ? result.bucketMae[
+              label
+            ] *
+            DISPLAY_SCALE
+
+          : null
+
+    );
+
+
+  careerMaeChart =
+    new Chart(
+      ctx,
+      {
+
+        type:
+          'bar',
+
+        data: {
+
+          labels,
+
+          datasets: [
+
+            {
+
+              label:
+                `λ=${lambda} 구간별 MAE × 10,000`,
+
+              data,
+
+              backgroundColor:
+                'rgba(79,70,229,0.65)',
+
+              borderColor:
+                '#4f46e5',
+
+              borderWidth:
+                1
+
+            }
+
+          ]
+
+        },
+
+
+        options: {
+
+          responsive:
+            true,
+
+          maintainAspectRatio:
+            false,
+
+          scales: {
+
+            x: {
+
+              title: {
+
+                display:
+                  true,
+
+                text:
+                  '현재 작품 이전 유효 작품 수'
+
+              }
+
+            },
+
+
+            y: {
+
+              beginAtZero:
+                true,
+
+              title: {
+
+                display:
+                  true,
+
+                text:
+                  'MAE × 10,000'
+
+              }
+
+            }
+
+          }
+
+        }
+
+      }
+    );
+
+}
+
+
+
+function renderTable(
+  selectedLambda
+) {
+
+  const bestMae =
+    Math.min(
+      ...LAMBDA_RESULTS.map(
+        r => r.mae
+      )
+    );
+
+
+  els.lambdaTableBody.innerHTML =
+    '';
+
+
+  for (
+    const r
+    of LAMBDA_RESULTS
+  ) {
+
+    const tr =
+      document.createElement(
+        'tr'
+      );
+
+
+    if (
+      r.lambda ===
+        RECOMMENDED_LAMBDA
+    ) {
+
+      tr.classList.add(
+        'recommended-row'
+      );
+
+    }
+
+
+    if (
+      r.lambda ===
+        Number(
+          selectedLambda
+        )
+    ) {
+
+      tr.classList.add(
+        'selected-row'
+      );
+
+    }
+
+
+    const diff =
+      bestMae > 0
+
+        ? (
+            (
+              r.mae -
+              bestMae
+            ) /
+            bestMae
+          ) * 100
+
+        : 0;
+
+
+    const judgment =
+      r.lambda ===
+        RECOMMENDED_LAMBDA
+
+        ? '권장'
+
+        : (
+            diff <= 1
+              ? '근접'
+              : '비교'
+          );
+
+
+    tr.innerHTML = `
+
+      <td>
+        <b>${r.lambda}</b>
+      </td>
+
+      <td>
+        ${formatMetric(r.mae)}
+      </td>
+
+      <td>
+        ${formatMetric(r.rmse)}
+      </td>
+
+      <td>
+        ${formatMetric(r.medae)}
+      </td>
+
+      <td>
+        ${formatDecimal(
+          r.spearman,
+          4
+        )}
+      </td>
+
+      <td>
+        ${formatDecimal(
+          r.meanW,
+          4
+        )}
+      </td>
+
+      <td>
+        ${formatDecimal(
+          r.sdW,
+          4
+        )}
+      </td>
+
+      <td>
+        ${diff.toFixed(3)}%
+      </td>
+
+      <td>
+        ${judgment}
+      </td>
+
+    `;
+
+
+    els.lambdaTableBody
+      .appendChild(
+        tr
+      );
+
+  }
+
+}
+
+
+
+function showResults() {
+
+  els.resultsSection
+    .style.display =
+      'block';
+
+
+  els.errorChartCard
+    .style.display =
+      'block';
+
+
+  els.distributionCard
+    .style.display =
+      'block';
+
+
+  els.careerCard
+    .style.display =
+      'block';
+
+
+  els.tableCard
+    .style.display =
+      'block';
+
+
+  els.decisionCard
+    .style.display =
+      'block';
+
+}
+
+
+
+async function main() {
+
+  try {
+
+    els.statusText.className =
+      'status-loading';
+
+
+    els.statusText.textContent =
+      'data/search_index.json을 불러오고 ' +
+      '시간 순 검증 데이터를 만드는 중입니다...';
+
+
+    const response =
+      await fetch(
+        DATA_URL,
+        {
+          cache:
+            'no-store'
+        }
+      );
+
+
+    if (
+      !response.ok
+    ) {
+
+      throw new Error(
+        `HTTP ${response.status}`
+      );
+
+    }
+
+
+    const rawData =
+      await response.json();
+
+
+    await new Promise(
+      resolve =>
+        setTimeout(
+          resolve,
+          0
+        )
+    );
+
+
+    const built =
+      buildDataset(
+        rawData
+      );
+
+
+    VALIDATION_ROWS =
+      built.validationRows;
+
+
+    HISTORY_ROWS =
+      built.historyRows;
+
+
+    if (
+      !VALIDATION_ROWS.length
+    ) {
+
+      throw new Error(
+        'λ를 검증할 수 있는 ' +
+        '과거 작품 1편 이상 ' +
+        '배우-영화 관측치가 없습니다.'
+      );
+
+    }
+
+
+    els.rawMovieCount.textContent =
+      formatInt(
+        built.counters.raw
+      );
+
+
+    els.validMovieCount.textContent =
+      formatInt(
+        built.movies.length
+      );
+
+
+    els.actorMovieCount.textContent =
+      formatInt(
+        built.observations.length
+      );
+
+
+    els.validationCount.textContent =
+      formatInt(
+        VALIDATION_ROWS.length
+      );
+
+
+    els.dateRange.textContent =
+
+      built.firstDate &&
+      built.lastDate
+
+        ? (
+            `${built.firstDate.slice(0,4)}.` +
+            `${built.firstDate.slice(4,6)}.` +
+            `${built.firstDate.slice(6,8)} ~ ` +
+            `${built.lastDate.slice(0,4)}.` +
+            `${built.lastDate.slice(4,6)}.` +
+            `${built.lastDate.slice(6,8)}`
+          )
+
+        : '-';
+
+
+    els.exclusionNote.textContent =
+
+      `제외/정리: ` +
+
+      `개봉일 불명 ` +
+      `${formatInt(
+        built.counters.invalidDate
+      )}편, ` +
+
+      `관객수 0/불명 ` +
+      `${formatInt(
+        built.counters.invalidAudience
+      )}편, ` +
+
+      `출연진 없음(배우-영화 관측치에서만 제외) ` +
+      `${formatInt(
+        built.counters.noActors
+      )}편, ` +
+
+      `중복 movieCd 정리 ` +
+      `${formatInt(
+        built.counters.duplicateMovies
+      )}건. ` +
+
+      `같은 개봉일의 관측치는 서로의 history와 ` +
+      `μ_B에 포함하지 않습니다. ` +
+
+      `Total_Y는 정의에 따라 해당 연도 전체 ` +
+      `사이트 DB 유효 영화 합을 사용합니다.`;
+
+
+
+    els.statusText.className =
+      'status-loading';
+
+
+    els.statusText.textContent =
+      'λ=1~10의 MAE, RMSE, Median AE, ' +
+      'Spearman ρ를 계산 중입니다...';
+
+
+    await new Promise(
+      resolve =>
+        setTimeout(
+          resolve,
+          0
+        )
+    );
+
+
+    LAMBDA_RESULTS =
+      evaluateAllLambdas(
+        VALIDATION_ROWS,
+        HISTORY_ROWS
+      );
+
+
+    const best =
+      chooseRecommended(
+        LAMBDA_RESULTS
+      );
+
+
+    if (!best) {
+
+      throw new Error(
+        'λ 결과를 계산하지 못했습니다.'
+      );
+
+    }
+
+
+    RECOMMENDED_LAMBDA =
+      best.lambda;
+
+
+    els.lambdaSelect.innerHTML =
+      '';
+
+
+    for (
+      const lambda
+      of LAMBDAS
+    ) {
+
+      const option =
+        document.createElement(
+          'option'
+        );
+
+
+      option.value =
+        String(lambda);
+
+
+      option.textContent =
+        `λ = ${lambda}`;
+
+
+      /*
+        현재 기존 가정값은 3이므로
+        최초 화면에서 λ=3을 보여준다.
+        이것이 추천값이라는 뜻은 아니다.
+      */
+      if (
+        lambda === 3
+      ) {
+
+        option.selected =
+          true;
+
+      }
+
+
+      els.lambdaSelect
+        .appendChild(
+          option
+        );
+
+    }
+
+
+    els.lambdaSelect
+      .addEventListener(
+        'change',
+        () => {
+
+          renderSelectedLambda(
+            Number(
+              els.lambdaSelect.value
+            )
+          );
+
+        }
+      );
+
+
+    renderRecommendation();
+
+
+    showResults();
+
+
+    renderSelectedLambda(
+      Number(
+        els.lambdaSelect.value
+      )
+    );
+
+
+    els.statusText.className =
+      'status-ok';
+
+
+    els.statusText.textContent =
+      `분석 완료: λ=1~10 검증이 끝났습니다. ` +
+      `데이터 기반 권장값은 ` +
+      `λ=${RECOMMENDED_LAMBDA}입니다.`;
+
+  }
+  catch (error) {
+
+    console.error(
+      error
+    );
+
+
+    els.statusText.className =
+      'status-error';
+
+
+    els.statusText.textContent =
+      `실험 실행 실패: ${error.message}`;
+
+
+    els.exclusionNote.textContent =
+      '브라우저 개발자도구(F12)의 Console과 ' +
+      'data/search_index.json 경로를 확인해 주세요.';
+
+  }
+
+}
+
+
+main();
+
+</script>
+
+</body>
+</html>
