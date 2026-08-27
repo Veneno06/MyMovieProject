@@ -240,9 +240,7 @@
   <h1>실험</h1>
 
   <div class="subtitle">
-    W_history의 shrinkage parameter λ를 사이트의 실제 영화·배우 데이터로
-    1부터 10까지 검증합니다.
-    가설 결과가 아니라 시간 순서를 보존한 다음 작품 예측 오차로 λ를 결정합니다.
+    W_history의 shrinkage parameter λ를 사이트의 실제 영화·배우 데이터로 검증. 가설 결과가 아니라 시간 순서를 보존한 다음 작품 예측 오차로 λ를 결정.
   </div>
 
 
@@ -251,11 +249,7 @@
     <h2>1. 실험 목적과 공식</h2>
 
     <p class="small-note">
-      현재 작품 이전까지의 Base Star Performance를 이용해
-      다음 작품의 Base Star Performance를 예측하고,
-      λ별 예측 오차를 비교합니다.
-      λ는 전체 평균을 얼마나 강하게 신뢰할지를 조절하는
-      shrinkage strength입니다.
+      현재 작품 이전까지의 Base Star Performance를 이용해 다음 작품의 Base Star Performance를 예측하고, λ별 예측 오차를 비교. λ는 전체 평균을 얼마나 강하게 신뢰할지를 조절하는 shrinkage strength.
     </p>
 
     <div class="math-formula">
@@ -275,7 +269,7 @@
     <ul class="method-list">
       <li>
         W_market,m = A_m / Total_Ym :
-        해당 영화 관객수 / 같은 연도 사이트 DB 유효 영화 관객수 합
+        해당 영화 관객수 / 같은 연도 사이트 DB 내 영화 관객수 합
       </li>
 
       <li>
@@ -458,11 +452,7 @@
     <p class="small-note"
        style="margin-top:12px;">
 
-      MAE/RMSE/Median AE는 읽기 쉽게
-      Base SP 오차에 10,000을 곱해 표시합니다.
-
-      모든 λ에 동일한 상수를 곱하므로
-      최적 λ의 순위에는 영향을 주지 않습니다.
+      MAE/RMSE/Median AE는 읽기 쉽게 Base SP 오차에 10,000을 곱해 표시. 모든 λ에 동일한 상수를 곱하므로 최적 λ의 순위에는 영향을 주지 않습니다.
 
     </p>
 
@@ -476,10 +466,7 @@
     <h2>4. λ=1~10 예측 오차 비교</h2>
 
     <p class="small-note">
-      MAE와 RMSE가 낮을수록
-      과거 성과의 shrinkage estimate가
-      다음 작품의 Base SP에 더 가까웠다는 뜻입니다.
-      권장 λ는 MAE 최솟값으로 결정합니다.
+      MAE와 RMSE가 낮을수록 과거 성과의 shrinkage estimate가 다음 작품의 Base SP에 더 가까웠다는 뜻. 권장 λ는 MAE 최솟값으로 결정.
     </p>
 
     <div class="chart-container">
@@ -496,10 +483,7 @@
     <h2>5. 선택한 λ의 W_history 분포</h2>
 
     <p class="small-note">
-      W_history=1은 해당 시점의 사이트 평균 수준입니다.
-      1보다 크면 평균 이상,
-      1보다 작으면 평균 이하의 과거 흥행 신뢰도를 의미합니다.
-      λ가 커질수록 값들이 1에 더 강하게 수축하는 것이 정상입니다.
+      W_history=1은 해당 시점의 사이트 평균 수준. 1보다 크면 평균 이상, 1보다 작으면 평균 이하의 과거 흥행 신뢰도를 의미. λ가 커질수록 값들이 1에 더 강하게 수축하는 것이 정상.
     </p>
 
     <div class="chart-container">
