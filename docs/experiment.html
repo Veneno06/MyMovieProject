@@ -1009,6 +1009,8 @@ function buildDataset(rawData) {
       : []
   ).forEach(
     (movie, index) => {
+      // 논문/실험은 국내 영화만 사용: 해외 영화 및 국가 불명 영화 완전 제외
+    if (!['한국', '대한민국'].includes(String(movie?.nation ?? '').trim())) return;
 
       const dateKey =
         normalizeDate(
@@ -1017,13 +1019,10 @@ function buildDataset(rawData) {
 
 
       if (!dateKey) {
-
         counters.invalidDate++;
-
         return;
 
       }
-
 
       const audience =
         safeNumber(
@@ -1032,11 +1031,8 @@ function buildDataset(rawData) {
 
 
       if (!(audience > 0)) {
-
         counters.invalidAudience++;
-
         return;
-
       }
 
 
@@ -1044,7 +1040,6 @@ function buildDataset(rawData) {
         Array.isArray(movie?.actors)
           ? movie.actors
           : [];
-
 
       if (!actors.length) {
         counters.noActors++;
@@ -1056,12 +1051,10 @@ function buildDataset(rawData) {
           movie?.movieCd ?? ''
         ).trim();
 
-
       const fallbackKey =
         `${String(
           movie?.movieNm ?? ''
         ).trim()}|${dateKey}`;
-
 
       const key =
         movieCd
