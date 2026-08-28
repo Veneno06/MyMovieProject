@@ -980,12 +980,10 @@ function careerBucket(n) {
 
 
 function buildDataset(rawData) {
-
   const counters = {
-
     raw:
       Array.isArray(rawData)
-        ? rawData.length
+        ? rawData.filter(movie => ['한국', '대한민국'].includes(String(movie?.nation ?? '').trim())).length
         : 0,
 
     invalidDate: 0,
