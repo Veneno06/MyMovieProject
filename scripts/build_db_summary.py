@@ -9,6 +9,171 @@ SEARCH_INDEX_PATH = ROOT / "docs" / "data" / "search_index.json"
 SENTIMENT_DIR = ROOT / "docs" / "data" / "sentiment"
 OUTPUT_PATH = ROOT / "docs" / "data" / "db_summary.json"
 
+STARPOWER_LAMBDA = 14
+STARPOWER_CUTOFF = "20260903"
+STARPOWER_DOMESTIC_NATIONS = {"한국", "대한민국"}
+STARPOWER_SCALE = 10000.0
+
+def _safe_audience(value):
+    try:
+        return int(str(value or 0).replace(',', '').strip())
+    except (TypeError, ValueError):
+        return 0
+
+def _normalize_open_date(value):
+    digits = ''.join(ch for ch in str(value or '') if ch.isdigit())
+    return digits[:8] if len(digits) >= 8 else ''
+
+def is_eligible_starpower_movie(movie):
+    open_dt = _normalize_open_date(movie.get('openDt'))
+    nation = str(movie.get('nation') or '').strip()
+    return bool(
+        nation in STARPOWER_DOMESTIC_NATIONS
+        and open_dt
+        and open_dt <= STARPOWER_CUTOFF
+        and _safe_audience(movie.get('audiAcc')) > 0
+    )
+
+def _dedupe_eligible_movies(movies):
+    unique = {}
+    for index, movie in enumerate(movies or []):
+        if not is_eligible_starpower_movie(movie):
+            continue
+        open_dt = _normalize_open_date(movie.get('openDt'))
+        movie_cd = str(movie.get('movieCd') or '').strip()
+        movie_nm = str(movie.get('movieNm') or '').strip()
+        key = f"cd:{movie_cd}" if movie_cd else f"fallback:{movie_nm}|{open_dt}"
+        normalized = dict(movie)
+        normalized['openDt'] = open_dt
+        normalized['audiAcc'] = _safe_audience(movie.get('audiAcc'))
+        normalized['actors'] = movie.get('actors') if isinstance(movie.get('actors'), list) else []
+        old = unique.get(key)
+        if old is None or normalized['audiAcc'] > old['audiAcc'] or (not old['actors'] and normalized['actors']):
+            unique[key] = normalized
+    return list(unique.values())
+
+def build_star_power_model(movies):
+    eligible_movies = _dedupe_eligible_movies(movies)
+    year_totals = {}
+    for movie in eligible_movies:
+        year = movie['openDt'][:4]
+        year_totals[year] = year_totals.get(year, 0) + movie['audiAcc']
+
+    base_observations = []
+    for movie in eligible_movies:
+        year = movie['openDt'][:4]
+        total_y = year_totals.get(year, 0)
+        if total_y <= 0:
+            continue
+        market_weight = movie['audiAcc'] / total_y
+        seen = set()
+        for idx, actor in enumerate(movie.get('actors') or []):
+            actor_id = str(actor.get('id') or '').strip()
+            actor_name = str(actor.get('name') or '').strip()
+            actor_key = actor_id or (f"name:{actor_name}" if actor_name else '')
+            if not actor_key or actor_key in seen:
+                continue
+            seen.add(actor_key)
+            role_rank = idx + 1
+            role_weight = 1.0 / math.log2(role_rank + 1)
+            base_sp = market_weight * role_weight
+            if not math.isfinite(base_sp) or base_sp <= 0:
+                continue
+            base_observations.append({
+                'actor_key': actor_key,
+                'actor_id': actor_id,
+                'actor_name': actor_name,
+                'sex': str(actor.get('gender') or '').strip(),
+                'movieCd': str(movie.get('movieCd') or '').strip(),
+                'movieNm': str(movie.get('movieNm') or '').strip(),
+                'openDt': movie['openDt'],
+                'year': year,
+                'audience': movie['audiAcc'],
+                'market_weight': market_weight,
+                'role_rank': role_rank,
+                'role_weight': role_weight,
+                'base_sp': base_sp,
+            })
+
+    base_observations.sort(key=lambda r: (r['openDt'], r['movieCd'], r['actor_key']))
+    actor_history = {}
+    global_past_sum = 0.0
+    global_past_count = 0
+    observations = []
+    observation_by_actor_movie = {}
+
+    pos = 0
+    while pos < len(base_observations):
+        current_date = base_observations[pos]['openDt']
+        end = pos + 1
+        while end < len(base_observations) and base_observations[end]['openDt'] == current_date:
+            end += 1
+        prior_mean = (global_past_sum / global_past_count) if global_past_count > 0 else None
+
+        for row in base_observations[pos:end]:
+            hist = actor_history.get(row['actor_key'], {'sum': 0.0, 'count': 0})
+            if prior_mean is not None and prior_mean > 0:
+                history_estimate = (hist['sum'] + STARPOWER_LAMBDA * prior_mean) / (hist['count'] + STARPOWER_LAMBDA)
+                ratio = history_estimate / prior_mean
+                history_weight = math.sqrt(ratio) if math.isfinite(ratio) and ratio >= 0 else 1.0
+            else:
+                history_estimate = row['base_sp']
+                history_weight = 1.0
+            star_power = STARPOWER_SCALE * row['base_sp'] * history_weight
+            obs = dict(row)
+            obs.update({
+                'history_count': hist['count'],
+                'history_sum': hist['sum'],
+                'prior_mean': prior_mean,
+                'history_estimate': history_estimate,
+                'history_weight': history_weight,
+                'star_power': star_power,
+            })
+            observations.append(obs)
+            observation_by_actor_movie[(row['actor_key'], row['movieCd'] or f"{row['movieNm']}|{row['openDt']}")] = obs
+
+        for row in base_observations[pos:end]:
+            hist = actor_history.setdefault(row['actor_key'], {'sum': 0.0, 'count': 0})
+            hist['sum'] += row['base_sp']
+            hist['count'] += 1
+            global_past_sum += row['base_sp']
+            global_past_count += 1
+        pos = end
+
+    actor_stats = {}
+    for obs in observations:
+        stat = actor_stats.setdefault(obs['actor_key'], {
+            'id': obs['actor_id'],
+            'name': obs['actor_name'],
+            'sex': obs['sex'],
+            'movie_count': 0,
+            'total_star_power': 0.0,
+            'total_audi': 0,
+        })
+        if not stat.get('sex') and obs.get('sex'):
+            stat['sex'] = obs['sex']
+        stat['movie_count'] += 1
+        stat['total_star_power'] += obs['star_power']
+        stat['total_audi'] += obs['audience']
+
+    rankings_all = []
+    for stat in actor_stats.values():
+        if not stat['id']:
+            continue
+        row = dict(stat)
+        row['score'] = stat['total_star_power'] / stat['movie_count'] if stat['movie_count'] else 0.0
+        row.pop('total_star_power', None)
+        rankings_all.append(row)
+    rankings_all.sort(key=lambda r: (-r['score'], r['name']))
+
+    return {
+        'eligible_movies': eligible_movies,
+        'year_totals': year_totals,
+        'observations': observations,
+        'observation_by_actor_movie': observation_by_actor_movie,
+        'rankings_all': rankings_all,
+    }
+
 def main():
     if not SEARCH_INDEX_PATH.exists():
         return
@@ -69,36 +234,9 @@ def main():
     for_actors = for_actors - dom_actors
     for_directors = for_directors - dom_directors
 
-    ACTOR_SCORES = {}
-    for m in movies:
-        y_str = m.get('openDt', '')[:4] or str(m.get('prdtYear', ''))
-        if not y_str or not y_str.isdigit() or int(y_str) < 2003:
-            continue
-            
-        y = y_str
-        audi = int(str(m.get('audiAcc', 0)).replace(',', ''))
-        if audi <= 0: continue
-        
-        total_y = YEAR_TOTALS[y]
-        w_time = max(0.1, (int(y) - 2000) / 10)
-        actors = m.get('actors', [])
-        c_i = max(1, len(actors))
-
-        for idx, a in enumerate(actors):
-            aid = a.get('id')
-            aname = a.get('name')
-            if not aid: continue
-            
-            # 🌟 로그 감소 기반 배역 가중치 적용 (W_role = 1 / log2(idx + 2))
-            w_role = 1.0 / math.log2(idx + 2)
-            score_i = (audi / total_y) * (w_role / math.sqrt(c_i)) * w_time * 10000
-
-            if aid not in ACTOR_SCORES:
-                ACTOR_SCORES[aid] = {'id': aid, 'name': aname, 'score': 0, 'sex': a.get('gender'), 'total_audi': 0}
-            ACTOR_SCORES[aid]['score'] += score_i
-            ACTOR_SCORES[aid]['total_audi'] += audi
-
-    ranked_all = sorted(ACTOR_SCORES.values(), key=lambda x: x['score'], reverse=True)
+    star_power_model = build_star_power_model(movies)
+    ranked_all = star_power_model["rankings_all"]
+    STARPOWER_YEAR_TOTALS = star_power_model["year_totals"]
 
     sentiment_actors = []
     global_max_slope = 0
@@ -192,7 +330,7 @@ def main():
             }
         },
         "yearly_stats": yearly_stats,
-        "year_totals": YEAR_TOTALS,
+        "year_totals": STARPOWER_YEAR_TOTALS,
         "rankings_all": ranked_all,
         "sentiment_actors": sentiment_actors,
         "global_max_slope": global_max_slope,
