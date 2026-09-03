@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="assets/style.css">
 <script src="assets/translator.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="assets/starpower-core.js"></script>
 <style>
   .dist-charts-container {
       display: flex; gap: 15px; margin-top: 15px; flex-wrap: wrap;
@@ -183,6 +184,7 @@ const SUMMARY_URL = `data/db_summary.json?v=${TS}`;
 
 let SEARCH_INDEX = [];
 let DB_SUMMARY = null;
+let STARPOWER_MODEL = null;
 let VALID_SENTIMENT_ACTORS = []; 
 
 async function loadData() {
@@ -192,7 +194,10 @@ async function loadData() {
             fetch(SUMMARY_URL)
         ]);
         
-        if (indexRes.ok) SEARCH_INDEX = await indexRes.json();
+        if (indexRes.ok) {
+            SEARCH_INDEX = await indexRes.json();
+            STARPOWER_MODEL = StarPowerCore.buildModel(SEARCH_INDEX);
+        }
         
         if (summaryRes.ok) {
             DB_SUMMARY = await summaryRes.json();
@@ -408,7 +413,7 @@ function exportFilterResultsToCSV() {
     const targets = Array.from(checkedBoxes).map(cb => JSON.parse(cb.value));
     const userMilestone = document.getElementById('filterMilestoneDate').value.trim().replace(/[^0-9]/g, '');
 
-    let csvContent = "actor_name,movie_nm,open_dt,period,audience,total_y,role_weight,core_actors,time_weight,pos_count,neg_count,milestone\n";
+    let csvContent = "actor_name,movie_nm,open_dt,period,audience,total_y,market_weight,role_weight,role_rank,core_actors,base_sp,history_count,history_weight,star_power,pos_count,neg_count,milestone\n";
 
     targets.forEach(actor => {
         const myMovies = SEARCH_INDEX.filter(m => {
@@ -423,12 +428,19 @@ function exportFilterResultsToCSV() {
             const audience = parseInt(String(m.audiAcc).replace(/,/g, '') || '0', 10);
             if (audience <= 0) return;
 
-            const total_y = DB_SUMMARY.year_totals[movieYear] || audience;
+            if (!STARPOWER_MODEL) return;
+            const obs = StarPowerCore.getActorObservation(STARPOWER_MODEL, actor.id, m.movieCd);
+            if (!obs) return;
+
+            const total_y = STARPOWER_MODEL.yearTotals[movieYear] || audience;
             const core_actors = Math.max(1, (m.actors || []).length);
-            
-            const myIdx = m.actors.findIndex(a => a.id === actor.id || a.name === actor.name);
-            const role_weight = (myIdx !== -1 && myIdx < Math.ceil(core_actors / 3)) ? 1.0 : 0.5;
-            const time_weight = Math.max(0.1, (parseInt(movieYear) - 2000) / 10);
+            const market_weight = obs.marketWeight;
+            const role_weight = obs.roleWeight;
+            const role_rank = obs.roleRank;
+            const base_sp = obs.baseSp;
+            const history_count = obs.historyCount;
+            const history_weight = obs.historyWeight;
+            const star_power = obs.starPower;
 
             let period = "pre";
             const milestone = userMilestone ? userMilestone : (actor.peakDate || '20000101');
@@ -446,7 +458,7 @@ function exportFilterResultsToCSV() {
 
             const row = [
                 `"${actor.name}"`, `"${m.movieNm.replace(/"/g, '""')}"`,
-                openDtRaw, period, audience, total_y, role_weight, core_actors, time_weight, pos_count, neg_count, milestone
+                openDtRaw, period, audience, total_y, market_weight, role_weight, role_rank, core_actors, base_sp, history_count, history_weight, star_power, pos_count, neg_count, milestone
             ];
             csvContent += row.join(",") + "\n";
         });
