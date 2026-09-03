@@ -598,6 +598,7 @@
 <script>
 
 const DATA_URL = 'data/search_index.json';
+const ANALYSIS_CUTOFF = '20260903';
 
 const LAMBDAS =
   Array.from(
@@ -992,7 +993,9 @@ function buildDataset(rawData) {
 
     noActors: 0,
 
-    duplicateMovies: 0
+    duplicateMovies: 0,
+
+    futureExcluded: 0
 
   };
 
@@ -1020,6 +1023,11 @@ function buildDataset(rawData) {
         counters.invalidDate++;
         return;
 
+      }
+
+      if (dateKey > ANALYSIS_CUTOFF) {
+        counters.futureExcluded++;
+        return;
       }
 
       const audience =
@@ -3014,7 +3022,12 @@ async function main() {
       `중복 movieCd 정리 ` +
       `${formatInt(
         built.counters.duplicateMovies
-      )}건. ` +
+      )}건, ` +
+
+      `분석 cutoff(2026-09-03) 이후 개봉 ` +
+      `${formatInt(
+        built.counters.futureExcluded
+      )}편 제외. ` +
 
       `같은 개봉일의 관측치는 서로의 history와 ` +
       `μ_B에 포함하지 않음. ` +
