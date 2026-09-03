@@ -9,6 +9,7 @@
 <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@1.0.1/dist/chartjs-adapter-moment.min.js"></script>
 <script src="assets/translator.js" defer></script>
+<script src="assets/starpower-core.js"></script>
 <style>
 body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple SD Gothic Neo, Noto Sans KR, 'Malgun Gothic', sans-serif; line-height:1.6; }
 .wrap { max-width:980px; margin:24px auto; padding:0 12px; }
@@ -92,14 +93,8 @@ let GLOBAL_RANKS = new Map();
 let myChart = null;
 let sentimentCompareChart = null;
 
-// ===== Directed Synergy Index용 Star Power 계산 설정 =====
-// experiment.html의 temporal validation 결과에 따라 확정된 λ
-const HISTORY_LAMBDA = 14;
-
-// 시너지 계산에는 국내 영화만 사용
-const DOMESTIC_NATIONS = new Set(['한국', '대한민국']);
-
-// 배우별 영화 단위 Final Star Power 기록
+// ===== Directed Synergy Index / 전체 Star Power Rank 공통 모델 =====
+let STARPOWER_MODEL = null;
 let SYNERGY_SP_BY_ACTOR = new Map();
 let SYNERGY_READY = false;
 
@@ -139,61 +134,27 @@ async function loadIndex(){
       try { const r = await fetch(p); if(r.ok) {
           MOVIES = await r.json();
           buildPeopleMap();
+          STARPOWER_MODEL = StarPowerCore.buildModel(MOVIES);
           calculateGlobalRankings();
-
-          // 시너지 지수 계산용 Final Star Power 사전 계산
-          // 기존 검색/UI/순위 기능은 그대로 두고, 시너지 기능만 별도로 추가합니다.
-          buildSynergyStarPowerModel();
+          buildSynergyIndexFromCore();
           return;
       }} catch(e){}
   }
 }
 
 function calculateGlobalRankings() {
-    const YEAR_TOTALS = {};
-    const ACTOR_SCORES = new Map();
+    GLOBAL_RANKS = new Map();
+    if (!STARPOWER_MODEL) return;
 
-    MOVIES.forEach(m => {
-        const audi = safeParseInt(m.audiAcc);
-        const year = (m.openDt || '').slice(0,4) || String(m.prdtYear);
-        if (year && audi > 0) YEAR_TOTALS[year] = (YEAR_TOTALS[year] || 0) + audi;
-    });
-
-    MOVIES.forEach(m => {
-        const A_i = safeParseInt(m.audiAcc);
-        const year = (m.openDt || '').slice(0,4) || String(m.prdtYear);
-        if (!year || A_i <= 0) return;
-        
-        const Total_Y = YEAR_TOTALS[year];
-        const W_time = Math.max(0.1, (parseInt(year) - 2000) / 10);
-        const C_i = Math.max(1, (m.actors || []).length);
-
-        (m.actors || []).forEach((a, idx) => {
-            if (!a.id) return;
-            const W_role = (idx < Math.ceil(C_i / 3)) ? 1.0 : 0.5;
-            const score_i = (A_i / Total_Y) * (W_role / Math.sqrt(C_i)) * W_time * 10000;
-            
-            if (!ACTOR_SCORES.has(a.id)) ACTOR_SCORES.set(a.id, 0);
-            ACTOR_SCORES.set(a.id, ACTOR_SCORES.get(a.id) + score_i);
-        });
-    });
-
-    const rankedArray = Array.from(ACTOR_SCORES.entries()).sort((a,b) => b[1] - a[1]);
-    rankedArray.forEach((item, index) => {
-        GLOBAL_RANKS.set(item[0], { score: Math.round(item[1]), rank: index + 1 });
+    STARPOWER_MODEL.actorRanks.forEach(item => {
+        if (!item.id) return;
+        GLOBAL_RANKS.set(item.id, { score: item.score, rank: item.rank, movieCount: item.movieCount });
     });
 }
 
 
 function isDomesticMovie(movie) {
-    const nation = String(movie?.nation || '').trim();
-    return DOMESTIC_NATIONS.has(nation);
-}
-
-function normalizeOpenDateKey(value) {
-    if (!value) return "";
-    const s = String(value).replace(/[^0-9]/g, '');
-    return s.length >= 8 ? s.slice(0, 8) : "";
+    return StarPowerCore.isEligibleMovie(movie);
 }
 
 function actorKey(actor) {
@@ -201,11 +162,6 @@ function actorKey(actor) {
     const id = (actor.id || '').trim();
     const name = (actor.name || '').trim();
     return id ? `id:${id}` : (name ? `name:${name}` : "");
-}
-
-function targetKeyFromResolved(id, name) {
-    if (id && !id.startsWith('name:')) return `id:${id}`;
-    return `name:${name}`;
 }
 
 function actorMatchesTarget(actor, targetId, targetName) {
@@ -221,155 +177,25 @@ function actorMatchesTarget(actor, targetId, targetName) {
 }
 
 /**
- * 시너지 계산용 영화-배우 단위 Final Star Power를 미리 계산합니다.
- *
- * Base Star Performance:
- *   B_im = W_market,m × W_role,im
- *
- * W_market,m:
- *   A_m / Total_Ym
- *
- * W_role,im:
- *   1 / log2(k_im + 1)
- *
- * History shrinkage:
- *   B^_history,im(λ)
- *     = (Σ B_ij,past + λ·μ_B,<t_m) / (n_im + λ)
- *
- *   W_history,im(λ)
- *     = sqrt(B^_history,im(λ) / μ_B,<t_m)
- *
- * Final SP:
- *   SP_im = 10,000 × B_im × W_history,im
- *
- * 중요:
- * - 국내 영화만 사용합니다.
- * - 현재 영화보다 '엄격히 이전 날짜'의 정보만 history와 μ_B에 사용합니다.
- * - 같은 개봉일의 관측치는 서로의 과거가 되지 않도록 날짜 단위로 묶어서 처리합니다.
+ * 공통 StarPowerCore가 계산한 영화-배우 단위 SP_im을
+ * 기존 Directed Synergy 출력 형식에서 사용할 수 있도록 배우별로 묶습니다.
  */
-function buildSynergyStarPowerModel() {
+function buildSynergyIndexFromCore() {
     SYNERGY_SP_BY_ACTOR = new Map();
     SYNERGY_READY = false;
+    if (!STARPOWER_MODEL) return;
 
-    const domesticMovies = MOVIES.filter(isDomesticMovie);
-
-    // 1) 국내 유효 영화만 추출
-    const validMovies = domesticMovies
-        .map(m => {
-            const dateKey = normalizeOpenDateKey(m.openDt);
-            const year = dateKey ? dateKey.slice(0, 4) : "";
-            const audi = safeParseInt(m.audiAcc);
-            return { ...m, __dateKey: dateKey, __year: year, __audi: audi };
-        })
-        .filter(m =>
-            m.__dateKey &&
-            m.__year &&
-            m.__audi > 0 &&
-            Array.isArray(m.actors) &&
-            m.actors.length > 0
-        );
-
-    // 2) 연도별 국내 유효 영화 관객수 합
-    const yearTotals = {};
-    validMovies.forEach(m => {
-        yearTotals[m.__year] = (yearTotals[m.__year] || 0) + m.__audi;
-    });
-
-    // 3) 영화-배우 Base SP 관측치 생성
-    const observations = [];
-
-    validMovies.forEach(m => {
-        const totalY = yearTotals[m.__year] || 0;
-        if (totalY <= 0) return;
-
-        const wMarket = m.__audi / totalY;
-
-        m.actors.forEach((a, idx) => {
-            const key = actorKey(a);
-            if (!key) return;
-
-            const creditRank = idx + 1;
-            const wRole = 1 / Math.log2(creditRank + 1);
-            const baseSP = wMarket * wRole;
-
-            observations.push({
-                actorKey: key,
-                actorId: (a.id || '').trim(),
-                actorName: (a.name || '').trim(),
-                movieCd: m.movieCd,
-                movieNm: m.movieNm,
-                openDt: m.openDt,
-                dateKey: m.__dateKey,
-                baseSP,
-                finalSP: 0
-            });
+    STARPOWER_MODEL.observations.forEach(obs => {
+        if (!SYNERGY_SP_BY_ACTOR.has(obs.actorKey)) SYNERGY_SP_BY_ACTOR.set(obs.actorKey, []);
+        SYNERGY_SP_BY_ACTOR.get(obs.actorKey).push({
+            actorKey: obs.actorKey,
+            actorId: obs.actorId,
+            actorName: obs.actorName,
+            movieCd: obs.movieCd,
+            movieNm: obs.movieNm,
+            openDt: obs.openDt,
+            finalSP: obs.starPower
         });
-    });
-
-    observations.sort((a, b) =>
-        a.dateKey.localeCompare(b.dateKey) ||
-        String(a.movieCd || '').localeCompare(String(b.movieCd || '')) ||
-        a.actorKey.localeCompare(b.actorKey)
-    );
-
-    // 4) strict temporal history 계산
-    const actorHistory = new Map(); // key -> {sum, n}
-    let globalPastSum = 0;
-    let globalPastN = 0;
-
-    let pos = 0;
-    while (pos < observations.length) {
-        const currentDate = observations[pos].dateKey;
-        let end = pos;
-
-        while (end < observations.length && observations[end].dateKey === currentDate) {
-            end++;
-        }
-
-        // 현재 날짜 그룹은 아직 과거에 넣지 않은 상태에서 계산
-        const muPast = globalPastN > 0 ? globalPastSum / globalPastN : null;
-
-        for (let i = pos; i < end; i++) {
-            const obs = observations[i];
-            const h = actorHistory.get(obs.actorKey) || { sum: 0, n: 0 };
-
-            let wHistory = 1;
-
-            if (muPast !== null && muPast > 0) {
-                const historyEstimate =
-                    (h.sum + HISTORY_LAMBDA * muPast) /
-                    (h.n + HISTORY_LAMBDA);
-
-                if (historyEstimate > 0) {
-                    wHistory = Math.sqrt(historyEstimate / muPast);
-                }
-            }
-
-            obs.finalSP = 10000 * obs.baseSP * wHistory;
-        }
-
-        // 계산이 끝난 뒤에만 현재 날짜 관측치를 future history에 편입
-        for (let i = pos; i < end; i++) {
-            const obs = observations[i];
-            const h = actorHistory.get(obs.actorKey) || { sum: 0, n: 0 };
-
-            h.sum += obs.baseSP;
-            h.n += 1;
-            actorHistory.set(obs.actorKey, h);
-
-            globalPastSum += obs.baseSP;
-            globalPastN += 1;
-        }
-
-        pos = end;
-    }
-
-    // 5) 배우별 SP 기록 저장
-    observations.forEach(obs => {
-        if (!SYNERGY_SP_BY_ACTOR.has(obs.actorKey)) {
-            SYNERGY_SP_BY_ACTOR.set(obs.actorKey, []);
-        }
-        SYNERGY_SP_BY_ACTOR.get(obs.actorKey).push(obs);
     });
 
     SYNERGY_READY = true;
@@ -724,7 +550,7 @@ async function search(){
             let rankBadge = "";
             if (a.id && GLOBAL_RANKS.has(a.id)) {
                 const rInfo = GLOBAL_RANKS.get(a.id);
-                rankBadge = ` <span style="font-size:11px; color:#d97706; font-weight:bold; cursor:help;" title="SP_Final 점수: ${fmtNum(rInfo.score)}점">[${rInfo.rank}위]</span>`;
+                rankBadge = ` <span style="font-size:11px; color:#d97706; font-weight:bold; cursor:help;" title="작품별 신규 Star Power 평균: ${fmtNum(rInfo.score)}점">[${rInfo.rank}위]</span>`;
             }
 
             // 첫 번째 검색 배우(A)를 기준으로 각 출연 배우(B)의 Directed Synergy Index 표시
