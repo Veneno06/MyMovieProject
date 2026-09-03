@@ -9,6 +9,7 @@
 <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@1.0.1/dist/chartjs-adapter-moment.min.js"></script>
 <script src="assets/translator.js" defer></script>
+<script src="assets/starpower-core.js"></script>
 <style>
 .sentiment-control-box { background: #f6f7f9; border: 1px solid #e5e7eb; border-radius: 8px; padding: 15px; margin-bottom: 20px; display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
 .sentiment-control-box label { font-weight: bold; margin-right: 5px; font-size: 14px; }
@@ -200,39 +201,13 @@ async function fetchSentimentData(name) {
 }
 
 function calculateAndDisplayMyRank(allMovies, myId) {
-    const YEAR_TOTALS = {};
-    const ACTOR_SCORES = new Map();
+    const model = StarPowerCore.buildModel(allMovies);
+    const rankInfo = StarPowerCore.getActorRank(model, myId);
 
-    allMovies.forEach(m => {
-        const audi = safeParseInt(m.audiAcc);
-        const year = (m.openDt || '').slice(0,4) || String(m.prdtYear);
-        if (year && audi > 0) YEAR_TOTALS[year] = (YEAR_TOTALS[year] || 0) + audi;
-    });
-
-    allMovies.forEach(m => {
-        const A_i = safeParseInt(m.audiAcc);
-        const year = (m.openDt || '').slice(0,4) || String(m.prdtYear);
-        if (!year || A_i <= 0) return;
-        
-        const Total_Y = YEAR_TOTALS[year];
-        const W_time = Math.max(0.1, (parseInt(year) - 2000) / 10);
-        const C_i = Math.max(1, (m.actors || []).length);
-
-        (m.actors || []).forEach((a, idx) => {
-            if (!a.id) return;
-            const W_role = (idx < Math.ceil(C_i / 3)) ? 1.0 : 0.5;
-            const score_i = (A_i / Total_Y) * (W_role / Math.sqrt(C_i)) * W_time * 10000;
-            if (!ACTOR_SCORES.has(a.id)) ACTOR_SCORES.set(a.id, 0);
-            ACTOR_SCORES.set(a.id, ACTOR_SCORES.get(a.id) + score_i);
-        });
-    });
-
-    const rankedArray = Array.from(ACTOR_SCORES.entries()).sort((a,b) => b[1] - a[1]);
-    const myRankIndex = rankedArray.findIndex(item => item[0] === myId);
-    
-    if (myRankIndex !== -1) {
+    if (rankInfo) {
         const rankBadge = document.getElementById('rankBadge');
-        rankBadge.textContent = `🏆 스타 파워 전체 ${myRankIndex + 1}위`;
+        rankBadge.textContent = `🏆 스타 파워 전체 ${rankInfo.rank}위`;
+        rankBadge.title = `작품별 신규 Star Power 평균: ${rankInfo.score.toFixed(2)}점 / 국내 유효작 ${rankInfo.movieCount}편`;
         rankBadge.style.display = 'inline-block';
     }
 }
