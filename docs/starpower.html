@@ -301,7 +301,7 @@ function computeTimeSeriesData(actor, type) {
 
         return {
             points,
-            finalScore: parseFloat(stat.score.toFixed(2)),
+            finalScore: parseFloat(stat.averageScore.toFixed(2)),
             analyzedMovieCount: stat.movieCount,
             analyzedTotalAudi: stat.totalAudi
         };
