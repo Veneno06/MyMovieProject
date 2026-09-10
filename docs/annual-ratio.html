@@ -86,7 +86,7 @@ h1 { font-size:28px; margin:0 0 16px; }
 
   <div class="hawk-section" id="hawkSection" style="display:none;">
       <h2 style="margin-top: 0; color: #1e3a8a;">Hawk 그룹 추적 및 데이터 추출</h2>
-      <div style="font-size: 13px; color: #475569; margin-bottom: 15px;">※ 사용자가 설정한 상위 퍼센트 안에 <b>지정한 횟수 이상</b> 진입한 시점부터 공식적으로 'Hawk' 그룹으로 분류됩니다.</div>
+      <div style="font-size: 13px; color: #475569; margin-bottom: 15px;">※ Hawk 순위는 각 배우의 해당 연도 <b>Annual Star Power(연도 내 작품별 SP 합)</b>를 기준으로 정렬합니다. 사용자가 설정한 상위 퍼센트 안에 <b>지정한 횟수 이상</b> 진입한 시점부터 'Hawk' 그룹으로 분류됩니다.</div>
       
       <div class="hawk-header" style="background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #bfdbfe;">
           <label style="font-weight: bold; color: #1e3a8a;">Hawk 기준(상위 %): </label>
@@ -197,6 +197,7 @@ let MOVIES = [];
 let DB_SUMMARY = {};
 let STARPOWER_MODEL = null;
 let yearlyData = {}; 
+let hawkYearlyData = {}; // Hawk/Dove 판정 전용: 연도별 배우 Annual Star Power
 let availableYears = [];
 let distChartInstance = null;
 let hawkSentimentChartInstance = null; 
@@ -226,6 +227,19 @@ async function loadAndProcessData() {
         MOVIES = await idxRes.json();
         STARPOWER_MODEL = StarPowerCore.buildModel(MOVIES);
         if (sumRes && sumRes.ok) DB_SUMMARY = await sumRes.json();
+
+        // Hawk/Dove 분류는 중복 관객수 합이 아니라 확정된 작품별 SP_im의 연도별 합(Annual SP)을 사용합니다.
+        hawkYearlyData = {};
+        if (STARPOWER_MODEL && Array.isArray(STARPOWER_MODEL.observations)) {
+            STARPOWER_MODEL.observations.forEach(obs => {
+                const year = parseInt(String(obs.year || ''), 10);
+                const actorName = String(obs.actorName || '').trim();
+                if (!year || !actorName) return;
+                if (!hawkYearlyData[year]) hawkYearlyData[year] = {};
+                if (!hawkYearlyData[year][actorName]) hawkYearlyData[year][actorName] = 0;
+                hawkYearlyData[year][actorName] += Number(obs.starPower || 0);
+            });
+        }
 
         MOVIES.forEach(m => {
             const openDt = String(m.openDt || '').replace(/-/g, '');
@@ -280,8 +294,8 @@ function processHawkDoveLogic() {
     let appearanceCount = {};
 
     availableYears.forEach(year => {
-        const actorArr = Object.entries(yearlyData[year]).map(([name, audi]) => ({name, audi}));
-        actorArr.sort((a, b) => b.audi - a.audi);
+        const actorArr = Object.entries(hawkYearlyData[year] || {}).map(([name, annualSp]) => ({name, annualSp}));
+        actorArr.sort((a, b) => b.annualSp - a.annualSp);
         const topCount = Math.max(1, Math.floor(actorArr.length * (percentLimit / 100)));
         
         actorArr.forEach((actor, index) => {
