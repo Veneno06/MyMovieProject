@@ -161,10 +161,14 @@ def build_star_power_model(movies):
         if not stat['id']:
             continue
         row = dict(stat)
-        row['score'] = stat['total_star_power'] / stat['movie_count'] if stat['movie_count'] else 0.0
+        career_score = stat['total_star_power']
+        average_score = career_score / stat['movie_count'] if stat['movie_count'] else 0.0
+        row['score'] = career_score  # backward-compatible actor-wide rank score
+        row['career_score'] = career_score
+        row['average_score'] = average_score
         row.pop('total_star_power', None)
         rankings_all.append(row)
-    rankings_all.sort(key=lambda r: (-r['score'], r['name']))
+    rankings_all.sort(key=lambda r: (-r['career_score'], r['name']))
 
     return {
         'eligible_movies': eligible_movies,
