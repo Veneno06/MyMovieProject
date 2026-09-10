@@ -148,7 +148,7 @@ function calculateGlobalRankings() {
 
     STARPOWER_MODEL.actorRanks.forEach(item => {
         if (!item.id) return;
-        GLOBAL_RANKS.set(item.id, { score: item.score, rank: item.rank, movieCount: item.movieCount });
+        GLOBAL_RANKS.set(item.id, { score: item.score, careerScore: item.careerScore, averageScore: item.averageScore, rank: item.rank, movieCount: item.movieCount });
     });
 }
 
@@ -550,7 +550,7 @@ async function search(){
             let rankBadge = "";
             if (a.id && GLOBAL_RANKS.has(a.id)) {
                 const rInfo = GLOBAL_RANKS.get(a.id);
-                rankBadge = ` <span style="font-size:11px; color:#d97706; font-weight:bold; cursor:help;" title="작품별 신규 Star Power 평균: ${fmtNum(rInfo.score)}점">[${rInfo.rank}위]</span>`;
+                rankBadge = ` <span style="font-size:11px; color:#d97706; font-weight:bold; cursor:help;" title="누적 Career SP: ${fmtNum(rInfo.careerScore)}점 / 작품당 평균 SP: ${fmtNum(rInfo.averageScore)}점">[${rInfo.rank}위]</span>`;
             }
 
             // 첫 번째 검색 배우(A)를 기준으로 각 출연 배우(B)의 Directed Synergy Index 표시
