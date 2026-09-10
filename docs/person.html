@@ -207,7 +207,7 @@ function calculateAndDisplayMyRank(allMovies, myId) {
     if (rankInfo) {
         const rankBadge = document.getElementById('rankBadge');
         rankBadge.textContent = `🏆 스타 파워 전체 ${rankInfo.rank}위`;
-        rankBadge.title = `작품별 신규 Star Power 평균: ${rankInfo.score.toFixed(2)}점 / 국내 유효작 ${rankInfo.movieCount}편`;
+        rankBadge.title = `누적 Career Star Power: ${rankInfo.careerScore.toFixed(2)}점 / 작품당 평균 SP: ${rankInfo.averageScore.toFixed(2)}점 / 국내 유효작 ${rankInfo.movieCount}편`;
         rankBadge.style.display = 'inline-block';
     }
 }
