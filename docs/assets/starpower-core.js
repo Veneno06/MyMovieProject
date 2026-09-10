@@ -203,6 +203,8 @@
           movieCount: 0,
           totalStarPower: 0,
           totalAudi: 0,
+          careerScore: 0,
+          averageScore: 0,
           score: 0,
           observations: []
         };
@@ -215,18 +217,23 @@
     }
 
     for (const stat of actorStats.values()) {
-      stat.score = stat.movieCount > 0 ? stat.totalStarPower / stat.movieCount : 0;
+      stat.careerScore = stat.totalStarPower;
+      stat.averageScore = stat.movieCount > 0 ? stat.totalStarPower / stat.movieCount : 0;
+      // Backward-compatible rank score: actor-wide ranking now means cumulative Career Star Power.
+      stat.score = stat.careerScore;
     }
 
     const actorRanks = [...actorStats.values()]
       .filter(stat => Boolean(stat.id))
-      .sort((a, b) => b.score - a.score || a.name.localeCompare(b.name, 'ko'))
+      .sort((a, b) => b.careerScore - a.careerScore || a.name.localeCompare(b.name, 'ko'))
       .map((stat, index) => ({
         id: stat.id,
         key: stat.key,
         name: stat.name,
         sex: stat.sex,
-        score: stat.score,
+        score: stat.careerScore,
+        careerScore: stat.careerScore,
+        averageScore: stat.averageScore,
         movieCount: stat.movieCount,
         totalAudi: stat.totalAudi,
         rank: index + 1
