@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>Hawk 기준 실험 – K-Movie A Archive</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/translator.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="assets/starpower-core.js"></script>
+  <script src="assets/hawk-criterion-core.js"></script>
+  <style>
+    .experiment-card { background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:20px; margin-bottom:20px; }
+    .experiment-card h2 { margin-top:0; font-size:20px; color:#111827; }
+    .experiment-card h3 { margin-top:18px; margin-bottom:8px; color:#111827; }
+    .muted { color:#6b7280; font-size:13px; line-height:1.7; }
+    .math-formula { font-family:monospace; background:#f3f4f6; border:1px solid #e5e7eb; border-radius:6px; padding:12px; text-align:center; overflow-x:auto; white-space:nowrap; margin:10px 0; font-weight:bold; }
+    .metric-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px; margin-top:14px; }
+    .metric { border:1px solid #e5e7eb; background:#f9fafb; border-radius:8px; padding:14px; }
+    .metric-label { font-size:12px; color:#6b7280; margin-bottom:6px; }
+    .metric-value { font-size:22px; font-weight:800; color:#111827; }
+    .notice { border:1px solid #bfdbfe; background:#eff6ff; color:#1e3a8a; padding:14px; border-radius:8px; line-height:1.65; margin-top:12px; }
+    .warn { border:1px solid #fed7aa; background:#fff7ed; color:#9a3412; padding:14px; border-radius:8px; line-height:1.65; margin-top:12px; }
+    .selector-row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin:12px 0; }
+    .selector-row label { font-weight:bold; }
+    .selector-row select,.selector-row input { padding:7px 10px; border:1px solid #d1d5db; border-radius:6px; background:#fff; }
+    .chart-box { position:relative; height:390px; margin-top:15px; }
+    .table-wrap { overflow-x:auto; margin-top:14px; }
+    table { width:100%; border-collapse:collapse; min-width:760px; font-size:13px; }
+    th,td { border-bottom:1px solid #e5e7eb; padding:9px 8px; text-align:center; }
+    th { background:#f9fafb; color:#374151; }
+    tr.excluded { background:#fff7ed; }
+    .good { color:#15803d; font-weight:bold; }
+    .bad { color:#dc2626; font-weight:bold; }
+    .hawk-list { columns:2; column-gap:24px; margin-top:10px; padding-left:20px; }
+    @media(max-width:700px){ .chart-box{height:320px;} .hawk-list{columns:1;} }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="ctrls">
+    <a href="index.html" class="btn" data-i18n-key="home">홈</a>
+    <a href="title-search.html" class="btn" data-i18n-key="movieTitleSearch">영화 검색 (제목)</a>
+    <a href="search.html" class="btn" data-i18n-key="movieSearchPeriod">영화 검색 (기간)</a>
+    <a href="people-search.html" class="btn" data-i18n-key="peopleSearch">배우 검색</a>
+    <a href="costar-search.html" class="btn" data-i18n-key="costarSearch">공동 출연 검색</a>
+    <a href="saved.html" class="btn" data-i18n-key="savedList">저장 목록</a>
+    <div style="margin-left:auto; display:flex; gap:8px;">
+      <a href="hawk-criterion-experiment.html" class="btn active" style="background:#0f766e; color:#fff; border:none; font-weight:bold;">Hawk 기준 실험</a>
+      <a href="experiment.html" class="btn" target="_blank" style="background:#2563eb; color:#fff; border:none; font-weight:bold;">실험</a>
+      <a href="hawk-stat.html" class="btn" target="_blank" style="background:#dc2626; color:#fff; border:none; font-weight:bold;">Hawk 여론 통계 분석</a>
+      <a href="role-weight-proof.html" class="btn" target="_blank" style="background:#9333ea; color:#fff; border:none; font-weight:bold;">역할 가중치 비교</a>
+    </div>
+  </div>
+
+  <h1>Hawk 기준 실험</h1>
+  <p class="muted">국내 영화의 확정 Star Power를 연도별로 집계하여 Hawk 상위 경계와 반복성을 데이터로 점검합니다. H1/H2/H3, 사건 정보, 유튜브 여론은 이 기준 선택에 사용하지 않습니다.</p>
+
+  <div class="experiment-card">
+    <h2>1. Hawk 점수와 실험 목적</h2>
+    <p class="muted">작품별 Star Power는 기존 확정식을 그대로 사용합니다. Hawk/Dove는 경력 전체 누적값이 아니라 특정 연도의 시장 우위를 표현해야 하므로, 배우가 해당 연도에 얻은 작품별 SP를 합산한 Annual Star Power를 사용합니다.</p>
+    <div class="math-formula">ASP_iy = Σ SP_im &nbsp; (영화 m의 개봉연도 = y)</div>
+    <div class="math-formula">SP_im = 10,000 × W_market,m × W_role,im × W_history,im</div>
+    <p class="muted">각 연도의 ASP를 내림차순으로 정렬한 뒤 log(1+ASP)로 압축하고 0~1로 정규화합니다. 상위 급경사 구간과 장기 꼬리(long tail)가 갈라지는 지점을 Kneedle 방식에서 착안한 정규화 차이곡선의 최대 굴곡 후보로 검출하여 연도별 Hawk 상위 비율 후보를 구합니다.</p>
+  </div>
+
+  <div class="experiment-card">
+    <h2>2. 데이터 분석 상태</h2>
+    <div id="status" style="color:#2563eb; font-weight:bold;">데이터를 불러오는 중입니다...</div>
+    <div class="metric-grid">
+      <div class="metric"><div class="metric-label">유효 국내 영화</div><div class="metric-value" id="eligibleMovies">-</div></div>
+      <div class="metric"><div class="metric-label">배우-영화 SP 관측치</div><div class="metric-value" id="observations">-</div></div>
+      <div class="metric"><div class="metric-label">연도 수</div><div class="metric-value" id="yearCount">-</div></div>
+      <div class="metric"><div class="metric-label">aggregate 사용 연도</div><div class="metric-value" id="includedYears">-</div></div>
+    </div>
+  </div>
+
+  <div class="experiment-card">
+    <h2>3. Coverage 진단: Q1 - 1.5×IQR은 무엇인가?</h2>
+    <p class="muted">이 값은 Hawk를 정하는 경계가 아닙니다. 연도별로 계산 가능한 배우 수가 비정상적으로 적은 해를 자동 표시하기 위한 <b>데이터 품질 진단선</b>입니다. Q1은 연도별 배우 수의 25번째 백분위수, Q3는 75번째 백분위수, IQR=Q3-Q1은 가운데 50%의 폭입니다. Q1-1.5×IQR보다 배우 수가 적은 연도는 다른 연도보다 지나치게 데이터가 적은 하위 이상치 후보로 표시합니다.</p>
+    <div class="math-formula">IQR = Q3 - Q1 &nbsp;&nbsp; / &nbsp;&nbsp; Lower Fence = Q1 - 1.5 × IQR</div>
+    <div class="metric-grid">
+      <div class="metric"><div class="metric-label">Q1</div><div class="metric-value" id="q1">-</div></div>
+      <div class="metric"><div class="metric-label">Q3</div><div class="metric-value" id="q3">-</div></div>
+      <div class="metric"><div class="metric-label">IQR</div><div class="metric-value" id="iqr">-</div></div>
+      <div class="metric"><div class="metric-label">하한 Q1-1.5×IQR</div><div class="metric-value" id="lowerFence">-</div></div>
+    </div>
+    <div class="warn">하한보다 작은 연도는 삭제되는 것이 아니라 <b>전체 기간의 평균/중앙값 Hawk 비율 계산에서만 제외</b>합니다. 또한 analysis cutoff가 연말이 아니므로 2026년처럼 부분 연도는 aggregate 기준 계산에서 제외합니다. 연도별 개별 결과는 표에 계속 표시됩니다.</div>
+    <div class="table-wrap"><table><thead><tr><th>연도</th><th>배우 수</th><th>저coverage</th><th>부분 연도</th><th>aggregate 사용</th></tr></thead><tbody id="coverageBody"></tbody></table></div>
+  </div>
+
+  <div class="experiment-card">
+    <h2>4. 연도별 Hawk Knee 확인</h2>
+    <div class="selector-row"><label for="yearSelect">확인 연도</label><select id="yearSelect"></select></div>
+    <div id="yearKneeText" class="notice"></div>
+    <div class="chart-box"><canvas id="rankCurveChart"></canvas></div>
+  </div>
+
+  <div class="experiment-card">
+    <h2>5. 평균 Knee 비율과 중앙값 Knee 비율 비교</h2>
+    <p class="muted">두 값을 모두 보여줍니다. 평균은 모든 연도의 값을 동일하게 반영하지만 몇 개의 큰 knee 비율에 끌려갈 수 있습니다. 중앙값은 연도별 값을 순서대로 놓았을 때 가운데 값이라 극단적인 연도의 영향을 덜 받습니다. 따라서 중앙값을 primary robust summary로 두되, 평균과의 차이를 함께 공개하여 결론의 민감도를 확인합니다.</p>
+    <div class="metric-grid">
+      <div class="metric"><div class="metric-label">평균 Knee 비율</div><div class="metric-value" id="meanPct">-</div></div>
+      <div class="metric"><div class="metric-label">중앙값 Knee 비율</div><div class="metric-value" id="medianPct">-</div></div>
+      <div class="metric"><div class="metric-label">평균-중앙값 차이</div><div class="metric-value" id="meanMedianGap">-</div></div>
+      <div class="metric"><div class="metric-label">사용 연도 수</div><div class="metric-value" id="kneeYearCount">-</div></div>
+    </div>
+    <div id="meanMedianExplain" class="notice"></div>
+    <div class="chart-box"><canvas id="yearKneeChart"></canvas></div>
+    <div class="table-wrap"><table><thead><tr><th>연도</th><th>배우 수</th><th>Knee Rank</th><th>Knee 비율</th><th>ASP 경계</th><th>판정</th></tr></thead><tbody id="kneeBody"></tbody></table></div>
+  </div>
+
+  <div class="experiment-card">
+    <h2>6. “Hawk가 너무 많아지는 문제” 검증</h2>
+    <p class="muted">Knee 비율은 한 해의 <b>상위 후보 영역</b>을 정하는 값입니다. 그것만으로 경력 전체의 Hawk라고 부르지 않습니다. 아래에서는 동일한 cutoff에서 고정 진입횟수 2~5회를 모두 비교하고, 별도로 우연히 반복 진입했을 가능성을 통계적으로 검정하는 BH-FDR 기준도 계산합니다.</p>
+    <div class="selector-row">
+      <label for="cutoffSource">비교할 Hawk 비율</label>
+      <select id="cutoffSource"><option value="median">중앙값 Knee</option><option value="mean">평균 Knee</option><option value="custom">직접 입력</option></select>
+      <input type="number" id="customPct" min="0.1" max="30" step="0.1" value="1.0" style="display:none; width:90px;"> <span>%</span>
+    </div>
+    <div id="selectedCutoffText" class="notice"></div>
+    <h3>고정 최소 진입 횟수 민감도</h3>
+    <div class="metric-grid" id="fixedGrid"></div>
+    <h3>통계적 반복성: Binomial + BH-FDR</h3>
+    <p class="muted">배우가 활동한 T개 연도 중 h개 연도에서 상위 p%에 들어갔다고 할 때, 무작위로 매년 상위 p%에 들어갈 확률이 p라고 가정한 기준모형에서 h회 이상 나올 확률을 계산합니다. 배우 수가 매우 많기 때문에 여러 명을 동시에 검정하면서 생기는 거짓 양성 증가를 Benjamini-Hochberg FDR q=0.05로 보정합니다. 따라서 “무조건 2회면 Hawk”가 아니라 배우의 활동연수와 반복횟수를 함께 고려합니다.</p>
+    <div class="math-formula">P(X ≥ h) = Σ C(T,k) p^k (1-p)^(T-k), &nbsp; X ~ Binomial(T,p)</div>
+    <div class="metric-grid">
+      <div class="metric"><div class="metric-label">검정 배우 수</div><div class="metric-value" id="testedActors">-</div></div>
+      <div class="metric"><div class="metric-label">BH-FDR persistent Hawk</div><div class="metric-value" id="fdrHawks">-</div></div>
+      <div class="metric"><div class="metric-label">FDR q</div><div class="metric-value">0.05</div></div>
+    </div>
+    <div id="fdrExplain" class="notice"></div>
+    <ol id="fdrList" class="hawk-list"></ol>
+  </div>
+
+  <div class="experiment-card">
+    <h2>7. 최종 판단 가이드</h2>
+    <ol class="muted" style="font-size:14px;">
+      <li>연도별 Knee는 데이터의 상위 급경사와 long tail 경계 후보이며, 임의로 1%, 5%를 대입한 값이 아닙니다.</li>
+      <li>평균과 중앙값을 둘 다 기록합니다. 논문 primary cutoff는 극단 연도의 영향에 강한 중앙값을 권장하고 평균 결과는 sensitivity로 함께 보고합니다.</li>
+      <li>Knee 상위 비율에 들어갔다고 한 번에 “지속적 Hawk”로 확정하지 않습니다. 고정 2~5회 결과를 모두 비교하고, primary persistence는 Binomial + BH-FDR q=0.05 결과를 권장합니다.</li>
+      <li>H1/H2/H3, 사건 발생 배우, 여론 결과를 보고 cutoff를 바꾸지 않습니다. Hawk 기준을 먼저 고정한 뒤 가설 검증으로 넘어갑니다.</li>
+      <li>이 실험에서 최종 기준을 고정한 뒤 annual-ratio.html의 Hawk/Dove 상태전환 분석에 동일한 기준을 적용합니다.</li>
+    </ol>
+  </div>
+</div>
+
+<script>
+const DATA_URL = `data/search_index.json?v=${Date.now()}`;
+let model=null, yearly=null, kneeSummary=null, rankCurveChart=null, yearKneeChart=null;
+const fmt=n=>Number(n||0).toLocaleString('ko-KR');
+const pct=n=>Number.isFinite(n)?`${n.toFixed(2)}%`:'-';
+
+async function main(){
+  try{
+    const r=await fetch(DATA_URL,{cache:'no-store'}); if(!r.ok) throw new Error(`HTTP ${r.status}`);
+    const movies=await r.json();
+    model=StarPowerCore.buildModel(movies);
+    yearly=HawkCriterionCore.buildAnnualScores(model);
+    kneeSummary=HawkCriterionCore.summarizeYearlyKnees(yearly,StarPowerCore.CONFIG.cutoffDate);
+    renderAll();
+    document.getElementById('status').className='good';
+    document.getElementById('status').textContent='분석 완료: 국내 유효 영화의 Annual Star Power와 연도별 Hawk knee 계산이 끝났습니다.';
+  }catch(e){ console.error(e); document.getElementById('status').className='bad'; document.getElementById('status').textContent=`실험 실행 실패: ${e.message}`; }
+}
+
+function renderAll(){
+  document.getElementById('eligibleMovies').textContent=fmt(model.eligibleMovies.length);
+  document.getElementById('observations').textContent=fmt(model.observations.length);
+  document.getElementById('yearCount').textContent=fmt(Object.keys(yearly).length);
+  document.getElementById('includedYears').textContent=fmt(kneeSummary.includedPercents.length);
+  const c=kneeSummary.coverage;
+  document.getElementById('q1').textContent=c.q1.toFixed(1);
+  document.getElementById('q3').textContent=c.q3.toFixed(1);
+  document.getElementById('iqr').textContent=c.iqr.toFixed(1);
+  document.getElementById('lowerFence').textContent=c.lowerFence.toFixed(1);
+  document.getElementById('coverageBody').innerHTML=c.rows.map(r=>`<tr class="${r.includedForAggregate?'':'excluded'}"><td>${r.year}</td><td>${fmt(r.actorCount)}</td><td>${r.lowCoverage?'예':'아니오'}</td><td>${r.partialYear?'예':'아니오'}</td><td>${r.includedForAggregate?'사용':'제외(aggregate만)'}</td></tr>`).join('');
+
+  const sel=document.getElementById('yearSelect'); sel.innerHTML='';
+  kneeSummary.rows.forEach(r=>{const o=document.createElement('option');o.value=r.year;o.textContent=`${r.year}년${r.includedForAggregate?'':' (진단 제외)'}`;sel.appendChild(o);});
+  const preferred=kneeSummary.rows.filter(r=>r.includedForAggregate).slice(-1)[0] || kneeSummary.rows[0]; if(preferred) sel.value=preferred.year;
+  sel.addEventListener('change',renderSelectedYear);
+
+  document.getElementById('meanPct').textContent=pct(kneeSummary.mean);
+  document.getElementById('medianPct').textContent=pct(kneeSummary.median);
+  document.getElementById('meanMedianGap').textContent=`${Math.abs(kneeSummary.mean-kneeSummary.median).toFixed(2)}%p`;
+  document.getElementById('kneeYearCount').textContent=fmt(kneeSummary.count);
+  document.getElementById('meanMedianExplain').innerHTML=`사용 가능한 ${kneeSummary.count}개 연도의 Knee 비율을 집계하면 <b>평균 ${pct(kneeSummary.mean)}</b>, <b>중앙값 ${pct(kneeSummary.median)}</b>입니다. 두 값의 차이는 <b>${Math.abs(kneeSummary.mean-kneeSummary.median).toFixed(2)}%p</b>입니다. 평균은 큰 knee 연도의 영향을 더 받고, 중앙값은 연도별 이상치에 더 강하므로 중앙값을 primary robust summary로 사용하고 평균을 sensitivity 결과로 병기하는 방식을 권장합니다.`;
+  document.getElementById('kneeBody').innerHTML=kneeSummary.rows.map(r=>`<tr class="${r.includedForAggregate?'':'excluded'}"><td>${r.year}</td><td>${fmt(r.actorCount)}</td><td>${r.rank}</td><td>${pct(r.percent)}</td><td>${r.scoreThreshold.toFixed(2)}</td><td>${r.includedForAggregate?'집계 사용':(r.partialYear?'부분 연도':'저coverage')}</td></tr>`).join('');
+  renderYearKneeChart(); renderSelectedYear();
+
+  const src=document.getElementById('cutoffSource'); const custom=document.getElementById('customPct');
+  src.addEventListener('change',()=>{custom.style.display=src.value==='custom'?'inline-block':'none';renderPersistence();});
+  custom.addEventListener('input',renderPersistence);
+  renderPersistence();
+}
+
+function includedYearNames(){ return kneeSummary.rows.filter(r=>r.includedForAggregate).map(r=>r.year); }
+function selectedPercent(){ const src=document.getElementById('cutoffSource').value; if(src==='mean') return kneeSummary.mean; if(src==='custom') return Math.max(.1,Math.min(30,parseFloat(document.getElementById('customPct').value)||1)); return kneeSummary.median; }
+
+function renderSelectedYear(){
+  const y=document.getElementById('yearSelect').value; const row=kneeSummary.rows.find(r=>r.year===y); if(!row)return;
+  document.getElementById('yearKneeText').innerHTML=`<b>${y}년</b>: Annual SP가 존재하는 배우 ${fmt(row.actorCount)}명 중 knee 후보는 <b>${row.rank}위</b>, 즉 상위 <b>${row.percent.toFixed(2)}%</b>이며 해당 지점 Annual SP는 약 <b>${row.scoreThreshold.toFixed(2)}</b>입니다.${row.includedForAggregate?'':' 이 연도는 전체 기간 평균/중앙값 계산에서는 제외됩니다.'}`;
+  const rows=[...yearly[y].values()].sort((a,b)=>b.score-a.score); const step=Math.max(1,Math.floor(rows.length/350)); const labels=[],data=[]; for(let i=0;i<rows.length;i+=step){labels.push(i+1);data.push(Math.log1p(rows[i].score));}
+  if(rankCurveChart)rankCurveChart.destroy(); const ctx=document.getElementById('rankCurveChart');
+  rankCurveChart=new Chart(ctx,{type:'line',data:{labels,datasets:[{label:`${y}년 log(1+Annual SP)`,data,borderColor:'#2563eb',backgroundColor:'rgba(37,99,235,.08)',pointRadius:0,borderWidth:2,tension:.15}]},options:{responsive:true,maintainAspectRatio:false,plugins:{annotation:false,tooltip:{callbacks:{afterBody:()=>`Knee: ${row.rank}위 / ${row.percent.toFixed(2)}%`}}},scales:{x:{title:{display:true,text:'Annual SP 순위 (샘플링 표시)'}},y:{title:{display:true,text:'log(1 + Annual SP)'}}}}});
+}
+
+function renderYearKneeChart(){
+  if(yearKneeChart)yearKneeChart.destroy(); const ctx=document.getElementById('yearKneeChart');
+  yearKneeChart=new Chart(ctx,{type:'line',data:{labels:kneeSummary.rows.map(r=>r.year),datasets:[{label:'연도별 Knee 비율(%)',data:kneeSummary.rows.map(r=>r.percent),borderColor:'#0f766e',backgroundColor:'rgba(15,118,110,.1)',pointBackgroundColor:kneeSummary.rows.map(r=>r.includedForAggregate?'#0f766e':'#f97316'),pointRadius:5,borderWidth:2,tension:.15},{label:'평균',data:kneeSummary.rows.map(()=>kneeSummary.mean),borderColor:'#7c3aed',borderDash:[6,5],pointRadius:0,borderWidth:1.5},{label:'중앙값',data:kneeSummary.rows.map(()=>kneeSummary.median),borderColor:'#dc2626',borderDash:[3,4],pointRadius:0,borderWidth:1.5}]},options:{responsive:true,maintainAspectRatio:false,scales:{y:{beginAtZero:true,title:{display:true,text:'상위 비율 (%)'}},x:{title:{display:true,text:'연도'}}}}});
+}
+
+function renderPersistence(){
+  const p=selectedPercent(), years=includedYearNames(); const src=document.getElementById('cutoffSource').value;
+  const label=src==='median'?'중앙값 Knee':src==='mean'?'평균 Knee':'직접 입력';
+  document.getElementById('selectedCutoffText').innerHTML=`현재 비교 기준은 <b>${label} = 상위 ${p.toFixed(2)}%</b>입니다. 이는 한 해의 Hawk <b>후보 영역</b>이며, 반복적으로 Hawk인지 여부는 아래의 recurrence 검증으로 별도 판단합니다.`;
+  const grid=document.getElementById('fixedGrid'); grid.innerHTML='';
+  [2,3,4,5].forEach(min=>{const r=HawkCriterionCore.fixedRecurrenceSummary(yearly,p,min,years);grid.innerHTML+=`<div class="metric"><div class="metric-label">상위 ${p.toFixed(2)}% ${min}회 이상</div><div class="metric-value">${fmt(r.hawkCount)}명</div></div>`;});
+  const f=HawkCriterionCore.persistentHawksFdr(yearly,p,.05,years);
+  document.getElementById('testedActors').textContent=fmt(f.testedActorCount);
+  document.getElementById('fdrHawks').textContent=fmt(f.hawkCount);
+  document.getElementById('fdrExplain').innerHTML=`고정 “2회 이상”만 사용하지 않고 활동연수까지 고려하면, 상위 ${p.toFixed(2)}% 진입 반복이 우연한 수준보다 유의하게 많은 배우 중 BH-FDR q=0.05를 통과하고 최소 2회 이상 실제 진입한 배우는 <b>${fmt(f.hawkCount)}명</b>입니다. 이 결과는 “한 해의 후보 폭이 약 ${p.toFixed(1)}%이므로 전체 Hawk도 그만큼 많다”는 해석을 막아줍니다.`;
+  document.getElementById('fdrList').innerHTML=f.significant.slice(0,60).map(x=>`<li><b>${x.name}</b> — 상위권 ${x.hitCount}/${x.activeCount} 활동연도, p=${x.pValue<1e-6?x.pValue.toExponential(2):x.pValue.toFixed(6)}</li>`).join('');
+}
+main();
+</script>
+</body>
+</html>
