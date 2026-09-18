@@ -11,8 +11,8 @@ body{background:#f8fafc;color:#172033;font-family:system-ui,-apple-system,"Malgu
 <body><main class="study">
 <nav class="tools nav"><a class="btn" href="saved.html">저장 목록</a><a class="btn" href="hawk-criterion-experiment.html" target="_blank" rel="noopener">Hawk 기준 실험</a><a class="btn" href="annual-ratio.html" target="_blank" rel="noopener">연도별 비율</a></nav>
 <p class="muted">K-Movie A Archive · 탐색적 사례 연구</p><h1>사건 이후 재협업과 Star Power</h1>
-<p>사건 공개 월 이후 365일을 확보한 첫 적격 개봉작에서 과거 고시너지 배우의 재등장과 작품별 SP를 관찰합니다.</p>
-<div class="notice"><strong>관찰 결과와 가설 입증을 구분합니다.</strong> 평균 SP 대비 배수는 손익분기점이나 인과효과가 아닙니다. 출연작이 없는 해는 Dove로 바꾸지 않습니다. 개봉일은 촬영·캐스팅 결정일을 대신하지 않습니다.</div>
+<p>사건 공개 월 이후 365일을 확보한 첫 개봉작에서 과거 고시너지 배우의 재등장과 작품별 SP를 관찰합니다.</p>
+<div class="notice"><strong>관찰 결과를 구분합니다.</strong> 평균 SP 대비 배수는 손익분기점이나 인과효과가 아닙니다. 출연작이 없는 해는 Dove로 바꾸지 않습니다. 개봉일은 촬영·캐스팅 결정일을 대신하지 않습니다.</div>
 <div id="status" role="status" aria-live="polite" class="muted">저장된 실험 결과를 불러오는 중…</div>
 <div class="tools"><label for="caseFilter">사례</label><select id="caseFilter" disabled><option value="selected">선정 사례 3명</option><option value="all">후보 전체 · 제외 이유 포함</option></select><label for="percent">고시너지 상위 비율</label><select id="percent"><option value="10">10%</option><option value="25" selected>25% · 주 분석</option><option value="50">50%</option></select><button class="btn" id="csv" disabled>요약 CSV</button><button class="btn" id="json" disabled>전체 JSON</button><button class="btn" id="verify" disabled>현재 데이터 일치 확인</button><button class="btn" id="print">인쇄 / PDF 저장</button></div>
 <p class="muted" id="verification">저장된 결과를 표시합니다. 현재 데이터와의 일치는 별도로 확인할 수 있습니다.</p>
@@ -21,7 +21,7 @@ body{background:#f8fafc;color:#172033;font-family:system-ui,-apple-system,"Malgu
 <div id="cases"></div>
 <section class="panel"><h2>분석 정의와 해석 범위</h2>
 <ol>
-<li><strong>표본:</strong> 사용자가 승인한 배우 순서에서 현재 반복성·BH-FDR Hawk와 사건 이전 반복성·BH-FDR Hawk를 모두 충족하고 적격 개봉작이 있는 최대 3명. 자격 미충족 후보는 별도 표시합니다. 현재 Hawk를 조건으로 삼아 회복하지 못한 배우가 빠질 수 있는 선택 편향이 있습니다.</li>
+<li><strong>표본:</strong> 사용자가 승인한 배우 순서에서 현재 반복성·BH-FDR Hawk와 사건 이전 반복성·BH-FDR Hawk를 모두 충족하고 개봉작이 있는 최대 3명. 자격 미충족 후보는 별도 표시합니다. 현재 Hawk를 조건으로 삼아 회복하지 못한 배우가 빠질 수 있는 선택 편향이 있습니다.</li>
 <li><strong>사건 이전:</strong> 공개 월 1일 이전 개봉작만 사용해 SP 모델과 Hawk 기준을 다시 계산합니다. 연간 비율은 사건 전 완료 연도의 knee 비율 중앙값입니다. 연도별 Hawk는 상위 집단, 지속 Hawk는 반복성·BH-FDR 판정으로 서로 다릅니다.</li>
 <li><strong>365일:</strong> 공개 월 말일 + 365일 당일부터의 첫 적격 개봉일. 해당일 동시 개봉작은 모두 포함합니다. 월초 + 365일의 대안 결과도 확인합니다. 국내 영화·관객수 양수·2026-09-03까지 개봉한 작품만 사용합니다.</li>
 <li><strong>실험 1:</strong> 사건 전 공동출연 배우 중 A→B 시너지 계산이 가능한 배우 전체를 순위 모집단으로 삼습니다. 상위 비율의 올림 인원과 경계 동률을 포함하고 시너지 양수 조건을 함께 적용합니다. A는 사건 배우, B는 상대 배우이며 A→B는 <em>B의 SP가 A와 함께 출연할 때 얼마나 달랐는지</em>입니다. 역방향 B→A도 참고로 제공합니다.</li>
