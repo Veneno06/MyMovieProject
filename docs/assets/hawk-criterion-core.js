@@ -45,7 +45,7 @@
       if (!year) continue;
       if (!yearly[year]) yearly[year] = new Map();
       const map = yearly[year];
-      const key = obs.actorKey;
+      const key = obs.actorId ? `id:${obs.actorId}` : (obs.actorKey || `name:${obs.actorName}`);
       const row = map.get(key) || {
         actorKey: key,
         id: obs.actorId || '',
@@ -150,7 +150,7 @@
 
   function topSetForYear(yearMap, percent) {
     const rows = [...yearMap.values()].sort((a, b) => b.score - a.score || a.name.localeCompare(b.name, 'ko'));
-    const topCount = Math.max(1, Math.floor(rows.length * (percent / 100)));
+    const topCount = rows.length && Number.isFinite(percent) && percent > 0 ? Math.min(rows.length, Math.max(1, Math.floor(rows.length * (percent / 100)))) : 0;
     return { rows, topCount, topRows: rows.slice(0, topCount), topKeys: new Set(rows.slice(0, topCount).map(r => r.actorKey)) };
   }
 
@@ -208,6 +208,7 @@
   }
 
   function persistentHawksFdr(yearlyScores, percent, q, includedYears) {
+    if (!Number.isFinite(percent) || percent<=0 || percent>100) return {percent,q,testedActorCount:0,tests:[],significant:[],hawkCount:0};
     const years = includedYears || Object.keys(yearlyScores || {}).sort();
     const activeYears = new Map();
     const hits = new Map();
@@ -236,13 +237,79 @@
         pValue: hitCount > 0 ? binomialUpperTail(activeCount, hitCount, p) : 1
       });
     }
-    const significant = benjaminiHochberg(tests, q)
+    const adjustedTests = adjustedPValues(tests);
+    const significant = benjaminiHochberg(adjustedTests, q)
       .filter(x => x.hitCount >= 2)
       .sort((a, b) => a.pValue - b.pValue || b.hitCount - a.hitCount || a.name.localeCompare(b.name, 'ko'));
-    return { percent, q, testedActorCount: tests.length, tests, significant, hawkCount: significant.length };
+    return { percent, q, testedActorCount: tests.length, tests: adjustedTests, significant, hawkCount: significant.length };
+  }
+
+  function adjustedPValues(items) {
+    const ranked = items.map((item,index)=>({...item,index})).sort((a,b)=>a.pValue-b.pValue);
+    let previous = 1;
+    for (let i=ranked.length-1;i>=0;i--) {
+      previous = Math.min(previous, ranked[i].pValue * ranked.length / (i+1));
+      ranked[i].qValue = previous;
+    }
+    return ranked.sort((a,b)=>a.index-b.index).map(({index,...item})=>item);
+  }
+
+  // Missing observations and excluded coverage years are not negative classifications.
+  function annualStates(yearlyScores, percent, options = {}) {
+    const years = Object.keys(yearlyScores).map(Number).sort((a,b)=>a-b);
+    if (!years.length) return {};
+    const included = new Set((options.includedYears || years).map(String));
+    const identities = new Set(Object.values(yearlyScores).flatMap(m=>[...m.keys()]));
+    const states = Object.create(null), hits = new Map();
+    for (const key of identities) {
+      states[key] = {};
+      for (let y=years[0];y<=years[years.length-1];y++) states[key][y] = 'Unknown';
+    }
+    for (const y of years) {
+      if (!included.has(String(y)) || !Number.isFinite(percent)) continue;
+      const top = topSetForYear(yearlyScores[y],percent);
+      for (const row of top.rows) {
+        const candidate = top.topKeys.has(row.actorKey);
+        if (candidate) hits.set(row.actorKey,(hits.get(row.actorKey)||0)+1);
+        states[row.actorKey][y] = candidate && (!options.minCount || hits.get(row.actorKey)>=options.minCount) ? 'Hawk' : 'Dove';
+      }
+    }
+    return states;
+  }
+
+  function transitions(states) {
+    const rows = [];
+    for (const year of Object.keys(states).map(Number).sort((a,b)=>a-b)) {
+      const from=states[year-1], to=states[year];
+      if (['Hawk','Dove'].includes(from) && ['Hawk','Dove'].includes(to) && from!==to)
+        rows.push({fromYear:year-1,toYear:year,from,to});
+    }
+    return rows;
+  }
+
+  function buildPreEventAnalysis(core, movies, options = {}) {
+    const raw = String(options.eventDate || '').replace(/-/g,'');
+    if (!/^\d{8}$/.test(raw)) throw new Error('정확한 사건일 YYYY-MM-DD가 필요합니다.');
+    const iso = `${raw.slice(0,4)}-${raw.slice(4,6)}-${raw.slice(6,8)}`;
+    const date = new Date(`${iso}T00:00:00Z`);
+    if (!Number.isFinite(date.getTime()) || date.toISOString().slice(0,10)!==iso) throw new Error('유효하지 않은 사건일');
+    date.setUTCDate(date.getUTCDate()-1);
+    const requestedCutoff = date.toISOString().slice(0,10).replace(/-/g,'');
+    const cutoffDate = core.CONFIG?.cutoffDate && core.CONFIG.cutoffDate < requestedCutoff ? core.CONFIG.cutoffDate : requestedCutoff;
+    // Explicit release filtering also protects callers with a legacy core.
+    const model = core.buildModel(movies.filter(m=> {
+      const release=core.normalizeDate(m.openDt); return release && release<raw;
+    }), {cutoffDate,lambda:options.lambda ?? core.CONFIG.lambda});
+    const all = buildAnnualScores(model), yearly = Object.create(null);
+    const startYear = options.windowMode==='trailing' ? Number(raw.slice(0,4))-Math.max(1,Number(options.windowYears)||5) : -Infinity;
+    for (const y of Object.keys(all)) if (Number(y)>=startYear) yearly[y]=all[y];
+    // Even a December 31 event has an incomplete event year; Jan 1 uses the completed previous year.
+    const summary = summarizeYearlyKnees(yearly,cutoffDate);
+    return {eventDate:iso,cutoffDate,model,yearly,summary,windowMode:options.windowMode||'expanding',windowYears:options.windowYears||5,audienceTiming:'retrospective_snapshot'};
   }
 
   return Object.freeze({
+    adjustedPValues, annualStates, transitions, buildPreEventAnalysis,
     mean,
     median,
     quantile,
