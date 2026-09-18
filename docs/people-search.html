@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="ko">
 <head>
@@ -7,7 +8,7 @@
 <link rel="stylesheet" href="assets/style.css">
 <script src="assets/translator.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="assets/starpower-core.js"></script>
+<script src="assets/starpower-core.js?v=20260917"></script>
 <style>
   .dist-charts-container {
       display: flex; gap: 15px; margin-top: 15px; flex-wrap: wrap;
@@ -185,7 +186,8 @@ const SUMMARY_URL = `data/db_summary.json?v=${TS}`;
 let SEARCH_INDEX = [];
 let DB_SUMMARY = null;
 let STARPOWER_MODEL = null;
-let VALID_SENTIMENT_ACTORS = []; 
+let VALID_SENTIMENT_ACTORS = [];
+let INDEX_SHA256 = ""; 
 
 async function loadData() {
     try {
@@ -195,18 +197,30 @@ async function loadData() {
         ]);
         
         if (indexRes.ok) {
-            SEARCH_INDEX = await indexRes.json();
+            const indexText = await indexRes.text();
+            SEARCH_INDEX = JSON.parse(indexText);
+            if (globalThis.crypto && crypto.subtle) {
+                const hash = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(indexText));
+                INDEX_SHA256 = Array.from(new Uint8Array(hash), b => b.toString(16).padStart(2,'0')).join('');
+            }
             STARPOWER_MODEL = StarPowerCore.buildModel(SEARCH_INDEX);
         }
         
         if (summaryRes.ok) {
             DB_SUMMARY = await summaryRes.json();
+            // Ranking is always computed from this page's index, exactly like person/costar.
+            DB_SUMMARY.rankings_all = STARPOWER_MODEL.actorRanks.map(r => ({
+                id:r.id,name:r.name,sex:r.sex,score:r.careerScore,career_score:r.careerScore,
+                average_score:r.averageScore,movie_count:r.movieCount,total_audi:r.totalAudi
+            }));
+            const summaryMatches = Boolean(INDEX_SHA256 && DB_SUMMARY.input_fingerprints &&
+                DB_SUMMARY.input_fingerprints.search_index_sha256 === INDEX_SHA256);
             renderDbStats(); 
             renderRankings();
             VALID_SENTIMENT_ACTORS = DB_SUMMARY.sentiment_actors || [];
             
             const statusEl = document.getElementById('sentimentScanStatus');
-            statusEl.innerHTML = `여론 데이터 보유 배우: <b>${VALID_SENTIMENT_ACTORS.length}명 확인</b> <span style="color:#16a34a;">(서버 연산 동기화 완료 ✅)</span>`;
+            statusEl.innerHTML = `여론 데이터 보유 배우: <b>${VALID_SENTIMENT_ACTORS.length}명 확인</b> <span style="color:${summaryMatches ? '#16a34a' : '#b45309'};">(${summaryMatches ? '인덱스 일치 확인 · 순위는 현재 인덱스로 계산' : '요약 동기화 미확인 · 순위는 현재 인덱스로 계산'})</span>`;
             document.getElementById('filterNegSlopeMax').placeholder = `최대 ${DB_SUMMARY.global_max_slope} 사이`;
 
             const gStats = DB_SUMMARY.sentiment_global_stats;
@@ -268,7 +282,7 @@ function renderDbStats() {
         if (!minActor) minActor = rankings[0];
         
         const genDate = new Date(DB_SUMMARY.generatedAt);
-        const dateStr = isNaN(genDate) ? "최근 갱신일" : `${genDate.getFullYear()}.${String(genDate.getMonth()+1).padStart(2,'0')}.${String(genDate.getDate()).padStart(2,'0')} 기준`;
+        const dateStr = "현재 인덱스 계산";
 
         document.getElementById('statSpMax').innerHTML = `<a href="person.html?id=${maxActor.id}&name=${encodeURIComponent(maxActor.name)}" target="_blank" style="color:#2563eb; text-decoration:none; font-weight:bold;">${maxActor.name}</a> <span style="font-size:13px; color:#555;">(${Math.round(maxActor.score).toLocaleString()}점, ${dateStr})</span>`;
         document.getElementById('statSpMin').innerHTML = `<a href="person.html?id=${minActor.id}&name=${encodeURIComponent(minActor.name)}" target="_blank" style="color:#ef4444; text-decoration:none; font-weight:bold;">${minActor.name}</a> <span style="font-size:13px; color:#555;">(${Math.round(minActor.score).toLocaleString()}점, ${dateStr})</span>`;
