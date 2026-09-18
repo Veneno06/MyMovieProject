@@ -1,157 +1,110 @@
-# scripts/build_people_details.py
+# scripts/build_movie_details.py
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 import os
 import json
-import time
-import glob
-import sys
-import argparse
-import unicodedata
-from pathlib import Path
-from urllib.parse import urlencode
-import requests
-
-CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
-if CURRENT_DIR not in sys.path:
-    sys.path.append(CURRENT_DIR)
-
 try:
-    from kofic_api import get_session, API_KEYS
+    from .movie_records import load_movie_records, movie_info, audience, preserve_enhanced_fields, update_audience_files
 except ImportError:
-    API_KEYS = []
-    def get_session(): return None, None
+    from movie_records import load_movie_records, movie_info, audience, preserve_enhanced_fields, update_audience_files
+import time
+import argparse
+from pathlib import Path
 
-HERE = Path(__file__).resolve()
-ROOT = HERE.parents[1] if HERE.parents[1].name == "MyMovieProject" else HERE.parents[2]
-MOVIE_DIR = ROOT / "docs" / "data" / "movies"
-PEOPLE_DIR = ROOT / "docs" / "data" / "people"
-PEOPLE_INFO_URL = "https://www.kobis.or.kr/kobisopenapi/webservice/rest/people/searchPeopleInfo.json"
+# kofic_api.py에서 키 로테이션 및 요청 모듈 가져오기
+try:
+    if __package__:
+        from .kofic_api import fetch
+    else:
+        from kofic_api import fetch
+except ImportError:
+    print("[Error] kofic_api.py 모듈을 찾을 수 없습니다.")
+    exit(1)
 
-CURRENT_KEY_INDEX = 0
+ROOT = Path(__file__).resolve().parents[1]
+YEARS_DIR = ROOT / "docs" / "data" / "years"
+MOVIES_DIR = ROOT / "docs" / "data" / "movies"
+DETAIL_URL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json"
 
 def load_json(p: Path):
     try:
         return json.loads(p.read_text(encoding="utf-8"))
-    except: return None
+    except:
+        return None
 
 def save_json(p: Path, data: dict):
     p.parent.mkdir(parents=True, exist_ok=True)
     with open(p, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
-def get_next_key_session():
-    global CURRENT_KEY_INDEX
-    if not API_KEYS: return None, None
-    CURRENT_KEY_INDEX = (CURRENT_KEY_INDEX + 1) % len(API_KEYS)
-    api_key = API_KEYS[CURRENT_KEY_INDEX]
-    session = requests.Session()
-    print(f"[system] 🔄 API Key switched to index {CURRENT_KEY_INDEX}")
-    return session, api_key
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--year-start", type=int, required=True, help="시작 연도")
+    parser.add_argument("--year-end", type=int, required=True, help="종료 연도")
+    parser.add_argument("--max", type=int, default=999999, help="최대 수집 개수")
+    parser.add_argument("--audiacc", choices=['off', 'missing', 'all'], default='missing', help="관객수 복구 모드")
+    args = parser.parse_args()
 
-def fetch_people_info_smart(peopleCd):
-    global CURRENT_KEY_INDEX
-    if not API_KEYS: raise RuntimeError("No API Keys")
-    api_key = API_KEYS[CURRENT_KEY_INDEX]
-    session = requests.Session()
-    max_retries = len(API_KEYS)
-    for attempt in range(max_retries + 1):
-        try:
-            qs = urlencode({"key": api_key, "peopleCd": peopleCd})
-            url = f"{PEOPLE_INFO_URL}?{qs}"
-            r = session.get(url, timeout=10)
-            r.raise_for_status()
-            j = r.json()
-            fault = j.get("faultInfo") or j.get("faultResult")
-            if fault:
-                if str(fault.get("errorCode")) == '320011':
-                    print(f"[warning] Key exhausted. Switching...")
-                    session, api_key = get_next_key_session()
-                    continue
-                else: raise RuntimeError(f"KOBIS fault: {fault.get('message')}")
-            return j
-        except Exception as e:
-            if attempt == max_retries: raise e
-            time.sleep(1)
-    raise RuntimeError("All API keys exhausted.")
-
-def build_details():
-    limit_file = ROOT / "budget_limit.txt"
-    budget = 2000 # 기본값
-    
-    if limit_file.exists():
-        try:
-            val = limit_file.read_text(encoding="utf-8").strip()
-            if val.isdigit():
-                budget = int(val)
-        except: pass
-    
-    if not API_KEYS:
-        print("[build_people] No API Keys. Skipping.")
-        return
-
-    files = sorted(glob.glob(str(MOVIE_DIR / "**" / "*.json"), recursive=True))
-    people_map = {} 
-
-    print(f"[scan] 영화 파일에서 확보된 코드 중 프로필이 없는 인물을 탐색합니다...")
-    
-    # 1. 존재하는 모든 코드 추출 (감독, 배우 모두)
-    for p in files:
-        data = load_json(Path(p))
-        if not data: continue
-        info = data if data.get("movieCd") else ((data.get("movieInfoResult") or {}).get("movieInfo") or {})
-        
-        for key in ["directors", "actors"]:
-            for person in (info.get(key) or []):
-                code = person.get("peopleCd", "").strip()
-                name = person.get("peopleNm", "").strip()
-                if code and name:
-                    people_map[code] = name
-
-    # 2. 로컬에 프로필 json 파일이 없는 코드만 추려내기
-    needed_people = []
-    for code in sorted(people_map.keys()):
-        person_file = PEOPLE_DIR / f"{code}.json"
-        if not (person_file.exists() and person_file.stat().st_size > 50):
-            needed_people.append(code)
-
-    print(f"[info] 프로필 수집 필요 대상: 총 {len(needed_people)}명")
-    
-    if not needed_people:
-        print(" -> 모든 인물의 프로필이 이미 존재합니다.")
-        return
-
-    # 3. API 호출하여 프로필 저장
+    merged_records, _ = load_movie_records(MOVIES_DIR)
+    merged_by_code = {m["movieCd"]: m for m in merged_records}
     count = 0
-    for i, code in enumerate(needed_people):
-        if budget > 0 and count >= budget:
-            print(f"[Stop] 입력하신 Budget({budget})에 도달하여 중단합니다.")
-            break
+    print(f"🎬 영화 상세 정보 수집 시작 ({args.year_start} ~ {args.year_end})")
 
-        person_file = PEOPLE_DIR / f"{code}.json"
-        try:
-            data = fetch_people_info_smart(code)
-            p_result = data.get("peopleInfoResult")
-            p_info = p_result.get("peopleInfo") if p_result else None
+    for year in range(args.year_start, args.year_end + 1):
+        year_file = YEARS_DIR / f"year-{year}.json"
+        
+        if not year_file.exists():
+            print(f"[Warning] {year_file.name} 파일이 없습니다. build_year_cache.py를 먼저 실행했는지 확인하세요.")
+            continue
+
+        year_data = load_json(year_file)
+        movie_list = year_data.get("movieList", []) if year_data else []
+
+        for movie in movie_list:
+            if count >= args.max:
+                print(f"[Stop] 설정된 최대 수집 개수({args.max})에 도달했습니다.")
+                return
+
+            movie_cd = movie.get("movieCd")
+            movie_nm = movie.get("movieNm")
+            if not movie_cd: continue
+
+            target_path = MOVIES_DIR / str(year) / f"{movie_cd}.json"
+
+            # 기존 파일 덮어쓰기 여부 결정 (audiacc 모드에 따라 다름)
+            needs_fetch = True
+            if target_path.exists():
+                if args.audiacc == 'off':
+                    needs_fetch = False
+                elif args.audiacc == 'missing':
+                    existing_data = load_json(target_path)
+                    info = movie_info(existing_data)
+                    audi = info.get("audiAcc")
+                    # 이미 관객수가 채워져 있다면 굳이 API를 다시 호출하지 않음
+                    if audi and str(audi).strip() not in ["", "0", "None"]:
+                        needs_fetch = False
+                # 'all'인 경우는 무조건 다시 덮어씀
+
+            if not needs_fetch:
+                continue
+
+            print(f"[{year}] 상세 정보 조회 중: {movie_nm} ({movie_cd})")
             
-            if p_info:
-                save_json(person_file, data)
-                sex = p_info.get('sex') or 'Unknown'
-                name = p_info.get('peopleNm')
-                print(f"[{i+1}/{len(needed_people)}] Saved {name} ({sex}) - {code}")
-                count += 1
-                time.sleep(0.1) 
-            else:
-                print(f"[skip] No info for {code}")
-                
-        except RuntimeError as re:
-            if "All API keys exhausted" in str(re):
-                print("[STOP] 모든 키 소진. 여태까지 수집한 데이터를 저장합니다.")
-                break
-            print(f"[error] {code}: {re}")
-        except Exception as e:
-            print(f"[error] {code}: {e}")
-            time.sleep(1)
+            try:
+                # kofic_api의 fetch 함수를 이용해 API 자동 로테이션 적용
+                res = fetch(DETAIL_URL, {"movieCd": movie_cd})
+                if res and "movieInfoResult" in res:
+                    res = preserve_enhanced_fields(res, merged_by_code.get(str(movie_cd), {}))
+                    save_json(target_path, res)
+                    merged_by_code[str(movie_cd)] = movie_info(res)
+                    count += 1
+                    time.sleep(0.1) # KOFIC 서버 과부하 방지
+                else:
+                    print(f" -> ⚠️ API 응답에 영화 상세 정보가 없습니다.")
+            except Exception as e:
+                print(f" -> ❌ 에러 발생: {e}")
 
-    print(f"[done] 배우/감독 상세정보 신규 저장 완료: {count}건")
+    print(f"\n✅ 작업 완료: 총 {count}개 영화의 상세 정보를 새롭게 수집/업데이트 했습니다.")
 
 if __name__ == "__main__":
-    build_details()
+    main()
