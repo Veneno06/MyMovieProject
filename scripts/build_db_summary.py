@@ -2,6 +2,9 @@ import os
 import json
 import glob
 import math
+import re
+import hashlib
+from datetime import date, datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -9,7 +12,7 @@ SEARCH_INDEX_PATH = ROOT / "docs" / "data" / "search_index.json"
 SENTIMENT_DIR = ROOT / "docs" / "data" / "sentiment"
 OUTPUT_PATH = ROOT / "docs" / "data" / "db_summary.json"
 
-STARPOWER_LAMBDA = 14
+STARPOWER_LAMBDA = 12
 STARPOWER_CUTOFF = "20260903"
 STARPOWER_DOMESTIC_NATIONS = {"한국", "대한민국"}
 STARPOWER_SCALE = 10000.0
@@ -178,6 +181,90 @@ def build_star_power_model(movies):
         'rankings_all': rankings_all,
     }
 
+def period_start(period):
+    """ISO week Monday or calendar-quarter start; malformed labels are invalid."""
+    try:
+        match = re.fullmatch(r'(\d{4})-W(\d{2})', period)
+        if match: return date.fromisocalendar(int(match[1]), int(match[2]), 1)
+        match = re.fullmatch(r'(\d{4})-Q([1-4])', period)
+        if match: return date(int(match[1]), 3*int(match[2])-2, 1)
+    except (ValueError, TypeError): pass
+    return None
+
+
+def select_sentiment_datasets(directory, rankings, movies=None):
+    by_id = {str(row['id']):row for row in rankings}
+    by_name = {}
+    for row in rankings: by_name.setdefault(row['name'], set()).add(str(row['id']))
+    if movies is not None:
+        for movie in movies:
+            for actor in movie.get("actors", []):
+                if actor.get("id") and actor.get("name"):
+                    by_name.setdefault(actor["name"], set()).add(str(actor["id"]))
+    report, selected = {}, {}
+    def reject(reason): report[reason] = report.get(reason, 0) + 1
+    for path in sorted(Path(directory).glob('*.json')):
+        try: data = json.loads(path.read_text(encoding='utf-8'))
+        except (ValueError, OSError): reject('invalid_json'); continue
+        timeline = data.get('timeline')
+        if not isinstance(timeline, dict) or not timeline: reject('empty_timeline'); continue
+        if any('-Q' in label for label in timeline) and data.get('date_basis') != 'comment_published_at':
+            reject('legacy_video_quarter'); continue
+        if not all(period_start(label) is not None for label in timeline): reject('invalid_period'); continue
+        if data.get('date_basis') not in (None, 'comment_published_at'):
+            reject('invalid_date_basis'); continue
+        if path.name.startswith('hawk_analysis_') and data.get('date_basis') != 'comment_published_at':
+            reject('unverified_hawk_date_basis'); continue
+        if path.name.startswith('hawk_analysis_'):
+            reject('hawk_event_sample_separate'); continue
+        aid = str(data.get('actor_id') or '')
+        if not aid:
+            matches = by_name.get(data.get('actor_name'), set())
+            if len(matches) != 1: reject('ambiguous_or_unknown_name'); continue
+            aid = next(iter(matches))
+        if aid not in by_id: reject('unranked_actor'); continue
+        if data.get('actor_name') != by_id[aid]['name']: reject('identity_mismatch'); continue
+        # General collection is preferred; ID files supersede name mirrors. Never concatenate samples.
+        priority = (not path.name.startswith('hawk_analysis_'), path.stem == aid,
+                    data.get('schema_version') == 2, str(data.get('last_updated', '')))
+        if aid in selected:
+            reject('duplicate_actor_dataset')
+            if priority <= selected[aid][0]: continue
+        selected[aid] = (priority, {**data, 'source_file':path.name,
+                                   'date_basis_status':'declared' if data.get('date_basis') else 'legacy_general_comment_weeks'}, by_id[aid])
+    return [(rank, data) for _, data, rank in selected.values()], report
+
+
+def summarize_timeline(timeline):
+    total_pos = total_neg = 0
+    peak_abs = 0.0; peak_signed = None; peak_date = ''; previous = None
+    for label in sorted(timeline, key=lambda key: period_start(key) or date.max):
+        dt = period_start(label)
+        if dt is None: continue
+        counts = timeline[label]
+        p, n = max(0, int(counts.get('positive',0))), abs(int(counts.get('negative',0)))
+        total_pos += p; total_neg += n
+        if previous:
+            elapsed_weeks = (dt-previous[0]).days/7
+            slope = (n-previous[1])/elapsed_weeks if elapsed_weeks > 0 else 0
+            if abs(slope) > peak_abs:
+                peak_abs, peak_signed, peak_date = abs(slope), slope, dt.strftime('%Y%m%d')
+        previous = (dt,n)
+    return {'negTotal':total_neg, 'posTotal':total_pos,
+            'negRatio':100*total_neg/(total_pos+total_neg) if total_pos+total_neg else 0,
+            'maxSlope':peak_abs, 'peakSignedSlope':peak_signed, 'peakDate':peak_date,
+            'slopeUnit':'negative_count_change_per_elapsed_week',
+            'peakDateBasis':'bucket_start_not_exact_comment_date'}
+
+
+def input_fingerprints():
+    files = [SEARCH_INDEX_PATH] + sorted(SENTIMENT_DIR.glob('*.json'))
+    fingerprints = {str(path.relative_to(ROOT)):hashlib.sha256(path.read_bytes()).hexdigest() for path in files}
+    digest = hashlib.sha256(json.dumps(fingerprints, sort_keys=True).encode()).hexdigest()
+    return {'search_index_sha256':fingerprints[str(SEARCH_INDEX_PATH.relative_to(ROOT))],
+            'inputs_sha256':digest, 'files':fingerprints}
+
+
 def main():
     if not SEARCH_INDEX_PATH.exists():
         return
@@ -199,7 +286,7 @@ def main():
             continue
             
         y = y_str
-        audi = int(str(m.get('audiAcc', 0)).replace(',', ''))
+        audi = _safe_audience(m.get('audiAcc'))
         is_k = (m.get('nation') == '한국' or m.get('repNation') == 'K')
 
         if audi > 0:
@@ -249,54 +336,18 @@ def main():
     total_neg_all = 0
     valid_sentiment_count = 0
     
-    sentiment_files = glob.glob(str(SENTIMENT_DIR / "*.json"))
-    for pf in sentiment_files:
-        with open(pf, 'r', encoding='utf-8') as sf:
-            s_data = json.load(sf)
-            name = s_data.get('actor_name')
-            timeline = s_data.get('timeline', {})
-            
-            actor_rank_info = next((item for item in ranked_all if item["name"] == name), None)
-            if not actor_rank_info or not timeline: continue
+    datasets, sentiment_exclusions = select_sentiment_datasets(SENTIMENT_DIR, ranked_all, movies)
+    for actor_rank_info, s_data in datasets:
+        stats = summarize_timeline(s_data['timeline'])
+        total_pos_all += stats['posTotal']; total_neg_all += stats['negTotal']
+        valid_sentiment_count += 1
+        global_max_slope = max(global_max_slope, stats['maxSlope'])
+        sentiment_actors.append({
+            'id':actor_rank_info['id'], 'name':actor_rank_info['name'],
+            'score':actor_rank_info['score'], **stats,
+            'rawTimeline':s_data['timeline'], 'source_file':s_data['source_file'],
+            'date_basis_status':s_data['date_basis_status']})
 
-            total_pos, total_neg, temp_max_slope = 0, 0, 0
-            prev_neg = None
-            peak_date = ""
-
-            for w in sorted(timeline.keys()):
-                p = timeline[w].get('positive', 0)
-                n = abs(timeline[w].get('negative', 0))
-                total_pos += p
-                total_neg += n
-                
-                if prev_neg is not None:
-                    slope = abs(n - prev_neg)
-                    if slope > temp_max_slope:
-                        temp_max_slope = slope
-                        peak_date = w.split('-W')[0] + "0601"
-                prev_neg = n
-                
-            if temp_max_slope > global_max_slope:
-                global_max_slope = temp_max_slope
-                
-            total_comments = total_pos + total_neg
-            neg_ratio = (total_neg / total_comments * 100) if total_comments > 0 else 0
-            
-            total_pos_all += total_pos
-            total_neg_all += total_neg
-            valid_sentiment_count += 1
-            
-            sentiment_actors.append({
-                "id": actor_rank_info['id'],
-                "name": name,
-                "score": actor_rank_info['score'],
-                "negTotal": total_neg,
-                "negRatio": neg_ratio,
-                "maxSlope": temp_max_slope,
-                "peakDate": peak_date,
-                "rawTimeline": timeline
-            })
-            
     sentiment_actors.sort(key=lambda x: x['score'], reverse=True)
 
     avg_pos = total_pos_all / valid_sentiment_count if valid_sentiment_count > 0 else 0
@@ -315,7 +366,10 @@ def main():
     }
 
     summary_data = {
-        "generatedAt": os.popen("date -u +'%Y-%m-%dT%H:%M:%SZ'").read().strip() if os.name != 'nt' else "",
+        "generatedAt": datetime.now(timezone.utc).isoformat(),
+        "input_fingerprints": input_fingerprints(),
+        "sentiment_exclusions": sentiment_exclusions,
+        "sentiment_method": {"schema_version": 2, "maxSlope": "absolute magnitude of peakSignedSlope; negative-count change per elapsed week", "peakDate": "actual bucket start YYYYMMDD, not an exact comment date", "missing_periods": "unobserved; never zero-filled", "legacy_general": "unique-name weekly files accepted with explicit legacy provenance", "legacy_hawk": "video-quarter files excluded; recollection required"},
         "db_stats": {
             "total_movies": total_movies,
             "total_dom_movies": total_dom_movies,
