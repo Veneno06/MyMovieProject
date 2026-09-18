@@ -1,6 +1,10 @@
 # scripts/backfill_boxoffice.py
 import os
 import json
+try:
+    from .movie_records import load_movie_records, movie_info, audience, preserve_enhanced_fields, update_audience_files
+except ImportError:
+    from movie_records import load_movie_records, movie_info, audience, preserve_enhanced_fields, update_audience_files
 import time
 import glob
 import argparse
@@ -11,7 +15,8 @@ from urllib.parse import urlencode
 from pathlib import Path
 
 # 인코딩 설정
-sys.stdout.reconfigure(encoding='utf-8')
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8')
 
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 if CURRENT_DIR not in sys.path:
@@ -24,7 +29,7 @@ except ImportError:
     exit(1)
 
 HERE = Path(__file__).resolve()
-ROOT = HERE.parents[1] if HERE.parents[1].name == "MyMovieProject" else HERE.parents[2]
+ROOT = HERE.parents[1]
 DETAIL_DIR = ROOT / "docs" / "data" / "movies"
 BOXOFFICE_URL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json"
 
@@ -81,13 +86,9 @@ def save_json(p: Path, data: dict):
 def run_backfill(start_date_str, days_count):
     # 1. 파일 경로 캐싱 (영화코드 -> 파일경로)
     print("[Step 1] 로컬 영화 데이터 매핑 중...")
-    movie_path_map = {}
-    files = glob.glob(str(DETAIL_DIR / "**" / "*.json"), recursive=True)
-    for p in files:
-        # 파일명 자체가 영화코드인 경우가 많음 (12345678.json)
-        code = Path(p).stem 
-        if code.isdigit():
-            movie_path_map[code] = Path(p)
+    _, audit = load_movie_records(DETAIL_DIR)
+    movie_path_map = {code: [DETAIL_DIR / p for p in entry["sources"]]
+                      for code, entry in audit["records"].items()}
     print(f" -> 총 {len(movie_path_map)}개의 영화 파일 매핑 완료.")
 
     # 2. 날짜 순회 (과거로 이동)
@@ -114,30 +115,12 @@ def run_backfill(start_date_str, days_count):
                 
                 # 내 프로젝트에 있는 영화인지 확인
                 if movie_cd in movie_path_map and audi_acc:
-                    f_path = movie_path_map[movie_cd]
-                    
-                    # 파일 로드 및 업데이트
-                    f_data = load_json(f_path)
-                    if not f_data: continue
-                    
-                    # 데이터 구조 파악
-                    info_node = None
-                    if f_data.get("movieCd"): info_node = f_data
-                    elif "movieInfoResult" in f_data: info_node = f_data["movieInfoResult"]["movieInfo"]
-                    
-                    if info_node:
-                        current_acc = int(info_node.get("audiAcc") or 0)
-                        new_acc = int(audi_acc)
-                        
-                        # [중요] 더 큰 값으로만 업데이트 (과거 날짜를 조회하더라도 최신 누적값이 유지되도록)
-                        if new_acc > current_acc:
-                            info_node["audiAcc"] = new_acc
-                            save_json(f_path, f_data)
-                            if movie_cd not in updated_movies:
-                                print(f" -> ✅ 업데이트: {item.get('movieNm')} ({new_acc:,}명) [{target_dt}]")
-                                updated_movies.add(movie_cd)
-                                total_updates += 1
-        
+                    changed = update_audience_files(movie_path_map[movie_cd], audi_acc)
+                    if changed and movie_cd not in updated_movies:
+                        updated_movies.add(movie_cd)
+                        total_updates += 1
+                        print(f" -> Updated {movie_cd}: {changed} local copies [{target_dt}]")
+
         # 하루 전으로 이동
         current_date -= timedelta(days=1)
         
