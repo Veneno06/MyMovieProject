@@ -1,0 +1,12 @@
+const assert=require('node:assert/strict');
+const fs=require('fs');
+assert.ok(fs.existsSync(__dirname+'/../docs/assets/sentiment-client.js'),'ID-safe sentiment client must exist');
+const C=require('../docs/assets/sentiment-client.js');
+const movies=[{actors:[{id:'1',name:'동명'},{id:'2',name:'동명'},{id:'3',name:'고유'}]}];
+assert.equal(C.resolveId('동명','',movies),'');
+assert.equal(C.resolveId('고유','',movies),'3');
+assert.equal(C.compatible({actor_name:'동명',timeline:{'2020-W01':{}}},'동명','1',movies),false);
+assert.equal(C.compatible({actor_id:'1',actor_name:'동명',date_basis:'comment_published_at',timeline:{'2020-W01':{}}},'동명','1',movies),true);
+assert.equal(C.compatible({actor_id:'1',timeline:{'2020-Q1':{}}},'동명','1',movies),false);
+assert.equal(C.compatible({actor_id:'2',timeline:{'2020-W01':{}}},'동명','1',movies),false);
+console.log('sentiment identity/time tests passed');
