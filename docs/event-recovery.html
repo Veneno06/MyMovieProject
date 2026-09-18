@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>사건·복귀 실험 – K-Movie A Archive</title>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+body{background:#f8fafc;color:#172033;font-family:system-ui,-apple-system,"Malgun Gothic",sans-serif;line-height:1.65;margin:0}.study{max-width:1200px;margin:28px auto;padding:0 20px}.study h1{font-size:28px;line-height:1.3}.study h2{font-size:21px;margin:0 0 12px}.study h3{font-size:17px}.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:16px 0}.study .btn,.study select{border:1px solid #cbd5e1;background:#fff;color:#172033;padding:9px 12px;border-radius:7px;cursor:pointer;font-size:14px;text-decoration:none}.study .primary{background:#0f766e;color:#fff;border-color:#0f766e}.study .panel{background:#fff;border:1px solid #dce3eb;border-radius:10px;padding:22px;margin:20px 0}.muted{color:#526179;font-size:14px}.notice{background:#f0fdfa;border-left:4px solid #0f766e;padding:14px 18px}.caution{background:#fffbeb;border-left:4px solid #b45309;padding:14px 18px}.scroll{overflow-x:auto}.study table{border-collapse:collapse;width:100%;font-size:14px}.study th,.study td{padding:10px 12px;text-align:left;border-bottom:1px solid #e2e8f0;vertical-align:top}.study th{background:#f1f5f9;font-weight:600;white-space:nowrap}.study td.num{font-variant-numeric:tabular-nums;white-space:nowrap}.study a{color:#155e75}.study .tag{display:inline-block;padding:3px 9px;border-radius:5px;font-size:13px;font-weight:600;background:#e2e8f0}.tag.Hawk{background:#ccfbf1;color:#115e59}.tag.Dove{background:#e0e7ff;color:#3730a3}.tag.Unknown,.tag.Mixed{background:#f1f5f9;color:#475569}.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin:14px 0}.metric{padding:13px;background:#f8fafc;border-radius:7px}.metric strong{display:block;font-size:23px;font-variant-numeric:tabular-nums}.timeline{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}.year{border:1px solid #dce3eb;border-radius:7px;padding:9px 11px;min-width:68px;text-align:center}.year small{display:block;color:#526179}.study details{margin:15px 0}.study summary{cursor:pointer;font-weight:600}.study pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px;background:#f8fafc;padding:12px}.error{color:#9f1239}.study .nowrap{white-space:nowrap}.study .foot{font-size:13px;color:#526179}button:disabled{opacity:.5;cursor:wait}.study li{margin:6px 0}@media(max-width:600px){.study{padding:0 12px}.study .panel{padding:14px}.study h1{font-size:24px}.study th,.study td{padding:8px}.metrics{grid-template-columns:1fr 1fr}}@media print{body{background:#fff}.tools,.nav{display:none!important}.study{max-width:none;margin:0;padding:0}.study .panel{break-inside:avoid;border:1px solid #bbb;padding:12px}.scroll{overflow:visible}.study table{font-size:11px}.study a{color:#000}details:not([open]){display:none}}
+</style>
+</head>
+<body><main class="study">
+<nav class="tools nav"><a class="btn" href="saved.html">저장 목록</a><a class="btn" href="hawk-criterion-experiment.html" target="_blank" rel="noopener">Hawk 기준 실험</a><a class="btn" href="annual-ratio.html" target="_blank" rel="noopener">연도별 비율</a></nav>
+<p class="muted">K-Movie A Archive · 탐색적 사례 연구</p><h1>사건 이후 재협업과 Star Power</h1>
+<p>사건 공개 월 이후 365일을 확보한 첫 적격 개봉작에서 과거 고시너지 배우의 재등장과 작품별 SP를 관찰합니다.</p>
+<div class="notice"><strong>관찰 결과와 가설 입증을 구분합니다.</strong> 평균 SP 대비 배수는 손익분기점이나 인과효과가 아닙니다. 출연작이 없는 해는 Dove로 바꾸지 않습니다. 개봉일은 촬영·캐스팅 결정일을 대신하지 않습니다.</div>
+<div id="status" role="status" aria-live="polite" class="muted">저장된 실험 결과를 불러오는 중…</div>
+<div class="tools"><label for="caseFilter">사례</label><select id="caseFilter" disabled><option value="selected">선정 사례 3명</option><option value="all">후보 전체 · 제외 이유 포함</option></select><label for="percent">고시너지 상위 비율</label><select id="percent"><option value="10">10%</option><option value="25" selected>25% · 주 분석</option><option value="50">50%</option></select><button class="btn" id="csv" disabled>요약 CSV</button><button class="btn" id="json" disabled>전체 JSON</button><button class="btn" id="verify" disabled>현재 데이터 일치 확인</button><button class="btn" id="print">인쇄 / PDF 저장</button></div>
+<p class="muted" id="verification">저장된 결과를 표시합니다. 현재 데이터와의 일치는 별도로 확인할 수 있습니다.</p>
+<section class="panel" id="overview" hidden></section>
+<section class="panel" id="audit" hidden></section>
+<div id="cases"></div>
+<section class="panel"><h2>분석 정의와 해석 범위</h2>
+<ol>
+<li><strong>표본:</strong> 사용자가 승인한 배우 순서에서 현재 반복성·BH-FDR Hawk와 사건 이전 반복성·BH-FDR Hawk를 모두 충족하고 적격 개봉작이 있는 최대 3명. 자격 미충족 후보는 별도 표시합니다. 현재 Hawk를 조건으로 삼아 회복하지 못한 배우가 빠질 수 있는 선택 편향이 있습니다.</li>
+<li><strong>사건 이전:</strong> 공개 월 1일 이전 개봉작만 사용해 SP 모델과 Hawk 기준을 다시 계산합니다. 연간 비율은 사건 전 완료 연도의 knee 비율 중앙값입니다. 연도별 Hawk는 상위 집단, 지속 Hawk는 반복성·BH-FDR 판정으로 서로 다릅니다.</li>
+<li><strong>365일:</strong> 공개 월 말일 + 365일 당일부터의 첫 적격 개봉일. 해당일 동시 개봉작은 모두 포함합니다. 월초 + 365일의 대안 결과도 확인합니다. 국내 영화·관객수 양수·2026-09-03까지 개봉한 작품만 사용합니다.</li>
+<li><strong>실험 1:</strong> 사건 전 공동출연 배우 중 A→B 시너지 계산이 가능한 배우 전체를 순위 모집단으로 삼습니다. 상위 비율의 올림 인원과 경계 동률을 포함하고 시너지 양수 조건을 함께 적용합니다. A는 사건 배우, B는 상대 배우이며 A→B는 <em>B의 SP가 A와 함께 출연할 때 얼마나 달랐는지</em>입니다. 역방향 B→A도 참고로 제공합니다.</li>
+<li><strong>실험 2:</strong> 복귀작의 배우별 SP / 그 배우의 복귀작 개봉일 이전 적격 영화 SP 산술평균. 사건 월 이전 평균 대비 배수도 병기합니다. 동일 개봉일 작품은 기준 평균에서 제외합니다. 모든 값은 동일한 최종 스냅샷의 SP를 사용합니다.</li>
+<li><strong>상태 변화:</strong> 사건 이전에 구한 상위 비율을 이후 연도에 고정 적용합니다. 사건 연도는 사건 전후가 섞여 Mixed, 결측·낮은 수집 범위·미완료 연도는 Unknown입니다. Unknown을 건너뛴 변화는 연속 전이로 인정하지 않습니다. Annual SP는 연간 합계이며 작품별 평균 회복과 같지 않습니다.</li>
+</ol>
+<p class="caution">누적 관객과 연도별 분모는 사후 스냅샷이며 λ=12도 전체 자료에서 보정됐습니다. 사건 전 개봉작 제한만으로 당시 이용 가능 정보 전체를 재현한 것은 아닙니다. 현재 결과는 사전 예측 성능이나 인과적 회복 효과를 검증하지 않습니다. 공동출연 표본이 적고 크레딧에는 단역도 포함됩니다. 3건의 임의 사례로 일반적인 확률 증가를 주장할 수 없습니다.</p>
+<details><summary>재현 정보</summary><pre id="provenance"></pre><p class="muted">데이터를 갱신했다면 GitHub Actions의 Build event recovery study를 다시 실행하세요.</p></details></section>
+</main>
+<script>
+'use strict';
+let data;
+const el=id=>document.getElementById(id), esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt=(x,d=2)=>Number.isFinite(x)?x.toLocaleString('ko-KR',{minimumFractionDigits:d,maximumFractionDigits:d}):'계산 불가';
+const date=s=>/^\d{8}$/.test(s||'')?`${s.slice(0,4)}-${s.slice(4,6)}-${s.slice(6,8)}`:s;
+const state=s=>`<span class="tag ${esc(s)}">${esc({Hawk:'Hawk',Dove:'Dove',Unknown:'미관측',Mixed:'사건 연도'}[s]||s)}</span>`;
+const link=(url,title)=>/^https:\/\//.test(url)?`<a href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(title)}</a>`:esc(title);
+const filmLink=f=>`<a href="detail.html?movieCd=${encodeURIComponent(f.movieCd)}" target="_blank" rel="noopener">${esc(f.movieNm)}</a>`;
+const table=(heads,rows)=>`<div class="scroll"><table><thead><tr>${heads.map(h=>`<th scope="col">${h}</th>`).join('')}</tr></thead><tbody>${rows.map(row=>`<tr>${row.map(c=>`<td>${c}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+const percent=()=>Number(el('percent').value);
+const selected=()=>data.cases.filter(c=>el('caseFilter').value==='all'||el('caseFilter').value==='selected'&&c.selected||el('caseFilter').value===c.id);
+const qfmt=x=>Number.isFinite(x)?x<.0001?x.toExponential(2):fmt(x,4):'—';
+function relation(r){return r===null?'계산 불가':r>1?'평균 초과':r<1?'평균 미달':'평균과 동일';}
+function render(){
+ const p=percent(),show=selected();
+ el('overview').hidden=false;
+ el('overview').innerHTML=`<h2>첫 적격 개봉작 관찰 결과</h2><p class="muted">고시너지 상위 ${p}% 기준 · 선택 비율을 바꿔 민감도를 비교하세요. 결과 확인 뒤 기준을 선택하면 사후 선택이 됩니다.</p>`+table(['배우 / 분석 구분','첫 적격 개봉작','고시너지 재공연','SP / 이전 평균','사건 전 평균 대비'],show.flatMap(c=>c.returnFilms.map(f=>{const s=f.sensitivity.find(x=>x.percent===p);return [esc(c.name)+(c.selected?'':' <span class="tag">본 분석 제외</span>'),`${filmLink(f)}<br>${date(f.openDt)}`,s.observed===null?'계산 불가':s.matched.length?s.matched.map(x=>esc(x.name)).join(', '):'해당 없음',`<strong>${fmt(f.ratioToPrior,3)}배</strong><br>${relation(f.ratioToPrior)}`,`${fmt(f.ratioToPreEvent,3)}배`];})))+`<p class="foot">작품 성과 수치는 제공된 ZIP 기준입니다. 일반적인 흥행 성공·실패 판정이 아닙니다.</p>`;
+ el('audit').hidden=false;
+ el('audit').innerHTML='<h2>후보 자격 검증</h2>'+table(['우선순위 / 배우','현재 지속 Hawk','사건 전 지속 Hawk','사건 전 q값','직전 완료 연도','분석 구분'],data.cases.map(c=>[`${c.priority}. ${esc(c.name)}`,c.current.isHawk?'충족':'미충족',c.preEvent.isHawk?'충족':'미충족',qfmt(c.preEvent.qValue),`${c.preEvent.previousYear} · ${state(c.preEvent.previousState)}`,c.selected?'선정':esc(c.eligibilityReasons.join(' / ')||'예비 후보')]))+'<p class="foot">q값은 배우 전체에 대한 기존 이항 반복성 검정의 BH 조정값입니다. 사건 가설의 p값이나 시너지의 유의확률이 아닙니다. 빈 연도를 Dove로 처리하지 않습니다.</p>';
+ el('cases').innerHTML=show.map(c=>{
+  const cards=c.returnFilms.map(f=>{
+   const s=f.sensitivity.find(x=>x.percent===p),high=f.coactors.filter(x=>s.keys.includes(x.key));
+   const pairs=high.length?table(['과거 고시너지 배우','A→B / B→A','사건 전 공동 / 비공동','과거 공동출연 근거'],high.map(x=>[`${esc(x.name)}<br><small>ID ${esc(x.id)}</small>`,`${fmt(x.value,1)}% / ${fmt(x.reverseValue,1)}%`,`${x.withCount} / ${x.withoutCount}<br>${x.lowSample?'<span class="tag">소표본</span>':''}`,(x.jointFilms||[]).map(j=>`${filmLink(j)} (${date(j.openDt)})`).join('<br>')])):'<p>이 비율에서 과거 고시너지 배우의 재공연은 '+(s.observed===null?'계산할 수 없습니다.':'확인되지 않았습니다.')+'</p>';
+   return `<h3>${filmLink(f)} · ${date(f.openDt)}</h3><div class="metrics"><div class="metric">복귀작 배우 SP<strong>${fmt(f.starPower)}</strong></div><div class="metric">이전 ${f.baselineCount}편 평균 SP<strong>${fmt(f.baselineMean)}</strong></div><div class="metric">이전 평균 대비<strong>${fmt(f.ratioToPrior,3)}배</strong>${relation(f.ratioToPrior)}</div><div class="metric">사건 전 ${f.preEventBaselineCount}편 평균 대비<strong>${fmt(f.ratioToPreEvent,3)}배</strong></div></div><p class="muted">ZIP 누적 관객 ${fmt(f.audience,0)}명 · 크레딧 순서 ${f.roleRank} · 사건 전 평균 SP ${fmt(f.preEventBaselineMean)}</p><h3>실험 1 · 과거 고시너지 배우의 재공연</h3><p>계산 가능한 과거 동료 ${s.computableCount}명 중 상위 ${p}%와 양수 조건을 충족하는 집단 ${s.keys.length}명. 경계 시너지 ${fmt(s.threshold,2)}%.</p>${pairs}<details><summary>10% / 25% / 50% 민감도</summary>${table(['비율','고시너지 집단 수','복귀작 재공연 배우'],f.sensitivity.map(x=>[x.percent+'%',x.keys.length,x.matched.map(a=>esc(a.name)).join(', ')||(x.observed===null?'계산 불가':'해당 없음')]))}</details><details><summary>복귀작의 ID 확인 가능한 전체 동료 (${f.coactors.length}명)</summary>${table(['배우','과거 공동출연','A→B','공동 / 비공동'],f.coactors.map(x=>[esc(x.name),x.priorCollaborator?'있음':'없음',fmt(x.value,2)+'%',`${x.withCount} / ${x.withoutCount??'—'}`]))}</details>`;
+  }).join('');
+  return `<article class="panel"><h2>${esc(c.name)} <span class="tag">${c.selected?'선정 사례':'본 분석 제외 · 참고'}</span></h2><p>${esc(c.eventMonth)} · ${esc(c.eventLabel)}</p><p class="muted">사건 전 자료 종료 ${date(c.window.preCutoff)} · 첫 개봉작 자격 시작 ${date(c.window.returnStart)} · 월초 대안 ${date(c.window.alternativeStart)} (${c.monthBoundaryChangesReturn?'선정 작품 달라짐':'선정 작품 동일'})</p><p class="muted">사건 전 반복성: 활동 ${c.preEvent.activeCount}년 중 상위 ${c.preEvent.hitCount}년 · 사건 전 ${c.preEvent.filmCount}편 · 고정 연간 상위 비율 ${fmt(c.preEvent.percent,4)}%</p>${c.selected?'':`<p class="caution">제외 이유: ${esc(c.eligibilityReasons.join(' / '))}</p>`}${cards||'<p>365일 이후 적격 개봉작이 없습니다.</p>'}<h3>사건·제작 시점 확인</h3><p class="caution">${esc(c.productionNote)}</p><p class="foot">${[...(c.sources||[]),...(c.productionSources||[])].map(x=>link(x.url,x.title)).join('<br>')}</p><h3>연간 Hawk / Dove 상태</h3><div class="timeline">${c.annualStates.map(r=>`<div class="year"><small>${r.year}</small>${state(r.state)}<small>${r.filmCount}편</small></div>`).join('')}</div><p>${c.sequence.contiguousHDH?'결측 없는 연간 Hawk → Dove → Hawk 순서가 관측됩니다. 인과적 회복을 뜻하지 않습니다.':'결측 없는 연간 Hawk → Dove → Hawk 전체 경로는 확인되지 않았습니다.'}</p><p class="muted">관측된 인접 연도 전이: ${c.sequence.adjacent.map(t=>`${t.fromYear} ${t.from} → ${t.toYear} ${t.to}`).join(', ')||'없음'}</p><details><summary>연간 SP·관측 상태 상세</summary>${table(['연도','상태','연간 SP','작품 수','순위 / 관측 배우','관측 제한'],c.annualStates.map(r=>[r.year,state(r.state),fmt(r.annualSP),r.filmCount,`${r.rank??'—'} / ${r.actorCount}`,r.partialYear?'미완료 연도':r.lowCoverage?'낮은 수집 범위':r.state==='Mixed'?'사건 전후 혼합':r.filmCount?'—':'유효 출연작 없음']))}</details><details><summary>적격 영화별 SP 전체 이력 (${c.filmHistory.length}편)</summary>${table(['개봉일','영화','배우 SP','크레딧 순서'],c.filmHistory.map(f=>[date(f.openDt),filmLink(f),fmt(f.starPower),f.roleRank]))}</details>${c.omittedReturnCandidates.length?`<details><summary>관객수·국가 조건으로 제외된 이후 작품</summary>${table(['영화','개봉일','관객수','국가'],c.omittedReturnCandidates.map(f=>[esc(f.movieNm),date(f.openDt),fmt(f.audiAcc,0),esc(f.nation)]))}</details>`:''}</article>`;
+ }).join('');
+ el('provenance').textContent=JSON.stringify({config:data.config,counts:data.counts,provenance:data.provenance},null,2);
+}
+function download(name,text,type){const url=URL.createObjectURL(new Blob([text],{type})),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+el('csv').onclick=()=>{const rows=[['배우','본분석선정','공개월','복귀자격시작일','영화','개봉일','고시너지상위비율','고시너지재공연배우','복귀작SP','이전평균SP','이전편수','이전평균대비배수','사건전평균대비배수']];for(const c of selected())for(const f of c.returnFilms){const s=f.sensitivity.find(x=>x.percent===percent());rows.push([c.name,c.selected,c.eventMonth,date(c.window.returnStart),f.movieNm,date(f.openDt),percent(),s.matched.map(x=>x.name).join(' / '),f.starPower,f.baselineMean,f.baselineCount,f.ratioToPrior,f.ratioToPreEvent]);}const cell=x=>{let s=String(x??'');if(typeof x==='string'&&/^[=+@\-]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"';};download('event-recovery-summary.csv','\ufeff'+rows.map(r=>r.map(cell).join(',')).join('\r\n'),'text/csv;charset=utf-8');};
+el('json').onclick=()=>download('event-recovery-results.json',JSON.stringify(data,null,2),'application/json');
+el('print').onclick=()=>window.print();
+el('caseFilter').onchange=render;el('percent').onchange=()=>{if(data)render();};
+el('verify').onclick=async()=>{
+ el('verify').disabled=true;el('verification').textContent='입력 데이터와 브라우저 계산 코어의 SHA-256을 확인하는 중…';
+ try{
+  const checks={...data.provenance.inputs,...Object.fromEntries(Object.entries(data.provenance.code).filter(([p])=>p.startsWith('docs/')))};
+  const results=await Promise.all(Object.entries(checks).map(async([p,expected])=>{const response=await fetch(p.replace(/^docs\//,''),{cache:'no-store'});if(!response.ok)throw new Error(`${p}: HTTP ${response.status}`);const buffer=await response.arrayBuffer(),digest=await crypto.subtle.digest('SHA-256',buffer),actual=Array.from(new Uint8Array(digest),b=>b.toString(16).padStart(2,'0')).join('');return {p,ok:actual===expected};}));
+  const bad=results.filter(x=>!x.ok);el('verification').textContent=bad.length?'불일치: '+bad.map(x=>x.p).join(', ')+'. Build event recovery study를 다시 실행하세요.':'입력 데이터·브라우저 계산 코어 '+results.length+'개가 저장된 결과와 일치합니다.';
+ }catch(e){el('verification').textContent='일치 확인 불가: '+e.message;}finally{el('verify').disabled=false;}
+};
+async function init(){try{
+ if(window.EVENT_RECOVERY_EMBEDDED)data=window.EVENT_RECOVERY_EMBEDDED;
+ else {const r=await fetch('data/research/event_recovery.json',{cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);data=await r.json();}
+ if(data.schemaVersion!==1||!Array.isArray(data.cases))throw new Error('지원하지 않는 결과 형식');
+ for(const c of data.cases){const o=document.createElement('option');o.value=c.id;o.textContent=c.name+(c.selected?'':' · 제외 후보');el('caseFilter').appendChild(o);}
+ el('caseFilter').options[0].textContent=`선정 사례 ${data.counts.selectedCases}명`;
+ ['caseFilter','csv','json','verify'].forEach(id=>el(id).disabled=false);
+ if(window.EVENT_RECOVERY_EMBEDDED){el('verify').hidden=true;el('verification').textContent='독립 실행 결과 사본 · 데이터 갱신과 무관하게 이 결과를 보존합니다.';}
+ el('status').textContent=`생성: ${new Date(data.provenance.generatedAt).toLocaleString('ko-KR',{timeZone:'Asia/Seoul'})} KST · 적격 영화 ${data.counts.eligibleMovies.toLocaleString()}편 · λ=${data.config.lambda} · 현재 지속 Hawk ${data.config.globalHawkCount}명`;
+ render();
+ }catch(e){el('status').classList.add('error');el('status').textContent='결과를 불러오지 못했습니다. GitHub Actions → Build event recovery study 실행 후 Pages 배포가 끝나면 새로고침하세요. ('+e.message+')';}}
+init();
+</script></body></html>
