@@ -20,7 +20,7 @@
   </div>
 
   <h1> Hawk 여론 심층 통계 분석</h1>
-  <p class="note">그룹 전환 기준 연도의 중간일(6월 30일)을 기점으로 이전과 이후의 긍정/부정 여론 변화를 3가지 방법으로 분석합니다.</p>
+  <p class="note">명시된 사건일(event_date)과 실제 댓글 작성일로 전후 표본을 비교합니다. 사건일 미상·구형 영상분기 자료는 제외합니다. 미관측 기간은 0으로 채우지 않으며 인과효과가 아닙니다.</p>
 
   <div class="summary-card">
       <h3 style="margin-top:0;">분석 개요</h3>
@@ -34,7 +34,7 @@
 
   <div id="chartsContainer" style="display:none;">
       <div class="chart-box">
-          <h3>1. 6월 30일 기준 전/후 댓글 총합 비교</h3>
+          <h3>1. 사건일 기준 전/후 댓글 총합 비교</h3>
           <p class="note">전환 시점 이전 전체 기간과 이후 전체 기간에 누적된 긍/부정 댓글의 총량을 비교합니다.</p>
           <div style="position: relative; height: 350px; width: 100%;">
               <canvas id="chartTotal"></canvas>
@@ -42,16 +42,16 @@
       </div>
 
       <div class="chart-box">
-          <h3>2. 6월 30일 기준 전/후 분기별 평균 비교</h3>
-          <p class="note">전환 시점 이전과 이후, 1개 분기(3개월)당 발생하는 평균 긍/부정 댓글 수를 비교합니다.</p>
+          <h3>2. 사건일 기준 전/후 관측 주 평균 비교</h3>
+          <p class="note">전환 시점 이전과 이후, 실제 댓글이 관측된 배우·주당 평균 긍/부정 댓글 수를 비교합니다.</p>
           <div style="position: relative; height: 350px; width: 100%;">
               <canvas id="chartQuarterly"></canvas>
           </div>
       </div>
 
       <div class="chart-box">
-          <h3>3. 6월 30일 기준 전/후 연도별 평균 비교</h3>
-          <p class="note">전환 시점 이전과 이후, 1년(4개 분기)당 발생하는 평균 긍/부정 댓글 수를 비교합니다.</p>
+          <h3>3. 사건일 기준 전/후 연도별 평균 비교</h3>
+          <p class="note">전환 시점 이전과 이후, 실제 댓글이 관측된 배우·연도당 평균 긍/부정 댓글 수를 비교합니다.</p>
           <div style="position: relative; height: 350px; width: 100%;">
               <canvas id="chartYearly"></canvas>
           </div>
@@ -81,32 +81,62 @@ async function analyze() {
     let sumBeforePos = 0, sumBeforeNeg = 0;
     let sumAfterPos = 0, sumAfterNeg = 0;
     let qtrCountBefore = 0, qtrCountAfter = 0;
+    let yearCountBefore = 0, yearCountAfter = 0;
 
     for (const t of targets) {
         const safeId = (t.actor_id && t.actor_id !== "코드없음") ? t.actor_id : "unknown";
-        const analysis = await fetchJson(`data/sentiment/hawk_analysis_${t.actor_name}_${safeId}.json?v=${TS}`);
+        const analysis = await fetchJson(`data/sentiment/hawk_analysis_${encodeURIComponent(safeId)}.json?v=${TS}`)
+            || await fetchJson(`data/sentiment/hawk_analysis_${encodeURIComponent(t.actor_name)}_${encodeURIComponent(safeId)}.json?v=${TS}`);
         
         if (!analysis || !analysis.timeline) {
             excludedActors.push(t.actor_name);
             continue;
         }
 
-        const tYear = t.target_year;
+        if (analysis.date_basis !== 'comment_published_at' || analysis.schema_version !== 2 ||
+            String(analysis.actor_id) !== String(t.actor_id) || Object.keys(analysis.timeline).some(k => !/^\d{4}-W\d{2}$/.test(k))) {
+            excludedActors.push(`${t.actor_name} (구형/신원·시간축 미검증)`); continue;
+        }
+        const eventValue = t.event_date || analysis.event_date;
+        const eventTime = eventValue ? Date.parse(eventValue) : NaN;
+        if (!Number.isFinite(eventTime)) {
+            excludedActors.push(`${t.actor_name} (정확한 사건일 없음)`); continue;
+        }
         let bPos = 0, bNeg = 0, bQtrs = 0;
         let aPos = 0, aNeg = 0, aQtrs = 0;
-
-        for (const [period, counts] of Object.entries(analysis.timeline)) {
-            const [pYearStr, qtr] = period.split('-');
-            const pYear = parseInt(pYearStr, 10);
-            
-            const isBefore = (pYear < tYear) || (pYear === tYear && (qtr === 'Q1' || qtr === 'Q2'));
-            
-            if (isBefore) {
-                bPos += counts.positive; bNeg += counts.negative; bQtrs++;
-            } else {
-                aPos += counts.positive; aNeg += counts.negative; aQtrs++;
+        const beforeWeeks = new Set(), afterWeeks = new Set(), beforeYears = new Set(), afterYears = new Set();
+        const weekKey = dt => {
+            const d = new Date(dt); d.setUTCHours(0,0,0,0);
+            d.setUTCDate(d.getUTCDate() - ((d.getUTCDay()+6)%7));
+            return d.toISOString().slice(0,10);
+        };
+        // Audit rows permit exact splitting even when the event falls inside an ISO week.
+        if (Array.isArray(analysis.observations)) {
+            for (const row of analysis.observations) {
+                const time = Date.parse(row.publishedAt);
+                if (!Number.isFinite(time) || !['positive','negative'].includes(row.sentiment)) continue;
+                const before = time < eventTime;
+                if (before) { if (row.sentiment === 'positive') bPos++; else bNeg++; }
+                else { if (row.sentiment === 'positive') aPos++; else aNeg++; }
+                (before ? beforeWeeks : afterWeeks).add(weekKey(time));
+                (before ? beforeYears : afterYears).add(new Date(time).getUTCFullYear());
+            }
+        } else {
+            // Older validated weekly files: exclude the event-crossing week, never split arbitrarily.
+            for (const [period, counts] of Object.entries(analysis.timeline)) {
+                const [year, week] = period.split('-W').map(Number);
+                const jan4 = new Date(Date.UTC(year,0,4));
+                const start = Date.UTC(year,0,4-((jan4.getUTCDay()+6)%7)+(week-1)*7);
+                const end = start + 7*86400000;
+                if (start < eventTime && end > eventTime) continue;
+                const before = end <= eventTime;
+                if (before) { bPos += counts.positive || 0; bNeg += counts.negative || 0; }
+                else { aPos += counts.positive || 0; aNeg += counts.negative || 0; }
+                (before ? beforeWeeks : afterWeeks).add(period);
+                (before ? beforeYears : afterYears).add(year);
             }
         }
+        bQtrs = beforeWeeks.size; aQtrs = afterWeeks.size;
 
         if ((bPos + bNeg) === 0 || (aPos + aNeg) === 0) {
             excludedActors.push(t.actor_name);
@@ -115,6 +145,7 @@ async function analyze() {
             sumBeforePos += bPos; sumBeforeNeg += bNeg;
             sumAfterPos += aPos; sumAfterNeg += aNeg;
             qtrCountBefore += bQtrs; qtrCountAfter += aQtrs;
+            yearCountBefore += beforeYears.size; yearCountAfter += afterYears.size;
         }
     }
 
@@ -127,7 +158,7 @@ async function analyze() {
     document.getElementById('excludedActors').innerText = excludedActors.length;
     
     if(excludedActors.length > 0) {
-        document.getElementById('excludedList').innerHTML = excludedActors.map(n => `<span class="actor-tag">${n}</span>`).join(' ');
+        document.getElementById('excludedList').innerHTML = excludedActors.map(n => `<span class="actor-tag">${String(n).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}</span>`).join(' ');
     } else {
         // 🌟 수정됨: 따옴표 충돌 문제를 해결하여 정상적으로 출력되도록 변경
         document.getElementById('excludedList').innerHTML = "<span class='actor-tag' style='color:green;'>제외된 배우 없음</span>";
@@ -153,7 +184,7 @@ async function analyze() {
     new Chart(document.getElementById('chartQuarterly').getContext('2d'), {
         type: 'bar',
         data: {
-            labels: ['분기 평균 (Before)', '분기 평균 (After)'],
+            labels: ['관측 주 평균 (Before)', '관측 주 평균 (After)'],
             datasets: [
                 { label: '긍정 댓글 (+)', data: [avgQtrBPos, avgQtrAPos], backgroundColor: '#0ea5e9' },
                 { label: '부정 댓글 (-)', data: [avgQtrBNeg, avgQtrANeg], backgroundColor: '#f97316' }
@@ -162,8 +193,8 @@ async function analyze() {
         options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true } } }
     });
 
-    const avgYrBPos = avgQtrBPos * 4; const avgYrBNeg = avgQtrBNeg * 4;
-    const avgYrAPos = avgQtrAPos * 4; const avgYrANeg = avgQtrANeg * 4;
+    const avgYrBPos = sumBeforePos / yearCountBefore; const avgYrBNeg = sumBeforeNeg / yearCountBefore;
+    const avgYrAPos = sumAfterPos / yearCountAfter; const avgYrANeg = sumAfterNeg / yearCountAfter;
 
     new Chart(document.getElementById('chartYearly').getContext('2d'), {
         type: 'bar',
