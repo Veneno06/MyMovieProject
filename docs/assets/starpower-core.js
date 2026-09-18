@@ -6,7 +6,7 @@
   'use strict';
 
   const CONFIG = Object.freeze({
-    lambda: 14,
+    lambda: 12, // Recalibrated MAE optimum on repaired 2026-09-17 snapshot.
     cutoffDate: '20260903',
     domesticNations: Object.freeze(['한국', '대한민국']),
     displayScale: 10000
@@ -29,12 +29,12 @@
     return DOMESTIC_NATIONS.has(nation);
   }
 
-  function isEligibleMovie(movie) {
+  function isEligibleMovie(movie, cutoffDate = CONFIG.cutoffDate) {
     const openDt = normalizeDate(movie?.openDt);
     return Boolean(
       isDomesticMovie(movie) &&
       openDt &&
-      openDt <= CONFIG.cutoffDate &&
+      openDt <= cutoffDate &&
       safeNumber(movie?.audiAcc) > 0
     );
   }
@@ -59,10 +59,10 @@
     return `fallback:${movieNm}|${openDt}`;
   }
 
-  function dedupeEligibleMovies(movies) {
+  function dedupeEligibleMovies(movies, cutoffDate = CONFIG.cutoffDate) {
     const unique = new Map();
     (Array.isArray(movies) ? movies : []).forEach((movie, index) => {
-      if (!isEligibleMovie(movie)) return;
+      if (!isEligibleMovie(movie, cutoffDate)) return;
       const key = movieIdentity(movie, index);
       const normalized = {
         ...movie,
@@ -83,8 +83,15 @@
     return [...unique.values()];
   }
 
-  function buildModel(movies) {
-    const eligibleMovies = dedupeEligibleMovies(movies);
+  function buildModel(movies, options = {}) {
+    const requestedCutoff = normalizeDate(options.cutoffDate || CONFIG.cutoffDate);
+    if (!requestedCutoff) throw new Error('cutoffDate must be YYYYMMDD');
+    const lambda = options.lambda === undefined ? CONFIG.lambda : Number(options.lambda);
+    if (!Number.isFinite(lambda) || lambda <= 0) throw new Error('lambda must be a positive number');
+    const config = Object.freeze({ ...CONFIG, lambda, cutoffDate: requestedCutoff < CONFIG.cutoffDate ? requestedCutoff : CONFIG.cutoffDate });
+    // A release-date restriction rebuilds all denominators/history from that subset.
+    // Audience remains a retrospective snapshot: this is NOT historical as-of audience.
+    const eligibleMovies = dedupeEligibleMovies(movies, config.cutoffDate);
     const yearTotals = Object.create(null);
 
     for (const movie of eligibleMovies) {
@@ -155,7 +162,7 @@
         let historyWeight = 1;
 
         if (Number.isFinite(priorMean) && priorMean > 0) {
-          historyEstimate = (hist.sum + CONFIG.lambda * priorMean) / (hist.count + CONFIG.lambda);
+          historyEstimate = (hist.sum + config.lambda * priorMean) / (hist.count + config.lambda || 1);
           const ratio = historyEstimate / priorMean;
           historyWeight = Number.isFinite(ratio) && ratio >= 0 ? Math.sqrt(ratio) : 1;
         } else {
@@ -242,7 +249,7 @@
     const actorRankMap = new Map(actorRanks.map(item => [item.key, item]));
 
     return {
-      config: CONFIG,
+      config,
       eligibleMovies,
       yearTotals,
       observations,
@@ -251,6 +258,23 @@
       actorRankMap,
       observationByActorMovie
     };
+  }
+
+  function getDirectedSynergy(model, referenceActor, otherActor) {
+    const aKey = lookupActorKey(referenceActor), bKey = lookupActorKey(otherActor);
+    if (!model || !aKey || !bKey) return null;
+    if (aKey === bKey) return { isReference: true };
+    const aMovies = new Set((model.actorStats.get(aKey)?.observations || []).map(x => x.movieCd || `${x.movieNm}|${x.openDt}`));
+    const records = model.actorStats.get(bKey)?.observations || [];
+    const withA = [], withoutA = [];
+    for (const obs of records) {
+      (aMovies.has(obs.movieCd || `${obs.movieNm}|${obs.openDt}`) ? withA : withoutA).push(obs.starPower);
+    }
+    const avg = xs => xs.length ? xs.reduce((s,x) => s+x, 0)/xs.length : null;
+    const withMean=avg(withA), withoutMean=avg(withoutA);
+    return { value: withA.length && withoutMean > 0 ? 100*(withMean/withoutMean-1) : null,
+      withCount: withA.length, withoutCount: withoutA.length, withMean, withoutMean,
+      cutoffDate: model.config.cutoffDate, audienceBasis: 'retrospective_snapshot' };
   }
 
   function getActorObservation(model, actorIdOrKey, movieCdOrKey) {
@@ -273,6 +297,7 @@
     isEligibleMovie,
     buildModel,
     getActorObservation,
-    getActorRank
+    getActorRank,
+    getDirectedSynergy
   });
 });
