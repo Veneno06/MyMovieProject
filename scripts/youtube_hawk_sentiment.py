@@ -2,16 +2,13 @@
 import os
 import json
 import argparse
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
-from googleapiclient.discovery import build
-from googleapiclient.errors import HttpError
-from transformers import pipeline
 import sys
 import time
 import re
 
-sys.stdout.reconfigure(encoding='utf-8')
+if hasattr(sys.stdout, 'reconfigure'): sys.stdout.reconfigure(encoding='utf-8')
 
 ROOT = Path(__file__).resolve().parents[1]
 SENTIMENT_DIR = ROOT / "docs" / "data" / "sentiment"
@@ -33,6 +30,7 @@ def load_ai_model():
     global CLASSIFIER
     if CLASSIFIER is None:
         print("🤖 AI 모델 로딩 중... (KoELECTRA-small-v3-nsmc 적용)")
+        from transformers import pipeline
         CLASSIFIER = pipeline("sentiment-analysis", model="daekeun-ml/koelectra-small-v3-nsmc")
     return CLASSIFIER
 
@@ -41,6 +39,8 @@ def clean_text(text):
     return text[:500]
 
 def search_and_collect_for_period(actor_name, start_date, end_date):
+    from googleapiclient.discovery import build
+    from googleapiclient.errors import HttpError
     global CURRENT_KEY_INDEX
     if not API_KEYS:
         return [], {}
@@ -129,13 +129,16 @@ def search_and_collect_for_period(actor_name, start_date, end_date):
                             if len(text) > 3 and "http" not in text:
                                 video_comments_temp.append({
                                     "text": clean_text(text),
-                                    "videoId": video['id']
+                                    "videoId": video['id'],
+                                    "date": c_item["snippet"]["topLevelComment"]["snippet"].get("publishedAt"),
+                                    "comment_id": c_item["snippet"]["topLevelComment"].get("id", c_item.get("id"))
                                 })
                                 if any(k in text for k in REQUIRED_KEYWORDS): has_req_keyword_comments = True
                         
                         next_page_token = comment_response.get('nextPageToken')
                         if not next_page_token: break
-                    except HttpError:
+                    except HttpError as error:
+                        if error.resp.status in (403, 429): raise
                         break 
 
                 if not video['has_req_keyword_meta'] and not has_req_keyword_comments: continue
@@ -164,132 +167,89 @@ def search_and_collect_for_period(actor_name, start_date, end_date):
             
     return [], {}
 
-def run_hawk_analysis(target_file_path):
-    if not Path(target_file_path).exists():
-        print(f"❌ 분석 지시서({target_file_path})를 찾을 수 없습니다.")
-        return
+def parse_timestamp(value):
+    dt = datetime.fromisoformat(str(value).replace('Z', '+00:00'))
+    return dt.replace(tzinfo=timezone.utc) if dt.tzinfo is None else dt.astimezone(timezone.utc)
 
-    with open(target_file_path, 'r', encoding='utf-8') as f:
-        job_data = json.load(f)
 
-    targets = job_data.get("targets", [])
-    if not targets: return
-
-    classifier = load_ai_model()
-    
-    quarters = [
-        ("Q1", "01-01T00:00:00Z", "03-31T23:59:59Z"),
-        ("Q2", "04-01T00:00:00Z", "06-30T23:59:59Z"),
-        ("Q3", "07-01T00:00:00Z", "09-30T23:59:59Z"),
-        ("Q4", "10-01T00:00:00Z", "12-31T23:59:59Z")
-    ]
-
-    for idx, target in enumerate(targets):
-        actor_name = target["actor_name"]
-        actor_id = target.get("actor_id", "코드없음")
-        transition_year = target["target_year"]
-        
-        safe_id = actor_id if actor_id and actor_id != "코드없음" else "unknown"
-        save_path = SENTIMENT_DIR / f"hawk_analysis_{actor_name}_{safe_id}.json"
-        
-        print(f"\n========================================")
-        print(f"🎬 [{idx+1}/{len(targets)}] {actor_name} 여론 분석 (기준: {transition_year}년 6월 30일)")
-        
-        if save_path.exists():
-            print(f"   -> ⏭️ 이미 분석이 완료된 배우입니다. (파일 존재: {save_path.name}) API 절약을 위해 건너뜁니다.")
+def aggregate_comments(comments, classifier, window_start, window_end):
+    """Actual comment timestamps; half-open UTC window, with retained audit rows."""
+    start, end = parse_timestamp(window_start), parse_timestamp(window_end)
+    timeline, videos, observations, seen = {}, {}, [], set()
+    for comment in comments:
+        try:
+            dt = parse_timestamp(comment.get('date'))
+            if not start <= dt < end: continue
+            key = comment.get('comment_id') or (comment.get('videoId'), comment.get('date'), comment['text'])
+            if key in seen: continue
+            seen.add(key)
+            res = classifier(clean_text(comment['text']))[0]
+            if res['score'] < .6: continue
+            label = str(res['label']).lower()
+            sentiment = 'positive' if ('1' in label or 'positive' in label) else ('negative' if ('0' in label or 'negative' in label) else None)
+            if sentiment is None: continue
+            year, week, _ = dt.isocalendar()
+            bucket = timeline.setdefault(f'{year}-W{week:02d}', {'positive':0, 'negative':0})
+            bucket[sentiment] += 1
+            vid = comment.get('videoId')
+            videos.setdefault(vid, {'positive':0, 'negative':0})[sentiment] += 1
+            observations.append({'comment_id': comment.get('comment_id'), 'videoId':vid,
+                                 'publishedAt':comment['date'], 'sentiment':sentiment})
+        except (ValueError, TypeError, KeyError):
             continue
-            
-        print(f"   -> 수집 기간: {transition_year-3}년 1월 ~ {transition_year+3}년 12월 (총 7년)")
-        
-        timeline_results = {}
-        global_video_sentiment = {}
-        global_sources_dict = {}
-        api_exhausted = False  # 🌟 [수정됨] API 소진 여부를 추적하는 플래그
-        
-        for yr in range(transition_year - 3, transition_year + 4):
-            if api_exhausted: break
-            
-            for q_name, q_start, q_end in quarters:
+    return timeline, videos, observations
+
+
+def run_hawk_analysis(target_file_path):
+    from youtube_sentiment import resolve_actor_id
+    job = json.loads(Path(target_file_path).read_text(encoding='utf-8'))
+    for target in job.get('targets', []):
+        name = target['actor_name']
+        actor_id = resolve_actor_id(name, actor_id=target.get('actor_id'))
+        if not actor_id:
+            print(f'⚠️ ID 미확정/동명이인: {name}; 생략')
+            continue
+        year = int(target['target_year'])
+        start = target.get('window_start', f'{year-3}-01-01')
+        end = target.get('window_end', f'{year+4}-01-01')
+        if parse_timestamp(start) >= parse_timestamp(end): raise ValueError('Invalid half-open window')
+        event = target.get('event_date')
+        if event: parse_timestamp(event)
+        path = SENTIMENT_DIR / f'hawk_analysis_{actor_id}.json'
+        if path.exists():
+            existing = json.loads(path.read_text(encoding='utf-8'))
+            if (existing.get('schema_version') == 2 and existing.get('date_basis') == 'comment_published_at'
+                and existing.get('window') == {'start':start,'end_exclusive':end}
+                and existing.get('event_date') == event and existing.get('collection_status') == 'sampled'):
+                continue
+        comments, sources = [], {}
+        # Search video cohorts through the comment-window end. Earlier videos can have in-window comments.
+        for video_year in range(2005, parse_timestamp(end).year + 1):
+            for month in (1,4,7,10):
+                begin = datetime(video_year, month, 1, tzinfo=timezone.utc)
+                finish = datetime(video_year + (month == 10), 1 if month == 10 else month+3, 1, tzinfo=timezone.utc)
+                if begin >= parse_timestamp(end): continue
                 if CURRENT_KEY_INDEX >= len(API_KEYS):
-                    api_exhausted = True
-                    break
-                    
-                period_label = f"{yr}-{q_name}"
-                start_dt = f"{yr}-{q_start}"
-                end_dt = f"{yr}-{q_end}"
-                
-                print(f"   -> [{period_label}] 구간 탐색 중... (🔑 현재 API Key: {CURRENT_KEY_INDEX + 1} / {len(API_KEYS)})")
-                comments, period_sources = search_and_collect_for_period(actor_name, start_dt, end_dt)
-                
-                # 🌟 [수정됨] 내부 함수 실행 후, 키가 모두 소진되었다면 즉시 탈출
-                if CURRENT_KEY_INDEX >= len(API_KEYS):
-                    api_exhausted = True
-                    break
-                
-                global_sources_dict.update(period_sources)
-                
-                pos_count, neg_count = 0, 0
-                for comment in comments:
-                    try:
-                        res = classifier(comment["text"][:500])[0]
-                        if res['score'] < 0.6: continue 
-                        label = str(res['label']).lower()
-                        
-                        sentiment = None
-                        if '1' in label or 'positive' in label: 
-                            pos_count += 1
-                            sentiment = "positive"
-                        elif '0' in label or 'negative' in label: 
-                            neg_count += 1
-                            sentiment = "negative"
-                            
-                        if sentiment:
-                            vid = comment.get("videoId")
-                            if vid:
-                                if vid not in global_video_sentiment:
-                                    global_video_sentiment[vid] = {'positive': 0, 'negative': 0}
-                                global_video_sentiment[vid][sentiment] += 1
-                                
-                    except: pass
-                
-                timeline_results[period_label] = {
-                    "positive": pos_count, 
-                    "negative": neg_count, 
-                    "total_scanned": len(comments)
-                }
+                    print('API 키 없음/소진; 불완전한 결과 저장 생략')
+                    return
+                rows, src = search_and_collect_for_period(name, begin.isoformat().replace('+00:00','Z'), min(finish,parse_timestamp(end)).isoformat().replace('+00:00','Z'))
+                comments.extend(rows); sources.update(src)
+        if CURRENT_KEY_INDEX >= len(API_KEYS): return
+        timeline, videos, observations = aggregate_comments(comments, load_ai_model(), start, end)
+        final_sources = [{**sources[vid], 'pos_count':counts['positive'], 'neg_count':counts['negative']}
+                         for vid, counts in videos.items() if vid in sources]
+        data = {'schema_version':2, 'actor_name':name, 'actor_id':actor_id,
+                'date_basis':'comment_published_at', 'time_unit':'iso_week',
+                'transition_year':year, 'event_date':event,
+                'event_date_status':'exact' if event else 'unknown_year_only',
+                'window':{'start':start,'end_exclusive':end},
+                'collection_status':'sampled',
+                'sampling_note':'Relevance-ranked videos/comments; top-level comments only; missing weeks are unobserved, not zero. Not historical as-of availability.',
+                'last_updated':datetime.now(timezone.utc).isoformat(),
+                'timeline':timeline,'observations':observations,'sources':final_sources}
+        path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding='utf-8')
 
-        # 🌟 [수정됨] API가 소진되어 중간에 끊긴 경우, 파일을 저장하지 않고 전체 루프 종료
-        if api_exhausted:
-            print(f"\n🚨 API 할당량이 완전히 소진되었습니다. '{actor_name}' 분석을 중단하며 불완전한 파일은 저장하지 않습니다.")
-            break
-
-        final_sources = []
-        for vid, counts in global_video_sentiment.items():
-            if counts['positive'] > 0 or counts['negative'] > 0:
-                if vid in global_sources_dict:
-                    src = global_sources_dict[vid]
-                    src['pos_count'] = counts['positive']
-                    src['neg_count'] = counts['negative']
-                    final_sources.append(src)
-
-        final_sources.sort(key=lambda x: x.get('publishedAt', ''), reverse=True)
-
-        final_data = {
-            "actor_name": actor_name,
-            "actor_id": actor_id,
-            "transition_year": transition_year,
-            "last_updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-            "timeline": timeline_results,
-            "sources": final_sources
-        }
-        
-        with open(save_path, 'w', encoding='utf-8') as f:
-            json.dump(final_data, f, ensure_ascii=False, indent=2)
-            
-        print(f"✅ {actor_name} 연속 7년 분석 완료 및 출처 표 저장됨.")
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument("--file", type=str, required=True)
-    args = parser.parse_args()
-    run_hawk_analysis(args.file)
+    parser.add_argument('--file', required=True)
+    run_hawk_analysis(parser.parse_args().file)
