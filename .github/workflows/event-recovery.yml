@@ -1,0 +1,29 @@
+name: Build event recovery study
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: rebuild-local-research-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify date boundaries and temporal isolation
+        run: node tests/test_event_recovery.js
+      - name: Build exploratory case results
+        run: node scripts/build_event_recovery.js
+      - name: Commit event study results
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add docs/data/research/event_recovery.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Build exploratory event recovery cases'
+            git push
+          fi
