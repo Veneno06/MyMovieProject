@@ -8,7 +8,8 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@1.0.1/dist/chartjs-adapter-moment.min.js"></script>
-<script src="assets/starpower-core.js"></script>
+<script src="assets/starpower-core.js?v=20260917"></script>
+<script src="assets/sentiment-client.js?v=20260917"></script>
 <style>
   h1 { text-align: center; margin-bottom: 5px; }
   .subtitle { text-align: center; color: #6b7280; margin-bottom: 30px; font-size: 14px; }
@@ -189,18 +190,13 @@ const formulaDetails = {
             <ul>
                 <li><b>W_market,m = A_m / Total<sup>D</sup><sub>Y_m</sub>:</b> 2026-09-03 분석 cutoff 이내의 국내 유효 영화만 사용하여 해당 작품의 연도별 상대 시장성과를 계산합니다.</li>
                 <li><b>W_role,im = 1 / log₂(k_im + 1):</b> 출연진 배열의 1-based 순서를 로그 할인하여 역할 prominence를 반영합니다.</li>
-                <li><b>W_history,im:</b> λ = 14인 temporal shrinkage로 현재 작품보다 엄격히 이전의 Base SP만 사용하고, 같은 개봉일 관측치는 서로의 history에 포함하지 않습니다.</li>
+                <li><b>W_history,im:</b> λ = 12인 temporal shrinkage로 현재 작품보다 엄격히 이전의 Base SP만 사용하고, 같은 개봉일 관측치는 서로의 history에 포함하지 않습니다.</li>
                 <li><b>배우 전체 대표 점수:</b> 누적합이 아니라 해당 배우의 유효 작품별 SP<sub>im</sub> 평균을 사용합니다.</li>
             </ul>`
 };
 
-async function fetchSentimentData(name) {
-    const url = `data/sentiment/${name}.json?v=${TS}`;
-    const url2 = `docs/data/sentiment/${name}.json?v=${TS}`;
-    for (const p of [url, url2]) {
-        try { const r = await fetch(p); if (r.ok) return await r.json(); } catch(e) {}
-    }
-    return null;
+async function fetchSentimentData(name, actorId, movies) {
+    return SentimentClient.fetchActor(name, actorId, movies);
 }
 
 async function loadSearchIndex() {
@@ -266,7 +262,7 @@ async function resolveAndFetch(key) {
             return { ...f, openDt: baseInfo.openDt || f.openDt || '', movieNm: f.movieNm || baseInfo.movieNm, baseInfo: baseInfo };
         }).filter(f => f.openDt.length >= 4 && safeParseInt(f.audiAcc) > 0);
         rawData.filmos.sort((a,b) => a.openDt.localeCompare(b.openDt));
-        rawData.sentiment = await fetchSentimentData(rawData.peopleNm);
+        rawData.sentiment = await fetchSentimentData(rawData.peopleNm, targetId, SEARCH_INDEX);
     }
     return rawData;
 }
