@@ -2,6 +2,10 @@
 # -*- coding: utf-8 -*-
 
 import os, json, sys
+try:
+    from .movie_records import load_movie_records, movie_info, audience, preserve_enhanced_fields, update_audience_files
+except ImportError:
+    from movie_records import load_movie_records, movie_info, audience, preserve_enhanced_fields, update_audience_files
 from datetime import datetime, timezone
 
 # 경로 설정
@@ -65,21 +69,9 @@ def main():
     movies = [] # 영화 인덱스 (movies.json)
     people_map = {} # 인물 인덱스 (people.json)
     
-    processed_movie_cds = set() # 영화 중복 스캔 방지
-
-    # [1/2] 모든 영화 상세 JSON 파일을 순회
-    for fp in files:
-        d = load_json(fp)
-        mi = get_movie_info_from_data(d)
-        if not mi: continue
-
-        movieCd = (mi.get("movieCd") or "").strip()
-        if not movieCd: continue
-        
-        if movieCd in processed_movie_cds:
-            continue
-        processed_movie_cds.add(movieCd)
-        
+    records, _ = load_movie_records(MOVIE_DIR)
+    for mi in records:
+        movieCd = mi["movieCd"]
         # --- 영화 정보 추출 ---
         movieNm = (mi.get("movieNm") or "").strip()
         openDt  = norm_open(mi.get("openDt", ""))
