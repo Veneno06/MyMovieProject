@@ -1,15 +1,20 @@
 # scripts/sync_people_stats.py
 import os
 import json
+try:
+    from .movie_records import load_movie_records, movie_info, audience, preserve_enhanced_fields, update_audience_files
+except ImportError:
+    from movie_records import load_movie_records, movie_info, audience, preserve_enhanced_fields, update_audience_files
 import glob
 from pathlib import Path
 import sys
 
 # 인코딩 설정
-sys.stdout.reconfigure(encoding='utf-8')
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8')
 
 HERE = Path(__file__).resolve()
-ROOT = HERE.parents[1] if HERE.parents[1].name == "MyMovieProject" else HERE.parents[2]
+ROOT = HERE.parents[1]
 MOVIE_DIR = ROOT / "docs" / "data" / "movies"
 PEOPLE_DIR = ROOT / "docs" / "data" / "people"
 
@@ -25,24 +30,8 @@ def save_json(p: Path, data: dict):
 def sync_stats():
     # 1. 영화 데이터 메모리에 로드
     print("[Step 1] 영화 관객수 데이터 로딩 중...")
-    movie_audi_map = {} 
-    
-    movie_files = glob.glob(str(MOVIE_DIR / "**" / "*.json"), recursive=True)
-    for p in movie_files:
-        data = load_json(Path(p))
-        if not data: continue
-        
-        info = data if data.get("movieCd") else ((data.get("movieInfoResult") or {}).get("movieInfo") or {})
-        movie_cd = info.get("movieCd")
-        audi_acc = info.get("audiAcc")
-        
-        if movie_cd and audi_acc:
-            try:
-                val = int(str(audi_acc).replace(",", ""))
-                if val > 0:
-                    movie_audi_map[movie_cd] = val
-            except: pass
-                
+    records, _ = load_movie_records(MOVIE_DIR)
+    movie_audi_map = {m["movieCd"]: m["audiAcc"] for m in records if m.get("audiAcc") is not None}
     print(f" -> 총 {len(movie_audi_map)}개의 유효한 관객수 정보 확보.")
 
     # 2. 배우 파일 업데이트
@@ -69,12 +58,12 @@ def sync_stats():
                 new_acc = movie_audi_map[m_cd]
                 old_acc = filmo.get("audiAcc")
                 
-                # 기존 값이 없거나(None), 0이거나, 새 값이 더 크면 업데이트
+                # Shared merged movie snapshot is authoritative for every consumer.
                 try:
                     old_val = int(str(old_acc).replace(",", "")) if old_acc else 0
                 except: old_val = 0
                 
-                if new_acc > old_val:
+                if new_acc != old_val:
                     filmo["audiAcc"] = new_acc
                     is_changed = True
         
