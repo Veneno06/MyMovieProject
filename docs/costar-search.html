@@ -9,7 +9,8 @@
 <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@1.0.1/dist/chartjs-adapter-moment.min.js"></script>
 <script src="assets/translator.js" defer></script>
-<script src="assets/starpower-core.js"></script>
+<script src="assets/starpower-core.js?v=20260917"></script>
+<script src="assets/sentiment-client.js?v=20260917"></script>
 <style>
 body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple SD Gothic Neo, Noto Sans KR, 'Malgun Gothic', sans-serif; line-height:1.6; }
 .wrap { max-width:980px; margin:24px auto; padding:0 12px; }
@@ -60,6 +61,11 @@ li { padding:8px 0; border-bottom:1px dashed #e5e7eb; }
       <ul id="autocompleteList" class="dropdown"></ul>
     </div>
     <button type="submit" class="btn" data-i18n-key="searchBtn" style="padding: 10px 20px;">검색</button>
+    <label style="width:100%;font-size:13px;">시너지 계산 기준:
+      <select id="synergyMode"><option value="snapshot">전체 연구 snapshot</option><option value="pre-event">사건 이전 개봉작만</option></select>
+      <input id="synergyEventDate" type="date" aria-label="실제 사건일">
+      <span class="note">사건 이전 모드는 실제 사건일 필수 · 관객수는 사후 snapshot · 인과효과 아님</span>
+    </label>
   </form>
 
   <div id="msg" class="note" style="margin-top:10px;"></div>
@@ -95,6 +101,7 @@ let sentimentCompareChart = null;
 
 // ===== Directed Synergy Index / 전체 Star Power Rank 공통 모델 =====
 let STARPOWER_MODEL = null;
+let SYNERGY_MODEL = null;
 let SYNERGY_SP_BY_ACTOR = new Map();
 let SYNERGY_READY = false;
 
@@ -135,6 +142,7 @@ async function loadIndex(){
           MOVIES = await r.json();
           buildPeopleMap();
           STARPOWER_MODEL = StarPowerCore.buildModel(MOVIES);
+          SYNERGY_MODEL = STARPOWER_MODEL;
           calculateGlobalRankings();
           buildSynergyIndexFromCore();
           return;
@@ -222,62 +230,8 @@ function movieContainsTarget(movie, targetId, targetName) {
  * 이 값은 '인과효과'가 아니라 공동출연 관계에 따른 방향성 있는 상대 성과 지수입니다.
  */
 function calculateDirectedSynergy(targetId, targetName, otherActor) {
-    if (!SYNERGY_READY || !otherActor) return null;
-
-    if (actorMatchesTarget(otherActor, targetId, targetName)) {
-        return { isReference: true };
-    }
-
-    const bKey = actorKey(otherActor);
-    if (!bKey) return null;
-
-    const records = SYNERGY_SP_BY_ACTOR.get(bKey) || [];
-    if (records.length === 0) return null;
-
-    const withA = [];
-    const withoutA = [];
-
-    records.forEach(rec => {
-        const movie = MOVIES.find(m => m.movieCd === rec.movieCd);
-        if (!movie || !isDomesticMovie(movie)) return;
-
-        if (movieContainsTarget(movie, targetId, targetName)) {
-            withA.push(rec.finalSP);
-        } else {
-            withoutA.push(rec.finalSP);
-        }
-    });
-
-    if (withA.length === 0 || withoutA.length === 0) {
-        return {
-            value: null,
-            withCount: withA.length,
-            withoutCount: withoutA.length,
-            withMean: withA.length ? withA.reduce((s, v) => s + v, 0) / withA.length : null,
-            withoutMean: withoutA.length ? withoutA.reduce((s, v) => s + v, 0) / withoutA.length : null
-        };
-    }
-
-    const withMean = withA.reduce((s, v) => s + v, 0) / withA.length;
-    const withoutMean = withoutA.reduce((s, v) => s + v, 0) / withoutA.length;
-
-    if (!(withoutMean > 0)) {
-        return {
-            value: null,
-            withCount: withA.length,
-            withoutCount: withoutA.length,
-            withMean,
-            withoutMean
-        };
-    }
-
-    return {
-        value: 100 * ((withMean / withoutMean) - 1),
-        withCount: withA.length,
-        withoutCount: withoutA.length,
-        withMean,
-        withoutMean
-    };
+    if (!SYNERGY_MODEL || !otherActor) return null;
+    return StarPowerCore.getDirectedSynergy(SYNERGY_MODEL, targetId, actorKey(otherActor));
 }
 
 function buildSynergyBadge(targetId, targetName, actor) {
@@ -350,14 +304,8 @@ async function fetchPersonFilmos(id) {
     return null;
 }
 
-async function fetchSentimentData(name) {
-    for (const prefix of PATHS_SENTIMENT) {
-        try {
-            const r = await fetch(prefix + `${name}.json?v=${TS}`);
-            if (r.ok) return await r.json();
-        } catch(e) {}
-    }
-    return null;
+async function fetchSentimentData(name, actorId, movies) {
+    return SentimentClient.fetchActor(name, actorId, movies);
 }
 
 const inputEl = document.getElementById('actorInput');
@@ -471,7 +419,8 @@ async function search(){
   const qRaw = f.get('q');
   if (!qRaw) return;
 
-  const names = qRaw.split(',').map(s => s.trim()).filter(s => s);
+  const tokens = qRaw.split(',').map(s => s.trim()).filter(s => s);
+  const names = tokens.map(s => s.split('#')[0].trim());
   if (names.length < 2) {
       document.getElementById('msg').textContent = "두 명 이상의 배우 이름을 입력해주세요.";
       return;
@@ -482,15 +431,31 @@ async function search(){
   const targetIds = [];
   const displayNames = [];
   
-  for (const name of names) {
+  for (const [nameIndex, name] of names.entries()) {
       const candidates = PEOPLE_MAP[name];
       if (!candidates || candidates.length === 0) {
           document.getElementById('msg').textContent = `'${name}' 배우를 찾을 수 없습니다.`;
           return;
       }
-      targetIds.push(candidates[0].id);
+      const explicitId = (tokens[nameIndex].split('#')[1] || '').trim();
+      const chosen = explicitId ? candidates.find(c => c.id === explicitId) : (candidates.length === 1 ? candidates[0] : null);
+      if (!chosen) {
+          document.getElementById('msg').textContent = `'${name}'의 ID를 확인해 이름#ID로 입력해주세요. 후보: ${candidates.map(c => c.id).join(', ')}`;
+          return;
+      }
+      targetIds.push(chosen.id);
       displayNames.push(name);
   }
+
+  const mode = document.getElementById('synergyMode').value;
+  const eventDate = document.getElementById('synergyEventDate').value;
+  if (mode === 'pre-event') {
+      if (!eventDate) { document.getElementById('msg').textContent = '실제 사건일을 입력해주세요.'; return; }
+      const date = new Date(eventDate + 'T00:00:00Z');
+      date.setUTCDate(date.getUTCDate() - 1);
+      const cutoffDate = date.toISOString().slice(0,10).replace(/-/g,'');
+      SYNERGY_MODEL = StarPowerCore.buildModel(MOVIES, { cutoffDate });
+  } else { SYNERGY_MODEL = STARPOWER_MODEL; }
 
   // 첫 번째로 입력된 배우를 Directed Synergy의 기준 배우(A)로 사용
   const referenceId = targetIds[0];
@@ -526,7 +491,7 @@ async function search(){
 
   const out = document.getElementById('out');
   out.innerHTML = '';
-  document.getElementById('msg').textContent = `총 ${commonMovies.length}편 검색됨`;
+  document.getElementById('msg').textContent = `총 ${commonMovies.length}편 검색됨 · 시너지: ${mode === 'pre-event' ? eventDate + ' 이전 개봉작' : '전체 snapshot'} (관객수는 사후 관측값)`;
 
   const validMovies = []; 
 
@@ -588,7 +553,7 @@ async function search(){
   }
 
   drawChart(validMovies, minDate, maxDate);
-  drawSentimentCompare(names, minDate, maxDate);
+  drawSentimentCompare(names, minDate, maxDate, targetIds);
 }
 
 function drawChart(movies, minDate, maxDate) {
@@ -654,12 +619,12 @@ function drawChart(movies, minDate, maxDate) {
     });
 }
 
-async function drawSentimentCompare(names, minDate, maxDate) {
+async function drawSentimentCompare(names, minDate, maxDate, targetIds) {
     const container = document.getElementById('sentiment-compare-container');
     const ctx = document.getElementById('sentimentCompareChart');
     if (sentimentCompareChart) sentimentCompareChart.destroy();
 
-    Promise.all(names.map(name => fetchSentimentData(name))).then(sentimentResults => {
+    Promise.all(names.map((name, i) => fetchSentimentData(name, targetIds[i], MOVIES))).then(sentimentResults => {
         const datasets = [];
 
         sentimentResults.forEach((data, i) => {
