@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "approvedOn": "2026-09-18",
+  "eventBasis": "public_disclosure_month",
+  "candidates": [
+    {
+      "priority": 1,
+      "name": "하정우",
+      "id": "10087253",
+      "eventMonth": "2020-02",
+      "eventLabel": "프로포폴 투약 의혹 공개",
+      "sources": [
+        {
+          "title": "뉴스핌 2020-02-19: 의혹 공개와 당사자 해명",
+          "url": "https://www.newspim.com/news/view/20200219000338"
+        }
+      ],
+      "productionNote": "비공식작전은 2022년 2월 촬영 시작 보도가 있어 공개 사건 이후 촬영으로 구분한다. 그러나 촬영 후 시점만으로 사건 후 캐스팅 결정 또는 의도적인 회복 전략을 입증할 수 없다.",
+      "productionSources": [
+        {
+          "title": "마이데일리 2023-07-24: 비공식작전 촬영 시점 인터뷰",
+          "url": "https://mydaily.co.kr/page/view/2023072413558403752"
+        }
+      ],
+      "collaborationDecisionAfterEvent": "unverified"
+    },
+    {
+      "priority": 2,
+      "name": "이병헌",
+      "id": "10055626",
+      "eventMonth": "2014-09",
+      "eventLabel": "협박 피해 사건 및 관련 사생활 논란 공개",
+      "sources": [
+        {
+          "title": "동아일보 2014-09-12: 협박 사건과 상반된 당사자 주장",
+          "url": "https://www.donga.com/news/Entertainment/article/all/20140912/66341389/1"
+        }
+      ],
+      "productionNote": "협박 사건의 피해자임을 구분한다. 사생활 관련 주장을 확정된 사실이나 위법행위로 취급하지 않는다. 사건 이전 Hawk 자격부터 확인한다.",
+      "productionSources": [],
+      "collaborationDecisionAfterEvent": "unverified"
+    },
+    {
+      "priority": 3,
+      "name": "오달수",
+      "id": "10050151",
+      "eventMonth": "2018-02",
+      "eventLabel": "성추행 의혹 공개 및 활동 중단",
+      "sources": [
+        {
+          "title": "YTN 2020-11-11: 이웃사촌 시사회와 2018년 2월 의혹",
+          "url": "https://www.ytn.co.kr/_ln/0117_202011111633310688"
+        }
+      ],
+      "productionNote": "이웃사촌은 사건 전부터 촬영된 개봉 지연 작품이다. 개봉 후 성과 관찰에는 포함하지만 사건 후 새 협업을 선택했다는 증거로 사용하지 않는다. 의혹을 확정된 범죄로 표현하지 않는다.",
+      "productionSources": [
+        {
+          "title": "아주경제 2020-11-11: 2018년 2월 촬영 종료 및 개봉 연기",
+          "url": "https://www.ajunews.com/view/20201111083903894"
+        }
+      ],
+      "collaborationDecisionAfterEvent": "not_supported_preexisting_production"
+    },
+    {
+      "priority": 4,
+      "name": "배성우",
+      "id": "20136191",
+      "eventMonth": "2020-12",
+      "eventLabel": "음주운전 관련 공개 논란 (공개 월 잠정)",
+      "sources": [
+        {
+          "title": "배성우 문서: 2020-12-11 드라마 하차 기사 연결",
+          "url": "https://en.wikipedia.org/wiki/Bae_Seong-woo"
+        }
+      ],
+      "productionNote": "사건 공개 월은 잠정이며 원 보도로 추가 확정해야 한다. 현재 및 사건 이전 Hawk 자격 미충족 시 본 분석에서 제외한다.",
+      "productionSources": [],
+      "collaborationDecisionAfterEvent": "unverified"
+    },
+    {
+      "priority": 5,
+      "name": "곽도원",
+      "id": "20127192",
+      "eventMonth": "2022-09",
+      "eventLabel": "음주운전 적발 및 입건",
+      "sources": [
+        {
+          "title": "경향신문 2022-09-25: 음주운전 입건",
+          "url": "https://www.khan.co.kr/article/202209252055001"
+        }
+      ],
+      "productionNote": "소방관은 2020년에 촬영을 마친 작품으로, 2022년 사건 전에 협업이 이루어졌다. 365일 이후 개봉 조건은 충족하지만 사건 후 새 협업 선택의 증거가 아니다. 사건 직전 연도는 유효 관측이 없어 직전 Hawk 상태를 확인할 수 없다.",
+      "productionSources": [
+        {
+          "title": "일간스포츠 2024-12-09: 감독 인터뷰, 2020년 촬영 완료",
+          "url": "https://isplus.com/article/view/isp202412020075"
+        }
+      ],
+      "collaborationDecisionAfterEvent": "not_supported_preexisting_production"
+    },
+    {
+      "priority": 6,
+      "name": "주지훈",
+      "id": "10069179",
+      "eventMonth": "2009-04",
+      "eventLabel": "마약 사건 공개",
+      "sources": [
+        {
+          "title": "주지훈 문서: 2009년 4월 사건과 재판 경과·보도 출처",
+          "url": "https://en.wikipedia.org/wiki/Ju_Ji-hoon#Legal_issues"
+        }
+      ],
+      "productionNote": "사용자 지정 마지막 예비 후보. 사건 이전 적격 영화가 적어 시너지와 반복성 평가에 제한이 있다.",
+      "productionSources": [],
+      "collaborationDecisionAfterEvent": "unverified"
+    }
+  ]
+}
