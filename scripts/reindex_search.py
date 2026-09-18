@@ -1,11 +1,15 @@
 # scripts/reindex_search.py
 import os
 import json
+try:
+    from .movie_records import load_movie_records, movie_info, audience, preserve_enhanced_fields, update_audience_files
+except ImportError:
+    from movie_records import load_movie_records, movie_info, audience, preserve_enhanced_fields, update_audience_files
 import glob
 from pathlib import Path
 
 HERE = Path(__file__).resolve()
-ROOT = HERE.parents[1] if HERE.parents[1].name == "MyMovieProject" else HERE.parents[2]
+ROOT = HERE.parents[1]
 DATA_DIR = ROOT / "docs" / "data" / "movies"
 PEOPLE_DIR = ROOT / "docs" / "data" / "people"
 OUTPUT_FILE = ROOT / "docs" / "data" / "search_index.json"
@@ -27,25 +31,14 @@ def get_person_gender(people_cd):
 
 def reindex():
     print(f"[reindex] Scanning {DATA_DIR}...")
-    files = sorted([Path(p) for p in glob.glob(str(DATA_DIR / "**" / "*.json"), recursive=True)])
-    
+    records, audit = load_movie_records(DATA_DIR)
+    audit_path = ROOT / "docs" / "data" / "research" / "coverage_audit.json"
+    audit_path.parent.mkdir(parents=True, exist_ok=True)
+    audit_path.write_text(json.dumps(audit, ensure_ascii=False, indent=2), encoding="utf-8")
     index_list = []
-    seen_movies = set()
-    
-    for p in files:
+    for info in records:
+        movie_cd = info["movieCd"]
         try:
-            txt = p.read_text(encoding="utf-8")
-            if not txt.strip(): continue
-            
-            data = json.loads(txt)
-            info = data if data.get("movieCd") else ((data.get("movieInfoResult") or {}).get("movieInfo") or {})
-            
-            movie_cd = info.get("movieCd")
-            if not movie_cd: continue
-
-            if movie_cd in seen_movies: continue
-            seen_movies.add(movie_cd)
-
             actors = []
             for a in (info.get("actors") or []):
                 nm = a.get("peopleNm", "").strip()
@@ -73,11 +66,7 @@ def reindex():
                         "id": d.get("peopleCd", "").strip() 
                     })
 
-            audi_acc_raw = data.get("audiAcc") or info.get("audiAcc") or 0
-            try:
-                audi_acc = int(str(audi_acc_raw).replace(",", "").strip())
-            except:
-                audi_acc = 0
+            audi_acc = info.get("audiAcc")
 
             index_list.append({
                 "movieCd": movie_cd,
@@ -92,7 +81,7 @@ def reindex():
             })
 
         except Exception as e:
-            print(f"[warn] Failed {p.name}: {e}")
+            print(f"[warn] Failed {movie_cd}: {e}")
             continue
 
     OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
