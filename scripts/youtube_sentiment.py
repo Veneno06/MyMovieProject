@@ -4,18 +4,15 @@ import json
 import argparse
 from datetime import datetime
 from pathlib import Path
-from googleapiclient.discovery import build
-from googleapiclient.errors import HttpError
-from transformers import pipeline
 import sys
 import time
 import re
 
 # 인코딩 설정
-sys.stdout.reconfigure(encoding='utf-8')
+if hasattr(sys.stdout, 'reconfigure'): sys.stdout.reconfigure(encoding='utf-8')
 
 HERE = Path(__file__).resolve()
-ROOT = HERE.parents[1] if HERE.parents[1].name == "MyMovieProject" else HERE.parents[2]
+ROOT = HERE.parents[1]
 PEOPLE_DIR = ROOT / "docs" / "data" / "people"
 SEARCH_INDEX_PATH = ROOT / "docs" / "data" / "search_index.json"
 DB_SUMMARY_PATH = ROOT / "docs" / "data" / "db_summary.json"
@@ -36,6 +33,7 @@ def load_ai_model():
     global CLASSIFIER
     if CLASSIFIER is None:
         print("🤖 AI 감성 분석 모델 로딩 중... (KoELECTRA-small-v3-nsmc 적용)")
+        from transformers import pipeline
         CLASSIFIER = pipeline("sentiment-analysis", model="daekeun-ml/koelectra-small-v3-nsmc")
     return CLASSIFIER
 
@@ -60,6 +58,8 @@ def get_initial_sound(char):
     return char
 
 def get_youtube_comments(actor_name):
+    from googleapiclient.discovery import build
+    from googleapiclient.errors import HttpError
     global CURRENT_KEY_INDEX
     if not API_KEYS:
         print("❌ [오류] 등록된 YOUTUBE_API_KEY가 없습니다.")
@@ -284,12 +284,25 @@ def analyze_sentiment(comments):
 
     return timeline_data, video_sentiment
 
-def run_single(actor_name):
+def resolve_actor_id(name, movies=None, actor_id=None):
+    if movies is None:
+        movies = json.loads(SEARCH_INDEX_PATH.read_text(encoding='utf-8'))
+    ids = {str(a['id']) for m in movies for a in m.get('actors', [])
+           if a.get('name') == name and a.get('id')}
+    if actor_id is not None:
+        return str(actor_id) if str(actor_id) in ids else None
+    return next(iter(ids)) if len(ids) == 1 else None
+
+def run_single(actor_name, actor_id=None):
+    actor_id = resolve_actor_id(actor_name, actor_id=actor_id)
+    if not actor_id:
+        print(f"⚠️ ID 미확정/동명이인: {actor_name}; 수집 생략")
+        return False
     print(f"\n========================================")
     print(f"🎬 분석 시작: {actor_name}")
     print(f"========================================")
     
-    save_path = SENTIMENT_DIR / f"{actor_name}.json"
+    save_path = SENTIMENT_DIR / f"{actor_id}.json"
     comments, sources_dict = get_youtube_comments(actor_name) 
     new_timeline_data, video_sentiment = analyze_sentiment(comments)
     
@@ -310,6 +323,10 @@ def run_single(actor_name):
 
     final_data = {
         "actor_name": actor_name,
+        "actor_id": actor_id,
+        "schema_version": 2,
+        "date_basis": "comment_published_at",
+        "time_unit": "iso_week",
         "last_updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "timeline": new_timeline_data,
         "sources": final_sources 
@@ -320,7 +337,7 @@ def run_single(actor_name):
     print(f"✅ 저장 완료: {actor_name}.json")
     return True
 
-def run_auto():
+def run_auto(refresh=False):
     print(f"🎬 [자동 수집 모드] 스타 파워 랭킹 기준 누락 데이터 자동 분석 시작...")
     
     if not DB_SUMMARY_PATH.exists():
@@ -341,17 +358,21 @@ def run_auto():
         name = actor_info.get("name")
         if not name: continue
         
-        save_path = SENTIMENT_DIR / f"{name}.json"
+        actor_id = resolve_actor_id(name)
+        if not actor_id:
+            print(f"⚠️ ID 미확정/동명이인: {name}; 생략")
+            continue
+        save_path = SENTIMENT_DIR / f"{actor_id}.json"
         needs_update = True
         
-        if save_path.exists():
+        if save_path.exists() and not refresh:
             try:
                 with open(save_path, 'r', encoding='utf-8') as sf:
                     s_data = json.load(sf)
                     tl = s_data.get("timeline")
                     src = s_data.get("sources")
                     # 데이터가 모두 멀쩡하게 존재하면 업데이트 건너뜀
-                    if tl and (src is not None) and len(src) > 0:
+                    if s_data.get("schema_version") == 2 and s_data.get("actor_id") == actor_id and tl and (src is not None) and len(src) > 0:
                         needs_update = False
             except:
                 pass
@@ -404,7 +425,11 @@ def run_pattern(pattern):
 
     target_actors = []
     for name in candidate_actors:
-        save_path = SENTIMENT_DIR / f"{name}.json"
+        actor_id = resolve_actor_id(name)
+        if not actor_id:
+            print(f"⚠️ ID 미확정/동명이인: {name}; 생략")
+            continue
+        save_path = SENTIMENT_DIR / f"{actor_id}.json"
         if save_path.exists(): continue
         target_actors.append(name)
 
@@ -427,9 +452,10 @@ if __name__ == "__main__":
     parser.add_argument("--pattern", type=str, help="초성 검색")
     parser.add_argument("--actor", type=str, help="단일 또는 다중 배우 검색 (쉼표로 구분)")
     parser.add_argument("--auto", action="store_true", help="전체 미완료 배우 대상 자동 수집")
+    parser.add_argument("--refresh", action="store_true", help="자동 모드에서 기존 ID 자료도 재수집 (API 사용)")
     args = parser.parse_args()
 
-    if args.auto: run_auto()
+    if args.auto: run_auto(refresh=args.refresh)
     elif args.pattern: run_pattern(args.pattern)
     elif args.actor:
         actors = [x.strip() for x in args.actor.split(',') if x.strip()]
