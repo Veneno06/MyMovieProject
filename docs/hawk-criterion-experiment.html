@@ -66,6 +66,7 @@
 
   <div class="experiment-card">
     <h2>2. 데이터 분석 상태</h2>
+    <div class="selector-row"><label>실제 사건일(선택) <input id="analysisEventDate" type="date"></label><label>관측 창 <select id="analysisWindow"><option value="expanding">Expanding</option><option value="trailing">직전 N년</option></select></label><input id="analysisWindowYears" type="number" min="1" value="5" style="width:70px"><button class="btn" onclick="main()">다시 계산</button></div><p class="muted">사건일보다 엄격히 이전 개봉작만 포함합니다. 해당 연도의 미완성 점유율은 aggregate에서 제외합니다. 저장 관객수는 사후 snapshot이므로 진정한 당시 as-of 분석이 아닙니다. 관측 누락은 Dove가 아닙니다.</p>
     <div id="status" style="color:#2563eb; font-weight:bold;">데이터를 불러오는 중입니다...</div>
     <div class="metric-grid">
       <div class="metric"><div class="metric-label">유효 국내 영화</div><div class="metric-value" id="eligibleMovies">-</div></div>
@@ -121,7 +122,7 @@
     <div id="selectedCutoffText" class="notice"></div>
     <h3>고정 최소 진입 횟수 민감도</h3>
     <div class="metric-grid" id="fixedGrid"></div>
-    <h3>통계적 반복성: Binomial + BH-FDR</h3>
+    <h3>Persistent: Binomial + BH-FDR (Annual candidate와 별도)</h3><p class="muted">독립성, 일정한 진입확률 및 배우 간 의존 가정에 민감한 탐색 진단입니다. floor 및 최소 1명 규칙 때문에 실제 연도별 진입률은 명목 p와 다를 수 있습니다. 인과적/확정적 지위 판정이 아닙니다.</p>
     <p class="muted">배우가 활동한 T개 연도 중 h개 연도에서 상위 p%에 들어갔다고 할 때, 무작위로 매년 상위 p%에 들어갈 확률이 p라고 가정한 기준모형에서 h회 이상 나올 확률을 계산합니다. 배우 수가 매우 많기 때문에 여러 명을 동시에 검정하면서 생기는 거짓 양성 증가를 Benjamini-Hochberg FDR q=0.05로 보정합니다. 따라서 “무조건 2회면 Hawk”가 아니라 배우의 활동연수와 반복횟수를 함께 고려합니다.</p>
     <div class="math-formula">P(X ≥ h) = Σ C(T,k) p^k (1-p)^(T-k), &nbsp; X ~ Binomial(T,p)</div>
     <div class="metric-grid">
@@ -143,6 +144,8 @@
       <li>이 실험에서 최종 기준을 고정한 뒤 annual-ratio.html의 Hawk/Dove 상태전환 분석에 동일한 기준을 적용합니다.</li>
     </ol>
   </div>
+  <div class="experiment-card"><h2>8. 오프라인 재현 검증: 최대 편차와 formal Kneedle</h2><p class="muted">현재 페이지의 방법은 정규화 최대 편차입니다. kneed 패키지 S=1/2/5와 동일하지 않으며 아래는 별도 고정 snapshot의 비교입니다. 사건·여론 결과로 기준을 선택하지 않습니다.</p><div id="offlineValidation">검증 파일을 불러오는 중...</div></div>
+
 </div>
 
 <script>
@@ -155,9 +158,18 @@ async function main(){
   try{
     const r=await fetch(DATA_URL,{cache:'no-store'}); if(!r.ok) throw new Error(`HTTP ${r.status}`);
     const movies=await r.json();
-    model=StarPowerCore.buildModel(movies);
-    yearly=HawkCriterionCore.buildAnnualScores(model);
-    kneeSummary=HawkCriterionCore.summarizeYearlyKnees(yearly,StarPowerCore.CONFIG.cutoffDate);
+    const eventDate=document.getElementById('analysisEventDate').value;
+    const windowMode=document.getElementById('analysisWindow').value;
+    const windowYears=Number(document.getElementById('analysisWindowYears').value)||5;
+    if(eventDate){
+      const analysis=HawkCriterionCore.buildPreEventAnalysis(StarPowerCore,movies,{eventDate,windowMode,windowYears});
+      model=analysis.model;yearly=analysis.yearly;kneeSummary=analysis.summary;
+    }else{
+      model=StarPowerCore.buildModel(movies);
+      yearly=HawkCriterionCore.buildAnnualScores(model);
+      if(windowMode==='trailing')yearly=Object.fromEntries(Object.entries(yearly).filter(([y])=>Number(y)>=Number(model.config.cutoffDate.slice(0,4))-windowYears));
+      kneeSummary=HawkCriterionCore.summarizeYearlyKnees(yearly,model.config.cutoffDate);
+    }
     renderAll();
     document.getElementById('status').className='good';
     document.getElementById('status').textContent='분석 완료: 국내 유효 영화의 Annual Star Power와 연도별 Hawk knee 계산이 끝났습니다.';
@@ -179,7 +191,7 @@ function renderAll(){
   const sel=document.getElementById('yearSelect'); sel.innerHTML='';
   kneeSummary.rows.forEach(r=>{const o=document.createElement('option');o.value=r.year;o.textContent=`${r.year}년${r.includedForAggregate?'':' (진단 제외)'}`;sel.appendChild(o);});
   const preferred=kneeSummary.rows.filter(r=>r.includedForAggregate).slice(-1)[0] || kneeSummary.rows[0]; if(preferred) sel.value=preferred.year;
-  sel.addEventListener('change',renderSelectedYear);
+  sel.onchange=renderSelectedYear;
 
   document.getElementById('meanPct').textContent=pct(kneeSummary.mean);
   document.getElementById('medianPct').textContent=pct(kneeSummary.median);
@@ -190,8 +202,8 @@ function renderAll(){
   renderYearKneeChart(); renderSelectedYear();
 
   const src=document.getElementById('cutoffSource'); const custom=document.getElementById('customPct');
-  src.addEventListener('change',()=>{custom.style.display=src.value==='custom'?'inline-block':'none';renderPersistence();});
-  custom.addEventListener('input',renderPersistence);
+  src.onchange=()=>{custom.style.display=src.value==='custom'?'inline-block':'none';renderPersistence();};
+  custom.oninput=renderPersistence;
   renderPersistence();
 }
 
@@ -220,9 +232,25 @@ function renderPersistence(){
   const f=HawkCriterionCore.persistentHawksFdr(yearly,p,.05,years);
   document.getElementById('testedActors').textContent=fmt(f.testedActorCount);
   document.getElementById('fdrHawks').textContent=fmt(f.hawkCount);
-  document.getElementById('fdrExplain').innerHTML=`고정 “2회 이상”만 사용하지 않고 활동연수까지 고려하면, 상위 ${p.toFixed(2)}% 진입 반복이 우연한 수준보다 유의하게 많은 배우 중 BH-FDR q=0.05를 통과하고 최소 2회 이상 실제 진입한 배우는 <b>${fmt(f.hawkCount)}명</b>입니다. 이 결과는 “한 해의 후보 폭이 약 ${p.toFixed(1)}%이므로 전체 Hawk도 그만큼 많다”는 해석을 막아줍니다.`;
-  document.getElementById('fdrList').innerHTML=f.significant.slice(0,60).map(x=>`<li><b>${x.name}</b> — 상위권 ${x.hitCount}/${x.activeCount} 활동연도, p=${x.pValue<1e-6?x.pValue.toExponential(2):x.pValue.toFixed(6)}</li>`).join('');
+  document.getElementById('fdrExplain').innerHTML=`고정 “2회 이상”만 사용하지 않고 활동연수까지 고려하면, 상위 ${p.toFixed(2)}% 진입 반복이 독립 연도·동일 진입확률이라는 탐색적 기준모형에서 유의하게 많은 배우 중 BH-FDR q=0.05를 통과하고 최소 2회 이상 실제 진입한 배우는 <b>${fmt(f.hawkCount)}명</b>입니다. 이 결과는 “한 해의 후보 폭이 약 ${p.toFixed(1)}%이므로 전체 Hawk도 그만큼 많다”는 해석을 막아줍니다.`;
+  document.getElementById('fdrList').innerHTML=f.significant.slice(0,60).map(x=>`<li><b>${escapeHtml(x.name)} [${escapeHtml(x.id||'ID 미해결')}]</b> — 상위권 ${x.hitCount}/${x.activeCount} 활동연도, p=${x.pValue<1e-6?x.pValue.toExponential(2):x.pValue.toFixed(6)}, BH q=${x.qValue.toPrecision(3)}</li>`).join('');
 }
+const escapeHtml=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+async function loadOfflineValidation(){
+ const host=document.getElementById('offlineValidation');
+ try{
+  const r=await fetch('data/research/hawk_validation.json',{cache:'no-store'});if(!r.ok)throw new Error('검증 파일 없음');const report=await r.json();
+  let html='<div class="table-wrap"><table><thead><tr><th>데이터</th><th>방법</th><th>평균 %</th><th>중앙값 %</th><th>연도 수</th><th>No knee</th><th>연도 제외 민감도</th></tr></thead><tbody>';
+  for(const name of ['baseline','recovered'])for(const [method,v] of Object.entries(report[name]?.methods||{}))html+=`<tr><td>${name}</td><td>${escapeHtml(method)}</td><td>${pct(v.mean)}</td><td>${pct(v.median)}</td><td>${escapeHtml(v.count)}</td><td>${escapeHtml(v.noKneeCount)}</td><td>${escapeHtml(JSON.stringify(v.loyoMedianRange))}</td></tr>`;
+  html+='</tbody></table></div>';
+  html+='<p><b>표시 단위 민감도:</b> log1p(SP)는 점수 단위에 불변이 아닙니다. 아래 수치는 SP에 배율을 곱한 뒤 같은 최대편차 절차로 다시 얻은 중앙값입니다. 현재 비율을 유일한 자연 경계라고 해석하지 마세요.</p><ul>';
+  for(const [scale,v] of Object.entries(report.recovered?.scaleSensitivity||{}))html+=`<li>점수 × ${escapeHtml(scale)}: ${pct(v.median)}</li>`;
+  html+='</ul>';
+  html+='<p>'+escapeHtml((report.notes||[]).join(' '))+'</p><p><a href="data/research/hawk_validation.json">전체 λ, holdout, recurrence 결과 JSON</a></p>';
+  host.innerHTML=html;
+ }catch(e){host.textContent='오프라인 검증 결과를 아직 불러올 수 없습니다. 실시간 계산 결과는 위에 표시됩니다.';}
+}
+loadOfflineValidation();
 main();
 </script>
 </body>
