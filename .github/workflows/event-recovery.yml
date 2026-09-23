@@ -15,14 +15,18 @@ jobs:
         with:
           node-version: '22'
       - name: Verify date boundaries and temporal isolation
-        run: node tests/test_event_recovery.js
+        run: |
+          node tests/test_event_recovery.js
+          node tests/test_event_recovery_ex.js
       - name: Build exploratory case results
-        run: node scripts/build_event_recovery.js
+        run: |
+          node scripts/build_event_recovery.js
+          node scripts/build_event_recovery_ex.js
       - name: Commit event study results
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add docs/data/research/event_recovery.json
+          git add docs/data/research/event_recovery.json docs/data/research/event_recovery_ex.json
           if ! git diff --cached --quiet; then
             git commit -m 'Build exploratory event recovery cases'
             git push
