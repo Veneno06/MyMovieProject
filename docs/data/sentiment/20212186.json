@@ -1,0 +1,80 @@
+{
+  "actor_name": "주보비",
+  "actor_id": "20212186",
+  "schema_version": 2,
+  "date_basis": "comment_published_at",
+  "time_unit": "iso_week",
+  "last_updated": "2026-09-23 23:49:00",
+  "timeline": {
+    "2022-W06": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2022-W07": {
+      "positive": 6,
+      "negative": 0
+    },
+    "2022-W08": {
+      "positive": 4,
+      "negative": 0
+    },
+    "2022-W09": {
+      "positive": 1,
+      "negative": 1
+    },
+    "2023-W40": {
+      "positive": 4,
+      "negative": 0
+    },
+    "2025-W34": {
+      "positive": 9,
+      "negative": 15
+    },
+    "2025-W33": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2025-W37": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2025-W39": {
+      "positive": 0,
+      "negative": 1
+    }
+  },
+  "sources": [
+    {
+      "videoId": "r7-oodRgSuc",
+      "title": "죽을 뻔했는데 아무도 몰라주는 홍기 feat. 계속 보고 싶은 이동휘 #파인",
+      "channel": "씨네쇼츠",
+      "publishedAt": "2025-08-17T21:45:02Z",
+      "pos_count": 10,
+      "neg_count": 17
+    },
+    {
+      "videoId": "LXco9bHRH2o",
+      "title": "'천박사' 빌런팀 눈빛 바꾼 제작진의 한마디? 윤병희X주보비X박경혜 😈",
+      "channel": "MTN STAR",
+      "publishedAt": "2023-10-06T03:00:13Z",
+      "pos_count": 4,
+      "neg_count": 0
+    },
+    {
+      "videoId": "VAWPCxKXFg4",
+      "title": "영화 ‘매미소리’ 비하인드 스토리 [HOTSHOT] / YTN korean",
+      "channel": "YTN korean",
+      "publishedAt": "2022-02-11T08:40:24Z",
+      "pos_count": 11,
+      "neg_count": 2
+    },
+    {
+      "videoId": "5STpL1s6H0w",
+      "title": "'매미소리(CICADA)' 주보비, 눈 뜨고는 노래를 못하는데…",
+      "channel": "티브이데일리",
+      "publishedAt": "2022-02-07T05:50:00Z",
+      "pos_count": 1,
+      "neg_count": 0
+    }
+  ]
+}
