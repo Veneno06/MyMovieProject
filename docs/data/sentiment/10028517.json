@@ -1,0 +1,44 @@
+{
+  "actor_name": "박길수",
+  "actor_id": "10028517",
+  "schema_version": 2,
+  "date_basis": "comment_published_at",
+  "time_unit": "iso_week",
+  "last_updated": "2026-09-24 23:47:21",
+  "timeline": {
+    "2025-W38": {
+      "positive": 18,
+      "negative": 23
+    },
+    "2026-W31": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2025-W41": {
+      "positive": 0,
+      "negative": 2
+    },
+    "2026-W15": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2026-W14": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2026-W09": {
+      "positive": 0,
+      "negative": 1
+    }
+  },
+  "sources": [
+    {
+      "videoId": "cZOhowMIQX8",
+      "title": "연아를 살린 후 마지막 약속...",
+      "channel": "숏구미",
+      "publishedAt": "2025-09-15T11:55:01Z",
+      "pos_count": 20,
+      "neg_count": 27
+    }
+  ]
+}
