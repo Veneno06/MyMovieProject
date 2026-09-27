@@ -1,0 +1,48 @@
+{
+  "actor_name": "백승익",
+  "actor_id": "20169325",
+  "schema_version": 2,
+  "date_basis": "comment_published_at",
+  "time_unit": "iso_week",
+  "last_updated": "2026-09-27 23:35:49",
+  "timeline": {
+    "2022-W20": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2022-W28": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2020-W40": {
+      "positive": 3,
+      "negative": 0
+    },
+    "2022-W23": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2022-W18": {
+      "positive": 19,
+      "negative": 4
+    }
+  },
+  "sources": [
+    {
+      "videoId": "5LJs0O2yq9Y",
+      "title": "위키트리 12주년 축하 영상 모음 (배우 6편) | WIKITREE 12th Anniversary",
+      "channel": "위키트리TV",
+      "publishedAt": "2022-05-03T07:30:00Z",
+      "pos_count": 19,
+      "neg_count": 4
+    },
+    {
+      "videoId": "1WX63S-nwNg",
+      "title": "[뉴스정면승부] 9월 29일 (화) 추석을 앞둔 여야 입장(박성준,배준영)/추석동안 코로나 퍼질까 걱정(명지병원)/여순사건 배경의 영화, 동백(백승익,주아름)/안동역에서♬(진성)",
+      "channel": "YTN 라디오",
+      "publishedAt": "2020-09-29T10:03:46Z",
+      "pos_count": 6,
+      "neg_count": 0
+    }
+  ]
+}
