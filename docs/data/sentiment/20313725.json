@@ -1,0 +1,40 @@
+{
+  "actor_name": "이운산",
+  "actor_id": "20313725",
+  "schema_version": 2,
+  "date_basis": "comment_published_at",
+  "time_unit": "iso_week",
+  "last_updated": "2026-09-29 01:18:29",
+  "timeline": {
+    "2021-W47": {
+      "positive": 2,
+      "negative": 0
+    },
+    "2024-W40": {
+      "positive": 27,
+      "negative": 1
+    },
+    "2024-W41": {
+      "positive": 1,
+      "negative": 2
+    }
+  },
+  "sources": [
+    {
+      "videoId": "ab0oL5P56Ak",
+      "title": "[백설공주에게 죽음을 스페셜] 끝까지! 마지막까지! 많은 응원과 관심 부탁드립니다 '백설공주에게 죽음을', MBC 241004 방송",
+      "channel": "MBCdrama",
+      "publishedAt": "2024-10-04T08:28:21Z",
+      "pos_count": 28,
+      "neg_count": 3
+    },
+    {
+      "videoId": "ktP8u-3Lapg",
+      "title": "[스타엔터] 참신한 상상력 + 폭발적 액션! 추적액션 '유체이탈자' / 머니투데이방송",
+      "channel": "MTN 머니투데이방송",
+      "publishedAt": "2021-11-22T03:01:25Z",
+      "pos_count": 2,
+      "neg_count": 0
+    }
+  ]
+}
