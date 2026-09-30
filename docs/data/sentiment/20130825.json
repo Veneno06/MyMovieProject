@@ -1,0 +1,44 @@
+{
+  "actor_name": "조상원",
+  "actor_id": "20130825",
+  "schema_version": 2,
+  "date_basis": "comment_published_at",
+  "time_unit": "iso_week",
+  "last_updated": "2026-09-30 00:31:53",
+  "timeline": {
+    "2025-W08": {
+      "positive": 19,
+      "negative": 35
+    },
+    "2025-W21": {
+      "positive": 15,
+      "negative": 13
+    }
+  },
+  "sources": [
+    {
+      "videoId": "zKmS2NTDmaw",
+      "title": "윤석열과 김건희 종말! 이진우 불고! 이창수 튀고! / 이재명 죽이기! 조희대 사법내란 안건 제외한 전국법관회의! 공범될래?",
+      "channel": "뉴스와사람들",
+      "publishedAt": "2025-05-20T18:54:40Z",
+      "pos_count": 15,
+      "neg_count": 13
+    },
+    {
+      "videoId": "G0KtrAxZQ7c",
+      "title": "대통령 요청 20일 변론 연기 '미정'...검사 탄핵도 첫 정식 변론 / YTN",
+      "channel": " YTN",
+      "publishedAt": "2025-02-17T06:05:36Z",
+      "pos_count": 8,
+      "neg_count": 15
+    },
+    {
+      "videoId": "w4eoiOYwahk",
+      "title": "대통령 탄핵 20일 변론 연기 '미정'...검사 탄핵도 첫 정식 변론 / YTN",
+      "channel": " YTN",
+      "publishedAt": "2025-02-17T04:54:28Z",
+      "pos_count": 11,
+      "neg_count": 20
+    }
+  ]
+}
