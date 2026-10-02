@@ -83,6 +83,7 @@ jobs:
           git add docs/data/movies/
           git add docs/data/people/
           git add docs/data/search_index.json
+          git add docs/data/research/coverage_audit.json
           
           git commit -m "Auto update: BoxOffice & People Stats" || echo "No changes"
           
