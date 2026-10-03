@@ -1,0 +1,36 @@
+{
+  "actor_name": "하성광",
+  "actor_id": "10086945",
+  "schema_version": 2,
+  "date_basis": "comment_published_at",
+  "time_unit": "iso_week",
+  "last_updated": "2026-10-03 23:39:18",
+  "timeline": {
+    "2017-W09": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2023-W08": {
+      "positive": 4,
+      "negative": 0
+    }
+  },
+  "sources": [
+    {
+      "videoId": "IdakoN04waU",
+      "title": "( 잘 가라 ) 올해의신작 🌌 𝗦𝗔𝗡𝗦𝗜𝗟-𝗨𝗡𝗜𝗩𝗘𝗥𝗦𝗘｜2022공연예술창작산실/올해의신작/브랜딩영상/하성광",
+      "channel": "공연예술창작산실",
+      "publishedAt": "2023-02-10T07:45:48Z",
+      "pos_count": 4,
+      "neg_count": 0
+    },
+    {
+      "videoId": "hosKjMHuUkA",
+      "title": "[tbsTV] [연극 “조씨고아, 복수의 씨앗”이형훈 , 뮤지컬 “팬텀”, 음악극 “십이야”,뮤지컬 “난타”] 공연에 뜨겁게 미치다 43회",
+      "channel": "TBS 시민의방송",
+      "publishedAt": "2017-01-26T22:43:13Z",
+      "pos_count": 0,
+      "neg_count": 1
+    }
+  ]
+}

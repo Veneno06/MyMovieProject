@@ -1,0 +1,44 @@
+{
+  "actor_name": "박민이",
+  "actor_id": "20384490",
+  "schema_version": 2,
+  "date_basis": "comment_published_at",
+  "time_unit": "iso_week",
+  "last_updated": "2026-10-03 23:35:08",
+  "timeline": {
+    "2023-W15": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2024-W35": {
+      "positive": 54,
+      "negative": 17
+    },
+    "2024-W36": {
+      "positive": 9,
+      "negative": 6
+    },
+    "2024-W37": {
+      "positive": 4,
+      "negative": 1
+    }
+  },
+  "sources": [
+    {
+      "videoId": "8N_Aq-PAgYw",
+      "title": "다시 한번 죄송합니다. 지승현 배우는 최선을 다한 탓",
+      "channel": "BigFriends_actor",
+      "publishedAt": "2024-08-30T03:30:04Z",
+      "pos_count": 67,
+      "neg_count": 24
+    },
+    {
+      "videoId": "C4kEHca3b4g",
+      "title": "【OBS 독특한 연예뉴스】 리얼 사랑꾼 부부 8위 오나미♥박민_기자의 순정",
+      "channel": "옛능: OBS 예능",
+      "publishedAt": "2023-04-13T04:19:14Z",
+      "pos_count": 1,
+      "neg_count": 0
+    }
+  ]
+}
