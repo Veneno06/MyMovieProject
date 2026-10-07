@@ -1,0 +1,32 @@
+{
+  "actor_name": "이화정",
+  "actor_id": "20111743",
+  "schema_version": 2,
+  "date_basis": "comment_published_at",
+  "time_unit": "iso_week",
+  "last_updated": "2026-10-07 00:28:21",
+  "timeline": {
+    "2020-W09": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2020-W07": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2020-W08": {
+      "positive": 1,
+      "negative": 0
+    }
+  },
+  "sources": [
+    {
+      "videoId": "etxtmsdP69A",
+      "title": "방구석1열(movieroom) 94회 예고편",
+      "channel": "JTBC Entertainment",
+      "publishedAt": "2020-02-16T06:52:37Z",
+      "pos_count": 2,
+      "neg_count": 1
+    }
+  ]
+}
