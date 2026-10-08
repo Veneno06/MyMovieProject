@@ -784,8 +784,8 @@
     },
     "2026": {
       "movies": 179,
-      "before_positive": 176,
-      "after_positive": 176,
+      "before_positive": 177,
+      "after_positive": 177,
       "recovered_movie_ids": [],
       "korean_movies": 62,
       "korean_before_positive": 61,
@@ -616224,6 +616224,7 @@
       ],
       "fields": {
         "actors": "2026/20266850.json",
+        "audiAcc": "2026/20266850.json",
         "audits": "2026/20266850.json",
         "companys": "2026/20266850.json",
         "genres": "2026/20266850.json",
