@@ -1,8 +1,8 @@
 {
   "audience_semantics": "maximum positive cumulative snapshot; not historical as-of audience",
   "cast_policy": "single richest ordered source; lexical path tie-break; no union",
-  "file_count": 28019,
-  "movie_count": 24730,
+  "file_count": 28020,
+  "movie_count": 24731,
   "duplicate_movie_count": 3289,
   "invalid_sources": [],
   "years": {
@@ -783,9 +783,9 @@
       ]
     },
     "2026": {
-      "movies": 181,
-      "before_positive": 179,
-      "after_positive": 179,
+      "movies": 182,
+      "before_positive": 180,
+      "after_positive": 180,
       "recovered_movie_ids": [],
       "korean_movies": 62,
       "korean_before_positive": 61,
@@ -615957,6 +615957,31 @@
         "showTm": "2026/20264918.json",
         "showTypes": "2026/20264918.json",
         "typeNm": "2026/20264918.json"
+      },
+      "conflicts": {}
+    },
+    "20265062": {
+      "sources": [
+        "2026/20265062.json"
+      ],
+      "fields": {
+        "actors": "2026/20265062.json",
+        "audiAcc": "2026/20265062.json",
+        "audits": "2026/20265062.json",
+        "companys": "2026/20265062.json",
+        "directors": "2026/20265062.json",
+        "genres": "2026/20265062.json",
+        "movieCd": "2026/20265062.json",
+        "movieNm": "2026/20265062.json",
+        "movieNmEn": "2026/20265062.json",
+        "nations": "2026/20265062.json",
+        "openDt": "2026/20265062.json",
+        "prdtStatNm": "2026/20265062.json",
+        "prdtYear": "2026/20265062.json",
+        "showTm": "2026/20265062.json",
+        "showTypes": "2026/20265062.json",
+        "staffs": "2026/20265062.json",
+        "typeNm": "2026/20265062.json"
       },
       "conflicts": {}
     },
