@@ -1,0 +1,44 @@
+{
+  "actor_name": "홍완표",
+  "actor_id": "20163403",
+  "schema_version": 2,
+  "date_basis": "comment_published_at",
+  "time_unit": "iso_week",
+  "last_updated": "2026-10-14 23:42:16",
+  "timeline": {
+    "2020-W11": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2020-W29": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2013-W44": {
+      "positive": 1,
+      "negative": 0
+    },
+    "2022-W41": {
+      "positive": 1,
+      "negative": 0
+    }
+  },
+  "sources": [
+    {
+      "videoId": "FYtMyphTJp4",
+      "title": "[SSTV] '대종상' 레드카펫 하지원-한고은-클라라 등 파격 뒤태 '후끈!'",
+      "channel": "뉴스인사이드",
+      "publishedAt": "2013-11-01T14:38:25Z",
+      "pos_count": 2,
+      "neg_count": 1
+    },
+    {
+      "videoId": "gVeYwEE4mrQ",
+      "title": "[SSTV] '대종상' 레드카펫 김수현-조정석-서인국 등 여심 잡는 매력!",
+      "channel": "뉴스인사이드",
+      "publishedAt": "2013-11-01T14:08:57Z",
+      "pos_count": 1,
+      "neg_count": 0
+    }
+  ]
+}

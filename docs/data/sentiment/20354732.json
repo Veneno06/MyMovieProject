@@ -1,0 +1,48 @@
+{
+  "actor_name": "전승재",
+  "actor_id": "20354732",
+  "schema_version": 2,
+  "date_basis": "comment_published_at",
+  "time_unit": "iso_week",
+  "last_updated": "2026-10-14 23:43:34",
+  "timeline": {
+    "2020-W25": {
+      "positive": 2,
+      "negative": 1
+    },
+    "2026-W37": {
+      "positive": 2,
+      "negative": 1
+    },
+    "2026-W36": {
+      "positive": 3,
+      "negative": 6
+    },
+    "2026-W35": {
+      "positive": 0,
+      "negative": 6
+    },
+    "2026-W38": {
+      "positive": 0,
+      "negative": 1
+    }
+  },
+  "sources": [
+    {
+      "videoId": "ewhyfmDGRdU",
+      "title": "오랜 투병 끝에 세상을 떠난 한국의 유명 배우 9명",
+      "channel": "Luxe & Célébrités",
+      "publishedAt": "2026-08-27T07:55:21Z",
+      "pos_count": 5,
+      "neg_count": 14
+    },
+    {
+      "videoId": "KKYyK0GFOL8",
+      "title": "[06/16]노영희의 출발 새아침 상임위 단독구성(김남국) 김여정 군사도발(박지원) 대규모개인정보유출 (전승재)  (YTN보이는라디오)",
+      "channel": "YTN 라디오",
+      "publishedAt": "2020-06-16T00:10:05Z",
+      "pos_count": 2,
+      "neg_count": 1
+    }
+  ]
+}
