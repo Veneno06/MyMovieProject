@@ -1,0 +1,82 @@
+{
+  "version": "paper-baseline-2026-10-04",
+  "config": {
+    "lambda": 12,
+    "cutoffDate": "20260903",
+    "domesticNations": [
+      "한국",
+      "대한민국"
+    ],
+    "displayScale": 10000,
+    "percent": 8.329547800949825
+  },
+  "counts": {
+    "indexRecords": 24726,
+    "eligibleFilms": 1761,
+    "observations": 45109,
+    "idObservations": 44756
+  },
+  "primaryIds": [
+    "10087253",
+    "10050151",
+    "20127192",
+    "10054493",
+    "20136191",
+    "10053802"
+  ],
+  "firstReleases": [
+    {
+      "id": "10087253",
+      "name": "하정우",
+      "date": "20230802",
+      "score": 380.1297245883328,
+      "preMean": 475.0260184003608,
+      "forwardAny25": true
+    },
+    {
+      "id": "10050151",
+      "name": "오달수",
+      "date": "20201125",
+      "score": 123.01891959347043,
+      "preMean": 204.0583394189959,
+      "forwardAny25": true
+    },
+    {
+      "id": "20127192",
+      "name": "곽도원",
+      "date": "20241204",
+      "score": 537.058689646711,
+      "preMean": 226.31161651877827,
+      "forwardAny25": true
+    },
+    {
+      "id": "10054493",
+      "name": "윤제문",
+      "date": "20160803",
+      "score": 267.4263043208499,
+      "preMean": 80.2321446189673,
+      "forwardAny25": true
+    },
+    {
+      "id": "20136191",
+      "name": "배성우",
+      "date": "20211208",
+      "score": 0.7782642674240177,
+      "preMean": 66.37925734481237,
+      "forwardAny25": true
+    },
+    {
+      "id": "10053802",
+      "name": "유아인",
+      "date": "20250326",
+      "score": 500.1496654032872,
+      "preMean": 252.3879193911276,
+      "forwardAny25": false
+    }
+  ],
+  "coreSha256": {
+    "docs/assets/starpower-core.js": "a1024488c260b81ef6446faba570abe2ae5d11aaa3edd2f41ebf27fecb03d057",
+    "docs/assets/hawk-criterion-core.js": "fba5864daa0324b93723993fed17db923192d6677b1d301524bde68fadebab4a"
+  },
+  "observationSha256": "624df9d00c8ca463c83c8997f415f9001bb640f42e4968ddb981719ee2c3c415"
+}

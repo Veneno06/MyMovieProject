@@ -1,0 +1,4844 @@
+{
+  "version": "2026-10-23-experiment-1",
+  "generatedAt": "2026-10-23T06:37:34.755244+00:00",
+  "config": {
+    "lambda": 12,
+    "cutoffDate": "20260903",
+    "domesticNations": [
+      "한국",
+      "대한민국"
+    ],
+    "displayScale": 10000,
+    "percent": 8.329547800949825,
+    "primaryEndpoint": "second distinct post-month release date",
+    "selection": "score independent: documented pause and at least two usable high years strictly before event year",
+    "primaryDirection": "A→B",
+    "directions": {
+      "forward": "A→B",
+      "reverse": "B→A"
+    },
+    "scoreBasis": "retrospective snapshot SP; not release-time information",
+    "synergyFreeze": "strictly before first day of disclosure month for every post-event point",
+    "highSynergyPercent": 25,
+    "highSynergyRule": "ceil(25% of independently computable pool); cutoff ties included; value > 0",
+    "sameDayRule": "union of coactors and mean actor SP across films on each release day",
+    "preMeanRule": "mean SP across eligible pre-event-month films, not annual means",
+    "eventYearAnnualRole": "context only; never an eligibility gate",
+    "primaryFdrGate": false,
+    "currentHawkGate": false,
+    "experiment2Implemented": false,
+    "newDataCollected": false,
+    "causalInterpretation": false
+  },
+  "counts": {
+    "eligibleFilms": 1761,
+    "filmsWithIdentifiedObservations": 1642,
+    "observations": 45109,
+    "idObservations": 44756,
+    "registryActors": 16,
+    "historyEligible": 9,
+    "firstObserved": 6,
+    "secondObserved": 5,
+    "censoredBeforeFirst": 3,
+    "censoredBeforeSecond": 4,
+    "censoredAfterFirstBeforeSecond": 1,
+    "missingIdentityObservations": 353,
+    "afterCutoffObservationsExcluded": 0
+  },
+  "summary": {
+    "pairedN": 5,
+    "improved": 1,
+    "aboveBaseline": 2,
+    "partialRise": 0,
+    "meanDelta": -63.483669493773164,
+    "meanNormalizedDelta": -0.38466609384359396
+  },
+  "audit": {
+    "checks": [
+      {
+        "name": "valid_dates_and_nonnegative_finite_scores",
+        "passed": true,
+        "detail": {
+          "invalidRecords": 0
+        }
+      },
+      {
+        "name": "unique_actor_film_observations",
+        "passed": true,
+        "detail": {
+          "duplicateRecords": 0
+        }
+      },
+      {
+        "name": "one_release_date_per_film",
+        "passed": true,
+        "detail": {
+          "inconsistentFilms": []
+        }
+      },
+      {
+        "name": "unique_registry_events",
+        "passed": true,
+        "detail": {
+          "events": 16
+        }
+      },
+      {
+        "name": "post_disclosure_month_only",
+        "passed": true,
+        "detail": "Disclosure-month releases are excluded."
+      },
+      {
+        "name": "second_distinct_day_fixed_without_score_gate",
+        "passed": true,
+        "detail": "P2 is trajectory position two even when P2 remains below baseline."
+      },
+      {
+        "name": "pre_event_high_years_strict",
+        "passed": true,
+        "detail": "Usable, high years are deduplicated and strictly precede the event year."
+      },
+      {
+        "name": "censored_outcomes_are_null",
+        "passed": true,
+        "detail": "Missing endpoints never become zero outcomes."
+      },
+      {
+        "name": "frozen_directional_pool_sizes",
+        "passed": true,
+        "detail": "Both independent directional pools and high sets are fixed before the disclosure month."
+      },
+      {
+        "name": "논문 전체 배우–영화 점수 스냅샷",
+        "passed": true,
+        "detail": "624df9d00c8ca463c83c8997f415f9001bb640f42e4968ddb981719ee2c3c415"
+      },
+      {
+        "name": "논문 입력 eligibleFilms",
+        "passed": true,
+        "detail": "1761 / 기존 1761"
+      },
+      {
+        "name": "논문 입력 observations",
+        "passed": true,
+        "detail": "45109 / 기존 45109"
+      },
+      {
+        "name": "논문 입력 idObservations",
+        "passed": true,
+        "detail": "44756 / 기존 44756"
+      },
+      {
+        "name": "기존 계산 코드 starpower-core.js",
+        "passed": true,
+        "detail": "기존 논문 계산 코어와 SHA-256 대조"
+      },
+      {
+        "name": "기존 계산 코드 hawk-criterion-core.js",
+        "passed": true,
+        "detail": "기존 논문 계산 코어와 SHA-256 대조"
+      },
+      {
+        "name": "첫 개봉작 관찰 배우 6명",
+        "passed": true,
+        "detail": "10050151, 10053802, 10054493, 10087253, 20127192, 20136191"
+      },
+      {
+        "name": "하정우: 논문 첫 작품·SP·평균·재출연",
+        "passed": true,
+        "detail": "기준 개봉일 20230802, SP 380.12972459"
+      },
+      {
+        "name": "오달수: 논문 첫 작품·SP·평균·재출연",
+        "passed": true,
+        "detail": "기준 개봉일 20201125, SP 123.01891959"
+      },
+      {
+        "name": "곽도원: 논문 첫 작품·SP·평균·재출연",
+        "passed": true,
+        "detail": "기준 개봉일 20241204, SP 537.05868965"
+      },
+      {
+        "name": "윤제문: 논문 첫 작품·SP·평균·재출연",
+        "passed": true,
+        "detail": "기준 개봉일 20160803, SP 267.42630432"
+      },
+      {
+        "name": "배성우: 논문 첫 작품·SP·평균·재출연",
+        "passed": true,
+        "detail": "기준 개봉일 20211208, SP 0.77826427"
+      },
+      {
+        "name": "유아인: 논문 첫 작품·SP·평균·재출연",
+        "passed": true,
+        "detail": "기준 개봉일 20250326, SP 500.14966540"
+      }
+    ],
+    "passed": true,
+    "scope": "Input counts, unchanged scoring cores and six manuscript first-release observations; not all manuscript analyses."
+  },
+  "cases": [
+    {
+      "priority": 1,
+      "name": "하정우",
+      "id": "10087253",
+      "eventMonth": "2020-02",
+      "eventLabel": "프로포폴 관련 의혹 공개",
+      "sources": [
+        {
+          "title": "뉴스핌 2020-02-19: 의혹 공개와 당사자 해명",
+          "url": "https://www.newspim.com/news/view/20200219000338"
+        },
+        {
+          "url": "https://www.dispatch.co.kr/2217844",
+          "title": "2022-09 인터뷰: 약 2년 반 공백 언급"
+        }
+      ],
+      "productionNote": "비공식작전은 2022년 2월 촬영 시작 보도가 있어 공개 사건 이후 촬영으로 구분한다. 그러나 촬영 후 시점만으로 사건 후 캐스팅 결정 또는 의도적인 회복 전략을 입증할 수 없다.",
+      "productionSources": [
+        {
+          "title": "마이데일리 2023-07-24: 비공식작전 촬영 시점 인터뷰",
+          "url": "https://mydaily.co.kr/page/view/2023072413558403752"
+        }
+      ],
+      "collaborationDecisionAfterEvent": "unverified",
+      "eventId": "10087253-2020-02",
+      "pauseStatus": "documented",
+      "pauseEvidence": [
+        {
+          "url": "https://www.dispatch.co.kr/2217844",
+          "title": "2022-09 인터뷰: 약 2년 반 공백 언급"
+        }
+      ],
+      "reviewNote": "공백 인터뷰 확인. OTT 복귀와 국내 적격 영화 복귀는 별도이며, 휴식 중 모든 촬영 중단을 뜻하지 않음.",
+      "eligible": true,
+      "eligibleHistory": true,
+      "reasons": [],
+      "preMean": 475.0260184003608,
+      "preN": 31,
+      "preHighYears": [
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "eventYearAnnual": [
+        {
+          "id": "10087253",
+          "name": "하정우",
+          "year": 2020,
+          "score": 745.4292086903854,
+          "films": 1,
+          "usable": true,
+          "high": true
+        }
+      ],
+      "first": {
+        "date": "20230802",
+        "movies": [
+          {
+            "id": "20193879",
+            "title": "비공식작전"
+          }
+        ],
+        "score": 380.1297245883328,
+        "ratioToPre": 0.8002292713742521,
+        "coactorCount": 13,
+        "synergy": {
+          "forward": {
+            "M": 547,
+            "K": 137,
+            "n": 8,
+            "x": 2,
+            "matches": [
+              {
+                "id": "10058918",
+                "name": "임형국",
+                "value": 518.1584211261306,
+                "joint": 1,
+                "without": 7,
+                "withMean": 163.356548323942,
+                "withoutMean": 26.42632418180878,
+                "lastJoint": "20191219"
+              },
+              {
+                "id": "10069179",
+                "name": "주지훈",
+                "value": 491.5445338952942,
+                "joint": 2,
+                "without": 9,
+                "withMean": 813.0806254777413,
+                "withoutMean": 137.4504502853981,
+                "lastJoint": "20180801"
+              }
+            ],
+            "any": true,
+            "cutoff": 407.5767208995349,
+            "expected": 2.003656307129799
+          },
+          "reverse": {
+            "M": 790,
+            "K": 218,
+            "n": 8,
+            "x": 2,
+            "matches": [
+              {
+                "id": "10069179",
+                "name": "주지훈",
+                "value": 534.5067471684606,
+                "joint": 2,
+                "without": 29,
+                "withMean": 2241.207335767965,
+                "withoutMean": 353.2204103060433,
+                "lastJoint": "20180801"
+              },
+              {
+                "id": "10058918",
+                "name": "임형국",
+                "value": 102.27367130621184,
+                "joint": 1,
+                "without": 30,
+                "withMean": 930.1650213822024,
+                "withoutMean": 459.85471830096606,
+                "lastJoint": "20191219"
+              }
+            ],
+            "any": true,
+            "cutoff": 102.27367130621184,
+            "expected": 2.207594936708861
+          }
+        }
+      },
+      "second": {
+        "date": "20230927",
+        "movies": [
+          {
+            "id": "20197122",
+            "title": "1947 보스톤"
+          }
+        ],
+        "score": 363.79891314032113,
+        "ratioToPre": 0.7658504988114243,
+        "coactorCount": 44,
+        "synergy": {
+          "forward": {
+            "M": 547,
+            "K": 137,
+            "n": 9,
+            "x": 1,
+            "matches": [
+              {
+                "id": "20159884",
+                "name": "오희준",
+                "value": 488.29919046434236,
+                "joint": 2,
+                "without": 29,
+                "withMean": 247.59989112922358,
+                "withoutMean": 42.08740979803047,
+                "lastJoint": "20180801"
+              }
+            ],
+            "any": true,
+            "cutoff": 407.5767208995349,
+            "expected": 2.2541133455210236
+          },
+          "reverse": {
+            "M": 790,
+            "K": 218,
+            "n": 9,
+            "x": 2,
+            "matches": [
+              {
+                "id": "20159884",
+                "name": "오희준",
+                "value": 534.5067471684606,
+                "joint": 2,
+                "without": 29,
+                "withMean": 2241.207335767965,
+                "withoutMean": 353.2204103060433,
+                "lastJoint": "20180801"
+              },
+              {
+                "id": "20344535",
+                "name": "양지수",
+                "value": 349.28290236328115,
+                "joint": 5,
+                "without": 26,
+                "withMean": 1365.1438809997614,
+                "withoutMean": 303.8495063620145,
+                "lastJoint": "20191219"
+              }
+            ],
+            "any": true,
+            "cutoff": 102.27367130621184,
+            "expected": 2.4835443037974683
+          }
+        }
+      },
+      "delta": -16.330811448011673,
+      "normalizedDelta": -0.034378772562827835,
+      "ratioToPre": 0.7658504988114243,
+      "ratioToFirst": 0.9570388464998433,
+      "improved": false,
+      "aboveBaseline": false,
+      "partialRise": false,
+      "trajectory": [
+        {
+          "date": "20230802",
+          "movies": [
+            {
+              "id": "20193879",
+              "title": "비공식작전"
+            }
+          ],
+          "score": 380.1297245883328,
+          "ratioToPre": 0.8002292713742521,
+          "coactorCount": 13,
+          "synergy": {
+            "forward": {
+              "M": 547,
+              "K": 137,
+              "n": 8,
+              "x": 2,
+              "matches": [
+                {
+                  "id": "10058918",
+                  "name": "임형국",
+                  "value": 518.1584211261306,
+                  "joint": 1,
+                  "without": 7,
+                  "withMean": 163.356548323942,
+                  "withoutMean": 26.42632418180878,
+                  "lastJoint": "20191219"
+                },
+                {
+                  "id": "10069179",
+                  "name": "주지훈",
+                  "value": 491.5445338952942,
+                  "joint": 2,
+                  "without": 9,
+                  "withMean": 813.0806254777413,
+                  "withoutMean": 137.4504502853981,
+                  "lastJoint": "20180801"
+                }
+              ],
+              "any": true,
+              "cutoff": 407.5767208995349,
+              "expected": 2.003656307129799
+            },
+            "reverse": {
+              "M": 790,
+              "K": 218,
+              "n": 8,
+              "x": 2,
+              "matches": [
+                {
+                  "id": "10069179",
+                  "name": "주지훈",
+                  "value": 534.5067471684606,
+                  "joint": 2,
+                  "without": 29,
+                  "withMean": 2241.207335767965,
+                  "withoutMean": 353.2204103060433,
+                  "lastJoint": "20180801"
+                },
+                {
+                  "id": "10058918",
+                  "name": "임형국",
+                  "value": 102.27367130621184,
+                  "joint": 1,
+                  "without": 30,
+                  "withMean": 930.1650213822024,
+                  "withoutMean": 459.85471830096606,
+                  "lastJoint": "20191219"
+                }
+              ],
+              "any": true,
+              "cutoff": 102.27367130621184,
+              "expected": 2.207594936708861
+            }
+          }
+        },
+        {
+          "date": "20230927",
+          "movies": [
+            {
+              "id": "20197122",
+              "title": "1947 보스톤"
+            }
+          ],
+          "score": 363.79891314032113,
+          "ratioToPre": 0.7658504988114243,
+          "coactorCount": 44,
+          "synergy": {
+            "forward": {
+              "M": 547,
+              "K": 137,
+              "n": 9,
+              "x": 1,
+              "matches": [
+                {
+                  "id": "20159884",
+                  "name": "오희준",
+                  "value": 488.29919046434236,
+                  "joint": 2,
+                  "without": 29,
+                  "withMean": 247.59989112922358,
+                  "withoutMean": 42.08740979803047,
+                  "lastJoint": "20180801"
+                }
+              ],
+              "any": true,
+              "cutoff": 407.5767208995349,
+              "expected": 2.2541133455210236
+            },
+            "reverse": {
+              "M": 790,
+              "K": 218,
+              "n": 9,
+              "x": 2,
+              "matches": [
+                {
+                  "id": "20159884",
+                  "name": "오희준",
+                  "value": 534.5067471684606,
+                  "joint": 2,
+                  "without": 29,
+                  "withMean": 2241.207335767965,
+                  "withoutMean": 353.2204103060433,
+                  "lastJoint": "20180801"
+                },
+                {
+                  "id": "20344535",
+                  "name": "양지수",
+                  "value": 349.28290236328115,
+                  "joint": 5,
+                  "without": 26,
+                  "withMean": 1365.1438809997614,
+                  "withoutMean": 303.8495063620145,
+                  "lastJoint": "20191219"
+                }
+              ],
+              "any": true,
+              "cutoff": 102.27367130621184,
+              "expected": 2.4835443037974683
+            }
+          }
+        },
+        {
+          "date": "20240621",
+          "movies": [
+            {
+              "id": "20248465",
+              "title": "하이재킹"
+            }
+          ],
+          "score": 530.3869154541002,
+          "ratioToPre": 1.1165428732517977,
+          "coactorCount": 77,
+          "synergy": {
+            "forward": {
+              "M": 547,
+              "K": 137,
+              "n": 11,
+              "x": 2,
+              "matches": [
+                {
+                  "id": "10003967",
+                  "name": "김동욱",
+                  "value": 757.4311808839699,
+                  "joint": 4,
+                  "without": 11,
+                  "withMean": 390.43977931696446,
+                  "withoutMean": 45.53599029538908,
+                  "lastJoint": "20180801"
+                },
+                {
+                  "id": "10072112",
+                  "name": "최광일",
+                  "value": 605.0296908943432,
+                  "joint": 2,
+                  "without": 4,
+                  "withMean": 147.87622957642427,
+                  "withoutMean": 20.974468378606943,
+                  "lastJoint": "20191219"
+                }
+              ],
+              "any": true,
+              "cutoff": 407.5767208995349,
+              "expected": 2.7550274223034736
+            },
+            "reverse": {
+              "M": 790,
+              "K": 218,
+              "n": 11,
+              "x": 1,
+              "matches": [
+                {
+                  "id": "10003967",
+                  "name": "김동욱",
+                  "value": 343.2451782608548,
+                  "joint": 4,
+                  "without": 27,
+                  "withMean": 1459.2378498980158,
+                  "withoutMean": 329.216858178486,
+                  "lastJoint": "20180801"
+                }
+              ],
+              "any": true,
+              "cutoff": 102.27367130621184,
+              "expected": 3.0354430379746837
+            }
+          }
+        },
+        {
+          "date": "20250205",
+          "movies": [
+            {
+              "id": "20216476",
+              "title": "브로큰"
+            }
+          ],
+          "score": 90.82054491326176,
+          "ratioToPre": 0.19119067460577813,
+          "coactorCount": 60,
+          "synergy": {
+            "forward": {
+              "M": 547,
+              "K": 137,
+              "n": 9,
+              "x": 1,
+              "matches": [
+                {
+                  "id": "10056072",
+                  "name": "이세랑",
+                  "value": 439.1004089456945,
+                  "joint": 2,
+                  "without": 15,
+                  "withMean": 165.54987676134806,
+                  "withoutMean": 30.708542233367975,
+                  "lastJoint": "20120202"
+                }
+              ],
+              "any": true,
+              "cutoff": 407.5767208995349,
+              "expected": 2.2541133455210236
+            },
+            "reverse": {
+              "M": 790,
+              "K": 218,
+              "n": 9,
+              "x": 3,
+              "matches": [
+                {
+                  "id": "20344535",
+                  "name": "양지수",
+                  "value": 349.28290236328115,
+                  "joint": 5,
+                  "without": 26,
+                  "withMean": 1365.1438809997614,
+                  "withoutMean": 303.8495063620145,
+                  "lastJoint": "20191219"
+                },
+                {
+                  "id": "20329213",
+                  "name": "차시원",
+                  "value": 102.27367130621184,
+                  "joint": 1,
+                  "without": 30,
+                  "withMean": 930.1650213822024,
+                  "withoutMean": 459.85471830096606,
+                  "lastJoint": "20191219"
+                },
+                {
+                  "id": "20331815",
+                  "name": "김연교",
+                  "value": 102.27367130621184,
+                  "joint": 1,
+                  "without": 30,
+                  "withMean": 930.1650213822024,
+                  "withoutMean": 459.85471830096606,
+                  "lastJoint": "20191219"
+                }
+              ],
+              "any": true,
+              "cutoff": 102.27367130621184,
+              "expected": 2.4835443037974683
+            }
+          }
+        },
+        {
+          "date": "20250402",
+          "movies": [
+            {
+              "id": "20233008",
+              "title": "로비"
+            }
+          ],
+          "score": 125.8683707313772,
+          "ratioToPre": 0.2649715296758608,
+          "coactorCount": 9,
+          "synergy": {
+            "forward": {
+              "M": 547,
+              "K": 137,
+              "n": 2,
+              "x": 0,
+              "matches": [],
+              "any": false,
+              "cutoff": 407.5767208995349,
+              "expected": 0.5009140767824497
+            },
+            "reverse": {
+              "M": 790,
+              "K": 218,
+              "n": 2,
+              "x": 1,
+              "matches": [
+                {
+                  "id": "10005383",
+                  "name": "김의성",
+                  "value": 113.07733908643591,
+                  "joint": 1,
+                  "without": 30,
+                  "withMean": 976.5515575223945,
+                  "withoutMean": 458.30850042962635,
+                  "lastJoint": "20150722"
+                }
+              ],
+              "any": true,
+              "cutoff": 102.27367130621184,
+              "expected": 0.5518987341772152
+            }
+          }
+        },
+        {
+          "date": "20250625",
+          "movies": [
+            {
+              "id": "20254237",
+              "title": "무명 無名"
+            }
+          ],
+          "score": 29.544270352384263,
+          "ratioToPre": 0.06219505712944717,
+          "coactorCount": 1,
+          "synergy": {
+            "forward": {
+              "M": 547,
+              "K": 137,
+              "n": 0,
+              "x": 0,
+              "matches": [],
+              "any": false,
+              "cutoff": 407.5767208995349,
+              "expected": 0
+            },
+            "reverse": {
+              "M": 790,
+              "K": 218,
+              "n": 0,
+              "x": 0,
+              "matches": [],
+              "any": false,
+              "cutoff": 102.27367130621184,
+              "expected": 0
+            }
+          }
+        },
+        {
+          "date": "20251203",
+          "movies": [
+            {
+              "id": "20249326",
+              "title": "윗집 사람들"
+            }
+          ],
+          "score": 261.57515150113267,
+          "ratioToPre": 0.5506543670638947,
+          "coactorCount": 3,
+          "synergy": {
+            "forward": {
+              "M": 547,
+              "K": 137,
+              "n": 2,
+              "x": 1,
+              "matches": [
+                {
+                  "id": "10003967",
+                  "name": "김동욱",
+                  "value": 757.4311808839699,
+                  "joint": 4,
+                  "without": 11,
+                  "withMean": 390.43977931696446,
+                  "withoutMean": 45.53599029538908,
+                  "lastJoint": "20180801"
+                }
+              ],
+              "any": true,
+              "cutoff": 407.5767208995349,
+              "expected": 0.5009140767824497
+            },
+            "reverse": {
+              "M": 790,
+              "K": 218,
+              "n": 2,
+              "x": 1,
+              "matches": [
+                {
+                  "id": "10003967",
+                  "name": "김동욱",
+                  "value": 343.2451782608548,
+                  "joint": 4,
+                  "without": 27,
+                  "withMean": 1459.2378498980158,
+                  "withoutMean": 329.216858178486,
+                  "lastJoint": "20180801"
+                }
+              ],
+              "any": true,
+              "cutoff": 102.27367130621184,
+              "expected": 0.5518987341772152
+            }
+          }
+        }
+      ],
+      "notes": [
+        "Release timing does not establish post-event casting, a new collaboration decision, or causation."
+      ],
+      "frozenPoolSummary": {
+        "forward": {
+          "M": 547,
+          "K": 137,
+          "n": 0,
+          "x": 0,
+          "matches": [],
+          "any": false,
+          "cutoff": 407.5767208995349,
+          "expected": 0
+        },
+        "reverse": {
+          "M": 790,
+          "K": 218,
+          "n": 0,
+          "x": 0,
+          "matches": [],
+          "any": false,
+          "cutoff": 102.27367130621184,
+          "expected": 0
+        }
+      }
+    },
+    {
+      "priority": 2,
+      "name": "오달수",
+      "id": "10050151",
+      "eventMonth": "2018-02",
+      "eventLabel": "성추행 의혹 공개 및 활동 중단",
+      "sources": [
+        {
+          "title": "YTN 2020-11-11: 이웃사촌 시사회와 2018년 2월 의혹",
+          "url": "https://www.ytn.co.kr/_ln/0117_202011111633310688"
+        },
+        {
+          "url": "https://www.ajunews.com/view/20201111083903894",
+          "title": "2020-11-11: 활동 중단·공개석상 복귀 및 기존 촬영작 보도"
+        }
+      ],
+      "productionNote": "이웃사촌은 사건 전부터 촬영된 개봉 지연 작품이다. 개봉 후 성과 관찰에는 포함하지만 사건 후 새 협업을 선택했다는 증거로 사용하지 않는다. 의혹을 확정된 범죄로 표현하지 않는다.",
+      "productionSources": [
+        {
+          "title": "아주경제 2020-11-11: 2018년 2월 촬영 종료 및 개봉 연기",
+          "url": "https://www.ajunews.com/view/20201111083903894"
+        }
+      ],
+      "collaborationDecisionAfterEvent": "not_supported_preexisting_production",
+      "eventId": "10050151-2018-02",
+      "pauseStatus": "documented",
+      "pauseEvidence": [
+        {
+          "url": "https://www.ajunews.com/view/20201111083903894",
+          "title": "2020-11-11: 활동 중단·공개석상 복귀 및 기존 촬영작 보도"
+        }
+      ],
+      "reviewNote": "의혹을 확정 범죄로 표현하지 않음. 이웃사촌은 사건 전부터 촬영한 개봉 지연 작품.",
+      "eligible": true,
+      "eligibleHistory": true,
+      "reasons": [],
+      "preMean": 204.0583394189959,
+      "preN": 46,
+      "preHighYears": [
+        2005,
+        2006,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017
+      ],
+      "eventYearAnnual": [
+        {
+          "id": "10050151",
+          "name": "오달수",
+          "year": 2018,
+          "score": 240.53728364018184,
+          "films": 1,
+          "usable": true,
+          "high": true
+        }
+      ],
+      "first": {
+        "date": "20201125",
+        "movies": [
+          {
+            "id": "20181983",
+            "title": "이웃사촌"
+          }
+        ],
+        "score": 123.01891959347043,
+        "ratioToPre": 0.6028615147204247,
+        "coactorCount": 99,
+        "synergy": {
+          "forward": {
+            "M": 600,
+            "K": 150,
+            "n": 8,
+            "x": 3,
+            "matches": [
+              {
+                "id": "10062493",
+                "name": "정희태",
+                "value": 471.87698393323717,
+                "joint": 1,
+                "without": 13,
+                "withMean": 192.24832156940414,
+                "withoutMean": 33.61707621928842,
+                "lastJoint": "20130123"
+              },
+              {
+                "id": "20335852",
+                "name": "강지혜",
+                "value": 441.67549641239435,
+                "joint": 1,
+                "without": 1,
+                "withMean": 142.67895942291477,
+                "withoutMean": 26.34030159530954,
+                "lastJoint": "20161221"
+              },
+              {
+                "id": "20144380",
+                "name": "지승현",
+                "value": 366.23351730538695,
+                "joint": 1,
+                "without": 5,
+                "withMean": 158.36557878284003,
+                "withoutMean": 33.96700857075216,
+                "lastJoint": "20110127"
+              }
+            ],
+            "any": true,
+            "cutoff": 347.76723387350665,
+            "expected": 2
+          },
+          "reverse": {
+            "M": 943,
+            "K": 243,
+            "n": 9,
+            "x": 4,
+            "matches": [
+              {
+                "id": "20111220",
+                "name": "유정호",
+                "value": 357.8082735448002,
+                "joint": 2,
+                "without": 44,
+                "withMean": 808.4295361103509,
+                "withoutMean": 176.58692138757067,
+                "lastJoint": "20150722"
+              },
+              {
+                "id": "20159610",
+                "name": "정재헌",
+                "value": 321.9918014805128,
+                "joint": 1,
+                "without": 45,
+                "withMean": 804.7765391851207,
+                "withoutMean": 190.7090460908598,
+                "lastJoint": "20150805"
+              },
+              {
+                "id": "20148636",
+                "name": "민경옥",
+                "value": 184.48218078431324,
+                "joint": 1,
+                "without": 45,
+                "withMean": 558.126067510772,
+                "withoutMean": 196.19016768362312,
+                "lastJoint": "20131218"
+              },
+              {
+                "id": "10062493",
+                "name": "정희태",
+                "value": 163.44706518609163,
+                "joint": 1,
+                "without": 45,
+                "withMean": 519.1396515814449,
+                "withoutMean": 197.0565324820526,
+                "lastJoint": "20130123"
+              }
+            ],
+            "any": true,
+            "cutoff": 142.68290272229325,
+            "expected": 2.3191940615058324
+          }
+        }
+      },
+      "second": {
+        "date": "20220427",
+        "movies": [
+          {
+            "id": "20178501",
+            "title": "니 부모 얼굴이 보고 싶다"
+          }
+        ],
+        "score": 67.86944524103905,
+        "ratioToPre": 0.3325982433958837,
+        "coactorCount": 67,
+        "synergy": {
+          "forward": {
+            "M": 600,
+            "K": 150,
+            "n": 12,
+            "x": 2,
+            "matches": [
+              {
+                "id": "20185969",
+                "name": "유재상",
+                "value": 1015.1679327654747,
+                "joint": 1,
+                "without": 5,
+                "withMean": 249.65389154259753,
+                "withoutMean": 22.38711177100364,
+                "lastJoint": "20141217"
+              },
+              {
+                "id": "20329855",
+                "name": "윤돈선",
+                "value": 428.8438614069433,
+                "joint": 1,
+                "without": 4,
+                "withMean": 139.36649423803402,
+                "withoutMean": 26.353051327335358,
+                "lastJoint": "20160810"
+              }
+            ],
+            "any": true,
+            "cutoff": 347.76723387350665,
+            "expected": 3
+          },
+          "reverse": {
+            "M": 943,
+            "K": 243,
+            "n": 12,
+            "x": 2,
+            "matches": [
+              {
+                "id": "20185969",
+                "name": "유재상",
+                "value": 363.1091373678048,
+                "joint": 1,
+                "without": 45,
+                "withMean": 875.8741406990731,
+                "withoutMean": 189.12909939054973,
+                "lastJoint": "20141217"
+              },
+              {
+                "id": "20175721",
+                "name": "김홍파",
+                "value": 285.6752721309918,
+                "joint": 1,
+                "without": 45,
+                "withMean": 740.9849315216288,
+                "withoutMean": 192.12663737227072,
+                "lastJoint": "20150722"
+              }
+            ],
+            "any": true,
+            "cutoff": 142.68290272229325,
+            "expected": 3.092258748674443
+          }
+        }
+      },
+      "delta": -55.14947435243138,
+      "normalizedDelta": -0.2702632713245411,
+      "ratioToPre": 0.3325982433958837,
+      "ratioToFirst": 0.5516992464681132,
+      "improved": false,
+      "aboveBaseline": false,
+      "partialRise": false,
+      "trajectory": [
+        {
+          "date": "20201125",
+          "movies": [
+            {
+              "id": "20181983",
+              "title": "이웃사촌"
+            }
+          ],
+          "score": 123.01891959347043,
+          "ratioToPre": 0.6028615147204247,
+          "coactorCount": 99,
+          "synergy": {
+            "forward": {
+              "M": 600,
+              "K": 150,
+              "n": 8,
+              "x": 3,
+              "matches": [
+                {
+                  "id": "10062493",
+                  "name": "정희태",
+                  "value": 471.87698393323717,
+                  "joint": 1,
+                  "without": 13,
+                  "withMean": 192.24832156940414,
+                  "withoutMean": 33.61707621928842,
+                  "lastJoint": "20130123"
+                },
+                {
+                  "id": "20335852",
+                  "name": "강지혜",
+                  "value": 441.67549641239435,
+                  "joint": 1,
+                  "without": 1,
+                  "withMean": 142.67895942291477,
+                  "withoutMean": 26.34030159530954,
+                  "lastJoint": "20161221"
+                },
+                {
+                  "id": "20144380",
+                  "name": "지승현",
+                  "value": 366.23351730538695,
+                  "joint": 1,
+                  "without": 5,
+                  "withMean": 158.36557878284003,
+                  "withoutMean": 33.96700857075216,
+                  "lastJoint": "20110127"
+                }
+              ],
+              "any": true,
+              "cutoff": 347.76723387350665,
+              "expected": 2
+            },
+            "reverse": {
+              "M": 943,
+              "K": 243,
+              "n": 9,
+              "x": 4,
+              "matches": [
+                {
+                  "id": "20111220",
+                  "name": "유정호",
+                  "value": 357.8082735448002,
+                  "joint": 2,
+                  "without": 44,
+                  "withMean": 808.4295361103509,
+                  "withoutMean": 176.58692138757067,
+                  "lastJoint": "20150722"
+                },
+                {
+                  "id": "20159610",
+                  "name": "정재헌",
+                  "value": 321.9918014805128,
+                  "joint": 1,
+                  "without": 45,
+                  "withMean": 804.7765391851207,
+                  "withoutMean": 190.7090460908598,
+                  "lastJoint": "20150805"
+                },
+                {
+                  "id": "20148636",
+                  "name": "민경옥",
+                  "value": 184.48218078431324,
+                  "joint": 1,
+                  "without": 45,
+                  "withMean": 558.126067510772,
+                  "withoutMean": 196.19016768362312,
+                  "lastJoint": "20131218"
+                },
+                {
+                  "id": "10062493",
+                  "name": "정희태",
+                  "value": 163.44706518609163,
+                  "joint": 1,
+                  "without": 45,
+                  "withMean": 519.1396515814449,
+                  "withoutMean": 197.0565324820526,
+                  "lastJoint": "20130123"
+                }
+              ],
+              "any": true,
+              "cutoff": 142.68290272229325,
+              "expected": 2.3191940615058324
+            }
+          }
+        },
+        {
+          "date": "20220427",
+          "movies": [
+            {
+              "id": "20178501",
+              "title": "니 부모 얼굴이 보고 싶다"
+            }
+          ],
+          "score": 67.86944524103905,
+          "ratioToPre": 0.3325982433958837,
+          "coactorCount": 67,
+          "synergy": {
+            "forward": {
+              "M": 600,
+              "K": 150,
+              "n": 12,
+              "x": 2,
+              "matches": [
+                {
+                  "id": "20185969",
+                  "name": "유재상",
+                  "value": 1015.1679327654747,
+                  "joint": 1,
+                  "without": 5,
+                  "withMean": 249.65389154259753,
+                  "withoutMean": 22.38711177100364,
+                  "lastJoint": "20141217"
+                },
+                {
+                  "id": "20329855",
+                  "name": "윤돈선",
+                  "value": 428.8438614069433,
+                  "joint": 1,
+                  "without": 4,
+                  "withMean": 139.36649423803402,
+                  "withoutMean": 26.353051327335358,
+                  "lastJoint": "20160810"
+                }
+              ],
+              "any": true,
+              "cutoff": 347.76723387350665,
+              "expected": 3
+            },
+            "reverse": {
+              "M": 943,
+              "K": 243,
+              "n": 12,
+              "x": 2,
+              "matches": [
+                {
+                  "id": "20185969",
+                  "name": "유재상",
+                  "value": 363.1091373678048,
+                  "joint": 1,
+                  "without": 45,
+                  "withMean": 875.8741406990731,
+                  "withoutMean": 189.12909939054973,
+                  "lastJoint": "20141217"
+                },
+                {
+                  "id": "20175721",
+                  "name": "김홍파",
+                  "value": 285.6752721309918,
+                  "joint": 1,
+                  "without": 45,
+                  "withMean": 740.9849315216288,
+                  "withoutMean": 192.12663737227072,
+                  "lastJoint": "20150722"
+                }
+              ],
+              "any": true,
+              "cutoff": 142.68290272229325,
+              "expected": 3.092258748674443
+            }
+          }
+        },
+        {
+          "date": "20230322",
+          "movies": [
+            {
+              "id": "20210544",
+              "title": "웅남이"
+            }
+          ],
+          "score": 42.517867430859106,
+          "ratioToPre": 0.20836133211667748,
+          "coactorCount": 58,
+          "synergy": {
+            "forward": {
+              "M": 600,
+              "K": 150,
+              "n": 6,
+              "x": 1,
+              "matches": [
+                {
+                  "id": "20124322",
+                  "name": "이이경",
+                  "value": 206268.24304718856,
+                  "joint": 1,
+                  "without": 2,
+                  "withMean": 194.18775960552293,
+                  "withoutMean": 0.09409769484790331,
+                  "lastJoint": "20140806"
+                }
+              ],
+              "any": true,
+              "cutoff": 347.76723387350665,
+              "expected": 1.5
+            },
+            "reverse": {
+              "M": 943,
+              "K": 243,
+              "n": 6,
+              "x": 0,
+              "matches": [],
+              "any": false,
+              "cutoff": 142.68290272229325,
+              "expected": 1.5461293743372215
+            }
+          }
+        },
+        {
+          "date": "20231115",
+          "movies": [
+            {
+              "id": "20217425",
+              "title": "더 와일드: 야수들의 전쟁"
+            }
+          ],
+          "score": 5.508853174603724,
+          "ratioToPre": 0.026996461846591414,
+          "coactorCount": 6,
+          "synergy": {
+            "forward": {
+              "M": 600,
+              "K": 150,
+              "n": 2,
+              "x": 1,
+              "matches": [
+                {
+                  "id": "20111279",
+                  "name": "오대환",
+                  "value": 941.6332770398519,
+                  "joint": 1,
+                  "without": 16,
+                  "withMean": 391.84397878731534,
+                  "withoutMean": 37.618227779825794,
+                  "lastJoint": "20150805"
+                }
+              ],
+              "any": true,
+              "cutoff": 347.76723387350665,
+              "expected": 0.5
+            },
+            "reverse": {
+              "M": 943,
+              "K": 243,
+              "n": 2,
+              "x": 1,
+              "matches": [
+                {
+                  "id": "20111279",
+                  "name": "오대환",
+                  "value": 321.9918014805128,
+                  "joint": 1,
+                  "without": 45,
+                  "withMean": 804.7765391851207,
+                  "withoutMean": 190.7090460908598,
+                  "lastJoint": "20150805"
+                }
+              ],
+              "any": true,
+              "cutoff": 142.68290272229325,
+              "expected": 0.5153764581124072
+            }
+          }
+        },
+        {
+          "date": "20240913",
+          "movies": [
+            {
+              "id": "20239670",
+              "title": "베테랑2"
+            }
+          ],
+          "score": 601.2956266637574,
+          "ratioToPre": 2.946684895975305,
+          "coactorCount": 73,
+          "synergy": {
+            "forward": {
+              "M": 600,
+              "K": 150,
+              "n": 14,
+              "x": 5,
+              "matches": [
+                {
+                  "id": "20322111",
+                  "name": "강길우",
+                  "value": 19134.4285937505,
+                  "joint": 1,
+                  "without": 1,
+                  "withMean": 229.04748556103,
+                  "withoutMean": 1.19082032743853,
+                  "lastJoint": "20171220"
+                },
+                {
+                  "id": "20111279",
+                  "name": "오대환",
+                  "value": 941.6332770398519,
+                  "joint": 1,
+                  "without": 16,
+                  "withMean": 391.84397878731534,
+                  "withoutMean": 37.618227779825794,
+                  "lastJoint": "20150805"
+                },
+                {
+                  "id": "10061699",
+                  "name": "정만식",
+                  "value": 500.6318033831575,
+                  "joint": 2,
+                  "without": 33,
+                  "withMean": 347.59451621093285,
+                  "withoutMean": 57.87148037334179,
+                  "lastJoint": "20150805"
+                },
+                {
+                  "id": "20147111",
+                  "name": "곽자형",
+                  "value": 418.95769863535526,
+                  "joint": 1,
+                  "without": 20,
+                  "withMean": 190.1062523358887,
+                  "withoutMean": 36.63232144658221,
+                  "lastJoint": "20150722"
+                },
+                {
+                  "id": "20239308",
+                  "name": "현봉식",
+                  "value": 415.63276217966364,
+                  "joint": 2,
+                  "without": 13,
+                  "withMean": 206.24237828269492,
+                  "withoutMean": 39.99791972311356,
+                  "lastJoint": "20141217"
+                }
+              ],
+              "any": true,
+              "cutoff": 347.76723387350665,
+              "expected": 3.5
+            },
+            "reverse": {
+              "M": 943,
+              "K": 243,
+              "n": 16,
+              "x": 8,
+              "matches": [
+                {
+                  "id": "20111279",
+                  "name": "오대환",
+                  "value": 321.9918014805128,
+                  "joint": 1,
+                  "without": 45,
+                  "withMean": 804.7765391851207,
+                  "withoutMean": 190.7090460908598,
+                  "lastJoint": "20150805"
+                },
+                {
+                  "id": "20211726",
+                  "name": "장윤주",
+                  "value": 321.9918014805128,
+                  "joint": 1,
+                  "without": 45,
+                  "withMean": 804.7765391851207,
+                  "withoutMean": 190.7090460908598,
+                  "lastJoint": "20150805"
+                },
+                {
+                  "id": "20147111",
+                  "name": "곽자형",
+                  "value": 285.6752721309918,
+                  "joint": 1,
+                  "without": 45,
+                  "withMean": 740.9849315216288,
+                  "withoutMean": 192.12663737227072,
+                  "lastJoint": "20150722"
+                },
+                {
+                  "id": "10061699",
+                  "name": "정만식",
+                  "value": 261.2426685601605,
+                  "joint": 2,
+                  "without": 44,
+                  "withMean": 661.9580953832829,
+                  "withoutMean": 183.24471414789195,
+                  "lastJoint": "20150805"
+                },
+                {
+                  "id": "20239308",
+                  "name": "현봉식",
+                  "value": 236.9443707210712,
+                  "joint": 2,
+                  "without": 44,
+                  "withMean": 623.3463846772054,
+                  "withoutMean": 184.9997919072591,
+                  "lastJoint": "20141217"
+                },
+                {
+                  "id": "20322111",
+                  "name": "강길우",
+                  "value": 229.99048801337355,
+                  "joint": 1,
+                  "without": 45,
+                  "withMean": 641.3089868517325,
+                  "withoutMean": 194.34165836493509,
+                  "lastJoint": "20171220"
+                },
+                {
+                  "id": "20343360",
+                  "name": "남진복",
+                  "value": 176.44926100592468,
+                  "joint": 2,
+                  "without": 44,
+                  "withMean": 523.9238673381728,
+                  "withoutMean": 189.51899724085152,
+                  "lastJoint": "20141217"
+                },
+                {
+                  "id": "20338367",
+                  "name": "김서원",
+                  "value": 159.72012891539654,
+                  "joint": 4,
+                  "without": 42,
+                  "withMean": 465.3495476446547,
+                  "withoutMean": 179.17346244512365,
+                  "lastJoint": "20150805"
+                }
+              ],
+              "any": true,
+              "cutoff": 142.68290272229325,
+              "expected": 4.123011664899257
+            }
+          }
+        },
+        {
+          "date": "20241023",
+          "movies": [
+            {
+              "id": "20236228",
+              "title": "오후 네시"
+            }
+          ],
+          "score": 8.222276121098359,
+          "ratioToPre": 0.04029375199518527,
+          "coactorCount": 2,
+          "synergy": {
+            "forward": {
+              "M": 600,
+              "K": 150,
+              "n": 2,
+              "x": 1,
+              "matches": [
+                {
+                  "id": "10060331",
+                  "name": "장영남",
+                  "value": 626.0164930772636,
+                  "joint": 1,
+                  "without": 28,
+                  "withMean": 543.7464020941501,
+                  "withoutMean": 74.89449720204688,
+                  "lastJoint": "20141217"
+                }
+              ],
+              "any": true,
+              "cutoff": 347.76723387350665,
+              "expected": 0.5
+            },
+            "reverse": {
+              "M": 943,
+              "K": 243,
+              "n": 2,
+              "x": 2,
+              "matches": [
+                {
+                  "id": "10060331",
+                  "name": "장영남",
+                  "value": 363.1091373678048,
+                  "joint": 1,
+                  "without": 45,
+                  "withMean": 875.8741406990731,
+                  "withoutMean": 189.12909939054973,
+                  "lastJoint": "20141217"
+                },
+                {
+                  "id": "20175721",
+                  "name": "김홍파",
+                  "value": 285.6752721309918,
+                  "joint": 1,
+                  "without": 45,
+                  "withMean": 740.9849315216288,
+                  "withoutMean": 192.12663737227072,
+                  "lastJoint": "20150722"
+                }
+              ],
+              "any": true,
+              "cutoff": 142.68290272229325,
+              "expected": 0.5153764581124072
+            }
+          }
+        },
+        {
+          "date": "20251003",
+          "movies": [
+            {
+              "id": "20228988",
+              "title": "보스"
+            }
+          ],
+          "score": 348.33882362144755,
+          "ratioToPre": 1.707055073628716,
+          "coactorCount": 8,
+          "synergy": {
+            "forward": {
+              "M": 600,
+              "K": 150,
+              "n": 4,
+              "x": 0,
+              "matches": [],
+              "any": false,
+              "cutoff": 347.76723387350665,
+              "expected": 1
+            },
+            "reverse": {
+              "M": 943,
+              "K": 243,
+              "n": 4,
+              "x": 0,
+              "matches": [],
+              "any": false,
+              "cutoff": 142.68290272229325,
+              "expected": 1.0307529162248144
+            }
+          }
+        }
+      ],
+      "notes": [
+        "Release timing does not establish post-event casting, a new collaboration decision, or causation."
+      ],
+      "frozenPoolSummary": {
+        "forward": {
+          "M": 600,
+          "K": 150,
+          "n": 0,
+          "x": 0,
+          "matches": [],
+          "any": false,
+          "cutoff": 347.76723387350665,
+          "expected": 0
+        },
+        "reverse": {
+          "M": 943,
+          "K": 243,
+          "n": 0,
+          "x": 0,
+          "matches": [],
+          "any": false,
+          "cutoff": 142.68290272229325,
+          "expected": 0
+        }
+      }
+    },
+    {
+      "priority": 3,
+      "name": "곽도원",
+      "id": "20127192",
+      "eventMonth": "2022-09",
+      "eventLabel": "음주운전 적발 공개",
+      "sources": [
+        {
+          "title": "경향신문 2022-09-25: 음주운전 입건",
+          "url": "https://www.khan.co.kr/article/202209252055001"
+        },
+        {
+          "url": "https://www.osen.co.kr/article/G1112437887",
+          "title": "2024-10 보도: 자숙 중 소방관 개봉"
+        }
+      ],
+      "productionNote": "소방관은 2020년에 촬영을 마친 작품으로, 2022년 사건 전에 협업이 이루어졌다. 365일 이후 개봉 조건은 충족하지만 사건 후 새 협업 선택의 증거가 아니다. 사건 직전 연도는 유효 관측이 없어 직전 Hawk 상태를 확인할 수 없다.",
+      "productionSources": [
+        {
+          "title": "일간스포츠 2024-12-09: 감독 인터뷰, 2020년 촬영 완료",
+          "url": "https://isplus.com/article/view/isp202412020075"
+        }
+      ],
+      "collaborationDecisionAfterEvent": "not_supported_preexisting_production",
+      "eventId": "20127192-2022-09",
+      "pauseStatus": "documented",
+      "pauseEvidence": [
+        {
+          "url": "https://www.osen.co.kr/article/G1112437887",
+          "title": "2024-10 보도: 자숙 중 소방관 개봉"
+        }
+      ],
+      "reviewNote": "활동 중단 보도 확인. 소방관은 2020년 촬영작이므로 사건 후 협업 선택의 증거가 아님.",
+      "eligible": true,
+      "eligibleHistory": true,
+      "reasons": [],
+      "preMean": 226.31161651877827,
+      "preN": 18,
+      "preHighYears": [
+        2013,
+        2014,
+        2016,
+        2017,
+        2020
+      ],
+      "eventYearAnnual": [],
+      "first": {
+        "date": "20241204",
+        "movies": [
+          {
+            "id": "20200142",
+            "title": "소방관"
+          }
+        ],
+        "score": 537.058689646711,
+        "ratioToPre": 2.373093780637409,
+        "coactorCount": 48,
+        "synergy": {
+          "forward": {
+            "M": 496,
+            "K": 124,
+            "n": 7,
+            "x": 1,
+            "matches": [
+              {
+                "id": "10088460",
+                "name": "허진",
+                "value": 368.4267890846245,
+                "joint": 1,
+                "without": 5,
+                "withMean": 211.16011536245722,
+                "withoutMean": 45.078573703074376,
+                "lastJoint": "20160512"
+              }
+            ],
+            "any": true,
+            "cutoff": 317.0340479595585,
+            "expected": 1.75
+          },
+          "reverse": {
+            "M": 674,
+            "K": 331,
+            "n": 7,
+            "x": 2,
+            "matches": [
+              {
+                "id": "10088460",
+                "name": "허진",
+                "value": 273.2624675087991,
+                "joint": 1,
+                "without": 17,
+                "withMean": 733.3974386589447,
+                "withoutMean": 196.4830387458273,
+                "lastJoint": "20160512"
+              },
+              {
+                "id": "20343496",
+                "name": "유성주",
+                "value": 80.67269805306421,
+                "joint": 1,
+                "without": 17,
+                "withMean": 391.3439840922278,
+                "withoutMean": 216.60383019092828,
+                "lastJoint": "20200729"
+              }
+            ],
+            "any": true,
+            "cutoff": 80.67269805306421,
+            "expected": 3.4376854599406528
+          }
+        }
+      },
+      "second": null,
+      "delta": null,
+      "normalizedDelta": null,
+      "ratioToPre": null,
+      "ratioToFirst": null,
+      "improved": null,
+      "aboveBaseline": null,
+      "partialRise": null,
+      "trajectory": [
+        {
+          "date": "20241204",
+          "movies": [
+            {
+              "id": "20200142",
+              "title": "소방관"
+            }
+          ],
+          "score": 537.058689646711,
+          "ratioToPre": 2.373093780637409,
+          "coactorCount": 48,
+          "synergy": {
+            "forward": {
+              "M": 496,
+              "K": 124,
+              "n": 7,
+              "x": 1,
+              "matches": [
+                {
+                  "id": "10088460",
+                  "name": "허진",
+                  "value": 368.4267890846245,
+                  "joint": 1,
+                  "without": 5,
+                  "withMean": 211.16011536245722,
+                  "withoutMean": 45.078573703074376,
+                  "lastJoint": "20160512"
+                }
+              ],
+              "any": true,
+              "cutoff": 317.0340479595585,
+              "expected": 1.75
+            },
+            "reverse": {
+              "M": 674,
+              "K": 331,
+              "n": 7,
+              "x": 2,
+              "matches": [
+                {
+                  "id": "10088460",
+                  "name": "허진",
+                  "value": 273.2624675087991,
+                  "joint": 1,
+                  "without": 17,
+                  "withMean": 733.3974386589447,
+                  "withoutMean": 196.4830387458273,
+                  "lastJoint": "20160512"
+                },
+                {
+                  "id": "20343496",
+                  "name": "유성주",
+                  "value": 80.67269805306421,
+                  "joint": 1,
+                  "without": 17,
+                  "withMean": 391.3439840922278,
+                  "withoutMean": 216.60383019092828,
+                  "lastJoint": "20200729"
+                }
+              ],
+              "any": true,
+              "cutoff": 80.67269805306421,
+              "expected": 3.4376854599406528
+            }
+          }
+        }
+      ],
+      "notes": [
+        "No second distinct eligible release day observed by cutoff; second endpoint censored.",
+        "Release timing does not establish post-event casting, a new collaboration decision, or causation."
+      ],
+      "frozenPoolSummary": {
+        "forward": {
+          "M": 496,
+          "K": 124,
+          "n": 0,
+          "x": 0,
+          "matches": [],
+          "any": false,
+          "cutoff": 317.0340479595585,
+          "expected": 0
+        },
+        "reverse": {
+          "M": 674,
+          "K": 331,
+          "n": 0,
+          "x": 0,
+          "matches": [],
+          "any": false,
+          "cutoff": 80.67269805306421,
+          "expected": 0
+        }
+      }
+    },
+    {
+      "id": "10054493",
+      "name": "윤제문",
+      "sources": [
+        {
+          "url": "https://www.hankyung.com/article/201606072725H",
+          "title": "2016-06-07 소속사 입장: 적발 사실·자숙"
+        },
+        {
+          "url": "https://www.edaily.co.kr/News/Read?mediaCodeNo=258&newsId=01351366615861352",
+          "title": "2017-03-08: 자숙 후 공식석상 복귀"
+        }
+      ],
+      "productionSources": [],
+      "productionNote": "보도상의 복귀작 아빠는 딸은 365일 조건 이전이다. EX에서는 사전 고정한 365일 이후 첫 적격 개봉을 사용한다. 후속 사건과 기존 제작작의 영향을 분리하지 못한다.",
+      "collaborationDecisionAfterEvent": "unverified",
+      "eventId": "10054493-2016-06",
+      "eventMonth": "2016-06",
+      "eventLabel": "음주운전 사실 공개",
+      "pauseStatus": "documented",
+      "pauseEvidence": [
+        {
+          "url": "https://www.hankyung.com/article/201606072725H",
+          "title": "2016-06-07 소속사 입장: 적발 사실·자숙"
+        },
+        {
+          "url": "https://www.edaily.co.kr/News/Read?mediaCodeNo=258&newsId=01351366615861352",
+          "title": "2017-03-08: 자숙 후 공식석상 복귀"
+        }
+      ],
+      "reviewNote": "적발은 5월, 공개 기준은 6월. 자숙 중 기존 촬영작 개봉이 계속됨. 2017년 추가 논란이 있어 단일 사건의 효과로 해석하지 않음.",
+      "priority": 4,
+      "eligible": true,
+      "eligibleHistory": true,
+      "reasons": [],
+      "preMean": 80.2321446189673,
+      "preN": 28,
+      "preHighYears": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2011
+      ],
+      "eventYearAnnual": [
+        {
+          "id": "10054493",
+          "name": "윤제문",
+          "year": 2016,
+          "score": 385.3822643451349,
+          "films": 4,
+          "usable": true,
+          "high": true
+        }
+      ],
+      "first": {
+        "date": "20160803",
+        "movies": [
+          {
+            "id": "20150979",
+            "title": "덕혜옹주"
+          }
+        ],
+        "score": 267.4263043208499,
+        "ratioToPre": 3.3331566243292086,
+        "coactorCount": 41,
+        "synergy": {
+          "forward": {
+            "M": 404,
+            "K": 101,
+            "n": 3,
+            "x": 1,
+            "matches": [
+              {
+                "id": "10013826",
+                "name": "라미란",
+                "value": 361.0713430303488,
+                "joint": 1,
+                "without": 30,
+                "withMean": 355.5932783722477,
+                "withoutMean": 77.12326600806368,
+                "lastJoint": "20060727"
+              }
+            ],
+            "any": true,
+            "cutoff": 105.35507294826907,
+            "expected": 0.75
+          },
+          "reverse": {
+            "M": 612,
+            "K": 156,
+            "n": 3,
+            "x": 2,
+            "matches": [
+              {
+                "id": "10013826",
+                "name": "라미란",
+                "value": 510.60629095394796,
+                "joint": 1,
+                "without": 27,
+                "withMean": 414.3431571727766,
+                "withoutMean": 67.85766267252993,
+                "lastJoint": "20060727"
+              },
+              {
+                "id": "10029474",
+                "name": "박해일",
+                "value": 136.883302155288,
+                "joint": 3,
+                "without": 25,
+                "withMean": 165.74785961741313,
+                "withoutMean": 69.9702588191538,
+                "lastJoint": "20141030"
+              }
+            ],
+            "any": true,
+            "cutoff": 61.903417239085215,
+            "expected": 0.7647058823529411
+          }
+        }
+      },
+      "second": {
+        "date": "20160928",
+        "movies": [
+          {
+            "id": "20153443",
+            "title": "아수라"
+          }
+        ],
+        "score": 69.1897269371472,
+        "ratioToPre": 0.8623691572216853,
+        "coactorCount": 35,
+        "synergy": {
+          "forward": {
+            "M": 404,
+            "K": 101,
+            "n": 13,
+            "x": 2,
+            "matches": [
+              {
+                "id": "20216086",
+                "name": "오연아",
+                "value": 337.5010338706294,
+                "joint": 1,
+                "without": 13,
+                "withMean": 201.05729149988701,
+                "withoutMean": 45.95584374306653,
+                "lastJoint": "20080717"
+              },
+              {
+                "id": "10062025",
+                "name": "정우성",
+                "value": 205.07192814054633,
+                "joint": 1,
+                "without": 9,
+                "withMean": 648.0872109965885,
+                "withoutMean": 212.43751103117407,
+                "lastJoint": "20080717"
+              }
+            ],
+            "any": true,
+            "cutoff": 105.35507294826907,
+            "expected": 3.25
+          },
+          "reverse": {
+            "M": 612,
+            "K": 156,
+            "n": 13,
+            "x": 3,
+            "matches": [
+              {
+                "id": "10062025",
+                "name": "정우성",
+                "value": 251.12716328965524,
+                "joint": 1,
+                "without": 27,
+                "withMean": 258.5297653740595,
+                "withoutMean": 73.62852903544537,
+                "lastJoint": "20080717"
+              },
+              {
+                "id": "20216086",
+                "name": "오연아",
+                "value": 251.12716328965524,
+                "joint": 1,
+                "without": 27,
+                "withMean": 258.5297653740595,
+                "withoutMean": 73.62852903544537,
+                "lastJoint": "20080717"
+              },
+              {
+                "id": "20232301",
+                "name": "염동헌",
+                "value": 152.04384977338438,
+                "joint": 1,
+                "without": 27,
+                "withMean": 191.8049154293458,
+                "withoutMean": 76.09981977413847,
+                "lastJoint": "20090528"
+              }
+            ],
+            "any": true,
+            "cutoff": 61.903417239085215,
+            "expected": 3.3137254901960786
+          }
+        }
+      },
+      "delta": -198.2365773837027,
+      "normalizedDelta": -2.470787467107523,
+      "ratioToPre": 0.8623691572216853,
+      "ratioToFirst": 0.2587244628491574,
+      "improved": false,
+      "aboveBaseline": false,
+      "partialRise": false,
+      "trajectory": [
+        {
+          "date": "20160803",
+          "movies": [
+            {
+              "id": "20150979",
+              "title": "덕혜옹주"
+            }
+          ],
+          "score": 267.4263043208499,
+          "ratioToPre": 3.3331566243292086,
+          "coactorCount": 41,
+          "synergy": {
+            "forward": {
+              "M": 404,
+              "K": 101,
+              "n": 3,
+              "x": 1,
+              "matches": [
+                {
+                  "id": "10013826",
+                  "name": "라미란",
+                  "value": 361.0713430303488,
+                  "joint": 1,
+                  "without": 30,
+                  "withMean": 355.5932783722477,
+                  "withoutMean": 77.12326600806368,
+                  "lastJoint": "20060727"
+                }
+              ],
+              "any": true,
+              "cutoff": 105.35507294826907,
+              "expected": 0.75
+            },
+            "reverse": {
+              "M": 612,
+              "K": 156,
+              "n": 3,
+              "x": 2,
+              "matches": [
+                {
+                  "id": "10013826",
+                  "name": "라미란",
+                  "value": 510.60629095394796,
+                  "joint": 1,
+                  "without": 27,
+                  "withMean": 414.3431571727766,
+                  "withoutMean": 67.85766267252993,
+                  "lastJoint": "20060727"
+                },
+                {
+                  "id": "10029474",
+                  "name": "박해일",
+                  "value": 136.883302155288,
+                  "joint": 3,
+                  "without": 25,
+                  "withMean": 165.74785961741313,
+                  "withoutMean": 69.9702588191538,
+                  "lastJoint": "20141030"
+                }
+              ],
+              "any": true,
+              "cutoff": 61.903417239085215,
+              "expected": 0.7647058823529411
+            }
+          }
+        },
+        {
+          "date": "20160928",
+          "movies": [
+            {
+              "id": "20153443",
+              "title": "아수라"
+            }
+          ],
+          "score": 69.1897269371472,
+          "ratioToPre": 0.8623691572216853,
+          "coactorCount": 35,
+          "synergy": {
+            "forward": {
+              "M": 404,
+              "K": 101,
+              "n": 13,
+              "x": 2,
+              "matches": [
+                {
+                  "id": "20216086",
+                  "name": "오연아",
+                  "value": 337.5010338706294,
+                  "joint": 1,
+                  "without": 13,
+                  "withMean": 201.05729149988701,
+                  "withoutMean": 45.95584374306653,
+                  "lastJoint": "20080717"
+                },
+                {
+                  "id": "10062025",
+                  "name": "정우성",
+                  "value": 205.07192814054633,
+                  "joint": 1,
+                  "without": 9,
+                  "withMean": 648.0872109965885,
+                  "withoutMean": 212.43751103117407,
+                  "lastJoint": "20080717"
+                }
+              ],
+              "any": true,
+              "cutoff": 105.35507294826907,
+              "expected": 3.25
+            },
+            "reverse": {
+              "M": 612,
+              "K": 156,
+              "n": 13,
+              "x": 3,
+              "matches": [
+                {
+                  "id": "10062025",
+                  "name": "정우성",
+                  "value": 251.12716328965524,
+                  "joint": 1,
+                  "without": 27,
+                  "withMean": 258.5297653740595,
+                  "withoutMean": 73.62852903544537,
+                  "lastJoint": "20080717"
+                },
+                {
+                  "id": "20216086",
+                  "name": "오연아",
+                  "value": 251.12716328965524,
+                  "joint": 1,
+                  "without": 27,
+                  "withMean": 258.5297653740595,
+                  "withoutMean": 73.62852903544537,
+                  "lastJoint": "20080717"
+                },
+                {
+                  "id": "20232301",
+                  "name": "염동헌",
+                  "value": 152.04384977338438,
+                  "joint": 1,
+                  "without": 27,
+                  "withMean": 191.8049154293458,
+                  "withoutMean": 76.09981977413847,
+                  "lastJoint": "20090528"
+                }
+              ],
+              "any": true,
+              "cutoff": 61.903417239085215,
+              "expected": 3.3137254901960786
+            }
+          }
+        },
+        {
+          "date": "20170412",
+          "movies": [
+            {
+              "id": "20151227",
+              "title": "아빠는 딸"
+            }
+          ],
+          "score": 58.85461476994643,
+          "ratioToPre": 0.7335540518012389,
+          "coactorCount": 13,
+          "synergy": {
+            "forward": {
+              "M": 404,
+              "K": 101,
+              "n": 2,
+              "x": 1,
+              "matches": [
+                {
+                  "id": "10055414",
+                  "name": "이미도",
+                  "value": 151.15680148207935,
+                  "joint": 1,
+                  "without": 29,
+                  "withMean": 126.27128292310432,
+                  "withoutMean": 50.275876336207475,
+                  "lastJoint": "20090528"
+                }
+              ],
+              "any": true,
+              "cutoff": 105.35507294826907,
+              "expected": 0.5
+            },
+            "reverse": {
+              "M": 612,
+              "K": 156,
+              "n": 2,
+              "x": 2,
+              "matches": [
+                {
+                  "id": "10055414",
+                  "name": "이미도",
+                  "value": 152.04384977338438,
+                  "joint": 1,
+                  "without": 27,
+                  "withMean": 191.8049154293458,
+                  "withoutMean": 76.09981977413847,
+                  "lastJoint": "20090528"
+                },
+                {
+                  "id": "10029480",
+                  "name": "박혁권",
+                  "value": 92.28074768454744,
+                  "joint": 1,
+                  "without": 27,
+                  "withMean": 149.34881736655882,
+                  "withoutMean": 77.67226785053799,
+                  "lastJoint": "20090715"
+                }
+              ],
+              "any": true,
+              "cutoff": 61.903417239085215,
+              "expected": 0.5098039215686274
+            }
+          }
+        },
+        {
+          "date": "20180829",
+          "movies": [
+            {
+              "id": "20177537",
+              "title": "상류사회"
+            }
+          ],
+          "score": 43.2752980634559,
+          "ratioToPre": 0.5393760601685997,
+          "coactorCount": 63,
+          "synergy": {
+            "forward": {
+              "M": 404,
+              "K": 101,
+              "n": 6,
+              "x": 1,
+              "matches": [
+                {
+                  "id": "10013826",
+                  "name": "라미란",
+                  "value": 361.0713430303488,
+                  "joint": 1,
+                  "without": 30,
+                  "withMean": 355.5932783722477,
+                  "withoutMean": 77.12326600806368,
+                  "lastJoint": "20060727"
+                }
+              ],
+              "any": true,
+              "cutoff": 105.35507294826907,
+              "expected": 1.5
+            },
+            "reverse": {
+              "M": 612,
+              "K": 156,
+              "n": 6,
+              "x": 2,
+              "matches": [
+                {
+                  "id": "10013826",
+                  "name": "라미란",
+                  "value": 510.60629095394796,
+                  "joint": 1,
+                  "without": 27,
+                  "withMean": 414.3431571727766,
+                  "withoutMean": 67.85766267252993,
+                  "lastJoint": "20060727"
+                },
+                {
+                  "id": "10029474",
+                  "name": "박해일",
+                  "value": 136.883302155288,
+                  "joint": 3,
+                  "without": 25,
+                  "withMean": 165.74785961741313,
+                  "withoutMean": 69.9702588191538,
+                  "lastJoint": "20141030"
+                }
+              ],
+              "any": true,
+              "cutoff": 61.903417239085215,
+              "expected": 1.5294117647058822
+            }
+          }
+        },
+        {
+          "date": "20190911",
+          "movies": [
+            {
+              "id": "20184572",
+              "title": "타짜: 원 아이드 잭"
+            }
+          ],
+          "score": 83.6120939561165,
+          "ratioToPre": 1.0421271219060766,
+          "coactorCount": 116,
+          "synergy": {
+            "forward": {
+              "M": 404,
+              "K": 101,
+              "n": 7,
+              "x": 1,
+              "matches": [
+                {
+                  "id": "20111692",
+                  "name": "이광수",
+                  "value": 287.8181049825922,
+                  "joint": 1,
+                  "without": 6,
+                  "withMean": 76.09858232612983,
+                  "withoutMean": 19.622235617273624,
+                  "lastJoint": "20110127"
+                }
+              ],
+              "any": true,
+              "cutoff": 105.35507294826907,
+              "expected": 1.75
+            },
+            "reverse": {
+              "M": 612,
+              "K": 156,
+              "n": 8,
+              "x": 0,
+              "matches": [],
+              "any": false,
+              "cutoff": 61.903417239085215,
+              "expected": 2.0392156862745097
+            }
+          }
+        },
+        {
+          "date": "20191226",
+          "movies": [
+            {
+              "id": "20184571",
+              "title": "천문: 하늘에 묻는다"
+            }
+          ],
+          "score": 51.34001073045362,
+          "ratioToPre": 0.6398932868400052,
+          "coactorCount": 101,
+          "synergy": {
+            "forward": {
+              "M": 404,
+              "K": 101,
+              "n": 4,
+              "x": 0,
+              "matches": [],
+              "any": false,
+              "cutoff": 105.35507294826907,
+              "expected": 1
+            },
+            "reverse": {
+              "M": 612,
+              "K": 156,
+              "n": 4,
+              "x": 0,
+              "matches": [],
+              "any": false,
+              "cutoff": 61.903417239085215,
+              "expected": 1.0196078431372548
+            }
+          }
+        },
+        {
+          "date": "20200827",
+          "movies": [
+            {
+              "id": "20197032",
+              "title": "후쿠오카"
+            }
+          ],
+          "score": 0.7112334018779786,
+          "ratioToPre": 0.008864693886168902,
+          "coactorCount": 7,
+          "synergy": {
+            "forward": {
+              "M": 404,
+              "K": 101,
+              "n": 0,
+              "x": 0,
+              "matches": [],
+              "any": false,
+              "cutoff": 105.35507294826907,
+              "expected": 0
+            },
+            "reverse": {
+              "M": 612,
+              "K": 156,
+              "n": 0,
+              "x": 0,
+              "matches": [],
+              "any": false,
+              "cutoff": 61.903417239085215,
+              "expected": 0
+            }
+          }
+        },
+        {
+          "date": "20220323",
+          "movies": [
+            {
+              "id": "20199500",
+              "title": "뜨거운 피"
+            }
+          ],
+          "score": 13.943287668241261,
+          "ratioToPre": 0.17378679997225197,
+          "coactorCount": 102,
+          "synergy": {
+            "forward": {
+              "M": 404,
+              "K": 101,
+              "n": 3,
+              "x": 0,
+              "matches": [],
+              "any": false,
+              "cutoff": 105.35507294826907,
+              "expected": 0.75
+            },
+            "reverse": {
+              "M": 612,
+              "K": 156,
+              "n": 3,
+              "x": 0,
+              "matches": [],
+              "any": false,
+              "cutoff": 61.903417239085215,
+              "expected": 0.7647058823529411
+            }
+          }
+        },
+        {
+          "date": "20220406",
+          "movies": [
+            {
+              "id": "20196906",
+              "title": "스텔라"
+            }
+          ],
+          "score": 3.94745304888978,
+          "ratioToPre": 0.04920039302995999,
+          "coactorCount": 75,
+          "synergy": {
+            "forward": {
+              "M": 404,
+              "K": 101,
+              "n": 5,
+              "x": 1,
+              "matches": [
+                {
+                  "id": "10001457",
+                  "name": "고규필",
+                  "value": 110.20790409976956,
+                  "joint": 1,
+                  "without": 11,
+                  "withMean": 82.39314670208655,
+                  "withoutMean": 39.19602693102389,
+                  "lastJoint": "20090528"
+                }
+              ],
+              "any": true,
+              "cutoff": 105.35507294826907,
+              "expected": 1.25
+            },
+            "reverse": {
+              "M": 612,
+              "K": 156,
+              "n": 6,
+              "x": 1,
+              "matches": [
+                {
+                  "id": "10001457",
+                  "name": "고규필",
+                  "value": 152.04384977338438,
+                  "joint": 1,
+                  "without": 27,
+                  "withMean": 191.8049154293458,
+                  "withoutMean": 76.09981977413847,
+                  "lastJoint": "20090528"
+                }
+              ],
+              "any": true,
+              "cutoff": 61.903417239085215,
+              "expected": 1.5294117647058822
+            }
+          }
+        },
+        {
+          "date": "20220727",
+          "movies": [
+            {
+              "id": "20209343",
+              "title": "한산: 용의 출현"
+            }
+          ],
+          "score": 337.97272731633393,
+          "ratioToPre": 4.212435413778475,
+          "coactorCount": 140,
+          "synergy": {
+            "forward": {
+              "M": 404,
+              "K": 101,
+              "n": 8,
+              "x": 1,
+              "matches": [
+                {
+                  "id": "20346172",
+                  "name": "손경원",
+                  "value": 408.52252495093956,
+                  "joint": 3,
+                  "without": 1,
+                  "withMean": 52.814296633495935,
+                  "withoutMean": 10.385832296925543,
+                  "lastJoint": "20160310"
+                }
+              ],
+              "any": true,
+              "cutoff": 105.35507294826907,
+              "expected": 2
+            },
+            "reverse": {
+              "M": 612,
+              "K": 156,
+              "n": 8,
+              "x": 1,
+              "matches": [
+                {
+                  "id": "10029474",
+                  "name": "박해일",
+                  "value": 136.883302155288,
+                  "joint": 3,
+                  "without": 25,
+                  "withMean": 165.74785961741313,
+                  "withoutMean": 69.9702588191538,
+                  "lastJoint": "20141030"
+                }
+              ],
+              "any": true,
+              "cutoff": 61.903417239085215,
+              "expected": 2.0392156862745097
+            }
+          }
+        },
+        {
+          "date": "20221026",
+          "movies": [
+            {
+              "id": "20198461",
+              "title": "리멤버"
+            }
+          ],
+          "score": 28.973231225014132,
+          "ratioToPre": 0.3611174967665604,
+          "coactorCount": 95,
+          "synergy": {
+            "forward": {
+              "M": 404,
+              "K": 101,
+              "n": 4,
+              "x": 0,
+              "matches": [],
+              "any": false,
+              "cutoff": 105.35507294826907,
+              "expected": 1
+            },
+            "reverse": {
+              "M": 612,
+              "K": 156,
+              "n": 4,
+              "x": 3,
+              "matches": [
+                {
+                  "id": "10002376",
+                  "name": "권범택",
+                  "value": 132.7660062561059,
+                  "joint": 2,
+                  "without": 26,
+                  "withMean": 170.5768663979523,
+                  "withoutMean": 73.28255063596846,
+                  "lastJoint": "20090715"
+                },
+                {
+                  "id": "10037131",
+                  "name": "송영창",
+                  "value": 71.92555324182533,
+                  "joint": 3,
+                  "without": 25,
+                  "withMean": 128.0700819118989,
+                  "withoutMean": 74.49159214381551,
+                  "lastJoint": "20120411"
+                },
+                {
+                  "id": "20335401",
+                  "name": "한사명",
+                  "value": 61.903417239085215,
+                  "joint": 1,
+                  "without": 27,
+                  "withMean": 127.08885723521641,
+                  "withoutMean": 78.49671081836549,
+                  "lastJoint": "20110720"
+                }
+              ],
+              "any": true,
+              "cutoff": 61.903417239085215,
+              "expected": 1.0196078431372548
+            }
+          }
+        },
+        {
+          "date": "20221116",
+          "movies": [
+            {
+              "id": "20228532",
+              "title": "한산 리덕스"
+            }
+          ],
+          "score": 0.66579299641633,
+          "ratioToPre": 0.008298332290359008,
+          "coactorCount": 148,
+          "synergy": {
+            "forward": {
+              "M": 404,
+              "K": 101,
+              "n": 8,
+              "x": 1,
+              "matches": [
+                {
+                  "id": "20346172",
+                  "name": "손경원",
+                  "value": 408.52252495093956,
+                  "joint": 3,
+                  "without": 1,
+                  "withMean": 52.814296633495935,
+                  "withoutMean": 10.385832296925543,
+                  "lastJoint": "20160310"
+                }
+              ],
+              "any": true,
+              "cutoff": 105.35507294826907,
+              "expected": 2
+            },
+            "reverse": {
+              "M": 612,
+              "K": 156,
+              "n": 8,
+              "x": 1,
+              "matches": [
+                {
+                  "id": "10029474",
+                  "name": "박해일",
+                  "value": 136.883302155288,
+                  "joint": 3,
+                  "without": 25,
+                  "withMean": 165.74785961741313,
+                  "withoutMean": 69.9702588191538,
+                  "lastJoint": "20141030"
+                }
+              ],
+              "any": true,
+              "cutoff": 61.903417239085215,
+              "expected": 2.0392156862745097
+            }
+          }
+        },
+        {
+          "date": "20230322",
+          "movies": [
+            {
+              "id": "20210544",
+              "title": "웅남이"
+            }
+          ],
+          "score": 21.36237564837607,
+          "ratioToPre": 0.2662570687824527,
+          "coactorCount": 58,
+          "synergy": {
+            "forward": {
+              "M": 404,
+              "K": 101,
+              "n": 6,
+              "x": 1,
+              "matches": [
+                {
+                  "id": "10062025",
+                  "name": "정우성",
+                  "value": 205.07192814054633,
+                  "joint": 1,
+                  "without": 9,
+                  "withMean": 648.0872109965885,
+                  "withoutMean": 212.43751103117407,
+                  "lastJoint": "20080717"
+                }
+              ],
+              "any": true,
+              "cutoff": 105.35507294826907,
+              "expected": 1.5
+            },
+            "reverse": {
+              "M": 612,
+              "K": 156,
+              "n": 6,
+              "x": 2,
+              "matches": [
+                {
+                  "id": "10062025",
+                  "name": "정우성",
+                  "value": 251.12716328965524,
+                  "joint": 1,
+                  "without": 27,
+                  "withMean": 258.5297653740595,
+                  "withoutMean": 73.62852903544537,
+                  "lastJoint": "20080717"
+                },
+                {
+                  "id": "10050151",
+                  "name": "오달수",
+                  "value": 162.19908067083742,
+                  "joint": 5,
+                  "without": 23,
+                  "withMean": 163.1212953399115,
+                  "withoutMean": 62.212764027457695,
+                  "lastJoint": "20160330"
+                }
+              ],
+              "any": true,
+              "cutoff": 61.903417239085215,
+              "expected": 1.5294117647058822
+            }
+          }
+        }
+      ],
+      "notes": [
+        "Release timing does not establish post-event casting, a new collaboration decision, or causation."
+      ],
+      "frozenPoolSummary": {
+        "forward": {
+          "M": 404,
+          "K": 101,
+          "n": 0,
+          "x": 0,
+          "matches": [],
+          "any": false,
+          "cutoff": 105.35507294826907,
+          "expected": 0
+        },
+        "reverse": {
+          "M": 612,
+          "K": 156,
+          "n": 0,
+          "x": 0,
+          "matches": [],
+          "any": false,
+          "cutoff": 61.903417239085215,
+          "expected": 0
+        }
+      }
+    },
+    {
+      "id": "10062025",
+      "name": "정우성",
+      "sources": [
+        {
+          "url": "https://isplus.com/article/view/isp202509040083",
+          "title": "2025-09-04: 공개 활동 공백 후 광고 재개"
+        },
+        {
+          "url": "https://enews.imbc.com/News/RetrieveNewsInfo/487365",
+          "title": "2025-12-15: 시리즈 공개 활동 복귀"
+        }
+      ],
+      "productionSources": [],
+      "productionNote": "첫 적격 개봉은 실제 촬영·캐스팅 결정 이후의 개봉일이다. 사건 후 새 협업 결정 여부는 추가 확인이 필요하다.",
+      "collaborationDecisionAfterEvent": "unverified",
+      "eventId": "10062025-2024-11",
+      "eventMonth": "2024-11",
+      "eventLabel": "가족관계 공개 후 사생활 관련 논란",
+      "pauseStatus": "documented",
+      "pauseEvidence": [
+        {
+          "url": "https://isplus.com/article/view/isp202509040083",
+          "title": "2025-09-04: 공개 활동 공백 후 광고 재개"
+        },
+        {
+          "url": "https://enews.imbc.com/News/RetrieveNewsInfo/487365",
+          "title": "2025-12-15: 시리즈 공개 활동 복귀"
+        }
+      ],
+      "reviewNote": "공개 활동·홍보 공백 보도 기준이다. 전체 촬영 중단이나 위법행위를 뜻하지 않음. 광고·OTT 복귀는 국내 적격 영화 복귀와 구분.",
+      "priority": 5,
+      "eligible": true,
+      "eligibleHistory": true,
+      "reasons": [],
+      "preMean": 325.870623704766,
+      "preN": 26,
+      "preHighYears": [
+        2004,
+        2006,
+        2008,
+        2013,
+        2014,
+        2016,
+        2017,
+        2019,
+        2020,
+        2022,
+        2023
+      ],
+      "eventYearAnnual": [],
+      "first": null,
+      "second": null,
+      "delta": null,
+      "normalizedDelta": null,
+      "ratioToPre": null,
+      "ratioToFirst": null,
+      "improved": null,
+      "aboveBaseline": null,
+      "partialRise": null,
+      "trajectory": [],
+      "notes": [
+        "No eligible post-month release observed by cutoff; censored before first and second endpoints.",
+        "Release timing does not establish post-event casting, a new collaboration decision, or causation."
+      ],
+      "frozenPoolSummary": {
+        "forward": {
+          "M": 724,
+          "K": 181,
+          "n": 0,
+          "x": 0,
+          "matches": [],
+          "any": false,
+          "cutoff": 231.4845553527452,
+          "expected": 0
+        },
+        "reverse": {
+          "M": 992,
+          "K": 303,
+          "n": 0,
+          "x": 0,
+          "matches": [],
+          "any": false,
+          "cutoff": 128.7668186693741,
+          "expected": 0
+        }
+      }
+    },
+    {
+      "id": "10067353",
+      "name": "조진웅",
+      "sources": [
+        {
+          "url": "https://www.yna.co.kr/view/AKR20251206044151005",
+          "title": "2025-12-06 소속사를 통한 활동 중단 발표"
+        }
+      ],
+      "productionSources": [],
+      "productionNote": "첫 적격 개봉은 실제 촬영·캐스팅 결정 이후의 개봉일이다. 사건 후 새 협업 결정 여부는 추가 확인이 필요하다.",
+      "collaborationDecisionAfterEvent": "unverified",
+      "eventId": "10067353-2025-12",
+      "eventMonth": "2025-12",
+      "eventLabel": "과거 이력 관련 공개 논란 및 활동 중단 발표",
+      "pauseStatus": "documented",
+      "pauseEvidence": [
+        {
+          "url": "https://www.yna.co.kr/view/AKR20251206044151005",
+          "title": "2025-12-06 소속사를 통한 활동 중단 발표"
+        }
+      ],
+      "reviewNote": "일부 의혹의 인정·부인 범위를 구분하며 사건 세부를 확정하지 않음. 분석 마감일까지 월말+365일이 지나지 않아 복귀 기회 관측이 미완료.",
+      "priority": 6,
+      "eligible": true,
+      "eligibleHistory": true,
+      "reasons": [],
+      "preMean": 131.3235072323488,
+      "preN": 50,
+      "preHighYears": [
+        2011,
+        2012,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "eventYearAnnual": [
+        {
+          "id": "10067353",
+          "name": "조진웅",
+          "year": 2025,
+          "score": 11.845981710328916,
+          "films": 1,
+          "usable": true,
+          "high": false
+        }
+      ],
+      "first": null,
+      "second": null,
+      "delta": null,
+      "normalizedDelta": null,
+      "ratioToPre": null,
+      "ratioToFirst": null,
+      "improved": null,
+      "aboveBaseline": null,
+      "partialRise": null,
+      "trajectory": [],
+      "notes": [
+        "No eligible post-month release observed by cutoff; censored before first and second endpoints.",
+        "Release timing does not establish post-event casting, a new collaboration decision, or causation."
+      ],
+      "frozenPoolSummary": {
+        "forward": {
+          "M": 969,
+          "K": 243,
+          "n": 0,
+          "x": 0,
+          "matches": [],
+          "any": false,
+          "cutoff": 136.32481067712567,
+          "expected": 0
+        },
+        "reverse": {
+          "M": 1391,
+          "K": 357,
+          "n": 0,
+          "x": 0,
+          "matches": [],
+          "any": false,
+          "cutoff": 60.26533054097874,
+          "expected": 0
+        }
+      }
+    },
+    {
+      "priority": 13,
+      "name": "배성우",
+      "id": "20136191",
+      "eventMonth": "2020-12",
+      "eventLabel": "음주운전 적발 사실 공개 및 하차",
+      "sources": [
+        {
+          "title": "연합뉴스TV 2020-12-10: 적발 사실 공개·자숙 입장",
+          "url": "https://www.yonhapnewstv.co.kr/news/MYH20201210009400038",
+          "checkedOn": "2026-10-02"
+        }
+      ],
+      "productionNote": "1947 보스톤은 사건 전에 촬영한 작품. 개봉 기준 성과와 사건 후 협업 선택을 구분한다.",
+      "productionSources": [
+        {
+          "title": "연합뉴스 2024-05-19: 하차와 복귀, 1947 보스톤은 사건 전 촬영",
+          "url": "https://www.yna.co.kr/amp/view/AKR20240517148100005",
+          "checkedOn": "2026-10-02"
+        }
+      ],
+      "collaborationDecisionAfterEvent": "not_supported_preexisting_production",
+      "pauseStatus": "documented",
+      "pauseEvidence": [
+        {
+          "title": "연합뉴스 2024-05-19: 하차와 복귀, 1947 보스톤은 사건 전 촬영",
+          "url": "https://www.yna.co.kr/amp/view/AKR20240517148100005",
+          "checkedOn": "2026-10-02"
+        }
+      ],
+      "eventId": "20136191-2020-12",
+      "reviewNote": "2026-10-02 제한적 추가 확인. 전수 사건조사 아님.",
+      "eligible": true,
+      "eligibleHistory": true,
+      "reasons": [],
+      "preMean": 66.37925734481237,
+      "preN": 33,
+      "preHighYears": [
+        2015,
+        2017,
+        2018,
+        2019
+      ],
+      "eventYearAnnual": [
+        {
+          "id": "20136191",
+          "name": "배성우",
+          "year": 2020,
+          "score": 96.95411603411316,
+          "films": 1,
+          "usable": true,
+          "high": false
+        }
+      ],
+      "first": {
+        "date": "20211208",
+        "movies": [
+          {
+            "id": "20211303",
+            "title": "여타짜"
+          }
+        ],
+        "score": 0.7782642674240177,
+        "ratioToPre": 0.011724510013440818,
+        "coactorCount": 54,
+        "synergy": {
+          "forward": {
+            "M": 602,
+            "K": 151,
+            "n": 4,
+            "x": 1,
+            "matches": [
+              {
+                "id": "20315589",
+                "name": "나대한",
+                "value": 209.4473090217247,
+                "joint": 1,
+                "without": 1,
+                "withMean": 97.08630175500689,
+                "withoutMean": 31.374097923789336,
+                "lastJoint": "20180919"
+              }
+            ],
+            "any": true,
+            "cutoff": 97.51807199553457,
+            "expected": 1.0033222591362125
+          },
+          "reverse": {
+            "M": 852,
+            "K": 213,
+            "n": 4,
+            "x": 1,
+            "matches": [
+              {
+                "id": "20315589",
+                "name": "나대한",
+                "value": 255.71531204277838,
+                "joint": 1,
+                "without": 32,
+                "withMean": 219.1401261138686,
+                "withoutMean": 61.605480195779364,
+                "lastJoint": "20180919"
+              }
+            ],
+            "any": true,
+            "cutoff": 158.97392348688734,
+            "expected": 1
+          }
+        }
+      },
+      "second": {
+        "date": "20230927",
+        "movies": [
+          {
+            "id": "20197122",
+            "title": "1947 보스톤"
+          }
+        ],
+        "score": 94.54744193646393,
+        "ratioToPre": 1.4243522105908726,
+        "coactorCount": 44,
+        "synergy": {
+          "forward": {
+            "M": 602,
+            "K": 151,
+            "n": 8,
+            "x": 2,
+            "matches": [
+              {
+                "id": "10037131",
+                "name": "송영창",
+                "value": 261.270049433766,
+                "joint": 1,
+                "without": 31,
+                "withMean": 441.64728261369885,
+                "withoutMean": 122.24851833300644,
+                "lastJoint": "20150805"
+              },
+              {
+                "id": "20335572",
+                "name": "윤부진",
+                "value": 124.12059849561747,
+                "joint": 2,
+                "without": 5,
+                "withMean": 39.21021464601244,
+                "withoutMean": 17.495140968392143,
+                "lastJoint": "20170118"
+              }
+            ],
+            "any": true,
+            "cutoff": 97.51807199553457,
+            "expected": 2.006644518272425
+          },
+          "reverse": {
+            "M": 852,
+            "K": 213,
+            "n": 9,
+            "x": 2,
+            "matches": [
+              {
+                "id": "10037131",
+                "name": "송영창",
+                "value": 358.4526168495966,
+                "joint": 1,
+                "without": 32,
+                "withMean": 274.50063316535034,
+                "withoutMean": 59.87546435042056,
+                "lastJoint": "20150805"
+              },
+              {
+                "id": "20341950",
+                "name": "이규복",
+                "value": 158.97392348688734,
+                "joint": 1,
+                "without": 32,
+                "withMean": 164.0042405836603,
+                "withoutMean": 63.32847661859837,
+                "lastJoint": "20190821"
+              }
+            ],
+            "any": true,
+            "cutoff": 158.97392348688734,
+            "expected": 2.25
+          }
+        }
+      },
+      "delta": 93.7691776690399,
+      "normalizedDelta": 1.412627700577432,
+      "ratioToPre": 1.4243522105908726,
+      "ratioToFirst": 121.48500951920505,
+      "improved": true,
+      "aboveBaseline": true,
+      "partialRise": false,
+      "trajectory": [
+        {
+          "date": "20211208",
+          "movies": [
+            {
+              "id": "20211303",
+              "title": "여타짜"
+            }
+          ],
+          "score": 0.7782642674240177,
+          "ratioToPre": 0.011724510013440818,
+          "coactorCount": 54,
+          "synergy": {
+            "forward": {
+              "M": 602,
+              "K": 151,
+              "n": 4,
+              "x": 1,
+              "matches": [
+                {
+                  "id": "20315589",
+                  "name": "나대한",
+                  "value": 209.4473090217247,
+                  "joint": 1,
+                  "without": 1,
+                  "withMean": 97.08630175500689,
+                  "withoutMean": 31.374097923789336,
+                  "lastJoint": "20180919"
+                }
+              ],
+              "any": true,
+              "cutoff": 97.51807199553457,
+              "expected": 1.0033222591362125
+            },
+            "reverse": {
+              "M": 852,
+              "K": 213,
+              "n": 4,
+              "x": 1,
+              "matches": [
+                {
+                  "id": "20315589",
+                  "name": "나대한",
+                  "value": 255.71531204277838,
+                  "joint": 1,
+                  "without": 32,
+                  "withMean": 219.1401261138686,
+                  "withoutMean": 61.605480195779364,
+                  "lastJoint": "20180919"
+                }
+              ],
+              "any": true,
+              "cutoff": 158.97392348688734,
+              "expected": 1
+            }
+          }
+        },
+        {
+          "date": "20230927",
+          "movies": [
+            {
+              "id": "20197122",
+              "title": "1947 보스톤"
+            }
+          ],
+          "score": 94.54744193646393,
+          "ratioToPre": 1.4243522105908726,
+          "coactorCount": 44,
+          "synergy": {
+            "forward": {
+              "M": 602,
+              "K": 151,
+              "n": 8,
+              "x": 2,
+              "matches": [
+                {
+                  "id": "10037131",
+                  "name": "송영창",
+                  "value": 261.270049433766,
+                  "joint": 1,
+                  "without": 31,
+                  "withMean": 441.64728261369885,
+                  "withoutMean": 122.24851833300644,
+                  "lastJoint": "20150805"
+                },
+                {
+                  "id": "20335572",
+                  "name": "윤부진",
+                  "value": 124.12059849561747,
+                  "joint": 2,
+                  "without": 5,
+                  "withMean": 39.21021464601244,
+                  "withoutMean": 17.495140968392143,
+                  "lastJoint": "20170118"
+                }
+              ],
+              "any": true,
+              "cutoff": 97.51807199553457,
+              "expected": 2.006644518272425
+            },
+            "reverse": {
+              "M": 852,
+              "K": 213,
+              "n": 9,
+              "x": 2,
+              "matches": [
+                {
+                  "id": "10037131",
+                  "name": "송영창",
+                  "value": 358.4526168495966,
+                  "joint": 1,
+                  "without": 32,
+                  "withMean": 274.50063316535034,
+                  "withoutMean": 59.87546435042056,
+                  "lastJoint": "20150805"
+                },
+                {
+                  "id": "20341950",
+                  "name": "이규복",
+                  "value": 158.97392348688734,
+                  "joint": 1,
+                  "without": 32,
+                  "withMean": 164.0042405836603,
+                  "withoutMean": 63.32847661859837,
+                  "lastJoint": "20190821"
+                }
+              ],
+              "any": true,
+              "cutoff": 158.97392348688734,
+              "expected": 2.25
+            }
+          }
+        },
+        {
+          "date": "20250127",
+          "movies": [
+            {
+              "id": "20223819",
+              "title": "말할 수 없는 비밀"
+            }
+          ],
+          "score": 54.850933744090845,
+          "ratioToPre": 0.826326414879324,
+          "coactorCount": 30,
+          "synergy": {
+            "forward": {
+              "M": 602,
+              "K": 151,
+              "n": 2,
+              "x": 2,
+              "matches": [
+                {
+                  "id": "20165268",
+                  "name": "김욱",
+                  "value": 671.1892239677733,
+                  "joint": 1,
+                  "without": 3,
+                  "withMean": 131.582375828728,
+                  "withoutMean": 17.062268473065,
+                  "lastJoint": "20180919"
+                },
+                {
+                  "id": "20308509",
+                  "name": "김규선",
+                  "value": 242.32110386277128,
+                  "joint": 1,
+                  "without": 5,
+                  "withMean": 108.65574052994965,
+                  "withoutMean": 31.74088284475364,
+                  "lastJoint": "20170118"
+                }
+              ],
+              "any": true,
+              "cutoff": 97.51807199553457,
+              "expected": 0.5016611295681063
+            },
+            "reverse": {
+              "M": 852,
+              "K": 213,
+              "n": 2,
+              "x": 2,
+              "matches": [
+                {
+                  "id": "20165268",
+                  "name": "김욱",
+                  "value": 255.71531204277838,
+                  "joint": 1,
+                  "without": 32,
+                  "withMean": 219.1401261138686,
+                  "withoutMean": 61.605480195779364,
+                  "lastJoint": "20180919"
+                },
+                {
+                  "id": "20308509",
+                  "name": "김규선",
+                  "value": 238.162102926432,
+                  "joint": 1,
+                  "without": 32,
+                  "withMean": 209.3599173376112,
+                  "withoutMean": 61.911111720037404,
+                  "lastJoint": "20170118"
+                }
+              ],
+              "any": true,
+              "cutoff": 158.97392348688734,
+              "expected": 0.5
+            }
+          }
+        }
+      ],
+      "notes": [
+        "Release timing does not establish post-event casting, a new collaboration decision, or causation."
+      ],
+      "frozenPoolSummary": {
+        "forward": {
+          "M": 602,
+          "K": 151,
+          "n": 0,
+          "x": 0,
+          "matches": [],
+          "any": false,
+          "cutoff": 97.51807199553457,
+          "expected": 0
+        },
+        "reverse": {
+          "M": 852,
+          "K": 213,
+          "n": 0,
+          "x": 0,
+          "matches": [],
+          "any": false,
+          "cutoff": 158.97392348688734,
+          "expected": 0
+        }
+      }
+    },
+    {
+      "id": "10053802",
+      "name": "유아인",
+      "priority": 15,
+      "eventMonth": "2023-02",
+      "eventLabel": "프로포폴 관련 수사 사실 공개",
+      "pauseStatus": "documented",
+      "sources": [
+        {
+          "title": "연합뉴스 2023-02-08: 프로포폴 혐의 수사 공개",
+          "url": "https://www.yna.co.kr/view/AKR20230208168400004",
+          "checkedOn": "2026-10-02"
+        }
+      ],
+      "pauseEvidence": [
+        {
+          "title": "연합뉴스TV 2026-08-18: 2023년 보도 이후 활동 중단·지옥2 하차",
+          "url": "https://www.yonhapnewstv.co.kr/news/AKR20260818103422360",
+          "checkedOn": "2026-10-02"
+        },
+        {
+          "title": "연합뉴스 2025-02-19: 공개 보류 후 극장 개봉 및 홍보 활동 배제",
+          "url": "https://www.yna.co.kr/view/AKR20250219081300005",
+          "checkedOn": "2026-10-02"
+        }
+      ],
+      "productionSources": [
+        {
+          "title": "연합뉴스 2025-02-19: 공개 보류 후 극장 개봉 및 홍보 활동 배제",
+          "url": "https://www.yna.co.kr/view/AKR20250219081300005",
+          "checkedOn": "2026-10-02"
+        }
+      ],
+      "productionNote": "승부는 2023년 공개 예정에서 수사 이후 공개가 보류된 작품이며, 2025년 개봉 홍보에서도 배우가 배제되었다. 개봉 기준 복귀가 새 협업 선택이나 공개 활동 복귀를 뜻하지 않는다. 캐스팅 결정일은 미확인.",
+      "collaborationDecisionAfterEvent": "unverified",
+      "eventId": "10053802-2023-02",
+      "reviewNote": "2026-10-02 제한적 추가 확인. 전수 사건조사 아님.",
+      "eligible": true,
+      "eligibleHistory": true,
+      "reasons": [],
+      "preMean": 252.3879193911276,
+      "preN": 14,
+      "preHighYears": [
+        2011,
+        2015,
+        2018,
+        2020
+      ],
+      "eventYearAnnual": [],
+      "first": {
+        "date": "20250326",
+        "movies": [
+          {
+            "id": "20203863",
+            "title": "승부"
+          }
+        ],
+        "score": 500.1496654032872,
+        "ratioToPre": 1.9816703850559552,
+        "coactorCount": 12,
+        "synergy": {
+          "forward": {
+            "M": 300,
+            "K": 75,
+            "n": 2,
+            "x": 0,
+            "matches": [],
+            "any": false,
+            "cutoff": 320.8359506320747,
+            "expected": 0.5
+          },
+          "reverse": {
+            "M": 420,
+            "K": 132,
+            "n": 2,
+            "x": 1,
+            "matches": [
+              {
+                "id": "10061811",
+                "name": "정석용",
+                "value": 119.01668498617668,
+                "joint": 1,
+                "without": 13,
+                "withMean": 509.46136651914827,
+                "withoutMean": 232.61303884281836,
+                "lastJoint": "20150916"
+              }
+            ],
+            "any": true,
+            "cutoff": 119.01668498617668,
+            "expected": 0.6285714285714286
+          }
+        }
+      },
+      "second": {
+        "date": "20250530",
+        "movies": [
+          {
+            "id": "20211791",
+            "title": "하이파이브"
+          }
+        ],
+        "score": 358.6790034495272,
+        "ratioToPre": 1.421141726255445,
+        "coactorCount": 53,
+        "synergy": {
+          "forward": {
+            "M": 300,
+            "K": 75,
+            "n": 2,
+            "x": 0,
+            "matches": [],
+            "any": false,
+            "cutoff": 320.8359506320747,
+            "expected": 0.5
+          },
+          "reverse": {
+            "M": 420,
+            "K": 132,
+            "n": 2,
+            "x": 1,
+            "matches": [
+              {
+                "id": "20186095",
+                "name": "이동휘",
+                "value": 341.0495435631195,
+                "joint": 1,
+                "without": 13,
+                "withMean": 895.1026573815203,
+                "withoutMean": 202.94832416109742,
+                "lastJoint": "20150805"
+              }
+            ],
+            "any": true,
+            "cutoff": 119.01668498617668,
+            "expected": 0.6285714285714286
+          }
+        }
+      },
+      "delta": -141.47066195376,
+      "normalizedDelta": -0.56052865880051,
+      "ratioToPre": 1.421141726255445,
+      "ratioToFirst": 0.7171433438035243,
+      "improved": false,
+      "aboveBaseline": true,
+      "partialRise": false,
+      "trajectory": [
+        {
+          "date": "20250326",
+          "movies": [
+            {
+              "id": "20203863",
+              "title": "승부"
+            }
+          ],
+          "score": 500.1496654032872,
+          "ratioToPre": 1.9816703850559552,
+          "coactorCount": 12,
+          "synergy": {
+            "forward": {
+              "M": 300,
+              "K": 75,
+              "n": 2,
+              "x": 0,
+              "matches": [],
+              "any": false,
+              "cutoff": 320.8359506320747,
+              "expected": 0.5
+            },
+            "reverse": {
+              "M": 420,
+              "K": 132,
+              "n": 2,
+              "x": 1,
+              "matches": [
+                {
+                  "id": "10061811",
+                  "name": "정석용",
+                  "value": 119.01668498617668,
+                  "joint": 1,
+                  "without": 13,
+                  "withMean": 509.46136651914827,
+                  "withoutMean": 232.61303884281836,
+                  "lastJoint": "20150916"
+                }
+              ],
+              "any": true,
+              "cutoff": 119.01668498617668,
+              "expected": 0.6285714285714286
+            }
+          }
+        },
+        {
+          "date": "20250530",
+          "movies": [
+            {
+              "id": "20211791",
+              "title": "하이파이브"
+            }
+          ],
+          "score": 358.6790034495272,
+          "ratioToPre": 1.421141726255445,
+          "coactorCount": 53,
+          "synergy": {
+            "forward": {
+              "M": 300,
+              "K": 75,
+              "n": 2,
+              "x": 0,
+              "matches": [],
+              "any": false,
+              "cutoff": 320.8359506320747,
+              "expected": 0.5
+            },
+            "reverse": {
+              "M": 420,
+              "K": 132,
+              "n": 2,
+              "x": 1,
+              "matches": [
+                {
+                  "id": "20186095",
+                  "name": "이동휘",
+                  "value": 341.0495435631195,
+                  "joint": 1,
+                  "without": 13,
+                  "withMean": 895.1026573815203,
+                  "withoutMean": 202.94832416109742,
+                  "lastJoint": "20150805"
+                }
+              ],
+              "any": true,
+              "cutoff": 119.01668498617668,
+              "expected": 0.6285714285714286
+            }
+          }
+        }
+      ],
+      "notes": [
+        "Release timing does not establish post-event casting, a new collaboration decision, or causation."
+      ],
+      "frozenPoolSummary": {
+        "forward": {
+          "M": 300,
+          "K": 75,
+          "n": 0,
+          "x": 0,
+          "matches": [],
+          "any": false,
+          "cutoff": 320.8359506320747,
+          "expected": 0
+        },
+        "reverse": {
+          "M": 420,
+          "K": 132,
+          "n": 0,
+          "x": 0,
+          "matches": [],
+          "any": false,
+          "cutoff": 119.01668498617668,
+          "expected": 0
+        }
+      }
+    },
+    {
+      "id": "10047367",
+      "name": "엄태웅",
+      "priority": 16,
+      "eventMonth": "2016-08",
+      "eventLabel": "피소 사실 공개 이후 활동 공백",
+      "pauseStatus": "documented",
+      "sources": [
+        {
+          "title": "MBC 2016-08-23: 피소 사실 공개 (고소 접수는 7월이나 공개 월을 사용)",
+          "url": "https://imnews.imbc.com/replay/2016/nwdesk/article/4097909_30244.html",
+          "checkedOn": "2026-10-02"
+        }
+      ],
+      "pauseEvidence": [
+        {
+          "title": "일간스포츠 2017-07-18: 자숙·공식석상 불참, 사건과 고소인 처분 구분",
+          "url": "https://isplus.com/article/view/isp201707180116",
+          "checkedOn": "2026-10-02"
+        }
+      ],
+      "productionSources": [
+        {
+          "title": "일간스포츠 2017-07-18: 자숙·공식석상 불참, 사건과 고소인 처분 구분",
+          "url": "https://isplus.com/article/view/isp201707180116",
+          "checkedOn": "2026-10-02"
+        }
+      ],
+      "productionNote": "최초 피소 보도는 유죄 확정이 아니다. 성폭행 주장과 별도 성매매 처분을 구분한다. 포크레인(2017-07-27)은 실제 복귀 보도가 있어도 월말+365일 규칙에는 미달한다.",
+      "collaborationDecisionAfterEvent": "unverified",
+      "eventId": "10047367-2016-08",
+      "reviewNote": "2026-10-02 제한적 추가 확인. 전수 사건조사 아님.",
+      "eligible": true,
+      "eligibleHistory": true,
+      "reasons": [],
+      "preMean": 190.8781841030652,
+      "preN": 10,
+      "preHighYears": [
+        2008,
+        2009,
+        2010,
+        2012
+      ],
+      "eventYearAnnual": [],
+      "first": null,
+      "second": null,
+      "delta": null,
+      "normalizedDelta": null,
+      "ratioToPre": null,
+      "ratioToFirst": null,
+      "improved": null,
+      "aboveBaseline": null,
+      "partialRise": null,
+      "trajectory": [],
+      "notes": [
+        "No eligible post-month release observed by cutoff; censored before first and second endpoints.",
+        "Release timing does not establish post-event casting, a new collaboration decision, or causation."
+      ],
+      "frozenPoolSummary": {
+        "forward": {
+          "M": 164,
+          "K": 41,
+          "n": 0,
+          "x": 0,
+          "matches": [],
+          "any": false,
+          "cutoff": 122.15573333129556,
+          "expected": 0
+        },
+        "reverse": {
+          "M": 250,
+          "K": 74,
+          "n": 0,
+          "x": 0,
+          "matches": [],
+          "any": false,
+          "cutoff": 61.00607245014109,
+          "expected": 0
+        }
+      }
+    }
+  ],
+  "registry": [
+    {
+      "priority": 1,
+      "name": "하정우",
+      "id": "10087253",
+      "eventMonth": "2020-02",
+      "eventLabel": "프로포폴 관련 의혹 공개",
+      "sources": [
+        {
+          "title": "뉴스핌 2020-02-19: 의혹 공개와 당사자 해명",
+          "url": "https://www.newspim.com/news/view/20200219000338"
+        },
+        {
+          "url": "https://www.dispatch.co.kr/2217844",
+          "title": "2022-09 인터뷰: 약 2년 반 공백 언급"
+        }
+      ],
+      "productionNote": "비공식작전은 2022년 2월 촬영 시작 보도가 있어 공개 사건 이후 촬영으로 구분한다. 그러나 촬영 후 시점만으로 사건 후 캐스팅 결정 또는 의도적인 회복 전략을 입증할 수 없다.",
+      "productionSources": [
+        {
+          "title": "마이데일리 2023-07-24: 비공식작전 촬영 시점 인터뷰",
+          "url": "https://mydaily.co.kr/page/view/2023072413558403752"
+        }
+      ],
+      "collaborationDecisionAfterEvent": "unverified",
+      "eventId": "10087253-2020-02",
+      "pauseStatus": "documented",
+      "pauseEvidence": [
+        {
+          "url": "https://www.dispatch.co.kr/2217844",
+          "title": "2022-09 인터뷰: 약 2년 반 공백 언급"
+        }
+      ],
+      "reviewNote": "공백 인터뷰 확인. OTT 복귀와 국내 적격 영화 복귀는 별도이며, 휴식 중 모든 촬영 중단을 뜻하지 않음.",
+      "eligible": true,
+      "eligibleHistory": true,
+      "reasons": [],
+      "preMean": 475.0260184003608,
+      "preN": 31,
+      "preHighYears": [
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "eventYearAnnual": [
+        {
+          "id": "10087253",
+          "name": "하정우",
+          "year": 2020,
+          "score": 745.4292086903854,
+          "films": 1,
+          "usable": true,
+          "high": true
+        }
+      ],
+      "delta": -16.330811448011673,
+      "normalizedDelta": -0.034378772562827835,
+      "ratioToPre": 0.7658504988114243,
+      "ratioToFirst": 0.9570388464998433,
+      "improved": false,
+      "aboveBaseline": false,
+      "partialRise": false,
+      "notes": [
+        "Release timing does not establish post-event casting, a new collaboration decision, or causation."
+      ],
+      "firstObserved": true,
+      "secondObserved": true
+    },
+    {
+      "priority": 2,
+      "name": "오달수",
+      "id": "10050151",
+      "eventMonth": "2018-02",
+      "eventLabel": "성추행 의혹 공개 및 활동 중단",
+      "sources": [
+        {
+          "title": "YTN 2020-11-11: 이웃사촌 시사회와 2018년 2월 의혹",
+          "url": "https://www.ytn.co.kr/_ln/0117_202011111633310688"
+        },
+        {
+          "url": "https://www.ajunews.com/view/20201111083903894",
+          "title": "2020-11-11: 활동 중단·공개석상 복귀 및 기존 촬영작 보도"
+        }
+      ],
+      "productionNote": "이웃사촌은 사건 전부터 촬영된 개봉 지연 작품이다. 개봉 후 성과 관찰에는 포함하지만 사건 후 새 협업을 선택했다는 증거로 사용하지 않는다. 의혹을 확정된 범죄로 표현하지 않는다.",
+      "productionSources": [
+        {
+          "title": "아주경제 2020-11-11: 2018년 2월 촬영 종료 및 개봉 연기",
+          "url": "https://www.ajunews.com/view/20201111083903894"
+        }
+      ],
+      "collaborationDecisionAfterEvent": "not_supported_preexisting_production",
+      "eventId": "10050151-2018-02",
+      "pauseStatus": "documented",
+      "pauseEvidence": [
+        {
+          "url": "https://www.ajunews.com/view/20201111083903894",
+          "title": "2020-11-11: 활동 중단·공개석상 복귀 및 기존 촬영작 보도"
+        }
+      ],
+      "reviewNote": "의혹을 확정 범죄로 표현하지 않음. 이웃사촌은 사건 전부터 촬영한 개봉 지연 작품.",
+      "eligible": true,
+      "eligibleHistory": true,
+      "reasons": [],
+      "preMean": 204.0583394189959,
+      "preN": 46,
+      "preHighYears": [
+        2005,
+        2006,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017
+      ],
+      "eventYearAnnual": [
+        {
+          "id": "10050151",
+          "name": "오달수",
+          "year": 2018,
+          "score": 240.53728364018184,
+          "films": 1,
+          "usable": true,
+          "high": true
+        }
+      ],
+      "delta": -55.14947435243138,
+      "normalizedDelta": -0.2702632713245411,
+      "ratioToPre": 0.3325982433958837,
+      "ratioToFirst": 0.5516992464681132,
+      "improved": false,
+      "aboveBaseline": false,
+      "partialRise": false,
+      "notes": [
+        "Release timing does not establish post-event casting, a new collaboration decision, or causation."
+      ],
+      "firstObserved": true,
+      "secondObserved": true
+    },
+    {
+      "priority": 3,
+      "name": "곽도원",
+      "id": "20127192",
+      "eventMonth": "2022-09",
+      "eventLabel": "음주운전 적발 공개",
+      "sources": [
+        {
+          "title": "경향신문 2022-09-25: 음주운전 입건",
+          "url": "https://www.khan.co.kr/article/202209252055001"
+        },
+        {
+          "url": "https://www.osen.co.kr/article/G1112437887",
+          "title": "2024-10 보도: 자숙 중 소방관 개봉"
+        }
+      ],
+      "productionNote": "소방관은 2020년에 촬영을 마친 작품으로, 2022년 사건 전에 협업이 이루어졌다. 365일 이후 개봉 조건은 충족하지만 사건 후 새 협업 선택의 증거가 아니다. 사건 직전 연도는 유효 관측이 없어 직전 Hawk 상태를 확인할 수 없다.",
+      "productionSources": [
+        {
+          "title": "일간스포츠 2024-12-09: 감독 인터뷰, 2020년 촬영 완료",
+          "url": "https://isplus.com/article/view/isp202412020075"
+        }
+      ],
+      "collaborationDecisionAfterEvent": "not_supported_preexisting_production",
+      "eventId": "20127192-2022-09",
+      "pauseStatus": "documented",
+      "pauseEvidence": [
+        {
+          "url": "https://www.osen.co.kr/article/G1112437887",
+          "title": "2024-10 보도: 자숙 중 소방관 개봉"
+        }
+      ],
+      "reviewNote": "활동 중단 보도 확인. 소방관은 2020년 촬영작이므로 사건 후 협업 선택의 증거가 아님.",
+      "eligible": true,
+      "eligibleHistory": true,
+      "reasons": [],
+      "preMean": 226.31161651877827,
+      "preN": 18,
+      "preHighYears": [
+        2013,
+        2014,
+        2016,
+        2017,
+        2020
+      ],
+      "eventYearAnnual": [],
+      "delta": null,
+      "normalizedDelta": null,
+      "ratioToPre": null,
+      "ratioToFirst": null,
+      "improved": null,
+      "aboveBaseline": null,
+      "partialRise": null,
+      "notes": [
+        "No second distinct eligible release day observed by cutoff; second endpoint censored.",
+        "Release timing does not establish post-event casting, a new collaboration decision, or causation."
+      ],
+      "firstObserved": true,
+      "secondObserved": false
+    },
+    {
+      "id": "10054493",
+      "name": "윤제문",
+      "sources": [
+        {
+          "url": "https://www.hankyung.com/article/201606072725H",
+          "title": "2016-06-07 소속사 입장: 적발 사실·자숙"
+        },
+        {
+          "url": "https://www.edaily.co.kr/News/Read?mediaCodeNo=258&newsId=01351366615861352",
+          "title": "2017-03-08: 자숙 후 공식석상 복귀"
+        }
+      ],
+      "productionSources": [],
+      "productionNote": "보도상의 복귀작 아빠는 딸은 365일 조건 이전이다. EX에서는 사전 고정한 365일 이후 첫 적격 개봉을 사용한다. 후속 사건과 기존 제작작의 영향을 분리하지 못한다.",
+      "collaborationDecisionAfterEvent": "unverified",
+      "eventId": "10054493-2016-06",
+      "eventMonth": "2016-06",
+      "eventLabel": "음주운전 사실 공개",
+      "pauseStatus": "documented",
+      "pauseEvidence": [
+        {
+          "url": "https://www.hankyung.com/article/201606072725H",
+          "title": "2016-06-07 소속사 입장: 적발 사실·자숙"
+        },
+        {
+          "url": "https://www.edaily.co.kr/News/Read?mediaCodeNo=258&newsId=01351366615861352",
+          "title": "2017-03-08: 자숙 후 공식석상 복귀"
+        }
+      ],
+      "reviewNote": "적발은 5월, 공개 기준은 6월. 자숙 중 기존 촬영작 개봉이 계속됨. 2017년 추가 논란이 있어 단일 사건의 효과로 해석하지 않음.",
+      "priority": 4,
+      "eligible": true,
+      "eligibleHistory": true,
+      "reasons": [],
+      "preMean": 80.2321446189673,
+      "preN": 28,
+      "preHighYears": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2011
+      ],
+      "eventYearAnnual": [
+        {
+          "id": "10054493",
+          "name": "윤제문",
+          "year": 2016,
+          "score": 385.3822643451349,
+          "films": 4,
+          "usable": true,
+          "high": true
+        }
+      ],
+      "delta": -198.2365773837027,
+      "normalizedDelta": -2.470787467107523,
+      "ratioToPre": 0.8623691572216853,
+      "ratioToFirst": 0.2587244628491574,
+      "improved": false,
+      "aboveBaseline": false,
+      "partialRise": false,
+      "notes": [
+        "Release timing does not establish post-event casting, a new collaboration decision, or causation."
+      ],
+      "firstObserved": true,
+      "secondObserved": true
+    },
+    {
+      "id": "10062025",
+      "name": "정우성",
+      "sources": [
+        {
+          "url": "https://isplus.com/article/view/isp202509040083",
+          "title": "2025-09-04: 공개 활동 공백 후 광고 재개"
+        },
+        {
+          "url": "https://enews.imbc.com/News/RetrieveNewsInfo/487365",
+          "title": "2025-12-15: 시리즈 공개 활동 복귀"
+        }
+      ],
+      "productionSources": [],
+      "productionNote": "첫 적격 개봉은 실제 촬영·캐스팅 결정 이후의 개봉일이다. 사건 후 새 협업 결정 여부는 추가 확인이 필요하다.",
+      "collaborationDecisionAfterEvent": "unverified",
+      "eventId": "10062025-2024-11",
+      "eventMonth": "2024-11",
+      "eventLabel": "가족관계 공개 후 사생활 관련 논란",
+      "pauseStatus": "documented",
+      "pauseEvidence": [
+        {
+          "url": "https://isplus.com/article/view/isp202509040083",
+          "title": "2025-09-04: 공개 활동 공백 후 광고 재개"
+        },
+        {
+          "url": "https://enews.imbc.com/News/RetrieveNewsInfo/487365",
+          "title": "2025-12-15: 시리즈 공개 활동 복귀"
+        }
+      ],
+      "reviewNote": "공개 활동·홍보 공백 보도 기준이다. 전체 촬영 중단이나 위법행위를 뜻하지 않음. 광고·OTT 복귀는 국내 적격 영화 복귀와 구분.",
+      "priority": 5,
+      "eligible": true,
+      "eligibleHistory": true,
+      "reasons": [],
+      "preMean": 325.870623704766,
+      "preN": 26,
+      "preHighYears": [
+        2004,
+        2006,
+        2008,
+        2013,
+        2014,
+        2016,
+        2017,
+        2019,
+        2020,
+        2022,
+        2023
+      ],
+      "eventYearAnnual": [],
+      "delta": null,
+      "normalizedDelta": null,
+      "ratioToPre": null,
+      "ratioToFirst": null,
+      "improved": null,
+      "aboveBaseline": null,
+      "partialRise": null,
+      "notes": [
+        "No eligible post-month release observed by cutoff; censored before first and second endpoints.",
+        "Release timing does not establish post-event casting, a new collaboration decision, or causation."
+      ],
+      "firstObserved": false,
+      "secondObserved": false
+    },
+    {
+      "id": "10067353",
+      "name": "조진웅",
+      "sources": [
+        {
+          "url": "https://www.yna.co.kr/view/AKR20251206044151005",
+          "title": "2025-12-06 소속사를 통한 활동 중단 발표"
+        }
+      ],
+      "productionSources": [],
+      "productionNote": "첫 적격 개봉은 실제 촬영·캐스팅 결정 이후의 개봉일이다. 사건 후 새 협업 결정 여부는 추가 확인이 필요하다.",
+      "collaborationDecisionAfterEvent": "unverified",
+      "eventId": "10067353-2025-12",
+      "eventMonth": "2025-12",
+      "eventLabel": "과거 이력 관련 공개 논란 및 활동 중단 발표",
+      "pauseStatus": "documented",
+      "pauseEvidence": [
+        {
+          "url": "https://www.yna.co.kr/view/AKR20251206044151005",
+          "title": "2025-12-06 소속사를 통한 활동 중단 발표"
+        }
+      ],
+      "reviewNote": "일부 의혹의 인정·부인 범위를 구분하며 사건 세부를 확정하지 않음. 분석 마감일까지 월말+365일이 지나지 않아 복귀 기회 관측이 미완료.",
+      "priority": 6,
+      "eligible": true,
+      "eligibleHistory": true,
+      "reasons": [],
+      "preMean": 131.3235072323488,
+      "preN": 50,
+      "preHighYears": [
+        2011,
+        2012,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "eventYearAnnual": [
+        {
+          "id": "10067353",
+          "name": "조진웅",
+          "year": 2025,
+          "score": 11.845981710328916,
+          "films": 1,
+          "usable": true,
+          "high": false
+        }
+      ],
+      "delta": null,
+      "normalizedDelta": null,
+      "ratioToPre": null,
+      "ratioToFirst": null,
+      "improved": null,
+      "aboveBaseline": null,
+      "partialRise": null,
+      "notes": [
+        "No eligible post-month release observed by cutoff; censored before first and second endpoints.",
+        "Release timing does not establish post-event casting, a new collaboration decision, or causation."
+      ],
+      "firstObserved": false,
+      "secondObserved": false
+    },
+    {
+      "priority": 7,
+      "name": "이병헌",
+      "id": "10055626",
+      "eventMonth": "2014-09",
+      "eventLabel": "협박 피해 사건과 관련 사생활 논란 공개",
+      "sources": [
+        {
+          "title": "동아일보 2014-09-12: 협박 사건과 상반된 당사자 주장",
+          "url": "https://www.donga.com/news/Entertainment/article/all/20140912/66341389/1"
+        },
+        {
+          "url": "https://www.donga.com/news/List/article/all/20141002/66881909/4",
+          "title": "2014-10-02: 광고 노출 감소·개봉 연기 보도"
+        }
+      ],
+      "productionNote": "협박 사건의 피해자임을 구분한다. 사생활 관련 주장을 확정된 사실이나 위법행위로 취급하지 않는다. 사건 이전 Hawk 자격부터 확인한다.",
+      "productionSources": [],
+      "collaborationDecisionAfterEvent": "unverified",
+      "eventId": "10055626-2014-09",
+      "pauseStatus": "unresolved",
+      "pauseEvidence": [
+        {
+          "url": "https://www.donga.com/news/List/article/all/20141002/66881909/4",
+          "title": "2014-10-02: 광고 노출 감소·개봉 연기 보도"
+        }
+      ],
+      "reviewNote": "사건 보도와 활동 중단은 별도. 실제 활동 전반의 휴식 확정 근거가 부족하며 사건 이전 Hawk 자격도 별도 검증.",
+      "eligible": false,
+      "eligibleHistory": false,
+      "reasons": [
+        "pause_not_documented"
+      ],
+      "preMean": 386.11301395331583,
+      "preN": 7,
+      "preHighYears": [
+        2008,
+        2010,
+        2012
+      ],
+      "eventYearAnnual": [],
+      "delta": null,
+      "normalizedDelta": null,
+      "ratioToPre": null,
+      "ratioToFirst": null,
+      "improved": null,
+      "aboveBaseline": null,
+      "partialRise": null,
+      "notes": [],
+      "firstObserved": false,
+      "secondObserved": false
+    },
+    {
+      "id": "10002387",
+      "name": "권상우",
+      "sources": [
+        {
+          "url": "https://www.hankyung.com/article/2010062853107",
+          "title": "2010-06-28: 예정대로 드라마 출연·촬영 진행"
+        },
+        {
+          "url": "https://www.yna.co.kr/view/AKR20100929171300005",
+          "title": "2010-09-29: 제작발표회 사과"
+        }
+      ],
+      "productionSources": [],
+      "productionNote": "첫 적격 개봉은 실제 촬영·캐스팅 결정 이후의 개봉일이다. 사건 후 새 협업 결정 여부는 추가 확인이 필요하다.",
+      "collaborationDecisionAfterEvent": "unverified",
+      "eventId": "10002387-2010-06",
+      "eventMonth": "2010-06",
+      "eventLabel": "교통사고 후 현장 이탈 관련 보도",
+      "pauseStatus": "not_supported",
+      "pauseEvidence": [
+        {
+          "url": "https://www.hankyung.com/article/2010062853107",
+          "title": "2010-06-28: 예정대로 드라마 출연·촬영 진행"
+        },
+        {
+          "url": "https://www.yna.co.kr/view/AKR20100929171300005",
+          "title": "2010-09-29: 제작발표회 사과"
+        }
+      ],
+      "reviewNote": "공개 사건은 확인되지만 예정된 촬영 지속 보도가 있어 장기 활동 중단 사례로 확정하지 않음.",
+      "priority": 8,
+      "eligible": false,
+      "eligibleHistory": false,
+      "reasons": [
+        "pause_not_documented"
+      ],
+      "preMean": 138.0006318724544,
+      "preN": 6,
+      "preHighYears": [
+        2004,
+        2006
+      ],
+      "eventYearAnnual": [
+        {
+          "id": "10002387",
+          "name": "권상우",
+          "year": 2010,
+          "score": 361.9062490773115,
+          "films": 1,
+          "usable": true,
+          "high": true
+        }
+      ],
+      "delta": null,
+      "normalizedDelta": null,
+      "ratioToPre": null,
+      "ratioToFirst": null,
+      "improved": null,
+      "aboveBaseline": null,
+      "partialRise": null,
+      "notes": [],
+      "firstObserved": false,
+      "secondObserved": false
+    },
+    {
+      "id": "10062060",
+      "name": "정원중",
+      "sources": [
+        {
+          "url": "https://www.ytn.co.kr/_ln/0117_201912111142150000",
+          "title": "2019-12-11: 드라마 하차하지 않은 경위"
+        }
+      ],
+      "productionSources": [],
+      "productionNote": "첫 적격 개봉은 실제 촬영·캐스팅 결정 이후의 개봉일이다. 사건 후 새 협업 결정 여부는 추가 확인이 필요하다.",
+      "collaborationDecisionAfterEvent": "unverified",
+      "eventId": "10062060-2019-10",
+      "eventMonth": "2019-10",
+      "eventLabel": "교통사고 관련 보도",
+      "pauseStatus": "not_supported",
+      "pauseEvidence": [
+        {
+          "url": "https://www.ytn.co.kr/_ln/0117_201912111142150000",
+          "title": "2019-12-11: 드라마 하차하지 않은 경위"
+        }
+      ],
+      "reviewNote": "초기 하차 의향 보도와 후속 촬영 지속 보도를 구분. 장기 공백·복귀 사례로 집계하지 않음.",
+      "priority": 9,
+      "eligible": false,
+      "eligibleHistory": false,
+      "reasons": [
+        "pause_not_documented"
+      ],
+      "preMean": 121.80830608649119,
+      "preN": 23,
+      "preHighYears": [
+        2008,
+        2011,
+        2013,
+        2015,
+        2016,
+        2017
+      ],
+      "eventYearAnnual": [
+        {
+          "id": "10062060",
+          "name": "정원중",
+          "year": 2019,
+          "score": 175.29237614082646,
+          "films": 3,
+          "usable": true,
+          "high": true
+        }
+      ],
+      "delta": null,
+      "normalizedDelta": null,
+      "ratioToPre": null,
+      "ratioToFirst": null,
+      "improved": null,
+      "aboveBaseline": null,
+      "partialRise": null,
+      "notes": [],
+      "firstObserved": false,
+      "secondObserved": false
+    },
+    {
+      "id": "10071140",
+      "name": "차승원",
+      "sources": [
+        {
+          "url": "https://www.yna.co.kr/amp/view/AKR20130804000300005",
+          "title": "2013-08-04: 가족 관련 사과"
+        },
+        {
+          "url": "https://www.hankyung.com/article/2013082327347",
+          "title": "2013-08-23: 출국은 사건과 별개라는 소속사 설명"
+        }
+      ],
+      "productionSources": [],
+      "productionNote": "첫 적격 개봉은 실제 촬영·캐스팅 결정 이후의 개봉일이다. 사건 후 새 협업 결정 여부는 추가 확인이 필요하다.",
+      "collaborationDecisionAfterEvent": "unverified",
+      "eventId": "10071140-2013-08",
+      "eventMonth": "2013-08",
+      "eventLabel": "가족 관련 공개 논란",
+      "pauseStatus": "unresolved",
+      "pauseEvidence": [
+        {
+          "url": "https://www.yna.co.kr/amp/view/AKR20130804000300005",
+          "title": "2013-08-04: 가족 관련 사과"
+        },
+        {
+          "url": "https://www.hankyung.com/article/2013082327347",
+          "title": "2013-08-23: 출국은 사건과 별개라는 소속사 설명"
+        }
+      ],
+      "reviewNote": "가족 관련 사건을 배우 자신의 범죄로 취급하지 않음. 사건에 따른 활동 중단 기간은 확정하지 못함.",
+      "priority": 10,
+      "eligible": false,
+      "eligibleHistory": false,
+      "reasons": [
+        "pause_not_documented"
+      ],
+      "preMean": 255.82905079845727,
+      "preN": 10,
+      "preHighYears": [
+        2004,
+        2005,
+        2007,
+        2008,
+        2010
+      ],
+      "eventYearAnnual": [],
+      "delta": null,
+      "normalizedDelta": null,
+      "ratioToPre": null,
+      "ratioToFirst": null,
+      "improved": null,
+      "aboveBaseline": null,
+      "partialRise": null,
+      "notes": [],
+      "firstObserved": false,
+      "secondObserved": false
+    },
+    {
+      "id": "10000558",
+      "name": "강동원",
+      "sources": [
+        {
+          "url": "https://www.yna.co.kr/view/AKR20170305054600005",
+          "title": "2017-03-05: 공식 사과"
+        },
+        {
+          "url": "https://www.yna.co.kr/view/AKR20170503075200005",
+          "title": "2017-05-03: 공식석상 발언"
+        }
+      ],
+      "productionSources": [],
+      "productionNote": "첫 적격 개봉은 실제 촬영·캐스팅 결정 이후의 개봉일이다. 사건 후 새 협업 결정 여부는 추가 확인이 필요하다.",
+      "collaborationDecisionAfterEvent": "unverified",
+      "eventId": "10000558-2017-03",
+      "eventMonth": "2017-03",
+      "eventLabel": "외증조부 관련 공개 논란",
+      "pauseStatus": "unresolved",
+      "pauseEvidence": [
+        {
+          "url": "https://www.yna.co.kr/view/AKR20170305054600005",
+          "title": "2017-03-05: 공식 사과"
+        },
+        {
+          "url": "https://www.yna.co.kr/view/AKR20170503075200005",
+          "title": "2017-05-03: 공식석상 발언"
+        }
+      ],
+      "reviewNote": "논란 공개와 사과는 확인되나 작품 활동 중단을 확정할 근거가 부족함.",
+      "priority": 11,
+      "eligible": false,
+      "eligibleHistory": false,
+      "reasons": [
+        "pause_not_documented"
+      ],
+      "preMean": 442.74792921879396,
+      "preN": 15,
+      "preHighYears": [
+        2004,
+        2006,
+        2007,
+        2009,
+        2010,
+        2014,
+        2015,
+        2016
+      ],
+      "eventYearAnnual": [
+        {
+          "id": "10000558",
+          "name": "강동원",
+          "year": 2017,
+          "score": 252.81019112561125,
+          "films": 1,
+          "usable": true,
+          "high": true
+        }
+      ],
+      "delta": null,
+      "normalizedDelta": null,
+      "ratioToPre": null,
+      "ratioToFirst": null,
+      "improved": null,
+      "aboveBaseline": null,
+      "partialRise": null,
+      "notes": [],
+      "firstObserved": false,
+      "secondObserved": false
+    },
+    {
+      "id": "10006380",
+      "name": "김혜수",
+      "sources": [
+        {
+          "url": "https://news.kbs.co.kr/news/view.do?ncd=2631953",
+          "title": "2013-03-25: 입장 발표와 촬영 지속 설명"
+        }
+      ],
+      "productionSources": [],
+      "productionNote": "첫 적격 개봉은 실제 촬영·캐스팅 결정 이후의 개봉일이다. 사건 후 새 협업 결정 여부는 추가 확인이 필요하다.",
+      "collaborationDecisionAfterEvent": "unverified",
+      "eventId": "10006380-2013-03",
+      "eventMonth": "2013-03",
+      "eventLabel": "학위 논문 관련 공개 논란",
+      "pauseStatus": "not_supported",
+      "pauseEvidence": [
+        {
+          "url": "https://news.kbs.co.kr/news/view.do?ncd=2631953",
+          "title": "2013-03-25: 입장 발표와 촬영 지속 설명"
+        }
+      ],
+      "reviewNote": "제작 일정에 따라 촬영을 지속했다는 설명이 있어 사건 후 활동 중단 집단에 포함하지 않음.",
+      "priority": 12,
+      "eligible": false,
+      "eligibleHistory": false,
+      "reasons": [
+        "pause_not_documented"
+      ],
+      "preMean": 236.02729475679155,
+      "preN": 9,
+      "preHighYears": [
+        2006,
+        2007,
+        2012
+      ],
+      "eventYearAnnual": [
+        {
+          "id": "10006380",
+          "name": "김혜수",
+          "year": 2013,
+          "score": 356.81506629904396,
+          "films": 1,
+          "usable": true,
+          "high": true
+        }
+      ],
+      "delta": null,
+      "normalizedDelta": null,
+      "ratioToPre": null,
+      "ratioToFirst": null,
+      "improved": null,
+      "aboveBaseline": null,
+      "partialRise": null,
+      "notes": [],
+      "firstObserved": false,
+      "secondObserved": false
+    },
+    {
+      "priority": 13,
+      "name": "배성우",
+      "id": "20136191",
+      "eventMonth": "2020-12",
+      "eventLabel": "음주운전 적발 사실 공개 및 하차",
+      "sources": [
+        {
+          "title": "연합뉴스TV 2020-12-10: 적발 사실 공개·자숙 입장",
+          "url": "https://www.yonhapnewstv.co.kr/news/MYH20201210009400038",
+          "checkedOn": "2026-10-02"
+        }
+      ],
+      "productionNote": "1947 보스톤은 사건 전에 촬영한 작품. 개봉 기준 성과와 사건 후 협업 선택을 구분한다.",
+      "productionSources": [
+        {
+          "title": "연합뉴스 2024-05-19: 하차와 복귀, 1947 보스톤은 사건 전 촬영",
+          "url": "https://www.yna.co.kr/amp/view/AKR20240517148100005",
+          "checkedOn": "2026-10-02"
+        }
+      ],
+      "collaborationDecisionAfterEvent": "not_supported_preexisting_production",
+      "pauseStatus": "documented",
+      "pauseEvidence": [
+        {
+          "title": "연합뉴스 2024-05-19: 하차와 복귀, 1947 보스톤은 사건 전 촬영",
+          "url": "https://www.yna.co.kr/amp/view/AKR20240517148100005",
+          "checkedOn": "2026-10-02"
+        }
+      ],
+      "eventId": "20136191-2020-12",
+      "reviewNote": "2026-10-02 제한적 추가 확인. 전수 사건조사 아님.",
+      "eligible": true,
+      "eligibleHistory": true,
+      "reasons": [],
+      "preMean": 66.37925734481237,
+      "preN": 33,
+      "preHighYears": [
+        2015,
+        2017,
+        2018,
+        2019
+      ],
+      "eventYearAnnual": [
+        {
+          "id": "20136191",
+          "name": "배성우",
+          "year": 2020,
+          "score": 96.95411603411316,
+          "films": 1,
+          "usable": true,
+          "high": false
+        }
+      ],
+      "delta": 93.7691776690399,
+      "normalizedDelta": 1.412627700577432,
+      "ratioToPre": 1.4243522105908726,
+      "ratioToFirst": 121.48500951920505,
+      "improved": true,
+      "aboveBaseline": true,
+      "partialRise": false,
+      "notes": [
+        "Release timing does not establish post-event casting, a new collaboration decision, or causation."
+      ],
+      "firstObserved": true,
+      "secondObserved": true
+    },
+    {
+      "priority": 14,
+      "name": "주지훈",
+      "id": "10069179",
+      "eventMonth": "2009-04",
+      "eventLabel": "마약 투약 혐의 입건 공개",
+      "sources": [
+        {
+          "title": "연합뉴스 2009-04-26: 입건 공개",
+          "url": "https://cb.yna.co.kr/gate/big5/m-cn.yna.co.kr/view/AKR20090426032000004",
+          "checkedOn": "2026-10-02"
+        }
+      ],
+      "productionNote": "공백에 군 복무가 함께 포함됨. 사건만의 효과로 해석하지 않는다.",
+      "productionSources": [],
+      "collaborationDecisionAfterEvent": "unverified",
+      "pauseStatus": "documented",
+      "pauseEvidence": [
+        {
+          "title": "연합뉴스 2012-08-09: 군 복무 후 3년 만 영화 복귀",
+          "url": "https://www.yna.co.kr/view/AKR20120809200400005",
+          "checkedOn": "2026-10-02"
+        }
+      ],
+      "eventId": "10069179-2009-04",
+      "reviewNote": "2026-10-02 제한적 추가 확인. 전수 사건조사 아님.",
+      "eligible": false,
+      "eligibleHistory": false,
+      "reasons": [
+        "fewer_than_two_usable_pre_event_high_years"
+      ],
+      "preMean": 91.40205710904189,
+      "preN": 2,
+      "preHighYears": [],
+      "eventYearAnnual": [
+        {
+          "id": "10069179",
+          "name": "주지훈",
+          "year": 2009,
+          "score": 8.953329282607577,
+          "films": 1,
+          "usable": true,
+          "high": false
+        }
+      ],
+      "delta": null,
+      "normalizedDelta": null,
+      "ratioToPre": null,
+      "ratioToFirst": null,
+      "improved": null,
+      "aboveBaseline": null,
+      "partialRise": null,
+      "notes": [],
+      "firstObserved": false,
+      "secondObserved": false
+    },
+    {
+      "id": "10053802",
+      "name": "유아인",
+      "priority": 15,
+      "eventMonth": "2023-02",
+      "eventLabel": "프로포폴 관련 수사 사실 공개",
+      "pauseStatus": "documented",
+      "sources": [
+        {
+          "title": "연합뉴스 2023-02-08: 프로포폴 혐의 수사 공개",
+          "url": "https://www.yna.co.kr/view/AKR20230208168400004",
+          "checkedOn": "2026-10-02"
+        }
+      ],
+      "pauseEvidence": [
+        {
+          "title": "연합뉴스TV 2026-08-18: 2023년 보도 이후 활동 중단·지옥2 하차",
+          "url": "https://www.yonhapnewstv.co.kr/news/AKR20260818103422360",
+          "checkedOn": "2026-10-02"
+        },
+        {
+          "title": "연합뉴스 2025-02-19: 공개 보류 후 극장 개봉 및 홍보 활동 배제",
+          "url": "https://www.yna.co.kr/view/AKR20250219081300005",
+          "checkedOn": "2026-10-02"
+        }
+      ],
+      "productionSources": [
+        {
+          "title": "연합뉴스 2025-02-19: 공개 보류 후 극장 개봉 및 홍보 활동 배제",
+          "url": "https://www.yna.co.kr/view/AKR20250219081300005",
+          "checkedOn": "2026-10-02"
+        }
+      ],
+      "productionNote": "승부는 2023년 공개 예정에서 수사 이후 공개가 보류된 작품이며, 2025년 개봉 홍보에서도 배우가 배제되었다. 개봉 기준 복귀가 새 협업 선택이나 공개 활동 복귀를 뜻하지 않는다. 캐스팅 결정일은 미확인.",
+      "collaborationDecisionAfterEvent": "unverified",
+      "eventId": "10053802-2023-02",
+      "reviewNote": "2026-10-02 제한적 추가 확인. 전수 사건조사 아님.",
+      "eligible": true,
+      "eligibleHistory": true,
+      "reasons": [],
+      "preMean": 252.3879193911276,
+      "preN": 14,
+      "preHighYears": [
+        2011,
+        2015,
+        2018,
+        2020
+      ],
+      "eventYearAnnual": [],
+      "delta": -141.47066195376,
+      "normalizedDelta": -0.56052865880051,
+      "ratioToPre": 1.421141726255445,
+      "ratioToFirst": 0.7171433438035243,
+      "improved": false,
+      "aboveBaseline": true,
+      "partialRise": false,
+      "notes": [
+        "Release timing does not establish post-event casting, a new collaboration decision, or causation."
+      ],
+      "firstObserved": true,
+      "secondObserved": true
+    },
+    {
+      "id": "10047367",
+      "name": "엄태웅",
+      "priority": 16,
+      "eventMonth": "2016-08",
+      "eventLabel": "피소 사실 공개 이후 활동 공백",
+      "pauseStatus": "documented",
+      "sources": [
+        {
+          "title": "MBC 2016-08-23: 피소 사실 공개 (고소 접수는 7월이나 공개 월을 사용)",
+          "url": "https://imnews.imbc.com/replay/2016/nwdesk/article/4097909_30244.html",
+          "checkedOn": "2026-10-02"
+        }
+      ],
+      "pauseEvidence": [
+        {
+          "title": "일간스포츠 2017-07-18: 자숙·공식석상 불참, 사건과 고소인 처분 구분",
+          "url": "https://isplus.com/article/view/isp201707180116",
+          "checkedOn": "2026-10-02"
+        }
+      ],
+      "productionSources": [
+        {
+          "title": "일간스포츠 2017-07-18: 자숙·공식석상 불참, 사건과 고소인 처분 구분",
+          "url": "https://isplus.com/article/view/isp201707180116",
+          "checkedOn": "2026-10-02"
+        }
+      ],
+      "productionNote": "최초 피소 보도는 유죄 확정이 아니다. 성폭행 주장과 별도 성매매 처분을 구분한다. 포크레인(2017-07-27)은 실제 복귀 보도가 있어도 월말+365일 규칙에는 미달한다.",
+      "collaborationDecisionAfterEvent": "unverified",
+      "eventId": "10047367-2016-08",
+      "reviewNote": "2026-10-02 제한적 추가 확인. 전수 사건조사 아님.",
+      "eligible": true,
+      "eligibleHistory": true,
+      "reasons": [],
+      "preMean": 190.8781841030652,
+      "preN": 10,
+      "preHighYears": [
+        2008,
+        2009,
+        2010,
+        2012
+      ],
+      "eventYearAnnual": [],
+      "delta": null,
+      "normalizedDelta": null,
+      "ratioToPre": null,
+      "ratioToFirst": null,
+      "improved": null,
+      "aboveBaseline": null,
+      "partialRise": null,
+      "notes": [
+        "No eligible post-month release observed by cutoff; censored before first and second endpoints.",
+        "Release timing does not establish post-event casting, a new collaboration decision, or causation."
+      ],
+      "firstObserved": false,
+      "secondObserved": false
+    }
+  ],
+  "provenance": {
+    "inputs": {
+      "docs/data/search_index.json": "4da38a88bfba6c85040f62140e7ddbb78fd84cc96a2803ba78c4d26ee9026918",
+      "docs/data/research/recovery_followup_registry.json": "a796b18c7499a34ee660ca3313d3d409dc90fc94d8105de208fa1f5c6a0c2900",
+      "docs/data/research/recovery_followup_baseline.json": "fef7606a8dc9a425651fea9a5d5450b238b23914e6ace2a1409eb151f20e32b7"
+    },
+    "code": {
+      "docs/assets/starpower-core.js": "a1024488c260b81ef6446faba570abe2ae5d11aaa3edd2f41ebf27fecb03d057",
+      "docs/assets/hawk-criterion-core.js": "fba5864daa0324b93723993fed17db923192d6677b1d301524bde68fadebab4a",
+      "scripts/build_recovery_followup.js": "56fb02839024bbe6f9b1255aa9b30fd5d4b4b06021f522c775556a837042b8ab",
+      "scripts/analyze_recovery_followup.py": "f02e7f05f8a5d00ca8e28513d71f0ae57e3d02061c4a35e05a97e2fc475e7727",
+      "docs/assets/recovery-followup-page.js": "b8a8bbc532905fcdec313f128f1a81ecb0f9d5634bfed6667475f2a240ad4696",
+      "docs/assets/recovery-followup.css": "0d7c144bfc791f933bd809e0386227b458ce1d38a64d2b39bf894814008cb4dc",
+      "docs/recovery-followup.html": "41c465df5fb28128ed9a2d8bd26a86ddbac02bbd88cf946a7a56153056b76466"
+    },
+    "generatedAt": "2026-10-23T06:37:35.647Z",
+    "newDataCollected": false,
+    "registryNote": "Previously archived manuscript registry, reproduced without new incident searches. Documentary status is inherited, not newly verified."
+  }
+}

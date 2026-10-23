@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>복귀 후속 관찰 실험 — K-Movie A Archive</title>
+  <link rel="stylesheet" href="assets/recovery-followup.css">
+</head>
+<body>
+<main class="study">
+  <nav class="tools nav" aria-label="관련 페이지">
+    <a class="btn" href="saved.html">저장 목록</a>
+    <a class="btn" href="event-recovery.html" target="_blank" rel="noopener">사건·복귀 실험</a>
+    <a class="btn" href="event-recovery-ex.html" target="_blank" rel="noopener">사건·복귀 실험 EX</a>
+  </nav>
+  <p class="eyebrow">K-Movie A Archive · 사건 공개 이후의 영화 관측</p>
+  <div class="title-row"><span class="badge yes">실험 1</span><span class="muted">고정된 후속 시점 비교</span></div>
+  <h1>복귀 후속 관찰 실험</h1>
+  <p class="lead">사건 공개 월 이후 첫 관측과, <strong>그다음 서로 다른 개봉일의 관측</strong>을 비교합니다. 두 번째 관측은 SP 상승 여부와 무관하게 정해집니다.</p>
+  <div class="notice"><strong>‘회복한 작품’을 골라내지 않습니다.</strong> 사건 공개 월 이후의 적격 개봉작을 시간순으로 묶고, 두 번째 서로 다른 개봉일을 고정된 후속 시점으로 사용합니다. 같은 날의 여러 작품은 하나의 관측으로 표시합니다.</div>
+  <p class="scope-note">실험 2는 이번 버전에 포함되지 않음</p>
+  <p id="followup-meta" class="muted" role="status" aria-live="polite">계산 결과 불러오는 중…</p>
+  <div class="tools controls">
+    <label>배우 <select id="followup-actor" data-control disabled><option value="">전체</option></select></label>
+    <label>고시너지 방향 <select id="followup-direction" data-control disabled><option value="forward">A → B · 사건 배우가 동료에게</option><option value="reverse">B → A · 동료가 사건 배우에게</option></select></label>
+    <button class="btn" id="followup-csv" data-control disabled>사례 CSV</button>
+    <button class="btn" id="followup-json" data-control disabled>전체 JSON</button>
+    <button class="btn" id="followup-verify" data-control disabled>입력·코드 SHA 확인</button>
+    <button class="btn" id="followup-print">인쇄 / PDF</button>
+  </div>
+  <p class="muted">배우 선택은 아래 비교표와 상세 카드만 바꿉니다. 전체 집계는 바뀌지 않습니다. A는 사건 배우, B는 공동출연 동료입니다.</p>
+  <div id="followup-counts" class="metrics" aria-label="전체 관측 집계"></div>
+  <section class="panel">
+    <h2>고정된 두 시점 비교</h2>
+    <div id="followup-summary" class="notice" aria-live="polite"></div>
+    <p class="muted">ΔSP = 두 번째 SP − 첫 번째 SP. 정규화 변화 = ΔSP ÷ 사건 전 평균 SP × 100. 첫 번째 SP 대비 수익률이 아닙니다. 사건 전 평균을 계산할 수 없거나 평균이 0이면 정규화 값은 계산 불가입니다.</p>
+    <div id="followup-comparison" class="scroll"></div>
+  </section>
+  <section aria-labelledby="details-title"><h2 id="details-title">배우별 관측 궤적</h2><div id="followup-details"></div></section>
+  <section class="panel">
+    <h2>분석 방법과 해석 범위</h2>
+    <p id="followup-method"></p>
+    <ul>
+      <li>첫 관측은 사건 공개 이후 첫 적격 영화 개봉일의 관측입니다. 사건 발생 당시의 점수나 사건 직후 최저점이 아닙니다.</li>
+      <li>SP는 현재 자료 스냅샷으로 다시 계산한 후향적 값입니다. 그 당시 알 수 있었던 정보만을 이용한 예측이나 실시간 점수가 아닙니다.</li>
+      <li>두 번째 관측이 없으면 아직 후속 결과를 알 수 없습니다. 0점, 실패, 미회복으로 채우지 않습니다. 첫 관측이 없는 사례도 분모와 상세에 남깁니다.</li>
+      <li>사건 전 고시너지 동료와 재출연하고 SP가 함께 상승해도, 고시너지 동료가 상승을 일으켰다는 인과관계는 입증되지 않습니다.</li>
+      <li>개봉 시점은 촬영·캐스팅 시점과 다릅니다. 사건 전 제작된 영화가 뒤늦게 개봉했을 수 있습니다. 배우·작품 선정, 누락, 후속 사건과 추적 기간 차이도 결과에 영향을 줄 수 있습니다.</li>
+      <li>정규화 그래프의 100은 사건 전 적격 작품 평균입니다. 점 사이는 관측 순서를 잇는 선이며, 관측이 없는 기간의 SP를 추정하지 않습니다.</li>
+    </ul>
+  </section>
+  <section class="panel">
+    <h2>검산과 재현 정보</h2>
+    <p><strong>논문 기준 결과 대조(입력 규모·첫 개봉작)</strong> — 전체 논문 분석의 재현을 뜻하지 않습니다.</p>
+    <p id="followup-audit-status" class="muted"></p>
+    <div id="followup-audits" class="scroll"></div>
+    <p id="followup-verify-status" class="muted" role="status" aria-live="polite">SHA 확인은 현재 제공되는 입력·코드 파일과 결과에 기록된 SHA-256 지문을 비교합니다. 수식 재실행이나 외부 사실 검증을 뜻하지 않습니다.</p>
+    <div id="followup-verify-results" class="scroll"></div>
+    <details><summary>분석 설정·분모·파일 지문</summary><pre id="followup-provenance"></pre></details>
+    <details><summary>조사 대장</summary><div id="followup-registry" class="scroll"></div></details>
+  </section>
+  <p class="foot">탐색적 관찰 결과 · 통계적 유의성이나 인과관계를 의미하지 않습니다.</p>
+</main>
+<script src="assets/recovery-followup-page.js" defer></script>
+</body>
+</html>
