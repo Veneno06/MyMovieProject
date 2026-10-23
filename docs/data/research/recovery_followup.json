@@ -1,6 +1,6 @@
 {
   "version": "2026-10-23-experiment-1",
-  "generatedAt": "2026-10-23T06:37:34.755244+00:00",
+  "generatedAt": "2026-10-23T06:55:09.539631+00:00",
   "config": {
     "lambda": 12,
     "cutoffDate": "20260903",
@@ -4824,7 +4824,7 @@
   ],
   "provenance": {
     "inputs": {
-      "docs/data/search_index.json": "4da38a88bfba6c85040f62140e7ddbb78fd84cc96a2803ba78c4d26ee9026918",
+      "docs/data/search_index.json": "474d52f481f416003ddb9a168d9a1f142640ccdbf7a5c97c5af798c9426ebe8d",
       "docs/data/research/recovery_followup_registry.json": "a796b18c7499a34ee660ca3313d3d409dc90fc94d8105de208fa1f5c6a0c2900",
       "docs/data/research/recovery_followup_baseline.json": "fef7606a8dc9a425651fea9a5d5450b238b23914e6ace2a1409eb151f20e32b7"
     },
@@ -4837,7 +4837,7 @@
       "docs/assets/recovery-followup.css": "0d7c144bfc791f933bd809e0386227b458ce1d38a64d2b39bf894814008cb4dc",
       "docs/recovery-followup.html": "41c465df5fb28128ed9a2d8bd26a86ddbac02bbd88cf946a7a56153056b76466"
     },
-    "generatedAt": "2026-10-23T06:37:35.647Z",
+    "generatedAt": "2026-10-23T06:55:10.099Z",
     "newDataCollected": false,
     "registryNote": "Previously archived manuscript registry, reproduced without new incident searches. Documentary status is inherited, not newly verified."
   }
