@@ -1,0 +1,60 @@
+{
+  "actor_name": "문정대",
+  "actor_id": "20346557",
+  "schema_version": 2,
+  "date_basis": "comment_published_at",
+  "time_unit": "iso_week",
+  "last_updated": "2026-11-02 00:34:36",
+  "timeline": {
+    "2025-W34": {
+      "positive": 12,
+      "negative": 20
+    },
+    "2025-W33": {
+      "positive": 4,
+      "negative": 1
+    },
+    "2025-W37": {
+      "positive": 0,
+      "negative": 2
+    },
+    "2025-W39": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2025-W32": {
+      "positive": 0,
+      "negative": 1
+    },
+    "2025-W35": {
+      "positive": 1,
+      "negative": 0
+    }
+  },
+  "sources": [
+    {
+      "videoId": "r7-oodRgSuc",
+      "title": "죽을 뻔했는데 아무도 몰라주는 홍기 feat. 계속 보고 싶은 이동휘 #파인",
+      "channel": "씨네쇼츠",
+      "publishedAt": "2025-08-17T21:45:02Z",
+      "pos_count": 10,
+      "neg_count": 17
+    },
+    {
+      "videoId": "20eJPZV6XLU",
+      "title": "[파인 최종화] 1년을 기다린 관석의 복수 feat. 파인 최종화 쿠키 영상 #파인",
+      "channel": "씨네쇼츠",
+      "publishedAt": "2025-08-16T11:00:05Z",
+      "pos_count": 3,
+      "neg_count": 6
+    },
+    {
+      "videoId": "7kqXqwL9nOU",
+      "title": "ㄱㅉ? 니가 왜 거기서 나와? feat.언제나 진심인 부산 사나이들 #파인",
+      "channel": "씨네쇼츠",
+      "publishedAt": "2025-08-09T22:00:12Z",
+      "pos_count": 4,
+      "neg_count": 2
+    }
+  ]
+}
