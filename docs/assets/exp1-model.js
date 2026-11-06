@@ -20,6 +20,7 @@
     historyExponent: 0.5,
     daysPerYear: 365.25,
     percentile: 0.95,     // 기울기 변화 절댓값의 95백분위
+    absoluteThreshold: null, // 숫자를 넣으면 해당 SP/년 기준을 직접 사용
     topFraction: 0.25     // 계산 가능한 동료의 상위 25%
   });
   const MODES = ['paper', 'no_history', 'market_only', 'reciprocal_rank'];
@@ -64,7 +65,9 @@
       dateMean:'같은 개봉일의 측정 가능한 배우–작품 SP 산술평균을 씁니다. 결측은 0으로 넣지 않으며, 일부만 계산된 날과 계산할 수 없는 작품도 표시합니다.',
       slope:'기울기 = (나중 날짜 평균 SP − 앞 날짜 평균 SP) × ' + c.daysPerYear + ' / 실제 경과 일수. 단위: SP/년.',
       change:'서로 다른 연속 세 측정일의 가운데 날짜가 기준점입니다. 변화량 = 뒤 구간 기울기 − 앞 구간 기울기. 뒤 측정일이 있어야 판정되므로 실시간 예측이 아닙니다.',
-      threshold:'전체 변화량 절댓값을 작은 순서로 정렬해 올림(' + c.percentile + ' × 전체 수)번째 값을 구합니다. 임계값 이상인 동률을 모두 포함하고, 0은 분포에는 포함하되 급변점으로 표시하지 않습니다.',
+      threshold:c.absoluteThreshold === null
+        ? '전체 변화량 절댓값을 작은 순서로 정렬해 올림(' + c.percentile + ' × 전체 수)번째 값을 구합니다. 임계값 이상인 동률을 모두 포함하고, 0은 분포에는 포함하되 급변점으로 표시하지 않습니다.'
+        : '사용자가 입력한 ' + c.absoluteThreshold + ' SP/년 이상으로 앞뒤 기울기 차이의 절댓값이 큰 지점을 선택합니다. 경계 동률을 포함하며 변화량이 정확히 0인 지점은 제외합니다.',
       synergy:'S(A→B) = 100 × (A와 함께한 B의 과거 평균 SP / A 없이 출연한 B의 과거 평균 SP − 1). 기준일 전 작품만 쓰며, 두 집합이 모두 있고 분모가 양수인 안정 ID 동료만 계산합니다.',
       pool:'계산 가능한 동료 M명을 내림차순 정렬해 상위 올림(' + c.topFraction + ' × M)명과 경계 동률을 포함한 뒤, 시너지가 양수인 동료만 남깁니다. 이 명단을 기준일과 이후 모든 개봉일의 비교에 고정합니다.',
       next:'기준일과 그 뒤 국내 작품의 개봉일마다 같은 날의 모든 작품에서 재등장을 찾습니다. 모집단 비율은 기준일과 그 직후 첫 개봉일을 각각 한 번씩 집계합니다. 다음 작품에 SP가 없어도 건너뛰지 않습니다. 안정 ID가 없는 개봉 기록은 특정 배우의 필모그래피에 연결할 수 없습니다.',
@@ -108,6 +111,15 @@
       if (!Number.isFinite(c[k]) || (['roleExponent','historyExponent'].includes(k) ? c[k]<0 : c[k]<=0)) throw new Error('Invalid ' + k);
     }
     if (c.percentile > 1 || c.topFraction > 1 || !MODES.includes(c.scoreMode)) throw new Error('Invalid percentile, topFraction or scoreMode');
+    if (c.absoluteThreshold != null) {
+      if (trim(c.absoluteThreshold) === '') throw new Error('Invalid absoluteThreshold');
+      c.absoluteThreshold = Number(c.absoluteThreshold);
+      if (!Number.isFinite(c.absoluteThreshold) || c.absoluteThreshold < 0) {
+        throw new Error('Invalid absoluteThreshold');
+      }
+    } else {
+      c.absoluteThreshold = null;
+    }
     c.domesticNations = [...countries];
     return c;
   }
@@ -259,7 +271,9 @@
       }
     }
     coverage.unscoredActors=actors.size-scoredActors;
-    const cutoff=nearestRank(values,c.percentile);
+    const cutoff = c.absoluteThreshold === null
+      ? nearestRank(values, c.percentile)
+      : c.absoluteThreshold;
     const counters=()=>({hits:0,evaluable:0,unknown:0,total:0,misses:0});
     const comparisonCounts=()=>({pivot:{points:counters(),actors:counters()},next:{points:counters(),actors:counters()}});
     const comparisons=comparisonCounts();
