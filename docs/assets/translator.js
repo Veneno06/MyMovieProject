@@ -15,6 +15,8 @@ const STRINGS = {
         'peopleSearch': "배우/감독 검색",
         'costarSearch': "공동 출연 검색",
         'savedList': "저장 목록",
+        'experiments': "실험",
+        'starPowerTimeSeries': "스타 파워 시계열",
         'annualRatio': "관객수 비율",
         
         // --- 페이지 제목 ---
@@ -105,6 +107,8 @@ const STRINGS = {
         'peopleSearch': "Actor/Director",
         'costarSearch': "Co-star Search",
         'savedList': "Saved List",
+        'experiments': "Experiments",
+        'starPowerTimeSeries': "Star Power Time Series",
         'annualRatio': "Audience Ratio",
 
         // --- Page Titles ---
