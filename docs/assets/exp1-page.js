@@ -37,6 +37,8 @@
   function persistList(){try {sessionStorage.setItem(storeKey,JSON.stringify([...shortlist]));}catch(_){}}
   let worker,roster=[],byId=new Map(),unlinked=[],summary=null,registryAvailable=false;
   let isExample=false,selectedId=null,current=null,sequence=0,desiredDate='',openResults=false,resultPage=0,actorRows=[],disposeChart=()=>{};
+  let appliedConfig=null, previousResult=null, calculationRequest=null;
+  let calculating=false, resultsWereOpen=false;
   const pageSize=6;
   function toggleResults(open){
     openResults=open;
@@ -86,7 +88,7 @@
   }
   function choose(id,date,close=true,example=false){
     id=String(id);
-    if(!byId.has(id))return;
+    if(calculating||!byId.has(id))return;
     if(close)toggleResults(false);
     selectedId=id;desiredDate=date||'';isExample=example;
     if(current?.id===id){renderActor(current);return;}
@@ -126,7 +128,7 @@
     const changeArea=h('section',{class:'section','aria-label':'변곡점과 재출연'}), eventArea=h('section',{class:'section','aria-label':'사건 자료와 관측 시점'});
     const setPoint=(d,movePlot=false)=>{
       const found=pts.find(x=>x.date===d);if(!found)return;
-      selectedPoint=found;renderPoint(a,found,changeArea,date=>{setPoint(date,true);});renderEventArea(a,found,eventArea);
+      desiredDate=d;selectedPoint=found;renderPoint(a,found,changeArea,date=>{setPoint(date,true);});renderEventArea(a,found,eventArea);
       if(movePlot)chart?.select(d);
     };
     let chart=null;
@@ -355,14 +357,117 @@
     status('');const box=$('load-status');box.hidden=false;
     box.append(document.createTextNode(message+' '),btn('다시 시도',()=>retryAll?location.reload():choose(selectedId),{class:'btn small'}));
   }
+  function criterionLabel(config) {
+    return config.absoluteThreshold === null
+      ? number(config.percentile * 100, 6) + '백분위'
+      : '직접 입력 ' + number(config.absoluteThreshold, 6) + ' SP/년';
+  }
+  function comparisonRow(label, config, result) {
+    const reunion = result.comparisons.next.points;
+    return [label, criterionLabel(config),
+      h('span', {title: exact(result.cutoff)}, fmtSP(result.cutoff)),
+      count(result.markedActors), count(result.points),
+      count(reunion.hits) + ' / ' + count(reunion.evaluable), rate(reunion)];
+  }
+  function showCriterionResult() {
+    $('threshold-status').textContent = '현재 적용 ' + criterionLabel(appliedConfig)
+      + ' · 실제 임계값 ' + fmtSP(summary.cutoff) + ' SP/년'
+      + ' · 후보 ' + count(summary.markedActors) + '명 / ' + count(summary.points) + '곳';
+    const box = $('threshold-comparison');
+    box.hidden = !previousResult;
+    if (!previousResult) return;
+    box.replaceChildren(table(
+      ['적용 시점', '판정 기준', '임계값 (SP/년)', '후보 배우', '급변점', '첫 후속 재출연 / 판정 가능', '재출연율'],
+      [comparisonRow('직전 적용', previousResult.config, previousResult.summary),
+       comparisonRow('현재 적용', appliedConfig, summary)], '급변점 기준 적용 전후 비교'),
+      p('같은 자료에서 기준만 바꾼 결과입니다. 재출연율은 급변점 단위로 첫 후속 개봉일을 집계합니다.'));
+  }
+  function updateCriterionInput(value) {
+    const input = $('threshold-value');
+    const absolute = $('threshold-mode').value === 'absolute';
+    input.setCustomValidity('');
+    if (absolute) input.removeAttribute('max');
+    else input.max = '100';
+    $('threshold-value-label').textContent = absolute
+      ? '기울기 변화 절댓값 (SP/년)' : '백분위 (0 초과~100)';
+    $('threshold-help').textContent = absolute
+      ? '앞뒤 기울기 차이의 절댓값이 입력값 이상이면 선택합니다. 0을 입력해도 변화량이 정확히 0인 지점은 제외합니다.'
+      : '전체 배우의 변화량 절댓값을 비교합니다. 백분위를 낮추면 후보가 늘고, 높이면 큰 변화만 선택됩니다.';
+    input.value = String(value);
+  }
+  function setCalculating(busy) {
+    calculating = busy;
+    for (const id of ['threshold-mode', 'threshold-value', 'threshold-apply', 'threshold-reset',
+                     'actor-query', 'actor-mode', 'results-toggle']) {
+      $(id).disabled = busy;
+    }
+    $('threshold-form').setAttribute('aria-busy', String(busy));
+    $('actor-panel').hidden = busy || !current;
+    $('cohort').hidden = busy || !summary;
+    $('actor-results').hidden = busy || !openResults;
+    if (busy) $('threshold-comparison').hidden = true;
+  }
+  function applyCriterion() {
+    if (calculating || !appliedConfig) return;
+    const input = $('threshold-value');
+    const value = input.valueAsNumber;
+    const absolute = $('threshold-mode').value === 'absolute';
+    input.setCustomValidity('');
+    if (!Number.isFinite(value) || (absolute ? value < 0 : value <= 0 || value > 100)) {
+      input.setCustomValidity(absolute ? '0 이상의 유한한 숫자를 입력해 주세요.' : '0보다 크고 100 이하인 백분위를 입력해 주세요.');
+    }
+    if (!input.reportValidity()) return;
+    resultsWereOpen = openResults;
+    calculationRequest = ++sequence; // 이전 배우 조회 응답을 무효화합니다.
+    setCalculating(true);
+    $('threshold-status').textContent = '입력한 기준으로 전체 배우를 다시 계산하고 있습니다…';
+    status('');
+    worker.postMessage({type: 'calculate', request: calculationRequest,
+      options: {percentile: absolute ? appliedConfig.percentile : value / 100,
+                absoluteThreshold: absolute ? value : null}});
+  }
+  function bindControls() {
+    $('threshold-form').addEventListener('submit', event => {
+      event.preventDefault();
+      applyCriterion();
+    });
+    $('threshold-mode').addEventListener('change', () => {
+      const absolute = $('threshold-mode').value === 'absolute';
+      updateCriterionInput(absolute ? summary.cutoff ?? 0 : appliedConfig.percentile * 100);
+    });
+    $('threshold-value').addEventListener('input', () => $('threshold-value').setCustomValidity(''));
+    $('threshold-reset').addEventListener('click', () => {
+      $('threshold-mode').value = 'percentile';
+      updateCriterionInput(95);
+      applyCriterion();
+    });
+    $('actor-query').addEventListener('input',updateRows);
+    $('actor-query').addEventListener('keydown',e=>{if(e.key==='Escape')toggleResults(false);if(e.key==='Enter'&&openResults)$('results-list').querySelector('button')?.click();});
+    $('actor-mode').addEventListener('change',updateRows);
+    $('results-toggle').addEventListener('click',()=>{if(!openResults){actorRows=findRows();resultPage=0;}toggleResults(!openResults);});
+  }
   function start(){
     if(typeof Worker!=='function'){status('이 브라우저는 분석 계산에 필요한 웹 워커를 지원하지 않습니다. 최신 브라우저에서 열어 주세요.');return;}
-    try {worker=new Worker(new URL('assets/exp1-worker.js',document.baseURI));} catch(_){fail('계산을 시작하지 못했습니다. 웹사이트 주소에서 다시 열어 주세요.',true);return;}
-    worker.addEventListener('error',()=>fail('분석 계산을 시작하지 못했습니다. 연결 상태를 확인한 뒤 다시 시도해 주세요.',true));
+    try {worker=new Worker(new URL('assets/exp1-worker.js?v=20261106-thresholds',document.baseURI));} catch(_){fail('계산을 시작하지 못했습니다. 웹사이트 주소에서 다시 열어 주세요.',true);return;}
+    bindControls();
+    worker.addEventListener('error',()=>{
+      setCalculating(true);
+      $('threshold-status').textContent='계산이 중단되었습니다. 다시 시도를 눌러 주세요.';
+      fail('분석 계산을 시작하지 못했습니다. 연결 상태를 확인한 뒤 다시 시도해 주세요.',true);
+    });
     worker.addEventListener('message',({data})=>{
       if(data.type==='progress'){status(data.message);return;}
       if(data.type==='error'){
         if(data.request!=null&&data.request!==sequence)return;
+        if (data.operation === 'calculate' && appliedConfig) {
+          calculationRequest = null;
+          setCalculating(false);
+          showCriterionResult();
+          $('threshold-status').textContent += ' · 입력 기준을 적용하지 못했습니다. 값을 확인하고 다시 적용해 주세요.';
+          current = null;
+          if (selectedId) choose(selectedId, desiredDate, false, isExample);
+          return;
+        }
         fail(data.request==null?'전체 영화 자료를 불러오거나 계산하지 못했습니다.':'배우의 기록을 계산하지 못했습니다.',data.request==null);return;
       }
       if(data.type==='actor'){
@@ -371,15 +476,27 @@
         current=data.actor;renderActor(current);return;
       }
       if(data.type!=='ready')return;
+      const recalculated = data.request != null;
+      if (recalculated && data.request !== calculationRequest) return;
+      if (recalculated) previousResult = {config: appliedConfig, summary};
+      const keepId = selectedId;
       roster=data.roster;unlinked=data.unlinkedCredits||[];summary=data.summary;
+      appliedConfig=data.methods.config;
       registryAvailable=data.registryAvailable;byId=new Map(roster.map(a=>[String(a.id),a]));
       for(const id of shortlist)if(!byId.has(id))shortlist.delete(id);
+      calculationRequest=null;
+      current=null;
+      setCalculating(false);
       syncListLabel();renderSummary(data.methods);
-      ['actor-query','actor-mode','results-toggle'].forEach(id=>{$(id).disabled=false;});
-      $('actor-query').addEventListener('input',updateRows);
-      $('actor-query').addEventListener('keydown',e=>{if(e.key==='Escape')toggleResults(false);if(e.key==='Enter'&&openResults)$('results-list').querySelector('button')?.click();});
-      $('actor-mode').addEventListener('change',updateRows);
-      $('results-toggle').addEventListener('click',()=>{if(!openResults){actorRows=findRows();resultPage=0;}toggleResults(!openResults);});
+      $('threshold-mode').value=appliedConfig.absoluteThreshold === null ? 'percentile' : 'absolute';
+      updateCriterionInput(appliedConfig.absoluteThreshold ?? appliedConfig.percentile * 100);
+      showCriterionResult();
+      actorRows=findRows();resultPage=0;
+      if(recalculated)toggleResults(resultsWereOpen);
+      if(recalculated && keepId && byId.has(keepId)) {
+        choose(keepId,desiredDate,false,isExample);
+        return;
+      }
       const requested=new URL(document.baseURI).searchParams.get('actor');
       const example=roster.reduce((best,a)=>a.pointCount&&(!best||a.scoredCount>best.scoredCount)?a:best,null)||roster[0];
       if(requested&&byId.has(requested))choose(requested);
