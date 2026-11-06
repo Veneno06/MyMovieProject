@@ -1,8 +1,8 @@
 {
   "audience_semantics": "maximum positive cumulative snapshot; not historical as-of audience",
   "cast_policy": "single richest ordered source; lexical path tie-break; no union",
-  "file_count": 28034,
-  "movie_count": 24745,
+  "file_count": 28037,
+  "movie_count": 24748,
   "duplicate_movie_count": 3289,
   "invalid_sources": [],
   "years": {
@@ -783,13 +783,13 @@
       ]
     },
     "2026": {
-      "movies": 196,
-      "before_positive": 194,
-      "after_positive": 194,
+      "movies": 199,
+      "before_positive": 197,
+      "after_positive": 197,
       "recovered_movie_ids": [],
-      "korean_movies": 69,
-      "korean_before_positive": 68,
-      "korean_after_positive": 68,
+      "korean_movies": 70,
+      "korean_before_positive": 69,
+      "korean_after_positive": 69,
       "korean_recovered_movie_ids": []
     },
     "unknown": {
@@ -576911,6 +576911,30 @@
       },
       "conflicts": {}
     },
+    "20243927": {
+      "sources": [
+        "2026/20243927.json"
+      ],
+      "fields": {
+        "actors": "2026/20243927.json",
+        "audiAcc": "2026/20243927.json",
+        "audits": "2026/20243927.json",
+        "companys": "2026/20243927.json",
+        "directors": "2026/20243927.json",
+        "genres": "2026/20243927.json",
+        "movieCd": "2026/20243927.json",
+        "movieNm": "2026/20243927.json",
+        "movieNmEn": "2026/20243927.json",
+        "nations": "2026/20243927.json",
+        "openDt": "2026/20243927.json",
+        "prdtStatNm": "2026/20243927.json",
+        "prdtYear": "2026/20243927.json",
+        "showTm": "2026/20243927.json",
+        "showTypes": "2026/20243927.json",
+        "typeNm": "2026/20243927.json"
+      },
+      "conflicts": {}
+    },
     "20243941": {
       "sources": [
         "2024/20243941.json"
@@ -616583,6 +616607,31 @@
       },
       "conflicts": {}
     },
+    "20266765": {
+      "sources": [
+        "2026/20266765.json"
+      ],
+      "fields": {
+        "actors": "2026/20266765.json",
+        "audiAcc": "2026/20266765.json",
+        "audits": "2026/20266765.json",
+        "companys": "2026/20266765.json",
+        "directors": "2026/20266765.json",
+        "genres": "2026/20266765.json",
+        "movieCd": "2026/20266765.json",
+        "movieNm": "2026/20266765.json",
+        "movieNmEn": "2026/20266765.json",
+        "nations": "2026/20266765.json",
+        "openDt": "2026/20266765.json",
+        "prdtStatNm": "2026/20266765.json",
+        "prdtYear": "2026/20266765.json",
+        "showTm": "2026/20266765.json",
+        "showTypes": "2026/20266765.json",
+        "staffs": "2026/20266765.json",
+        "typeNm": "2026/20266765.json"
+      },
+      "conflicts": {}
+    },
     "20266766": {
       "sources": [
         "2026/20266766.json"
@@ -616628,6 +616677,31 @@
         "showTm": "2026/20266850.json",
         "showTypes": "2026/20266850.json",
         "typeNm": "2026/20266850.json"
+      },
+      "conflicts": {}
+    },
+    "20267412": {
+      "sources": [
+        "2026/20267412.json"
+      ],
+      "fields": {
+        "actors": "2026/20267412.json",
+        "audiAcc": "2026/20267412.json",
+        "audits": "2026/20267412.json",
+        "companys": "2026/20267412.json",
+        "directors": "2026/20267412.json",
+        "genres": "2026/20267412.json",
+        "movieCd": "2026/20267412.json",
+        "movieNm": "2026/20267412.json",
+        "movieNmEn": "2026/20267412.json",
+        "nations": "2026/20267412.json",
+        "openDt": "2026/20267412.json",
+        "prdtStatNm": "2026/20267412.json",
+        "prdtYear": "2026/20267412.json",
+        "showTm": "2026/20267412.json",
+        "showTypes": "2026/20267412.json",
+        "staffs": "2026/20267412.json",
+        "typeNm": "2026/20267412.json"
       },
       "conflicts": {}
     },
