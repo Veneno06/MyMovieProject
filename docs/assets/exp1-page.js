@@ -233,7 +233,7 @@
     if('ResizeObserver' in window){observer=new ResizeObserver(resize);observer.observe(plot);}else window.addEventListener('resize',resize);
     return {select,dispose:()=>{observer?.disconnect();window.removeEventListener('resize',resize);cancelAnimationFrame(raf);}};
   }
-  const resultText={match:'재출연 확인',no_match:'재출연 없음',no_positive:'양의 고시너지 동료 없음',no_pool:'계산 가능한 과거 동료 없음',no_target:'후속 개봉작 미관측',incomplete_cast:'출연진 식별 자료 부족'};
+  const resultText={match:'재출연 확인',no_match:'재출연 없음',no_positive:'양의 시너지 동료 없음',no_pool:'계산 가능한 과거 동료 없음',no_target:'후속 개봉작 미관측',incomplete_cast:'출연진 식별 자료 부족'};
   function comparison(c,a){
     if(!c)return [p('판정 자료 없음')];
     const names=(c.matches||[]).map(m=>m.name||m.id).join(', ');
@@ -256,7 +256,7 @@
     for(const [i,day] of follow.entries())datePicker.append(h('option',{value:String(i)},(i+1)+'번째 · '+(day.date||'미관측')));
     function paintFollow(index){
       const observed=follow[index]||point.next,which=index===0?'바로 다음 개봉일':(index+1)+'번째 후속 개봉일';
-      futureTable.replaceChildren(table(['관측 시점','개봉일','작품과 공동출연진','과거 고시너지 동료'],[
+      futureTable.replaceChildren(table(['관측 시점','개봉일','작품과 공동출연진','과거 출연 동료'],[
         ['변곡점',...comparison(point.pivot,a)],[which,...comparison(observed,a)]
       ],'변곡일과 선택한 후속 개봉일의 재출연'));
     }
@@ -266,13 +266,13 @@
       p('세 측정일: '+point.prevDate+' (SP '+fmtSP(point.prevSp)+') → '+point.date+' (SP '+fmtSP(point.sp)+', 변곡일) → '+point.detectedDate+' (SP '+fmtSP(point.nextSp)+', 변화 확인일).','point-info'),
       (point.skippedBefore||point.skippedAfter)?p('세 측정일 사이에 SP를 산출할 수 없는 개봉일이 '+count((point.skippedBefore||0)+(point.skippedAfter||0))+'회 있어 기울기 계산에서는 건너뛰었습니다.'):null,
       follow.length>1?h('label',{class:'follow-choice'},'후속 개봉일 ',datePicker):null,futureTable,
-      p('모든 후속 개봉일은 변곡일 전날까지의 같은 고시너지 동료 집합과 비교합니다. 전체 집계에는 SP 산출 여부와 관계없이 바로 다음 개봉일만 사용합니다.')));
-    const pool=detail('변곡일 이전 동료: 계산 가능 '+count(point.poolSize)+'명 · 고시너지 '+count(point.highCount)+'명');
+      p('모든 후속 개봉일은 변곡일 전날까지의 같은 시너지 동료 집합과 비교합니다. 전체 집계에는 SP 산출 여부와 관계없이 바로 다음 개봉일만 사용합니다.')));
+    const pool=detail('변곡일 이전 동료: 계산 가능 '+count(point.poolSize)+'명 · 시너지 '+count(point.highCount)+'명');
     const high=point.high||[];
     pool.addEventListener('toggle',()=>{
       if(!pool.open||pool.childElementCount>1)return;
       pool.append(p('중심 배우 A와 함께 출연했을 때 동료 B의 평균 SP가 A 없이 출연했을 때보다 얼마나 달랐는지 비교합니다. 함께 / 따로는 변곡일 이전 B의 작품 수입니다.'),
-        high.length?table(['동료 B','배우 ID','시너지 A→B (%)','함께 / 따로 (편)'],high.map(m=>[m.name||'이름 미기재',m.id,signed(m.value),count(m.withCount)+' / '+count(m.withoutCount)]),'과거 고시너지 동료'):p(point.poolSize?'양의 고시너지 조건에 해당하는 동료가 없습니다.':'이전 출연 기록으로 시너지를 계산할 수 있는 동료가 없습니다.'));
+        high.length?table(['동료 B','배우 ID','시너지 A→B (%)','함께 / 따로 (편)'],high.map(m=>[m.name||'이름 미기재',m.id,signed(m.value),count(m.withCount)+' / '+count(m.withoutCount)]),'과거 출연 동료'):p(point.poolSize?'양의 시너지 조건에 해당하는 동료가 없습니다.':'이전 출연 기록으로 시너지를 계산할 수 있는 동료가 없습니다.'));
     });
     area.append(pool);
   }
