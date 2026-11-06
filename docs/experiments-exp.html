@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n-key="experiments">실험 – K-Movie A Archive</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/translator.js" defer></script>
+  <style>
+    .experiment-list { display: flex; gap: 8px; flex-wrap: wrap; }
+    .experiment-list .btn { background: #2563eb; color: #fff; border: none; font-weight: bold; }
+    .experiment-list .btn:hover { background: #1d4ed8; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="ctrls" aria-label="주요 메뉴">
+    <a href="index.html" class="btn" data-i18n-key="home">홈</a>
+    <a href="title-search.html" class="btn" data-i18n-key="movieTitleSearch">영화 검색 (제목)</a>
+    <a href="search.html" class="btn" data-i18n-key="movieSearchPeriod">영화 검색 (기간)</a>
+    <a href="people-search.html" class="btn" data-i18n-key="peopleSearch">배우/감독 검색</a>
+    <a href="costar-search.html" class="btn" data-i18n-key="costarSearch">공동 출연 검색</a>
+    <a href="saved.html" class="btn" data-i18n-key="savedList">저장 목록</a>
+    <a href="experiments-exp.html" class="btn active" data-i18n-key="experiments" aria-current="page">실험</a>
+  </nav>
+  <main>
+    <h1 data-i18n-key="experiments">실험</h1>
+    <div class="experiment-list">
+      <a href="experiments-exp1.html" class="btn" data-i18n-key="starPowerTimeSeries">스타 파워 시계열</a>
+    </div>
+  </main>
+</div>
+</body>
+</html>

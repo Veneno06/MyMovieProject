@@ -1,0 +1,95 @@
+.exp1 { --blue: #245bc5; --up: #006b67; --down: #a5481d; }
+.exp1 main { max-width: 100%; }
+.exp1 h1 { font-size: clamp(1.65rem, 4vw, 2.15rem); margin: 4px 0 6px; letter-spacing: -.055em; }
+.exp1 h2 { font-size: 1.22rem; letter-spacing: -.035em; }
+.exp1 h3 { font-size: 1.02rem; margin: 0 0 6px; }
+.exp1 h4 { margin: 14px 0 5px; }
+.exp1 .study-title { margin: 24px 0 18px; }
+.exp1 .study-title p { margin: 0; color: #4b5563; font-size: .95rem; }
+.exp1 .kicker { font-size: .8rem; font-weight: 700; color: #526278; }
+.exp1 .controls, .exp1 .chart-box { padding: 15px 18px; border: 1px solid var(--bd); border-radius: 8px; }
+.exp1 .controls { background: var(--bg-gray); }
+.exp1 .search-tools,.exp1 .panel-title,.exp1 .subhead,.exp1 .pager,.exp1 .chart-key { display:flex; align-items:center; gap: 10px; flex-wrap:wrap; }
+.exp1 .search-tools { align-items: end; }
+.exp1 label { color: #374151; font-weight: 600; font-size: .82rem; }
+.exp1 .search-tools label:first-child { flex: 1 1 235px; }
+.exp1 input,.exp1 select { font: inherit; color: #1f2937; border: 1px solid #cbd1d8; border-radius: 6px; background: #fff; padding: 8px 11px; }
+.exp1 .search-tools input,.exp1 .search-tools select { display:block; margin-top: 3px; width: 100%; height: 40px; font-size: .92rem; font-weight: 400; }
+.exp1 .search-tools .btn { height:40px; }
+.exp1 :focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }
+.exp1 button:disabled { opacity: .48; cursor: not-allowed; }
+.exp1 #actor-results { border-top: 1px solid var(--bd); margin-top: 14px; padding-top: 2px; }
+.exp1 .help,.exp1 .meta,.exp1 figcaption { color:#586270; font-size: .84rem; }
+.exp1 .help { margin: 5px 0 12px; }
+.exp1 #load-status { margin: 9px 0; }
+.exp1 #results-count { margin: 9px 0 7px; }
+.exp1 #results-list { display:grid; grid-template-columns: repeat(auto-fit,minmax(min(240px,100%),1fr)); gap: 6px; }
+.exp1 .result { display:flex; flex-direction:column; align-items:flex-start; gap:2px; padding: 7px 11px; text-align:left; }
+.exp1 .result[aria-current="true"] { border-color:#7da1df; background:#f0f6ff; }
+.exp1 .result .meta { font-size: .76rem; }
+.exp1 .pager { justify-content:flex-end; margin-top:7px; }
+.exp1 .pager .btn,.exp1 .small { font-size:.8rem; padding: 4px 9px; }
+.exp1 .section { margin: 27px 0 0; padding-top: 20px; border-top: 1px solid var(--bd); }
+.exp1 .section h2 { margin-bottom: 5px; }
+.exp1 #actor-panel { margin-top: 22px; }
+.exp1 .panel-title { justify-content:space-between; gap:8px; margin-bottom: 12px; }
+.exp1 .panel-title h2 { margin-bottom: 2px; font-size:1.35rem; }
+.exp1 .panel-title .meta { margin:0; }
+.exp1 .subhead { justify-content:space-between; margin: 0 0 8px; }
+.exp1 .subhead h3 { margin:0; }
+.exp1 .chart-box { margin: 0; padding: 13px 16px 10px; background:#fff; }
+.exp1 .chart-key { gap:12px; font-size:.78rem; color:#475569; }
+.exp1 .legend-sp::before,.exp1 .legend-rise::before,.exp1 .legend-fall::before { display:inline-block; vertical-align:middle; margin-right:4px; width:8px; height:8px; content:""; background: var(--blue); border-radius:50%; }
+.exp1 .legend-rise::before,.exp1 .legend-fall::before { border-radius:0; background:var(--up); clip-path:polygon(50% 0%,100% 100%,0% 100%); width:10px; height:10px; }
+.exp1 .legend-fall::before { background:var(--down); transform:rotate(180deg); }
+.exp1 .plot { width:100%; }
+.exp1 .plot svg { width:100%; display:block; cursor:crosshair; -webkit-tap-highlight-color:transparent; }
+.exp1 .plot svg text { font: 12px system-ui,sans-serif; fill:#566272; }
+.exp1 .chart-focus { min-height: 1.65em; font-size:.85rem; margin: 2px 0; overflow-wrap:anywhere; }
+.exp1 figcaption { font-size:.76rem; }
+.exp1 .observations,.exp1 .support,.exp1 .method { margin: 10px 0; font-size:.88rem; }
+.exp1 summary { cursor:pointer; font-weight:600; color:#374151; }
+.exp1 .study-links { display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap; margin:0 0 13px; }
+.exp1 .study-links > a { font-size:.83rem; }
+.exp1 .study-links .method { margin:0; min-width:0; }
+.exp1 .study-links .method[open] { width:100%; }
+.exp1 #formula-preview { color:#596575; font-size:.8rem; font-weight:400; }
+.exp1 .follow-choice { display:inline-flex; align-items:center; gap:6px; }
+.exp1 .follow-choice select { font-size:.82rem; font-weight:400; padding:5px 6px; }
+.exp1 .method p { margin:8px 0; }
+.exp1 .scroller { width:100%; overflow:auto; margin: 8px 0; }
+.exp1 table { border-collapse:collapse; width:100%; text-align:left; font-size:.86rem; font-variant-numeric:tabular-nums; }
+.exp1 th,.exp1 td { padding:7px 9px; vertical-align:top; border-bottom:1px solid var(--bd); }
+.exp1 thead th { background: #f5f7fa; color:#3e4b5b; font-size:.79rem; white-space:nowrap; }
+.exp1 table .num { text-align:right; white-space:nowrap; }
+.exp1 .point-summary { margin: 6px 0 9px; font-size:.9rem; }
+.exp1 .point-info { color:#435164; font-size:.86rem; margin: 4px 0 12px; }
+.exp1 .film-entry { padding: 5px 0; }
+.exp1 .film-entry + .film-entry { border-top:1px dotted var(--bd); }
+.exp1 .film-entry .meta { display:block; }
+.exp1 .tag { display:inline-block; font-weight:600; white-space:nowrap; }
+.exp1 .up { color:var(--up); }
+.exp1 .down { color:var(--down); }
+.exp1 .outcome { padding:1px 6px; display:inline-block; border-radius:4px; background:#f0f2f5; color:#394555; font-size:.78rem; font-weight:600; white-space:nowrap; }
+.exp1 .hit { color:#08675e; background:#e5f4ee; }
+.exp1 .event { margin:9px 0; padding-left:12px; border-left:2px solid var(--bd); }
+.exp1 .event p { margin:2px 0; }
+.exp1 .source-list { padding-left: 18px; margin: 4px 0 8px; }
+.exp1 .empty { padding:14px 0; color:#596575; }
+.exp1 .text-btn { font:inherit; background:none; padding:0; border:0; cursor:pointer; color:var(--blue); text-decoration:underline; }
+.exp1 .nowrap { white-space: nowrap; }
+@media(max-width:600px) {
+  body {padding: 12px 6px;}
+  .exp1.wrap {padding:0 8px;}
+  .exp1 .study-title {margin:18px 0 15px;}
+  .exp1 .controls,.exp1 .chart-box {padding:11px;}
+  .exp1 .search-tools {gap:7px;}
+  .exp1 .search-tools label:first-child {flex-basis:100%;}
+  .exp1 .search-tools label:nth-child(2) {flex:1;min-width:0;}
+  .exp1 .search-tools select {padding-left:6px;}
+  .exp1 #results-list {grid-template-columns:1fr 1fr;}
+  .exp1 .subhead {gap:5px;}
+  .exp1 .scroller table {min-width: 405px;}
+  .exp1 .point-tabs {max-width:100%;}
+  .exp1 .study-title p {font-size:.88rem;}
+}

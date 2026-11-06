@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title data-i18n-key="starPowerTimeSeries">스타 파워 시계열 – K-Movie A Archive</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/exp1.css">
+  <script src="assets/translator.js" defer></script>
+  <script src="assets/exp1-page.js" defer></script>
+</head>
+<body>
+<div class="wrap exp1">
+  <nav class="ctrls" aria-label="주 메뉴">
+    <a href="index.html" class="btn" data-i18n-key="home">홈</a>
+    <a href="title-search.html" class="btn" data-i18n-key="movieTitleSearch">영화 검색 (제목)</a>
+    <a href="search.html" class="btn" data-i18n-key="movieSearchPeriod">영화 검색 (기간)</a>
+    <a href="people-search.html" class="btn" data-i18n-key="peopleSearch">배우/감독 검색</a>
+    <a href="costar-search.html" class="btn" data-i18n-key="costarSearch">공동 출연 검색</a>
+    <a href="saved.html" class="btn" data-i18n-key="savedList">저장 목록</a>
+    <a href="experiments-exp.html" class="btn" aria-current="location" data-i18n-key="experiments">실험</a>
+  </nav>
+  <main>
+    <header class="study-title">
+      <span class="kicker">실험 1</span>
+      <h1 data-i18n-key="starPowerTimeSeries">스타 파워 시계열</h1>
+      <p>개봉일별 스타 파워(SP)를 따라가며 기울기가 크게 달라진 작품과 그다음 작품에서 과거 고시너지 동료를 다시 만났는지 살펴봅니다.</p>
+    </header>
+    <div class="study-links">
+      <details id="method" class="method">
+        <summary>계산 기준과 해석 <span id="formula-preview"></span></summary>
+        <div id="method-body"><p class="help">계산 기준을 불러오는 중…</p></div>
+      </details>
+      <a href="#cohort">전체 집계 보기</a>
+    </div>
+    <section class="controls" aria-label="배우 찾기">
+      <div class="search-tools">
+        <label for="actor-query">배우 검색
+          <input type="search" id="actor-query" placeholder="이름 또는 배우 ID" autocomplete="off" disabled>
+        </label>
+        <label for="actor-mode">검색 범위
+          <select id="actor-mode" disabled>
+            <option value="all">전체 국내 영화 출연 배우</option>
+            <option value="rise">기울기 증가 후보</option>
+            <option value="fall">기울기 감소 후보</option>
+            <option value="list">임시 후보 목록</option>
+          </select>
+        </label>
+        <button type="button" id="results-toggle" class="btn" aria-expanded="false" aria-controls="actor-results" disabled>배우 목록 보기</button>
+      </div>
+      <div id="actor-results" hidden>
+        <p id="results-count" class="help" role="status"></p>
+        <div id="results-list"></div>
+        <div id="results-pages" class="pager"></div>
+      </div>
+    </section>
+    <p id="load-status" class="help" role="status" aria-live="polite">국내 영화와 출연 기록을 불러오는 중…</p>
+    <noscript>배우 검색과 분석 결과를 보려면 자바스크립트를 켜 주세요.</noscript>
+    <div id="actor-panel" hidden></div>
+    <section id="cohort" class="section" hidden aria-labelledby="cohort-title">
+      <h2 id="cohort-title">전체 배우의 고시너지 재출연 비율</h2>
+      <p class="help">한 명 이상의 과거 고시너지 동료와 재출연했는지 집계합니다. 위에서 선택한 배우나 임시 후보 목록은 이 표에 영향을 주지 않습니다.</p>
+      <div id="cohort-body"></div>
+    </section>
+  </main>
+</div>
+</body>
+</html>
