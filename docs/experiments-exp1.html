@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="assets/style.css">
   <link rel="stylesheet" href="assets/exp1.css">
   <script src="assets/translator.js" defer></script>
-  <script src="assets/exp1-page.js" defer></script>
+  <script src="assets/exp1-page.js?v=20261106-thresholds" defer></script>
 </head>
 <body>
 <div class="wrap exp1">
@@ -33,7 +33,26 @@
       </details>
       <a href="#cohort">전체 집계 보기</a>
     </div>
-    <section class="controls" aria-label="배우 찾기">
+    <section class="controls" aria-label="급변점 기준 설정">
+      <h2>급변점 기준</h2>
+      <form id="threshold-form" class="search-tools">
+        <label for="threshold-mode">판정 방식
+          <select id="threshold-mode" disabled>
+            <option value="percentile">전체 변화량의 백분위</option>
+            <option value="absolute">기울기 변화량 직접 입력</option>
+          </select>
+        </label>
+        <label for="threshold-value"><span id="threshold-value-label">백분위 (0 초과~100)</span>
+          <input id="threshold-value" type="number" value="95" min="0" max="100" step="any" required disabled aria-describedby="threshold-help">
+        </label>
+        <button id="threshold-apply" type="submit" class="btn" disabled>적용·비교</button>
+        <button id="threshold-reset" type="button" class="btn" disabled>기본값 95로</button>
+      </form>
+      <p id="threshold-help" class="help">앞뒤 기울기 차이의 절댓값을 비교합니다. 백분위가 높을수록 큰 변화만 선택합니다.</p>
+      <p id="threshold-status" class="help" role="status" aria-live="polite">기준을 불러오는 중…</p>
+      <div id="threshold-comparison" hidden></div>
+    </section>
+    <section class="controls section" aria-label="배우 찾기">
       <div class="search-tools">
         <label for="actor-query">배우 검색
           <input type="search" id="actor-query" placeholder="이름 또는 배우 ID" autocomplete="off" disabled>
