@@ -19,8 +19,9 @@
     roleExponent: 1,
     historyExponent: 0.5,
     daysPerYear: 365.25,
-    percentile: 0.95,     // 기울기 변화 절댓값의 95백분위
-    absoluteThreshold: null, // 숫자를 넣으면 해당 SP/년 기준을 직접 사용
+    thresholdMode: 'otsu', // 상승 반전과 하락 반전에서 각각 경계를 추정
+    percentile: 0.95,     // 수동 백분위 모드에서 방향별로 적용
+    absoluteThreshold: null, // 수동 직접 입력 모드의 0 이상 기준(SP/년)
     topFraction: 0.25     // 계산 가능한 동료의 상위 25%
   });
   const MODES = ['paper', 'no_history', 'market_only', 'reciprocal_rank'];
@@ -56,6 +57,11 @@
     const role = c.scoreMode === 'market_only' ? '1' : c.scoreMode === 'reciprocal_rank' ? '1 / k' :
       '1 / log₂(k + 1)' + (c.roleExponent === 1 ? '' : '^(' + c.roleExponent + ')');
     const history = c.scoreMode !== 'paper' ? '1' : (c.historyExponent === 0.5 ? '√(h / μ)' : '(h / μ)^(' + c.historyExponent + ')');
+    const thresholdText = {
+      otsu:'상승 반전의 D와 하락 반전의 −D를 따로 정렬합니다. 서로 다른 관측값 사이의 모든 분할에서 두 집단의 비율 곱 × 평균 차이의 제곱을 비교하는 오츠(Otsu) 기준을 씁니다. 값이 최대인 첫 분할의 큰 값 집단 전체를 선택합니다. 그 집단의 첫 관측값을 원래 부호로 표시하며, 서로 다른 값이 두 개 미만인 방향에는 경계를 정하지 않습니다.',
+      absolute:'상승 반전 중 D ≥ ' + c.absoluteThreshold + ', 하락 반전 중 D ≤ −' + c.absoluteThreshold + ' SP/년인 구간을 선택합니다. 경계와 같은 값도 포함합니다.',
+      percentile:'상승 반전은 D, 하락 반전은 −D를 각각 작은 순서로 정렬합니다. 각 방향에서 올림(' + c.percentile + ' × 해당 방향 반전 수)번째 값 이상을 선택하고 경계 동률도 포함합니다.'
+    };
     const text = {
       base:'W_market(시장 점유율) = 작품 누적관객 / 해당 연도 적격 국내 영화의 누적관객 합계. 기본 점수 b = W_market × W_role. 출연진 정보가 없어도 양의 관객이 있는 적격 영화는 연간 분모에 포함합니다.',
       role:'W_role(출연 순서 가중치) = ' + role + '. k는 원본 출연진 목록의 1부터 시작하는 순서입니다. 같은 영화의 중복 ID는 첫 순서를 유지합니다.',
@@ -63,11 +69,10 @@
       history:'W_history(과거 이력 가중치) = ' + history + '. 이전 전체 평균이 없거나 배우에게 과거 작품이 없으면 1을 적용합니다. 같은 날 작품은 모두 계산한 뒤 이력에 넣습니다.',
       starPower:'SP = ' + c.displayScale.toLocaleString('en-US') + ' × W_market × W_role × W_history. 세 가중치의 정의는 위와 같습니다.',
       dateMean:'같은 개봉일의 측정 가능한 배우–작품 SP 산술평균을 씁니다. 결측은 0으로 넣지 않으며, 일부만 계산된 날과 계산할 수 없는 작품도 표시합니다.',
-      slope:'기울기 = (나중 날짜 평균 SP − 앞 날짜 평균 SP) × ' + c.daysPerYear + ' / 실제 경과 일수. 단위: SP/년.',
-      change:'서로 다른 연속 세 측정일의 가운데 날짜가 기준점입니다. 변화량 = 뒤 구간 기울기 − 앞 구간 기울기. 뒤 측정일이 있어야 판정되므로 실시간 예측이 아닙니다.',
-      threshold:c.absoluteThreshold === null
-        ? '전체 변화량 절댓값을 작은 순서로 정렬해 올림(' + c.percentile + ' × 전체 수)번째 값을 구합니다. 임계값 이상인 동률을 모두 포함하고, 0은 분포에는 포함하되 급변점으로 표시하지 않습니다.'
-        : '사용자가 입력한 ' + c.absoluteThreshold + ' SP/년 이상으로 앞뒤 기울기 차이의 절댓값이 큰 지점을 선택합니다. 경계 동률을 포함하며 변화량이 정확히 0인 지점은 제외합니다.',
+      slope:'연속 세 측정일에서 앞 구간의 SP 차이는 ΔSP₀ = 가운데 SP − 앞 SP, 뒤 구간은 ΔSP₁ = 뒤 SP − 가운데 SP입니다. G₀ = ΔSP₀ × ' + c.daysPerYear + ' / 앞 구간 일수, G₁ = ΔSP₁ × ' + c.daysPerYear + ' / 뒤 구간 일수입니다. 두 기울기의 단위는 SP/년입니다.',
+      change:'가운데 날짜에서 기울기 변화량 D = G₁ − G₀ (SP/년)를 계산하고 부호를 보존합니다. G₀ < 0 < G₁이면 상승 반전, G₀ > 0 > G₁이면 하락 반전입니다. 같은 방향이 이어지거나 어느 한 기울기가 0이면 기타로 분류합니다. 판정에는 뒤 측정일의 관측이 필요합니다.',
+      threshold:thresholdText[c.thresholdMode] + ' 선택 결과는 이 자료의 반전 크기를 기술합니다. 사건의 인과효과나 미래 예측력을 보장하지 않습니다.',
+      stability:'측정일이 세 번 이상인 배우의 ID를 문자열 순으로 정렬해 다섯 묶음에 차례로 배정합니다. 각 배우의 모든 구간은 같은 묶음에 속합니다. 매번 한 묶음을 제외하고 나머지 네 묶음에서 방향별 오츠 경계를 다시 구합니다. 제외한 묶음에서 같은 방향의 반전에 이 경계를 적용합니다. 비율은 경계를 적용할 수 있던 제외 구간 중 선택된 비율입니다. 통계적 유의성이나 예측 정확도를 측정하는 검정은 아닙니다.',
       synergy:'S(A→B) = 100 × (A와 함께한 B의 과거 평균 SP / A 없이 출연한 B의 과거 평균 SP − 1). 기준일 전 작품만 쓰며, 두 집합이 모두 있고 분모가 양수인 안정 ID 동료만 계산합니다.',
       pool:'계산 가능한 동료 M명을 내림차순 정렬해 상위 올림(' + c.topFraction + ' × M)명과 경계 동률을 포함한 뒤, 시너지가 양수인 동료만 남깁니다. 이 명단을 기준일과 이후 모든 개봉일의 비교에 고정합니다.',
       next:'기준일과 그 뒤 국내 작품의 개봉일마다 같은 날의 모든 작품에서 재등장을 찾습니다. 모집단 비율은 기준일과 그 직후 첫 개봉일을 각각 한 번씩 집계합니다. 다음 작품에 SP가 없어도 건너뛰지 않습니다. 안정 ID가 없는 개봉 기록은 특정 배우의 필모그래피에 연결할 수 없습니다.',
@@ -93,6 +98,13 @@
   }
   function configOf(rows, options) {
     const c = Object.assign({}, CONFIG, options);
+    if (options?.thresholdMode == null) {
+      // A caller of the previous API could set a manual cutoff or a quantile directly.
+      if (options?.absoluteThreshold != null) c.thresholdMode = 'absolute';
+      else if (options?.percentile != null) c.thresholdMode = 'percentile';
+      else c.thresholdMode = CONFIG.thresholdMode;
+    }
+    if (!['otsu','absolute','percentile'].includes(c.thresholdMode)) throw new Error('Invalid thresholdMode');
     const countries = new Set(c.domesticNations || []);
     if (!countries.size) throw new Error('domesticNations cannot be empty');
     if (c.cutoffDate == null) {
@@ -120,6 +132,7 @@
     } else {
       c.absoluteThreshold = null;
     }
+    if (c.thresholdMode === 'absolute' && c.absoluteThreshold === null) throw new Error('Invalid absoluteThreshold');
     c.domesticNations = [...countries];
     return c;
   }
@@ -129,6 +142,77 @@
     if (!values.length) return null;
     const sorted = values.slice().sort((a,b) => a-b);
     return sorted[Math.max(0, Math.ceil(q * sorted.length) - 1)];
+  }
+  // Return the first observed value of the high group. A tied value stays in one group.
+  function otsuBoundary(magnitudes) {
+    if (magnitudes.length < 2) return null;
+    const sorted = magnitudes.slice().sort((a,b) => a-b);
+    const n = sorted.length, span = sorted[n-1] - sorted[0];
+    if (span === 0) return null;
+    // Affine scaling preserves the maximizing split and keeps squared differences finite.
+    const scaled = sorted.map(x => (x - sorted[0])/span);
+    const total = scaled.reduce((sum,x) => sum + x, 0);
+    let leftSum = 0, bestVariance = -Infinity, boundary = null;
+    for (let split = 1; split < n; split++) {
+      leftSum += scaled[split-1];
+      if (sorted[split] === sorted[split-1]) continue;
+      const rightCount = n - split;
+      const meanDifference = (total-leftSum)/rightCount - leftSum/split;
+      const variance = (split/n) * (rightCount/n) * meanDifference**2;
+      if (variance > bestVariance) {
+        bestVariance = variance;
+        boundary = sorted[split];
+      }
+    }
+    return boundary;
+  }
+  function fitThresholds(values, c) {
+    if (c.thresholdMode === 'absolute') return {rise:c.absoluteThreshold, fall:-c.absoluteThreshold};
+    const fit = group => c.thresholdMode === 'otsu' ? otsuBoundary(group) : nearestRank(group, c.percentile);
+    const fallMagnitude = fit(values.fall);
+    return {rise:fit(values.rise), fall:fallMagnitude === null ? null : -fallMagnitude};
+  }
+  function foldStability(actors) {
+    const folds = Array.from({length:5}, () => ({rise:[],fall:[]}));
+    const eligible = [...actors.values()].filter(a => a.windows.length).sort(byId);
+    eligible.forEach((a,index) => {
+      const fold = folds[index % folds.length];
+      for (const w of a.windows) {
+        if (w.turn === 'rise') fold.rise.push(w.change);
+        if (w.turn === 'fall') fold.fall.push(-w.change);
+      }
+    });
+    const stability = {};
+    for (const turn of ['rise','fall']) {
+      const stats = {foldCutoffs:[],heldOutSelected:0,heldOutEvaluable:0};
+      folds.forEach((fold,index) => {
+        const test = fold[turn];
+        const training = test.length ? folds.flatMap((f,i) => i === index ? [] : f[turn]) : [];
+        const boundary = otsuBoundary(training);
+        stats.foldCutoffs.push(boundary === null || turn === 'rise' ? boundary : -boundary);
+        if (boundary === null) return;
+        stats.heldOutEvaluable += test.length;
+        stats.heldOutSelected += test.filter(x => x >= boundary).length;
+      });
+      stability[turn] = stats;
+    }
+    return stability;
+  }
+  function summarizeGaps(triples) {
+    const reversals = [], selected = [];
+    for (const {window} of triples) {
+      if (window.turn === 'other') continue;
+      const days = Math.min(window.beforeDays, window.afterDays);
+      reversals.push(days);
+      if (window.selected) selected.push(days);
+    }
+    function describe(days) {
+      days.sort((a,b) => a-b);
+      const count = days.length, middle = Math.floor(count/2);
+      const medianDays = count ? (days[middle] + days[Math.floor((count-1)/2)])/2 : null;
+      return {count,oneDay:days.filter(d => d === 1).length,medianDays};
+    }
+    return {selected:describe(selected),reversals:describe(reversals)};
   }
   function selectHigh(pool, fraction) {
     if (!pool.length) return {high: [], boundary: null};
@@ -184,7 +268,7 @@
         cast.push({id,name});
         if (!id) {m.missingIds++;unlinkedCredits.push({name,filmId:m.id,title:m.title,date:m.date,rank:j+1});}
         if (id || name) credits.push({id,name,key,rank:j+1});
-        if (id && !actors.has(id)) actors.set(id,{id,name:name||id,records:[],days:[],scored:[],undated:[],points:[]});
+        if (id && !actors.has(id)) actors.set(id,{id,name:name||id,records:[],days:[],scored:[],undated:[],windows:[],points:[]});
         else if (id && actors.get(id).name===id && name) actors.get(id).name=name;
       }
       m.cast=cast; m.credits=credits; delete m.rawCast;
@@ -249,7 +333,8 @@
       i=end;
     }
     for (const m of films) if(!m.date) for(const a of m.credits) addRecord(a,m,{});
-    const triples=[], values=[];
+    const triples=[], values={rise:[],fall:[]};
+    const turnCounts={rise:0,fall:0,other:0}, signedCounts={positive:0,negative:0,zero:0};
     let scoredActors=0, eligibleActors=0;
     for (const a of actors.values()) {
       const sdays=[];
@@ -266,14 +351,25 @@
       if(sdays.length>=3) eligibleActors++;
       for(let i=1;i+1<sdays.length;i++) {
         const p=sdays[i-1], d=sdays[i], n=sdays[i+1];
-        const before=FORMULA.slope(p,d,c),after=FORMULA.slope(d,n,c),change=after-before;
-        triples.push({a,p,d,n,before,after,change});values.push(Math.abs(change));
+        const beforeSlope=FORMULA.slope(p,d,c),afterSlope=FORMULA.slope(d,n,c),change=afterSlope-beforeSlope;
+        let turn='other';
+        if(beforeSlope<0 && afterSlope>0) {turn='rise';values.rise.push(change);}
+        if(beforeSlope>0 && afterSlope<0) {turn='fall';values.fall.push(-change);}
+        turnCounts[turn]++;
+        signedCounts[change>0?'positive':change<0?'negative':'zero']++;
+        const window={date:d.date,prevDate:p.date,nextDate:n.date,detectedDate:n.date,
+          prevSp:p.sp,sp:d.sp,nextSp:n.sp,beforeSPChange:d.sp-p.sp,afterSPChange:n.sp-d.sp,
+          beforeDays:d.epoch-p.epoch,afterDays:n.epoch-d.epoch,beforeSlope,afterSlope,change,turn,selected:false,
+          skippedBefore:d.index-p.index-1,skippedAfter:n.index-d.index-1};
+        a.windows.push(window);
+        triples.push({a,d,window});
       }
     }
     coverage.unscoredActors=actors.size-scoredActors;
-    const cutoff = c.absoluteThreshold === null
-      ? nearestRank(values, c.percentile)
-      : c.absoluteThreshold;
+    const thresholds = fitThresholds(values, c);
+    const stability = c.thresholdMode === 'otsu' ? foldStability(actors) : null;
+    // The original scalar cutoff only describes a symmetric manual threshold.
+    const cutoff = c.thresholdMode === 'absolute' ? c.absoluteThreshold : null;
     const counters=()=>({hits:0,evaluable:0,unknown:0,total:0,misses:0});
     const comparisonCounts=()=>({pivot:{points:counters(),actors:counters()},next:{points:counters(),actors:counters()}});
     const comparisons=comparisonCounts();
@@ -320,16 +416,18 @@
       return r;
     }
     let markedActors=0,pointCount=0;const candidates={rise:[],fall:[]};
-    for(const {a,p,d,n,before,after,change} of triples) {
-      if(change===0 || Math.abs(change)<cutoff)continue;
+    for(const {a,d,window} of triples) {
+      const {turn,change} = window;
+      if (turn === 'other' || thresholds[turn] === null) continue;
+      if (turn === 'rise' ? change < thresholds.rise : change > thresholds.fall) continue;
+      window.selected = true;
       const pool=pools(a,d),nextDay=a.days[d.index+1]||null;
-      const ev=(eventsByActor.get(a.id)||[]).filter(x=>x.month>=p.date.slice(0,7) && x.month<=n.date.slice(0,7));
-      const point={date:d.date,prevDate:p.date,nextDate:n.date,detectedDate:n.date,beforeSlope:before,afterSlope:after,change,
-        prevSp:p.sp,sp:d.sp,nextSp:n.sp, skippedBefore:d.index-p.index-1,skippedAfter:n.index-d.index-1,
+      const ev=(eventsByActor.get(a.id)||[]).filter(x=>x.month>=window.prevDate.slice(0,7) && x.month<=window.nextDate.slice(0,7));
+      const point={...window,
         pivot:compare(a,d,pool),next:compare(a,nextDay,pool),events:ev,...pool};
       if(ev.length)coverage.eventOverlapPoints++;
       a.points.push(point);pointCount++;
-      const group=byDirection[change>0?'rise':'fall'];group.points++;
+      const group=byDirection[turn];group.points++;
       for(const k of ['pivot','next']) {
         addCount(comparisons[k].points,point[k].status);
         addCount(group.comparisons[k].points,point[k].status);
@@ -347,12 +445,12 @@
           const labels=a.points.map(p=>p[k].status);
           addCount(comparisons[k].actors,labels.includes('hit')?'hit':labels.includes('unknown')?'unknown':'miss');
         }
-        for(const [k,sign] of [['rise',1],['fall',-1]]){
-          const p=a.points.find(p=>p.change*sign>0);
+        for(const k of ['rise','fall']){
+          const p=a.points.find(p=>p.turn===k);
           if(p) {
             const group=byDirection[k];group.actors++;
             for(const target of ['pivot','next']){
-              const labels=a.points.filter(pt=>pt.change*sign>0).map(pt=>pt[target].status);
+              const labels=a.points.filter(pt=>pt.turn===k).map(pt=>pt[target].status);
               addCount(group.comparisons[target].actors,labels.includes('hit')?'hit':labels.includes('unknown')?'unknown':'miss');
             }
             a[k==='rise'?'firstRise':'firstFall']=p.date;
@@ -365,7 +463,8 @@
     for (const arr of Object.values(candidates))arr.sort((a,b)=>byDate(a,b)||Math.abs(b.change)-Math.abs(a.change)||byId(a,b));
     roster.sort((a,b)=>a.name.localeCompare(b.name,'ko')||byId(a,b));
     coverage.latestStableScoreDate=coverage.lastStableScoreDate;
-    const summary={actors:actors.size,scoredActors,eligibleActors,markedActors,points:pointCount,triples:triples.length,cutoff,comparisons,byDirection,coverage,candidates,
+    const summary={actors:actors.size,scoredActors,eligibleActors,markedActors,points:pointCount,triples:triples.length,
+      cutoff,thresholds,turnCounts,signedCounts,stability,gapDiagnostics:summarizeGaps(triples),comparisons,byDirection,coverage,candidates,
       annual:Object.values(annual).sort((a,b)=>a.year.localeCompare(b.year)),firstDate:ordered.length?ordered[0].date:null,
       lastDate:ordered.length?ordered[ordered.length-1].date:null};
     function actor(id) {
@@ -385,9 +484,9 @@
         }
         return {...point, later};
       });
-      return {...actorBase(a), days:a.days, undated:a.undated, points, events:eventsByActor.get(a.id)||[]};
+      return {...actorBase(a), days:a.days, undated:a.undated, windows:a.windows, points, events:eventsByActor.get(a.id)||[]};
     }
     return {roster,unlinkedCredits,summary,actor,methods};
   }
-  return Object.freeze({CONFIG,FORMULA,build,nearestRank,selectHigh});
+  return Object.freeze({CONFIG,FORMULA,build,nearestRank,otsuBoundary,selectHigh});
 });
