@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title data-i18n-key="starPowerTimeSeries">스타 파워 시계열 – K-Movie A Archive</title>
   <link rel="stylesheet" href="assets/style.css">
-  <link rel="stylesheet" href="assets/exp1.css">
+  <link rel="stylesheet" href="assets/exp1.css?v=20261109-signed-r3">
   <script src="assets/translator.js" defer></script>
-  <script src="assets/exp1-page.js?v=20261106-thresholds" defer></script>
+  <script src="assets/exp1-page.js?v=20261109-signed-r3" defer></script>
 </head>
 <body>
 <div class="wrap exp1">
@@ -24,7 +24,7 @@
     <header class="study-title">
       <span class="kicker">실험 1</span>
       <h1 data-i18n-key="starPowerTimeSeries">스타 파워 시계열</h1>
-      <p>개봉일별 스타 파워(SP)를 따라가며 기울기가 크게 달라진 작품과 그 시점을 확인</p>
+      <p>개봉일별 스타 파워(SP)가 하락에서 상승으로, 또는 상승에서 하락으로 바뀐 작품을 확인합니다.</p>
     </header>
     <div class="study-links">
       <details id="method" class="method">
@@ -38,18 +38,20 @@
       <form id="threshold-form" class="search-tools">
         <label for="threshold-mode">판정 방식
           <select id="threshold-mode" disabled>
-            <option value="percentile">전체 변화량의 백분위</option>
-            <option value="absolute">기울기 변화량 직접 입력</option>
+            <option value="otsu" selected>방향별 자동 경계 (Otsu)</option>
+            <option value="percentile">방향별 백분위</option>
+            <option value="absolute">양·음 경계 직접 입력</option>
           </select>
         </label>
-        <label for="threshold-value"><span id="threshold-value-label">백분위 (0 초과~100)</span>
+        <label id="threshold-input-group" for="threshold-value" hidden><span id="threshold-value-label">백분위 (0 초과~100)</span>
           <input id="threshold-value" type="number" value="95" min="0" max="100" step="any" required disabled aria-describedby="threshold-help">
         </label>
         <button id="threshold-apply" type="submit" class="btn" disabled>적용·비교</button>
-        <button id="threshold-reset" type="button" class="btn" disabled>기본값 95로</button>
+        <button id="threshold-reset" type="button" class="btn" disabled>자동 기준 복원</button>
       </form>
-      <p id="threshold-help" class="help">앞뒤 기울기 차이의 절댓값을 비교합니다. 백분위가 높을수록 큰 변화만 선택합니다.</p>
+      <p id="threshold-help" class="help">두 전환 방향에서 각각 큰 기울기 변화의 경계를 구합니다.</p>
       <p id="threshold-status" class="help" role="status" aria-live="polite">기준을 불러오는 중…</p>
+      <div id="threshold-directions" hidden></div>
       <div id="threshold-comparison" hidden></div>
     </section>
     <section class="controls section" aria-label="배우 찾기">
@@ -60,8 +62,8 @@
         <label for="actor-mode">검색 범위
           <select id="actor-mode" disabled>
             <option value="all">전체 국내 영화 출연 배우</option>
-            <option value="rise">기울기 증가 후보</option>
-            <option value="fall">기울기 감소 후보</option>
+            <option value="rise">하락 → 상승 후보</option>
+            <option value="fall">상승 → 하락 후보</option>
             <option value="list">임시 후보 목록</option>
           </select>
         </label>
