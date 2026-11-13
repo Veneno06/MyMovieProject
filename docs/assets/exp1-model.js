@@ -13,6 +13,7 @@
   const CONFIG = Object.freeze({
     cutoffDate: null, // null이면 오늘(UTC)까지 자료에 있는 마지막 국내 개봉일
     domesticNations: Object.freeze(['한국', '대한민국']),
+    metric: 'sp',          // 'sp' 또는 원시 시장 점유율 'market'
     lambda: 12,            // 과거 이력의 평활화 계수
     displayScale: 10000,
     scoreMode: 'paper',    // 초안의 기본식
@@ -21,7 +22,7 @@
     daysPerYear: 365.25,
     thresholdMode: 'otsu', // 상승 반전과 하락 반전에서 각각 경계를 추정
     percentile: 0.95,     // 수동 백분위 모드에서 방향별로 적용
-    absoluteThreshold: null, // 수동 직접 입력 모드의 0 이상 기준(SP/년)
+    absoluteThreshold: null, // 수동 직접 입력 모드의 0 이상 기준(선택 지표/년)
     topFraction: 0.25     // 계산 가능한 동료의 상위 25%
   });
   const MODES = ['paper', 'no_history', 'market_only', 'reciprocal_rank'];
@@ -42,6 +43,7 @@
       return {estimate, weight};
     },
     score(marketWeight, roleWeight, historyWeight, c) {
+      if (c.metric === 'market') return marketWeight;
       return c.displayScale * marketWeight * roleWeight * historyWeight;
     },
     // 초안 식 (5). A→B에서는 동료 B의 과거 점수를 비교합니다.
@@ -54,34 +56,38 @@
   });
   function methodsFor(c) {
     // Keep the user-facing methods and formula choices beside the editable equations.
+    const isMarket = c.metric === 'market';
+    const symbol = isMarket ? 'W_market' : 'SP';
+    const metric = {id:c.metric,label:symbol,symbol,unit:symbol,rateUnit:symbol+'/년',dailyUnit:symbol+'/일'};
     const role = c.scoreMode === 'market_only' ? '1' : c.scoreMode === 'reciprocal_rank' ? '1 / k' :
       '1 / log₂(k + 1)' + (c.roleExponent === 1 ? '' : '^(' + c.roleExponent + ')');
     const history = c.scoreMode !== 'paper' ? '1' : (c.historyExponent === 0.5 ? '√(h / μ)' : '(h / μ)^(' + c.historyExponent + ')');
     const thresholdText = {
       otsu:'상승 반전의 D와 하락 반전의 −D를 따로 정렬합니다. 서로 다른 관측값 사이의 모든 분할에서 두 집단의 비율 곱 × 평균 차이의 제곱을 비교하는 오츠(Otsu) 기준을 씁니다. 값이 최대인 첫 분할의 큰 값 집단 전체를 선택합니다. 그 집단의 첫 관측값을 원래 부호로 표시하며, 서로 다른 값이 두 개 미만인 방향에는 경계를 정하지 않습니다.',
-      absolute:'상승 반전 중 D ≥ ' + c.absoluteThreshold + ', 하락 반전 중 D ≤ −' + c.absoluteThreshold + ' SP/년인 구간을 선택합니다. 경계와 같은 값도 포함합니다.',
+      absolute:'상승 반전 중 D ≥ ' + c.absoluteThreshold + ', 하락 반전 중 D ≤ −' + c.absoluteThreshold + ' ' + metric.rateUnit + '인 구간을 선택합니다. 경계와 같은 값도 포함합니다.',
       percentile:'상승 반전은 D, 하락 반전은 −D를 각각 작은 순서로 정렬합니다. 각 방향에서 올림(' + c.percentile + ' × 해당 방향 반전 수)번째 값 이상을 선택하고 경계 동률도 포함합니다.'
     };
     const text = {
-      base:'W_market(시장 점유율) = 작품 누적관객 / 해당 연도 적격 국내 영화의 누적관객 합계. 기본 점수 b = W_market × W_role. 출연진 정보가 없어도 양의 관객이 있는 적격 영화는 연간 분모에 포함합니다.',
-      role:'W_role(출연 순서 가중치) = ' + role + '. k는 원본 출연진 목록의 1부터 시작하는 순서입니다. 같은 영화의 중복 ID는 첫 순서를 유지합니다.',
-      prior:'h = (배우의 과거 b 합 + ' + c.lambda + ' × μ) / (배우의 과거 작품 수 + ' + c.lambda + '). μ는 개봉일 전까지 모든 배우–작품 b의 산술평균입니다.',
-      history:'W_history(과거 이력 가중치) = ' + history + '. 이전 전체 평균이 없거나 배우에게 과거 작품이 없으면 1을 적용합니다. 같은 날 작품은 모두 계산한 뒤 이력에 넣습니다.',
-      starPower:'SP = ' + c.displayScale.toLocaleString('en-US') + ' × W_market × W_role × W_history. 세 가중치의 정의는 위와 같습니다.',
-      dateMean:'같은 개봉일의 측정 가능한 배우–작품 SP 산술평균을 씁니다. 결측은 0으로 넣지 않으며, 일부만 계산된 날과 계산할 수 없는 작품도 표시합니다.',
-      slope:'연속 세 측정일에서 앞 구간의 SP 차이는 ΔSP₀ = 가운데 SP − 앞 SP, 뒤 구간은 ΔSP₁ = 뒤 SP − 가운데 SP입니다. G₀ = ΔSP₀ × ' + c.daysPerYear + ' / 앞 구간 일수, G₁ = ΔSP₁ × ' + c.daysPerYear + ' / 뒤 구간 일수입니다. 두 기울기의 단위는 SP/년입니다.',
-      change:'가운데 날짜에서 기울기 변화량 D = G₁ − G₀ (SP/년)를 계산하고 부호를 보존합니다. G₀ < 0 < G₁이면 상승 반전, G₀ > 0 > G₁이면 하락 반전입니다. 같은 방향이 이어지거나 어느 한 기울기가 0이면 기타로 분류합니다. 판정에는 뒤 측정일의 관측이 필요합니다.',
+      base:'W_market(시장 점유율) = 작품 누적관객 / 해당 개봉 연도 적격 국내 영화의 누적관객 합계. ' + (isMarket ? '이 원시 비율을 그대로 선택 지표로 씁니다. ' : '기본 점수 b = W_market × W_role. ') + '출연진 정보가 없어도 양의 관객이 있는 적격 영화는 연간 분모에 포함합니다.',
+      role:isMarket ? 'W_market 모드에서는 출연 순서 가중치를 적용하지 않습니다.' : 'W_role(출연 순서 가중치) = ' + role + '. k는 원본 출연진 목록의 1부터 시작하는 순서입니다. 같은 영화의 중복 ID는 첫 순서를 유지합니다.',
+      prior:isMarket ? 'W_market 모드에서는 과거 이력 평균 h와 전체 평균 μ를 점수 계산에 사용하지 않습니다.' : 'h = (배우의 과거 b 합 + ' + c.lambda + ' × μ) / (배우의 과거 작품 수 + ' + c.lambda + '). μ는 개봉일 전까지 모든 배우–작품 b의 산술평균입니다.',
+      history:isMarket ? 'W_market 모드에서는 과거 이력 가중치를 적용하지 않습니다.' : 'W_history(과거 이력 가중치) = ' + history + '. 이전 전체 평균이 없거나 배우에게 과거 작품이 없으면 1을 적용합니다. 같은 날 작품은 모두 계산한 뒤 이력에 넣습니다.',
+      starPower:isMarket ? '선택 지표 W_market = 작품 누적관객 / 해당 개봉 연도 적격 국내 영화의 누적관객 합계. 배율, 출연 순서 가중치, 과거 이력 가중치를 적용하지 않습니다.' : 'SP = ' + c.displayScale.toLocaleString('en-US') + ' × W_market × W_role × W_history. 세 가중치의 정의는 위와 같습니다.',
+      dateMean:'같은 개봉일의 측정 가능한 배우–작품 ' + symbol + ' 산술평균을 씁니다. 결측은 0으로 넣지 않으며, 일부만 계산된 날과 계산할 수 없는 작품도 표시합니다.',
+      maxChange:'측정 가능한 날짜의 시간순 인접 쌍마다 Δ' + symbol + ' = 뒤 ' + symbol + ' − 앞 ' + symbol + '를 계산합니다. 절댓값이 가장 큰 쌍 하나를 선택하고 부호를 보존합니다. 절댓값이 정확히 같으면 가장 이른 쌍을 선택하며 모두 0이어도 같은 규칙을 씁니다. 일평균 변화량 = Δ' + symbol + ' / 두 날짜 사이의 실제 일수 (' + metric.dailyUnit + ')이며, 선택 기준은 일평균 변화량이 아닌 변화량의 절댓값입니다. 결측 날짜를 제외한 두 측정일 사이의 달력상 간격은 그대로 유지합니다. 측정일이 두 번 미만이면 계산하지 않습니다.',
+      slope:'연속 세 측정일에서 앞 구간의 ' + symbol + ' 차이는 Δ' + symbol + '₀ = 가운데 ' + symbol + ' − 앞 ' + symbol + ', 뒤 구간은 Δ' + symbol + '₁ = 뒤 ' + symbol + ' − 가운데 ' + symbol + '입니다. G₀ = Δ' + symbol + '₀ × ' + c.daysPerYear + ' / 앞 구간 일수, G₁ = Δ' + symbol + '₁ × ' + c.daysPerYear + ' / 뒤 구간 일수입니다. 두 기울기의 단위는 ' + metric.rateUnit + '입니다.',
+      change:'가운데 날짜에서 기울기 변화량 D = G₁ − G₀ (' + metric.rateUnit + ')를 계산하고 부호를 보존합니다. G₀ < 0 < G₁이면 상승 반전, G₀ > 0 > G₁이면 하락 반전입니다. 같은 방향이 이어지거나 어느 한 기울기가 0이면 기타로 분류합니다. 판정에는 뒤 측정일의 관측이 필요합니다.',
       threshold:thresholdText[c.thresholdMode] + ' 선택 결과는 이 자료의 반전 크기를 기술합니다. 사건의 인과효과나 미래 예측력을 보장하지 않습니다.',
-      stability:'측정일이 세 번 이상인 배우의 ID를 문자열 순으로 정렬해 다섯 묶음에 차례로 배정합니다. 각 배우의 모든 구간은 같은 묶음에 속합니다. 매번 한 묶음을 제외하고 나머지 네 묶음에서 방향별 오츠 경계를 다시 구합니다. 제외한 묶음에서 같은 방향의 반전에 이 경계를 적용합니다. 비율은 경계를 적용할 수 있던 제외 구간 중 선택된 비율입니다. 통계적 유의성이나 예측 정확도를 측정하는 검정은 아닙니다.',
-      synergy:'S(A→B) = 100 × (A와 함께한 B의 과거 평균 SP / A 없이 출연한 B의 과거 평균 SP − 1). 기준일 전 작품만 쓰며, 두 집합이 모두 있고 분모가 양수인 안정 ID 동료만 계산합니다.',
+      stability:'측정일이 세 번 이상인 배우의 ID를 문자열 순으로 정렬해 다섯 묶음에 차례로 배정합니다. 각 배우의 모든 구간은 같은 묶음에 속합니다. 매번 한 묶음을 제외하고 나머지 네 묶음에서 방향별 자동 경계(오츠 기준)를 다시 구합니다. 제외한 묶음에서 같은 방향의 반전에 이 경계를 적용합니다. 비율은 경계를 적용할 수 있던 제외 구간 중 선택된 비율입니다. 통계적 유의성이나 예측 정확도를 측정하는 검정은 아닙니다.',
+      synergy:'S(A→B) = 100 × (A와 함께한 B의 과거 평균 ' + symbol + ' / A 없이 출연한 B의 과거 평균 ' + symbol + ' − 1). 기준일 전 작품만 쓰며, 두 집합이 모두 있고 분모가 양수인 안정 ID 동료만 계산합니다.',
       pool:'계산 가능한 동료 M명을 내림차순 정렬해 상위 올림(' + c.topFraction + ' × M)명과 경계 동률을 포함한 뒤, 시너지가 양수인 동료만 남깁니다. 이 명단을 기준일과 이후 모든 개봉일의 비교에 고정합니다.',
-      next:'기준일과 그 뒤 국내 작품의 개봉일마다 같은 날의 모든 작품에서 재등장을 찾습니다. 모집단 비율은 기준일과 그 직후 첫 개봉일을 각각 한 번씩 집계합니다. 다음 작품에 SP가 없어도 건너뛰지 않습니다. 안정 ID가 없는 개봉 기록은 특정 배우의 필모그래피에 연결할 수 없습니다.',
+      next:'기준일과 그 뒤 국내 작품의 개봉일마다 같은 날의 모든 작품에서 재등장을 찾습니다. 모집단 비율은 기준일과 그 직후 첫 개봉일을 각각 한 번씩 집계합니다. 다음 작품에 ' + symbol + '가 없어도 건너뛰지 않습니다. 안정 ID가 없는 개봉 기록은 특정 배우의 필모그래피에 연결할 수 없습니다.',
       rate:'특정 시점의 재등장은 한 명 이상 일치해야 합니다. 계산 가능한 풀이 없거나 고시너지 동료의 부재를 확인하기에 출연 정보가 부족하면 분모에서 제외합니다. 배우별로 한 번이라도 일치하면 재등장, 전부 확정 불일치면 미재등장, 나머지는 판정불가입니다.',
       event:'기존 조사 대장에서 배우 ID가 일치하고 출처 링크가 있는 공개 월만 표시합니다. 직전 측정일부터 뒤 측정일까지 월 단위로 비교합니다. 시작·끝과 같은 달에는 실제 공개일이 관측 구간 밖일 수도 있습니다. 활동 중단의 근거 상태는 별도로 표시합니다. 시간상 겹침은 원인·캐스팅 의도의 증거가 아닙니다.',
       scope:'국내 국적 표시 영화에 연결된 배우 ID를 모집단으로 씁니다. 인물의 국적은 확인할 수 없으며, ID가 없는 배역은 작품별로만 표시하고 배우 인원에 합치지 않습니다.',
-      snapshot:'집계 종료일은 ' + c.cutoffDate + '입니다. 누적 관객과 연간 분모는 보관 자료의 사후 집계이며 미관측 작품·관객은 보정하지 않습니다. 최신 연도는 부분연도입니다.'
+      snapshot:'집계 종료일은 ' + c.cutoffDate + '입니다. 누적 관객과 연간 분모는 이번에 불러온 자료의 사후 집계이며 미관측 작품·관객은 보정하지 않습니다. 최신 연도는 부분연도입니다.'
     };
-    return {config:c, text, scoreModes:MODES.slice()};
+    return {config:c, metric, text, scoreModes:MODES.slice()};
   }
   const MS_DAY = 86400000;
   const trim = v => String(v == null ? '' : v).trim();
@@ -98,6 +104,7 @@
   }
   function configOf(rows, options) {
     const c = Object.assign({}, CONFIG, options);
+    if (!['sp','market'].includes(c.metric)) throw new Error('Invalid metric');
     if (options?.thresholdMode == null) {
       // A caller of the previous API could set a manual cutoff or a quantile directly.
       if (options?.absoluteThreshold != null) c.thresholdMode = 'absolute';
@@ -315,11 +322,17 @@
         for (const a of credits) {
           let score={};
           if (q!=null) {
-            const h=hist.get(a.key), count=h?h.count:0, sum=h?h.sum:0;
-            const rw=FORMULA.role(a.rank,c), base=q*rw, hw=FORMULA.history(sum,count,mu,c);
-            score={marketWeight:q,roleWeight:rw,baseSp:base,historyCount:count,historySum:sum,priorMean:mu,
-              historyEstimate:hw.estimate,historyWeight:hw.weight,sp:FORMULA.score(q,rw,hw.weight,c)};
-            updates.push({key:a.key,base});coverage.scoredCredits++;
+            if (c.metric === 'market') {
+              // The compatibility field .sp carries the active metric throughout the model.
+              score={marketWeight:q,roleWeight:1,baseSp:q,historyWeight:1,sp:FORMULA.score(q,1,1,c)};
+            } else {
+              const h=hist.get(a.key), count=h?h.count:0, sum=h?h.sum:0;
+              const rw=FORMULA.role(a.rank,c), base=q*rw, hw=FORMULA.history(sum,count,mu,c);
+              score={marketWeight:q,roleWeight:rw,baseSp:base,historyCount:count,historySum:sum,priorMean:mu,
+                historyEstimate:hw.estimate,historyWeight:hw.weight,sp:FORMULA.score(q,rw,hw.weight,c)};
+              updates.push({key:a.key,base});
+            }
+            coverage.scoredCredits++;
             if (a.id) {coverage.scoredStableCredits++;coverage.lastStableScoreDate=m.date;}
           }
           addRecord(a,m,score);
@@ -349,6 +362,15 @@
       a.dateCount=sdays.length;
       if(sdays.length) scoredActors++;
       if(sdays.length>=3) eligibleActors++;
+      a.maxChange=null;
+      for(let i=1;i<sdays.length;i++) {
+        const from=sdays[i-1], to=sdays[i], change=to.sp-from.sp, days=to.epoch-from.epoch;
+        // Strict comparison preserves the earliest pair on exact ties, including all zeroes.
+        if(a.maxChange===null || Math.abs(change)>Math.abs(a.maxChange.change)) {
+          a.maxChange={fromDate:from.date,toDate:to.date,fromValue:from.sp,toValue:to.sp,
+            change,days,perDay:change/days,skippedDates:to.index-from.index-1};
+        }
+      }
       for(let i=1;i+1<sdays.length;i++) {
         const p=sdays[i-1], d=sdays[i], n=sdays[i+1];
         const beforeSlope=FORMULA.slope(p,d,c),afterSlope=FORMULA.slope(d,n,c),change=afterSlope-beforeSlope;
@@ -484,7 +506,7 @@
         }
         return {...point, later};
       });
-      return {...actorBase(a), days:a.days, undated:a.undated, windows:a.windows, points, events:eventsByActor.get(a.id)||[]};
+      return {...actorBase(a), maxChange:a.maxChange, days:a.days, undated:a.undated, windows:a.windows, points, events:eventsByActor.get(a.id)||[]};
     }
     return {roster,unlinkedCredits,summary,actor,methods};
   }
