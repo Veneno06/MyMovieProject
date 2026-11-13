@@ -3,13 +3,15 @@
   const $ = id => document.getElementById(id);
   const finite = v => typeof v === 'number' && Number.isFinite(v);
   const number = (v, digits=2) => finite(v) ? v.toLocaleString('ko-KR',{maximumFractionDigits:digits}) : '—';
-  const signed = v => {
+  const signed = (v, config=appliedConfig) => {
     if (!finite(v)) return '—';
     if (v === 0) return '0';
-    const label = Math.abs(v) < 0.001 ? v.toExponential(3) : number(v,3);
+    const label = Math.abs(v) < 0.001 ? v.toExponential(3) : number(v,config?.metric === 'market' ? 8 : 3);
     return (v > 0 ? '+' : '') + label;
   };
-  const fmtSP = v => finite(v) ? number(v,6) : '산출 불가';
+  const axisNumber = v => v > 0 && (v < 0.001 || v >= 100000) ? v.toExponential(2) : number(v,6);
+  const cutoffNumber = v => v > 0 && v < 0.001 ? v.toExponential(3) : number(v,8);
+  const fmtSP = v => finite(v) ? (v !== 0 && Math.abs(v) < 1e-8 ? v.toExponential(5) : number(v,appliedConfig?.metric === 'market' ? 8 : 6)) : '산출 불가';
   const exact = v => finite(v) ? String(v) : '산출 불가';
   const normalize = s => String(s ?? '').normalize('NFKC').toLocaleLowerCase().replace(/\s+/g,'');
   const count = n => number(n,0);
@@ -44,6 +46,34 @@
   let isExample=false,selectedId=null,current=null,sequence=0,desiredDate='',openResults=false,resultPage=0,actorRows=[],disposeChart=()=>{};
   let appliedConfig=null, previousResult=null, calculationRequest=null;
   let calculating=false, resultsWereOpen=false;
+  const metricSymbol = (config=appliedConfig) => config?.metric === 'market' ? 'W_market' : 'SP';
+  const rateUnit = (config=appliedConfig) => metricSymbol(config)+'/년';
+  const chartTitle = () => appliedConfig?.metric === 'market' ? '개봉일별 W_market' : '개봉일별 스타 파워';
+  function syncMetricControls(){
+    const market=appliedConfig?.metric === 'market';
+    $('metric-sp').setAttribute('aria-pressed',String(!market));
+    $('metric-market').setAttribute('aria-pressed',String(market));
+    $('study-description').textContent='개봉일별 '+(market?'W_market':'스타 파워(SP)')+'가 하락에서 상승으로, 또는 상승에서 하락으로 바뀐 작품을 확인합니다.';
+    $('metric-help').textContent=market
+      ? 'W_market = 작품 누적관객 ÷ 해당 개봉연도 적격 국내 영화의 누적관객 합. 원래 비율로 표시하며 출연 순서·과거 이력 가중치와 10,000배는 적용하지 않습니다.'
+      : 'SP = 10,000 × W_market × W_role × W_history. 지표를 바꾸면 모든 결과를 다시 계산하고 급변점 기준은 자동으로 돌아갑니다.';
+  }
+  function maximumChangeSection(change,selectDate){
+    const box=h('section',{class:'section max-change','aria-label':'배우별 최대 변화 구간'},h('h3',{},'배우별 최대 변화 구간'));
+    box.append(p('결측을 제외한 인접 측정일의 변화량 |Δ|가 가장 큰 구간 1개입니다. 선정에는 개봉 간격을 쓰지 않으며, 동률이면 가장 이른 구간을 표시합니다.'));
+    if(!change){box.append(p('값이 있는 서로 다른 개봉일이 2개 이상 필요합니다.'));return box;}
+    const value=v=>h('span',{title:exact(v)},fmtSP(v));
+    box.append(table(['시점','개봉일',metricSymbol()],[
+      ['t₀',btn(change.fromDate,()=>selectDate(change.fromDate),{class:'text-btn'}),value(change.fromValue)],
+      ['t₁',btn(change.toDate,()=>selectDate(change.toDate),{class:'text-btn'}),value(change.toValue)]
+    ],'최대 변화 구간의 두 측정일'));
+    box.append(h('p',{class:'point-summary'},'변화량 Δ = ',h('strong',{title:exact(change.change)},signed(change.change)),
+      ' '+metricSymbol()+' · 개봉 간격 '+count(change.days)+'일 · Δ ÷ 일수 = ',
+      h('strong',{title:exact(change.perDay)},signed(change.perDay)),' '+metricSymbol()+'/일'),
+      p('Δ = t₁의 값 − t₀의 값입니다. 아래 D는 두 기울기의 차이로, 이 구간의 변화량 Δ와는 다릅니다.'));
+    if(change.skippedDates)box.append(p('사이에 있는 결측 개봉일 '+count(change.skippedDates)+'개는 계산에서 제외했고 실제 날짜 간격은 유지했습니다.'));
+    return box;
+  }
   const pageSize=6;
   function toggleResults(open){
     openResults=open;
@@ -80,7 +110,7 @@
     actorRows.slice(start,end).forEach(item=>{
       const a=item.record;
       const sub=item.unlinked ? 'ID 미기재 · '+(a.title||'제목 미상')+' · '+(a.date||'개봉일 미상') :
-        'ID '+a.id+' · '+ (item.date?item.date+' · '+signed(item.change):'국내 '+count(a.filmCount)+'편 · SP '+count(a.scoredCount)+'편');
+        'ID '+a.id+' · '+ (item.date?item.date+' · '+signed(item.change):'국내 '+count(a.filmCount)+'편 · '+metricSymbol()+' '+count(a.scoredCount)+'편');
       box.append(btn('',()=>{item.unlinked?showUnlinked(a):choose(a.id,item.date);},{
         class:'btn result','aria-current':!item.unlinked&&String(a.id)===selectedId?'true':null
       }));
@@ -123,7 +153,7 @@
     box.addEventListener('toggle', () => {
       if (!box.open || box.childElementCount > 1) return;
       if (!windows.length) {
-        box.append(p('D를 계산하려면 SP가 있는 서로 다른 개봉일이 3개 이상 필요합니다.'));
+        box.append(p('D를 계산하려면 '+metricSymbol()+' 값이 있는 서로 다른 개봉일이 3개 이상 필요합니다.'));
         return;
       }
       const cell = value => h('span', {title: exact(value)}, signed(value));
@@ -137,8 +167,8 @@
           cell(w.beforeSlope), cell(w.afterSlope), cell(w.change), shape, w.selected ? '선정' : '—'
         ];
       });
-      box.append(p('SP가 있는 연속 세 개봉일마다 가운데 날짜를 표시합니다. ΔSP는 점수 차이, G와 D는 연 단위 변화율과 그 차이입니다.'),
-        table(['가운데 날짜', '앞 / 뒤 일수', '앞 ΔSP', '뒤 ΔSP', 'G₀ (SP/년)', 'G₁ (SP/년)', 'D (SP/년)', '경로', '후보'], rows, '배우의 전체 D'));
+      box.append(p(metricSymbol()+' 값이 있는 연속 세 개봉일마다 가운데 날짜를 표시합니다. Δ는 값의 차이, G와 D는 연 단위 변화율과 그 차이입니다.'),
+        table(['가운데 날짜', '앞 / 뒤 일수', '앞 Δ'+metricSymbol(), '뒤 Δ'+metricSymbol(), 'G₀ ('+rateUnit()+')', 'G₁ ('+rateUnit()+')', 'D ('+rateUnit()+')', '경로', '후보'], rows, '배우의 전체 D'));
     });
     return box;
   }
@@ -146,13 +176,13 @@
     disposeChart();disposeChart=()=>{};status('');
     const panel=$('actor-panel');panel.hidden=false;
     panel.replaceChildren(h('div',{class:'panel-title'},h('div',{},h('h2',{},a.name||'이름 미기재'),
-      p((isExample?'기본 예시 · ':'')+'배우 ID '+a.id+' · 국내 영화 '+count(a.filmCount)+'편 · SP 산출 '+count(a.scoredCount)+'편 · 선정 전환점 '+count(a.pointCount)+'곳','meta')), makeListButton(a)));
+      p((isExample?'기본 예시 · ':'')+'배우 ID '+a.id+' · 국내 영화 '+count(a.filmCount)+'편 · '+metricSymbol()+' 산출 '+count(a.scoredCount)+'편 · 선정 전환점 '+count(a.pointCount)+'곳','meta')), makeListButton(a)));
     const days=a.days||[], pts=a.points||[], dated=days.filter(d=>finite(typedDate(d.date))), valid=dated.filter(d=>finite(d.sp));
     const idx=Math.max(0,pts.findIndex(x=>x.date===desiredDate));
     let selectedPoint=pts[idx]||null;
     const figure=h('figure',{class:'chart-box'});
-    figure.append(h('div',{class:'subhead'},h('h3',{},'개봉일별 스타 파워'),h('div',{class:'chart-key'},
-      h('span',{class:'legend-sp'},'측정 SP'),h('span',{class:'legend-missing'},'SP 결측'),
+    figure.append(h('div',{class:'subhead'},h('h3',{},chartTitle()),h('div',{class:'chart-key'},
+      h('span',{class:'legend-sp'},'측정 '+metricSymbol()),h('span',{class:'legend-missing'},metricSymbol()+' 결측'),
       h('span',{class:'legend-rise'},'하락→상승'),h('span',{class:'legend-fall'},'상승→하락'))));
     panel.append(figure);
     const changeArea=h('section',{class:'section','aria-label':'선정 전환점과 재출연'}), eventArea=h('section',{class:'section','aria-label':'사건 자료와 관측 시점'});
@@ -175,10 +205,10 @@
           filmName(f),h('span',{title:exact(f.sp)},fmtSP(f.sp)), day.date?h('span',{title:exact(day.sp)},fmtSP(day.sp)):'—'
         ]);
       }
-      filmDetails.append(rows.length?table(['개봉일','작품','작품 SP','날짜 평균 SP'],rows,'배우의 작품별 점수'):p('등록된 작품이 없습니다.'));
+      filmDetails.append(rows.length?table(['개봉일','작품','작품 '+metricSymbol(),'날짜 평균 '+metricSymbol()],rows,'배우의 작품별 점수'):p('등록된 작품이 없습니다.'));
     });
     const windows = windowDetails(a.windows || [], date => {chart?.select(date);setPoint(date);});
-    panel.append(filmDetails,windows,changeArea,eventArea);
+    panel.append(maximumChangeSection(a.maxChange,date=>{chart?.select(date);setPoint(date);}),filmDetails,windows,changeArea,eventArea);
     if(selectedPoint)setPoint(selectedPoint.date);else{
       changeArea.replaceChildren(h('h3',{},'선정 전환점과 재출연'),p(valid.length<3?'점수가 있는 서로 다른 개봉일이 세 번 미만이어서 두 기울기를 비교할 수 없습니다.':'이 배우에게 전체 기준을 충족하는 기울기 변화가 없습니다.'));
       renderEventArea(a,null,eventArea);
@@ -194,11 +224,11 @@
     let selected=all.findIndex(d=>d.date===initial);
     if(selected<0)selected=observed[0]??0;
     let shown=selected,positions=[],w=0,raf=0,observer,marker;
-    const plot=h('div',{class:'plot'}),svg=s('svg',{tabindex:'0',role:'group','aria-label':'개봉일별 스타 파워 그래프. 좌우 방향키로 개봉일을 살펴보고 Enter로 선정 전환점을 선택합니다.'});
+    const plot=h('div',{class:'plot'}),svg=s('svg',{tabindex:'0',role:'group','aria-label':chartTitle()+' 그래프. 좌우 방향키로 개봉일을 살펴보고 Enter로 선정 전환점을 선택합니다.'});
     const output=h('div',{class:'chart-focus',role:'status','aria-live':'polite','aria-atomic':'true'});
     const caption=[];
-    if(observed.length)caption.push('SP는 같은 날 개봉한 작품 중 점수를 산출할 수 있는 작품의 평균입니다.');
-    else caption.push('이 배우의 모든 개봉일에서 SP를 산출할 수 없습니다.');
+    if(observed.length)caption.push(metricSymbol()+'는 같은 날 개봉한 작품 중 값을 산출할 수 있는 작품의 평균입니다.');
+    else caption.push('이 배우의 모든 개봉일에서 '+metricSymbol()+'를 산출할 수 없습니다.');
     if(hasGaps)caption.push('갈색 점선은 결측 구간 양쪽의 측정값을 잇습니다. 점선 위 빈 원은 개봉일만 표시하며 그 높이는 측정값이 아닙니다.');
     if(hasLane)caption.push(observed.length?'첫 측정일 전이나 마지막 측정일 후의 개봉일은 ‘결측’ 줄에 표시합니다.':'개봉일은 ‘결측’ 줄에 표시합니다.');
     caption.push('날짜를 누르거나 그래프에서 좌우 방향키를 눌러 작품과 점수를 확인하세요.');
@@ -208,7 +238,7 @@
       const d=all[i],pos=positions[i];
       if(!pos)return;
       marker.setAttribute('cx',pos.x);marker.setAttribute('cy',pos.y);
-      const score=finite(d.sp)?h('strong',{title:exact(d.sp)},'SP '+fmtSP(d.sp)):h('strong',{},'SP 산출 불가');
+      const score=finite(d.sp)?h('strong',{title:exact(d.sp)},metricSymbol()+' '+fmtSP(d.sp)):h('strong',{},metricSymbol()+' 산출 불가');
       const films=d.films||[];
       const coverage=d.partial?' ('+count(films.length)+'편 중 '+count(d.scoredCount)+'편 산출)':'';
       output.replaceChildren(h('strong',{},d.date),' · ',score,coverage,' · '+films.map(f=>f.title||'제목 미상').join(' / '));
@@ -229,10 +259,10 @@
       const step=[1,2,2.5,5,10].map(k=>k*order).find(k=>k>=target)||order*10,maxY=Math.ceil((maxV||1)/step)*step;
       const y=v=>gridBottom-v/maxY*(gridBottom-top);
       if(observed.length){
-        svg.append(s('text',{x:left,y:14},'SP'));
+        svg.append(s('text',{x:left,y:14},metricSymbol()));
         for(let i=0;i<=Math.round(maxY/step);i++){
           const val=step*i,yp=y(val);svg.append(s('line',{x1:left,y1:yp,x2:w-right,y2:yp,stroke:'#e3e7ed'}),
-            s('text',{x:left-6,y:yp+4,'text-anchor':'end'},val>=100000?val.toExponential(0):val>0&&val<.01?val.toExponential(0):number(val,3)));
+            s('text',{x:left-6,y:yp+4,'text-anchor':'end'},axisNumber(val)));
         }
       }
       if(hasLane){
@@ -296,7 +326,7 @@
       const seen=new Set((c.matches||[]).map(m=>String(m.id)));
       const parts=partners.flatMap((person,i)=>[i?', ':'',seen.has(String(person.id))?h('strong',{},person.name||person.id):(person.name||person.id||'이름 미기재')]);
       const cast=detail('공동출연진 '+count(partners.length)+'명',h('div',{class:'meta'},parts.length?parts:'다른 출연진 기록 없음'));
-      return h('div',{class:'film-entry'},filmName(f),h('span',{class:'meta',title:exact(f.sp)},'작품 SP '+fmtSP(f.sp)),cast);
+      return h('div',{class:'film-entry'},filmName(f),h('span',{class:'meta',title:exact(f.sp)},'작품 '+metricSymbol()+' '+fmtSP(f.sp)),cast);
     });
     return [h('div',{},c.date||'개봉일 미관측'),h('div',{},films.length?films:'—'),h('div',{},res,
       names?h('div',{class:'meta'},names):c.reason&&c.reason!=='no_match'?h('div',{class:'meta'},resultText[c.reason]||'판정 자료 부족'):null)];
@@ -315,17 +345,17 @@
     }
     datePicker.addEventListener('change',()=>paintFollow(Number(datePicker.value)));paintFollow(0);
     area.replaceChildren(h('div',{},h('div',{class:'subhead'},h('h3',{},'선정 전환점과 재출연'),sel),
-      h('p',{class:'point-summary'},h('strong',{class:classOf(point.change)},direction(point.change)+' · D = '+signed(point.change)),' SP/년 · 앞 기울기 '+signed(point.beforeSlope)+' → 뒤 기울기 '+signed(point.afterSlope)),
-      p('앞 '+count(point.beforeDays)+'일간 ΔSP '+signed(point.beforeSPChange)+'점 · 뒤 '+count(point.afterDays)+'일간 ΔSP '+signed(point.afterSPChange)+'점.','point-info'),
-      p('세 측정일: '+point.prevDate+' (SP '+fmtSP(point.prevSp)+') → '+point.date+' (SP '+fmtSP(point.sp)+', 전환일) → '+point.detectedDate+' (SP '+fmtSP(point.nextSp)+', 변화 확인일).','point-info'),
-      (point.skippedBefore||point.skippedAfter)?p('세 측정일 사이에 SP를 산출할 수 없는 개봉일이 '+count((point.skippedBefore||0)+(point.skippedAfter||0))+'회 있어 기울기 계산에서는 건너뛰었습니다.'):null,
+      h('p',{class:'point-summary'},h('strong',{class:classOf(point.change)},direction(point.change)+' · D = '+signed(point.change)),' '+rateUnit()+' · 앞 기울기 '+signed(point.beforeSlope)+' → 뒤 기울기 '+signed(point.afterSlope)),
+      p('앞 '+count(point.beforeDays)+'일간 Δ'+metricSymbol()+' '+signed(point.beforeSPChange)+' · 뒤 '+count(point.afterDays)+'일간 Δ'+metricSymbol()+' '+signed(point.afterSPChange)+'.','point-info'),
+      p('세 측정일: '+point.prevDate+' ('+metricSymbol()+' '+fmtSP(point.prevSp)+') → '+point.date+' ('+metricSymbol()+' '+fmtSP(point.sp)+', 전환일) → '+point.detectedDate+' ('+metricSymbol()+' '+fmtSP(point.nextSp)+', 변화 확인일).','point-info'),
+      (point.skippedBefore||point.skippedAfter)?p('세 측정일 사이에 '+metricSymbol()+'를 산출할 수 없는 개봉일이 '+count((point.skippedBefore||0)+(point.skippedAfter||0))+'회 있어 기울기 계산에서는 건너뛰었습니다.'):null,
       follow.length>1?h('label',{class:'follow-choice'},'후속 개봉일 ',datePicker):null,futureTable,
-      p('모든 후속 개봉일은 전환일 전날까지의 같은 시너지 동료 집합과 비교합니다. 전체 집계에는 SP 산출 여부와 관계없이 바로 다음 개봉일만 사용합니다.')));
+      p('모든 후속 개봉일은 전환일 전날까지의 같은 시너지 동료 집합과 비교합니다. 전체 집계에는 '+metricSymbol()+' 산출 여부와 관계없이 바로 다음 개봉일만 사용합니다.')));
     const pool=detail('전환일 이전 동료: 계산 가능 '+count(point.poolSize)+'명 · 시너지 '+count(point.highCount)+'명');
     const high=point.high||[];
     pool.addEventListener('toggle',()=>{
       if(!pool.open||pool.childElementCount>1)return;
-      pool.append(p('중심 배우 A와 함께 출연했을 때 동료 B의 평균 SP가 A 없이 출연했을 때보다 얼마나 달랐는지 비교합니다. 함께 / 따로는 전환일 이전 B의 작품 수입니다.'),
+      pool.append(p('중심 배우 A와 함께 출연했을 때 동료 B의 평균 '+metricSymbol()+'가 A 없이 출연했을 때보다 얼마나 달랐는지 비교합니다. 함께 / 따로는 전환일 이전 B의 작품 수입니다.'),
         high.length?table(['동료 B','배우 ID','시너지 A→B (%)','함께 / 따로 (편)'],high.map(m=>[m.name||'이름 미기재',m.id,signed(m.value),count(m.withCount)+' / '+count(m.withoutCount)]),'과거 출연 동료'):p(point.poolSize?'양의 시너지 조건에 해당하는 동료가 없습니다.':'이전 출연 기록으로 시너지를 계산할 수 있는 동료가 없습니다.'));
     });
     area.append(pool);
@@ -360,7 +390,7 @@
       if(other.length)area.append(detail('구간 밖 이 배우의 기존 기록 '+count(other.length)+'건',other.map(eventCard)));
     }else if(all.length)area.append(p('대장에 수록된 배우 기록입니다. 비교할 선정 전환점은 없습니다.'),...all.map(eventCard));
     else area.append(p('이 배우는 기존 조사 대장에서 확인되지 않았습니다. 사건의 유무는 알 수 없습니다.'));
-    if(all.length)area.append(p('공개 월의 겹침은 사건이 SP 변화를 일으켰다는 증거가 아닙니다. 의혹·보도는 확정 판결과 구별해야 합니다.'));
+    if(all.length)area.append(p('공개 월의 겹침은 사건이 '+metricSymbol()+' 변화를 일으켰다는 증거가 아닙니다. 의혹·보도는 확정 판결과 구별해야 합니다.'));
   }
   function rate(c){return c.evaluable?h('strong',{},number(100*c.hits/c.evaluable,1)+'%'):'산출 불가';}
   function rateTable(comps,name){
@@ -376,7 +406,7 @@
   function renderSummary(methods){
     const c=summary.coverage||{},e=summary.comparisons;
     $('cohort').hidden=false;
-    const scope=p('국내 영화 출연 배우 '+count(summary.actors)+'명 중 SP 산출 '+count(summary.scoredActors)+'명, SP가 있는 서로 다른 개봉일이 3개 이상인 배우 '+count(summary.eligibleActors)+'명, 선정된 배우 '+count(summary.markedActors)+'명입니다. 이들에게서 선정 전환점 '+count(summary.points)+'곳을 찾았습니다.','point-summary');
+    const scope=p('국내 영화 출연 배우 '+count(summary.actors)+'명 중 '+metricSymbol()+' 산출 '+count(summary.scoredActors)+'명, '+metricSymbol()+' 값이 있는 서로 다른 개봉일이 3개 이상인 배우 '+count(summary.eligibleActors)+'명, 선정된 배우 '+count(summary.markedActors)+'명입니다. 이들에게서 선정 전환점 '+count(summary.points)+'곳을 찾았습니다.','point-summary');
     const body=$('cohort-body');
     body.replaceChildren(scope,rateTable(e,'전체 배우와 선정 전환점의 시점별 재출연율'),
       p('재출연율 = 확인 ÷ 판정 가능. 배우 단위에서는 한 번이라도 재출연하면 확인, 모든 선정 전환점에서 불일치하면 없음, 나머지는 판정 불가입니다. 선정 전환점 단위에서는 각 날짜를 한 번씩 셉니다.'));
@@ -397,17 +427,18 @@
     const part=(title,keys)=>h('div',{},h('h4',{},title),keys.filter(k=>m[k]).map(k=>p(m[k],'point-info')));
     method.replaceChildren(
       part('대상과 자료 범위',['scope','snapshot']),
-      p('11월 9일 첨부본의 영화·출연 자료로 모집단을 고정합니다. 국내 영화 개봉일 범위: '+(summary.firstDate||'미상')+' – '+(summary.lastDate||'미상')+'. 배우 ID가 있는 마지막 SP 산출일: '+(c.lastStableScoreDate||'미상')+'. SP가 없는 배우 '+count(c.unscoredActors)+'명도 검색에 남깁니다. ID 미기재 출연 기록 '+count(c.unlinkedCredits)+'건은 이름으로 검색하면 작품별로 표시합니다.'),
-      part('작품별 SP와 날짜별 점수',['base','role','prior','history','starPower','dateMean']),
+      p('페이지를 열 때 기존 영화·출연 자료를 불러오며, 이 페이지 안의 기준 비교에는 같은 자료를 사용합니다. 국내 영화 개봉일 범위: '+(summary.firstDate||'미상')+' – '+(summary.lastDate||'미상')+'. 배우 ID가 있는 마지막 '+metricSymbol()+' 산출일: '+(c.lastStableScoreDate||'미상')+'. '+metricSymbol()+' 값이 없는 배우 '+count(c.unscoredActors)+'명도 검색에 남깁니다. ID 미기재 출연 기록 '+count(c.unlinkedCredits)+'건은 이름으로 검색하면 작품별로 표시합니다.'),
+      part('작품별 '+metricSymbol()+'와 날짜별 값',appliedConfig.metric === 'market' ? ['base','starPower','dateMean'] : ['base','role','prior','history','starPower','dateMean']),
       part('큰 기울기 변화의 판정',['slope','change','threshold']),
-      p('D는 G₁ − G₀입니다. 앞뒤 30일씩 SP가 30 → 0 → 120이면 D는 +1,826.25 SP/년, 3 → 0 → 12이면 +182.625 SP/년입니다. 첫 사례의 앞뒤 간격을 300일씩으로 늘리면 두 사례의 D는 같아집니다. 개봉 간격과 실제 ΔSP를 함께 보세요.'),
+      p('D는 Difference(차이)를 나타내는 기호로 여기서 정의한 G₁ − G₀입니다. G는 구간 기울기이며, Δ는 두 날짜 값의 차이입니다. D와 G의 단위는 '+rateUnit()+', 최대 변화 구간의 일평균 변화는 '+metricSymbol()+'/일입니다.'),
+      part('배우별 최대 변화 구간',['maxChange']),
       p('자동 경계의 목적함수는 w₀w₁(μ₁−μ₀)²입니다. w는 두 집단의 지점 비율, μ는 평균입니다. 전체 분산이 고정되어 있어 이 식의 최대화는 두 집단 안에서의 제곱편차 합 최소화와 같습니다. 배우별 유효 개봉일이 n개이면 D는 max(n−2, 0)개이며, 각 D에 같은 가중치를 줍니다.'),
-      h('p',{class:'help'},'원래 영상 명암 분할을 위해 제안된 Otsu 기준을 여기서는 전환의 크기에 적용했습니다. ',h('a',{href:'https://doi.org/10.1109/TSMC.1979.4310076',target:'_blank',rel:'noopener noreferrer'},'Otsu (1979), 원문')),
+      h('p',{class:'help'},'자동 경계는 두 집단 사이의 분산을 최대화하는 기준입니다. 원래 영상 명암 분할을 위해 제안된 방법을 전환 크기에 적용했습니다. 방법 출처: ',h('a',{href:'https://doi.org/10.1109/TSMC.1979.4310076',target:'_blank',rel:'noopener noreferrer'},'Otsu (1979), 원문')),
 
       part('과거 고시너지와 재출연',['synergy','pool','next','rate']),
       part('기존 조사 대장과 해석',['event']),
-      p('하락 → 상승은 과거 동료와의 재출연을, 상승 → 하락은 기록된 사건의 시점을 대조할 수 있는 후보입니다. 전환 방향만으로 원인을 판정할 수 없습니다. 이 분석은 작품별 성과의 동시 관측을 다룹니다. 개봉일은 촬영·캐스팅 결정일이 아니며, SP는 평판이나 사건의 영향을 직접 측정한 값이 아닙니다.'),
-      h('p',{class:'help'},h('a',{href:'data/research/exp1-search-index-20261109.json'},'11월 9일 고정 영화·출연 자료'),' · ',
+      p('하락 → 상승은 과거 동료와의 재출연을, 상승 → 하락은 기록된 사건의 시점을 대조할 수 있는 후보입니다. 전환 방향만으로 원인을 판정할 수 없습니다. 개봉일은 촬영·캐스팅 결정일이 아니며, '+metricSymbol()+'는 평판이나 사건의 영향을 직접 측정한 값이 아닙니다.'),
+      h('p',{class:'help'},h('a',{href:'data/search_index.json'},'현재 영화·출연 자료'),' · ',
         h('a',{href:'data/research/recovery_followup_registry.json'},'기존 사건 조사 대장')));
   }
   function fail(message,retryAll){
@@ -415,19 +446,20 @@
     box.append(document.createTextNode(message+' '),btn('다시 시도',()=>retryAll?location.reload():choose(selectedId),{class:'btn small'}));
   }
   function criterionLabel(config) {
-    if (config.thresholdMode === 'otsu') return '방향별 Otsu';
-    if (config.thresholdMode === 'percentile') return '방향별 ' + number(config.percentile * 100, 6) + '백분위';
-    return '직접 입력 ±' + number(config.absoluteThreshold, 6) + ' SP/년';
+    const unit=' ('+rateUnit(config)+')';
+    if (config.thresholdMode === 'otsu') return metricSymbol(config)+' · 방향별 자동 경계'+unit;
+    if (config.thresholdMode === 'percentile') return metricSymbol(config)+' · 방향별 ' + number(config.percentile * 100, 6) + '백분위'+unit;
+    return metricSymbol(config)+' · 직접 입력 ±' + cutoffNumber(config.absoluteThreshold)+unit;
   }
   const share = (n, total) => total ? number(100 * n / total, 2) + '%' : '—';
-  function boundary(result, key) {
+  function boundary(result, key, config=appliedConfig) {
     const value = result.thresholds[key];
     if (!finite(value)) return '경계 산출 불가';
-    return h('span', {title:exact(value)}, (key === 'rise' ? 'D ≥ ' : 'D ≤ ') + signed(value));
+    return h('span', {title:exact(value)}, (key === 'rise' ? 'D ≥ ' : 'D ≤ ') + signed(value,config));
   }
   function comparisonRow(label, config, result) {
     const reunion = result.comparisons.next.points;
-    return [label, criterionLabel(config), boundary(result,'rise'), boundary(result,'fall'),
+    return [label, criterionLabel(config), boundary(result,'rise',config), boundary(result,'fall',config),
       count(result.markedActors), count(result.points),
       count(reunion.hits) + ' / ' + count(reunion.evaluable), rate(reunion)];
   }
@@ -440,7 +472,7 @@
     });
     return detail('배우를 5개 그룹으로 나누었을 때의 경계',
       p('D를 계산할 수 있는 배우를 ID순으로 정렬하여 다섯 그룹에 순환 배정합니다. 매회 네 그룹에서 경계를 구한 뒤 남은 그룹에 적용합니다. 같은 배우의 모든 D는 한 그룹에 속합니다.'),
-      table(['방향','그룹 1~5를 각각 제외한 경계 (SP/년)','제외 그룹에서 선정 / 판정 가능','선정률'],rows,'배우 단위 경계 민감도'),
+      table(['방향','그룹 1~5를 각각 제외한 경계 ('+rateUnit()+')','제외 그룹에서 선정 / 판정 가능','선정률'],rows,'배우 단위 경계 민감도'),
       p('다섯 경계의 차이는 어떤 배우가 포함됐을 때 선정 기준이 달라지는지 보여줍니다. 선정률은 제외해 둔 각 그룹에서 얻은 건수를 합산한 값입니다.'));
   }
   function showCriterionResult() {
@@ -456,7 +488,7 @@
         count(n[key]), boundary(summary,key), count(g.points), share(g.points,n[key]), count(g.actors)];
     });
     dirBox.replaceChildren(
-      table(['전환 방향','전환 지점','부호 있는 경계 (SP/년)','선정 지점','방향 내 선정률','선정 배우'], rows, '양·음 전환별 급변 후보'),
+      table(['전환 방향','전환 지점','부호 있는 경계 ('+rateUnit()+')','선정 지점','방향 내 선정률','선정 배우'], rows, '양·음 전환별 급변 후보'),
       p('전체 D는 양수 '+count(signs.positive)+'개, 음수 '+count(signs.negative)+'개, 0이 '+count(signs.zero)+'개입니다. 방향을 유지하거나 수평 구간을 포함한 '+count(n.other)+'개도 전체 D에 포함합니다.'));
     const gapRows = Object.entries(summary.gapDiagnostics).map(([key,g]) => [
       key === 'selected' ? '선정 지점' : '모든 방향 전환', count(g.count),
@@ -472,7 +504,7 @@
       ['적용 시점','판정 기준','하락 → 상승 경계','상승 → 하락 경계','후보 배우','급변 후보','첫 후속 재출연 / 판정 가능','재출연율'],
       [comparisonRow('직전 적용',previousResult.config,previousResult.summary),
        comparisonRow('현재 적용',appliedConfig,summary)], '급변점 기준 적용 전후 비교'),
-      p('경계 단위는 SP/년이며, 첫 후속 개봉일의 재출연율은 선정 지점 단위로 집계합니다.'));
+      p('경계 단위는 각 행의 판정 기준에 표시합니다. 서로 다른 지표의 경계 숫자를 같은 척도로 비교하지 마세요. 첫 후속 재출연율은 선정 지점 단위입니다.'));
   }
   function updateCriterionInput() {
     const mode = $('threshold-mode').value;
@@ -489,8 +521,8 @@
     } else if (mode === 'absolute') {
       input.removeAttribute('max');
       input.value = appliedConfig.absoluteThreshold ?? '';
-      input.placeholder = '예: 5000';
-      $('threshold-value-label').textContent = '공통 경계 크기 c (SP/년)';
+      input.placeholder = appliedConfig.metric === 'market' ? '예: 0.1' : '예: 5000';
+      $('threshold-value-label').textContent = '공통 경계 크기 c ('+rateUnit()+')';
       $('threshold-help').textContent = '0 이상의 c를 입력하세요. 하락 → 상승은 D ≥ +c, 상승 → 하락은 D ≤ −c를 적용합니다.';
     } else {
       $('threshold-help').textContent = '각 전환 방향에서 작은 변화와 큰 변화로 나눴을 때 두 집단 사이의 분산이 가장 커지는 경계를 찾습니다.';
@@ -499,7 +531,7 @@
   function setCalculating(busy) {
     calculating = busy;
     for (const id of ['threshold-mode', 'threshold-value', 'threshold-apply', 'threshold-reset',
-                     'actor-query', 'actor-mode', 'results-toggle']) {
+                     'actor-query', 'actor-mode', 'results-toggle', 'metric-sp', 'metric-market']) {
       $(id).disabled = busy;
     }
     $('threshold-form').setAttribute('aria-busy', String(busy));
@@ -530,10 +562,20 @@
     $('threshold-status').textContent = '입력한 기준으로 전체 배우를 다시 계산하고 있습니다…';
     status('');
     worker.postMessage({type: 'calculate', request: calculationRequest,
-      options: {thresholdMode: mode, percentile: mode === 'percentile' ? value / 100 : appliedConfig.percentile,
+      options: {metric:appliedConfig.metric, thresholdMode: mode, percentile: mode === 'percentile' ? value / 100 : appliedConfig.percentile,
                 absoluteThreshold: mode === 'absolute' ? value : null}});
   }
+  function switchMetric(metric){
+    if(calculating || !appliedConfig || appliedConfig.metric === metric)return;
+    resultsWereOpen=openResults;
+    calculationRequest=++sequence;
+    setCalculating(true);status('');
+    $('threshold-status').textContent='선택한 지표로 전체 결과를 다시 계산하고 있습니다…';
+    worker.postMessage({type:'calculate',request:calculationRequest,options:{metric,thresholdMode:'otsu',percentile:appliedConfig.percentile,absoluteThreshold:null}});
+  }
   function bindControls() {
+    $('metric-sp').addEventListener('click',()=>switchMetric('sp'));
+    $('metric-market').addEventListener('click',()=>switchMetric('market'));
     $('threshold-form').addEventListener('submit', event => {
       event.preventDefault();
       applyCriterion();
@@ -552,7 +594,7 @@
   }
   function start(){
     if(typeof Worker!=='function'){status('이 브라우저는 분석 계산에 필요한 웹 워커를 지원하지 않습니다. 최신 브라우저에서 열어 주세요.');return;}
-    try {worker=new Worker(new URL('assets/exp1-worker.js?v=20261109-signed-r3',document.baseURI));} catch(_){fail('계산을 시작하지 못했습니다. 웹사이트 주소에서 다시 열어 주세요.',true);return;}
+    try {worker=new Worker(new URL('assets/exp1-worker.js?v=20261113-metric-r1',document.baseURI));} catch(_){fail('계산을 시작하지 못했습니다. 웹사이트 주소에서 다시 열어 주세요.',true);return;}
     bindControls();
     worker.addEventListener('error',()=>{
       setCalculating(true);
@@ -572,8 +614,7 @@
           if (selectedId) choose(selectedId, desiredDate, false, isExample);
           return;
         }
-        const message = data.operation === 'init' && String(data.message).startsWith('고정 자료')
-          ? data.message : (data.request==null?'전체 영화 자료를 불러오거나 계산하지 못했습니다.':'배우의 기록을 계산하지 못했습니다.');
+        const message = data.operation === 'init' ? '현재 영화 자료를 불러오거나 계산하지 못했습니다. docs/data/search_index.json을 확인해 주세요.' : '배우의 기록을 계산하지 못했습니다.';
         fail(message,data.request==null);return;
       }
       if(data.type==='actor'){
@@ -593,7 +634,7 @@
       calculationRequest=null;
       current=null;
       setCalculating(false);
-      syncListLabel();renderSummary(data.methods);
+      syncListLabel();syncMetricControls();renderSummary(data.methods);
       $('threshold-mode').value=appliedConfig.thresholdMode;
       updateCriterionInput();
       showCriterionResult();
