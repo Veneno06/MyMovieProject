@@ -53,10 +53,10 @@
     const market=appliedConfig?.metric === 'market';
     $('metric-sp').setAttribute('aria-pressed',String(!market));
     $('metric-market').setAttribute('aria-pressed',String(market));
-    $('study-description').textContent='개봉일별 '+(market?'W_market':'스타 파워(SP)')+'가 하락에서 상승으로, 또는 상승에서 하락으로 바뀐 작품을 확인합니다.';
+    $('study-description').textContent='개봉일별 '+(market?'W_market':'스타 파워(SP)')+'가 하락에서 상승으로, 또는 상승에서 하락으로 바뀐 작품을 확인.';
     $('metric-help').textContent=market
       ? 'W_market = 작품 누적관객 ÷ 해당 개봉연도 적격 국내 영화의 누적관객 합. 원래 비율로 표시하며 출연 순서·과거 이력 가중치와 10,000배는 적용하지 않습니다.'
-      : 'SP = 10,000 × W_market × W_role × W_history. 지표를 바꾸면 모든 결과를 다시 계산하고 급변점 기준은 자동으로 돌아갑니다.';
+      : 'SP = 10,000 × W_market × W_role × W_history. 지표를 바꾸면 모든 결과를 다시 계산하고 변곡점 기준은 자동으로 돌아갑니다.';
   }
   function maximumChangeSection(change,selectDate){
     const box=h('section',{class:'section max-change','aria-label':'배우별 최대 변화 구간'},h('h3',{},'배우별 최대 변화 구간'));
@@ -503,7 +503,7 @@
     box.replaceChildren(table(
       ['적용 시점','판정 기준','하락 → 상승 경계','상승 → 하락 경계','후보 배우','급변 후보','첫 후속 재출연 / 판정 가능','재출연율'],
       [comparisonRow('직전 적용',previousResult.config,previousResult.summary),
-       comparisonRow('현재 적용',appliedConfig,summary)], '급변점 기준 적용 전후 비교'),
+       comparisonRow('현재 적용',appliedConfig,summary)], '변곡점 기준 적용 전후 비교'),
       p('경계 단위는 각 행의 판정 기준에 표시합니다. 서로 다른 지표의 경계 숫자를 같은 척도로 비교하지 마세요. 첫 후속 재출연율은 선정 지점 단위입니다.'));
   }
   function updateCriterionInput() {
