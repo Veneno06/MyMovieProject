@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title data-i18n-key="starPowerTimeSeries">스타 파워 시계열 – K-Movie A Archive</title>
   <link rel="stylesheet" href="assets/style.css">
-  <link rel="stylesheet" href="assets/exp1.css?v=20261109-signed-r3">
+  <link rel="stylesheet" href="assets/exp1.css?v=20261113-metric-r1">
   <script src="assets/translator.js" defer></script>
-  <script src="assets/exp1-page.js?v=20261109-signed-r3" defer></script>
+  <script src="assets/exp1-page.js?v=20261113-metric-r1" defer></script>
 </head>
 <body>
 <div class="wrap exp1">
@@ -24,7 +24,12 @@
     <header class="study-title">
       <span class="kicker">실험 1</span>
       <h1 data-i18n-key="starPowerTimeSeries">스타 파워 시계열</h1>
-      <p>개봉일별 스타 파워(SP)가 하락에서 상승으로, 또는 상승에서 하락으로 바뀐 작품을 확인합니다.</p>
+      <p id="study-description">개봉일별 스타 파워(SP)가 하락에서 상승으로, 또는 상승에서 하락으로 바뀐 작품을 확인합니다.</p>
+      <div class="metric-options" role="group" aria-label="분석 지표 선택">
+        <button id="metric-sp" type="button" class="btn" aria-pressed="true" disabled>개봉일별 스타 파워(SP)</button>
+        <button id="metric-market" type="button" class="btn" aria-pressed="false" disabled>W_market</button>
+      </div>
+      <p id="metric-help" class="help">선택한 지표로 그래프와 모든 분석 결과를 계산합니다.</p>
     </header>
     <div class="study-links">
       <details id="method" class="method">
@@ -38,7 +43,7 @@
       <form id="threshold-form" class="search-tools">
         <label for="threshold-mode">판정 방식
           <select id="threshold-mode" disabled>
-            <option value="otsu" selected>방향별 자동 경계 (Otsu)</option>
+            <option value="otsu" selected>방향별 자동 경계</option>
             <option value="percentile">방향별 백분위</option>
             <option value="absolute">양·음 경계 직접 입력</option>
           </select>
