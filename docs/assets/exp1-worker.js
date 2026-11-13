@@ -28,7 +28,7 @@ self.onmessage = async ({data}) => {
       ]);
       registryAvailable = Array.isArray(registry?.events);
       if (!registryAvailable) registry = {events: []};
-      self.postMessage({type: 'progress', message: '전체 배우의 지표와 급변점을 계산하고 있습니다…'});
+      self.postMessage({type: 'progress', message: '전체 배우의 지표와 변곡점을 계산중…'});
       model = self.Exp1Model.build(index, registry);
       sendReady(data.request);
     } else if (data.type === 'calculate') {
