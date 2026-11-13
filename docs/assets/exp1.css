@@ -99,3 +99,10 @@
   .exp1 .point-tabs {max-width:100%;}
   .exp1 .study-title p {font-size:.88rem;}
 }
+
+.exp1 .metric-options {display:flex;gap:8px;align-items:center;margin-top:12px;}
+.exp1 .metric-options .btn {white-space:nowrap;}
+.exp1 .metric-options .btn[aria-pressed="true"] {background:var(--blue);border-color:var(--blue);color:#fff;}
+.exp1 .max-change {padding:12px 14px;border:1px solid var(--bd);border-radius:8px;}
+.exp1 .max-change h3 {margin:0 0 8px;}
+.exp1 .max-change .scroller table {min-width:300px;}
