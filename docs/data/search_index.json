@@ -443505,7 +443505,7 @@
     "movieNmEn": "LA LA LAND",
     "prdtYear": "2016",
     "openDt": "20161207",
-    "audiAcc": 3869821,
+    "audiAcc": 3877341,
     "nation": "미국",
     "directors": [
       {
@@ -962198,7 +962198,7 @@
     "movieNmEn": "White Blast",
     "prdtYear": "2024",
     "openDt": "20261118",
-    "audiAcc": 3841,
+    "audiAcc": 63697,
     "nation": "한국",
     "directors": [
       {
@@ -993426,7 +993426,7 @@
     "movieNmEn": "Final Interview",
     "prdtYear": "2026",
     "openDt": "20261104",
-    "audiAcc": 298254,
+    "audiAcc": 302711,
     "nation": "한국",
     "directors": [
       {
@@ -994014,7 +994014,7 @@
     "movieNmEn": "Chiikawa the Movie: The Secret of the Mermaid Island",
     "prdtYear": "2026",
     "openDt": "20260930",
-    "audiAcc": 2960937,
+    "audiAcc": 2969265,
     "nation": "일본",
     "directors": [
       {
@@ -996365,7 +996365,7 @@
     "movieNmEn": "Fall 2: Deadpoint",
     "prdtYear": "2026",
     "openDt": "20261111",
-    "audiAcc": 163182,
+    "audiAcc": 175286,
     "nation": "미국",
     "directors": [
       {
@@ -996502,6 +996502,35 @@
     "nation": "한국",
     "directors": [],
     "actors": []
+  },
+  {
+    "movieCd": "20265321",
+    "movieNm": "아름다운 초저녁달",
+    "movieNmEn": "In the Clear Moonlit Dusk",
+    "prdtYear": "2026",
+    "openDt": "20261118",
+    "audiAcc": 4668,
+    "nation": "일본",
+    "directors": [
+      {
+        "name": "타케무라 켄타로",
+        "id": ""
+      }
+    ],
+    "actors": [
+      {
+        "name": "미치에다 슌스케",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      },
+      {
+        "name": "안자이 세이라",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      }
+    ]
   },
   {
     "movieCd": "20265344",
@@ -997271,12 +997300,83 @@
     ]
   },
   {
+    "movieCd": "20267121",
+    "movieNm": "헝거게임 50번째 추첨의 날",
+    "movieNmEn": "The Hunger Games: Sunrise on the Reaping",
+    "prdtYear": "2025",
+    "openDt": "20261118",
+    "audiAcc": 21589,
+    "nation": "미국",
+    "directors": [
+      {
+        "name": "프란시스 로렌스",
+        "id": ""
+      }
+    ],
+    "actors": [
+      {
+        "name": "조셉 자다",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      },
+      {
+        "name": "맥케나 그레이스",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      },
+      {
+        "name": "엘 패닝",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      },
+      {
+        "name": "랄프 파인즈",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      },
+      {
+        "name": "제시 플레먼스",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      },
+      {
+        "name": "글렌 클로즈",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      },
+      {
+        "name": "키에란 컬킨",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      },
+      {
+        "name": "제니퍼 로렌스",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      },
+      {
+        "name": "조쉬 허처슨",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      }
+    ]
+  },
+  {
     "movieCd": "20267412",
     "movieNm": "극장판 마법소녀 마도카☆마기카〈발푸르기스의 회천〉",
     "movieNmEn": "Puella Magi Madoka Magica the Movie -Walpurgisnacht: Rising-",
     "prdtYear": "2026",
     "openDt": "20261104",
-    "audiAcc": 69416,
+    "audiAcc": 73235,
     "nation": "일본",
     "directors": [
       {
@@ -997340,7 +997440,7 @@
     "movieNmEn": "Detective Conan: The Counterfeit Case of Ultra 30",
     "prdtYear": "2026",
     "openDt": "20261105",
-    "audiAcc": 179904,
+    "audiAcc": 182521,
     "nation": "일본",
     "directors": [
       {
@@ -997378,5 +997478,32 @@
       }
     ],
     "actors": []
+  },
+  {
+    "movieCd": "20268264",
+    "movieNm": "임영웅ㅣ아임 히어로 더 스타디움 2",
+    "movieNmEn": "LIM YOUNG WOONGㅣIM HERO THE STADIUM 2",
+    "prdtYear": "2026",
+    "openDt": "20261118",
+    "audiAcc": 21257,
+    "nation": "한국",
+    "directors": [
+      {
+        "name": "오윤동",
+        "id": ""
+      },
+      {
+        "name": "송두선",
+        "id": ""
+      }
+    ],
+    "actors": [
+      {
+        "name": "임영웅",
+        "id": "",
+        "gender": "",
+        "cast": ""
+      }
+    ]
   }
 ]
