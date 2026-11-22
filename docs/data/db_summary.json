@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-11-15T20:13:28.565269+00:00",
+  "generatedAt": "2026-11-22T20:57:49.756815+00:00",
   "input_fingerprints": {
-    "search_index_sha256": "91c6c571df9139645d9de4b695cf43f94325d1f611c18de74e6d9e11389820a5",
-    "inputs_sha256": "6202d4bf1e46be7a06fe447b5fee74b02d315e7ec98008285e1b440db345491d",
+    "search_index_sha256": "ad11fd3c61e100c1e8fed89a4872a38293a9a88e569bb93968cd227862dc7cf0",
+    "inputs_sha256": "1d776a5281746e0ba129dbb854c094a67c037cdbf9c4c717db320b8a528d090e",
     "files": {
-      "docs/data/search_index.json": "91c6c571df9139645d9de4b695cf43f94325d1f611c18de74e6d9e11389820a5",
+      "docs/data/search_index.json": "ad11fd3c61e100c1e8fed89a4872a38293a9a88e569bb93968cd227862dc7cf0",
       "docs/data/sentiment/10000461.json": "d7c7399d767b8928c51dbbbd05d924affcf1059be16c817d2ffba7d854bc7275",
       "docs/data/sentiment/10000476.json": "16f696043c4eca1ec7f0746e01ae2a141e0052fc52433921873c7cd9e1601924",
       "docs/data/sentiment/10000736.json": "80c0e45bd57bc3ce72c044dec23308b8f12b0cf5dce280ee12de9833e90dec18",
@@ -256,6 +256,7 @@
       "docs/data/sentiment/20121449.json": "20d9f0cce2609b0d0b449098bce7cda341f97ab3a6bb8a41168262cf8737c66e",
       "docs/data/sentiment/20124322.json": "9753f608749ef1f61d0a864a33ea016c065d07ab234cd8f28ac933cfa27d838d",
       "docs/data/sentiment/20124449.json": "57c9a12e6a6ce1561ba5d1768315ecd7d6080d5b81e51f456493fc62b9911848",
+      "docs/data/sentiment/20125080.json": "a13f7581cfd38c1e9fa80117a5532f069ec5f80c94d99f3ce947a7763d99ad72",
       "docs/data/sentiment/20126810.json": "dbe26ccd1e3e470d8683238b553b49ad1c9a2054f0b6a4766d0ecaecf94bb7dd",
       "docs/data/sentiment/20127572.json": "5068005d2a22bc3c54b716fd3d29ccd94f27b3cc42144e27a1dc766143e89467",
       "docs/data/sentiment/20127749.json": "79681f96287906b82eb5befd2c65f932f9e76d7031a8c3d92a5c9950ad51fafd",
@@ -359,6 +360,7 @@
       "docs/data/sentiment/20320876.json": "890d879041430626e57a2af8d29a5a8c9c8a8b58e202dbc36fb4d64ac7347cf2",
       "docs/data/sentiment/20322752.json": "a63052002dccbe7fc8e180eb437e8805b6c542cd73637bfb7fd0d473440ac5b5",
       "docs/data/sentiment/20323960.json": "8d5d016363fe9008e2e92adecbaa22715491e52d4ace56a6ec6b7d3d09d83f48",
+      "docs/data/sentiment/20324633.json": "1299523f6816cfb4fc7937db436500f4ffcb056834727007d8369088691f1167",
       "docs/data/sentiment/20325832.json": "cb059b67b413c20f9404e79bebf6689351fd2d1a7ce518e5523fb44b346e2b5c",
       "docs/data/sentiment/20327973.json": "96d222404db2bf5197b5f637ee5214eff27a66cb5cf6ce5cedb8ac5ee81e77f0",
       "docs/data/sentiment/20328214.json": "88135823cb9d3ee8e8206bdaedf33b285f3e86d9b6e249b217e26fedee783a58",
@@ -1593,20 +1595,20 @@
     "legacy_hawk": "video-quarter files excluded; recollection required"
   },
   "db_stats": {
-    "total_movies": 24743,
-    "total_dom_movies": 8204,
-    "total_for_movies": 16539,
-    "cumulative_audience": 3414213943,
+    "total_movies": 24750,
+    "total_dom_movies": 8207,
+    "total_for_movies": 16543,
+    "cumulative_audience": 3415188909,
     "actors": {
-      "total": 42898,
-      "domestic": 32461,
-      "foreign": 10437,
+      "total": 42909,
+      "domestic": 32465,
+      "foreign": 10444,
       "dom_male": 19206,
       "dom_female": 12050
     },
     "directors": {
-      "domestic": 2603,
-      "foreign": 6339
+      "domestic": 2605,
+      "foreign": 6340
     }
   },
   "yearly_stats": {
@@ -1632,7 +1634,7 @@
       "dom_movies": 338,
       "for_movies": 1237,
       "dom_audi": 112201046,
-      "for_audi": 96619813
+      "for_audi": 96667347
     },
     "2023": {
       "dom_movies": 665,
@@ -1683,10 +1685,10 @@
       "for_audi": 105970650
     },
     "2026": {
-      "dom_movies": 73,
-      "for_movies": 134,
-      "dom_audi": 47901648,
-      "for_audi": 45980317
+      "dom_movies": 76,
+      "for_movies": 138,
+      "dom_audi": 48365394,
+      "for_audi": 46431419
     },
     "2017": {
       "dom_movies": 495,
@@ -1698,7 +1700,7 @@
       "dom_movies": 818,
       "for_movies": 1042,
       "dom_audi": 17536232,
-      "for_audi": 42976173
+      "for_audi": 42988757
     },
     "2008": {
       "dom_movies": 157,
@@ -482136,6 +482138,131 @@
       "date_basis_status": "declared"
     },
     {
+      "id": "20125080",
+      "name": "송영근",
+      "score": 762.4812505973239,
+      "negTotal": 45,
+      "posTotal": 52,
+      "negRatio": 46.391752577319586,
+      "maxSlope": 6.0,
+      "peakSignedSlope": -6.0,
+      "peakDate": "20221024",
+      "slopeUnit": "negative_count_change_per_elapsed_week",
+      "peakDateBasis": "bucket_start_not_exact_comment_date",
+      "rawTimeline": {
+        "2023-W02": {
+          "positive": 0,
+          "negative": 2
+        },
+        "2023-W25": {
+          "positive": 0,
+          "negative": 1
+        },
+        "2023-W10": {
+          "positive": 1,
+          "negative": 1
+        },
+        "2022-W52": {
+          "positive": 0,
+          "negative": 1
+        },
+        "2023-W15": {
+          "positive": 0,
+          "negative": 1
+        },
+        "2022-W46": {
+          "positive": 7,
+          "negative": 5
+        },
+        "2022-W42": {
+          "positive": 10,
+          "negative": 6
+        },
+        "2022-W47": {
+          "positive": 2,
+          "negative": 2
+        },
+        "2022-W48": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2022-W41": {
+          "positive": 17,
+          "negative": 8
+        },
+        "2022-W44": {
+          "positive": 1,
+          "negative": 2
+        },
+        "2023-W38": {
+          "positive": 0,
+          "negative": 1
+        },
+        "2023-W09": {
+          "positive": 1,
+          "negative": 1
+        },
+        "2022-W45": {
+          "positive": 1,
+          "negative": 6
+        },
+        "2023-W27": {
+          "positive": 0,
+          "negative": 1
+        },
+        "2022-W43": {
+          "positive": 3,
+          "negative": 0
+        },
+        "2023-W35": {
+          "positive": 0,
+          "negative": 1
+        },
+        "2023-W05": {
+          "positive": 1,
+          "negative": 1
+        },
+        "2023-W48": {
+          "positive": 0,
+          "negative": 1
+        },
+        "2023-W11": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2023-W12": {
+          "positive": 1,
+          "negative": 1
+        },
+        "2023-W20": {
+          "positive": 0,
+          "negative": 1
+        },
+        "2023-W07": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2026-W33": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2025-W17": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2023-W37": {
+          "positive": 0,
+          "negative": 1
+        },
+        "2023-W24": {
+          "positive": 0,
+          "negative": 1
+        }
+      },
+      "source_file": "20125080.json",
+      "date_basis_status": "declared"
+    },
+    {
       "id": "10037116",
       "name": "송승헌",
       "score": 758.0154392220799,
@@ -537552,6 +537679,1467 @@
         }
       },
       "source_file": "20368562.json",
+      "date_basis_status": "declared"
+    },
+    {
+      "id": "20324633",
+      "name": "고민시",
+      "score": 590.2504831830458,
+      "negTotal": 821,
+      "posTotal": 1626,
+      "negRatio": 33.55128729055987,
+      "maxSlope": 72.0,
+      "peakSignedSlope": -72.0,
+      "peakDate": "20261109",
+      "slopeUnit": "negative_count_change_per_elapsed_week",
+      "peakDateBasis": "bucket_start_not_exact_comment_date",
+      "rawTimeline": {
+        "2021-W01": {
+          "positive": 14,
+          "negative": 11
+        },
+        "2020-W53": {
+          "positive": 25,
+          "negative": 9
+        },
+        "2020-W08": {
+          "positive": 3,
+          "negative": 1
+        },
+        "2026-W45": {
+          "positive": 53,
+          "negative": 87
+        },
+        "2017-W16": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2020-W51": {
+          "positive": 26,
+          "negative": 7
+        },
+        "2020-W41": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2021-W07": {
+          "positive": 6,
+          "negative": 1
+        },
+        "2024-W31": {
+          "positive": 2,
+          "negative": 2
+        },
+        "2020-W22": {
+          "positive": 0,
+          "negative": 1
+        },
+        "2016-W13": {
+          "positive": 3,
+          "negative": 2
+        },
+        "2021-W11": {
+          "positive": 3,
+          "negative": 1
+        },
+        "2018-W27": {
+          "positive": 2,
+          "negative": 2
+        },
+        "2016-W37": {
+          "positive": 3,
+          "negative": 1
+        },
+        "2016-W36": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2022-W13": {
+          "positive": 3,
+          "negative": 0
+        },
+        "2024-W37": {
+          "positive": 41,
+          "negative": 5
+        },
+        "2024-W51": {
+          "positive": 1,
+          "negative": 1
+        },
+        "2016-W33": {
+          "positive": 3,
+          "negative": 2
+        },
+        "2017-W15": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2024-W08": {
+          "positive": 3,
+          "negative": 0
+        },
+        "2024-W38": {
+          "positive": 12,
+          "negative": 4
+        },
+        "2019-W50": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2024-W39": {
+          "positive": 9,
+          "negative": 2
+        },
+        "2024-W40": {
+          "positive": 8,
+          "negative": 2
+        },
+        "2021-W33": {
+          "positive": 6,
+          "negative": 4
+        },
+        "2016-W40": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2021-W19": {
+          "positive": 5,
+          "negative": 0
+        },
+        "2021-W10": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2024-W48": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2024-W50": {
+          "positive": 5,
+          "negative": 1
+        },
+        "2016-W14": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2025-W02": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2021-W08": {
+          "positive": 3,
+          "negative": 1
+        },
+        "2024-W32": {
+          "positive": 4,
+          "negative": 3
+        },
+        "2024-W22": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2021-W14": {
+          "positive": 3,
+          "negative": 0
+        },
+        "2021-W02": {
+          "positive": 10,
+          "negative": 2
+        },
+        "2018-W22": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2024-W33": {
+          "positive": 1,
+          "negative": 2
+        },
+        "2024-W36": {
+          "positive": 50,
+          "negative": 4
+        },
+        "2021-W05": {
+          "positive": 2,
+          "negative": 1
+        },
+        "2024-W04": {
+          "positive": 2,
+          "negative": 1
+        },
+        "2021-W03": {
+          "positive": 7,
+          "negative": 1
+        },
+        "2025-W26": {
+          "positive": 3,
+          "negative": 2
+        },
+        "2020-W52": {
+          "positive": 70,
+          "negative": 21
+        },
+        "2025-W43": {
+          "positive": 0,
+          "negative": 5
+        },
+        "2025-W41": {
+          "positive": 7,
+          "negative": 6
+        },
+        "2025-W42": {
+          "positive": 2,
+          "negative": 4
+        },
+        "2016-W34": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2021-W23": {
+          "positive": 26,
+          "negative": 14
+        },
+        "2024-W15": {
+          "positive": 4,
+          "negative": 1
+        },
+        "2020-W16": {
+          "positive": 1,
+          "negative": 1
+        },
+        "2016-W18": {
+          "positive": 1,
+          "negative": 1
+        },
+        "2016-W17": {
+          "positive": 18,
+          "negative": 3
+        },
+        "2021-W42": {
+          "positive": 4,
+          "negative": 2
+        },
+        "2020-W20": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2016-W20": {
+          "positive": 3,
+          "negative": 1
+        },
+        "2020-W49": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2024-W14": {
+          "positive": 4,
+          "negative": 1
+        },
+        "2024-W17": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2022-W39": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2016-W50": {
+          "positive": 3,
+          "negative": 0
+        },
+        "2024-W12": {
+          "positive": 0,
+          "negative": 1
+        },
+        "2016-W45": {
+          "positive": 13,
+          "negative": 4
+        },
+        "2020-W40": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2023-W13": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2023-W26": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2023-W38": {
+          "positive": 8,
+          "negative": 2
+        },
+        "2026-W20": {
+          "positive": 3,
+          "negative": 1
+        },
+        "2016-W38": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2019-W29": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2019-W17": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2025-W45": {
+          "positive": 3,
+          "negative": 0
+        },
+        "2018-W48": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2018-W50": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2019-W13": {
+          "positive": 0,
+          "negative": 1
+        },
+        "2021-W06": {
+          "positive": 4,
+          "negative": 1
+        },
+        "2019-W02": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2018-W08": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2025-W08": {
+          "positive": 3,
+          "negative": 0
+        },
+        "2016-W44": {
+          "positive": 7,
+          "negative": 7
+        },
+        "2024-W24": {
+          "positive": 2,
+          "negative": 1
+        },
+        "2016-W32": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2025-W23": {
+          "positive": 22,
+          "negative": 19
+        },
+        "2016-W35": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2016-W21": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2017-W04": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2018-W16": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2017-W39": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2017-W08": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2018-W45": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2024-W34": {
+          "positive": 8,
+          "negative": 5
+        },
+        "2016-W52": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2023-W23": {
+          "positive": 1,
+          "negative": 1
+        },
+        "2025-W25": {
+          "positive": 4,
+          "negative": 2
+        },
+        "2016-W41": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2016-W23": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2019-W40": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2016-W51": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2017-W05": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2025-W44": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2021-W22": {
+          "positive": 7,
+          "negative": 0
+        },
+        "2017-W35": {
+          "positive": 3,
+          "negative": 0
+        },
+        "2016-W49": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2017-W18": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2017-W09": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2017-W52": {
+          "positive": 1,
+          "negative": 1
+        },
+        "2023-W11": {
+          "positive": 3,
+          "negative": 5
+        },
+        "2016-W22": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2016-W43": {
+          "positive": 14,
+          "negative": 14
+        },
+        "2023-W12": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2016-W46": {
+          "positive": 7,
+          "negative": 3
+        },
+        "2017-W42": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2021-W12": {
+          "positive": 15,
+          "negative": 23
+        },
+        "2022-W04": {
+          "positive": 4,
+          "negative": 1
+        },
+        "2021-W37": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2020-W46": {
+          "positive": 0,
+          "negative": 2
+        },
+        "2021-W36": {
+          "positive": 3,
+          "negative": 1
+        },
+        "2017-W01": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2016-W47": {
+          "positive": 0,
+          "negative": 2
+        },
+        "2021-W24": {
+          "positive": 14,
+          "negative": 6
+        },
+        "2024-W41": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2017-W45": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2018-W06": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2018-W01": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2018-W26": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2025-W17": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2020-W26": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2023-W01": {
+          "positive": 0,
+          "negative": 1
+        },
+        "2018-W11": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2017-W26": {
+          "positive": 1,
+          "negative": 1
+        },
+        "2023-W41": {
+          "positive": 5,
+          "negative": 0
+        },
+        "2019-W27": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2019-W07": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2017-W19": {
+          "positive": 3,
+          "negative": 0
+        },
+        "2017-W51": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2022-W11": {
+          "positive": 0,
+          "negative": 1
+        },
+        "2020-W48": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2023-W35": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2021-W25": {
+          "positive": 9,
+          "negative": 1
+        },
+        "2023-W49": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2017-W20": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2024-W42": {
+          "positive": 0,
+          "negative": 1
+        },
+        "2026-W31": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2018-W33": {
+          "positive": 26,
+          "negative": 6
+        },
+        "2022-W44": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2020-W07": {
+          "positive": 3,
+          "negative": 0
+        },
+        "2023-W14": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2019-W38": {
+          "positive": 3,
+          "negative": 0
+        },
+        "2020-W06": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2026-W44": {
+          "positive": 23,
+          "negative": 38
+        },
+        "2021-W34": {
+          "positive": 7,
+          "negative": 3
+        },
+        "2022-W10": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2022-W01": {
+          "positive": 74,
+          "negative": 15
+        },
+        "2022-W29": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2017-W37": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2021-W04": {
+          "positive": 6,
+          "negative": 0
+        },
+        "2021-W52": {
+          "positive": 40,
+          "negative": 7
+        },
+        "2020-W11": {
+          "positive": 0,
+          "negative": 1
+        },
+        "2023-W06": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2021-W39": {
+          "positive": 10,
+          "negative": 4
+        },
+        "2022-W08": {
+          "positive": 4,
+          "negative": 1
+        },
+        "2020-W04": {
+          "positive": 3,
+          "negative": 2
+        },
+        "2022-W12": {
+          "positive": 1,
+          "negative": 1
+        },
+        "2018-W12": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2026-W12": {
+          "positive": 3,
+          "negative": 1
+        },
+        "2020-W38": {
+          "positive": 0,
+          "negative": 1
+        },
+        "2025-W22": {
+          "positive": 30,
+          "negative": 34
+        },
+        "2025-W29": {
+          "positive": 13,
+          "negative": 18
+        },
+        "2020-W14": {
+          "positive": 2,
+          "negative": 1
+        },
+        "2024-W29": {
+          "positive": 10,
+          "negative": 2
+        },
+        "2019-W37": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2018-W04": {
+          "positive": 0,
+          "negative": 1
+        },
+        "2024-W06": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2021-W21": {
+          "positive": 5,
+          "negative": 0
+        },
+        "2023-W25": {
+          "positive": 1,
+          "negative": 2
+        },
+        "2021-W27": {
+          "positive": 5,
+          "negative": 1
+        },
+        "2020-W36": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2021-W29": {
+          "positive": 3,
+          "negative": 0
+        },
+        "2020-W37": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2018-W18": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2022-W41": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2019-W44": {
+          "positive": 7,
+          "negative": 6
+        },
+        "2021-W31": {
+          "positive": 3,
+          "negative": 0
+        },
+        "2020-W45": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2017-W50": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2018-W34": {
+          "positive": 14,
+          "negative": 1
+        },
+        "2019-W01": {
+          "positive": 1,
+          "negative": 1
+        },
+        "2019-W24": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2019-W39": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2024-W30": {
+          "positive": 5,
+          "negative": 2
+        },
+        "2017-W40": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2022-W19": {
+          "positive": 2,
+          "negative": 1
+        },
+        "2017-W33": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2017-W29": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2021-W18": {
+          "positive": 3,
+          "negative": 0
+        },
+        "2021-W38": {
+          "positive": 39,
+          "negative": 14
+        },
+        "2025-W32": {
+          "positive": 53,
+          "negative": 37
+        },
+        "2019-W46": {
+          "positive": 1,
+          "negative": 2
+        },
+        "2018-W37": {
+          "positive": 2,
+          "negative": 1
+        },
+        "2018-W38": {
+          "positive": 9,
+          "negative": 0
+        },
+        "2022-W25": {
+          "positive": 7,
+          "negative": 1
+        },
+        "2018-W36": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2021-W45": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2022-W26": {
+          "positive": 7,
+          "negative": 2
+        },
+        "2022-W28": {
+          "positive": 1,
+          "negative": 1
+        },
+        "2021-W49": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2022-W33": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2018-W35": {
+          "positive": 2,
+          "negative": 1
+        },
+        "2023-W21": {
+          "positive": 3,
+          "negative": 0
+        },
+        "2018-W39": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2018-W32": {
+          "positive": 0,
+          "negative": 1
+        },
+        "2020-W12": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2022-W30": {
+          "positive": 0,
+          "negative": 2
+        },
+        "2020-W23": {
+          "positive": 1,
+          "negative": 1
+        },
+        "2023-W10": {
+          "positive": 3,
+          "negative": 2
+        },
+        "2021-W50": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2021-W30": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2021-W20": {
+          "positive": 5,
+          "negative": 2
+        },
+        "2020-W02": {
+          "positive": 3,
+          "negative": 2
+        },
+        "2020-W03": {
+          "positive": 4,
+          "negative": 0
+        },
+        "2020-W19": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2023-W04": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2023-W27": {
+          "positive": 2,
+          "negative": 2
+        },
+        "2021-W13": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2020-W10": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2020-W05": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2026-W35": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2021-W16": {
+          "positive": 1,
+          "negative": 1
+        },
+        "2020-W27": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2024-W25": {
+          "positive": 2,
+          "negative": 1
+        },
+        "2021-W35": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2020-W33": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2020-W13": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2021-W15": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2026-W25": {
+          "positive": 1,
+          "negative": 1
+        },
+        "2019-W43": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2021-W17": {
+          "positive": 0,
+          "negative": 1
+        },
+        "2021-W40": {
+          "positive": 7,
+          "negative": 2
+        },
+        "2024-W03": {
+          "positive": 2,
+          "negative": 2
+        },
+        "2021-W41": {
+          "positive": 3,
+          "negative": 0
+        },
+        "2025-W35": {
+          "positive": 20,
+          "negative": 11
+        },
+        "2022-W14": {
+          "positive": 1,
+          "negative": 1
+        },
+        "2024-W35": {
+          "positive": 6,
+          "negative": 1
+        },
+        "2025-W37": {
+          "positive": 9,
+          "negative": 7
+        },
+        "2025-W16": {
+          "positive": 0,
+          "negative": 1
+        },
+        "2020-W34": {
+          "positive": 1,
+          "negative": 1
+        },
+        "2019-W45": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2020-W17": {
+          "positive": 0,
+          "negative": 1
+        },
+        "2022-W24": {
+          "positive": 0,
+          "negative": 2
+        },
+        "2023-W24": {
+          "positive": 2,
+          "negative": 1
+        },
+        "2025-W24": {
+          "positive": 8,
+          "negative": 7
+        },
+        "2023-W07": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2021-W32": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2021-W48": {
+          "positive": 2,
+          "negative": 1
+        },
+        "2022-W03": {
+          "positive": 8,
+          "negative": 2
+        },
+        "2023-W30": {
+          "positive": 3,
+          "negative": 1
+        },
+        "2023-W31": {
+          "positive": 17,
+          "negative": 4
+        },
+        "2024-W16": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2022-W20": {
+          "positive": 4,
+          "negative": 1
+        },
+        "2024-W27": {
+          "positive": 4,
+          "negative": 0
+        },
+        "2022-W35": {
+          "positive": 1,
+          "negative": 1
+        },
+        "2022-W23": {
+          "positive": 5,
+          "negative": 2
+        },
+        "2024-W02": {
+          "positive": 1,
+          "negative": 2
+        },
+        "2021-W43": {
+          "positive": 3,
+          "negative": 1
+        },
+        "2023-W29": {
+          "positive": 5,
+          "negative": 0
+        },
+        "2022-W21": {
+          "positive": 9,
+          "negative": 0
+        },
+        "2022-W52": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2023-W05": {
+          "positive": 0,
+          "negative": 1
+        },
+        "2024-W11": {
+          "positive": 3,
+          "negative": 1
+        },
+        "2022-W45": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2024-W26": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2023-W42": {
+          "positive": 2,
+          "negative": 1
+        },
+        "2026-W36": {
+          "positive": 0,
+          "negative": 1
+        },
+        "2024-W20": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2026-W26": {
+          "positive": 2,
+          "negative": 1
+        },
+        "2022-W51": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2024-W52": {
+          "positive": 1,
+          "negative": 2
+        },
+        "2023-W37": {
+          "positive": 5,
+          "negative": 2
+        },
+        "2022-W22": {
+          "positive": 2,
+          "negative": 3
+        },
+        "2023-W46": {
+          "positive": 1,
+          "negative": 1
+        },
+        "2021-W47": {
+          "positive": 1,
+          "negative": 1
+        },
+        "2026-W28": {
+          "positive": 1,
+          "negative": 1
+        },
+        "2022-W06": {
+          "positive": 2,
+          "negative": 4
+        },
+        "2026-W40": {
+          "positive": 0,
+          "negative": 1
+        },
+        "2023-W08": {
+          "positive": 1,
+          "negative": 1
+        },
+        "2022-W36": {
+          "positive": 0,
+          "negative": 2
+        },
+        "2025-W20": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2021-W44": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2023-W44": {
+          "positive": 0,
+          "negative": 1
+        },
+        "2021-W26": {
+          "positive": 2,
+          "negative": 1
+        },
+        "2023-W03": {
+          "positive": 3,
+          "negative": 0
+        },
+        "2023-W33": {
+          "positive": 8,
+          "negative": 0
+        },
+        "2025-W01": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2023-W43": {
+          "positive": 0,
+          "negative": 1
+        },
+        "2023-W34": {
+          "positive": 3,
+          "negative": 0
+        },
+        "2023-W28": {
+          "positive": 36,
+          "negative": 12
+        },
+        "2022-W46": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2026-W05": {
+          "positive": 3,
+          "negative": 1
+        },
+        "2022-W02": {
+          "positive": 13,
+          "negative": 5
+        },
+        "2021-W46": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2022-W07": {
+          "positive": 0,
+          "negative": 1
+        },
+        "2021-W51": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2022-W05": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2023-W15": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2022-W17": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2023-W17": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2025-W36": {
+          "positive": 11,
+          "negative": 11
+        },
+        "2022-W15": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2024-W01": {
+          "positive": 2,
+          "negative": 8
+        },
+        "2023-W52": {
+          "positive": 7,
+          "negative": 10
+        },
+        "2025-W34": {
+          "positive": 21,
+          "negative": 22
+        },
+        "2025-W33": {
+          "positive": 14,
+          "negative": 26
+        },
+        "2025-W30": {
+          "positive": 14,
+          "negative": 7
+        },
+        "2026-W04": {
+          "positive": 1,
+          "negative": 1
+        },
+        "2025-W15": {
+          "positive": 0,
+          "negative": 1
+        },
+        "2026-W41": {
+          "positive": 0,
+          "negative": 1
+        },
+        "2025-W52": {
+          "positive": 1,
+          "negative": 2
+        },
+        "2025-W21": {
+          "positive": 0,
+          "negative": 1
+        },
+        "2025-W47": {
+          "positive": 5,
+          "negative": 4
+        },
+        "2025-W48": {
+          "positive": 10,
+          "negative": 5
+        },
+        "2024-W43": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2024-W49": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2026-W09": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2025-W49": {
+          "positive": 3,
+          "negative": 0
+        },
+        "2023-W32": {
+          "positive": 5,
+          "negative": 1
+        },
+        "2024-W45": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2023-W47": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2026-W01": {
+          "positive": 3,
+          "negative": 0
+        },
+        "2023-W36": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2023-W50": {
+          "positive": 3,
+          "negative": 0
+        },
+        "2024-W10": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2023-W39": {
+          "positive": 6,
+          "negative": 4
+        },
+        "2023-W40": {
+          "positive": 4,
+          "negative": 0
+        },
+        "2026-W07": {
+          "positive": 0,
+          "negative": 1
+        },
+        "2024-W28": {
+          "positive": 2,
+          "negative": 0
+        },
+        "2025-W38": {
+          "positive": 7,
+          "negative": 3
+        },
+        "2026-W33": {
+          "positive": 0,
+          "negative": 1
+        },
+        "2026-W23": {
+          "positive": 0,
+          "negative": 1
+        },
+        "2026-W06": {
+          "positive": 2,
+          "negative": 2
+        },
+        "2026-W14": {
+          "positive": 0,
+          "negative": 1
+        },
+        "2026-W46": {
+          "positive": 8,
+          "negative": 15
+        },
+        "2025-W51": {
+          "positive": 2,
+          "negative": 2
+        },
+        "2026-W37": {
+          "positive": 0,
+          "negative": 2
+        },
+        "2025-W50": {
+          "positive": 3,
+          "negative": 1
+        },
+        "2026-W18": {
+          "positive": 0,
+          "negative": 1
+        },
+        "2025-W40": {
+          "positive": 0,
+          "negative": 2
+        },
+        "2026-W19": {
+          "positive": 0,
+          "negative": 1
+        },
+        "2026-W17": {
+          "positive": 0,
+          "negative": 1
+        },
+        "2024-W44": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2025-W09": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2025-W28": {
+          "positive": 5,
+          "negative": 7
+        },
+        "2026-W22": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2026-W10": {
+          "positive": 0,
+          "negative": 1
+        },
+        "2025-W27": {
+          "positive": 2,
+          "negative": 7
+        },
+        "2025-W39": {
+          "positive": 0,
+          "negative": 2
+        },
+        "2025-W31": {
+          "positive": 7,
+          "negative": 10
+        },
+        "2026-W27": {
+          "positive": 1,
+          "negative": 0
+        },
+        "2026-W03": {
+          "positive": 0,
+          "negative": 2
+        },
+        "2026-W02": {
+          "positive": 0,
+          "negative": 1
+        }
+      },
+      "source_file": "20324633.json",
       "date_basis_status": "declared"
     },
     {
@@ -728458,7 +730046,7 @@
   ],
   "global_max_slope": 175.0,
   "sentiment_global_stats": {
-    "avg_pos": 686,
+    "avg_pos": 687,
     "avg_neg": 297,
     "avg_neg_ratio": 30.2,
     "ratio_str": "69.8 : 30.2"
